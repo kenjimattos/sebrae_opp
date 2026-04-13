@@ -4,7 +4,15 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Added
+- Componente `PillButton` para CTAs pill-shaped com ícone seta (Explorar emendas, Ver oportunidades)
+- Seção Recursos reescrita conforme Figma: 5 cards de emendas, mapa Datapedia (iframe), bloco editais
+- Integração Datapedia: iframe embed com link externo no hover
+- Pill indicador "Onde encontrar recursos para o município" no topo da seção
+- Ícone decorativo $ entre blocos da seção Recursos
+
 ### Changed
+- Título da seção Recursos atualizado para "Recursos e Capacitação para o Desenvolvimento do Município"
 - Mapa da Paraíba substituído: react-simple-maps → react-leaflet + Carto Positron (tile map estilo QuintoAndar)
 - GeoJSON dos municípios agora é local (não depende de URL do GitHub)
 - Badges de valor exibidos diretamente no mapa sobre cada município com dados
