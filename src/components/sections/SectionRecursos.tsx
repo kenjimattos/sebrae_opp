@@ -60,20 +60,17 @@ export default function SectionRecursos() {
             href={DATAPEDIA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full rounded-[var(--radius-xl)] overflow-hidden bg-[var(--primitives-gray-900)] min-h-[400px] relative group"
+            className="block w-full rounded-[var(--radius-xl)] overflow-hidden bg-[var(--primitives-gray-900)] relative group"
           >
-            {/* Tentar iframe — se Datapedia bloquear, mostrar placeholder */}
-            <iframe
-              src={DATAPEDIA_URL}
-              title="Mapa de distribuição de emendas — Datapedia"
-              className="w-full h-[500px] border-none rounded-[var(--radius-xl)]"
-              sandbox="allow-scripts allow-same-origin"
-              loading="lazy"
+            <img
+              src="/assets/datapedia-mapa.png"
+              alt="Mapa de distribuição territorial das emendas — Datapedia"
+              className="w-full h-auto object-cover rounded-[var(--radius-xl)]"
             />
 
-            {/* Overlay que aparece no hover para indicar que é clicável */}
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center rounded-[var(--radius-xl)] pointer-events-none">
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-[var(--semantic-surface-primary)] text-[color:var(--semantic-text-primary)] font-semibold text-[length:var(--font-size-body)] px-[var(--spacing-md)] py-[var(--spacing-sm)] rounded-[var(--radius-full)]">
+            {/* Overlay no hover */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center rounded-[var(--radius-xl)]">
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-[var(--semantic-surface-primary)] text-[color:var(--semantic-text-primary)] font-semibold text-[length:var(--font-size-body)] px-[var(--spacing-md)] py-[var(--spacing-sm)] rounded-[var(--radius-full)] shadow-lg">
                 Abrir no Datapedia →
               </span>
             </div>
