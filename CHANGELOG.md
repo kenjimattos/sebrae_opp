@@ -5,6 +5,9 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ## [Unreleased]
 
 ### Changed
+- Mapa da Paraíba substituído: react-simple-maps → react-leaflet + Carto Positron (tile map estilo QuintoAndar)
+- GeoJSON dos municípios agora é local (não depende de URL do GitHub)
+- Badges de valor exibidos diretamente no mapa sobre cada município com dados
 - Seção Panorama: dropdown agora lista os 16 indicadores das agendas (com labels abreviados)
 - Seção Panorama: mapa usa cores semânticas de status (success-surface, warning-surface, alert-surface) em vez de gradiente RGB
 - Seção Panorama: hover mostra cor de status forte (success, warning, alert); municípios sem dados não mudam cor nem mostram tooltip
