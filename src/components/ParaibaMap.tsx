@@ -1,13 +1,13 @@
 // Mapa SVG interativo da Paraíba — React Simple Maps + GeoJSON IBGE
-// Coloração por indicador, zoom, tooltip no hover, destaque do município selecionado
+// Coloração por status do indicador (success/warning/alert), tooltip no hover, destaque do município selecionado
 
 import { useState, useCallback } from 'react'
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps'
 import {
   municipiosMapData,
-  indicadorRanges,
   type IndicadorKey,
 } from '@/data/mapa-indicadores'
+import type { StatusType } from '@/types/indicadores'
 
 const GEO_URL =
   'https://raw.githubusercontent.com/tbrugz/geodata-br/master/geojson/geojs-25-mun.json'
@@ -18,43 +18,30 @@ interface ParaibaMapProps {
   className?: string
 }
 
-// Interpola entre vermelho → amarelo → verde com base no valor normalizado (0..1)
-function getColorForValue(t: number): string {
-  // Clamp
-  const v = Math.max(0, Math.min(1, t))
-
-  if (v < 0.5) {
-    // red(210,50,50) → yellow(220,180,40)
-    const r = Math.round(210 + (220 - 210) * (v / 0.5))
-    const g = Math.round(50 + (180 - 50) * (v / 0.5))
-    const b = Math.round(50 + (40 - 50) * (v / 0.5))
-    return `rgb(${r},${g},${b})`
-  }
-  // yellow(220,180,40) → green(40,160,50)
-  const p = (v - 0.5) / 0.5
-  const r = Math.round(220 + (40 - 220) * p)
-  const g = Math.round(180 + (160 - 180) * p)
-  const b = Math.round(40 + (50 - 40) * p)
-  return `rgb(${r},${g},${b})`
+const statusFill: Record<StatusType, string> = {
+  success: 'var(--semantic-success-surface)',
+  warning: 'var(--semantic-warning-surface)',
+  alert: 'var(--semantic-alert-surface)',
 }
 
-function getNormalizedValue(id: string, indicador: IndicadorKey): number | null {
+const statusHoverFill: Record<StatusType, string> = {
+  success: 'var(--semantic-success)',
+  warning: 'var(--semantic-warning)',
+  alert: 'var(--semantic-alert)',
+}
+
+function getStatus(id: string, indicador: IndicadorKey): StatusType | null {
   const data = municipiosMapData[id]
   if (!data) return null
-  const val = data.indicadores[indicador].valor
-  const range = indicadorRanges[indicador]
-
-  // Gini is inverted — lower is better
-  if (indicador === 'gini') {
-    return 1 - (val - range.min) / (range.max - range.min)
-  }
-  return (val - range.min) / (range.max - range.min)
+  const entry = data.indicadores[indicador]
+  if (!entry) return null
+  return entry.status
 }
 
 function getDisplayValue(id: string, indicador: IndicadorKey): string | null {
   const data = municipiosMapData[id]
   if (!data) return null
-  return data.indicadores[indicador].display
+  return data.indicadores[indicador]?.valor ?? null
 }
 
 function getMunicipioNome(id: string): string | null {
@@ -74,6 +61,9 @@ export default function ParaibaMap({ selectedId, indicador, className = '' }: Pa
   const handleMouseEnter = useCallback(
     (geo: { properties: { id: string; name: string } }, event: React.MouseEvent) => {
       const id = String(geo.properties.id)
+      const status = getStatus(id, indicador)
+      // Sem dados = sem tooltip
+      if (!status) return
       const nome = getMunicipioNome(id) || (geo.properties.name as string)
       const valor = getDisplayValue(id, indicador) || 'N/D'
       const rect = (event.currentTarget as Element).closest('svg')?.getBoundingClientRect()
@@ -118,16 +108,23 @@ export default function ParaibaMap({ selectedId, indicador, className = '' }: Pa
               geographies.map((geo) => {
                 const id = String(geo.properties.id)
                 const isSelected = id === selectedId
-                const normalized = getNormalizedValue(id, indicador)
+                const status = getStatus(id, indicador)
+                const hasData = status !== null
 
                 let fill: string
                 if (isSelected) {
-                  fill = 'var(--primitives-blue-500)'
-                } else if (normalized !== null) {
-                  fill = getColorForValue(normalized)
+                  fill = 'var(--semantic-surface-tertiary)'
+                } else if (hasData) {
+                  fill = statusFill[status]
                 } else {
                   fill = 'var(--semantic-surface-secondary)'
                 }
+
+                const hoverFill = isSelected
+                  ? 'var(--semantic-surface-tertiary)'
+                  : hasData
+                    ? statusHoverFill[status]
+                    : 'var(--semantic-surface-secondary)'
 
                 return (
                   <Geography
@@ -144,22 +141,24 @@ export default function ParaibaMap({ selectedId, indicador, className = '' }: Pa
                       default: {
                         fill,
                         stroke: isSelected
-                          ? 'var(--primitives-blue-800)'
+                          ? 'var(--semantic-text-primary)'
                           : 'var(--semantic-surface-primary)',
                         strokeWidth: isSelected ? 1.5 : 0.5,
                         outline: 'none',
-                        cursor: 'default',
+                        cursor: hasData ? 'default' : 'default',
                       },
                       hover: {
-                        fill: isSelected ? fill : normalized !== null ? getColorForValue(Math.min(1, (normalized ?? 0) + 0.1)) : 'var(--primitives-blue-200)',
-                        stroke: 'var(--primitives-blue-500)',
-                        strokeWidth: 1,
+                        fill: hoverFill,
+                        stroke: hasData
+                          ? 'var(--semantic-text-inactive)'
+                          : 'var(--semantic-surface-primary)',
+                        strokeWidth: hasData ? 1 : 0.5,
                         outline: 'none',
                         cursor: 'default',
                       },
                       pressed: {
                         fill,
-                        stroke: 'var(--primitives-blue-800)',
+                        stroke: 'var(--semantic-text-primary)',
                         strokeWidth: 1.5,
                         outline: 'none',
                       },
