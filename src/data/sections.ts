@@ -17,7 +17,7 @@ export const sectionContent = {
     title: 'Onde estão os riscos estratégicos?',
   },
   recursos: {
-    title: 'Acesso a recursos',
+    title: 'Recursos e Capacitação para o Desenvolvimento do Município',
   },
   capacitacao: {
     title: 'Capacitação',
