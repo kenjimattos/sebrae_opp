@@ -2,57 +2,49 @@
   "municipio": "João Pessoa",
   "agendas": [
     {
-      "nome": "Desenvolvimento Econômico",
+      "nome": "Governança multissetorial para o Desenvolvimento Local",
       "indicadores": [
-        { "label": "PIB per capita", "valor": "R$ 32.450", "variacao": "+3.2%", "status": "success" },
-        { "label": "Taxa de desemprego", "valor": "8.7%", "variacao": "-1.1%", "status": "success" },
-        { "label": "Empresas ativas", "valor": "45.230", "variacao": "+5.4%", "status": "success" },
-        { "label": "Formalização", "valor": "62.3%", "variacao": "+2.1%", "status": "warning" }
+        { "label": "Índice CFA de Governança Municipal", "valor": "7,8", "status": "success" },
+        { "label": "IDH-M", "valor": "0,763", "status": "success" },
+        { "label": "ISDEL", "valor": "0,62", "status": "success" }
       ]
     },
     {
-      "nome": "Educação e Qualificação",
+      "nome": "Simplificação e digitalização de serviços públicos para os Pequenos Negócios",
       "indicadores": [
-        { "label": "IDEB Anos Finais", "valor": 4.8, "variacao": "+0.3", "status": "warning" },
-        { "label": "Taxa de alfabetização", "valor": "94.2%", "variacao": "+0.8%", "status": "success" },
-        { "label": "Matrículas ensino técnico", "valor": "12.340", "variacao": "+8.2%", "status": "success" },
-        { "label": "Evasão escolar", "valor": "3.1%", "variacao": "+0.2%", "status": "alert" }
+        { "label": "Tempo médio de abertura de empresa", "valor": "12h", "status": "success" },
+        { "label": "Tempo médio de viabilidade de empresa", "valor": "15 dias", "status": "success" },
+        { "label": "Ranking Redesim", "valor": "Completo", "status": "success" },
+        { "label": "Tempo de licenciamento", "valor": "10 dias", "status": "success" }
       ]
     },
     {
-      "nome": "Infraestrutura e Urbanismo",
+      "nome": "Inovação inclusiva e digitalização para Pequenos Negócios, em ELI",
       "indicadores": [
-        { "label": "Cobertura saneamento", "valor": "78.5%", "variacao": "+2.3%", "status": "warning" },
-        { "label": "Acesso à internet", "valor": "85.1%", "variacao": "+4.7%", "status": "success" },
-        { "label": "Pavimentação", "valor": "71.2%", "variacao": "+1.5%", "status": "warning" },
-        { "label": "Iluminação pública", "valor": "89.3%", "variacao": "+0.8%", "status": "success" }
+        { "label": "Trabalhadores nas ocupações de C&T", "valor": "4.850", "status": "success" },
+        { "label": "Trabalhadores nos setores da economia criativa, inovação e TIC", "valor": "5,1%", "status": "success" }
       ]
     },
     {
-      "nome": "Saúde e Bem-Estar",
+      "nome": "Educação empreendedora",
       "indicadores": [
-        { "label": "Leitos por 1.000 hab.", "valor": 2.8, "variacao": "+0.2", "status": "warning" },
-        { "label": "Cobertura ESF", "valor": "82.4%", "variacao": "+3.1%", "status": "success" },
-        { "label": "Mortalidade infantil", "valor": "11.2‰", "variacao": "-0.8‰", "status": "success" },
-        { "label": "Vacinação", "valor": "76.5%", "variacao": "-2.3%", "status": "alert" }
+        { "label": "Educação Empreendedora - ISDEL", "valor": "22 escolas", "status": "success" },
+        { "label": "Trabalhadores formais com Ensino Médio Completo", "valor": "78%", "status": "success" },
+        { "label": "Trabalhadores formais com Ensino Superior Completo", "valor": "28%", "status": "warning" }
       ]
     },
     {
-      "nome": "Sustentabilidade Ambiental",
+      "nome": "Viabilização financeira e crédito orientado",
       "indicadores": [
-        { "label": "Coleta seletiva", "valor": "34.2%", "variacao": "+5.1%", "status": "warning" },
-        { "label": "Áreas verdes per capita", "valor": "12.5 m²", "variacao": "-0.3 m²", "status": "alert" },
-        { "label": "Consumo de água", "valor": "145 L/dia", "variacao": "-3.2%", "status": "success" },
-        { "label": "Emissões CO₂", "valor": "2.1 t/hab", "variacao": "-1.5%", "status": "success" }
+        { "label": "Taxa de crescimento do valor das Operações de Crédito", "valor": "3%", "status": "success" },
+        { "label": "Taxa de crescimento do valor dos Financiamentos - BACEN", "valor": "5%", "status": "success" }
       ]
     },
     {
-      "nome": "Turismo e Cultura",
+      "nome": "Inclusão produtiva",
       "indicadores": [
-        { "label": "Fluxo turístico", "valor": "1.2M", "variacao": "+12.3%", "status": "success" },
-        { "label": "Receita turismo", "valor": "R$ 890M", "variacao": "+8.7%", "status": "success" },
-        { "label": "Equipamentos culturais", "valor": 42, "variacao": "+3", "status": "warning" },
-        { "label": "Eventos culturais/ano", "valor": 156, "variacao": "+18", "status": "success" }
+        { "label": "Total de pequenos negócios abertos", "valor": "3.820", "status": "success" },
+        { "label": "Total de pequenos negócios extintos no período", "valor": "1.950", "status": "warning" }
       ]
     }
   ],
@@ -72,18 +64,5 @@
     { "titulo": "Déficit habitacional", "descricao": "Estimativa de 45.000 famílias sem moradia adequada na região metropolitana.", "percentual": 78, "tipo": "alert" },
     { "titulo": "Vulnerabilidade hídrica", "descricao": "Reservatórios operando a 52% da capacidade com previsão de redução.", "percentual": 52, "tipo": "warning" },
     { "titulo": "Desigualdade social", "descricao": "Índice de Gini de 0.58, acima da média nacional.", "percentual": 65, "tipo": "alert" }
-  ],
-  "panorama": {
-    "idhm": 0.763,
-    "ranking": [
-      { "municipio": "João Pessoa", "valor": 0.763 },
-      { "municipio": "Campina Grande", "valor": 0.72 },
-      { "municipio": "Patos", "valor": 0.701 },
-      { "municipio": "Bayeux", "valor": 0.649 },
-      { "municipio": "Santa Rita", "valor": 0.641 },
-      { "municipio": "Cabedelo", "valor": 0.748 },
-      { "municipio": "Guarabira", "valor": 0.673 },
-      { "municipio": "Sousa", "valor": 0.668 }
-    ]
-  }
+  ]
 }

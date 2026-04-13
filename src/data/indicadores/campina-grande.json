@@ -64,18 +64,5 @@
     { "titulo": "Seca prolongada", "descricao": "Região do semiárido com períodos de estiagem cada vez mais longos.", "percentual": 82, "tipo": "alert" },
     { "titulo": "Evasão de talentos", "descricao": "Formados em TI migrando para capitais por falta de oportunidades locais.", "percentual": 45, "tipo": "warning" },
     { "titulo": "Infraestrutura viária", "descricao": "35% das vias urbanas necessitam de recapeamento urgente.", "percentual": 58, "tipo": "warning" }
-  ],
-  "panorama": {
-    "idhm": 0.72,
-    "ranking": [
-      { "municipio": "João Pessoa", "valor": 0.763 },
-      { "municipio": "Campina Grande", "valor": 0.72 },
-      { "municipio": "Patos", "valor": 0.701 },
-      { "municipio": "Bayeux", "valor": 0.649 },
-      { "municipio": "Santa Rita", "valor": 0.641 },
-      { "municipio": "Cabedelo", "valor": 0.748 },
-      { "municipio": "Guarabira", "valor": 0.673 },
-      { "municipio": "Sousa", "valor": 0.668 }
-    ]
-  }
+  ]
 }

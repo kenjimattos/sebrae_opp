@@ -2,57 +2,49 @@
   "municipio": "Patos",
   "agendas": [
     {
-      "nome": "Desenvolvimento Econômico",
+      "nome": "Governança multissetorial para o Desenvolvimento Local",
       "indicadores": [
-        { "label": "PIB per capita", "valor": "R$ 18.920", "variacao": "+2.1%", "status": "warning" },
-        { "label": "Taxa de desemprego", "valor": "12.5%", "variacao": "+0.3%", "status": "alert" },
-        { "label": "Empresas ativas", "valor": "8.120", "variacao": "+2.8%", "status": "success" },
-        { "label": "Formalização", "valor": "48.2%", "variacao": "+1.2%", "status": "alert" }
+        { "label": "Índice CFA de Governança Municipal", "valor": "4,5", "status": "alert" },
+        { "label": "IDH-M", "valor": "0,701", "status": "warning" },
+        { "label": "ISDEL", "valor": "0,35", "status": "alert" }
       ]
     },
     {
-      "nome": "Educação e Qualificação",
+      "nome": "Simplificação e digitalização de serviços públicos para os Pequenos Negócios",
       "indicadores": [
-        { "label": "IDEB Anos Finais", "valor": 4.1, "variacao": "+0.1", "status": "alert" },
-        { "label": "Taxa de alfabetização", "valor": "88.5%", "variacao": "+0.4%", "status": "warning" },
-        { "label": "Matrículas ensino técnico", "valor": "2.340", "variacao": "+4.2%", "status": "success" },
-        { "label": "Evasão escolar", "valor": "5.8%", "variacao": "+0.7%", "status": "alert" }
+        { "label": "Tempo médio de abertura de empresa", "valor": "28h", "status": "warning" },
+        { "label": "Tempo médio de viabilidade de empresa", "valor": "35 dias", "status": "alert" },
+        { "label": "Ranking Redesim", "valor": "Não aderiu", "status": "alert" },
+        { "label": "Tempo de licenciamento", "valor": "25 dias", "status": "alert" }
       ]
     },
     {
-      "nome": "Infraestrutura e Urbanismo",
+      "nome": "Inovação inclusiva e digitalização para Pequenos Negócios, em ELI",
       "indicadores": [
-        { "label": "Cobertura saneamento", "valor": "52.1%", "variacao": "+1.2%", "status": "alert" },
-        { "label": "Acesso à internet", "valor": "68.3%", "variacao": "+6.8%", "status": "warning" },
-        { "label": "Pavimentação", "valor": "45.6%", "variacao": "+1.8%", "status": "alert" },
-        { "label": "Iluminação pública", "valor": "73.4%", "variacao": "+0.9%", "status": "warning" }
+        { "label": "Trabalhadores nas ocupações de C&T", "valor": "380", "status": "warning" },
+        { "label": "Trabalhadores nos setores da economia criativa, inovação e TIC", "valor": "1,2%", "status": "alert" }
       ]
     },
     {
-      "nome": "Saúde e Bem-Estar",
+      "nome": "Educação empreendedora",
       "indicadores": [
-        { "label": "Leitos por 1.000 hab.", "valor": 2.1, "variacao": "-0.1", "status": "alert" },
-        { "label": "Cobertura ESF", "valor": "92.1%", "variacao": "+1.8%", "status": "success" },
-        { "label": "Mortalidade infantil", "valor": "14.5‰", "variacao": "-0.3‰", "status": "alert" },
-        { "label": "Vacinação", "valor": "78.9%", "variacao": "+0.8%", "status": "warning" }
+        { "label": "Educação Empreendedora - ISDEL", "valor": "3 escolas", "status": "alert" },
+        { "label": "Trabalhadores formais com Ensino Médio Completo", "valor": "65%", "status": "warning" },
+        { "label": "Trabalhadores formais com Ensino Superior Completo", "valor": "12%", "status": "alert" }
       ]
     },
     {
-      "nome": "Agropecuária",
+      "nome": "Viabilização financeira e crédito orientado",
       "indicadores": [
-        { "label": "Valor produção agrícola", "valor": "R$ 120M", "variacao": "+5.3%", "status": "success" },
-        { "label": "Rebanho bovino", "valor": "85.200", "variacao": "-2.1%", "status": "warning" },
-        { "label": "Área irrigada", "valor": "3.200 ha", "variacao": "+8.5%", "status": "success" },
-        { "label": "Produtividade milho", "valor": "4.2 t/ha", "variacao": "+1.1%", "status": "warning" }
+        { "label": "Taxa de crescimento do valor das Operações de Crédito", "valor": "-8%", "status": "alert" },
+        { "label": "Taxa de crescimento do valor dos Financiamentos - BACEN", "valor": "-2%", "status": "alert" }
       ]
     },
     {
-      "nome": "Segurança Pública",
+      "nome": "Inclusão produtiva",
       "indicadores": [
-        { "label": "Taxa de homicídios", "valor": "18.3/100k", "variacao": "-3.2%", "status": "success" },
-        { "label": "Furtos e roubos", "valor": "1.240", "variacao": "+2.1%", "status": "alert" },
-        { "label": "Efetivo policial", "valor": "320", "variacao": "+15", "status": "warning" },
-        { "label": "Videomonitoramento", "valor": "45 câmeras", "variacao": "+12", "status": "success" }
+        { "label": "Total de pequenos negócios abertos", "valor": "520", "status": "warning" },
+        { "label": "Total de pequenos negócios extintos no período", "valor": "480", "status": "alert" }
       ]
     }
   ],
@@ -72,18 +64,5 @@
     { "titulo": "Desertificação", "descricao": "Avanço da degradação ambiental no sertão paraibano ameaça produção agrícola.", "percentual": 72, "tipo": "alert" },
     { "titulo": "Êxodo rural", "descricao": "Migração contínua de jovens para centros urbanos maiores.", "percentual": 61, "tipo": "warning" },
     { "titulo": "Acesso à água", "descricao": "Comunidades rurais dependentes de carros-pipa em períodos de seca.", "percentual": 68, "tipo": "alert" }
-  ],
-  "panorama": {
-    "idhm": 0.701,
-    "ranking": [
-      { "municipio": "João Pessoa", "valor": 0.763 },
-      { "municipio": "Campina Grande", "valor": 0.72 },
-      { "municipio": "Patos", "valor": 0.701 },
-      { "municipio": "Bayeux", "valor": 0.649 },
-      { "municipio": "Santa Rita", "valor": 0.641 },
-      { "municipio": "Cabedelo", "valor": 0.748 },
-      { "municipio": "Guarabira", "valor": 0.673 },
-      { "municipio": "Sousa", "valor": 0.668 }
-    ]
-  }
+  ]
 }
