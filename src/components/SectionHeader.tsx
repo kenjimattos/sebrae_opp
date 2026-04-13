@@ -10,7 +10,7 @@ interface SectionHeaderProps {
 export default function SectionHeader({ title, description, className = '' }: SectionHeaderProps) {
   if (!description) {
     return (
-      <div className={`flex flex-col items-start justify-center max-w-[1000px] ${className}`}>
+      <div className={`flex flex-col items-start justify-center max-w-[1000px] mb-[var(--spacing-2xl)] ${className}`}>
         <h2 className="w-full font-bold text-[length:var(--font-size-h1)] leading-none text-[color:var(--semantic-text-primary)]">
           {title}
         </h2>
@@ -19,7 +19,7 @@ export default function SectionHeader({ title, description, className = '' }: Se
   }
 
   return (
-    <div className={`flex items-center gap-[var(--spacing-md)] ${className}`}>
+    <div className={`flex items-center gap-[var(--spacing-md)] mb-[var(--spacing-2xl)] ${className}`}>
       <h2 className="flex-1 max-w-[690px] font-bold text-[length:var(--font-size-h1)] leading-none text-[color:var(--semantic-text-primary)]">
         {title}
       </h2>
