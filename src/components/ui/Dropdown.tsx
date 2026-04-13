@@ -32,7 +32,7 @@ export default function Dropdown({ options, value, onChange, className = '' }: D
   }, [])
 
   return (
-    <div ref={ref} className={`relative ${className}`}>
+    <div ref={ref} className={`relative z-[1000] ${className}`}>
       <button
         onClick={() => setOpen(!open)}
         className="flex items-center justify-between gap-[var(--spacing-xs)] w-full bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] font-semibold text-[length:var(--font-size-body)] text-[color:var(--semantic-text-primary)] cursor-pointer"
