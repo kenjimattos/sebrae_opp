@@ -1,16 +1,19 @@
-// Mapa SVG interativo da Paraíba — React Simple Maps + GeoJSON IBGE
-// Coloração por status do indicador (success/warning/alert), tooltip no hover, destaque do município selecionado
+// Mapa interativo da Paraíba — Leaflet + Carto Positron + GeoJSON local
+// Polígonos de municípios com badges de valor (estilo QuintoAndar)
 
-import { useState, useCallback } from 'react'
-import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps'
+import { useMemo, useCallback, useRef, useEffect } from 'react'
+import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet'
+import L from 'leaflet'
+import type { Layer, PathOptions, LeafletMouseEvent } from 'leaflet'
+import type { Feature } from 'geojson'
+import 'leaflet/dist/leaflet.css'
+
+import geoData from '@/data/paraiba-municipios.json'
 import {
   municipiosMapData,
   type IndicadorKey,
 } from '@/data/mapa-indicadores'
 import type { StatusType } from '@/types/indicadores'
-
-const GEO_URL =
-  'https://raw.githubusercontent.com/tbrugz/geodata-br/master/geojson/geojs-25-mun.json'
 
 interface ParaibaMapProps {
   selectedId: string
@@ -18,24 +21,24 @@ interface ParaibaMapProps {
   className?: string
 }
 
-const statusFill: Record<StatusType, string> = {
-  success: 'var(--semantic-success-surface)',
-  warning: 'var(--semantic-warning-surface)',
-  alert: 'var(--semantic-alert-surface)',
+// Leaflet não resolve CSS variables — extraímos valores computados
+function getCSSVar(name: string): string {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim()
 }
 
-const statusHoverFill: Record<StatusType, string> = {
-  success: 'var(--semantic-success)',
-  warning: 'var(--semantic-warning)',
-  alert: 'var(--semantic-alert)',
+function getResolvedStatusFill(status: StatusType): string {
+  const map: Record<StatusType, string> = {
+    success: getCSSVar('--semantic-success-surface'),
+    warning: getCSSVar('--semantic-warning-surface'),
+    alert: getCSSVar('--semantic-alert-surface'),
+  }
+  return map[status]
 }
 
 function getStatus(id: string, indicador: IndicadorKey): StatusType | null {
   const data = municipiosMapData[id]
   if (!data) return null
-  const entry = data.indicadores[indicador]
-  if (!entry) return null
-  return entry.status
+  return data.indicadores[indicador]?.status ?? null
 }
 
 function getDisplayValue(id: string, indicador: IndicadorKey): string | null {
@@ -44,156 +47,185 @@ function getDisplayValue(id: string, indicador: IndicadorKey): string | null {
   return data.indicadores[indicador]?.valor ?? null
 }
 
-function getMunicipioNome(id: string): string | null {
-  return municipiosMapData[id]?.nome ?? null
+// Calcula centróide de um Polygon
+function getCentroid(coordinates: number[][][]): [number, number] {
+  const ring = coordinates[0]
+  let latSum = 0
+  let lonSum = 0
+  for (const [lon, lat] of ring) {
+    latSum += lat
+    lonSum += lon
+  }
+  return [latSum / ring.length, lonSum / ring.length]
 }
 
-interface TooltipData {
-  nome: string
-  valor: string
-  x: number
-  y: number
+// Limites da Paraíba para restringir pan
+const PARAIBA_BOUNDS: L.LatLngBoundsExpression = [
+  [-8.4, -38.8], // sudoeste
+  [-5.9, -34.7], // nordeste
+]
+
+// Componente de badges (markers com DivIcon) sobre o mapa
+function ValueBadges({ indicador }: { indicador: IndicadorKey }) {
+  const map = useMap()
+  const markersRef = useRef<L.Marker[]>([])
+
+  useEffect(() => {
+    // Limpar markers anteriores
+    markersRef.current.forEach((m) => m.remove())
+    markersRef.current = []
+
+    const features = (geoData as GeoJSON.FeatureCollection).features
+    for (const feature of features) {
+      const id = String(feature.properties?.id)
+      const status = getStatus(id, indicador)
+      if (!status) continue
+
+      const valor = getDisplayValue(id, indicador)
+      if (!valor) continue
+
+      const geom = feature.geometry as GeoJSON.Polygon
+      const [lat, lon] = getCentroid(geom.coordinates)
+
+      const statusColorMap: Record<StatusType, { bg: string; text: string; border: string }> = {
+        success: {
+          bg: getCSSVar('--semantic-success-surface'),
+          text: getCSSVar('--semantic-success'),
+          border: getCSSVar('--semantic-success'),
+        },
+        warning: {
+          bg: getCSSVar('--semantic-warning-surface'),
+          text: getCSSVar('--semantic-warning'),
+          border: getCSSVar('--semantic-warning'),
+        },
+        alert: {
+          bg: getCSSVar('--semantic-alert-surface'),
+          text: getCSSVar('--semantic-alert'),
+          border: getCSSVar('--semantic-alert'),
+        },
+      }
+
+      const colors = statusColorMap[status]
+
+      const icon = L.divIcon({
+        className: 'mapa-badge',
+        html: `<div class="mapa-badge-inner" style="
+          background: ${colors.bg};
+          color: ${colors.text};
+          border: 1px solid ${colors.border};
+        ">${valor}</div>`,
+        iconSize: [0, 0],
+        iconAnchor: [0, 0],
+      })
+
+      const marker = L.marker([lat, lon], { icon, interactive: false })
+      marker.addTo(map)
+      markersRef.current.push(marker)
+    }
+
+    return () => {
+      markersRef.current.forEach((m) => m.remove())
+      markersRef.current = []
+    }
+  }, [map, indicador])
+
+  return null
 }
 
 export default function ParaibaMap({ selectedId, indicador, className = '' }: ParaibaMapProps) {
-  const [tooltip, setTooltip] = useState<TooltipData | null>(null)
+  const geoJsonRef = useRef<L.GeoJSON | null>(null)
 
-  const handleMouseEnter = useCallback(
-    (geo: { properties: { id: string; name: string } }, event: React.MouseEvent) => {
-      const id = String(geo.properties.id)
+  const styleFeature = useCallback(
+    (feature?: Feature): PathOptions => {
+      if (!feature?.properties) return { fillOpacity: 0 }
+
+      const id = String(feature.properties.id)
+      const isSelected = id === selectedId
       const status = getStatus(id, indicador)
-      // Sem dados = sem tooltip
-      if (!status) return
-      const nome = getMunicipioNome(id) || (geo.properties.name as string)
-      const valor = getDisplayValue(id, indicador) || 'N/D'
-      const rect = (event.currentTarget as Element).closest('svg')?.getBoundingClientRect()
-      if (rect) {
-        setTooltip({
-          nome,
-          valor,
-          x: event.clientX - rect.left,
-          y: event.clientY - rect.top - 12,
-        })
+      const hasData = status !== null
+
+      let fillColor: string
+      let fillOpacity: number
+      if (isSelected) {
+        fillColor = getCSSVar('--semantic-surface-tertiary')
+        fillOpacity = 0.6
+      } else if (hasData) {
+        fillColor = getResolvedStatusFill(status)
+        fillOpacity = 0.35
+      } else {
+        fillColor = getCSSVar('--semantic-surface-secondary')
+        fillOpacity = 0.15
+      }
+
+      return {
+        fillColor,
+        fillOpacity,
+        color: isSelected
+          ? getCSSVar('--semantic-text-primary')
+          : getCSSVar('--semantic-surface-tertiary'),
+        weight: isSelected ? 2 : 0.8,
       }
     },
-    [indicador],
+    [selectedId, indicador],
   )
 
-  const handleMouseLeave = useCallback(() => {
-    setTooltip(null)
-  }, [])
+  const onEachFeature = useCallback(
+    (feature: Feature, layer: Layer) => {
+      const id = String(feature.properties?.id)
+      const status = getStatus(id, indicador)
+      const hasData = status !== null
+
+      const path = layer as L.Path
+      path.on({
+        mouseover: (e: LeafletMouseEvent) => {
+          if (!hasData) return
+          const isSelected = id === selectedId
+          if (isSelected) return
+          e.target.setStyle({
+            fillOpacity: 0.55,
+            weight: 1.5,
+          })
+        },
+        mouseout: () => {
+          if (!hasData) return
+          if (geoJsonRef.current) {
+            geoJsonRef.current.resetStyle(path)
+          }
+        },
+      })
+    },
+    [selectedId, indicador],
+  )
+
+  const geoKey = useMemo(() => `${indicador}-${selectedId}`, [indicador, selectedId])
 
   return (
     <div className={`relative ${className}`}>
-      <ComposableMap
-        projection="geoMercator"
-        projectionConfig={{
-          center: [-36.5, -7.1],
-          scale: 6000,
-        }}
-        width={600}
-        height={400}
-        style={{ width: '100%', height: 'auto' }}
+      <MapContainer
+        center={[-7.1, -36.5]}
+        zoom={8}
+        minZoom={7}
+        maxZoom={12}
+        zoomControl={true}
+        attributionControl={false}
+        maxBounds={PARAIBA_BOUNDS}
+        maxBoundsViscosity={1.0}
+        style={{ height: '480px', width: '100%' }}
+        className="rounded-[var(--radius-sm)]"
       >
-        <ZoomableGroup
-          minZoom={1}
-          maxZoom={8}
-          translateExtent={[
-            [-100, -100],
-            [700, 500],
-          ]}
-        >
-          <Geographies geography={GEO_URL}>
-            {({ geographies }) =>
-              geographies.map((geo) => {
-                const id = String(geo.properties.id)
-                const isSelected = id === selectedId
-                const status = getStatus(id, indicador)
-                const hasData = status !== null
-
-                let fill: string
-                if (isSelected) {
-                  fill = 'var(--semantic-surface-tertiary)'
-                } else if (hasData) {
-                  fill = statusFill[status]
-                } else {
-                  fill = 'var(--semantic-surface-secondary)'
-                }
-
-                const hoverFill = isSelected
-                  ? 'var(--semantic-surface-tertiary)'
-                  : hasData
-                    ? statusHoverFill[status]
-                    : 'var(--semantic-surface-secondary)'
-
-                return (
-                  <Geography
-                    key={geo.rsmKey}
-                    geography={geo}
-                    onMouseEnter={(event) =>
-                      handleMouseEnter(
-                        geo as unknown as { properties: { id: string; name: string } },
-                        event as unknown as React.MouseEvent,
-                      )
-                    }
-                    onMouseLeave={handleMouseLeave}
-                    style={{
-                      default: {
-                        fill,
-                        stroke: isSelected
-                          ? 'var(--semantic-text-primary)'
-                          : 'var(--semantic-surface-primary)',
-                        strokeWidth: isSelected ? 1.5 : 0.5,
-                        outline: 'none',
-                        cursor: hasData ? 'default' : 'default',
-                      },
-                      hover: {
-                        fill: hoverFill,
-                        stroke: hasData
-                          ? 'var(--semantic-text-inactive)'
-                          : 'var(--semantic-surface-primary)',
-                        strokeWidth: hasData ? 1 : 0.5,
-                        outline: 'none',
-                        cursor: 'default',
-                      },
-                      pressed: {
-                        fill,
-                        stroke: 'var(--semantic-text-primary)',
-                        strokeWidth: 1.5,
-                        outline: 'none',
-                      },
-                    }}
-                  />
-                )
-              })
-            }
-          </Geographies>
-        </ZoomableGroup>
-      </ComposableMap>
-
-      {/* Tooltip */}
-      {tooltip && (
-        <div
-          className="absolute pointer-events-none z-20 bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] shadow-lg"
-          style={{
-            left: tooltip.x,
-            top: tooltip.y,
-            transform: 'translate(-50%, -100%)',
-          }}
-        >
-          <p className="font-semibold text-[length:var(--font-size-body-sm)] text-[color:var(--semantic-text-primary)] whitespace-nowrap">
-            {tooltip.nome}
-          </p>
-          <p className="font-normal text-[length:var(--font-size-body-sm)] text-[color:var(--semantic-text-inactive)] whitespace-nowrap">
-            {tooltip.valor}
-          </p>
-        </div>
-      )}
-
-      {/* Zoom hint */}
-      <p className="absolute bottom-[var(--spacing-xs)] right-[var(--spacing-xs)] text-[length:var(--font-size-body-sm)] text-[color:var(--semantic-text-inactive)]">
-        Scroll para zoom
-      </p>
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+        />
+        <GeoJSON
+          key={geoKey}
+          ref={geoJsonRef}
+          data={geoData as GeoJSON.FeatureCollection}
+          style={styleFeature}
+          onEachFeature={onEachFeature}
+        />
+        <ValueBadges indicador={indicador} />
+      </MapContainer>
     </div>
   )
 }
