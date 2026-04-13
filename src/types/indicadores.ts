@@ -26,20 +26,9 @@ export interface Risco {
   tipo: 'alert' | 'warning'
 }
 
-export interface RankingItem {
-  municipio: string
-  valor: number
-}
-
-export interface Panorama {
-  idhm: number
-  ranking: RankingItem[]
-}
-
 export interface IndicadoresData {
   municipio: string
   agendas: Agenda[]
   baseEconomica: BaseEconomicaItem[]
   riscos: Risco[]
-  panorama: Panorama
 }

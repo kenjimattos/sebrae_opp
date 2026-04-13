@@ -22,7 +22,7 @@ export default function Home() {
         {dados && (
           <>
             <SectionAgendas agendas={dados.agendas} />
-            <SectionPanorama panorama={dados.panorama} municipio={municipio.nome} />
+            <SectionPanorama />
             <SectionBaseEconomica dados={dados.baseEconomica} />
             <SectionRiscos agendas={dados.agendas} />
           </>
