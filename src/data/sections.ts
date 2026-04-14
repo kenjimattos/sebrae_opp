@@ -20,9 +20,7 @@ export const sectionContent = {
     title: 'Recursos e Capacitação para o Desenvolvimento do Município',
   },
   capacitacao: {
-    title: 'Capacitação',
-    description:
-      'Cursos e trilhas de aprendizagem para fortalecer a gestão municipal e o desenvolvimento local.',
+    title: 'Capacitação para estruturar projetos e acessar recursos',
   },
   casosSucesso: {
     title: 'Casos de sucesso',
