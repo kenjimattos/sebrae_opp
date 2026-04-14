@@ -83,15 +83,6 @@ export default function SectionRecursos() {
         </div>
       </div>
 
-      {/* Ícone decorativo $ entre containers
-      <div className="flex justify-center -my-[var(--spacing-md)]">
-        <div className="w-[120px] h-[120px] bg-[var(--semantic-surface-primary)] rounded-full flex items-center justify-center shadow-lg">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </div>
-      </div> */}
-
       {/* Bloco 3 — Editais e programas */}
       <div className="bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-xl)] py-[var(--spacing-3xl)] flex items-center gap-[var(--spacing-2xl)]">
         <TitleSubtitle
