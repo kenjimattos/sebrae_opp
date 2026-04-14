@@ -3,7 +3,7 @@
 
 export const sectionContent = {
   agendas: {
-    title: 'Veja como está o <highlight>ambiente de negócio</highlight> do seu município',
+    title: 'Veja como está o <highlight>Ambiente de Negócios</highlight> do seu município',
   },
   panorama: {
     title: 'Como está o Ambiente de Negócios no Estado?',
