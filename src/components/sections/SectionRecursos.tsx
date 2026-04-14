@@ -13,7 +13,7 @@ const DATAPEDIA_URL =
 
 export default function SectionRecursos() {
   return (
-    <SectionContainer className="gap-[var(--spacing-md)]">
+    <SectionContainer>
       <SectionHeader title={sectionContent.recursos.title} />
 
       {/* Container principal branco */}
