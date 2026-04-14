@@ -5,6 +5,17 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ## [Unreleased]
 
 ### Added
+- Arquivo de dados `src/data/casos-sucesso.ts` com 5 cases de municípios brasileiros (interface tipada `CasoSucesso`)
+- Componente `CaseStudiesCard` (Figma 288:8): card com imagem, cidade, título, descrição e link CTA com seta
+- Botões de navegação (setas esquerda/direita) na seção Casos de Sucesso com scroll programático
+
+### Changed
+- Seção Casos de Sucesso reescrita conforme Figma (390:623): cards com imagem, estrutura TitleSubtitle, link "Ver estudo de caso"
+- Título da seção alterado para "Municípios que transformaram seu ambiente de negócios" (sem descrição)
+- Cards: width 375px, radius-sm, padding px-lg/py-md (match Figma)
+- Gap da seção aumentado para spacing-2xl (64px)
+
+### Added
 - Lucide React como biblioteca de ícones (tree-shakeable, ~2.5KB para 8 ícones)
 - Componente `CoursesCardRow` (Figma 297:8): linha de curso com título uppercase + carga horária + botão "Ver curso"
 - Componente `CoursesCard` (Figma 298:8): card de trilha com TitleSubtitle, cursos com separadores e PillButton CTA

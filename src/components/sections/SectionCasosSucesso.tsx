@@ -1,67 +1,60 @@
 // Figma: Section/CasosSucesso (390:623)
 
+import { useRef } from 'react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/SectionHeader'
+import CaseStudiesCard from '@/components/case-studies/CaseStudiesCard'
 import { sectionContent } from '@/data/sections'
-
-const casos = [
-  {
-    titulo: 'Revitalização do centro histórico',
-    municipio: 'João Pessoa',
-    resultado: 'Aumento de 45% no fluxo turístico',
-    descricao: 'Projeto integrado de restauração e incentivo ao comércio local no centro histórico.',
-  },
-  {
-    titulo: 'Hub de inovação do semiárido',
-    municipio: 'Campina Grande',
-    resultado: '87 startups incubadas',
-    descricao: 'Ecossistema de inovação conectando universidades e pequenos negócios de tecnologia.',
-  },
-  {
-    titulo: 'Programa Água para Todos',
-    municipio: 'Patos',
-    resultado: '12.000 famílias atendidas',
-    descricao: 'Sistema de cisternas e dessalinização para comunidades rurais do sertão.',
-  },
-  {
-    titulo: 'Feira de Economia Criativa',
-    municipio: 'Guarabira',
-    resultado: 'R$ 2.3M em vendas diretas',
-    descricao: 'Evento anual que conecta artesãos e produtores locais ao mercado regional.',
-  },
-]
+import { casosSucesso } from '@/data/casos-sucesso'
 
 export default function SectionCasosSucesso() {
-  return (
-    <SectionContainer>
-      <SectionHeader
-        title={sectionContent.casosSucesso.title}
-        description={sectionContent.casosSucesso.description}
-      />
+  const scrollRef = useRef<HTMLDivElement>(null)
 
-      {/* Horizontal scroll */}
-      <div className="flex gap-[var(--spacing-md)] overflow-x-auto w-full pb-[var(--spacing-xs)] snap-x snap-mandatory">
-        {casos.map((caso) => (
-          <div
-            key={caso.titulo}
-            className="flex-shrink-0 w-[380px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-md)] p-[var(--spacing-lg)] flex flex-col gap-[var(--spacing-md)] snap-start"
-          >
-            <span className="typo-body-sm text-[color:var(--semantic-text-inactive)] uppercase">
-              {caso.municipio}
-            </span>
-            <h4 className="typo-h3 text-[color:var(--semantic-text-primary)]">
-              {caso.titulo}
-            </h4>
-            <p className="typo-body text-[color:var(--semantic-text-primary)]">
-              {caso.descricao}
-            </p>
-            <div className="bg-[var(--semantic-success-surface)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)]">
-              <span className="typo-body-bold text-[color:var(--semantic-success)]">
-                {caso.resultado}
-              </span>
-            </div>
-          </div>
+  const scroll = (direction: 'left' | 'right') => {
+    if (!scrollRef.current) return
+    const amount = 375 + 24 // card width + gap
+    scrollRef.current.scrollBy({
+      left: direction === 'left' ? -amount : amount,
+      behavior: 'smooth',
+    })
+  }
+
+  return (
+    <SectionContainer className="!gap-[var(--spacing-2xl)]">
+      {/* Header row */}
+      <div className="flex items-center justify-between w-full">
+        <SectionHeader title={sectionContent.casosSucesso.title} />
+      </div>
+
+      {/* Cards scroll */}
+      <div
+        ref={scrollRef}
+        className="flex gap-[var(--spacing-md)] overflow-x-auto w-full pb-[var(--spacing-xs)] snap-x snap-mandatory scrollbar-hide"
+      >
+        {casosSucesso.map((caso) => (
+          <CaseStudiesCard key={caso.id} caso={caso} className="snap-start" />
         ))}
+      </div>
+
+      {/* Navigation arrows */}
+      <div className="flex gap-[var(--spacing-xl)] items-center justify-end w-full">
+        <button
+          type="button"
+          onClick={() => scroll('left')}
+          className="flex items-center justify-center w-[48px] h-[48px] bg-[var(--semantic-surface-primary)] rounded-full transition-opacity hover:opacity-70"
+          aria-label="Anterior"
+        >
+          <ArrowLeft size={24} />
+        </button>
+        <button
+          type="button"
+          onClick={() => scroll('right')}
+          className="flex items-center justify-center w-[48px] h-[48px] bg-[var(--semantic-surface-primary)] rounded-full transition-opacity hover:opacity-70"
+          aria-label="Próximo"
+        >
+          <ArrowRight size={24} />
+        </button>
       </div>
     </SectionContainer>
   )

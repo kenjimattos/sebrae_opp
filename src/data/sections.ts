@@ -23,9 +23,7 @@ export const sectionContent = {
     title: 'Capacitação para estruturar projetos e acessar recursos',
   },
   casosSucesso: {
-    title: 'Casos de sucesso',
-    description:
-      'Iniciativas que transformaram municípios paraibanos e podem servir de inspiração.',
+    title: 'Municípios que transformaram seu ambiente de negócios',
   },
   aiAssistant: {
     title: 'Assistente IA',
