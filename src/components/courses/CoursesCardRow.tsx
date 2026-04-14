@@ -1,6 +1,8 @@
 // Figma: Courses/CardRow (297:8)
 // Row inside a course trail card — title (uppercase) + hours + "Ver curso" link
 
+import { ArrowRight } from 'lucide-react'
+
 interface CoursesCardRowProps {
   title: string
   subtitle: string
@@ -28,9 +30,7 @@ export default function CoursesCardRow({ title, subtitle, className = '' }: Cour
           Ver curso
         </span>
         <span className="flex items-center justify-center w-[24px] h-[24px] bg-[var(--semantic-surface-secondary)] rounded-full shrink-0">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <ArrowRight size={12} />
         </span>
       </div>
     </div>
