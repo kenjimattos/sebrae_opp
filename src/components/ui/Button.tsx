@@ -1,10 +1,11 @@
 // Figma: Buttons (set 378:477)
-// Simplified to the 3 main variants: primary, secondary, tertiary
+// Variants: primary, secondary, tertiary | Sizes: sm (24px), md (40px), lg (64px)
 
 interface ButtonProps {
   children: React.ReactNode
   variant?: 'primary' | 'secondary' | 'tertiary'
   size?: 'sm' | 'md' | 'lg'
+  disabled?: boolean
   onClick?: () => void
   className?: string
 }
@@ -19,22 +20,24 @@ const variantStyles: Record<string, string> = {
 }
 
 const sizeStyles: Record<string, string> = {
-  sm: 'h-[40px] px-[var(--spacing-md)] py-[var(--spacing-sm)] text-[length:var(--font-size-button-sm)]',
-  md: 'h-[40px] px-[var(--spacing-md)] py-[var(--spacing-sm)] text-[length:var(--font-size-button-sm)]',
-  lg: 'h-[64px] px-[var(--spacing-md)] py-[var(--spacing-xs)] text-[length:var(--font-size-button)]',
+  sm: 'h-[24px] px-[var(--spacing-2xs)] py-[var(--spacing-2xs)] typo-body-sm-bold',
+  md: 'h-[40px] px-[var(--spacing-md)] py-[var(--spacing-sm)] typo-button-sm',
+  lg: 'h-[64px] px-[var(--spacing-md)] py-[var(--spacing-xs)] typo-button',
 }
 
 export default function Button({
   children,
   variant = 'primary',
-  size = 'sm',
+  size = 'md',
+  disabled = false,
   onClick,
   className = '',
 }: ButtonProps) {
   return (
     <button
       onClick={onClick}
-      className={`inline-flex items-center justify-center rounded-[var(--radius-full)] font-semibold leading-none cursor-pointer ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      disabled={disabled}
+      className={`inline-flex items-center justify-center rounded-[var(--radius-full)] cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
     >
       {children}
     </button>
