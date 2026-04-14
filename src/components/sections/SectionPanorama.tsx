@@ -3,6 +3,7 @@
 
 import { useState, useMemo } from 'react'
 import SectionContainer from '@/components/ui/SectionContainer'
+import SectionCard from '@/components/ui/SectionCard'
 import SectionHeader from '@/components/SectionHeader'
 import Dropdown from '@/components/ui/Dropdown'
 import ParaibaMap from '@/components/ParaibaMap'
@@ -77,7 +78,7 @@ export default function SectionPanorama() {
         description={sectionContent.panorama.description}
       />
 
-      <div className="bg-[var(--semantic-surface-primary)] rounded-[var(--radius-md)] p-[var(--spacing-md)] flex flex-col gap-[var(--spacing-md)]">
+      <SectionCard padding="md" className="flex flex-col gap-[var(--spacing-md)]">
         {/* Header: label + dropdown */}
         <div className="flex items-center justify-between">
           <span className="typo-body-bold text-[color:var(--semantic-text-primary)]">
@@ -123,7 +124,7 @@ export default function SectionPanorama() {
           selectedId={municipio.id}
           indicador={indicador}
         />
-      </div>
+      </SectionCard>
     </SectionContainer>
   )
 }

@@ -1,6 +1,7 @@
 // Figma: Section/AIAssistant (390:635)
 
 import SectionContainer from '@/components/ui/SectionContainer'
+import SectionCard from '@/components/ui/SectionCard'
 import Button from '@/components/ui/Button'
 import { sectionContent } from '@/data/sections'
 
@@ -16,7 +17,7 @@ export default function SectionAIAssistant() {
         </p>
       </div>
 
-      <div className="flex flex-col gap-[var(--spacing-md)] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-md)] p-[var(--spacing-lg)] w-full max-w-[800px]">
+      <SectionCard padding="lg" className="flex flex-col gap-[var(--spacing-md)] rounded-[var(--radius-md)] w-full max-w-[800px]">
         <div className="bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-[var(--spacing-md)]">
           <p className="typo-body text-[color:var(--semantic-text-inactive)]">
             Ex: "Quais indicadores de educação estão em alerta em Campina Grande?"
@@ -28,7 +29,7 @@ export default function SectionAIAssistant() {
           <Button variant="secondary">Gerar relatório</Button>
           <Button variant="tertiary">Comparar municípios</Button>
         </div>
-      </div>
+      </SectionCard>
     </SectionContainer>
   )
 }
