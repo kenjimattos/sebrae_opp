@@ -7,6 +7,7 @@ import SectionRiscos from '@/components/sections/SectionRiscos'
 import SectionRecursos from '@/components/sections/SectionRecursos'
 import SectionCapacitacao from '@/components/sections/SectionCapacitacao'
 import SectionCasosSucesso from '@/components/sections/SectionCasosSucesso'
+import SectionFormulador from '@/components/sections/SectionFormulador'
 import SectionAIAssistant from '@/components/sections/SectionAIAssistant'
 import { useMunicipio } from '@/hooks/useMunicipio'
 
@@ -30,6 +31,7 @@ export default function Home() {
         <SectionRecursos />
         <SectionCapacitacao />
         <SectionCasosSucesso />
+        <SectionFormulador />
         <SectionAIAssistant />
       </main>
 
