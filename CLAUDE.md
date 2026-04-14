@@ -57,15 +57,33 @@ Os tokens estão implementados em `src/index.css`, extraídos das Variables do F
 Referência rápida dos tokens — consultar `src/index.css` para a lista completa:
 
 ```
-Typography: --font-size-{display-large|display|display-small|h1|h2|h3|h4|body-lg|body|body-sm|button-lg|button|button-sm}
+Font Sizes: --font-size-{display-large|display|display-small|h1|h2|h3|h4|body-lg|body|body-sm|button-lg|button|button-sm}
+Weights:    --typo-weight-{regular|semibold|bold|black}
+Line-height:--typo-lh-{auto|body}
 Spacing:    --spacing-{2xs|xs|sm|md|lg|xl|2xl|3xl|margin}
 Radius:     --radius-{sm|md|lg|xl|full}
 Colors:     --primitives-{gray|blue|green|yellow|red}-{100..900}
 Semantic:   --semantic-{background-primary|surface-primary|surface-secondary|text-primary|text-inactive|...}
+Accent:     --semantic-accent{|-hover|-surface}
 Status:     --semantic-{success|warning|alert}{|-surface}
 ```
 
-> **Regra:** sempre usar CSS variables. Nunca hardcodar cores, tamanhos ou espaçamentos.
+### Tipografia composta (classes `.typo-*`)
+
+Os estilos tipográficos do Figma (16 Text Styles) estão implementados como classes CSS compostas via `@layer components`. Cada classe aplica `font-size` + `font-weight` + `line-height` (e `text-transform` quando aplicável):
+
+```
+Display:  .typo-display-lg | .typo-display | .typo-display-sm
+Heading:  .typo-h1 | .typo-h2 | .typo-h3 | .typo-h4 (inclui uppercase)
+Body:     .typo-body-lg | .typo-body-lg-bold | .typo-body | .typo-body-bold | .typo-body-sm | .typo-body-sm-bold
+UI:       .typo-button-lg | .typo-button | .typo-button-sm
+```
+
+> **Regra:** usar classes `.typo-*` para tipografia. Nunca aplicar `font-bold`, `text-[length:var(...)]`, `leading-*` avulsos.
+> Correto: `className="typo-h1 text-[color:var(--semantic-text-primary)]"`
+> Errado: `className="font-bold text-[length:var(--font-size-h1)] leading-none"`
+
+> **Regra:** sempre usar CSS variables para cores, espaçamentos e radius. Nunca hardcodar.
 > Correto: `className="rounded-[var(--radius-md)] p-[var(--spacing-md)] bg-[var(--semantic-surface-primary)]"`
 > Errado: `className="rounded-3xl p-6 bg-white"`
 
@@ -106,7 +124,8 @@ src/
 │   ├── ui/
 │   │   ├── SectionContainer.tsx      # Wrapper 1440px + padding lateral
 │   │   ├── Grid.tsx                  # Grid configurável (cols, gap)
-│   │   ├── Button.tsx                # primary/secondary/tertiary + tamanhos
+│   │   ├── Button.tsx                # primary/secondary/tertiary + sm/md/lg + hover/focus/active/disabled
+│   │   ├── PillButton.tsx            # CTA pill-shaped com ícone seta + hover/focus/active
 │   │   └── Dropdown.tsx              # Select estilizado (button + ul)
 │   ├── SectionHeader.tsx             # Figma: SectionHeader (set 327:1963)
 │   ├── TitleSubtitle.tsx             # Figma: TitleSubtitle (set 405:1388)

@@ -5,6 +5,28 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ## [Unreleased]
 
 ### Added
+- Tokens de tipografia composta: `--typo-weight-*` e `--typo-lh-*` em `index.css`
+- 16 classes `.typo-*` via `@layer components` espelhando os Text Styles do Figma (Display, Heading, Body, UI)
+- Tokens `--semantic-accent`, `--semantic-accent-hover`, `--semantic-accent-surface` para estados interativos (light + dark)
+- Estados de interação no `Button`: hover (opacity), focus (ring accent), active (scale), disabled
+- Prop `disabled` no `Button`
+- Estados hover/focus/active no `PillButton`
+- Hover accent nos links de navegação do Header e Footer
+- Estado selecionado com accent-surface no Dropdown
+
+### Changed
+- Todos os componentes migrados de combinações ad-hoc (font-bold + text-[length:...] + leading-*) para classes `.typo-*`
+- Button: size `sm` corrigido de 40px para 24px, default mudado de `sm` para `md`
+- Dropdown: item selecionado agora usa `accent-surface`/`accent` em vez de `surface-secondary`
+- SectionAgendas: highlight unificado de `--semantic-info-text-info` para `--semantic-accent`
+
+### Fixed
+- `SectionRecursos`: `py-[var(--radius-full)]` corrigido para `py-[var(--spacing-3xl)]` (token de categoria errada)
+- `EconomicsAnalysis`: `leading-[25px]` corrigido para 24px via `.typo-body`
+- `RisksCard`: `font-bold` (700) corrigido para semibold (600) conforme Figma
+- Valores hardcoded substituídos por spacing tokens: `gap-[10px]`, `gap-[8px]`, `gap-[12px]`, `py-[4px]`, `py-[10px]`, `mt-[36px]`
+
+### Added
 - Componente `PillButton` para CTAs pill-shaped com ícone seta (Explorar emendas, Ver oportunidades)
 - Seção Recursos reescrita conforme Figma: 5 cards de emendas, mapa Datapedia (iframe), bloco editais
 - Integração Datapedia: iframe embed com link externo no hover
