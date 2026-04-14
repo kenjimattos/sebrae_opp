@@ -23,16 +23,16 @@ export default function Footer({ className = '' }: { className?: string }) {
     >
       <div className="flex items-start justify-between">
         {/* Brand */}
-        <div className="flex flex-col gap-[12px] items-start">
+        <div className="flex flex-col gap-[var(--spacing-sm)] items-start">
           <img
             src="/assets/sebrae-logo.png"
             alt="Sebrae"
             className="h-[60px] w-[111px] object-cover"
           />
-          <h3 className="font-bold text-[length:var(--font-size-h3)] leading-none text-[color:var(--semantic-text-primary)]">
+          <h3 className="typo-h3 text-[color:var(--semantic-text-primary)]">
             Plataforma OPP
           </h3>
-          <p className="font-normal text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)]">
+          <p className="typo-body text-[color:var(--semantic-text-primary)]">
             Transformando dados em
             <br />
             decisões estratégicas.
@@ -41,15 +41,15 @@ export default function Footer({ className = '' }: { className?: string }) {
 
         {/* Link columns */}
         {footerColumns.map((col) => (
-          <div key={col.title} className="flex flex-col gap-[12px] items-start">
-            <span className="font-semibold text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)]">
+          <div key={col.title} className="flex flex-col gap-[var(--spacing-sm)] items-start">
+            <span className="typo-body-bold text-[color:var(--semantic-text-primary)]">
               {col.title}
             </span>
             {col.links.map((link) => (
               <a
                 key={link}
                 href="#"
-                className="font-normal text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)] no-underline"
+                className="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
               >
                 {link}
               </a>
@@ -59,9 +59,9 @@ export default function Footer({ className = '' }: { className?: string }) {
       </div>
 
       {/* Bottom */}
-      <div className="flex flex-col gap-[36px] items-start mt-[36px] pb-[var(--spacing-2xl)]">
+      <div className="flex flex-col gap-[var(--spacing-lg)] items-start mt-[var(--spacing-lg)] pb-[var(--spacing-2xl)]">
         <div className="h-px w-full bg-[var(--semantic-text-primary)]" />
-        <p className="font-normal text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)]">
+        <p className="typo-body text-[color:var(--semantic-text-primary)]">
           © 2025 Plataforma. Todos os direitos reservados.
         </p>
       </div>

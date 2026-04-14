@@ -24,11 +24,11 @@ export default function SectionAgendas({ agendas }: SectionAgendasProps) {
     <SectionContainer className="flex flex-col items-center gap-[var(--spacing-lg)] py-[var(--spacing-lg)]">
       {/* Title */}
       <h2
-        className="font-bold text-[length:var(--font-size-h1)] leading-none text-[color:var(--semantic-text-primary)] text-center max-w-[860px]"
+        className="typo-h1 text-[color:var(--semantic-text-primary)] text-center max-w-[860px]"
         dangerouslySetInnerHTML={{
           __html: sectionContent.agendas.title.replace(
             /<highlight>(.*?)<\/highlight>/,
-            '<span style="color: var(--semantic-info-text-info)">$1</span>',
+            '<span style="color: var(--semantic-accent)">$1</span>',
           ),
         }}
       />

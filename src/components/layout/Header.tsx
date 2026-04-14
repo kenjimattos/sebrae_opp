@@ -24,14 +24,14 @@ export default function Header({ municipio, className = '' }: HeaderProps) {
       />
 
       {/* Center nav pill */}
-      <div className="flex items-center justify-between h-[60px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] pl-[var(--spacing-xs)] pr-[var(--spacing-md)] py-[4px] w-[720px]">
+      <div className="flex items-center justify-between h-[60px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] pl-[var(--spacing-xs)] pr-[var(--spacing-md)] py-[var(--spacing-2xs)] w-[720px]">
         <CitySelector municipio={municipio} className="shrink-0 w-[231px] flex items-center gap-[var(--spacing-sm)] bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] overflow-hidden" />
 
         {navLinks.map((label) => (
           <a
             key={label}
             href={`#${label.toLowerCase().replace(/\s+/g, '-')}`}
-            className="font-normal text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)] text-center whitespace-nowrap"
+            className="typo-body text-[color:var(--semantic-text-primary)] text-center whitespace-nowrap transition-colors hover:text-[color:var(--semantic-accent)]"
           >
             {label}
           </a>
