@@ -37,7 +37,7 @@ export default function SectionRecursos() {
             />
 
             <div className="flex flex-col gap-[var(--spacing-md)] w-full">
-              <div className="flex flex-wrap gap-[var(--spacing-sm)]">
+              <div className="flex flex-wrap gap-[var(--spacing-xs)]">
                 <ResourcesCard title="Total empenhado até o momento" value="R$ 4,1 bilhões" className="w-[211px]" />
                 <ResourcesCard title="Total pago até o momento" value="R$ 3,3 bilhões" className="w-[211px]" />
                 <ResourcesCard title="Pago em 2023" value="R$ 649,2 milhões" className="w-[211px]" />
@@ -45,7 +45,7 @@ export default function SectionRecursos() {
                 <ResourcesCard title="Pago em 2025" value="R$ 1,4 bilhões" className="w-[211px]" />
               </div>
 
-              <p className="typo-body-lg text-[color:var(--semantic-text-primary)] max-w-[800px]">
+              <p className="typo-body text-[color:var(--semantic-text-primary)] max-w-[800px]">
                 Recursos federais representam uma das principais fontes de financiamento para projetos estruturantes nos municípios.
               </p>
             </div>

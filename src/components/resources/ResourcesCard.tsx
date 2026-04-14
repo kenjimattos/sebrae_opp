@@ -10,7 +10,7 @@ interface ResourcesCardProps {
 export default function ResourcesCard({ title, value, className = '' }: ResourcesCardProps) {
   return (
     <div
-      className={`flex flex-col gap-[var(--spacing-sm)] bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-[var(--spacing-md)] ${className}`}
+      className={`flex flex-col gap-[var(--spacing-sm)] bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-[var(--spacing-md)] w-[190px] justify-between ${className}`}
     >
       <span className="typo-body text-[color:var(--semantic-text-primary)]">
         {title}

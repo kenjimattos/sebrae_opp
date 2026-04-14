@@ -12,7 +12,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
   - AgendaCard: `min-w` → `min-h`, gaps e tipografia reduzidos
   - AgendaIndicator/Badge: tipografia reduzida para `body-sm`
   - SectionAgendas: stats + grid agrupados em wrapper
-  - EconomicsCard: width de 230px → 209px, gap entre cards reduzido
+  - EconomicsCard: width de 230px → 209px, gap entre cards reduzido, variação para `body-sm-bold`
+  - `--font-size-display-small` de 32px → 24px
+  - ResourcesCard: width fixo 190px, justify-between
+  - SectionRecursos: gap reduzido, texto descritivo de `body-lg` → `body`
 
 ### Added
 - Arquivo de dados `src/data/casos-sucesso.ts` com 5 cases de municípios brasileiros (interface tipada `CasoSucesso`)
