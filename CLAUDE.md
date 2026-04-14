@@ -316,7 +316,8 @@ Toda a estrutura de dados está em `src/data/` e `src/types/indicadores.ts`.
 - Interfaces em `src/types/`
 
 ### Commits e Documentação
-- Commits granulares — um commit por mudança lógica
+- **Commitar proativamente** após cada mudança lógica, sem esperar o usuário pedir. Commits são a medida de controle do usuário — ele revisa e aprova os commits conforme o desenvolvimento avança.
+- Commits granulares — um commit por mudança lógica (ex: 1 componente novo = 1 commit, 1 fix = 1 commit)
 - Sempre atualizar `CHANGELOG.md` a cada commit relevante
 - Co-author tag obrigatória
 
