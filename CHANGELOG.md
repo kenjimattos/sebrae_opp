@@ -5,12 +5,14 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ## [Unreleased]
 
 ### Added
+- Lucide React como biblioteca de ícones (tree-shakeable, ~2.5KB para 8 ícones)
 - Componente `CoursesCardRow` (Figma 297:8): linha de curso com título uppercase + carga horária + botão "Ver curso"
 - Componente `CoursesCard` (Figma 298:8): card de trilha com TitleSubtitle, cursos com separadores e PillButton CTA
 - Seção Capacitação reescrita conforme Figma: grid 2x2 de cards de trilha + ícone capelo centralizado
 - 4 trilhas mock: Políticas Públicas, Captação de Recursos, Liderança, Indicadores
 
 ### Changed
+- Ícones inline SVG substituídos por imports Lucide React: EconomicsCard, CitySelector, Dropdown, PillButton, CoursesCardRow
 - Título da seção Capacitação atualizado para "Capacitação para estruturar projetos e acessar recursos" (sem descrição)
 - Layout da seção Capacitação: lista plana substituída por CSS Grid 2 colunas com cards de altura igual
 
