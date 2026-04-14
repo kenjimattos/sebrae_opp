@@ -14,9 +14,11 @@ const DATAPEDIA_URL =
 
 export default function SectionRecursos() {
   return (
-    <SectionContainer className="gap-[var(--spacing-md)]">
+    <SectionContainer>
       <SectionHeader title={sectionContent.recursos.title} />
 
+      {/* Cards agrupados com gap menor */}
+      <div className="flex flex-col gap-[var(--spacing-md)]">
       {/* Container principal branco */}
       <SectionCard padding="xl" className="flex flex-col gap-[var(--spacing-3xl)] items-center">
         {/* Pill no topo
@@ -94,6 +96,7 @@ export default function SectionRecursos() {
           />
           <PillButton label="Ver oportunidades" href="#" className="shrink-0" />
         </SectionCard>
+      </div>
 
     </SectionContainer>
   )

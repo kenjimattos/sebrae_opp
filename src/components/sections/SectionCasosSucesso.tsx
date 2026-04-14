@@ -21,7 +21,7 @@ export default function SectionCasosSucesso() {
   }
 
   return (
-    <SectionContainer className="!gap-[var(--spacing-2xl)]">
+    <SectionContainer>
       {/* Header row */}
       <div className="flex items-center justify-between w-full">
         <SectionHeader title={sectionContent.casosSucesso.title} />
