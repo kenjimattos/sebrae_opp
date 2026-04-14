@@ -27,6 +27,15 @@
   --font-size-button: 24px;
   --font-size-button-sm: 16px;
 
+  /* ============ TYPOGRAPHY — WEIGHT & LINE-HEIGHT ============ */
+  --typo-weight-regular: 400;
+  --typo-weight-semibold: 600;
+  --typo-weight-bold: 700;
+  --typo-weight-black: 900;
+
+  --typo-lh-auto: normal;
+  --typo-lh-body: 24px;
+
   /* ============ SPACING ============ */
   --spacing-2xs: 4px;
   --spacing-xs: 8px;
@@ -110,6 +119,11 @@
   --semantic-warning-surface: var(--primitives-yellow-100);
   --semantic-alert: var(--primitives-red-800);
   --semantic-alert-surface: var(--primitives-red-100);
+
+  /* Accent — interactive states */
+  --semantic-accent: var(--primitives-blue-500);
+  --semantic-accent-hover: var(--primitives-blue-800);
+  --semantic-accent-surface: var(--primitives-blue-100);
 }
 
 /* ============ DARK MODE ============ */
@@ -150,6 +164,37 @@
 
   --semantic-alert: var(--primitives-red-100);
   --semantic-alert-surface: var(--primitives-red-800);
+
+  --semantic-accent: var(--primitives-blue-200);
+  --semantic-accent-hover: var(--primitives-blue-100);
+  --semantic-accent-surface: var(--primitives-blue-800);
+}
+
+/* ============ TYPOGRAPHY — COMPOSITE CLASSES ============ */
+@layer components {
+  /* Display */
+  .typo-display-lg { font-size: var(--font-size-display-large); font-weight: var(--typo-weight-black); line-height: var(--typo-lh-auto); }
+  .typo-display    { font-size: var(--font-size-display);       font-weight: var(--typo-weight-black); line-height: var(--typo-lh-auto); }
+  .typo-display-sm { font-size: var(--font-size-display-small); font-weight: var(--typo-weight-black); line-height: var(--typo-lh-auto); }
+
+  /* Headings */
+  .typo-h1 { font-size: var(--font-size-h1); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); }
+  .typo-h2 { font-size: var(--font-size-h2); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); }
+  .typo-h3 { font-size: var(--font-size-h3); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); }
+  .typo-h4 { font-size: var(--font-size-h4); font-weight: var(--typo-weight-regular); line-height: var(--typo-lh-auto); text-transform: uppercase; }
+
+  /* Body */
+  .typo-body-lg      { font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-auto); }
+  .typo-body-lg-bold { font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); }
+  .typo-body         { font-size: var(--font-size-body);    font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-body); }
+  .typo-body-bold    { font-size: var(--font-size-body);    font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-body); }
+  .typo-body-sm      { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-body); }
+  .typo-body-sm-bold { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); }
+
+  /* UI / Buttons */
+  .typo-button-lg { font-size: var(--font-size-button-lg); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); }
+  .typo-button    { font-size: var(--font-size-button);    font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); }
+  .typo-button-sm { font-size: var(--font-size-button-sm); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); }
 }
 
 /* ============ MAP ============ */
