@@ -11,7 +11,7 @@ export default function UserAvatar({ size = 32, className = '' }: UserAvatarProp
     <svg
       width={size}
       height={size}
-      viewBox="0 0 32 32"
+      viewBox="-6 -6 44 44"
       fill="none"
       className={className}
     >
