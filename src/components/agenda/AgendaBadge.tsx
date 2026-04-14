@@ -29,10 +29,10 @@ export default function AgendaBadge({ status, value, className = '' }: AgendaBad
 
   return (
     <div
-      className={`flex items-center gap-[10px] px-[var(--spacing-sm)] py-[var(--spacing-2xs)] rounded-[var(--radius-md)] ${styles.bg} ${className}`}
+      className={`flex items-center gap-[var(--spacing-xs)] px-[var(--spacing-sm)] py-[var(--spacing-2xs)] rounded-[var(--radius-md)] ${styles.bg} ${className}`}
     >
       <div className={`size-[12px] rounded-full ${styles.dot}`} />
-      <span className="font-semibold text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)] text-right whitespace-nowrap">
+      <span className="typo-body-bold text-[color:var(--semantic-text-primary)] text-right whitespace-nowrap">
         {value}
       </span>
     </div>
