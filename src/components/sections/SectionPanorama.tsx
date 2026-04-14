@@ -71,7 +71,7 @@ export default function SectionPanorama() {
   }, [indicador])
 
   return (
-    <SectionContainer className="flex flex-col gap-[var(--spacing-lg)] py-[var(--spacing-lg)]">
+    <SectionContainer>
       <SectionHeader
         title={sectionContent.panorama.title}
         description={sectionContent.panorama.description}

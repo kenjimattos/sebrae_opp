@@ -13,7 +13,7 @@ interface SectionBaseEconomicaProps {
 
 export default function SectionBaseEconomica({ dados }: SectionBaseEconomicaProps) {
   return (
-    <SectionContainer className="flex flex-col gap-[var(--spacing-2xl)] py-[var(--spacing-lg)]">
+    <SectionContainer className="gap-[var(--spacing-2xl)]">
       <SectionHeader title={sectionContent.baseEconomica.title} />
 
       <div className="flex flex-col gap-[var(--spacing-lg)]">

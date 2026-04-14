@@ -21,7 +21,7 @@ export default function SectionAgendas({ agendas }: SectionAgendasProps) {
   }
 
   return (
-    <SectionContainer className="flex flex-col items-center gap-[var(--spacing-lg)] py-[var(--spacing-lg)]">
+    <SectionContainer className="items-center">
       {/* Title */}
       <h2
         className="typo-h1 text-[color:var(--semantic-text-primary)] text-center max-w-[860px]"

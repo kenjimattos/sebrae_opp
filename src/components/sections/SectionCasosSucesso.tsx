@@ -33,7 +33,7 @@ const casos = [
 
 export default function SectionCasosSucesso() {
   return (
-    <SectionContainer className="flex flex-col gap-[var(--spacing-lg)] py-[var(--spacing-lg)]">
+    <SectionContainer>
       <SectionHeader
         title={sectionContent.casosSucesso.title}
         description={sectionContent.casosSucesso.description}

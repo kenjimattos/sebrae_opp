@@ -1,5 +1,5 @@
 // Tailwind pure — no Figma equivalent
-// Wrapper with max-w-[1440px] and padding lateral var(--spacing-margin)
+// Section wrapper: max-w-[1440px] + padding lateral + flex column + gap + vertical padding
 
 interface SectionContainerProps {
   children: React.ReactNode
@@ -9,7 +9,7 @@ interface SectionContainerProps {
 export default function SectionContainer({ children, className = '' }: SectionContainerProps) {
   return (
     <section
-      className={`mx-auto w-full max-w-[1440px] px-[var(--spacing-margin)] ${className}`}
+      className={`mx-auto w-full max-w-[1440px] px-[var(--spacing-margin)] flex flex-col gap-[var(--spacing-lg)] py-[var(--spacing-lg)] ${className}`}
     >
       {children}
     </section>

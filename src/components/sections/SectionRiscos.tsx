@@ -30,7 +30,7 @@ export default function SectionRiscos({ agendas }: SectionRiscosProps) {
   const topRiscos = riscos.slice(0, 3)
 
   return (
-    <SectionContainer className="flex flex-col gap-[var(--spacing-lg)] py-[var(--spacing-lg)]">
+    <SectionContainer>
       <SectionHeader title={sectionContent.riscos.title} />
 
       <div className="grid grid-cols-3 gap-[var(--spacing-sm)] w-full">

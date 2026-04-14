@@ -6,7 +6,7 @@ import { sectionContent } from '@/data/sections'
 
 export default function SectionAIAssistant() {
   return (
-    <SectionContainer className="flex flex-col items-center gap-[var(--spacing-lg)] py-[var(--spacing-3xl)]">
+    <SectionContainer className="items-center py-[var(--spacing-3xl)]">
       <div className="flex flex-col items-center gap-[var(--spacing-md)] max-w-[800px] text-center">
         <h2 className="typo-h1 text-[color:var(--semantic-text-primary)]">
           {sectionContent.aiAssistant.title}
