@@ -20,19 +20,19 @@ export default function TitleSubtitle({
     <div className={`flex flex-col items-start gap-[var(--spacing-sm)] ${className}`}>
       {isH2 ? (
         <>
-          <h3 className="w-full font-bold text-[length:var(--font-size-h2)] leading-none text-[color:var(--semantic-text-primary)]">
+          <h3 className="w-full typo-h2 text-[color:var(--semantic-text-primary)]">
             {title}
           </h3>
-          <p className="w-full font-normal text-[length:var(--font-size-body-lg)] leading-normal text-[color:var(--semantic-text-primary)]">
+          <p className="w-full typo-body-lg text-[color:var(--semantic-text-primary)]">
             {content}
           </p>
         </>
       ) : (
         <>
-          <h4 className="w-full font-bold text-[length:var(--font-size-h3)] leading-none text-[color:var(--semantic-text-primary)]">
+          <h4 className="w-full typo-h3 text-[color:var(--semantic-text-primary)]">
             {title}
           </h4>
-          <p className="w-full font-normal text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)]">
+          <p className="w-full typo-body text-[color:var(--semantic-text-primary)]">
             {content}
           </p>
         </>

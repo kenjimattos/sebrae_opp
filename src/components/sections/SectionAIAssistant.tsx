@@ -8,17 +8,17 @@ export default function SectionAIAssistant() {
   return (
     <SectionContainer className="flex flex-col items-center gap-[var(--spacing-lg)] py-[var(--spacing-3xl)]">
       <div className="flex flex-col items-center gap-[var(--spacing-md)] max-w-[800px] text-center">
-        <h2 className="font-bold text-[length:var(--font-size-h1)] leading-none text-[color:var(--semantic-text-primary)]">
+        <h2 className="typo-h1 text-[color:var(--semantic-text-primary)]">
           {sectionContent.aiAssistant.title}
         </h2>
-        <p className="font-normal text-[length:var(--font-size-body-lg)] leading-normal text-[color:var(--semantic-text-primary)]">
+        <p className="typo-body-lg text-[color:var(--semantic-text-primary)]">
           {sectionContent.aiAssistant.description}
         </p>
       </div>
 
       <div className="flex flex-col gap-[var(--spacing-md)] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-md)] p-[var(--spacing-lg)] w-full max-w-[800px]">
         <div className="bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-[var(--spacing-md)]">
-          <p className="font-normal text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-inactive)]">
+          <p className="typo-body text-[color:var(--semantic-text-inactive)]">
             Ex: "Quais indicadores de educação estão em alerta em Campina Grande?"
           </p>
         </div>

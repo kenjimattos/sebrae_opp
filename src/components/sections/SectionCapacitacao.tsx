@@ -28,17 +28,17 @@ export default function SectionCapacitacao() {
             key={curso.titulo}
             className="flex items-center justify-between bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-md)] py-[var(--spacing-sm)] w-full"
           >
-            <span className="flex-1 font-semibold text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)]">
+            <span className="flex-1 typo-body-bold text-[color:var(--semantic-text-primary)]">
               {curso.titulo}
             </span>
             <div className="flex items-center gap-[var(--spacing-lg)]">
-              <span className="font-normal text-[length:var(--font-size-body)] text-[color:var(--semantic-text-inactive)] w-[60px]">
+              <span className="typo-body text-[color:var(--semantic-text-inactive)] w-[60px]">
                 {curso.carga}
               </span>
-              <span className="font-normal text-[length:var(--font-size-body)] text-[color:var(--semantic-text-inactive)] w-[100px]">
+              <span className="typo-body text-[color:var(--semantic-text-inactive)] w-[100px]">
                 {curso.modalidade}
               </span>
-              <span className="font-semibold text-[length:var(--font-size-body)] text-[color:var(--semantic-text-primary)] w-[80px] text-right">
+              <span className="typo-body-bold text-[color:var(--semantic-text-primary)] w-[80px] text-right">
                 {curso.inscritos} inscritos
               </span>
             </div>

@@ -46,17 +46,17 @@ export default function SectionCasosSucesso() {
             key={caso.titulo}
             className="flex-shrink-0 w-[380px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-md)] p-[var(--spacing-lg)] flex flex-col gap-[var(--spacing-md)] snap-start"
           >
-            <span className="font-normal text-[length:var(--font-size-body-sm)] text-[color:var(--semantic-text-inactive)] uppercase">
+            <span className="typo-body-sm text-[color:var(--semantic-text-inactive)] uppercase">
               {caso.municipio}
             </span>
-            <h4 className="font-bold text-[length:var(--font-size-h3)] leading-none text-[color:var(--semantic-text-primary)]">
+            <h4 className="typo-h3 text-[color:var(--semantic-text-primary)]">
               {caso.titulo}
             </h4>
-            <p className="font-normal text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)]">
+            <p className="typo-body text-[color:var(--semantic-text-primary)]">
               {caso.descricao}
             </p>
             <div className="bg-[var(--semantic-success-surface)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)]">
-              <span className="font-semibold text-[length:var(--font-size-body)] text-[color:var(--semantic-success)]">
+              <span className="typo-body-bold text-[color:var(--semantic-success)]">
                 {caso.resultado}
               </span>
             </div>

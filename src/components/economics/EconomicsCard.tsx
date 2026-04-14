@@ -62,15 +62,15 @@ export default function EconomicsCard({ label, valor, variacao, icone, className
             </svg>
           </div>
         )}
-        <span className="font-normal text-[length:var(--font-size-h4)] leading-normal text-[color:var(--semantic-text-primary)] uppercase">
+        <span className="typo-h4 text-[color:var(--semantic-text-primary)]">
           {label}
         </span>
       </div>
       <div className="flex items-end justify-between w-full">
-        <span className="font-black text-[length:var(--font-size-display-small)] leading-none text-[color:var(--semantic-text-primary)] max-w-[130px]">
+        <span className="typo-display-sm text-[color:var(--semantic-text-primary)] max-w-[130px]">
           {valor}
         </span>
-        <span className="font-semibold text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)]">
+        <span className="typo-body-bold text-[color:var(--semantic-text-primary)]">
           {variacao}
         </span>
       </div>

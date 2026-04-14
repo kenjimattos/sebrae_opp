@@ -42,7 +42,7 @@ export default function SectionRecursos() {
               <ResourcesCard title="Pago em 2025" value="R$ 1,4 bilhões" className="w-[211px]" />
             </div>
 
-            <p className="font-normal text-[length:var(--font-size-body-lg)] leading-normal text-[color:var(--semantic-text-primary)] max-w-[800px]">
+            <p className="typo-body-lg text-[color:var(--semantic-text-primary)] max-w-[800px]">
               Recursos federais representam uma das principais fontes de financiamento para projetos estruturantes nos municípios.
             </p>
           </div>
@@ -70,7 +70,7 @@ export default function SectionRecursos() {
 
             {/* Overlay no hover */}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center rounded-[var(--radius-xl)]">
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-[var(--semantic-surface-primary)] text-[color:var(--semantic-text-primary)] font-semibold text-[length:var(--font-size-body)] px-[var(--spacing-md)] py-[var(--spacing-sm)] rounded-[var(--radius-full)] shadow-lg">
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-[var(--semantic-surface-primary)] text-[color:var(--semantic-text-primary)] typo-body-bold px-[var(--spacing-md)] py-[var(--spacing-sm)] rounded-[var(--radius-full)] shadow-lg">
                 Abrir no Datapedia →
               </span>
             </div>
@@ -93,7 +93,7 @@ export default function SectionRecursos() {
       </div> */}
 
       {/* Bloco 3 — Editais e programas */}
-      <div className="bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-xl)] py-[var(--radius-full)] flex items-center gap-[var(--spacing-2xl)]">
+      <div className="bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-xl)] py-[var(--spacing-3xl)] flex items-center gap-[var(--spacing-2xl)]">
         <TitleSubtitle
           title="Editais e programas de financiamento"
           content="Programas federais, estaduais e institucionais com recursos disponíveis para desenvolvimento econômico, inovação e fortalecimento de pequenos negócios."

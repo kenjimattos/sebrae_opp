@@ -9,7 +9,7 @@ interface UserProps {
 export default function User({ name = 'João Maria', className = '' }: UserProps) {
   return (
     <div
-      className={`flex items-center gap-[10px] h-[60px] px-[var(--spacing-md)] py-[10px] rounded-[var(--radius-full)] ${className}`}
+      className={`flex items-center gap-[var(--spacing-xs)] h-[60px] px-[var(--spacing-md)] py-[var(--spacing-xs)] rounded-[var(--radius-full)] ${className}`}
     >
       {/* Avatar placeholder */}
       <div className="shrink-0 size-[32px] rounded-full bg-[var(--semantic-surface-primary)] overflow-hidden flex items-center justify-center">
@@ -18,7 +18,7 @@ export default function User({ name = 'João Maria', className = '' }: UserProps
           <path d="M2 13c0-2.76 2.24-5 5-5s5 2.24 5 5" fill="currentColor" />
         </svg>
       </div>
-      <span className="font-normal text-[length:var(--font-size-body-lg)] leading-none text-[color:var(--semantic-text-primary)] whitespace-nowrap">
+      <span className="typo-body-lg text-[color:var(--semantic-text-primary)] whitespace-nowrap">
         {name}
       </span>
     </div>

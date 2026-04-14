@@ -12,10 +12,10 @@ export default function ResourcesCard({ title, value, className = '' }: Resource
     <div
       className={`flex flex-col gap-[var(--spacing-sm)] bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-[var(--spacing-md)] ${className}`}
     >
-      <span className="font-normal text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)]">
+      <span className="typo-body text-[color:var(--semantic-text-primary)]">
         {title}
       </span>
-      <span className="font-black text-[length:var(--font-size-display-small)] leading-none text-[color:var(--semantic-text-primary)]">
+      <span className="typo-display-sm text-[color:var(--semantic-text-primary)]">
         {value}
       </span>
     </div>

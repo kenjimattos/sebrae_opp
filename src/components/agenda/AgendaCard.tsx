@@ -15,7 +15,7 @@ export default function AgendaCard({ title, indicadores, className = '' }: Agend
     <div
       className={`flex flex-col gap-[var(--spacing-lg)] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-md)] py-[var(--spacing-lg)] min-w-[384px] ${className}`}
     >
-      <h3 className="font-semibold text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)]">
+      <h3 className="typo-body-bold text-[color:var(--semantic-text-primary)]">
         {title}
       </h3>
       <div className="flex flex-col gap-[var(--spacing-md)] flex-1">

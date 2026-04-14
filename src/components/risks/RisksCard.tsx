@@ -45,26 +45,26 @@ export default function RisksCard({
     >
       {/* Header: label + value */}
       <div className="flex items-start gap-[var(--spacing-md)] w-full">
-        <span className="flex-1 font-semibold text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)]">
+        <span className="flex-1 typo-body-bold text-[color:var(--semantic-text-primary)]">
           {label}
         </span>
-        <span className={`shrink-0 font-black text-[length:var(--font-size-display-small)] leading-none ${styles.valueColor}`}>
+        <span className={`shrink-0 typo-display-sm ${styles.valueColor}`}>
           {valor}
         </span>
       </div>
 
       {/* Risk description */}
-      <p className="font-normal text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)]">
+      <p className="typo-body text-[color:var(--semantic-text-primary)]">
         {descricao}
       </p>
 
       {/* Alert indicator label */}
-      <p className="font-bold text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)]">
+      <p className="typo-body-bold text-[color:var(--semantic-text-primary)]">
         {indicadorLabel}
       </p>
 
       {/* Context */}
-      <p className="font-normal text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)]">
+      <p className="typo-body text-[color:var(--semantic-text-primary)]">
         {contexto}
       </p>
     </div>

@@ -16,7 +16,7 @@ export default function CitySelector({ municipio, className = '' }: CitySelector
         <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
         <path d="M16 16l4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       </svg>
-      <span className="font-semibold text-[length:var(--font-size-body)] leading-[var(--spacing-md)] text-[color:var(--semantic-text-primary)] truncate">
+      <span className="typo-body-bold text-[color:var(--semantic-text-primary)] truncate">
         {municipio}
       </span>
     </div>

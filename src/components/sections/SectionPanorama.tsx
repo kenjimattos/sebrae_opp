@@ -80,7 +80,7 @@ export default function SectionPanorama() {
       <div className="bg-[var(--semantic-surface-primary)] rounded-[var(--radius-md)] p-[var(--spacing-md)] flex flex-col gap-[var(--spacing-md)]">
         {/* Header: label + dropdown */}
         <div className="flex items-center justify-between">
-          <span className="font-semibold text-[length:var(--font-size-body)] text-[color:var(--semantic-text-primary)]">
+          <span className="typo-body-bold text-[color:var(--semantic-text-primary)]">
             Indicador no mapa
           </span>
           <Dropdown
@@ -94,10 +94,10 @@ export default function SectionPanorama() {
         {/* Média do indicador */}
         {mediaInfo && (
           <div className="flex items-center gap-[var(--spacing-sm)]">
-            <span className="text-[length:var(--font-size-body-sm)] text-[color:var(--semantic-text-inactive)]">
+            <span className="typo-body-sm text-[color:var(--semantic-text-inactive)]">
               Média estadual ({mediaInfo.count} municípios):
             </span>
-            <span className="font-bold text-[length:var(--font-size-body)] text-[color:var(--semantic-text-primary)]">
+            <span className="typo-body-bold text-[color:var(--semantic-text-primary)]">
               {mediaInfo.formatted}
             </span>
           </div>
@@ -107,15 +107,15 @@ export default function SectionPanorama() {
         <div className="flex items-center gap-[var(--spacing-md)]">
           <div className="flex items-center gap-[var(--spacing-2xs)]">
             <span className="w-[12px] h-[12px] rounded-full bg-[var(--semantic-success-surface)] border border-[var(--semantic-success)]" />
-            <span className="text-[length:var(--font-size-body-sm)] text-[color:var(--semantic-text-inactive)]">Bom</span>
+            <span className="typo-body-sm text-[color:var(--semantic-text-inactive)]">Bom</span>
           </div>
           <div className="flex items-center gap-[var(--spacing-2xs)]">
             <span className="w-[12px] h-[12px] rounded-full bg-[var(--semantic-warning-surface)] border border-[var(--semantic-warning)]" />
-            <span className="text-[length:var(--font-size-body-sm)] text-[color:var(--semantic-text-inactive)]">Atenção</span>
+            <span className="typo-body-sm text-[color:var(--semantic-text-inactive)]">Atenção</span>
           </div>
           <div className="flex items-center gap-[var(--spacing-2xs)]">
             <span className="w-[12px] h-[12px] rounded-full bg-[var(--semantic-alert-surface)] border border-[var(--semantic-alert)]" />
-            <span className="text-[length:var(--font-size-body-sm)] text-[color:var(--semantic-text-inactive)]">Crítico</span>
+            <span className="typo-body-sm text-[color:var(--semantic-text-inactive)]">Crítico</span>
           </div>
         </div>
 
