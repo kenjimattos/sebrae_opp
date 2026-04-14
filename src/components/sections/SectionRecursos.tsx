@@ -17,13 +17,13 @@ export default function SectionRecursos() {
       <SectionHeader title={sectionContent.recursos.title} />
 
       {/* Container principal branco */}
-      <div className="bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-xl)] pb-[var(--spacing-3xl)] flex flex-col gap-[var(--spacing-3xl)] items-center">
-        {/* Pill no topo */}
+      <div className="bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-xl)] py-[var(--spacing-3xl)] flex flex-col gap-[var(--spacing-3xl)] items-center">
+        {/* Pill no topo
         <div className="bg-[var(--semantic-surface-secondary)] rounded-b-[var(--radius-xl)] px-[var(--spacing-2xl)] py-[var(--spacing-sm)]">
           <span className="font-bold text-[length:var(--font-size-h3)] text-[color:var(--semantic-text-primary)] text-center whitespace-nowrap">
             Onde encontrar recursos para o município
           </span>
-        </div>
+        </div> */}
 
         {/* Bloco 1 — Emendas parlamentares */}
         <div className="flex flex-col gap-[var(--spacing-xl)] items-start w-full">
@@ -83,14 +83,14 @@ export default function SectionRecursos() {
         </div>
       </div>
 
-      {/* Ícone decorativo $ entre containers */}
+      {/* Ícone decorativo $ entre containers
       <div className="flex justify-center -my-[var(--spacing-md)]">
         <div className="w-[120px] h-[120px] bg-[var(--semantic-surface-primary)] rounded-full flex items-center justify-center shadow-lg">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
             <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
-      </div>
+      </div> */}
 
       {/* Bloco 3 — Editais e programas */}
       <div className="bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-xl)] py-[var(--radius-full)] flex items-center gap-[var(--spacing-2xl)]">
