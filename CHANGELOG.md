@@ -4,6 +4,16 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Changed
+- Layout compactado para conforto visual a 100% zoom:
+  - `--spacing-margin` de 120px → 180px (conteúdo efetivo: 1200px → 1080px)
+  - Gap entre seções de `spacing-3xl` (96px) → `spacing-2xl` (64px)
+  - `.typo-body-sm` line-height corrigido para `lh-auto`
+  - AgendaCard: `min-w` → `min-h`, gaps e tipografia reduzidos
+  - AgendaIndicator/Badge: tipografia reduzida para `body-sm`
+  - SectionAgendas: stats + grid agrupados em wrapper
+  - EconomicsCard: width de 230px → 209px, gap entre cards reduzido
+
 ### Added
 - Arquivo de dados `src/data/casos-sucesso.ts` com 5 cases de municípios brasileiros (interface tipada `CasoSucesso`)
 - Componente `CaseStudiesCard` (Figma 288:8): card com imagem, cidade, título, descrição e link CTA com seta

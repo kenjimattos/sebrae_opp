@@ -13,12 +13,12 @@ interface AgendaCardProps {
 export default function AgendaCard({ title, indicadores, className = '' }: AgendaCardProps) {
   return (
     <div
-      className={`flex flex-col gap-[var(--spacing-lg)] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-md)] py-[var(--spacing-lg)] min-w-[384px] ${className}`}
+      className={`flex flex-col gap-[var(--spacing-lg)] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-md)] py-[var(--spacing-lg)] min-h-[384px] ${className}`}
     >
       <h3 className="typo-body-bold text-[color:var(--semantic-text-primary)]">
         {title}
       </h3>
-      <div className="flex flex-col gap-[var(--spacing-md)] flex-1">
+      <div className="flex flex-col gap-[var(--spacing-sm)] flex-1">
         {indicadores.map((ind) => (
           <AgendaIndicator
             key={ind.label}

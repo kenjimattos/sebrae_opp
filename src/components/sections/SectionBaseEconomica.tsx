@@ -17,7 +17,7 @@ export default function SectionBaseEconomica({ dados }: SectionBaseEconomicaProp
       <SectionHeader title={sectionContent.baseEconomica.title} />
 
       <div className="flex flex-col gap-[var(--spacing-lg)]">
-        <div className="flex flex-wrap gap-[var(--spacing-sm)] w-full">
+        <div className="flex flex-wrap gap-[var(--spacing-xs)] w-full">
           {dados.map((item) => (
             <EconomicsCard
               key={item.label}

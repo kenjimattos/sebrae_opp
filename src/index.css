@@ -45,7 +45,7 @@
   --spacing-xl: 48px;
   --spacing-2xl: 64px;
   --spacing-3xl: 96px;
-  --spacing-margin: 120px;
+  --spacing-margin: 180px;
 
   /* ============ RADIUS ============ */
   --radius-sm: 12px;
@@ -188,7 +188,7 @@
   .typo-body-lg-bold { font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); }
   .typo-body         { font-size: var(--font-size-body);    font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-body); }
   .typo-body-bold    { font-size: var(--font-size-body);    font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-body); }
-  .typo-body-sm      { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-body); }
+  .typo-body-sm      { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-auto); }
   .typo-body-sm-bold { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); }
 
   /* UI / Buttons */
