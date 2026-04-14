@@ -2,6 +2,7 @@
 // Select estilizado: button + ul controlados por estado
 
 import { useState, useRef, useEffect } from 'react'
+import { ChevronDown } from 'lucide-react'
 
 interface DropdownOption {
   label: string
@@ -38,15 +39,7 @@ export default function Dropdown({ options, value, onChange, className = '' }: D
         className="flex items-center justify-between gap-[var(--spacing-xs)] w-full bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] typo-body-bold text-[color:var(--semantic-text-primary)] cursor-pointer"
       >
         {selected?.label ?? 'Selecionar'}
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          className={`shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
-        >
-          <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <ChevronDown size={16} className={`shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
 
       {open && (
