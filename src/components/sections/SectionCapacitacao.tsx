@@ -54,7 +54,7 @@ export default function SectionCapacitacao() {
       <SectionHeader title={sectionContent.capacitacao.title} />
 
       {/* Grid 2x2 with graduation cap icon in center */}
-      <div className="relative grid grid-cols-2 gap-[var(--spacing-sm)] w-full">
+      <div className="grid grid-cols-2 gap-[var(--spacing-sm)] w-full">
         {trilhas.map((trilha) => (
           <CoursesCard
             key={trilha.title}
@@ -63,32 +63,6 @@ export default function SectionCapacitacao() {
             cursos={trilha.cursos}
           />
         ))}
-
-        {/* Graduation cap icon — centered between the 4 cards */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[120px] flex items-center justify-center pointer-events-none">
-          <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-            <circle cx="60" cy="60" r="60" fill="var(--semantic-background-primary)" />
-            <path
-              d="M60 38L34 52l26 14 26-14-26-14z"
-              fill="var(--semantic-text-primary)"
-            />
-            <path
-              d="M44 58v14c0 0 7 8 16 8s16-8 16-8V58"
-              stroke="var(--semantic-text-primary)"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-            />
-            <path
-              d="M86 52v20"
-              stroke="var(--semantic-text-primary)"
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-            <circle cx="86" cy="74" r="3" fill="var(--semantic-text-primary)" />
-          </svg>
-        </div>
       </div>
     </SectionContainer>
   )
