@@ -5,7 +5,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaBadge 1`] = `
   class="flex-center gap-xs px-sm py-2xs rounded-[var(--radius-md)] status-warning-bg "
 >
   <div
-    class="size-[12px] rounded-full status-warning-dot"
+    class="size-[8px] rounded-full status-warning-dot"
   />
   <span
     class="typo-body-sm-bold text-right whitespace-nowrap"
@@ -31,7 +31,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
       class="flex-center gap-xs px-sm py-2xs rounded-[var(--radius-md)] status-success-bg "
     >
       <div
-        class="size-[12px] rounded-full status-success-dot"
+        class="size-[8px] rounded-full status-success-dot"
       />
       <span
         class="typo-body-sm-bold text-right whitespace-nowrap"
@@ -124,7 +124,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
 <div
-  class="flex-col-start justify-between card-surface border border-solid border-[var(--semantic-surface-primary)] p-md h-[172px] w-[209px] "
+  class="flex-col-start justify-between card-surface border border-solid border-[var(--semantic-surface-primary)] p-md h-[172px] w-[22dvh] "
 >
   <div
     class="flex items-center gap-sm w-full"
@@ -416,7 +416,7 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > ResourcesCard 1`] = `
 <div
-  class="flex flex-col gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-md w-[189px] justify-between "
+  class="flex flex-col gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-md w-[20dvh] justify-between "
 >
   <span
     class="typo-body"

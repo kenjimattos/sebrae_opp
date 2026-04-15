@@ -14,6 +14,11 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - Imagens de case study para 5 municípios
 - Dados reais de cursos na seção Capacitação: 4 trilhas com 37 cursos (substituindo dados mock)
 
+### Fixed
+- Cores de status (success/warning/alert) agora usam tons 500 (mais vibrantes) ao invés de 800/900
+- Dot de status no AgendaBadge reduzido de 12px para 8px
+- EconomicsCard e ResourcesCard usam largura relativa ao viewport (dvh) ao invés de px fixo
+
 ### Changed
 - Tipografia: classes `.typo-*` agora incluem `color: var(--semantic-text-primary)` por default — removidas ~47 ocorrências redundantes nos componentes
 - Novas classes `.text-inactive` e `.text-accent` para overrides de cor
