@@ -1,40 +1,67 @@
 // Figma: Header (405:2044)
-// Top bar: Sebrae logo | CitySelector + nav links | User avatar
+// Sticky header: Sebrae logo (scroll-to-top) | CitySelector + nav links (scroll-spy) | User avatar
 
 import CitySelector from '@/components/CitySelector'
 import User from '@/components/User'
 import { navLinks } from '@/data/layout'
+import { useActiveSection } from '@/hooks/useActiveSection'
+import { useMemo } from 'react'
 
 interface HeaderProps {
-  municipio: string
   className?: string
 }
 
-export default function Header({ municipio, className = '' }: HeaderProps) {
+const HEADER_HEIGHT = 95
+
+export default function Header({ className = '' }: HeaderProps) {
+  const sectionIds = useMemo(() => navLinks.map((l) => l.sectionId), [])
+  const activeSection = useActiveSection(sectionIds)
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  function scrollToSection(sectionId: string) {
+    const el = document.getElementById(sectionId)
+    if (!el) return
+    const top = el.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT
+    window.scrollTo({ top, behavior: 'smooth' })
+  }
+
   return (
     <header
-      className={`flex-between h-[95px] pt-md px-margin bg-[var(--semantic-background-primary)] ${className}`}
+      className={`sticky top-0 z-50 flex-between h-[95px] pt-md px-margin bg-[var(--semantic-background-primary)] ${className}`}
     >
-      {/* Logo */}
+      {/* Logo — click scrolls to top */}
       <img
         src="/assets/sebrae-logo.png"
         alt="Sebrae"
-        className="h-[60px] w-[111px] object-cover"
+        className="h-[60px] w-[111px] object-cover cursor-pointer"
+        onClick={scrollToTop}
       />
 
       {/* Center nav pill */}
-      <div className="flex-between h-[60px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] pl-xs pr-md py-2xs w-[720px]">
-        <CitySelector municipio={municipio} className="shrink-0 w-[231px] flex items-center gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-sm py-xs overflow-hidden" />
+      <div className="flex-between h-[60px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] pl-xs pr-xs py-2xs">
+        <CitySelector className="shrink-0 w-[231px]" />
 
-        {navLinks.map((label) => (
-          <a
-            key={label}
-            href={`#${label.toLowerCase().replace(/\s+/g, '-')}`}
-            className="typo-body text-center whitespace-nowrap transition-colors hover:text-accent"
-          >
-            {label}
-          </a>
-        ))}
+        <nav className="flex items-center gap-2xs">
+          {navLinks.map(({ label, sectionId }) => {
+            const isActive = activeSection === sectionId
+            return (
+              <button
+                key={sectionId}
+                onClick={() => scrollToSection(sectionId)}
+                className={`typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] ${
+                  isActive
+                    ? 'bg-[var(--semantic-accent)] text-[var(--semantic-button-label-primary)]'
+                    : 'hover:text-accent'
+                }`}
+              >
+                {label}
+              </button>
+            )
+          })}
+        </nav>
       </div>
 
       {/* User */}

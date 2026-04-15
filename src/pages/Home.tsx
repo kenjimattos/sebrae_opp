@@ -8,7 +8,7 @@ import SectionRecursos from '@/components/sections/SectionRecursos'
 import SectionCapacitacao from '@/components/sections/SectionCapacitacao'
 import SectionCasosSucesso from '@/components/sections/SectionCasosSucesso'
 import SectionFormulador from '@/components/sections/SectionFormulador'
-import SectionAIAssistant from '@/components/sections/SectionAIAssistant'
+// import SectionAIAssistant from '@/components/sections/SectionAIAssistant'
 import { useMunicipio } from '@/hooks/useMunicipio'
 
 export default function Home() {
@@ -17,21 +17,37 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[var(--semantic-background-primary)]">
-      <Header municipio={municipio.nome} />
+      <Header />
 
       <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-2xl py-3xl">
         {dados && (
           <>
-            <SectionAgendas agendas={dados.agendas} />
-            <SectionPanorama />
-            <SectionBaseEconomica dados={dados.baseEconomica} />
-            <SectionRiscos agendas={dados.agendas} />
+            <div id="agendas">
+              <SectionAgendas agendas={dados.agendas} />
+            </div>
+            <div id="panorama">
+              <SectionPanorama />
+            </div>
+            <div id="base-economica">
+              <SectionBaseEconomica dados={dados.baseEconomica} />
+            </div>
+            <div id="riscos">
+              <SectionRiscos agendas={dados.agendas} />
+            </div>
           </>
         )}
-        <SectionRecursos />
-        <SectionCapacitacao />
-        <SectionCasosSucesso />
-        <SectionFormulador />
+        <div id="recursos">
+          <SectionRecursos />
+        </div>
+        <div id="capacitacao">
+          <SectionCapacitacao />
+        </div>
+        <div id="casos-sucesso">
+          <SectionCasosSucesso />
+        </div>
+        <div id="formulador">
+          <SectionFormulador />
+        </div>
         {/* Hidden for now, may be used in the future */}
         {/* <SectionAIAssistant /> */}
       </main>

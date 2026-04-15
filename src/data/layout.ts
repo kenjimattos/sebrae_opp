@@ -1,4 +1,18 @@
-export const navLinks = ['Agenda prioritaria', 'Acesso a recursos', 'Formulador'] as const
+export interface NavLink {
+  label: string
+  sectionId: string
+}
+
+export const navLinks: NavLink[] = [
+  { label: 'Agendas', sectionId: 'agendas' },
+  { label: 'Panorama', sectionId: 'panorama' },
+  { label: 'Base Econômica', sectionId: 'base-economica' },
+  { label: 'Riscos', sectionId: 'riscos' },
+  { label: 'Recursos', sectionId: 'recursos' },
+  { label: 'Capacitação', sectionId: 'capacitacao' },
+  { label: 'Casos de Sucesso', sectionId: 'casos-sucesso' },
+  { label: 'Formulador', sectionId: 'formulador' },
+]
 
 export interface FooterColumn {
   title: string

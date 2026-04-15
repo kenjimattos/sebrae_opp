@@ -308,65 +308,96 @@ decisões estratégicas.
 
 exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
 <header
-  class="flex-between h-[95px] pt-md px-margin bg-[var(--semantic-background-primary)] "
+  class="sticky top-0 z-50 flex-between h-[95px] pt-md px-margin bg-[var(--semantic-background-primary)] "
 >
   <img
     alt="Sebrae"
-    class="h-[60px] w-[111px] object-cover"
+    class="h-[60px] w-[111px] object-cover cursor-pointer"
     src="/assets/sebrae-logo.png"
   />
   <div
-    class="flex-between h-[60px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] pl-xs pr-md py-2xs w-[720px]"
+    class="flex-between h-[60px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] pl-xs pr-xs py-2xs"
   >
     <div
-      class="flex items-center gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-sm py-xs overflow-hidden shrink-0 w-[231px] flex items-center gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-sm py-xs overflow-hidden"
+      class="relative shrink-0 w-[231px]"
     >
-      <svg
-        aria-hidden="true"
-        class="lucide lucide-search shrink-0 text-[var(--semantic-text-primary)]"
-        fill="none"
-        height="24"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        viewBox="0 0 24 24"
-        width="24"
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        class="flex items-center gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-sm py-xs overflow-hidden"
       >
-        <path
-          d="m21 21-4.34-4.34"
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-search shrink-0 text-[var(--semantic-text-primary)]"
+          fill="none"
+          height="20"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m21 21-4.34-4.34"
+          />
+          <circle
+            cx="11"
+            cy="11"
+            r="8"
+          />
+        </svg>
+        <input
+          class="typo-body-bold bg-transparent outline-none w-full truncate"
+          placeholder="Buscar município..."
+          type="text"
+          value="Campina Grande"
         />
-        <circle
-          cx="11"
-          cy="11"
-          r="8"
-        />
-      </svg>
-      <span
-        class="typo-body-bold truncate"
-      >
-        Campina Grande
-      </span>
+      </div>
     </div>
-    <a
-      class="typo-body text-center whitespace-nowrap transition-colors hover:text-accent"
-      href="#agenda-prioritaria"
+    <nav
+      class="flex items-center gap-2xs"
     >
-      Agenda prioritaria
-    </a>
-    <a
-      class="typo-body text-center whitespace-nowrap transition-colors hover:text-accent"
-      href="#acesso-a-recursos"
-    >
-      Acesso a recursos
-    </a>
-    <a
-      class="typo-body text-center whitespace-nowrap transition-colors hover:text-accent"
-      href="#formulador"
-    >
-      Formulador
-    </a>
+      <button
+        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] bg-[var(--semantic-accent)] text-[var(--semantic-button-label-primary)]"
+      >
+        Agendas
+      </button>
+      <button
+        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] hover:text-accent"
+      >
+        Panorama
+      </button>
+      <button
+        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] hover:text-accent"
+      >
+        Base Econômica
+      </button>
+      <button
+        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] hover:text-accent"
+      >
+        Riscos
+      </button>
+      <button
+        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] hover:text-accent"
+      >
+        Recursos
+      </button>
+      <button
+        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] hover:text-accent"
+      >
+        Capacitação
+      </button>
+      <button
+        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] hover:text-accent"
+      >
+        Casos de Sucesso
+      </button>
+      <button
+        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] hover:text-accent"
+      >
+        Formulador
+      </button>
+    </nav>
   </div>
   <div
     class="flex items-center gap-xs h-[60px] px-md py-xs rounded-[var(--radius-full)] "

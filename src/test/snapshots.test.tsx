@@ -2,6 +2,7 @@
 // When CSS classes change, snapshots break intentionally — review diff then update with `vitest run -u`
 
 import { render } from '@testing-library/react'
+import { TestWrapper } from './mocks/wrapper'
 
 import AgendaBadge from '@/components/agenda/AgendaBadge'
 import AgendaStats from '@/components/agenda/AgendaStats'
@@ -84,7 +85,7 @@ describe('Snapshot tests — CSS refactor safety', () => {
   })
 
   it('Header', () => {
-    const { container } = render(<Header municipio="Campina Grande" />)
+    const { container } = render(<Header />, { wrapper: TestWrapper })
     expect(container.firstChild).toMatchSnapshot()
   })
 

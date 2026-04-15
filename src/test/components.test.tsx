@@ -1,6 +1,7 @@
 // Smoke tests: individual components render without crashing
 
 import { render } from '@testing-library/react'
+import { TestWrapper } from './mocks/wrapper'
 
 // Agenda
 import AgendaCard from '@/components/agenda/AgendaCard'
@@ -181,7 +182,7 @@ describe('Shared components', () => {
   })
 
   it('renders CitySelector', () => {
-    const { container } = render(<CitySelector municipio="Campina Grande" />)
+    const { container } = render(<CitySelector />, { wrapper: TestWrapper })
     expect(container).toBeTruthy()
   })
 })
@@ -235,7 +236,7 @@ describe('Formulador components', () => {
 
 describe('Layout components', () => {
   it('renders Header', () => {
-    const { container } = render(<Header municipio="Campina Grande" />)
+    const { container } = render(<Header />, { wrapper: TestWrapper })
     expect(container).toBeTruthy()
   })
 
