@@ -12,10 +12,10 @@ interface CaseStudiesCardProps {
 export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCardProps) {
   return (
     <div
-      className={`bg-[var(--semantic-surface-primary)] flex flex-col items-start overflow-clip rounded-[var(--radius-sm)] w-[375px] shrink-0 ${className}`}
+      className={`bg-[var(--semantic-surface-primary)] flex flex-col items-start overflow-clip rounded-[var(--radius-sm)] w-[350px] shrink-0 ${className}`}
     >
       {/* Image */}
-      <div className="h-[241px] w-full relative">
+      <div className="h-[180px] w-full relative">
         <img
           alt={caso.titulo}
           className="absolute inset-0 object-cover size-full"
@@ -24,7 +24,7 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
       </div>
 
       {/* Content + CTA */}
-      <div className="flex flex-col gap-[var(--spacing-xl)] items-end px-[var(--spacing-lg)] py-[var(--spacing-md)] w-full flex-1">
+      <div className="flex flex-col gap-[var(--spacing-md)] items-end px-[var(--spacing-md)] py-[var(--spacing-md)] w-full flex-1">
         {/* Content */}
         <div className="flex flex-col gap-[var(--spacing-md)] items-start overflow-clip w-full flex-1">
           <span className="typo-body-sm text-[color:var(--semantic-text-inactive)] whitespace-nowrap">

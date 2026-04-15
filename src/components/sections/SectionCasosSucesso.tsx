@@ -30,7 +30,7 @@ export default function SectionCasosSucesso() {
         {/* Cards scroll */}
         <div
           ref={scrollRef}
-          className="flex gap-[var(--spacing-md)] overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide"
+          className="flex gap-[var(--spacing-sm)] overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide"
         >
           {casosSucesso.map((caso) => (
             <CaseStudiesCard key={caso.id} caso={caso} className="snap-start" />
