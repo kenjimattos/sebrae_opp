@@ -218,6 +218,7 @@
   .card-surface { background-color: var(--semantic-surface-primary); border-radius: var(--radius-sm); }
   .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-sm); }
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-sm); }
+  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--spacing-xs); }
   .divider         { height: 1px; width: 100%; background-color: var(--semantic-surface-secondary); }
   .divider-primary { height: 1px; width: 100%; background-color: var(--semantic-text-primary); }
 

@@ -124,7 +124,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
 <div
-  class="flex-col-start justify-between card-surface border border-solid border-[var(--semantic-surface-primary)] p-md h-[172px] w-[calc((100%-4*var(--spacing-xs))/5)] "
+  class="flex-col-start justify-between card-surface border border-solid border-[var(--semantic-surface-primary)] p-md h-[172px] "
 >
   <div
     class="flex items-center gap-sm w-full"
@@ -421,7 +421,7 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > ResourcesCard 1`] = `
 <div
-  class="flex flex-col gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-md w-[calc((100%-4*var(--spacing-xs))/5)] justify-between "
+  class="flex flex-col gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-md justify-between "
 >
   <span
     class="typo-body"

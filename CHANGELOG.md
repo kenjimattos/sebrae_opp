@@ -4,9 +4,12 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Added
+- Design system: classe `.grid-5` em `index.css` (5 colunas, gap-xs), seguindo padrão de `.grid-2` e `.grid-3`
+
 ### Fixed
-- EconomicsCard: largura agora é responsiva (`calc((100% - 4 * gap) / 5)`) em vez de fixa (`22dvh`), garantindo 5 cards por fileira no desktop
-- ResourcesCard: mesma abordagem responsiva, removido `w-[211px]` hardcoded da seção
+- EconomicsCard e ResourcesCard: removida largura fixa dos cards; layout controlado pelo pai via `.grid-5`
+- SectionBaseEconomica e SectionRecursos: trocado `flex flex-wrap` com calc por `grid-5`
 
 ### Changed
 - Design system: classes `.radius-sm/md/lg/xl/full` e `.bg-primary/surface/surface-secondary/accent` extraídas para `index.css`

@@ -27,7 +27,7 @@ export default function SectionRecursos() {
             />
 
             <div className="flex flex-col gap-md w-full">
-              <div className="flex flex-wrap gap-xs">
+              <div className="grid-5">
                 {resourceCards.map((card) => (
                   <ResourcesCard key={card.title} title={card.title} value={card.value} />
                 ))}
