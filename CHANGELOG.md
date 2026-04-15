@@ -17,6 +17,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - CitySelector: ícone de busca usa classe `text-inactive`, largura removida (auto-size)
 - UserAvatar: tamanho via token `--radius-xl`, prop `size` removida
 - User: padding horizontal removido, tipografia reduzida para `typo-body`
+- PanoramaLegend: dots simplificados usando classes `status-*-dot` (sem border extra)
+- Dropdown: border-radius alterado para `radius-full` (pill), z-index inline removido
 
 - Setup de testes: Vitest + React Testing Library + jsdom (`npm run test` / `npm run test:run`)
 - Smoke tests: 33 testes cobrindo 9 seções + 18 componentes individuais (mocks de Leaflet e MunicipioProvider)

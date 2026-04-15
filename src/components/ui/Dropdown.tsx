@@ -33,10 +33,10 @@ export default function Dropdown({ options, value, onChange, className = '' }: D
   }, [])
 
   return (
-    <div ref={ref} className={`relative z-[1000] ${className}`}>
+    <div ref={ref} className={`relative ${className}`}>
       <button
         onClick={() => setOpen(!open)}
-        className="flex-between gap-xs w-full bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] px-sm py-xs typo-body-bold cursor-pointer"
+        className="flex-between gap-xs w-full bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-sm py-xs typo-body-bold cursor-pointer"
       >
         {selected?.label ?? 'Selecionar'}
         <ChevronDown size={16} className={`shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
