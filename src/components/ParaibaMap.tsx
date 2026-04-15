@@ -125,7 +125,7 @@ export default function ParaibaMap({ selectedId, indicador, className = '' }: Pa
         maxBounds={PARAIBA_BOUNDS}
         maxBoundsViscosity={1.0}
         style={{ height: '480px', width: '100%' }}
-        className="rounded-[var(--radius-sm)]"
+        className="rounded-sm"
         ref={mapRef}
       >
         <TileLayer
@@ -146,9 +146,9 @@ export default function ParaibaMap({ selectedId, indicador, className = '' }: Pa
       {!active && (
         <div
           onClick={activateMap}
-          className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center rounded-[var(--radius-sm)] cursor-pointer z-[1000]"
+          className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center rounded-sm cursor-pointer z-[1000]"
         >
-          <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-[var(--semantic-surface-primary)] typo-body-bold px-md py-sm rounded-[var(--radius-full)] shadow-lg">
+          <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-surface typo-body-bold px-md py-sm rounded-full shadow-lg">
             Clique para interagir com o mapa
           </span>
         </div>

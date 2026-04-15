@@ -15,7 +15,7 @@ export default function AgendaBadge({ status, value, className = '' }: AgendaBad
 
   return (
     <div
-      className={`flex-center gap-xs px-sm py-2xs rounded-[var(--radius-md)] ${styles.bg} ${className}`}
+      className={`flex-center gap-xs px-sm py-2xs rounded-md ${styles.bg} ${className}`}
     >
       <div className={`size-[8px] rounded-full ${styles.dot}`} />
       <span className="typo-body-sm-bold text-right whitespace-nowrap">

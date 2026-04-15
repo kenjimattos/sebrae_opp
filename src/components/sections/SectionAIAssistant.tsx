@@ -18,8 +18,8 @@ export default function SectionAIAssistant() {
         </p>
       </div>
 
-      <SectionCard padding="lg" className="flex flex-col gap-md rounded-[var(--radius-md)] w-full max-w-[800px]">
-        <div className="bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-md">
+      <SectionCard padding="lg" className="flex flex-col gap-md rounded-md w-full max-w-[800px]">
+        <div className="bg-surface-secondary rounded-sm p-md">
           <p className="typo-body text-inactive">
             {aiAssistantPlaceholder}
           </p>

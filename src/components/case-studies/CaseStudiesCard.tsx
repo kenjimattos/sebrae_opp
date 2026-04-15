@@ -13,7 +13,7 @@ interface CaseStudiesCardProps {
 export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCardProps) {
   return (
     <div
-      className={`bg-[var(--semantic-surface-primary)] flex-col-start overflow-clip rounded-[var(--radius-sm)] w-[350px] shrink-0 ${className}`}
+      className={`bg-surface flex-col-start overflow-clip rounded-sm w-[350px] shrink-0 ${className}`}
     >
       {/* Image */}
       <div className="h-[180px] w-full relative">
@@ -39,11 +39,11 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
         </div>
 
         {/* CTA link */}
-        <div className="flex gap-[12px] h-[24px] items-center pl-sm rounded-[var(--radius-full)] w-[198px]">
+        <div className="flex gap-[12px] h-[24px] items-center pl-sm rounded-full w-[198px]">
           <span className="flex-1 typo-button-sm">
             {ctaLabels.verEstudoDeCaso}
           </span>
-          <span className="flex items-center justify-center w-[24px] h-[24px] bg-[var(--semantic-surface-secondary)] rounded-full shrink-0">
+          <span className="flex items-center justify-center w-[24px] h-[24px] bg-surface-secondary rounded-full shrink-0">
             <ArrowRight size={12} />
           </span>
         </div>

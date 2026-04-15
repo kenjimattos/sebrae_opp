@@ -19,7 +19,7 @@ export default function FormuladorCard({
 }: FormuladorCardProps) {
   return (
     <div
-      className={`bg-[var(--semantic-surface-primary)] flex flex-1 flex-col justify-between items-end p-xl rounded-[var(--radius-sm)] min-h-[600px] ${className}`}
+      className={`bg-surface flex flex-1 flex-col justify-between items-end p-xl rounded-sm min-h-[600px] ${className}`}
     >
       <h3 className="w-full typo-h2">
         {titulo}

@@ -30,7 +30,7 @@ export default function Header({ className = '' }: HeaderProps) {
 
   return (
     <header
-      className={`mx-auto w-full max-w-[1440px] sticky top-0 z-50 flex-between h-[95px] py-md px-margin bg-[var(--semantic-background-primary)] justify-between ${className}`}
+      className={`mx-auto w-full max-w-[1440px] sticky top-0 z-50 flex-between h-[95px] py-md px-margin bg-primary justify-between ${className}`}
     >
       {/* Logo — click scrolls to top */}
       <img
@@ -41,7 +41,7 @@ export default function Header({ className = '' }: HeaderProps) {
       />
 
       {/* Center nav pill */}
-      <div className="flex-between h-[60px] gap-sm bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] px-sm py-2xs">
+      <div className="flex-between h-[60px] gap-sm bg-surface rounded-full px-sm py-2xs">
         <CitySelector/>
 
         <nav className="flex items-center">
@@ -51,9 +51,9 @@ export default function Header({ className = '' }: HeaderProps) {
               <button
                 key={sectionId}
                 onClick={() => scrollToSection(sectionId)}
-                className={`typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] ${
+                className={`typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-full ${
                   isActive
-                    ? 'bg-[var(--semantic-accent)] text-[var(--semantic-button-label-primary)]'
+                    ? 'bg-accent text-[var(--semantic-button-label-primary)]'
                     : 'hover:text-accent'
                 }`}
               >

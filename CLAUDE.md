@@ -344,6 +344,8 @@ Toda a estrutura de dados está em `src/data/` e `src/types/indicadores.ts`.
 Além dos tokens (vars) e das classes `.typo-*`, o `index.css` tem classes utilitárias em `@layer components`:
 
 - **Cor de texto:** `.text-inactive`, `.text-accent` (override; cor default já vem nas `.typo-*`)
+- **Backgrounds:** `.bg-primary`, `.bg-surface`, `.bg-surface-secondary`, `.bg-accent`
+- **Border radius:** `.rounded-sm`, `.rounded-md`, `.rounded-lg`, `.rounded-xl`, `.rounded-full`
 - **Gap:** `.gap-2xs` a `.gap-3xl` (mapeados aos tokens `--spacing-*`)
 - **Padding:** `.p-sm/md/lg/xl`, `.px-*`, `.py-*`, `.pt-*`, `.pb-*`, `.pl-*`, `.pr-*`
 - **Flex:** `.flex-center`, `.flex-between`, `.flex-col-start`

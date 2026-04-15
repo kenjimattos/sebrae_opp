@@ -13,7 +13,7 @@ export default function ScrollArrowButton({ icon: Icon, onClick, ariaLabel }: Sc
     <button
       type="button"
       onClick={onClick}
-      className="flex items-center justify-center w-[48px] h-[48px] bg-[var(--semantic-surface-primary)] rounded-full transition-opacity hover:opacity-70"
+      className="flex items-center justify-center w-[48px] h-[48px] bg-surface rounded-full transition-opacity hover:opacity-70"
       aria-label={ariaLabel}
     >
       <Icon size={24} />

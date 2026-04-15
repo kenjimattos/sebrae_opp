@@ -36,7 +36,7 @@ export default function Dropdown({ options, value, onChange, className = '' }: D
     <div ref={ref} className={`relative ${className}`}>
       <button
         onClick={() => setOpen(!open)}
-        className="flex-between gap-xs w-full bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-sm py-xs typo-body-bold cursor-pointer"
+        className="flex-between gap-xs w-full bg-surface-secondary rounded-full px-sm py-xs typo-body-bold cursor-pointer"
       >
         {selected?.label ?? 'Selecionar'}
         <ChevronDown size={16} className={`shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
@@ -54,7 +54,7 @@ export default function Dropdown({ options, value, onChange, className = '' }: D
                 className={`w-full text-left px-sm py-xs cursor-pointer transition-colors ${
                   option.value === value
                     ? 'bg-[var(--semantic-accent-surface)] typo-body-bold text-accent'
-                    : 'typo-body hover:bg-[var(--semantic-surface-secondary)]'
+                    : 'typo-body hover:bg-surface-secondary'
                 }`}
               >
                 {option.label}

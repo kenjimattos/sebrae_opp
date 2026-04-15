@@ -26,11 +26,11 @@ export default function CoursesCardRow({ title, subtitle, className = '' }: Cour
       </div>
 
       {/* Ver curso button */}
-      <div className="flex items-center gap-[12px] h-[38px] pl-sm rounded-[var(--radius-full)] shrink-0">
+      <div className="flex items-center gap-[12px] h-[38px] pl-sm rounded-full shrink-0">
         <span className="typo-button-sm">
           {ctaLabels.verCurso}
         </span>
-        <span className="flex items-center justify-center w-[24px] h-[24px] bg-[var(--semantic-surface-secondary)] rounded-full shrink-0">
+        <span className="flex items-center justify-center w-[24px] h-[24px] bg-surface-secondary rounded-full shrink-0">
           <ArrowRight size={12} />
         </span>
       </div>

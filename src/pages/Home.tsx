@@ -16,7 +16,7 @@ export default function Home() {
   const dados = municipio.dados
 
   return (
-    <div className="min-h-screen bg-[var(--semantic-background-primary)]">
+    <div className="min-h-screen bg-primary">
       <Header />
 
       <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-2xl py-3xl">

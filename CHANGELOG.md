@@ -2,6 +2,12 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Unreleased]
+
+### Changed
+- Design system: classes `.rounded-sm/md/lg/xl/full` e `.bg-primary/surface/surface-secondary/accent` extraídas para `index.css`
+- ~45 ocorrências de `rounded-[var(--radius-*)]` e `bg-[var(--semantic-*)]` substituídas pelas novas classes em 20 componentes
+
 ## [0.1.0] — 2026-04-15
 
 Primeiro release do protótipo funcional da Plataforma OPP.
