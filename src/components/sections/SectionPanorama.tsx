@@ -80,7 +80,7 @@ export default function SectionPanorama() {
 
       <SectionCard padding="md" className="flex flex-col gap-md">
         {/* Header: label + dropdown */}
-        <div className="flex items-center justify-between">
+        <div className="flex-between">
           <span className="typo-body-bold">
             Indicador no mapa
           </span>

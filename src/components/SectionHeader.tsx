@@ -10,7 +10,7 @@ interface SectionHeaderProps {
 export default function SectionHeader({ title, description, className = '' }: SectionHeaderProps) {
   if (!description) {
     return (
-      <div className={`flex flex-col items-start justify-center max-w-[1000px] ${className}`}>
+      <div className={`flex-col-start justify-center max-w-[1000px] ${className}`}>
         <h2 className="w-full typo-h1">
           {title}
         </h2>

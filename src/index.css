@@ -200,6 +200,11 @@
   .text-inactive { color: var(--semantic-text-inactive); }
   .text-accent   { color: var(--semantic-accent); }
 
+  /* ============ LAYOUT — FLEX ============ */
+  .flex-center    { display: flex; align-items: center; }
+  .flex-between   { display: flex; align-items: center; justify-content: space-between; }
+  .flex-col-start { display: flex; flex-direction: column; align-items: flex-start; }
+
   /* ============ SPACING — PADDING ============ */
   .p-sm  { padding: var(--spacing-sm); }
   .p-md  { padding: var(--spacing-md); }

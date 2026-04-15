@@ -33,7 +33,7 @@ const styles: Record<StatusType, { bg: string; dot: string }> = {
 export default function AgendaStats({ total, counts, className = '' }: AgendaStatsProps) {
   return (
     <div
-      className={`flex items-center justify-between bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-lg py-md w-full ${className}`}
+      className={`flex-between bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-lg py-md w-full ${className}`}
     >
       <div className="flex items-center gap-md">
         <span className="typo-display">

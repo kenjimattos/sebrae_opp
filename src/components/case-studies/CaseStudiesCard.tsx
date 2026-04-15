@@ -12,7 +12,7 @@ interface CaseStudiesCardProps {
 export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCardProps) {
   return (
     <div
-      className={`bg-[var(--semantic-surface-primary)] flex flex-col items-start overflow-clip rounded-[var(--radius-sm)] w-[350px] shrink-0 ${className}`}
+      className={`bg-[var(--semantic-surface-primary)] flex-col-start overflow-clip rounded-[var(--radius-sm)] w-[350px] shrink-0 ${className}`}
     >
       {/* Image */}
       <div className="h-[180px] w-full relative">

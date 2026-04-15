@@ -12,7 +12,7 @@ interface CoursesCardRowProps {
 export default function CoursesCardRow({ title, subtitle, className = '' }: CoursesCardRowProps) {
   return (
     <div
-      className={`flex items-center justify-between pr-sm py-sm ${className}`}
+      className={`flex-between pr-sm py-sm ${className}`}
     >
       {/* Info */}
       <div className="flex flex-col gap-sm items-start max-w-[290px] flex-1">

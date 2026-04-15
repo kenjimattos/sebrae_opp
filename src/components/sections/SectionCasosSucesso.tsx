@@ -23,7 +23,7 @@ export default function SectionCasosSucesso() {
   return (
     <SectionContainer>
       {/* Header row */}
-      <div className="flex items-center justify-between w-full">
+      <div className="flex-between w-full">
         <SectionHeader title={sectionContent.casosSucesso.title} />
       </div>
       <div className="flex flex-col items-center gap-sm">

@@ -14,7 +14,7 @@ const navLinks = ['Agenda prioritaria', 'Acesso a recursos', 'Formulador']
 export default function Header({ municipio, className = '' }: HeaderProps) {
   return (
     <header
-      className={`flex items-center justify-between h-[95px] pt-md px-margin bg-[var(--semantic-background-primary)] ${className}`}
+      className={`flex-between h-[95px] pt-md px-margin bg-[var(--semantic-background-primary)] ${className}`}
     >
       {/* Logo */}
       <img
@@ -24,7 +24,7 @@ export default function Header({ municipio, className = '' }: HeaderProps) {
       />
 
       {/* Center nav pill */}
-      <div className="flex items-center justify-between h-[60px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] pl-xs pr-md py-2xs w-[720px]">
+      <div className="flex-between h-[60px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] pl-xs pr-md py-2xs w-[720px]">
         <CitySelector municipio={municipio} className="shrink-0 w-[231px] flex items-center gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-sm py-xs overflow-hidden" />
 
         {navLinks.map((label) => (

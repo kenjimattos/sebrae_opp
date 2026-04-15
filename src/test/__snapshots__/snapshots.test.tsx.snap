@@ -48,7 +48,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
 <div
-  class="flex items-center justify-between bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-lg py-md w-full "
+  class="flex-between bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-lg py-md w-full "
 >
   <div
     class="flex items-center gap-md"
@@ -124,7 +124,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
 <div
-  class="flex flex-col items-start justify-between bg-[var(--semantic-surface-primary)] border border-solid border-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] p-md h-[172px] w-[209px] "
+  class="flex-col-start justify-between bg-[var(--semantic-surface-primary)] border border-solid border-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] p-md h-[172px] w-[209px] "
 >
   <div
     class="flex items-center gap-sm w-full"
@@ -309,7 +309,7 @@ exports[`Snapshot tests — CSS refactor safety > Footer 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
 <header
-  class="flex items-center justify-between h-[95px] pt-md px-margin bg-[var(--semantic-background-primary)] "
+  class="flex-between h-[95px] pt-md px-margin bg-[var(--semantic-background-primary)] "
 >
   <img
     alt="Sebrae"
@@ -317,7 +317,7 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
     src="/assets/sebrae-logo.png"
   />
   <div
-    class="flex items-center justify-between h-[60px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] pl-xs pr-md py-2xs w-[720px]"
+    class="flex-between h-[60px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] pl-xs pr-md py-2xs w-[720px]"
   >
     <div
       class="flex items-center gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-sm py-xs overflow-hidden shrink-0 w-[231px] flex items-center gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-sm py-xs overflow-hidden"
@@ -490,7 +490,7 @@ exports[`Snapshot tests — CSS refactor safety > SectionContainer 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > SectionHeader — title only 1`] = `
 <div
-  class="flex flex-col items-start justify-center max-w-[1000px] "
+  class="flex-col-start justify-center max-w-[1000px] "
 >
   <h2
     class="w-full typo-h1"
@@ -519,7 +519,7 @@ exports[`Snapshot tests — CSS refactor safety > SectionHeader — with descrip
 
 exports[`Snapshot tests — CSS refactor safety > TitleSubtitle 1`] = `
 <div
-  class="flex flex-col items-start gap-sm "
+  class="flex-col-start gap-sm "
 >
   <h3
     class="w-full typo-h2"
