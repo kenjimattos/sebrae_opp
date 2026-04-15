@@ -33,7 +33,6 @@ export default function SectionRecursos() {
             <TitleSubtitle
               title="Emendas parlamentares disponíveis"
               content="Recursos destinados por deputados federais e senadores que podem financiar projetos estruturantes no município."
-              variant="h2"
             />
 
             <div className="flex flex-col gap-[var(--spacing-md)] w-full">
@@ -56,7 +55,6 @@ export default function SectionRecursos() {
             <TitleSubtitle
               title="Distribuição territorial das emendas"
               content="Veja como os recursos federais estão distribuídos entre os municípios do estado."
-              variant="h2"
             />
 
             <a
@@ -91,7 +89,6 @@ export default function SectionRecursos() {
           <TitleSubtitle
             title="Editais e programas de financiamento"
             content="Programas federais, estaduais e institucionais com recursos disponíveis para desenvolvimento econômico, inovação e fortalecimento de pequenos negócios."
-            variant="h2"
             className="flex-1"
           />
           <PillButton label="Ver oportunidades" href="#" className="shrink-0" />

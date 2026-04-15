@@ -31,7 +31,7 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
             {caso.cidade}
           </span>
           <TitleSubtitle
-            variant="h3"
+            size="sm"
             title={caso.titulo}
             content={caso.descricao}
           />

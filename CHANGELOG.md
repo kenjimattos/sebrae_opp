@@ -5,6 +5,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ## [Unreleased]
 
 ### Changed
+- TitleSubtitle: refatorado com 3 tamanhos (`lg`/`md`/`sm`) alinhados ao Figma (H1/H2/H3), tags HTML semânticas corretas, e prop `as` para override
 - Layout compactado para conforto visual a 100% zoom:
   - `--spacing-margin` de 120px → 180px (conteúdo efetivo: 1200px → 1080px)
   - Gap entre seções de `spacing-3xl` (96px) → `spacing-2xl` (64px)

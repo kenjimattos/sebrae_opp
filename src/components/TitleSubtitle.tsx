@@ -1,42 +1,40 @@
 // Figma: TitleSubtitle (set 405:1388)
-// Variants: "H2" (larger), "H3" (smaller)
+// Variants: "H1" (lg), "H2" (md), "H3" (sm)
+
+type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
 interface TitleSubtitleProps {
   title: string
   content: string
-  variant?: 'h2' | 'h3'
+  size?: 'lg' | 'md' | 'sm'
+  as?: HeadingTag
   className?: string
+}
+
+const sizeConfig = {
+  lg: { typoTitle: 'typo-h1', typoBody: 'typo-body-lg', defaultTag: 'h2' as HeadingTag },
+  md: { typoTitle: 'typo-h2', typoBody: 'typo-body-lg', defaultTag: 'h3' as HeadingTag },
+  sm: { typoTitle: 'typo-h3', typoBody: 'typo-body', defaultTag: 'h4' as HeadingTag },
 }
 
 export default function TitleSubtitle({
   title,
   content,
-  variant = 'h2',
+  size = 'md',
+  as,
   className = '',
 }: TitleSubtitleProps) {
-  const isH2 = variant === 'h2'
+  const { typoTitle, typoBody, defaultTag } = sizeConfig[size]
+  const Tag = as ?? defaultTag
 
   return (
     <div className={`flex flex-col items-start gap-[var(--spacing-sm)] ${className}`}>
-      {isH2 ? (
-        <>
-          <h3 className="w-full typo-h2 text-[color:var(--semantic-text-primary)]">
-            {title}
-          </h3>
-          <p className="w-full typo-body-lg text-[color:var(--semantic-text-primary)]">
-            {content}
-          </p>
-        </>
-      ) : (
-        <>
-          <h4 className="w-full typo-h3 text-[color:var(--semantic-text-primary)]">
-            {title}
-          </h4>
-          <p className="w-full typo-body text-[color:var(--semantic-text-primary)]">
-            {content}
-          </p>
-        </>
-      )}
+      <Tag className={`w-full ${typoTitle} text-[color:var(--semantic-text-primary)]`}>
+        {title}
+      </Tag>
+      <p className={`w-full ${typoBody} text-[color:var(--semantic-text-primary)]`}>
+        {content}
+      </p>
     </div>
   )
 }
