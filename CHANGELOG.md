@@ -5,6 +5,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ## [Unreleased]
 
 ### Added
+- Setup de testes: Vitest + React Testing Library + jsdom (`npm run test` / `npm run test:run`)
 - Seção Formulador (`SectionFormulador`, Figma 390:635) com dois `FormuladorCard` lado a lado
 - Componente `SectionCard` para padronizar blocos de conteúdo dentro de seções
 - Componente `UserAvatar` extraído do Figma + barrel file `src/components/icons/`
