@@ -6,6 +6,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Fixed
 - EconomicsCard: largura agora é responsiva (`calc((100% - 4 * gap) / 5)`) em vez de fixa (`22dvh`), garantindo 5 cards por fileira no desktop
+- ResourcesCard: mesma abordagem responsiva, removido `w-[211px]` hardcoded da seção
 
 ### Changed
 - Design system: classes `.radius-sm/md/lg/xl/full` e `.bg-primary/surface/surface-secondary/accent` extraídas para `index.css`
