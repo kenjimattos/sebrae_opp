@@ -29,9 +29,9 @@ export default function SectionPanorama() {
         description={sectionContent.panorama.description}
       />
 
-      <SectionCard padding="md" className="flex flex-col gap-md">
+      <SectionCard className="flex flex-col gap-md">
         {/* Header: label + dropdown */}
-        <div className="flex-between">
+        <div className="flex items-center gap-md bg-surface-secondary px-md py-xs rounded-b-3xl w-fit h-fit -mt-[var(--spacing-lg)]">
           <span className="typo-body-bold">
             {panoramaLabels.indicadorNoMapa}
           </span>
