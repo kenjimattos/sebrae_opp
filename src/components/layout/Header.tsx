@@ -41,7 +41,7 @@ export default function Header({ className = '' }: HeaderProps) {
       />
 
       {/* Center nav pill */}
-      <div className="flex-between h-[60px] gap-sm bg-surface rounded-full px-sm py-2xs">
+      <div className="flex-between h-[60px] gap-sm bg-surface radius-full px-sm py-2xs">
         <CitySelector/>
 
         <nav className="flex items-center">
@@ -51,7 +51,7 @@ export default function Header({ className = '' }: HeaderProps) {
               <button
                 key={sectionId}
                 onClick={() => scrollToSection(sectionId)}
-                className={`typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-full ${
+                className={`typo-body whitespace-nowrap transition-colors px-sm py-xs radius-full ${
                   isActive
                     ? 'bg-accent text-[var(--semantic-button-label-primary)]'
                     : 'hover:text-accent'

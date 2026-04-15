@@ -30,7 +30,7 @@ export default function EconomicsCard({ label, valor, variacao, icone, className
     >
       <div className="flex items-center gap-sm w-full">
         {Icon && (
-          <div className="shrink-0 size-[32px] rounded-full bg-surface-secondary flex items-center justify-center">
+          <div className="shrink-0 size-[32px] radius-full bg-surface-secondary flex items-center justify-center">
             <Icon size={16} className="text-[var(--semantic-text-primary)]" />
           </div>
         )}

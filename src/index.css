@@ -261,11 +261,11 @@
   .pr-md { padding-right: var(--spacing-md); }
 
   /* ============ BORDER RADIUS ============ */
-  .rounded-sm   { border-radius: var(--radius-sm); }
-  .rounded-md   { border-radius: var(--radius-md); }
-  .rounded-lg   { border-radius: var(--radius-lg); }
-  .rounded-xl   { border-radius: var(--radius-xl); }
-  .rounded-full { border-radius: var(--radius-full); }
+  .radius-sm   { border-radius: var(--radius-sm); }
+  .radius-md   { border-radius: var(--radius-md); }
+  .radius-lg   { border-radius: var(--radius-lg); }
+  .radius-xl   { border-radius: var(--radius-xl); }
+  .radius-full { border-radius: var(--radius-full); }
 
   /* ============ BACKGROUNDS ============ */
   .bg-primary          { background-color: var(--semantic-background-primary); }

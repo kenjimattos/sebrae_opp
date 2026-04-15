@@ -47,7 +47,7 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
 
   return (
     <div ref={containerRef} className={`relative ${className}`}>
-      <div className="flex items-center gap-sm bg-surface-secondary rounded-full px-sm py-xs overflow-hidden">
+      <div className="flex items-center gap-sm bg-surface-secondary radius-full px-sm py-xs overflow-hidden">
         <Search size={20} className="shrink-0 text-inactive" />
         <input
           ref={inputRef}
@@ -67,7 +67,7 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
       </div>
 
       {open && filtered.length > 0 && (
-        <ul className="absolute top-full left-0 right-0 mt-xs bg-surface rounded-md shadow-lg z-50 overflow-hidden">
+        <ul className="absolute top-full left-0 right-0 mt-xs bg-surface radius-md shadow-lg z-50 overflow-hidden">
           {filtered.map((m) => (
             <li key={m.id}>
               <button

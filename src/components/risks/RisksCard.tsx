@@ -41,7 +41,7 @@ export default function RisksCard({
 
   return (
     <div
-      className={`flex flex-col gap-md border border-solid rounded-sm p-lg ${styles.bg} ${styles.border} ${className}`}
+      className={`flex flex-col gap-md border border-solid radius-sm p-lg ${styles.bg} ${styles.border} ${className}`}
     >
       {/* Header: label + value */}
       <div className="flex items-start gap-md w-full">

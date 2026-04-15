@@ -2,10 +2,10 @@
 
 exports[`Snapshot tests — CSS refactor safety > AgendaBadge 1`] = `
 <div
-  class="flex-center gap-xs px-sm py-2xs rounded-md status-warning-bg "
+  class="flex-center gap-xs px-sm py-2xs radius-md status-warning-bg "
 >
   <div
-    class="size-[8px] rounded-full status-warning-dot"
+    class="size-[8px] radius-full status-warning-dot"
   />
   <span
     class="typo-body-sm-bold text-right whitespace-nowrap"
@@ -28,10 +28,10 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
       IDHM
     </span>
     <div
-      class="flex-center gap-xs px-sm py-2xs rounded-md status-success-bg "
+      class="flex-center gap-xs px-sm py-2xs radius-md status-success-bg "
     >
       <div
-        class="size-[8px] rounded-full status-success-dot"
+        class="size-[8px] radius-full status-success-dot"
       />
       <span
         class="typo-body-sm-bold text-right whitespace-nowrap"
@@ -68,10 +68,10 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
     class="flex-center gap-md"
   >
     <div
-      class="flex-center gap-xs px-sm py-xs rounded-md status-success-bg"
+      class="flex-center gap-xs px-sm py-xs radius-md status-success-bg"
     >
       <div
-        class="size-[10px] rounded-full status-success-dot"
+        class="size-[10px] radius-full status-success-dot"
       />
       <span
         class="typo-display-sm"
@@ -85,10 +85,10 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
       </span>
     </div>
     <div
-      class="flex-center gap-xs px-sm py-xs rounded-md status-warning-bg"
+      class="flex-center gap-xs px-sm py-xs radius-md status-warning-bg"
     >
       <div
-        class="size-[10px] rounded-full status-warning-dot"
+        class="size-[10px] radius-full status-warning-dot"
       />
       <span
         class="typo-display-sm"
@@ -102,10 +102,10 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
       </span>
     </div>
     <div
-      class="flex-center gap-xs px-sm py-xs rounded-md status-alert-bg"
+      class="flex-center gap-xs px-sm py-xs radius-md status-alert-bg"
     >
       <div
-        class="size-[10px] rounded-full status-alert-dot"
+        class="size-[10px] radius-full status-alert-dot"
       />
       <span
         class="typo-display-sm"
@@ -130,7 +130,7 @@ exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
     class="flex items-center gap-sm w-full"
   >
     <div
-      class="shrink-0 size-[32px] rounded-full bg-surface-secondary flex items-center justify-center"
+      class="shrink-0 size-[32px] radius-full bg-surface-secondary flex items-center justify-center"
     >
       <svg
         aria-hidden="true"
@@ -316,13 +316,13 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
     src="/assets/sebrae-logo.png"
   />
   <div
-    class="flex-between h-[60px] gap-sm bg-surface rounded-full px-sm py-2xs"
+    class="flex-between h-[60px] gap-sm bg-surface radius-full px-sm py-2xs"
   >
     <div
       class="relative "
     >
       <div
-        class="flex items-center gap-sm bg-surface-secondary rounded-full px-sm py-xs overflow-hidden"
+        class="flex items-center gap-sm bg-surface-secondary radius-full px-sm py-xs overflow-hidden"
       >
         <svg
           aria-hidden="true"
@@ -358,24 +358,24 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
       class="flex items-center"
     >
       <button
-        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-full bg-accent text-[var(--semantic-button-label-primary)]"
+        class="typo-body whitespace-nowrap transition-colors px-sm py-xs radius-full bg-accent text-[var(--semantic-button-label-primary)]"
       >
         Agenda prioritária
       </button>
       <button
-        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-full hover:text-accent"
+        class="typo-body whitespace-nowrap transition-colors px-sm py-xs radius-full hover:text-accent"
       >
         Acesso a recursos
       </button>
       <button
-        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-full hover:text-accent"
+        class="typo-body whitespace-nowrap transition-colors px-sm py-xs radius-full hover:text-accent"
       >
         Formulador
       </button>
     </nav>
   </div>
   <div
-    class="flex items-center gap-xs h-[60px] rounded-full "
+    class="flex items-center gap-xs h-[60px] radius-full "
   >
     <svg
       class="shrink-0"
@@ -421,7 +421,7 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > ResourcesCard 1`] = `
 <div
-  class="flex flex-col gap-sm bg-surface-secondary rounded-sm p-md w-[20dvh] justify-between "
+  class="flex flex-col gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-md w-[20dvh] justify-between "
 >
   <span
     class="typo-body"
@@ -438,7 +438,7 @@ exports[`Snapshot tests — CSS refactor safety > ResourcesCard 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > RisksCard 1`] = `
 <div
-  class="flex flex-col gap-md border border-solid rounded-sm p-lg bg-[var(--semantic-alert-surface)] border-[var(--semantic-alert)] "
+  class="flex flex-col gap-md border border-solid radius-sm p-lg bg-[var(--semantic-alert-surface)] border-[var(--semantic-alert)] "
 >
   <div
     class="flex items-start gap-md w-full"
