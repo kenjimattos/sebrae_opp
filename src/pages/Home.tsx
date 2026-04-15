@@ -19,7 +19,7 @@ export default function Home() {
     <div className="min-h-screen bg-[var(--semantic-background-primary)]">
       <Header municipio={municipio.nome} />
 
-      <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-2xl py-[var(--spacing-3xl)]">
+      <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-2xl py-3xl">
         {dados && (
           <>
             <SectionAgendas agendas={dados.agendas} />

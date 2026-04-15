@@ -17,6 +17,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - Tipografia: classes `.typo-*` agora incluem `color: var(--semantic-text-primary)` por default — removidas ~47 ocorrências redundantes nos componentes
 - Novas classes `.text-inactive` e `.text-accent` para overrides de cor
 - Classes `.gap-2xs` a `.gap-3xl` no design system — substituídas ~60 ocorrências de `gap-[var(--spacing-*)]`
+- Classes de padding `.p-*`, `.px-*`, `.py-*`, `.pt-*`, `.pb-*`, `.pl-*`, `.pr-*` mapeadas aos tokens de spacing
 - `SectionAIAssistant` comentada para uso futuro (seção removida da Home)
 - TitleSubtitle: refatorado com 3 tamanhos (`lg`/`md`/`sm`) alinhados ao Figma (H1/H2/H3), tags HTML semânticas corretas, e prop `as` para override
 - `SectionContainer`: absorveu layout default (padding + max-width), simplificando uso nas seções

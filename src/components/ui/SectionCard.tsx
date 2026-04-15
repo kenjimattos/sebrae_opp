@@ -8,10 +8,10 @@ interface SectionCardProps {
 }
 
 const paddingStyles: Record<string, string> = {
-  sm: 'p-[var(--spacing-sm)]',
-  md: 'p-[var(--spacing-md)]',
-  lg: 'p-[var(--spacing-lg)]',
-  xl: 'px-[var(--spacing-xl)] py-[var(--spacing-2xl)]',
+  sm: 'p-sm',
+  md: 'p-md',
+  lg: 'p-lg',
+  xl: 'px-xl py-2xl',
 }
 
 export default function SectionCard({ children, padding = 'lg', className = '' }: SectionCardProps) {

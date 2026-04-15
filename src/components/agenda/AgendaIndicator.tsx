@@ -13,7 +13,7 @@ interface AgendaIndicatorProps {
 export default function AgendaIndicator({ label, valor, status }: AgendaIndicatorProps) {
   return (
     <div className="flex flex-col gap-sm w-full">
-      <div className="flex items-center gap-md px-[var(--spacing-xs)] w-full">
+      <div className="flex items-center gap-md px-xs w-full">
         <span className="flex-1 typo-body-sm">
           {label}
         </span>

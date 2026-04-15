@@ -20,7 +20,7 @@ interface CoursesCardProps {
 
 export default function CoursesCard({ title, description, cursos, className = '' }: CoursesCardProps) {
   return (
-    <SectionCard padding="xl" className={`flex flex-col gap-lg items-start pb-[var(--spacing-2xl)] pt-[var(--spacing-xl)] h-full ${className}`}>
+    <SectionCard padding="xl" className={`flex flex-col gap-lg items-start pb-2xl pt-xl h-full ${className}`}>
       <TitleSubtitle title={title} content={description} size="sm" />
 
       {/* Course rows — flex-1 pushes CTA to the bottom */}

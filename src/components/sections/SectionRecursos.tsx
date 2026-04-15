@@ -22,7 +22,7 @@ export default function SectionRecursos() {
       {/* Container principal branco */}
       <SectionCard padding="xl" className="flex flex-col gap-3xl items-center">
         {/* Pill no topo
-        <div className="bg-[var(--semantic-surface-secondary)] rounded-b-[var(--radius-xl)] px-[var(--spacing-2xl)] py-[var(--spacing-sm)]">
+        <div className="bg-[var(--semantic-surface-secondary)] rounded-b-[var(--radius-xl)] px-2xl py-sm">
           <span className="font-bold text-[length:var(--font-size-h3)] text-center whitespace-nowrap">
             Onde encontrar recursos para o município
           </span>
@@ -71,7 +71,7 @@ export default function SectionRecursos() {
 
               {/* Overlay no hover */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center rounded-[var(--radius-xl)]">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-[var(--semantic-surface-primary)] typo-body-bold px-[var(--spacing-md)] py-[var(--spacing-sm)] rounded-[var(--radius-full)] shadow-lg">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-[var(--semantic-surface-primary)] typo-body-bold px-md py-sm rounded-[var(--radius-full)] shadow-lg">
                   Abrir no Datapedia →
                 </span>
               </div>
@@ -85,7 +85,7 @@ export default function SectionRecursos() {
         </SectionCard>
 
         {/* Bloco 3 — Editais e programas */}
-        <SectionCard padding="xl" className="py-[var(--spacing-3xl)] flex items-center gap-2xl">
+        <SectionCard padding="xl" className="py-3xl flex items-center gap-2xl">
           <TitleSubtitle
             title="Editais e programas de financiamento"
             content="Programas federais, estaduais e institucionais com recursos disponíveis para desenvolvimento econômico, inovação e fortalecimento de pequenos negócios."

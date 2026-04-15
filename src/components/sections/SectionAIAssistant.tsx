@@ -7,7 +7,7 @@ import { sectionContent } from '@/data/sections'
 
 export default function SectionAIAssistant() {
   return (
-    <SectionContainer className="items-center py-[var(--spacing-3xl)]">
+    <SectionContainer className="items-center py-3xl">
       <div className="flex flex-col items-center gap-md max-w-[800px] text-center">
         <h2 className="typo-h1">
           {sectionContent.aiAssistant.title}
@@ -18,7 +18,7 @@ export default function SectionAIAssistant() {
       </div>
 
       <SectionCard padding="lg" className="flex flex-col gap-md rounded-[var(--radius-md)] w-full max-w-[800px]">
-        <div className="bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-[var(--spacing-md)]">
+        <div className="bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-md">
           <p className="typo-body text-inactive">
             Ex: "Quais indicadores de educação estão em alerta em Campina Grande?"
           </p>

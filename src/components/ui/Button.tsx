@@ -20,9 +20,9 @@ const variantStyles: Record<string, string> = {
 }
 
 const sizeStyles: Record<string, string> = {
-  sm: 'h-[24px] px-[var(--spacing-2xs)] py-[var(--spacing-2xs)] typo-body-sm-bold',
-  md: 'h-[40px] px-[var(--spacing-md)] py-[var(--spacing-sm)] typo-button-sm',
-  lg: 'h-[64px] px-[var(--spacing-md)] py-[var(--spacing-xs)] typo-button',
+  sm: 'h-[24px] px-2xs py-2xs typo-body-sm-bold',
+  md: 'h-[40px] px-md py-sm typo-button-sm',
+  lg: 'h-[64px] px-md py-xs typo-button',
 }
 
 export default function Button({

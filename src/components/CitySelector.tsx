@@ -11,7 +11,7 @@ interface CitySelectorProps {
 export default function CitySelector({ municipio, className = '' }: CitySelectorProps) {
   return (
     <div
-      className={`flex items-center gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] overflow-hidden ${className}`}
+      className={`flex items-center gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-sm py-xs overflow-hidden ${className}`}
     >
       <Search size={24} className="shrink-0 text-[var(--semantic-text-primary)]" />
       <span className="typo-body-bold truncate">

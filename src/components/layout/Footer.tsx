@@ -19,7 +19,7 @@ const footerColumns = [
 export default function Footer({ className = '' }: { className?: string }) {
   return (
     <footer
-      className={`bg-[var(--semantic-surface-primary)] px-[var(--spacing-margin)] py-[var(--spacing-2xl)] ${className}`}
+      className={`bg-[var(--semantic-surface-primary)] px-margin py-2xl ${className}`}
     >
       <div className="flex items-start justify-between">
         {/* Brand */}
@@ -59,7 +59,7 @@ export default function Footer({ className = '' }: { className?: string }) {
       </div>
 
       {/* Bottom */}
-      <div className="flex flex-col gap-lg items-start mt-[var(--spacing-lg)] pb-[var(--spacing-2xl)]">
+      <div className="flex flex-col gap-lg items-start mt-[var(--spacing-lg)] pb-2xl">
         <div className="h-px w-full bg-[var(--semantic-text-primary)]" />
         <p className="typo-body">
           © 2025 Plataforma. Todos os direitos reservados.

@@ -2,7 +2,7 @@
 
 exports[`Snapshot tests — CSS refactor safety > AgendaBadge 1`] = `
 <div
-  class="flex items-center gap-xs px-[var(--spacing-sm)] py-[var(--spacing-2xs)] rounded-[var(--radius-md)] bg-[var(--semantic-warning-surface)] "
+  class="flex items-center gap-xs px-sm py-2xs rounded-[var(--radius-md)] bg-[var(--semantic-warning-surface)] "
 >
   <div
     class="size-[12px] rounded-full bg-[var(--semantic-warning)]"
@@ -20,7 +20,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
   class="flex flex-col gap-sm w-full"
 >
   <div
-    class="flex items-center gap-md px-[var(--spacing-xs)] w-full"
+    class="flex items-center gap-md px-xs w-full"
   >
     <span
       class="flex-1 typo-body-sm"
@@ -28,7 +28,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
       IDHM
     </span>
     <div
-      class="flex items-center gap-xs px-[var(--spacing-sm)] py-[var(--spacing-2xs)] rounded-[var(--radius-md)] bg-[var(--semantic-success-surface)] "
+      class="flex items-center gap-xs px-sm py-2xs rounded-[var(--radius-md)] bg-[var(--semantic-success-surface)] "
     >
       <div
         class="size-[12px] rounded-full bg-[var(--semantic-success)]"
@@ -48,7 +48,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
 <div
-  class="flex items-center justify-between bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-lg)] py-[var(--spacing-md)] w-full "
+  class="flex items-center justify-between bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-lg py-md w-full "
 >
   <div
     class="flex items-center gap-md"
@@ -68,7 +68,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
     class="flex items-center gap-md"
   >
     <div
-      class="flex items-center gap-xs px-[var(--spacing-sm)] py-[var(--spacing-xs)] rounded-[var(--radius-md)] bg-[var(--semantic-success-surface)]"
+      class="flex items-center gap-xs px-sm py-xs rounded-[var(--radius-md)] bg-[var(--semantic-success-surface)]"
     >
       <div
         class="size-[10px] rounded-full bg-[var(--semantic-success)]"
@@ -85,7 +85,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
       </span>
     </div>
     <div
-      class="flex items-center gap-xs px-[var(--spacing-sm)] py-[var(--spacing-xs)] rounded-[var(--radius-md)] bg-[var(--semantic-warning-surface)]"
+      class="flex items-center gap-xs px-sm py-xs rounded-[var(--radius-md)] bg-[var(--semantic-warning-surface)]"
     >
       <div
         class="size-[10px] rounded-full bg-[var(--semantic-warning)]"
@@ -102,7 +102,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
       </span>
     </div>
     <div
-      class="flex items-center gap-xs px-[var(--spacing-sm)] py-[var(--spacing-xs)] rounded-[var(--radius-md)] bg-[var(--semantic-alert-surface)]"
+      class="flex items-center gap-xs px-sm py-xs rounded-[var(--radius-md)] bg-[var(--semantic-alert-surface)]"
     >
       <div
         class="size-[10px] rounded-full bg-[var(--semantic-alert)]"
@@ -124,7 +124,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
 <div
-  class="flex flex-col items-start justify-between bg-[var(--semantic-surface-primary)] border border-solid border-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] p-[var(--spacing-md)] h-[172px] w-[209px] "
+  class="flex flex-col items-start justify-between bg-[var(--semantic-surface-primary)] border border-solid border-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] p-md h-[172px] w-[209px] "
 >
   <div
     class="flex items-center gap-sm w-full"
@@ -178,7 +178,7 @@ exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > Footer 1`] = `
 <footer
-  class="bg-[var(--semantic-surface-primary)] px-[var(--spacing-margin)] py-[var(--spacing-2xl)] "
+  class="bg-[var(--semantic-surface-primary)] px-margin py-2xl "
 >
   <div
     class="flex items-start justify-between"
@@ -293,7 +293,7 @@ exports[`Snapshot tests — CSS refactor safety > Footer 1`] = `
     </div>
   </div>
   <div
-    class="flex flex-col gap-lg items-start mt-[var(--spacing-lg)] pb-[var(--spacing-2xl)]"
+    class="flex flex-col gap-lg items-start mt-[var(--spacing-lg)] pb-2xl"
   >
     <div
       class="h-px w-full bg-[var(--semantic-text-primary)]"
@@ -309,7 +309,7 @@ exports[`Snapshot tests — CSS refactor safety > Footer 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
 <header
-  class="flex items-center justify-between h-[95px] pt-[var(--spacing-md)] px-[var(--spacing-margin)] bg-[var(--semantic-background-primary)] "
+  class="flex items-center justify-between h-[95px] pt-md px-margin bg-[var(--semantic-background-primary)] "
 >
   <img
     alt="Sebrae"
@@ -317,10 +317,10 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
     src="/assets/sebrae-logo.png"
   />
   <div
-    class="flex items-center justify-between h-[60px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] pl-[var(--spacing-xs)] pr-[var(--spacing-md)] py-[var(--spacing-2xs)] w-[720px]"
+    class="flex items-center justify-between h-[60px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] pl-xs pr-md py-2xs w-[720px]"
   >
     <div
-      class="flex items-center gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] overflow-hidden shrink-0 w-[231px] flex items-center gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] overflow-hidden"
+      class="flex items-center gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-sm py-xs overflow-hidden shrink-0 w-[231px] flex items-center gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-sm py-xs overflow-hidden"
     >
       <svg
         aria-hidden="true"
@@ -370,7 +370,7 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
     </a>
   </div>
   <div
-    class="flex items-center gap-xs h-[60px] px-[var(--spacing-md)] py-[var(--spacing-xs)] rounded-[var(--radius-full)] "
+    class="flex items-center gap-xs h-[60px] px-md py-xs rounded-[var(--radius-full)] "
   >
     <svg
       class="shrink-0"
@@ -417,7 +417,7 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > ResourcesCard 1`] = `
 <div
-  class="flex flex-col gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-[var(--spacing-md)] w-[189px] justify-between "
+  class="flex flex-col gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-md w-[189px] justify-between "
 >
   <span
     class="typo-body"
@@ -434,7 +434,7 @@ exports[`Snapshot tests — CSS refactor safety > ResourcesCard 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > RisksCard 1`] = `
 <div
-  class="flex flex-col gap-md border border-solid rounded-[var(--radius-sm)] p-[var(--spacing-lg)] bg-[var(--semantic-alert-surface)] border-[var(--semantic-alert)] "
+  class="flex flex-col gap-md border border-solid rounded-[var(--radius-sm)] p-lg bg-[var(--semantic-alert-surface)] border-[var(--semantic-alert)] "
 >
   <div
     class="flex items-start gap-md w-full"
@@ -470,7 +470,7 @@ exports[`Snapshot tests — CSS refactor safety > RisksCard 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > SectionCard 1`] = `
 <div
-  class="bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] p-[var(--spacing-md)] "
+  class="bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] p-md "
 >
   <div>
     Content
@@ -480,7 +480,7 @@ exports[`Snapshot tests — CSS refactor safety > SectionCard 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > SectionContainer 1`] = `
 <section
-  class="mx-auto w-full max-w-[1440px] px-[var(--spacing-margin)] flex flex-col gap-2xl py-[var(--spacing-lg)] "
+  class="mx-auto w-full max-w-[1440px] px-margin flex flex-col gap-2xl py-lg "
 >
   <div>
     Content

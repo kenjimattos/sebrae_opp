@@ -15,7 +15,7 @@ export default function PillButton({ label, href, className = '' }: PillButtonPr
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-md bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] pl-[var(--spacing-md)] pr-[var(--spacing-xs)] py-[var(--spacing-xs)] h-[64px] w-[340px] no-underline transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none ${className}`}
+      className={`inline-flex items-center gap-md bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] pl-md pr-xs py-xs h-[64px] w-[340px] no-underline transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none ${className}`}
     >
       <span className="flex-1 typo-button">
         {label}

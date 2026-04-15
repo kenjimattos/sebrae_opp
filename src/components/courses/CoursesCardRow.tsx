@@ -12,7 +12,7 @@ interface CoursesCardRowProps {
 export default function CoursesCardRow({ title, subtitle, className = '' }: CoursesCardRowProps) {
   return (
     <div
-      className={`flex items-center justify-between pr-[var(--spacing-sm)] py-[var(--spacing-sm)] ${className}`}
+      className={`flex items-center justify-between pr-sm py-sm ${className}`}
     >
       {/* Info */}
       <div className="flex flex-col gap-sm items-start max-w-[290px] flex-1">
@@ -25,7 +25,7 @@ export default function CoursesCardRow({ title, subtitle, className = '' }: Cour
       </div>
 
       {/* Ver curso button */}
-      <div className="flex items-center gap-[12px] h-[38px] pl-[var(--spacing-sm)] rounded-[var(--radius-full)] shrink-0">
+      <div className="flex items-center gap-[12px] h-[38px] pl-sm rounded-[var(--radius-full)] shrink-0">
         <span className="typo-button-sm">
           Ver curso
         </span>
