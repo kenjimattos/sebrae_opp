@@ -308,7 +308,7 @@ decisões estratégicas.
 
 exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
 <header
-  class="sticky top-0 z-50 flex-between h-[95px] pt-md px-margin bg-[var(--semantic-background-primary)] "
+  class="mx-auto w-full max-w-[1440px] sticky top-0 z-50 flex-between h-[95px] py-md px-margin bg-[var(--semantic-background-primary)] justify-between "
 >
   <img
     alt="Sebrae"
@@ -316,17 +316,17 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
     src="/assets/sebrae-logo.png"
   />
   <div
-    class="flex-between h-[60px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] pl-xs pr-xs py-2xs"
+    class="flex-between h-[60px] gap-sm bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] px-sm py-2xs"
   >
     <div
-      class="relative shrink-0 w-[231px]"
+      class="relative "
     >
       <div
         class="flex items-center gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-sm py-xs overflow-hidden"
       >
         <svg
           aria-hidden="true"
-          class="lucide lucide-search shrink-0 text-[var(--semantic-text-primary)]"
+          class="lucide lucide-search shrink-0 text-inactive"
           fill="none"
           height="20"
           stroke="currentColor"
@@ -355,42 +355,17 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
       </div>
     </div>
     <nav
-      class="flex items-center gap-2xs"
+      class="flex items-center"
     >
       <button
         class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] bg-[var(--semantic-accent)] text-[var(--semantic-button-label-primary)]"
       >
-        Agendas
+        Agenda prioritária
       </button>
       <button
         class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] hover:text-accent"
       >
-        Panorama
-      </button>
-      <button
-        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] hover:text-accent"
-      >
-        Base Econômica
-      </button>
-      <button
-        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] hover:text-accent"
-      >
-        Riscos
-      </button>
-      <button
-        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] hover:text-accent"
-      >
-        Recursos
-      </button>
-      <button
-        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] hover:text-accent"
-      >
-        Capacitação
-      </button>
-      <button
-        class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] hover:text-accent"
-      >
-        Casos de Sucesso
+        Acesso a recursos
       </button>
       <button
         class="typo-body whitespace-nowrap transition-colors px-sm py-xs rounded-[var(--radius-full)] hover:text-accent"
@@ -400,14 +375,13 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
     </nav>
   </div>
   <div
-    class="flex items-center gap-xs h-[60px] px-md py-xs rounded-[var(--radius-full)] "
+    class="flex items-center gap-xs h-[60px] rounded-[var(--radius-full)] "
   >
     <svg
       class="shrink-0"
       fill="none"
-      height="64"
+      style="width: var(--radius-xl); height: var(--radius-xl);"
       viewBox="-6 -6 44 44"
-      width="64"
     >
       <clippath
         id="user-avatar-clip"
@@ -437,7 +411,7 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
       </g>
     </svg>
     <span
-      class="typo-body-lg whitespace-nowrap"
+      class="typo-body whitespace-nowrap"
     >
       João Maria
     </span>

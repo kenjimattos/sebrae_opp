@@ -4,13 +4,8 @@ export interface NavLink {
 }
 
 export const navLinks: NavLink[] = [
-  { label: 'Agendas', sectionId: 'agendas' },
-  { label: 'Panorama', sectionId: 'panorama' },
-  { label: 'Base Econômica', sectionId: 'base-economica' },
-  { label: 'Riscos', sectionId: 'riscos' },
-  { label: 'Recursos', sectionId: 'recursos' },
-  { label: 'Capacitação', sectionId: 'capacitacao' },
-  { label: 'Casos de Sucesso', sectionId: 'casos-sucesso' },
+  { label: 'Agenda prioritária', sectionId: 'agendas' },
+  { label: 'Acesso a recursos', sectionId: 'recursos' },
   { label: 'Formulador', sectionId: 'formulador' },
 ]
 

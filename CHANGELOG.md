@@ -11,6 +11,13 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - Logo clicável no header: scroll suave de volta ao topo
 - IDs de ancoragem em todas as seções da Home para scroll-to e scroll-spy
 
+### Changed
+- Header: max-width 1440px, padding vertical simétrico, gap entre CitySelector e nav
+- Nav links reduzidos para 3 itens originais (Agenda prioritária, Acesso a recursos, Formulador)
+- CitySelector: ícone de busca usa classe `text-inactive`, largura removida (auto-size)
+- UserAvatar: tamanho via token `--radius-xl`, prop `size` removida
+- User: padding horizontal removido, tipografia reduzida para `typo-body`
+
 - Setup de testes: Vitest + React Testing Library + jsdom (`npm run test` / `npm run test:run`)
 - Smoke tests: 33 testes cobrindo 9 seções + 18 componentes individuais (mocks de Leaflet e MunicipioProvider)
 - Snapshot tests: 13 snapshots dos componentes mais afetados pelo refactor CSS

@@ -48,7 +48,7 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
   return (
     <div ref={containerRef} className={`relative ${className}`}>
       <div className="flex items-center gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-sm py-xs overflow-hidden">
-        <Search size={20} className="shrink-0 text-[var(--semantic-text-primary)]" />
+        <Search size={20} className="shrink-0 text-inactive" />
         <input
           ref={inputRef}
           type="text"

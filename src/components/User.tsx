@@ -12,10 +12,10 @@ interface UserProps {
 export default function User({ name = defaultUserName, className = '' }: UserProps) {
   return (
     <div
-      className={`flex items-center gap-xs h-[60px] px-md py-xs rounded-[var(--radius-full)] ${className}`}
+      className={`flex items-center gap-xs h-[60px] rounded-[var(--radius-full)] ${className}`}
     >
-      <UserAvatar size={64} className="shrink-0" />
-      <span className="typo-body-lg whitespace-nowrap">
+      <UserAvatar className="shrink-0" />
+      <span className="typo-body whitespace-nowrap">
         {name}
       </span>
     </div>

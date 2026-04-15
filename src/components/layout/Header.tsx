@@ -30,7 +30,7 @@ export default function Header({ className = '' }: HeaderProps) {
 
   return (
     <header
-      className={`sticky top-0 z-50 flex-between h-[95px] pt-md px-margin bg-[var(--semantic-background-primary)] ${className}`}
+      className={`mx-auto w-full max-w-[1440px] sticky top-0 z-50 flex-between h-[95px] py-md px-margin bg-[var(--semantic-background-primary)] justify-between ${className}`}
     >
       {/* Logo — click scrolls to top */}
       <img
@@ -41,10 +41,10 @@ export default function Header({ className = '' }: HeaderProps) {
       />
 
       {/* Center nav pill */}
-      <div className="flex-between h-[60px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] pl-xs pr-xs py-2xs">
-        <CitySelector className="shrink-0 w-[231px]" />
+      <div className="flex-between h-[60px] gap-sm bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] px-sm py-2xs">
+        <CitySelector/>
 
-        <nav className="flex items-center gap-2xs">
+        <nav className="flex items-center">
           {navLinks.map(({ label, sectionId }) => {
             const isActive = activeSection === sectionId
             return (
