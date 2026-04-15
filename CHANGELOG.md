@@ -4,6 +4,9 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Fixed
+- EconomicsCard: largura agora é responsiva (`calc((100% - 4 * gap) / 5)`) em vez de fixa (`22dvh`), garantindo 5 cards por fileira no desktop
+
 ### Changed
 - Design system: classes `.radius-sm/md/lg/xl/full` e `.bg-primary/surface/surface-secondary/accent` extraídas para `index.css`
 - ~45 ocorrências de `rounded-[var(--radius-*)]` e `bg-[var(--semantic-*)]` substituídas pelas novas classes em 20 componentes

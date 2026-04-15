@@ -124,7 +124,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
 <div
-  class="flex-col-start justify-between card-surface border border-solid border-[var(--semantic-surface-primary)] p-md h-[172px] w-[22dvh] "
+  class="flex-col-start justify-between card-surface border border-solid border-[var(--semantic-surface-primary)] p-md h-[172px] w-[calc((100%-4*var(--spacing-xs))/5)] "
 >
   <div
     class="flex items-center gap-sm w-full"
