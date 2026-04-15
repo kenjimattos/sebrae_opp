@@ -22,6 +22,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - Classes compostas: `.section-container`, `.card-surface`, `.grid-2`, `.grid-3`, `.divider`, `.divider-primary`
 - Corrigido `bg-[#ccc]` hardcoded em CoursesCard para usar `.divider`
 - Classes de status: `.status-{success,warning,alert}-{bg,dot}` + `src/utils/statusStyles.ts` compartilhado
+- Componente `PanoramaLegend` extraído de `SectionPanorama`
 - `SectionAIAssistant` comentada para uso futuro (seção removida da Home)
 - TitleSubtitle: refatorado com 3 tamanhos (`lg`/`md`/`sm`) alinhados ao Figma (H1/H2/H3), tags HTML semânticas corretas, e prop `as` para override
 - `SectionContainer`: absorveu layout default (padding + max-width), simplificando uso nas seções

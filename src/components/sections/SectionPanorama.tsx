@@ -7,6 +7,7 @@ import SectionCard from '@/components/ui/SectionCard'
 import SectionHeader from '@/components/SectionHeader'
 import Dropdown from '@/components/ui/Dropdown'
 import ParaibaMap from '@/components/ParaibaMap'
+import PanoramaLegend from '@/components/panorama/PanoramaLegend'
 import { useMunicipio } from '@/hooks/useMunicipio'
 import { sectionContent } from '@/data/sections'
 import {
@@ -104,21 +105,7 @@ export default function SectionPanorama() {
           </div>
         )}
 
-        {/* Legenda de status */}
-        <div className="flex-center gap-md">
-          <div className="flex-center gap-2xs">
-            <span className="w-[12px] h-[12px] rounded-full status-success-bg border border-[var(--semantic-success)]" />
-            <span className="typo-body-sm text-inactive">Bom</span>
-          </div>
-          <div className="flex-center gap-2xs">
-            <span className="w-[12px] h-[12px] rounded-full status-warning-bg border border-[var(--semantic-warning)]" />
-            <span className="typo-body-sm text-inactive">Atenção</span>
-          </div>
-          <div className="flex-center gap-2xs">
-            <span className="w-[12px] h-[12px] rounded-full status-alert-bg border border-[var(--semantic-alert)]" />
-            <span className="typo-body-sm text-inactive">Crítico</span>
-          </div>
-        </div>
+        <PanoramaLegend />
 
         <ParaibaMap
           selectedId={municipio.id}
