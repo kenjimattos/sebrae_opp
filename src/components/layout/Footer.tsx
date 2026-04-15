@@ -1,20 +1,7 @@
 // Figma: Footer (419:917)
 // Brand + 3 link columns + divider + copyright
 
-const footerColumns = [
-  {
-    title: 'Navegação',
-    links: ['Início', 'Panorama', 'Recursos', 'Capacitação'],
-  },
-  {
-    title: 'Recursos',
-    links: ['Documentação', 'Tutoriais', 'API', 'Suporte'],
-  },
-  {
-    title: 'Contato',
-    links: ['contato@plataforma.gov.br', 'Fale Conosco'],
-  },
-]
+import { footerColumns, brandText, copyright } from '@/data/layout'
 
 export default function Footer({ className = '' }: { className?: string }) {
   return (
@@ -30,12 +17,10 @@ export default function Footer({ className = '' }: { className?: string }) {
             className="h-[60px] w-[111px] object-cover"
           />
           <h3 className="typo-h3">
-            Plataforma OPP
+            {brandText.name}
           </h3>
-          <p className="typo-body">
-            Transformando dados em
-            <br />
-            decisões estratégicas.
+          <p className="typo-body whitespace-pre-line">
+            {brandText.tagline}
           </p>
         </div>
 
@@ -62,7 +47,7 @@ export default function Footer({ className = '' }: { className?: string }) {
       <div className="flex flex-col gap-lg items-start mt-[var(--spacing-lg)] pb-2xl">
         <div className="divider-primary" />
         <p className="typo-body">
-          © 2025 Plataforma. Todos os direitos reservados.
+          {copyright}
         </p>
       </div>
     </footer>

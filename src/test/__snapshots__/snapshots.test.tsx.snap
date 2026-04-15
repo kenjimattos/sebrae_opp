@@ -197,11 +197,10 @@ exports[`Snapshot tests — CSS refactor safety > Footer 1`] = `
         Plataforma OPP
       </h3>
       <p
-        class="typo-body"
+        class="typo-body whitespace-pre-line"
       >
         Transformando dados em
-        <br />
-        decisões estratégicas.
+decisões estratégicas.
       </p>
     </div>
     <div

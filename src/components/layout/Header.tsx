@@ -3,13 +3,12 @@
 
 import CitySelector from '@/components/CitySelector'
 import User from '@/components/User'
+import { navLinks } from '@/data/layout'
 
 interface HeaderProps {
   municipio: string
   className?: string
 }
-
-const navLinks = ['Agenda prioritaria', 'Acesso a recursos', 'Formulador']
 
 export default function Header({ municipio, className = '' }: HeaderProps) {
   return (
