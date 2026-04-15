@@ -77,7 +77,7 @@
   --primitives-green-100: #ddf6da;
   --primitives-green-200: #a4e79b;
   --primitives-green-500: #43c132;
-  --primitives-green-800: #308b25;
+  --primitives-green-800: #318B25;
   --primitives-green-900: #1e5617;
 
   --primitives-yellow-100: #fff5d5;
@@ -113,11 +113,11 @@
   --semantic-button-label-tertiary: var(--primitives-black);
 
   /* Status */
-  --semantic-success: var(--primitives-green-900);
+  --semantic-success: var(--primitives-green-500);
   --semantic-success-surface: var(--primitives-green-100);
-  --semantic-warning: var(--primitives-yellow-800);
+  --semantic-warning: var(--primitives-yellow-500);
   --semantic-warning-surface: var(--primitives-yellow-100);
-  --semantic-alert: var(--primitives-red-800);
+  --semantic-alert: var(--primitives-red-500);
   --semantic-alert-surface: var(--primitives-red-100);
 
   /* Accent — interactive states */
