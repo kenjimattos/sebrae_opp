@@ -31,7 +31,7 @@ export default function Header({ municipio, className = '' }: HeaderProps) {
           <a
             key={label}
             href={`#${label.toLowerCase().replace(/\s+/g, '-')}`}
-            className="typo-body text-[color:var(--semantic-text-primary)] text-center whitespace-nowrap transition-colors hover:text-[color:var(--semantic-accent)]"
+            className="typo-body text-center whitespace-nowrap transition-colors hover:text-accent"
           >
             {label}
           </a>

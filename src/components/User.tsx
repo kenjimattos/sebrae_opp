@@ -14,7 +14,7 @@ export default function User({ name = 'João Maria', className = '' }: UserProps
       className={`flex items-center gap-[var(--spacing-xs)] h-[60px] px-[var(--spacing-md)] py-[var(--spacing-xs)] rounded-[var(--radius-full)] ${className}`}
     >
       <UserAvatar size={64} className="shrink-0" />
-      <span className="typo-body-lg text-[color:var(--semantic-text-primary)] whitespace-nowrap">
+      <span className="typo-body-lg whitespace-nowrap">
         {name}
       </span>
     </div>

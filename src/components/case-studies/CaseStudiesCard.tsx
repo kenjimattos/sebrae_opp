@@ -27,7 +27,7 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
       <div className="flex flex-col gap-[var(--spacing-md)] items-end px-[var(--spacing-md)] py-[var(--spacing-md)] w-full flex-1">
         {/* Content */}
         <div className="flex flex-col gap-[var(--spacing-md)] items-start overflow-clip w-full flex-1">
-          <span className="typo-body-sm text-[color:var(--semantic-text-inactive)] whitespace-nowrap">
+          <span className="typo-body-sm text-inactive whitespace-nowrap">
             {caso.cidade}
           </span>
           <TitleSubtitle
@@ -39,7 +39,7 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
 
         {/* CTA link */}
         <div className="flex gap-[12px] h-[24px] items-center pl-[var(--spacing-sm)] rounded-[var(--radius-full)] w-[198px]">
-          <span className="flex-1 typo-button-sm text-[color:var(--semantic-text-primary)]">
+          <span className="flex-1 typo-button-sm">
             Ver estudo de caso
           </span>
           <span className="flex items-center justify-center w-[24px] h-[24px] bg-[var(--semantic-surface-secondary)] rounded-full shrink-0">

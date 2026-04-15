@@ -29,10 +29,10 @@ export default function TitleSubtitle({
 
   return (
     <div className={`flex flex-col items-start gap-[var(--spacing-sm)] ${className}`}>
-      <Tag className={`w-full ${typoTitle} text-[color:var(--semantic-text-primary)]`}>
+      <Tag className={`w-full ${typoTitle}`}>
         {title}
       </Tag>
-      <p className={`w-full ${typoBody} text-[color:var(--semantic-text-primary)]`}>
+      <p className={`w-full ${typoBody}`}>
         {content}
       </p>
     </div>

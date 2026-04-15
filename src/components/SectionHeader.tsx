@@ -11,7 +11,7 @@ export default function SectionHeader({ title, description, className = '' }: Se
   if (!description) {
     return (
       <div className={`flex flex-col items-start justify-center max-w-[1000px] ${className}`}>
-        <h2 className="w-full typo-h1 text-[color:var(--semantic-text-primary)]">
+        <h2 className="w-full typo-h1">
           {title}
         </h2>
       </div>
@@ -20,10 +20,10 @@ export default function SectionHeader({ title, description, className = '' }: Se
 
   return (
     <div className={`flex items-center gap-[var(--spacing-md)] ${className}`}>
-      <h2 className="flex-1 max-w-[690px] typo-h1 text-[color:var(--semantic-text-primary)]">
+      <h2 className="flex-1 max-w-[690px] typo-h1">
         {title}
       </h2>
-      <p className="flex-1 max-w-[400px] typo-body text-[color:var(--semantic-text-primary)]">
+      <p className="flex-1 max-w-[400px] typo-body">
         {description}
       </p>
     </div>

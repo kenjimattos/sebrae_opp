@@ -16,17 +16,17 @@ export default function CoursesCardRow({ title, subtitle, className = '' }: Cour
     >
       {/* Info */}
       <div className="flex flex-col gap-[var(--spacing-sm)] items-start max-w-[290px] flex-1">
-        <p className="typo-h4 uppercase text-[color:var(--semantic-text-primary)] w-full leading-normal">
+        <p className="typo-h4 uppercase w-full leading-normal">
           {title}
         </p>
-        <p className="typo-body text-[color:var(--semantic-text-primary)] w-full leading-[var(--spacing-md)]">
+        <p className="typo-body w-full leading-[var(--spacing-md)]">
           {subtitle}
         </p>
       </div>
 
       {/* Ver curso button */}
       <div className="flex items-center gap-[12px] h-[38px] pl-[var(--spacing-sm)] rounded-[var(--radius-full)] shrink-0">
-        <span className="typo-button-sm text-[color:var(--semantic-text-primary)]">
+        <span className="typo-button-sm">
           Ver curso
         </span>
         <span className="flex items-center justify-center w-[24px] h-[24px] bg-[var(--semantic-surface-secondary)] rounded-full shrink-0">

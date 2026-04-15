@@ -173,28 +173,32 @@
 /* ============ TYPOGRAPHY — COMPOSITE CLASSES ============ */
 @layer components {
   /* Display */
-  .typo-display-lg { font-size: var(--font-size-display-large); font-weight: var(--typo-weight-black); line-height: var(--typo-lh-auto); }
-  .typo-display    { font-size: var(--font-size-display);       font-weight: var(--typo-weight-black); line-height: var(--typo-lh-auto); }
-  .typo-display-sm { font-size: var(--font-size-display-small); font-weight: var(--typo-weight-black); line-height: var(--typo-lh-auto); }
+  .typo-display-lg { font-size: var(--font-size-display-large); font-weight: var(--typo-weight-black); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
+  .typo-display    { font-size: var(--font-size-display);       font-weight: var(--typo-weight-black); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
+  .typo-display-sm { font-size: var(--font-size-display-small); font-weight: var(--typo-weight-black); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
 
   /* Headings */
-  .typo-h1 { font-size: var(--font-size-h1); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); }
-  .typo-h2 { font-size: var(--font-size-h2); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); }
-  .typo-h3 { font-size: var(--font-size-h3); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); }
-  .typo-h4 { font-size: var(--font-size-h4); font-weight: var(--typo-weight-regular); line-height: var(--typo-lh-auto); text-transform: uppercase; }
+  .typo-h1 { font-size: var(--font-size-h1); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
+  .typo-h2 { font-size: var(--font-size-h2); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
+  .typo-h3 { font-size: var(--font-size-h3); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
+  .typo-h4 { font-size: var(--font-size-h4); font-weight: var(--typo-weight-regular); line-height: var(--typo-lh-auto); text-transform: uppercase; color: var(--semantic-text-primary); }
 
   /* Body */
-  .typo-body-lg      { font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-auto); }
-  .typo-body-lg-bold { font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); }
-  .typo-body         { font-size: var(--font-size-body);    font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-body); }
-  .typo-body-bold    { font-size: var(--font-size-body);    font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-body); }
-  .typo-body-sm      { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-auto); }
-  .typo-body-sm-bold { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); }
+  .typo-body-lg      { font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
+  .typo-body-lg-bold { font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
+  .typo-body         { font-size: var(--font-size-body);    font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-body); color: var(--semantic-text-primary); }
+  .typo-body-bold    { font-size: var(--font-size-body);    font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-body); color: var(--semantic-text-primary); }
+  .typo-body-sm      { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
+  .typo-body-sm-bold { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
 
   /* UI / Buttons */
-  .typo-button-lg { font-size: var(--font-size-button-lg); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); }
-  .typo-button    { font-size: var(--font-size-button);    font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); }
-  .typo-button-sm { font-size: var(--font-size-button-sm); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); }
+  .typo-button-lg { font-size: var(--font-size-button-lg); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
+  .typo-button    { font-size: var(--font-size-button);    font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
+  .typo-button-sm { font-size: var(--font-size-button-sm); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
+
+  /* Text color overrides */
+  .text-inactive { color: var(--semantic-text-inactive); }
+  .text-accent   { color: var(--semantic-accent); }
 }
 
 /* ============ MAP ============ */

@@ -14,10 +14,10 @@ export default function EconomicsAnalysis({ analise = defaultAnalise, className 
     <div
       className={`bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-xl)] py-[var(--spacing-md)] flex flex-col gap-[var(--spacing-xs)] w-full ${className}`}
     >
-      <h4 className="typo-body-bold text-[color:var(--semantic-text-primary)]">
+      <h4 className="typo-body-bold">
         Análise
       </h4>
-      <p className="typo-body text-[color:var(--semantic-text-primary)]">
+      <p className="typo-body">
         {analise}
       </p>
     </div>

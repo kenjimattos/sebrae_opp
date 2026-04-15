@@ -36,7 +36,7 @@ export default function Dropdown({ options, value, onChange, className = '' }: D
     <div ref={ref} className={`relative z-[1000] ${className}`}>
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-between gap-[var(--spacing-xs)] w-full bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] typo-body-bold text-[color:var(--semantic-text-primary)] cursor-pointer"
+        className="flex items-center justify-between gap-[var(--spacing-xs)] w-full bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] typo-body-bold cursor-pointer"
       >
         {selected?.label ?? 'Selecionar'}
         <ChevronDown size={16} className={`shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
@@ -53,8 +53,8 @@ export default function Dropdown({ options, value, onChange, className = '' }: D
                 }}
                 className={`w-full text-left px-[var(--spacing-sm)] py-[var(--spacing-xs)] cursor-pointer transition-colors ${
                   option.value === value
-                    ? 'bg-[var(--semantic-accent-surface)] typo-body-bold text-[color:var(--semantic-accent)]'
-                    : 'typo-body text-[color:var(--semantic-text-primary)] hover:bg-[var(--semantic-surface-secondary)]'
+                    ? 'bg-[var(--semantic-accent-surface)] typo-body-bold text-accent'
+                    : 'typo-body hover:bg-[var(--semantic-surface-secondary)]'
                 }`}
               >
                 {option.label}

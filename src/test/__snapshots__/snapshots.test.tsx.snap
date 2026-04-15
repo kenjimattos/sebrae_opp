@@ -8,7 +8,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaBadge 1`] = `
     class="size-[12px] rounded-full bg-[var(--semantic-warning)]"
   />
   <span
-    class="typo-body-sm-bold text-[color:var(--semantic-text-primary)] text-right whitespace-nowrap"
+    class="typo-body-sm-bold text-right whitespace-nowrap"
   >
     0,521
   </span>
@@ -23,7 +23,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
     class="flex items-center gap-[var(--spacing-md)] px-[var(--spacing-xs)] w-full"
   >
     <span
-      class="flex-1 typo-body-sm text-[color:var(--semantic-text-primary)]"
+      class="flex-1 typo-body-sm"
     >
       IDHM
     </span>
@@ -34,7 +34,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
         class="size-[12px] rounded-full bg-[var(--semantic-success)]"
       />
       <span
-        class="typo-body-sm-bold text-[color:var(--semantic-text-primary)] text-right whitespace-nowrap"
+        class="typo-body-sm-bold text-right whitespace-nowrap"
       >
         0,720
       </span>
@@ -54,12 +54,12 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
     class="flex items-center gap-[var(--spacing-md)]"
   >
     <span
-      class="typo-display text-[color:var(--semantic-text-primary)]"
+      class="typo-display"
     >
       10
     </span>
     <span
-      class="typo-body-lg text-[color:var(--semantic-text-primary)]"
+      class="typo-body-lg"
     >
       indicadores avaliados
     </span>
@@ -74,12 +74,12 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
         class="size-[10px] rounded-full bg-[var(--semantic-success)]"
       />
       <span
-        class="typo-display-sm text-[color:var(--semantic-text-primary)]"
+        class="typo-display-sm"
       >
         5
       </span>
       <span
-        class="typo-body text-[color:var(--semantic-text-primary)]"
+        class="typo-body"
       >
         Bom
       </span>
@@ -91,12 +91,12 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
         class="size-[10px] rounded-full bg-[var(--semantic-warning)]"
       />
       <span
-        class="typo-display-sm text-[color:var(--semantic-text-primary)]"
+        class="typo-display-sm"
       >
         3
       </span>
       <span
-        class="typo-body text-[color:var(--semantic-text-primary)]"
+        class="typo-body"
       >
         Atenção
       </span>
@@ -108,12 +108,12 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
         class="size-[10px] rounded-full bg-[var(--semantic-alert)]"
       />
       <span
-        class="typo-display-sm text-[color:var(--semantic-text-primary)]"
+        class="typo-display-sm"
       >
         2
       </span>
       <span
-        class="typo-body text-[color:var(--semantic-text-primary)]"
+        class="typo-body"
       >
         Alerta
       </span>
@@ -154,7 +154,7 @@ exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
       </svg>
     </div>
     <span
-      class="typo-h4 text-[color:var(--semantic-text-primary)]"
+      class="typo-h4"
     >
       PIB per capita
     </span>
@@ -163,12 +163,12 @@ exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
     class="flex items-end justify-between w-full"
   >
     <span
-      class="typo-display-sm text-[color:var(--semantic-text-primary)] max-w-[130px]"
+      class="typo-display-sm max-w-[130px]"
     >
       R$ 22.500
     </span>
     <span
-      class="typo-body-sm-bold text-[color:var(--semantic-text-primary)]"
+      class="typo-body-sm-bold"
     >
       +3,2%
     </span>
@@ -192,12 +192,12 @@ exports[`Snapshot tests — CSS refactor safety > Footer 1`] = `
         src="/assets/sebrae-logo.png"
       />
       <h3
-        class="typo-h3 text-[color:var(--semantic-text-primary)]"
+        class="typo-h3"
       >
         Plataforma OPP
       </h3>
       <p
-        class="typo-body text-[color:var(--semantic-text-primary)]"
+        class="typo-body"
       >
         Transformando dados em
         <br />
@@ -208,30 +208,30 @@ exports[`Snapshot tests — CSS refactor safety > Footer 1`] = `
       class="flex flex-col gap-[var(--spacing-sm)] items-start"
     >
       <span
-        class="typo-body-bold text-[color:var(--semantic-text-primary)]"
+        class="typo-body-bold"
       >
         Navegação
       </span>
       <a
-        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        class="typo-body no-underline transition-colors hover:text-accent"
         href="#"
       >
         Início
       </a>
       <a
-        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        class="typo-body no-underline transition-colors hover:text-accent"
         href="#"
       >
         Panorama
       </a>
       <a
-        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        class="typo-body no-underline transition-colors hover:text-accent"
         href="#"
       >
         Recursos
       </a>
       <a
-        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        class="typo-body no-underline transition-colors hover:text-accent"
         href="#"
       >
         Capacitação
@@ -241,30 +241,30 @@ exports[`Snapshot tests — CSS refactor safety > Footer 1`] = `
       class="flex flex-col gap-[var(--spacing-sm)] items-start"
     >
       <span
-        class="typo-body-bold text-[color:var(--semantic-text-primary)]"
+        class="typo-body-bold"
       >
         Recursos
       </span>
       <a
-        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        class="typo-body no-underline transition-colors hover:text-accent"
         href="#"
       >
         Documentação
       </a>
       <a
-        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        class="typo-body no-underline transition-colors hover:text-accent"
         href="#"
       >
         Tutoriais
       </a>
       <a
-        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        class="typo-body no-underline transition-colors hover:text-accent"
         href="#"
       >
         API
       </a>
       <a
-        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        class="typo-body no-underline transition-colors hover:text-accent"
         href="#"
       >
         Suporte
@@ -274,18 +274,18 @@ exports[`Snapshot tests — CSS refactor safety > Footer 1`] = `
       class="flex flex-col gap-[var(--spacing-sm)] items-start"
     >
       <span
-        class="typo-body-bold text-[color:var(--semantic-text-primary)]"
+        class="typo-body-bold"
       >
         Contato
       </span>
       <a
-        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        class="typo-body no-underline transition-colors hover:text-accent"
         href="#"
       >
         contato@plataforma.gov.br
       </a>
       <a
-        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        class="typo-body no-underline transition-colors hover:text-accent"
         href="#"
       >
         Fale Conosco
@@ -299,7 +299,7 @@ exports[`Snapshot tests — CSS refactor safety > Footer 1`] = `
       class="h-px w-full bg-[var(--semantic-text-primary)]"
     />
     <p
-      class="typo-body text-[color:var(--semantic-text-primary)]"
+      class="typo-body"
     >
       © 2025 Plataforma. Todos os direitos reservados.
     </p>
@@ -345,25 +345,25 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
         />
       </svg>
       <span
-        class="typo-body-bold text-[color:var(--semantic-text-primary)] truncate"
+        class="typo-body-bold truncate"
       >
         Campina Grande
       </span>
     </div>
     <a
-      class="typo-body text-[color:var(--semantic-text-primary)] text-center whitespace-nowrap transition-colors hover:text-[color:var(--semantic-accent)]"
+      class="typo-body text-center whitespace-nowrap transition-colors hover:text-accent"
       href="#agenda-prioritaria"
     >
       Agenda prioritaria
     </a>
     <a
-      class="typo-body text-[color:var(--semantic-text-primary)] text-center whitespace-nowrap transition-colors hover:text-[color:var(--semantic-accent)]"
+      class="typo-body text-center whitespace-nowrap transition-colors hover:text-accent"
       href="#acesso-a-recursos"
     >
       Acesso a recursos
     </a>
     <a
-      class="typo-body text-[color:var(--semantic-text-primary)] text-center whitespace-nowrap transition-colors hover:text-[color:var(--semantic-accent)]"
+      class="typo-body text-center whitespace-nowrap transition-colors hover:text-accent"
       href="#formulador"
     >
       Formulador
@@ -407,7 +407,7 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
       </g>
     </svg>
     <span
-      class="typo-body-lg text-[color:var(--semantic-text-primary)] whitespace-nowrap"
+      class="typo-body-lg whitespace-nowrap"
     >
       João Maria
     </span>
@@ -420,12 +420,12 @@ exports[`Snapshot tests — CSS refactor safety > ResourcesCard 1`] = `
   class="flex flex-col gap-[var(--spacing-sm)] bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-[var(--spacing-md)] w-[189px] justify-between "
 >
   <span
-    class="typo-body text-[color:var(--semantic-text-primary)]"
+    class="typo-body"
   >
     Total empenhado
   </span>
   <span
-    class="typo-display-sm text-[color:var(--semantic-text-primary)]"
+    class="typo-display-sm"
   >
     R$ 4,1 bilhões
   </span>
@@ -440,7 +440,7 @@ exports[`Snapshot tests — CSS refactor safety > RisksCard 1`] = `
     class="flex items-start gap-[var(--spacing-md)] w-full"
   >
     <span
-      class="flex-1 typo-body-bold text-[color:var(--semantic-text-primary)]"
+      class="flex-1 typo-body-bold"
     >
       Investimento per capita
     </span>
@@ -451,17 +451,17 @@ exports[`Snapshot tests — CSS refactor safety > RisksCard 1`] = `
     </span>
   </div>
   <p
-    class="typo-body text-[color:var(--semantic-text-primary)]"
+    class="typo-body"
   >
     Valor abaixo da média
   </p>
   <p
-    class="typo-body-bold text-[color:var(--semantic-text-primary)]"
+    class="typo-body-bold"
   >
     Investimento público
   </p>
   <p
-    class="typo-body text-[color:var(--semantic-text-primary)]"
+    class="typo-body"
   >
     Contexto de risco
   </p>
@@ -493,7 +493,7 @@ exports[`Snapshot tests — CSS refactor safety > SectionHeader — title only 1
   class="flex flex-col items-start justify-center max-w-[1000px] "
 >
   <h2
-    class="w-full typo-h1 text-[color:var(--semantic-text-primary)]"
+    class="w-full typo-h1"
   >
     Panorama
   </h2>
@@ -505,12 +505,12 @@ exports[`Snapshot tests — CSS refactor safety > SectionHeader — with descrip
   class="flex items-center gap-[var(--spacing-md)] "
 >
   <h2
-    class="flex-1 max-w-[690px] typo-h1 text-[color:var(--semantic-text-primary)]"
+    class="flex-1 max-w-[690px] typo-h1"
   >
     Panorama
   </h2>
   <p
-    class="flex-1 max-w-[400px] typo-body text-[color:var(--semantic-text-primary)]"
+    class="flex-1 max-w-[400px] typo-body"
   >
     Descrição da seção
   </p>
@@ -522,12 +522,12 @@ exports[`Snapshot tests — CSS refactor safety > TitleSubtitle 1`] = `
   class="flex flex-col items-start gap-[var(--spacing-sm)] "
 >
   <h3
-    class="w-full typo-h2 text-[color:var(--semantic-text-primary)]"
+    class="w-full typo-h2"
   >
     Emendas parlamentares
   </h3>
   <p
-    class="w-full typo-body-lg text-[color:var(--semantic-text-primary)]"
+    class="w-full typo-body-lg"
   >
     Recursos destinados
   </p>

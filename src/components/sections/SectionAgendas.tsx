@@ -24,7 +24,7 @@ export default function SectionAgendas({ agendas }: SectionAgendasProps) {
     <SectionContainer className="items-center">
       {/* Title */}
       <h2
-        className="typo-h1 text-[color:var(--semantic-text-primary)] text-center max-w-[860px]"
+        className="typo-h1 text-center max-w-[860px]"
         dangerouslySetInnerHTML={{
           __html: sectionContent.agendas.title.replace(
             /<highlight>(.*?)<\/highlight>/,

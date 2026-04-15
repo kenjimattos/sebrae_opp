@@ -45,7 +45,7 @@ export default function RisksCard({
     >
       {/* Header: label + value */}
       <div className="flex items-start gap-[var(--spacing-md)] w-full">
-        <span className="flex-1 typo-body-bold text-[color:var(--semantic-text-primary)]">
+        <span className="flex-1 typo-body-bold">
           {label}
         </span>
         <span className={`shrink-0 typo-display-sm ${styles.valueColor}`}>
@@ -54,17 +54,17 @@ export default function RisksCard({
       </div>
 
       {/* Risk description */}
-      <p className="typo-body text-[color:var(--semantic-text-primary)]">
+      <p className="typo-body">
         {descricao}
       </p>
 
       {/* Alert indicator label */}
-      <p className="typo-body-bold text-[color:var(--semantic-text-primary)]">
+      <p className="typo-body-bold">
         {indicadorLabel}
       </p>
 
       {/* Context */}
-      <p className="typo-body text-[color:var(--semantic-text-primary)]">
+      <p className="typo-body">
         {contexto}
       </p>
     </div>

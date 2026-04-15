@@ -14,7 +14,7 @@ export default function CitySelector({ municipio, className = '' }: CitySelector
       className={`flex items-center gap-[var(--spacing-sm)] bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] overflow-hidden ${className}`}
     >
       <Search size={24} className="shrink-0 text-[var(--semantic-text-primary)]" />
-      <span className="typo-body-bold text-[color:var(--semantic-text-primary)] truncate">
+      <span className="typo-body-bold truncate">
         {municipio}
       </span>
     </div>

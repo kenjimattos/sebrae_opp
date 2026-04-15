@@ -29,10 +29,10 @@ export default function Footer({ className = '' }: { className?: string }) {
             alt="Sebrae"
             className="h-[60px] w-[111px] object-cover"
           />
-          <h3 className="typo-h3 text-[color:var(--semantic-text-primary)]">
+          <h3 className="typo-h3">
             Plataforma OPP
           </h3>
-          <p className="typo-body text-[color:var(--semantic-text-primary)]">
+          <p className="typo-body">
             Transformando dados em
             <br />
             decisões estratégicas.
@@ -42,14 +42,14 @@ export default function Footer({ className = '' }: { className?: string }) {
         {/* Link columns */}
         {footerColumns.map((col) => (
           <div key={col.title} className="flex flex-col gap-[var(--spacing-sm)] items-start">
-            <span className="typo-body-bold text-[color:var(--semantic-text-primary)]">
+            <span className="typo-body-bold">
               {col.title}
             </span>
             {col.links.map((link) => (
               <a
                 key={link}
                 href="#"
-                className="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+                className="typo-body no-underline transition-colors hover:text-accent"
               >
                 {link}
               </a>
@@ -61,7 +61,7 @@ export default function Footer({ className = '' }: { className?: string }) {
       {/* Bottom */}
       <div className="flex flex-col gap-[var(--spacing-lg)] items-start mt-[var(--spacing-lg)] pb-[var(--spacing-2xl)]">
         <div className="h-px w-full bg-[var(--semantic-text-primary)]" />
-        <p className="typo-body text-[color:var(--semantic-text-primary)]">
+        <p className="typo-body">
           © 2025 Plataforma. Todos os direitos reservados.
         </p>
       </div>

@@ -23,7 +23,7 @@ export default function SectionRecursos() {
       <SectionCard padding="xl" className="flex flex-col gap-[var(--spacing-3xl)] items-center">
         {/* Pill no topo
         <div className="bg-[var(--semantic-surface-secondary)] rounded-b-[var(--radius-xl)] px-[var(--spacing-2xl)] py-[var(--spacing-sm)]">
-          <span className="font-bold text-[length:var(--font-size-h3)] text-[color:var(--semantic-text-primary)] text-center whitespace-nowrap">
+          <span className="font-bold text-[length:var(--font-size-h3)] text-center whitespace-nowrap">
             Onde encontrar recursos para o município
           </span>
         </div> */}
@@ -44,7 +44,7 @@ export default function SectionRecursos() {
                 <ResourcesCard title="Pago em 2025" value="R$ 1,4 bilhões" className="w-[211px]" />
               </div>
 
-              <p className="typo-body text-[color:var(--semantic-text-primary)] max-w-[800px]">
+              <p className="typo-body max-w-[800px]">
                 Recursos federais representam uma das principais fontes de financiamento para projetos estruturantes nos municípios.
               </p>
             </div>
@@ -71,7 +71,7 @@ export default function SectionRecursos() {
 
               {/* Overlay no hover */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center rounded-[var(--radius-xl)]">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-[var(--semantic-surface-primary)] text-[color:var(--semantic-text-primary)] typo-body-bold px-[var(--spacing-md)] py-[var(--spacing-sm)] rounded-[var(--radius-full)] shadow-lg">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-[var(--semantic-surface-primary)] typo-body-bold px-[var(--spacing-md)] py-[var(--spacing-sm)] rounded-[var(--radius-full)] shadow-lg">
                   Abrir no Datapedia →
                 </span>
               </div>

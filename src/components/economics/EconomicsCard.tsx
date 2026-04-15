@@ -34,15 +34,15 @@ export default function EconomicsCard({ label, valor, variacao, icone, className
             <Icon size={16} className="text-[var(--semantic-text-primary)]" />
           </div>
         )}
-        <span className="typo-h4 text-[color:var(--semantic-text-primary)]">
+        <span className="typo-h4">
           {label}
         </span>
       </div>
       <div className="flex items-end justify-between w-full">
-        <span className="typo-display-sm text-[color:var(--semantic-text-primary)] max-w-[130px]">
+        <span className="typo-display-sm max-w-[130px]">
           {valor}
         </span>
-        <span className="typo-body-sm-bold text-[color:var(--semantic-text-primary)]">
+        <span className="typo-body-sm-bold">
           {variacao}
         </span>
       </div>

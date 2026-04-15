@@ -12,10 +12,10 @@ export default function ResourcesCard({ title, value, className = '' }: Resource
     <div
       className={`flex flex-col gap-[var(--spacing-sm)] bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-[var(--spacing-md)] w-[189px] justify-between ${className}`}
     >
-      <span className="typo-body text-[color:var(--semantic-text-primary)]">
+      <span className="typo-body">
         {title}
       </span>
-      <span className="typo-display-sm text-[color:var(--semantic-text-primary)]">
+      <span className="typo-display-sm">
         {value}
       </span>
     </div>
