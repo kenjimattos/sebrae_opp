@@ -4,6 +4,7 @@ import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/SectionHeader'
 import FormuladorCard from '@/components/formulador/FormuladorCard'
 import { sectionContent } from '@/data/sections'
+import { formuladorCards } from '@/data/formulador'
 
 export default function SectionFormulador() {
   return (
@@ -15,18 +16,15 @@ export default function SectionFormulador() {
 
       {/* Grid 2 cards */}
       <div className="flex gap-md items-start w-full">
-        <FormuladorCard
-          titulo="Assistente de formulação de projetos"
-          descricao="A IA analisa os principais desafios do município e sugere caminhos para estruturar um projeto de desenvolvimento local."
-          buttonLabel="Começar com a ajuda da IA"
-          buttonHref="#"
-        />
-        <FormuladorCard
-          titulo="Modelos de projeto"
-          descricao="Acesse formatos estruturados como plano de ação, programas de apoio a pequenos negócios e projetos de captação de recursos."
-          buttonLabel="Ver modelos"
-          buttonHref="#"
-        />
+        {formuladorCards.map((card) => (
+          <FormuladorCard
+            key={card.titulo}
+            titulo={card.titulo}
+            descricao={card.descricao}
+            buttonLabel={card.buttonLabel}
+            buttonHref={card.buttonHref}
+          />
+        ))}
       </div>
     </SectionContainer>
   )
