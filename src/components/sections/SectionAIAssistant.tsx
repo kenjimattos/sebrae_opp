@@ -4,6 +4,7 @@ import SectionContainer from '@/components/ui/SectionContainer'
 import SectionCard from '@/components/ui/SectionCard'
 import Button from '@/components/ui/Button'
 import { sectionContent } from '@/data/sections'
+import { aiAssistantPlaceholder, aiActionButtons } from '@/data/ai-assistant'
 
 export default function SectionAIAssistant() {
   return (
@@ -20,14 +21,14 @@ export default function SectionAIAssistant() {
       <SectionCard padding="lg" className="flex flex-col gap-md rounded-[var(--radius-md)] w-full max-w-[800px]">
         <div className="bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-md">
           <p className="typo-body text-inactive">
-            Ex: "Quais indicadores de educação estão em alerta em Campina Grande?"
+            {aiAssistantPlaceholder}
           </p>
         </div>
 
         <div className="flex gap-sm">
-          <Button variant="primary">Analisar indicadores</Button>
-          <Button variant="secondary">Gerar relatório</Button>
-          <Button variant="tertiary">Comparar municípios</Button>
+          {aiActionButtons.map((btn) => (
+            <Button key={btn.label} variant={btn.variant}>{btn.label}</Button>
+          ))}
         </div>
       </SectionCard>
     </SectionContainer>
