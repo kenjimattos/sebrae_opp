@@ -200,6 +200,14 @@
   .text-inactive { color: var(--semantic-text-inactive); }
   .text-accent   { color: var(--semantic-accent); }
 
+  /* ============ STATUS ============ */
+  .status-success-bg  { background-color: var(--semantic-success-surface); }
+  .status-warning-bg  { background-color: var(--semantic-warning-surface); }
+  .status-alert-bg    { background-color: var(--semantic-alert-surface); }
+  .status-success-dot { background-color: var(--semantic-success); }
+  .status-warning-dot { background-color: var(--semantic-warning); }
+  .status-alert-dot   { background-color: var(--semantic-alert); }
+
   /* ============ LAYOUT — COMPOSITES ============ */
   .section-container {
     margin-left: auto; margin-right: auto; width: 100%; max-width: 1440px;

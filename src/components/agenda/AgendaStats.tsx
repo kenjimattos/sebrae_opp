@@ -2,6 +2,7 @@
 // Summary bar: total indicators + success/warning/alert counts
 
 import type { StatusType } from '@/types/indicadores'
+import { statusStyles } from '@/utils/statusStyles'
 
 interface AgendaStatsProps {
   total: number
@@ -15,27 +16,12 @@ const labels: Record<StatusType, string> = {
   alert: 'Alerta',
 }
 
-const styles: Record<StatusType, { bg: string; dot: string }> = {
-  success: {
-    bg: 'bg-[var(--semantic-success-surface)]',
-    dot: 'bg-[var(--semantic-success)]',
-  },
-  warning: {
-    bg: 'bg-[var(--semantic-warning-surface)]',
-    dot: 'bg-[var(--semantic-warning)]',
-  },
-  alert: {
-    bg: 'bg-[var(--semantic-alert-surface)]',
-    dot: 'bg-[var(--semantic-alert)]',
-  },
-}
-
 export default function AgendaStats({ total, counts, className = '' }: AgendaStatsProps) {
   return (
     <div
       className={`flex-between card-surface px-lg py-md w-full ${className}`}
     >
-      <div className="flex items-center gap-md">
+      <div className="flex-center gap-md">
         <span className="typo-display">
           {total}
         </span>
@@ -44,13 +30,13 @@ export default function AgendaStats({ total, counts, className = '' }: AgendaSta
         </span>
       </div>
 
-      <div className="flex items-center gap-md">
+      <div className="flex-center gap-md">
         {(['success', 'warning', 'alert'] as StatusType[]).map((status) => (
           <div
             key={status}
-            className={`flex items-center gap-xs px-sm py-xs rounded-[var(--radius-md)] ${styles[status].bg}`}
+            className={`flex-center gap-xs px-sm py-xs rounded-[var(--radius-md)] ${statusStyles[status].bg}`}
           >
-            <div className={`size-[10px] rounded-full ${styles[status].dot}`} />
+            <div className={`size-[10px] rounded-full ${statusStyles[status].dot}`} />
             <span className="typo-display-sm">
               {counts[status]}
             </span>

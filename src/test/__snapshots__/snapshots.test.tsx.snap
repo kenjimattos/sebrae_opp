@@ -2,10 +2,10 @@
 
 exports[`Snapshot tests — CSS refactor safety > AgendaBadge 1`] = `
 <div
-  class="flex items-center gap-xs px-sm py-2xs rounded-[var(--radius-md)] bg-[var(--semantic-warning-surface)] "
+  class="flex-center gap-xs px-sm py-2xs rounded-[var(--radius-md)] status-warning-bg "
 >
   <div
-    class="size-[12px] rounded-full bg-[var(--semantic-warning)]"
+    class="size-[12px] rounded-full status-warning-dot"
   />
   <span
     class="typo-body-sm-bold text-right whitespace-nowrap"
@@ -28,10 +28,10 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
       IDHM
     </span>
     <div
-      class="flex items-center gap-xs px-sm py-2xs rounded-[var(--radius-md)] bg-[var(--semantic-success-surface)] "
+      class="flex-center gap-xs px-sm py-2xs rounded-[var(--radius-md)] status-success-bg "
     >
       <div
-        class="size-[12px] rounded-full bg-[var(--semantic-success)]"
+        class="size-[12px] rounded-full status-success-dot"
       />
       <span
         class="typo-body-sm-bold text-right whitespace-nowrap"
@@ -51,7 +51,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
   class="flex-between card-surface px-lg py-md w-full "
 >
   <div
-    class="flex items-center gap-md"
+    class="flex-center gap-md"
   >
     <span
       class="typo-display"
@@ -65,13 +65,13 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
     </span>
   </div>
   <div
-    class="flex items-center gap-md"
+    class="flex-center gap-md"
   >
     <div
-      class="flex items-center gap-xs px-sm py-xs rounded-[var(--radius-md)] bg-[var(--semantic-success-surface)]"
+      class="flex-center gap-xs px-sm py-xs rounded-[var(--radius-md)] status-success-bg"
     >
       <div
-        class="size-[10px] rounded-full bg-[var(--semantic-success)]"
+        class="size-[10px] rounded-full status-success-dot"
       />
       <span
         class="typo-display-sm"
@@ -85,10 +85,10 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
       </span>
     </div>
     <div
-      class="flex items-center gap-xs px-sm py-xs rounded-[var(--radius-md)] bg-[var(--semantic-warning-surface)]"
+      class="flex-center gap-xs px-sm py-xs rounded-[var(--radius-md)] status-warning-bg"
     >
       <div
-        class="size-[10px] rounded-full bg-[var(--semantic-warning)]"
+        class="size-[10px] rounded-full status-warning-dot"
       />
       <span
         class="typo-display-sm"
@@ -102,10 +102,10 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
       </span>
     </div>
     <div
-      class="flex items-center gap-xs px-sm py-xs rounded-[var(--radius-md)] bg-[var(--semantic-alert-surface)]"
+      class="flex-center gap-xs px-sm py-xs rounded-[var(--radius-md)] status-alert-bg"
     >
       <div
-        class="size-[10px] rounded-full bg-[var(--semantic-alert)]"
+        class="size-[10px] rounded-full status-alert-dot"
       />
       <span
         class="typo-display-sm"

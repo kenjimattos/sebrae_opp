@@ -105,17 +105,17 @@ export default function SectionPanorama() {
         )}
 
         {/* Legenda de status */}
-        <div className="flex items-center gap-md">
-          <div className="flex items-center gap-2xs">
-            <span className="w-[12px] h-[12px] rounded-full bg-[var(--semantic-success-surface)] border border-[var(--semantic-success)]" />
+        <div className="flex-center gap-md">
+          <div className="flex-center gap-2xs">
+            <span className="w-[12px] h-[12px] rounded-full status-success-bg border border-[var(--semantic-success)]" />
             <span className="typo-body-sm text-inactive">Bom</span>
           </div>
-          <div className="flex items-center gap-2xs">
-            <span className="w-[12px] h-[12px] rounded-full bg-[var(--semantic-warning-surface)] border border-[var(--semantic-warning)]" />
+          <div className="flex-center gap-2xs">
+            <span className="w-[12px] h-[12px] rounded-full status-warning-bg border border-[var(--semantic-warning)]" />
             <span className="typo-body-sm text-inactive">Atenção</span>
           </div>
-          <div className="flex items-center gap-2xs">
-            <span className="w-[12px] h-[12px] rounded-full bg-[var(--semantic-alert-surface)] border border-[var(--semantic-alert)]" />
+          <div className="flex-center gap-2xs">
+            <span className="w-[12px] h-[12px] rounded-full status-alert-bg border border-[var(--semantic-alert)]" />
             <span className="typo-body-sm text-inactive">Crítico</span>
           </div>
         </div>

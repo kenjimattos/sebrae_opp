@@ -2,6 +2,7 @@
 // Variants: Success, Warning, Alert
 
 import type { StatusType } from '@/types/indicadores'
+import { statusStyles } from '@/utils/statusStyles'
 
 interface AgendaBadgeProps {
   status: StatusType
@@ -9,27 +10,12 @@ interface AgendaBadgeProps {
   className?: string
 }
 
-const statusStyles: Record<StatusType, { bg: string; dot: string }> = {
-  success: {
-    bg: 'bg-[var(--semantic-success-surface)]',
-    dot: 'bg-[var(--semantic-success)]',
-  },
-  warning: {
-    bg: 'bg-[var(--semantic-warning-surface)]',
-    dot: 'bg-[var(--semantic-warning)]',
-  },
-  alert: {
-    bg: 'bg-[var(--semantic-alert-surface)]',
-    dot: 'bg-[var(--semantic-alert)]',
-  },
-}
-
 export default function AgendaBadge({ status, value, className = '' }: AgendaBadgeProps) {
   const styles = statusStyles[status]
 
   return (
     <div
-      className={`flex items-center gap-xs px-sm py-2xs rounded-[var(--radius-md)] ${styles.bg} ${className}`}
+      className={`flex-center gap-xs px-sm py-2xs rounded-[var(--radius-md)] ${styles.bg} ${className}`}
     >
       <div className={`size-[12px] rounded-full ${styles.dot}`} />
       <span className="typo-body-sm-bold text-right whitespace-nowrap">
