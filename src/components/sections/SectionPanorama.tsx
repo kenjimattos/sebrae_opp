@@ -8,6 +8,7 @@ import SectionHeader from '@/components/SectionHeader'
 import Dropdown from '@/components/ui/Dropdown'
 import ParaibaMap from '@/components/ParaibaMap'
 import PanoramaLegend from '@/components/panorama/PanoramaLegend'
+import PanoramaMediaInfo from '@/components/panorama/PanoramaMediaInfo'
 import { useMunicipio } from '@/hooks/useMunicipio'
 import { sectionContent } from '@/data/sections'
 import {
@@ -93,16 +94,8 @@ export default function SectionPanorama() {
           />
         </div>
 
-        {/* Média do indicador */}
         {mediaInfo && (
-          <div className="flex items-center gap-sm">
-            <span className="typo-body-sm text-inactive">
-              Média estadual ({mediaInfo.count} municípios):
-            </span>
-            <span className="typo-body-bold">
-              {mediaInfo.formatted}
-            </span>
-          </div>
+          <PanoramaMediaInfo count={mediaInfo.count} formatted={mediaInfo.formatted} />
         )}
 
         <PanoramaLegend />
