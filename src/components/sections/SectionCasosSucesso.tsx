@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/SectionHeader'
 import CaseStudiesCard from '@/components/case-studies/CaseStudiesCard'
+import ScrollArrowButton from '@/components/ui/ScrollArrowButton'
 import { sectionContent } from '@/data/sections'
 import { casosSucesso } from '@/data/casos-sucesso'
 
@@ -39,24 +40,10 @@ export default function SectionCasosSucesso() {
 
         {/* Navigation arrows */}
         <div className="flex gap-xl items-center justify-end w-full">
-          <button
-            type="button"
-            onClick={() => scroll('left')}
-            className="flex items-center justify-center w-[48px] h-[48px] bg-[var(--semantic-surface-primary)] rounded-full transition-opacity hover:opacity-70"
-            aria-label="Anterior"
-          >
-            <ArrowLeft size={24} />
-          </button>
-          <button
-            type="button"
-            onClick={() => scroll('right')}
-            className="flex items-center justify-center w-[48px] h-[48px] bg-[var(--semantic-surface-primary)] rounded-full transition-opacity hover:opacity-70"
-            aria-label="Próximo"
-          >
-            <ArrowRight size={24} />
-          </button>
+          <ScrollArrowButton icon={ArrowLeft} onClick={() => scroll('left')} ariaLabel="Anterior" />
+          <ScrollArrowButton icon={ArrowRight} onClick={() => scroll('right')} ariaLabel="Próximo" />
         </div>
-      </div>  
+      </div>
     </SectionContainer>
   )
 }

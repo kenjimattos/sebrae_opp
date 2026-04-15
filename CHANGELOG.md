@@ -25,6 +25,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - Componentes `PanoramaLegend` e `PanoramaMediaInfo` extraídos de `SectionPanorama`
 - Hooks `usePanoramaIndicadores` e `usePanoramaMedia` extraídos de `SectionPanorama`
 - `ValueBadges` extraído para `src/components/map/`, helpers do mapa para `src/utils/mapHelpers.ts`
+- `ScrollArrowButton` extraído de `SectionCasosSucesso` para `src/components/ui/`
 - `SectionAIAssistant` comentada para uso futuro (seção removida da Home)
 - TitleSubtitle: refatorado com 3 tamanhos (`lg`/`md`/`sm`) alinhados ao Figma (H1/H2/H3), tags HTML semânticas corretas, e prop `as` para override
 - `SectionContainer`: absorveu layout default (padding + max-width), simplificando uso nas seções
