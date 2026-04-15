@@ -14,8 +14,9 @@ Leia este arquivo inteiro antes de começar qualquer tarefa.
 | Framework | React 19 + Vite 8 |
 | Linguagem | TypeScript 6 |
 | Estilização | Tailwind CSS v3 + CSS Variables (design tokens) |
-| Mapa | React Simple Maps + GeoJSON da Paraíba (IBGE) |
+| Mapa | Leaflet + React Leaflet + GeoJSON da Paraíba (IBGE) |
 | Roteamento | React Router v7 |
+| Testes | Vitest + React Testing Library + jsdom |
 | Deploy (protótipo) | Vercel |
 | Deploy (produção) | Servidor Sebrae — build estático servido via Nginx/Apache |
 
@@ -131,19 +132,42 @@ src/
 │   ├── TitleSubtitle.tsx             # Figma: TitleSubtitle (set 405:1388)
 │   ├── CitySelector.tsx              # Figma: CitySelector (509:3274)
 │   ├── User.tsx                      # Figma: User (405:2038)
-│   └── ParaibaMap.tsx                # Mapa SVG interativo com zoom, tooltip, cores por indicador
+│   ├── ParaibaMap.tsx                # Mapa Leaflet interativo com zoom, tooltip, cores por indicador
+│   ├── map/
+│   │   └── ValueBadges.tsx           # Badge markers (DivIcon) sobre centróides no mapa
+│   └── panorama/
+│       ├── PanoramaLegend.tsx        # Legenda de status (bom/atenção/crítico)
+│       └── PanoramaMediaInfo.tsx     # Média estadual do indicador selecionado
 ├── data/
 │   ├── municipios.json               # Lista dos 3 municípios (id IBGE, nome, slug)
 │   ├── sections.ts                   # Títulos e descrições centralizados de todas as seções
 │   ├── mapa-indicadores.ts           # Dados de indicadores por município para coloração do mapa
 │   ├── riscos-contexto.ts            # Descrições e contextos de risco por indicador (futuro: LLM)
+│   ├── labels.ts                     # Labels compartilhados (status, CTAs, panorama, user)
+│   ├── capacitacao.ts                # Trilhas e cursos (SectionCapacitacao)
+│   ├── recursos.ts                   # Cards, URLs e textos (SectionRecursos)
+│   ├── formulador.ts                 # Cards do formulador (SectionFormulador)
+│   ├── ai-assistant.ts              # Placeholder + botões (SectionAIAssistant)
+│   ├── layout.ts                     # navLinks, footerColumns, brandText, copyright
+│   ├── economics.ts                  # Texto de análise econômica
 │   └── indicadores/
 │       ├── joao-pessoa.json
 │       ├── campina-grande.json       # Município default — dados extraídos do Figma
 │       └── patos.json
 ├── hooks/
 │   ├── useMunicipio.ts               # Hook + Context type + MunicipioState interface
-│   └── MunicipioProvider.tsx          # Provider que carrega JSON por município
+│   ├── MunicipioProvider.tsx          # Provider que carrega JSON por município
+│   ├── usePanoramaIndicadores.ts     # Dropdown options derivadas das agendas
+│   └── usePanoramaMedia.ts           # Cálculo de média estadual do indicador
+├── utils/
+│   ├── statusStyles.ts               # Mapa de classes CSS de status compartilhado
+│   └── mapHelpers.ts                 # Helpers do mapa (getCSSVar, getStatus, getCentroid, etc.)
+├── test/
+│   ├── setup.ts                      # Setup global (@testing-library/jest-dom)
+│   ├── sections.test.tsx             # Smoke tests das 9 seções
+│   ├── components.test.tsx           # Smoke tests dos componentes individuais
+│   ├── snapshots.test.tsx            # Snapshot tests para segurança de refactor CSS
+│   └── mocks/                        # Mocks (municipio, leaflet, wrapper)
 ├── types/
 │   └── indicadores.ts                # IndicadoresData, Agenda, Indicador, etc.
 ├── pages/
@@ -294,6 +318,13 @@ Toda a estrutura de dados está em `src/data/` e `src/types/indicadores.ts`.
 | `sections.ts` | Títulos e descrições de todas as seções (centralizado) |
 | `mapa-indicadores.ts` | Valores de indicadores por município para coloração do mapa |
 | `riscos-contexto.ts` | Descrições de risco por indicador (futuro: LLM) |
+| `labels.ts` | Labels compartilhados (status, CTAs, panorama, user default) |
+| `capacitacao.ts` | Trilhas e cursos da seção Capacitação |
+| `recursos.ts` | Cards, URLs e textos da seção Recursos |
+| `formulador.ts` | Cards do formulador |
+| `ai-assistant.ts` | Placeholder e botões do assistente IA |
+| `layout.ts` | navLinks, footerColumns, brandText, copyright |
+| `economics.ts` | Texto de análise econômica |
 
 **Interfaces:** ver `src/types/indicadores.ts` para `IndicadoresData`, `Agenda`, `Indicador`, `BaseEconomicaItem`, `Panorama`, etc.
 
@@ -302,6 +333,25 @@ Toda a estrutura de dados está em `src/data/` e `src/types/indicadores.ts`.
 ---
 
 ## Regras de Desenvolvimento
+
+### Testes
+- **46 testes** cobrindo smoke tests (9 seções + 18 componentes) e snapshot tests (13 componentes)
+- Rodar `npm run test:run` antes de commitar
+- Se mudanças CSS intencionais quebrarem snapshots: revisar diff → `npx vitest run -u` → commitar snapshots atualizados
+- Mocks em `src/test/mocks/` (Leaflet, MunicipioProvider)
+
+### CSS — Design System Classes
+Além dos tokens (vars) e das classes `.typo-*`, o `index.css` tem classes utilitárias em `@layer components`:
+
+- **Cor de texto:** `.text-inactive`, `.text-accent` (override; cor default já vem nas `.typo-*`)
+- **Gap:** `.gap-2xs` a `.gap-3xl` (mapeados aos tokens `--spacing-*`)
+- **Padding:** `.p-sm/md/lg/xl`, `.px-*`, `.py-*`, `.pt-*`, `.pb-*`, `.pl-*`, `.pr-*`
+- **Flex:** `.flex-center`, `.flex-between`, `.flex-col-start`
+- **Compostos:** `.section-container`, `.card-surface`, `.grid-2`, `.grid-3`
+- **Dividers:** `.divider`, `.divider-primary`
+- **Status:** `.status-{success,warning,alert}-{bg,dot}`
+
+> **Regra:** usar essas classes do design system ao invés de Tailwind inline equivalente. Ex: `gap-md` e não `gap-[var(--spacing-md)]`.
 
 ### Componentes
 - Estrutura de pastas espelha os grupos do Figma: `Agenda/Card` → `src/components/agenda/AgendaCard.tsx`
@@ -331,6 +381,9 @@ npm run dev                     # Desenvolvimento local (http://localhost:5173)
 npm run build                   # Build de produção (gera /dist)
 npm run preview                 # Preview do build local
 npm run lint                    # ESLint
+npm run test                    # Vitest em modo watch
+npm run test:run                # Vitest single run (CI)
+npx vitest run -u               # Atualizar snapshots após mudanças CSS intencionais
 ```
 
 ---
@@ -341,6 +394,7 @@ npm run lint                    # ESLint
 - [ ] CSS variables usadas corretamente (sem valores hardcoded)
 - [ ] Props tipadas com TypeScript
 - [ ] Sem `console.log` no código
+- [ ] Testes passam (`npm run test:run`)
 - [ ] Build passa sem erros (`npm run build`)
 - [ ] Funciona no viewport 1440px
 - [ ] CHANGELOG.md atualizado
