@@ -12,6 +12,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - Componente `SectionCard` para padronizar blocos de conteúdo dentro de seções
 - Componente `UserAvatar` extraído do Figma + barrel file `src/components/icons/`
 - Imagens de case study para 5 municípios
+- Dados reais de cursos na seção Capacitação: 4 trilhas com 37 cursos (substituindo dados mock)
 
 ### Changed
 - Tipografia: classes `.typo-*` agora incluem `color: var(--semantic-text-primary)` por default — removidas ~47 ocorrências redundantes nos componentes

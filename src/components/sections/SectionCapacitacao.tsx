@@ -1,19 +1,26 @@
 // Figma: Section/Capacitacao (390:611)
 
+import { useState } from 'react'
+import { ChevronDown, ChevronUp } from 'lucide-react'
 import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/SectionHeader'
 import CoursesCard from '@/components/courses/CoursesCard'
+import Button from '@/components/ui/Button'
 import { sectionContent } from '@/data/sections'
 import { trilhas } from '@/data/capacitacao'
 
+const VISIBLE_COUNT = 2
+
 export default function SectionCapacitacao() {
+  const [expanded, setExpanded] = useState(false)
+  const visibleTrilhas = expanded ? trilhas : trilhas.slice(0, VISIBLE_COUNT)
+
   return (
     <SectionContainer>
       <SectionHeader title={sectionContent.capacitacao.title} />
 
-      {/* Grid 2x2 with graduation cap icon in center */}
       <div className="grid-2 w-full">
-        {trilhas.map((trilha) => (
+        {visibleTrilhas.map((trilha) => (
           <CoursesCard
             key={trilha.title}
             title={trilha.title}
@@ -22,6 +29,20 @@ export default function SectionCapacitacao() {
           />
         ))}
       </div>
+
+      {trilhas.length > VISIBLE_COUNT && (
+        <div className="flex justify-center w-full mt-md">
+          <Button
+            variant="secondary"
+            size="lg"
+            onClick={() => setExpanded(!expanded)}
+            className="gap-sm"
+          >
+            {expanded ? 'Ver menos trilhas' : `Ver todas as trilhas (${trilhas.length})`}
+            {expanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+          </Button>
+        </div>
+      )}
     </SectionContainer>
   )
 }
