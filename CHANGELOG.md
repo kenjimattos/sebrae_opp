@@ -4,8 +4,16 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Added
+- Seção Formulador (`SectionFormulador`, Figma 390:635) com dois `FormuladorCard` lado a lado
+- Componente `SectionCard` para padronizar blocos de conteúdo dentro de seções
+- Componente `UserAvatar` extraído do Figma + barrel file `src/components/icons/`
+- Imagens de case study para 5 municípios
+
 ### Changed
+- `SectionAIAssistant` comentada para uso futuro (seção removida da Home)
 - TitleSubtitle: refatorado com 3 tamanhos (`lg`/`md`/`sm`) alinhados ao Figma (H1/H2/H3), tags HTML semânticas corretas, e prop `as` para override
+- `SectionContainer`: absorveu layout default (padding + max-width), simplificando uso nas seções
 - Layout compactado para conforto visual a 100% zoom:
   - `--spacing-margin` de 120px → 180px (conteúdo efetivo: 1200px → 1080px)
   - Gap entre seções de `spacing-3xl` (96px) → `spacing-2xl` (64px)
@@ -17,8 +25,17 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
   - `--font-size-display-small` de 32px → 24px
   - ResourcesCard: width fixo 190px, justify-between
   - SectionRecursos: gap reduzido, texto descritivo de `body-lg` → `body`
+- CaseStudiesCard e SectionCasosSucesso: ajustes de espaçamento, dimensões e reorganização do layout
 
-### Added
+### Fixed
+- FormuladorCard: altura mínima ajustada para 600px
+- CTA button alinhado na mesma altura em todos os CaseStudiesCard
+- Gap entre SectionCards em Recursos reduzido para `spacing-md`
+- Border radius do EconomicsAnalysis corrigido para consistência
+- Margin desnecessária removida de SectionHeader e SectionRecursos
+- UserAvatar: tamanho e padding visual corrigidos
+
+### Added (anterior)
 - Arquivo de dados `src/data/casos-sucesso.ts` com 5 cases de municípios brasileiros (interface tipada `CasoSucesso`)
 - Componente `CaseStudiesCard` (Figma 288:8): card com imagem, cidade, título, descrição e link CTA com seta
 - Botões de navegação (setas esquerda/direita) na seção Casos de Sucesso com scroll programático
