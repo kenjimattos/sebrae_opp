@@ -6,6 +6,7 @@ import SectionContainer from '@/components/ui/SectionContainer'
 import SectionCard from '@/components/ui/SectionCard'
 import SectionHeader from '@/components/SectionHeader'
 import Dropdown from '@/components/ui/Dropdown'
+import InsetBar from '@/components/ui/InsetBar'
 import ParaibaMap from '@/components/ParaibaMap'
 import PanoramaLegend from '@/components/panorama/PanoramaLegend'
 import PanoramaMediaInfo from '@/components/panorama/PanoramaMediaInfo'
@@ -30,18 +31,14 @@ export default function SectionPanorama() {
       />
 
       <SectionCard className="flex flex-col gap-md">
-        {/* Header: label + dropdown */}
-        <div className="flex items-center gap-md bg-surface-secondary px-md py-xs rounded-b-3xl w-fit h-fit -mt-[var(--spacing-lg)]">
-          <span className="typo-body-bold">
-            {panoramaLabels.indicadorNoMapa}
-          </span>
+        <InsetBar label={panoramaLabels.indicadorNoMapa}>
           <Dropdown
             options={dropdownOptions}
             value={indicador}
             onChange={(v) => setIndicador(v as IndicadorKey)}
             className="w-[240px]"
           />
-        </div>
+        </InsetBar>
 
         {mediaInfo && (
           <PanoramaMediaInfo
