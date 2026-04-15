@@ -199,6 +199,16 @@
   /* Text color overrides */
   .text-inactive { color: var(--semantic-text-inactive); }
   .text-accent   { color: var(--semantic-accent); }
+
+  /* ============ SPACING — GAP ============ */
+  .gap-2xs { gap: var(--spacing-2xs); }
+  .gap-xs  { gap: var(--spacing-xs); }
+  .gap-sm  { gap: var(--spacing-sm); }
+  .gap-md  { gap: var(--spacing-md); }
+  .gap-lg  { gap: var(--spacing-lg); }
+  .gap-xl  { gap: var(--spacing-xl); }
+  .gap-2xl { gap: var(--spacing-2xl); }
+  .gap-3xl { gap: var(--spacing-3xl); }
 }
 
 /* ============ MAP ============ */

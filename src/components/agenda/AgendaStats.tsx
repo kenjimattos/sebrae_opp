@@ -35,7 +35,7 @@ export default function AgendaStats({ total, counts, className = '' }: AgendaSta
     <div
       className={`flex items-center justify-between bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-lg)] py-[var(--spacing-md)] w-full ${className}`}
     >
-      <div className="flex items-center gap-[var(--spacing-md)]">
+      <div className="flex items-center gap-md">
         <span className="typo-display">
           {total}
         </span>
@@ -44,11 +44,11 @@ export default function AgendaStats({ total, counts, className = '' }: AgendaSta
         </span>
       </div>
 
-      <div className="flex items-center gap-[var(--spacing-md)]">
+      <div className="flex items-center gap-md">
         {(['success', 'warning', 'alert'] as StatusType[]).map((status) => (
           <div
             key={status}
-            className={`flex items-center gap-[var(--spacing-xs)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] rounded-[var(--radius-md)] ${styles[status].bg}`}
+            className={`flex items-center gap-xs px-[var(--spacing-sm)] py-[var(--spacing-xs)] rounded-[var(--radius-md)] ${styles[status].bg}`}
           >
             <div className={`size-[10px] rounded-full ${styles[status].dot}`} />
             <span className="typo-display-sm">

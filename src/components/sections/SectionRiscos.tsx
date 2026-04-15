@@ -33,7 +33,7 @@ export default function SectionRiscos({ agendas }: SectionRiscosProps) {
     <SectionContainer>
       <SectionHeader title={sectionContent.riscos.title} />
 
-      <div className="grid grid-cols-3 gap-[var(--spacing-sm)] w-full">
+      <div className="grid grid-cols-3 gap-sm w-full">
         {topRiscos.map((risco) => {
           const ctx = riscosContexto[risco.label] ?? defaultRiscoContexto
           return (

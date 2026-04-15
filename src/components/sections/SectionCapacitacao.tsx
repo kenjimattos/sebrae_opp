@@ -54,7 +54,7 @@ export default function SectionCapacitacao() {
       <SectionHeader title={sectionContent.capacitacao.title} />
 
       {/* Grid 2x2 with graduation cap icon in center */}
-      <div className="grid grid-cols-2 gap-[var(--spacing-sm)] w-full">
+      <div className="grid grid-cols-2 gap-sm w-full">
         {trilhas.map((trilha) => (
           <CoursesCard
             key={trilha.title}

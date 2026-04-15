@@ -32,12 +32,12 @@ export default function SectionAgendas({ agendas }: SectionAgendasProps) {
           ),
         }}
       />
-      <div className="flex flex-col items-center gap-[var(--spacing-md)] w-full">
+      <div className="flex flex-col items-center gap-md w-full">
         {/* Stats bar */}
         <AgendaStats total={total} counts={counts} />
         {/* Cards grid: 3 columns */}
 
-        <div className="grid grid-cols-3 gap-[var(--spacing-sm)] w-full">
+        <div className="grid grid-cols-3 gap-sm w-full">
           {agendas.map((agenda) => (
             <AgendaCard
               key={agenda.nome}

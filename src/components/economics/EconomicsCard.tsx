@@ -28,7 +28,7 @@ export default function EconomicsCard({ label, valor, variacao, icone, className
     <div
       className={`flex flex-col items-start justify-between bg-[var(--semantic-surface-primary)] border border-solid border-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] p-[var(--spacing-md)] h-[172px] w-[209px] ${className}`}
     >
-      <div className="flex items-center gap-[var(--spacing-sm)] w-full">
+      <div className="flex items-center gap-sm w-full">
         {Icon && (
           <div className="shrink-0 size-[32px] rounded-full bg-[var(--semantic-surface-secondary)] flex items-center justify-center">
             <Icon size={16} className="text-[var(--semantic-text-primary)]" />

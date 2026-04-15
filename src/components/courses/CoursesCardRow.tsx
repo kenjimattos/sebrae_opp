@@ -15,7 +15,7 @@ export default function CoursesCardRow({ title, subtitle, className = '' }: Cour
       className={`flex items-center justify-between pr-[var(--spacing-sm)] py-[var(--spacing-sm)] ${className}`}
     >
       {/* Info */}
-      <div className="flex flex-col gap-[var(--spacing-sm)] items-start max-w-[290px] flex-1">
+      <div className="flex flex-col gap-sm items-start max-w-[290px] flex-1">
         <p className="typo-h4 uppercase w-full leading-normal">
           {title}
         </p>

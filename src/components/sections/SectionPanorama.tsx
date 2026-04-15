@@ -78,7 +78,7 @@ export default function SectionPanorama() {
         description={sectionContent.panorama.description}
       />
 
-      <SectionCard padding="md" className="flex flex-col gap-[var(--spacing-md)]">
+      <SectionCard padding="md" className="flex flex-col gap-md">
         {/* Header: label + dropdown */}
         <div className="flex items-center justify-between">
           <span className="typo-body-bold">
@@ -94,7 +94,7 @@ export default function SectionPanorama() {
 
         {/* Média do indicador */}
         {mediaInfo && (
-          <div className="flex items-center gap-[var(--spacing-sm)]">
+          <div className="flex items-center gap-sm">
             <span className="typo-body-sm text-inactive">
               Média estadual ({mediaInfo.count} municípios):
             </span>
@@ -105,16 +105,16 @@ export default function SectionPanorama() {
         )}
 
         {/* Legenda de status */}
-        <div className="flex items-center gap-[var(--spacing-md)]">
-          <div className="flex items-center gap-[var(--spacing-2xs)]">
+        <div className="flex items-center gap-md">
+          <div className="flex items-center gap-2xs">
             <span className="w-[12px] h-[12px] rounded-full bg-[var(--semantic-success-surface)] border border-[var(--semantic-success)]" />
             <span className="typo-body-sm text-inactive">Bom</span>
           </div>
-          <div className="flex items-center gap-[var(--spacing-2xs)]">
+          <div className="flex items-center gap-2xs">
             <span className="w-[12px] h-[12px] rounded-full bg-[var(--semantic-warning-surface)] border border-[var(--semantic-warning)]" />
             <span className="typo-body-sm text-inactive">Atenção</span>
           </div>
-          <div className="flex items-center gap-[var(--spacing-2xs)]">
+          <div className="flex items-center gap-2xs">
             <span className="w-[12px] h-[12px] rounded-full bg-[var(--semantic-alert-surface)] border border-[var(--semantic-alert)]" />
             <span className="typo-body-sm text-inactive">Crítico</span>
           </div>

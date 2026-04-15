@@ -26,11 +26,11 @@ export default function SectionCasosSucesso() {
       <div className="flex items-center justify-between w-full">
         <SectionHeader title={sectionContent.casosSucesso.title} />
       </div>
-      <div className="flex flex-col items-center gap-[var(--spacing-sm)]">
+      <div className="flex flex-col items-center gap-sm">
         {/* Cards scroll */}
         <div
           ref={scrollRef}
-          className="flex gap-[var(--spacing-sm)] overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide"
+          className="flex gap-sm overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide"
         >
           {casosSucesso.map((caso) => (
             <CaseStudiesCard key={caso.id} caso={caso} className="snap-start" />
@@ -38,7 +38,7 @@ export default function SectionCasosSucesso() {
         </div>
 
         {/* Navigation arrows */}
-        <div className="flex gap-[var(--spacing-xl)] items-center justify-end w-full">
+        <div className="flex gap-xl items-center justify-end w-full">
           <button
             type="button"
             onClick={() => scroll('left')}

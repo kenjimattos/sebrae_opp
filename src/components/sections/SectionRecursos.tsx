@@ -18,9 +18,9 @@ export default function SectionRecursos() {
       <SectionHeader title={sectionContent.recursos.title} />
 
       {/* Cards agrupados com gap menor */}
-      <div className="flex flex-col gap-[var(--spacing-md)]">
+      <div className="flex flex-col gap-md">
       {/* Container principal branco */}
-      <SectionCard padding="xl" className="flex flex-col gap-[var(--spacing-3xl)] items-center">
+      <SectionCard padding="xl" className="flex flex-col gap-3xl items-center">
         {/* Pill no topo
         <div className="bg-[var(--semantic-surface-secondary)] rounded-b-[var(--radius-xl)] px-[var(--spacing-2xl)] py-[var(--spacing-sm)]">
           <span className="font-bold text-[length:var(--font-size-h3)] text-center whitespace-nowrap">
@@ -29,14 +29,14 @@ export default function SectionRecursos() {
         </div> */}
 
           {/* Bloco 1 — Emendas parlamentares */}
-          <div className="flex flex-col gap-[var(--spacing-xl)] items-start w-full">
+          <div className="flex flex-col gap-xl items-start w-full">
             <TitleSubtitle
               title="Emendas parlamentares disponíveis"
               content="Recursos destinados por deputados federais e senadores que podem financiar projetos estruturantes no município."
             />
 
-            <div className="flex flex-col gap-[var(--spacing-md)] w-full">
-              <div className="flex flex-wrap gap-[var(--spacing-xs)]">
+            <div className="flex flex-col gap-md w-full">
+              <div className="flex flex-wrap gap-xs">
                 <ResourcesCard title="Total empenhado até o momento" value="R$ 4,1 bilhões" className="w-[211px]" />
                 <ResourcesCard title="Total pago até o momento" value="R$ 3,3 bilhões" className="w-[211px]" />
                 <ResourcesCard title="Pago em 2023" value="R$ 649,2 milhões" className="w-[211px]" />
@@ -51,7 +51,7 @@ export default function SectionRecursos() {
           </div>
 
           {/* Bloco 2 — Mapa territorial (Datapedia) */}
-          <div className="flex flex-col gap-[var(--spacing-xl)] items-start w-full">
+          <div className="flex flex-col gap-xl items-start w-full">
             <TitleSubtitle
               title="Distribuição territorial das emendas"
               content="Veja como os recursos federais estão distribuídos entre os municípios do estado."
@@ -85,7 +85,7 @@ export default function SectionRecursos() {
         </SectionCard>
 
         {/* Bloco 3 — Editais e programas */}
-        <SectionCard padding="xl" className="py-[var(--spacing-3xl)] flex items-center gap-[var(--spacing-2xl)]">
+        <SectionCard padding="xl" className="py-[var(--spacing-3xl)] flex items-center gap-2xl">
           <TitleSubtitle
             title="Editais e programas de financiamento"
             content="Programas federais, estaduais e institucionais com recursos disponíveis para desenvolvimento econômico, inovação e fortalecimento de pequenos negócios."

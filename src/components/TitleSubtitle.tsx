@@ -28,7 +28,7 @@ export default function TitleSubtitle({
   const Tag = as ?? defaultTag
 
   return (
-    <div className={`flex flex-col items-start gap-[var(--spacing-sm)] ${className}`}>
+    <div className={`flex flex-col items-start gap-sm ${className}`}>
       <Tag className={`w-full ${typoTitle}`}>
         {title}
       </Tag>

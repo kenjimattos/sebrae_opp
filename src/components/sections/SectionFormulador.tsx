@@ -14,7 +14,7 @@ export default function SectionFormulador() {
       />
 
       {/* Grid 2 cards */}
-      <div className="flex gap-[var(--spacing-md)] items-start w-full">
+      <div className="flex gap-md items-start w-full">
         <FormuladorCard
           titulo="Assistente de formulação de projetos"
           descricao="A IA analisa os principais desafios do município e sugere caminhos para estruturar um projeto de desenvolvimento local."

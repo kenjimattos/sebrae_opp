@@ -23,7 +23,7 @@ export default function Footer({ className = '' }: { className?: string }) {
     >
       <div className="flex items-start justify-between">
         {/* Brand */}
-        <div className="flex flex-col gap-[var(--spacing-sm)] items-start">
+        <div className="flex flex-col gap-sm items-start">
           <img
             src="/assets/sebrae-logo.png"
             alt="Sebrae"
@@ -41,7 +41,7 @@ export default function Footer({ className = '' }: { className?: string }) {
 
         {/* Link columns */}
         {footerColumns.map((col) => (
-          <div key={col.title} className="flex flex-col gap-[var(--spacing-sm)] items-start">
+          <div key={col.title} className="flex flex-col gap-sm items-start">
             <span className="typo-body-bold">
               {col.title}
             </span>
@@ -59,7 +59,7 @@ export default function Footer({ className = '' }: { className?: string }) {
       </div>
 
       {/* Bottom */}
-      <div className="flex flex-col gap-[var(--spacing-lg)] items-start mt-[var(--spacing-lg)] pb-[var(--spacing-2xl)]">
+      <div className="flex flex-col gap-lg items-start mt-[var(--spacing-lg)] pb-[var(--spacing-2xl)]">
         <div className="h-px w-full bg-[var(--semantic-text-primary)]" />
         <p className="typo-body">
           © 2025 Plataforma. Todos os direitos reservados.

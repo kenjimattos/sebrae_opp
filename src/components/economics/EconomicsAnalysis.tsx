@@ -12,7 +12,7 @@ const defaultAnalise =
 export default function EconomicsAnalysis({ analise = defaultAnalise, className = '' }: EconomicsAnalysisProps) {
   return (
     <div
-      className={`bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-xl)] py-[var(--spacing-md)] flex flex-col gap-[var(--spacing-xs)] w-full ${className}`}
+      className={`bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-xl)] py-[var(--spacing-md)] flex flex-col gap-xs w-full ${className}`}
     >
       <h4 className="typo-body-bold">
         Análise

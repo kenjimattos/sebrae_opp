@@ -24,9 +24,9 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
       </div>
 
       {/* Content + CTA */}
-      <div className="flex flex-col gap-[var(--spacing-md)] items-end px-[var(--spacing-md)] py-[var(--spacing-md)] w-full flex-1">
+      <div className="flex flex-col gap-md items-end px-[var(--spacing-md)] py-[var(--spacing-md)] w-full flex-1">
         {/* Content */}
-        <div className="flex flex-col gap-[var(--spacing-md)] items-start overflow-clip w-full flex-1">
+        <div className="flex flex-col gap-md items-start overflow-clip w-full flex-1">
           <span className="typo-body-sm text-inactive whitespace-nowrap">
             {caso.cidade}
           </span>

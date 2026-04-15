@@ -41,10 +41,10 @@ export default function RisksCard({
 
   return (
     <div
-      className={`flex flex-col gap-[var(--spacing-md)] border border-solid rounded-[var(--radius-sm)] p-[var(--spacing-lg)] ${styles.bg} ${styles.border} ${className}`}
+      className={`flex flex-col gap-md border border-solid rounded-[var(--radius-sm)] p-[var(--spacing-lg)] ${styles.bg} ${styles.border} ${className}`}
     >
       {/* Header: label + value */}
-      <div className="flex items-start gap-[var(--spacing-md)] w-full">
+      <div className="flex items-start gap-md w-full">
         <span className="flex-1 typo-body-bold">
           {label}
         </span>

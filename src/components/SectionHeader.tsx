@@ -19,7 +19,7 @@ export default function SectionHeader({ title, description, className = '' }: Se
   }
 
   return (
-    <div className={`flex items-center gap-[var(--spacing-md)] ${className}`}>
+    <div className={`flex items-center gap-md ${className}`}>
       <h2 className="flex-1 max-w-[690px] typo-h1">
         {title}
       </h2>

@@ -20,11 +20,11 @@ interface CoursesCardProps {
 
 export default function CoursesCard({ title, description, cursos, className = '' }: CoursesCardProps) {
   return (
-    <SectionCard padding="xl" className={`flex flex-col gap-[var(--spacing-lg)] items-start pb-[var(--spacing-2xl)] pt-[var(--spacing-xl)] h-full ${className}`}>
+    <SectionCard padding="xl" className={`flex flex-col gap-lg items-start pb-[var(--spacing-2xl)] pt-[var(--spacing-xl)] h-full ${className}`}>
       <TitleSubtitle title={title} content={description} size="sm" />
 
       {/* Course rows — flex-1 pushes CTA to the bottom */}
-      <div className="flex flex-col gap-[var(--spacing-sm)] items-start w-full flex-1">
+      <div className="flex flex-col gap-sm items-start w-full flex-1">
         {cursos.map((curso, i) => (
           <div key={curso.titulo} className="w-full">
             {i > 0 && (
