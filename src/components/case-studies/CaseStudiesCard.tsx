@@ -2,6 +2,7 @@
 
 import { ArrowRight } from 'lucide-react'
 import TitleSubtitle from '@/components/TitleSubtitle'
+import { ctaLabels } from '@/data/labels'
 import type { CasoSucesso } from '@/data/casos-sucesso'
 
 interface CaseStudiesCardProps {
@@ -40,7 +41,7 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
         {/* CTA link */}
         <div className="flex gap-[12px] h-[24px] items-center pl-sm rounded-[var(--radius-full)] w-[198px]">
           <span className="flex-1 typo-button-sm">
-            Ver estudo de caso
+            {ctaLabels.verEstudoDeCaso}
           </span>
           <span className="flex items-center justify-center w-[24px] h-[24px] bg-[var(--semantic-surface-secondary)] rounded-full shrink-0">
             <ArrowRight size={12} />

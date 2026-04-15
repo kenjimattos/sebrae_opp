@@ -13,6 +13,7 @@ import { useMunicipio } from '@/hooks/useMunicipio'
 import { usePanoramaIndicadores } from '@/hooks/usePanoramaIndicadores'
 import { usePanoramaMedia } from '@/hooks/usePanoramaMedia'
 import { sectionContent } from '@/data/sections'
+import { panoramaLabels } from '@/data/labels'
 import type { IndicadorKey } from '@/data/mapa-indicadores'
 
 export default function SectionPanorama() {
@@ -32,7 +33,7 @@ export default function SectionPanorama() {
         {/* Header: label + dropdown */}
         <div className="flex-between">
           <span className="typo-body-bold">
-            Indicador no mapa
+            {panoramaLabels.indicadorNoMapa}
           </span>
           <Dropdown
             options={dropdownOptions}

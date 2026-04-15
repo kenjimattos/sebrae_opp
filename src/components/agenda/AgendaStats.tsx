@@ -3,17 +3,12 @@
 
 import type { StatusType } from '@/types/indicadores'
 import { statusStyles } from '@/utils/statusStyles'
+import { statusLabels, agendaStatsLabel } from '@/data/labels'
 
 interface AgendaStatsProps {
   total: number
   counts: Record<StatusType, number>
   className?: string
-}
-
-const labels: Record<StatusType, string> = {
-  success: 'Bom',
-  warning: 'Atenção',
-  alert: 'Alerta',
 }
 
 export default function AgendaStats({ total, counts, className = '' }: AgendaStatsProps) {
@@ -26,7 +21,7 @@ export default function AgendaStats({ total, counts, className = '' }: AgendaSta
           {total}
         </span>
         <span className="typo-body-lg">
-          indicadores avaliados
+          {agendaStatsLabel}
         </span>
       </div>
 
@@ -41,7 +36,7 @@ export default function AgendaStats({ total, counts, className = '' }: AgendaSta
               {counts[status]}
             </span>
             <span className="typo-body">
-              {labels[status]}
+              {statusLabels[status]}
             </span>
           </div>
         ))}

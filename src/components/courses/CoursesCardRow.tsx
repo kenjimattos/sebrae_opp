@@ -2,6 +2,7 @@
 // Row inside a course trail card — title (uppercase) + hours + "Ver curso" link
 
 import { ArrowRight } from 'lucide-react'
+import { ctaLabels } from '@/data/labels'
 
 interface CoursesCardRowProps {
   title: string
@@ -27,7 +28,7 @@ export default function CoursesCardRow({ title, subtitle, className = '' }: Cour
       {/* Ver curso button */}
       <div className="flex items-center gap-[12px] h-[38px] pl-sm rounded-[var(--radius-full)] shrink-0">
         <span className="typo-button-sm">
-          Ver curso
+          {ctaLabels.verCurso}
         </span>
         <span className="flex items-center justify-center w-[24px] h-[24px] bg-[var(--semantic-surface-secondary)] rounded-full shrink-0">
           <ArrowRight size={12} />

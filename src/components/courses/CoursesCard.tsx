@@ -5,6 +5,7 @@ import SectionCard from '@/components/ui/SectionCard'
 import TitleSubtitle from '@/components/TitleSubtitle'
 import CoursesCardRow from '@/components/courses/CoursesCardRow'
 import PillButton from '@/components/ui/PillButton'
+import { ctaLabels } from '@/data/labels'
 
 interface Curso {
   titulo: string
@@ -37,7 +38,7 @@ export default function CoursesCard({ title, description, cursos, className = ''
 
       {/* CTA */}
       <div className="flex items-start justify-end w-full">
-        <PillButton label="Ver trilha completa" href="#" className="w-[325px]" />
+        <PillButton label={ctaLabels.verTrilhaCompleta} href="#" className="w-[325px]" />
       </div>
     </SectionCard>
   )
