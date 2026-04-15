@@ -1,7 +1,7 @@
 // Mapa interativo da Paraíba — Leaflet + Carto Positron + GeoJSON local
 // Polígonos de municípios com badges de valor (estilo QuintoAndar)
 
-import { useMemo, useCallback, useRef } from 'react'
+import { useMemo, useCallback, useRef, useState } from 'react'
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'
 import L from 'leaflet'
 import type { Layer, PathOptions, LeafletMouseEvent } from 'leaflet'
@@ -27,6 +27,22 @@ const PARAIBA_BOUNDS: L.LatLngBoundsExpression = [
 
 export default function ParaibaMap({ selectedId, indicador, className = '' }: ParaibaMapProps) {
   const geoJsonRef = useRef<L.GeoJSON | null>(null)
+  const mapRef = useRef<L.Map | null>(null)
+  const [active, setActive] = useState(false)
+
+  function activateMap() {
+    if (active || !mapRef.current) return
+    setActive(true)
+    mapRef.current.scrollWheelZoom.enable()
+    mapRef.current.dragging.enable()
+  }
+
+  function deactivateMap() {
+    if (!mapRef.current) return
+    setActive(false)
+    mapRef.current.scrollWheelZoom.disable()
+    mapRef.current.dragging.disable()
+  }
 
   const styleFeature = useCallback(
     (feature?: Feature): PathOptions => {
@@ -93,18 +109,24 @@ export default function ParaibaMap({ selectedId, indicador, className = '' }: Pa
   const geoKey = useMemo(() => `${indicador}-${selectedId}`, [indicador, selectedId])
 
   return (
-    <div className={`relative ${className}`}>
+    <div
+      className={`relative group ${className}`}
+      onMouseLeave={deactivateMap}
+    >
       <MapContainer
         center={[-7.1, -36.5]}
         zoom={8}
         minZoom={7}
         maxZoom={12}
+        scrollWheelZoom={false}
+        dragging={false}
         zoomControl={true}
         attributionControl={false}
         maxBounds={PARAIBA_BOUNDS}
         maxBoundsViscosity={1.0}
         style={{ height: '480px', width: '100%' }}
         className="rounded-[var(--radius-sm)]"
+        ref={mapRef}
       >
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
@@ -119,6 +141,18 @@ export default function ParaibaMap({ selectedId, indicador, className = '' }: Pa
         />
         <ValueBadges indicador={indicador} />
       </MapContainer>
+
+      {/* Overlay — click to interact */}
+      {!active && (
+        <div
+          onClick={activateMap}
+          className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center rounded-[var(--radius-sm)] cursor-pointer z-[1000]"
+        >
+          <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-[var(--semantic-surface-primary)] typo-body-bold px-md py-sm rounded-[var(--radius-full)] shadow-lg">
+            Clique para interagir com o mapa
+          </span>
+        </div>
+      )}
     </div>
   )
 }

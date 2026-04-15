@@ -19,6 +19,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - User: padding horizontal removido, tipografia reduzida para `typo-body`
 - PanoramaLegend: dots simplificados usando classes `status-*-dot` (sem border extra)
 - Dropdown: border-radius alterado para `radius-full` (pill), z-index inline removido
+- Mapa do Panorama: requer clique para interagir (scroll/drag desativados por padrão), overlay hover igual ao mapa de Recursos
 
 - Setup de testes: Vitest + React Testing Library + jsdom (`npm run test` / `npm run test:run`)
 - Smoke tests: 33 testes cobrindo 9 seções + 18 componentes individuais (mocks de Leaflet e MunicipioProvider)
