@@ -1,13 +1,12 @@
 // Figma: Economics/Analysis (368:834)
 // Bloco de análise textual — futuro: conectado a LLM
 
+import { defaultAnalise, analiseLabel } from '@/data/economics'
+
 interface EconomicsAnalysisProps {
   analise?: string
   className?: string
 }
-
-const defaultAnalise =
-  'A economia local apresenta crescimento moderado do PIB per capita e melhora nos índices de competitividade, porém mantém alta dependência do setor público e parcela significativa da população em faixa de baixa renda. O fortalecimento das MPE e a diversificação produtiva são caminhos prioritários.'
 
 export default function EconomicsAnalysis({ analise = defaultAnalise, className = '' }: EconomicsAnalysisProps) {
   return (
@@ -15,7 +14,7 @@ export default function EconomicsAnalysis({ analise = defaultAnalise, className 
       className={`card-surface px-xl py-md flex flex-col gap-xs w-full ${className}`}
     >
       <h4 className="typo-body-bold">
-        Análise
+        {analiseLabel}
       </h4>
       <p className="typo-body">
         {analise}

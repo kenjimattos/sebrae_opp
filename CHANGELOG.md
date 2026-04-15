@@ -27,6 +27,12 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - `ValueBadges` extraído para `src/components/map/`, helpers do mapa para `src/utils/mapHelpers.ts`
 - `ScrollArrowButton` extraído de `SectionCasosSucesso` para `src/components/ui/`
 - `src/data/labels.ts` — labels compartilhados (status, CTAs, panorama, user default)
+- `src/data/capacitacao.ts` — trilhas e cursos extraídos de SectionCapacitacao
+- `src/data/recursos.ts` — cards, URLs e textos extraídos de SectionRecursos
+- `src/data/formulador.ts` — cards do formulador
+- `src/data/ai-assistant.ts` — placeholder e botões do assistente IA
+- `src/data/layout.ts` — navLinks, footerColumns, brandText, copyright
+- `src/data/economics.ts` — texto de análise econômica
 - `SectionAIAssistant` comentada para uso futuro (seção removida da Home)
 - TitleSubtitle: refatorado com 3 tamanhos (`lg`/`md`/`sm`) alinhados ao Figma (H1/H2/H3), tags HTML semânticas corretas, e prop `as` para override
 - `SectionContainer`: absorveu layout default (padding + max-width), simplificando uso nas seções
