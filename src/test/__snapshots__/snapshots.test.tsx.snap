@@ -1,0 +1,535 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Snapshot tests — CSS refactor safety > AgendaBadge 1`] = `
+<div
+  class="flex items-center gap-[var(--spacing-xs)] px-[var(--spacing-sm)] py-[var(--spacing-2xs)] rounded-[var(--radius-md)] bg-[var(--semantic-warning-surface)] "
+>
+  <div
+    class="size-[12px] rounded-full bg-[var(--semantic-warning)]"
+  />
+  <span
+    class="typo-body-sm-bold text-[color:var(--semantic-text-primary)] text-right whitespace-nowrap"
+  >
+    0,521
+  </span>
+</div>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
+<div
+  class="flex flex-col gap-[var(--spacing-sm)] w-full"
+>
+  <div
+    class="flex items-center gap-[var(--spacing-md)] px-[var(--spacing-xs)] w-full"
+  >
+    <span
+      class="flex-1 typo-body-sm text-[color:var(--semantic-text-primary)]"
+    >
+      IDHM
+    </span>
+    <div
+      class="flex items-center gap-[var(--spacing-xs)] px-[var(--spacing-sm)] py-[var(--spacing-2xs)] rounded-[var(--radius-md)] bg-[var(--semantic-success-surface)] "
+    >
+      <div
+        class="size-[12px] rounded-full bg-[var(--semantic-success)]"
+      />
+      <span
+        class="typo-body-sm-bold text-[color:var(--semantic-text-primary)] text-right whitespace-nowrap"
+      >
+        0,720
+      </span>
+    </div>
+  </div>
+  <div
+    class="h-px w-full bg-[var(--semantic-surface-secondary)]"
+  />
+</div>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
+<div
+  class="flex items-center justify-between bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-[var(--spacing-lg)] py-[var(--spacing-md)] w-full "
+>
+  <div
+    class="flex items-center gap-[var(--spacing-md)]"
+  >
+    <span
+      class="typo-display text-[color:var(--semantic-text-primary)]"
+    >
+      10
+    </span>
+    <span
+      class="typo-body-lg text-[color:var(--semantic-text-primary)]"
+    >
+      indicadores avaliados
+    </span>
+  </div>
+  <div
+    class="flex items-center gap-[var(--spacing-md)]"
+  >
+    <div
+      class="flex items-center gap-[var(--spacing-xs)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] rounded-[var(--radius-md)] bg-[var(--semantic-success-surface)]"
+    >
+      <div
+        class="size-[10px] rounded-full bg-[var(--semantic-success)]"
+      />
+      <span
+        class="typo-display-sm text-[color:var(--semantic-text-primary)]"
+      >
+        5
+      </span>
+      <span
+        class="typo-body text-[color:var(--semantic-text-primary)]"
+      >
+        Bom
+      </span>
+    </div>
+    <div
+      class="flex items-center gap-[var(--spacing-xs)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] rounded-[var(--radius-md)] bg-[var(--semantic-warning-surface)]"
+    >
+      <div
+        class="size-[10px] rounded-full bg-[var(--semantic-warning)]"
+      />
+      <span
+        class="typo-display-sm text-[color:var(--semantic-text-primary)]"
+      >
+        3
+      </span>
+      <span
+        class="typo-body text-[color:var(--semantic-text-primary)]"
+      >
+        Atenção
+      </span>
+    </div>
+    <div
+      class="flex items-center gap-[var(--spacing-xs)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] rounded-[var(--radius-md)] bg-[var(--semantic-alert-surface)]"
+    >
+      <div
+        class="size-[10px] rounded-full bg-[var(--semantic-alert)]"
+      />
+      <span
+        class="typo-display-sm text-[color:var(--semantic-text-primary)]"
+      >
+        2
+      </span>
+      <span
+        class="typo-body text-[color:var(--semantic-text-primary)]"
+      >
+        Alerta
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
+<div
+  class="flex flex-col items-start justify-between bg-[var(--semantic-surface-primary)] border border-solid border-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] p-[var(--spacing-md)] h-[172px] w-[209px] "
+>
+  <div
+    class="flex items-center gap-[var(--spacing-sm)] w-full"
+  >
+    <div
+      class="shrink-0 size-[32px] rounded-full bg-[var(--semantic-surface-secondary)] flex items-center justify-center"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-trending-up text-[var(--semantic-text-primary)]"
+        fill="none"
+        height="16"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M16 7h6v6"
+        />
+        <path
+          d="m22 7-8.5 8.5-5-5L2 17"
+        />
+      </svg>
+    </div>
+    <span
+      class="typo-h4 text-[color:var(--semantic-text-primary)]"
+    >
+      PIB per capita
+    </span>
+  </div>
+  <div
+    class="flex items-end justify-between w-full"
+  >
+    <span
+      class="typo-display-sm text-[color:var(--semantic-text-primary)] max-w-[130px]"
+    >
+      R$ 22.500
+    </span>
+    <span
+      class="typo-body-sm-bold text-[color:var(--semantic-text-primary)]"
+    >
+      +3,2%
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > Footer 1`] = `
+<footer
+  class="bg-[var(--semantic-surface-primary)] px-[var(--spacing-margin)] py-[var(--spacing-2xl)] "
+>
+  <div
+    class="flex items-start justify-between"
+  >
+    <div
+      class="flex flex-col gap-[var(--spacing-sm)] items-start"
+    >
+      <img
+        alt="Sebrae"
+        class="h-[60px] w-[111px] object-cover"
+        src="/assets/sebrae-logo.png"
+      />
+      <h3
+        class="typo-h3 text-[color:var(--semantic-text-primary)]"
+      >
+        Plataforma OPP
+      </h3>
+      <p
+        class="typo-body text-[color:var(--semantic-text-primary)]"
+      >
+        Transformando dados em
+        <br />
+        decisões estratégicas.
+      </p>
+    </div>
+    <div
+      class="flex flex-col gap-[var(--spacing-sm)] items-start"
+    >
+      <span
+        class="typo-body-bold text-[color:var(--semantic-text-primary)]"
+      >
+        Navegação
+      </span>
+      <a
+        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        href="#"
+      >
+        Início
+      </a>
+      <a
+        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        href="#"
+      >
+        Panorama
+      </a>
+      <a
+        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        href="#"
+      >
+        Recursos
+      </a>
+      <a
+        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        href="#"
+      >
+        Capacitação
+      </a>
+    </div>
+    <div
+      class="flex flex-col gap-[var(--spacing-sm)] items-start"
+    >
+      <span
+        class="typo-body-bold text-[color:var(--semantic-text-primary)]"
+      >
+        Recursos
+      </span>
+      <a
+        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        href="#"
+      >
+        Documentação
+      </a>
+      <a
+        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        href="#"
+      >
+        Tutoriais
+      </a>
+      <a
+        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        href="#"
+      >
+        API
+      </a>
+      <a
+        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        href="#"
+      >
+        Suporte
+      </a>
+    </div>
+    <div
+      class="flex flex-col gap-[var(--spacing-sm)] items-start"
+    >
+      <span
+        class="typo-body-bold text-[color:var(--semantic-text-primary)]"
+      >
+        Contato
+      </span>
+      <a
+        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        href="#"
+      >
+        contato@plataforma.gov.br
+      </a>
+      <a
+        class="typo-body text-[color:var(--semantic-text-primary)] no-underline transition-colors hover:text-[color:var(--semantic-accent)]"
+        href="#"
+      >
+        Fale Conosco
+      </a>
+    </div>
+  </div>
+  <div
+    class="flex flex-col gap-[var(--spacing-lg)] items-start mt-[var(--spacing-lg)] pb-[var(--spacing-2xl)]"
+  >
+    <div
+      class="h-px w-full bg-[var(--semantic-text-primary)]"
+    />
+    <p
+      class="typo-body text-[color:var(--semantic-text-primary)]"
+    >
+      © 2025 Plataforma. Todos os direitos reservados.
+    </p>
+  </div>
+</footer>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
+<header
+  class="flex items-center justify-between h-[95px] pt-[var(--spacing-md)] px-[var(--spacing-margin)] bg-[var(--semantic-background-primary)] "
+>
+  <img
+    alt="Sebrae"
+    class="h-[60px] w-[111px] object-cover"
+    src="/assets/sebrae-logo.png"
+  />
+  <div
+    class="flex items-center justify-between h-[60px] bg-[var(--semantic-surface-primary)] rounded-[var(--radius-full)] pl-[var(--spacing-xs)] pr-[var(--spacing-md)] py-[var(--spacing-2xs)] w-[720px]"
+  >
+    <div
+      class="flex items-center gap-[var(--spacing-sm)] bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] overflow-hidden shrink-0 w-[231px] flex items-center gap-[var(--spacing-sm)] bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-full)] px-[var(--spacing-sm)] py-[var(--spacing-xs)] overflow-hidden"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-search shrink-0 text-[var(--semantic-text-primary)]"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="m21 21-4.34-4.34"
+        />
+        <circle
+          cx="11"
+          cy="11"
+          r="8"
+        />
+      </svg>
+      <span
+        class="typo-body-bold text-[color:var(--semantic-text-primary)] truncate"
+      >
+        Campina Grande
+      </span>
+    </div>
+    <a
+      class="typo-body text-[color:var(--semantic-text-primary)] text-center whitespace-nowrap transition-colors hover:text-[color:var(--semantic-accent)]"
+      href="#agenda-prioritaria"
+    >
+      Agenda prioritaria
+    </a>
+    <a
+      class="typo-body text-[color:var(--semantic-text-primary)] text-center whitespace-nowrap transition-colors hover:text-[color:var(--semantic-accent)]"
+      href="#acesso-a-recursos"
+    >
+      Acesso a recursos
+    </a>
+    <a
+      class="typo-body text-[color:var(--semantic-text-primary)] text-center whitespace-nowrap transition-colors hover:text-[color:var(--semantic-accent)]"
+      href="#formulador"
+    >
+      Formulador
+    </a>
+  </div>
+  <div
+    class="flex items-center gap-[var(--spacing-xs)] h-[60px] px-[var(--spacing-md)] py-[var(--spacing-xs)] rounded-[var(--radius-full)] "
+  >
+    <svg
+      class="shrink-0"
+      fill="none"
+      height="64"
+      viewBox="-6 -6 44 44"
+      width="64"
+    >
+      <clippath
+        id="user-avatar-clip"
+      >
+        <path
+          d="M0 16C0 7.163 7.163 0 16 0s16 7.163 16 16-7.163 16-16 16S0 24.837 0 16Z"
+        />
+      </clippath>
+      <g
+        clip-path="url(#user-avatar-clip)"
+      >
+        <path
+          class="text-[var(--semantic-surface-primary)]"
+          d="M0 16C0 7.163 7.163 0 16 0s16 7.163 16 16-7.163 16-16 16S0 24.837 0 16Z"
+          fill="currentColor"
+        />
+        <path
+          class="text-[var(--semantic-text-primary)]"
+          d="M15.717 7.006c3.856-.156 7.111 2.838 7.276 6.694.166 3.855-2.82 7.118-6.675 7.293-3.87.176-7.145-2.823-7.311-6.692-.166-3.87 2.841-7.138 6.71-7.295Z"
+          fill="currentColor"
+        />
+        <path
+          class="text-[var(--semantic-text-primary)]"
+          d="M15.034 23.012l.094-.002c.862-.016 2.278-.027 3.125.08 1.712.217 3.647.946 5.064 1.889.526.356 1.022.751 1.483 1.181.74.683 1.743 1.827 2.14 2.75.095.221.049 1.609.053 1.943.018 1.372-.023 2.776 0 4.148-3.308-.038-6.681-.005-9.995-.005l-7.827.001-2.55.001c-.516 0-1.093.01-1.604-.016l-.003-3.596c0-.43-.06-2.153.052-2.474.083-.24.236-.451.376-.663.436-.659.914-1.253 1.47-1.823 1.735-1.781 4.226-2.977 6.738-3.324.456-.063.922-.075 1.382-.09Z"
+          fill="currentColor"
+        />
+      </g>
+    </svg>
+    <span
+      class="typo-body-lg text-[color:var(--semantic-text-primary)] whitespace-nowrap"
+    >
+      João Maria
+    </span>
+  </div>
+</header>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > ResourcesCard 1`] = `
+<div
+  class="flex flex-col gap-[var(--spacing-sm)] bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-[var(--spacing-md)] w-[189px] justify-between "
+>
+  <span
+    class="typo-body text-[color:var(--semantic-text-primary)]"
+  >
+    Total empenhado
+  </span>
+  <span
+    class="typo-display-sm text-[color:var(--semantic-text-primary)]"
+  >
+    R$ 4,1 bilhões
+  </span>
+</div>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > RisksCard 1`] = `
+<div
+  class="flex flex-col gap-[var(--spacing-md)] border border-solid rounded-[var(--radius-sm)] p-[var(--spacing-lg)] bg-[var(--semantic-alert-surface)] border-[var(--semantic-alert)] "
+>
+  <div
+    class="flex items-start gap-[var(--spacing-md)] w-full"
+  >
+    <span
+      class="flex-1 typo-body-bold text-[color:var(--semantic-text-primary)]"
+    >
+      Investimento per capita
+    </span>
+    <span
+      class="shrink-0 typo-display-sm text-[color:var(--semantic-alert)]"
+    >
+      R$ 180
+    </span>
+  </div>
+  <p
+    class="typo-body text-[color:var(--semantic-text-primary)]"
+  >
+    Valor abaixo da média
+  </p>
+  <p
+    class="typo-body-bold text-[color:var(--semantic-text-primary)]"
+  >
+    Investimento público
+  </p>
+  <p
+    class="typo-body text-[color:var(--semantic-text-primary)]"
+  >
+    Contexto de risco
+  </p>
+</div>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > SectionCard 1`] = `
+<div
+  class="bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] p-[var(--spacing-md)] "
+>
+  <div>
+    Content
+  </div>
+</div>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > SectionContainer 1`] = `
+<section
+  class="mx-auto w-full max-w-[1440px] px-[var(--spacing-margin)] flex flex-col gap-[var(--spacing-2xl)] py-[var(--spacing-lg)] "
+>
+  <div>
+    Content
+  </div>
+</section>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > SectionHeader — title only 1`] = `
+<div
+  class="flex flex-col items-start justify-center max-w-[1000px] "
+>
+  <h2
+    class="w-full typo-h1 text-[color:var(--semantic-text-primary)]"
+  >
+    Panorama
+  </h2>
+</div>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > SectionHeader — with description 1`] = `
+<div
+  class="flex items-center gap-[var(--spacing-md)] "
+>
+  <h2
+    class="flex-1 max-w-[690px] typo-h1 text-[color:var(--semantic-text-primary)]"
+  >
+    Panorama
+  </h2>
+  <p
+    class="flex-1 max-w-[400px] typo-body text-[color:var(--semantic-text-primary)]"
+  >
+    Descrição da seção
+  </p>
+</div>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > TitleSubtitle 1`] = `
+<div
+  class="flex flex-col items-start gap-[var(--spacing-sm)] "
+>
+  <h3
+    class="w-full typo-h2 text-[color:var(--semantic-text-primary)]"
+  >
+    Emendas parlamentares
+  </h3>
+  <p
+    class="w-full typo-body-lg text-[color:var(--semantic-text-primary)]"
+  >
+    Recursos destinados
+  </p>
+</div>
+`;
