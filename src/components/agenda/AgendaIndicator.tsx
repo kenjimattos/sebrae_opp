@@ -19,7 +19,7 @@ export default function AgendaIndicator({ label, valor, status }: AgendaIndicato
         </span>
         <AgendaBadge status={status} value={valor} />
       </div>
-      <div className="h-px w-full bg-[var(--semantic-surface-secondary)]" />
+      <div className="divider" />
     </div>
   )
 }

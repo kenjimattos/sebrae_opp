@@ -9,7 +9,7 @@ interface SectionContainerProps {
 export default function SectionContainer({ children, className = '' }: SectionContainerProps) {
   return (
     <section
-      className={`mx-auto w-full max-w-[1440px] px-margin flex flex-col gap-2xl py-lg ${className}`}
+      className={`section-container ${className}`}
     >
       {children}
     </section>

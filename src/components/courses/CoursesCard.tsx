@@ -28,7 +28,7 @@ export default function CoursesCard({ title, description, cursos, className = ''
         {cursos.map((curso, i) => (
           <div key={curso.titulo} className="w-full">
             {i > 0 && (
-              <div className="bg-[#ccc] h-px w-full mb-[var(--spacing-sm)]" />
+              <div className="divider mb-[var(--spacing-sm)]" />
             )}
             <CoursesCardRow title={curso.titulo} subtitle={curso.carga} />
           </div>

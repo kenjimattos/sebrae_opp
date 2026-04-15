@@ -200,6 +200,19 @@
   .text-inactive { color: var(--semantic-text-inactive); }
   .text-accent   { color: var(--semantic-accent); }
 
+  /* ============ LAYOUT — COMPOSITES ============ */
+  .section-container {
+    margin-left: auto; margin-right: auto; width: 100%; max-width: 1440px;
+    padding-left: var(--spacing-margin); padding-right: var(--spacing-margin);
+    display: flex; flex-direction: column; gap: var(--spacing-2xl);
+    padding-top: var(--spacing-lg); padding-bottom: var(--spacing-lg);
+  }
+  .card-surface { background-color: var(--semantic-surface-primary); border-radius: var(--radius-sm); }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-sm); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-sm); }
+  .divider         { height: 1px; width: 100%; background-color: var(--semantic-surface-secondary); }
+  .divider-primary { height: 1px; width: 100%; background-color: var(--semantic-text-primary); }
+
   /* ============ LAYOUT — FLEX ============ */
   .flex-center    { display: flex; align-items: center; }
   .flex-between   { display: flex; align-items: center; justify-content: space-between; }

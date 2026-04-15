@@ -43,7 +43,7 @@ export default function Dropdown({ options, value, onChange, className = '' }: D
       </button>
 
       {open && (
-        <ul className="absolute z-10 top-full left-0 mt-[var(--spacing-2xs)] w-full bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] shadow-lg overflow-hidden">
+        <ul className="absolute z-10 top-full left-0 mt-[var(--spacing-2xs)] w-full card-surface shadow-lg overflow-hidden">
           {options.map((option) => (
             <li key={option.value}>
               <button

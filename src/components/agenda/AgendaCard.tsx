@@ -13,7 +13,7 @@ interface AgendaCardProps {
 export default function AgendaCard({ title, indicadores, className = '' }: AgendaCardProps) {
   return (
     <div
-      className={`flex flex-col gap-lg bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-md py-lg min-h-[384px] ${className}`}
+      className={`flex flex-col gap-lg card-surface px-md py-lg min-h-[384px] ${className}`}
     >
       <h3 className="typo-body-bold">
         {title}

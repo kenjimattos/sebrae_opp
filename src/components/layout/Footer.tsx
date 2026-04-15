@@ -60,7 +60,7 @@ export default function Footer({ className = '' }: { className?: string }) {
 
       {/* Bottom */}
       <div className="flex flex-col gap-lg items-start mt-[var(--spacing-lg)] pb-2xl">
-        <div className="h-px w-full bg-[var(--semantic-text-primary)]" />
+        <div className="divider-primary" />
         <p className="typo-body">
           © 2025 Plataforma. Todos os direitos reservados.
         </p>

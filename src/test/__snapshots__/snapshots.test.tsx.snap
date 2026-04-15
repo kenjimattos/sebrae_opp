@@ -41,14 +41,14 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
     </div>
   </div>
   <div
-    class="h-px w-full bg-[var(--semantic-surface-secondary)]"
+    class="divider"
   />
 </div>
 `;
 
 exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
 <div
-  class="flex-between bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] px-lg py-md w-full "
+  class="flex-between card-surface px-lg py-md w-full "
 >
   <div
     class="flex items-center gap-md"
@@ -124,7 +124,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
 <div
-  class="flex-col-start justify-between bg-[var(--semantic-surface-primary)] border border-solid border-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] p-md h-[172px] w-[209px] "
+  class="flex-col-start justify-between card-surface border border-solid border-[var(--semantic-surface-primary)] p-md h-[172px] w-[209px] "
 >
   <div
     class="flex items-center gap-sm w-full"
@@ -296,7 +296,7 @@ exports[`Snapshot tests — CSS refactor safety > Footer 1`] = `
     class="flex flex-col gap-lg items-start mt-[var(--spacing-lg)] pb-2xl"
   >
     <div
-      class="h-px w-full bg-[var(--semantic-text-primary)]"
+      class="divider-primary"
     />
     <p
       class="typo-body"
@@ -470,7 +470,7 @@ exports[`Snapshot tests — CSS refactor safety > RisksCard 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > SectionCard 1`] = `
 <div
-  class="bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] p-md "
+  class="card-surface p-md "
 >
   <div>
     Content
@@ -480,7 +480,7 @@ exports[`Snapshot tests — CSS refactor safety > SectionCard 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > SectionContainer 1`] = `
 <section
-  class="mx-auto w-full max-w-[1440px] px-margin flex flex-col gap-2xl py-lg "
+  class="section-container "
 >
   <div>
     Content

@@ -37,7 +37,7 @@ export default function SectionAgendas({ agendas }: SectionAgendasProps) {
         <AgendaStats total={total} counts={counts} />
         {/* Cards grid: 3 columns */}
 
-        <div className="grid grid-cols-3 gap-sm w-full">
+        <div className="grid-3 w-full">
           {agendas.map((agenda) => (
             <AgendaCard
               key={agenda.nome}

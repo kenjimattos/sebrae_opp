@@ -17,7 +17,7 @@ const paddingStyles: Record<string, string> = {
 export default function SectionCard({ children, padding = 'lg', className = '' }: SectionCardProps) {
   return (
     <div
-      className={`bg-[var(--semantic-surface-primary)] rounded-[var(--radius-sm)] ${paddingStyles[padding]} ${className}`}
+      className={`card-surface ${paddingStyles[padding]} ${className}`}
     >
       {children}
     </div>
