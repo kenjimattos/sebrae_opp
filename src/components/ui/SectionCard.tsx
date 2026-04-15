@@ -16,10 +16,10 @@ const paddingStyles: Record<string, string> = {
 
 export default function SectionCard({ children, padding = 'lg', className = '' }: SectionCardProps) {
   return (
-    <div
+    <section
       className={`card-surface ${paddingStyles[padding]} ${className}`}
     >
       {children}
-    </div>
+    </section>
   )
 }
