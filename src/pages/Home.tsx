@@ -32,7 +32,8 @@ export default function Home() {
         <SectionCapacitacao />
         <SectionCasosSucesso />
         <SectionFormulador />
-        <SectionAIAssistant />
+        {/* Hidden for now, may be used in the future */}
+        {/* <SectionAIAssistant /> */}
       </main>
 
       <Footer />
