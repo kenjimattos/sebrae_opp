@@ -5,6 +5,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ## [Unreleased]
 
 ### Added
+- PanoramaMediaInfo: exibe valor do município selecionado (com destaque accent) e maior valor do estado, além da média estadual
 - Design system: classe `.grid-5` em `index.css` (5 colunas, gap-xs), seguindo padrão de `.grid-2` e `.grid-3`
 
 ### Fixed

@@ -11,9 +11,25 @@ interface MediaInfo {
   label: string
   formatted: string
   count: number
+  municipioFormatted: string | null
+  maiorFormatted: string
 }
 
-export function usePanoramaMedia(indicador: IndicadorKey): MediaInfo | null {
+function formatValue(value: number, exemplo: string): string {
+  if (exemplo.includes('%')) {
+    return `${value.toFixed(1)}%`
+  } else if (exemplo.includes('R$')) {
+    return `R$ ${Math.round(value).toLocaleString('pt-BR')}`
+  } else if (exemplo.includes(',') && !exemplo.includes('.') && value < 10) {
+    return value.toFixed(3).replace('.', ',')
+  } else if (value < 100) {
+    return value.toFixed(1).replace('.', ',')
+  } else {
+    return Math.round(value).toLocaleString('pt-BR')
+  }
+}
+
+export function usePanoramaMedia(indicador: IndicadorKey, municipioId: string): MediaInfo | null {
   return useMemo(() => {
     const valores: number[] = []
     for (const data of Object.values(municipiosMapData)) {
@@ -25,25 +41,23 @@ export function usePanoramaMedia(indicador: IndicadorKey): MediaInfo | null {
     if (valores.length === 0) return null
     const soma = valores.reduce((acc, v) => acc + v, 0)
     const media = soma / valores.length
+    const maior = Math.max(...valores)
 
     const opt = indicadorOptions.find((o) => o.value === indicador)
     const label = opt?.shortLabel ?? ''
 
     // Detect format from example value
     const exemplo = Object.values(municipiosMapData)[0]?.indicadores[indicador]?.valor ?? ''
-    let formatted: string
-    if (exemplo.includes('%')) {
-      formatted = `${media.toFixed(1)}%`
-    } else if (exemplo.includes('R$')) {
-      formatted = `R$ ${Math.round(media).toLocaleString('pt-BR')}`
-    } else if (exemplo.includes(',') && !exemplo.includes('.') && media < 10) {
-      formatted = media.toFixed(3).replace('.', ',')
-    } else if (media < 100) {
-      formatted = media.toFixed(1).replace('.', ',')
-    } else {
-      formatted = Math.round(media).toLocaleString('pt-BR')
-    }
 
-    return { label, formatted, count: valores.length }
-  }, [indicador])
+    const formatted = formatValue(media, exemplo)
+    const maiorFormatted = formatValue(maior, exemplo)
+
+    // Selected municipality value
+    const municipioEntry = municipiosMapData[municipioId]?.indicadores[indicador]
+    const municipioFormatted = municipioEntry?.valorNumerico !== undefined
+      ? formatValue(municipioEntry.valorNumerico, exemplo)
+      : null
+
+    return { label, formatted, count: valores.length, municipioFormatted, maiorFormatted }
+  }, [indicador, municipioId])
 }

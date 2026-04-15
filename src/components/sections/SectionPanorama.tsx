@@ -20,7 +20,7 @@ export default function SectionPanorama() {
   const { municipio } = useMunicipio()
   const [indicador, setIndicador] = useState<IndicadorKey>('governanca_cfa')
   const dropdownOptions = usePanoramaIndicadores()
-  const mediaInfo = usePanoramaMedia(indicador)
+  const mediaInfo = usePanoramaMedia(indicador, municipio.id)
 
   return (
     <SectionContainer>
@@ -44,7 +44,13 @@ export default function SectionPanorama() {
         </div>
 
         {mediaInfo && (
-          <PanoramaMediaInfo count={mediaInfo.count} formatted={mediaInfo.formatted} />
+          <PanoramaMediaInfo
+            count={mediaInfo.count}
+            formatted={mediaInfo.formatted}
+            municipioNome={municipio.nome}
+            municipioFormatted={mediaInfo.municipioFormatted}
+            maiorFormatted={mediaInfo.maiorFormatted}
+          />
         )}
 
         <PanoramaLegend />

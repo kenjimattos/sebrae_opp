@@ -23,8 +23,10 @@ export const ctaLabels = {
 
 /** Panorama section labels */
 export const panoramaLabels = {
-  indicadorNoMapa: 'Indicador no mapa',
+  indicadorNoMapa: 'Indicador',
+  municipio: 'Municipio selecionado',
   mediaEstadual: 'Média estadual',
+  maior: 'Maior valor do estado'
 } as const
 
 /** AgendaStats label */
