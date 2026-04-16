@@ -28,6 +28,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - `SectionPanorama`: info da média + mapa agrupados em `<section>` interna com `gap-sm`; gap externo do `Card` `md` → `lg`.
 - `.divider` unificado em `--primitives-gray-200` (antes `--semantic-surface-secondary`); `.divider-primary` removido — `Footer` migrado para `.divider`.
 - `data/capacitacao.ts`: durações dos cursos expandidas de `Nh` para `N horas` (ex: `36h` → `36 horas`).
+- **Padronização de cards** (`FormuladorCard`, `SectionRecursos` — Bloco 1 e Editais): `min-h-[35dvh]` removido; cards agora têm altura orgânica. `FormuladorCard` gap interno `lg` → `2xl`. Card de Editais passa a usar o mesmo layout do `FormuladorCard` (`flex flex-col items-end gap-2xl`).
 
 ### Removed
 
