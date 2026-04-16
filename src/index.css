@@ -24,7 +24,7 @@
 
   /* Buttons */
   --font-size-button-lg: 40px;
-  --font-size-button: 24px;
+  --font-size-button: 20px;
   --font-size-button-sm: 16px;
 
   /* ============ TYPOGRAPHY — WEIGHT & LINE-HEIGHT ============ */
@@ -105,7 +105,7 @@
   --semantic-info-text-info: var(--primitives-blue-500);
 
   /* Buttons */
-  --semantic-button-primary: var(--primitives-black);
+  --semantic-button-primary: var(--primitives-blue-500);
   --semantic-button-label-primary: var(--primitives-white);
   --semantic-button-secondary: var(--primitives-white);
   --semantic-button-label-secondary: var(--primitives-black);
@@ -192,9 +192,12 @@
   .typo-body-sm-bold { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
 
   /* UI / Buttons */
-  .typo-button-lg { font-size: var(--font-size-button-lg); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
-  .typo-button    { font-size: var(--font-size-button);    font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
-  .typo-button-sm { font-size: var(--font-size-button-sm); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
+  .typo-button-lg { font-size: var(--font-size-button-lg); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-button-label-primary); }
+  .typo-button    { font-size: var(--font-size-button);    font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-button-label-primary); }
+  .typo-button-sm { font-size: var(--font-size-button-sm); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-button-label-primary); }
+  .typo-button-secondary-lg { font-size: var(--font-size-button-lg); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-button-label-secondary); }
+  .typo-button-secondary    { font-size: var(--font-size-button);    font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-button-label-secondary); }
+  .typo-button-secondary-sm { font-size: var(--font-size-button-sm); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-button-label-secondary); }
 
   /* Text color overrides */
   .text-inactive { color: var(--semantic-text-inactive); }
