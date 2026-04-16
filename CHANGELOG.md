@@ -5,6 +5,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ## [Unreleased]
 
 ### Added
+- Design tokens: `--icon-size-xs/sm/md/lg/xl` em `index.css` e constantes `ICON_SIZES` em `src/constants/icons.ts` — paridade com spacing/radius/typography para uso em props `size={...}` de ícones
 - InsetBar: novo componente de design system (`ui/InsetBar.tsx`) — barra encaixada no topo de SectionCard com label + controle
 - PanoramaMediaInfo: exibe valor do município selecionado (com destaque accent) e maior valor do estado, além da média estadual
 - Design system: classe `.grid-5` em `index.css` (5 colunas, gap-xs), seguindo padrão de `.grid-2` e `.grid-3`
