@@ -1,6 +1,8 @@
 // Figma: Resources/Card (287:12)
 // Gray card with title + large value
 
+import Card from '@/components/ui/Card'
+
 interface ResourcesCardProps {
   title: string
   value: string
@@ -9,8 +11,10 @@ interface ResourcesCardProps {
 
 export default function ResourcesCard({ title, value, className = '' }: ResourcesCardProps) {
   return (
-    <div
-      className={`flex flex-col gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-md justify-between ${className}`}
+    <Card
+      surface="secondary"
+      padding="md"
+      className={`flex flex-col gap-sm justify-between ${className}`}
     >
       <span className="typo-body">
         {title}
@@ -18,6 +22,6 @@ export default function ResourcesCard({ title, value, className = '' }: Resource
       <span className="typo-display-sm">
         {value}
       </span>
-    </div>
+    </Card>
   )
 }

@@ -2,6 +2,7 @@
 
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import PillButton from '@/components/ui/buttons/PillButton'
+import Card from '@/components/ui/Card'
 import { ctaLabels } from '@/data/labels'
 import type { CasoSucesso } from '@/data/casos-sucesso'
 
@@ -12,8 +13,9 @@ interface CaseStudiesCardProps {
 
 export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCardProps) {
   return (
-    <div
-      className={`bg-surface flex-col-start overflow-clip radius-sm w-[350px] shrink-0 ${className}`}
+    <Card
+      padding="none"
+      className={`flex-col-start overflow-clip w-[350px] shrink-0 ${className}`}
     >
       {/* Image */}
       <div className="h-[180px] w-full relative">
@@ -41,6 +43,6 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
         {/* CTA link */}
         <PillButton size="sm" label={ctaLabels.verEstudoDeCaso} href="#" className="w-[198px]" />
       </div>
-    </div>
+    </Card>
   )
 }

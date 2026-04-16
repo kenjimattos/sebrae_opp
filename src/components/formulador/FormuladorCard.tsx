@@ -2,7 +2,7 @@
 
 import PillButton from '@/components/ui/buttons/PillButton'
 import TitleSubtitle from '../ui/TitleSubtitle'
-import SectionCard from '../ui/SectionCard'
+import Card from '../ui/Card'
 
 interface FormuladorCardProps {
   titulo: string
@@ -20,14 +20,17 @@ export default function FormuladorCard({
   className = '',
 }: FormuladorCardProps) {
   return (
-    <SectionCard className="flex flex-col items-end gap-lg">
-      
+    <Card
+      as="section"
+      padding="lg"
+      className={`flex flex-col items-end gap-lg min-h-[35dvh] ${className}`}
+    >
       <TitleSubtitle
         title={titulo}
         subtitle={descricao}
       />
 
       <PillButton label={buttonLabel} href={buttonHref} />
-    </SectionCard>
+    </Card>
   )
 }
