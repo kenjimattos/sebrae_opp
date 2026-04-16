@@ -2,55 +2,69 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
-## [Unreleased]
+## [0.2.0] — 2026-04-16
 
-### Changed
-- Tokens de tamanho de ícones consolidados em fonte única: `iconSizes` (camelCase) agora vive em `src/components/icons/index.ts`, co-localizado com os re-exports de ícones. Pasta `src/constants/` removida e CSS vars `--icon-size-*` (não-consumidas) descartadas de `index.css`. 6 consumidores atualizados para importar do novo caminho.
-- CitySelector: `query` passa a ser derivado (`open ? draft : municipio.nome`) em vez de estado sincronizado via `useEffect`. Elimina setState-in-effect e simplifica o fluxo — `draft` só existe enquanto o dropdown está aberto
+Consolidação do design system, nova taxonomia de botões e reorganização por domínio. 33 commits desde 0.1.0, sem quebra de comportamento do protótipo.
 
 ### Added
-- Design tokens: `--icon-size-xs/sm/md/lg/xl` em `index.css` e constantes `ICON_SIZES` em `src/constants/icons.ts` — paridade com spacing/radius/typography para uso em props `size={...}` de ícones
-- `components/icons/index.ts`: novos re-exports `ArrowLeft`, `ChevronUp` e tipo `LucideIcon` — cobertura completa dos ícones usados no projeto
-- `useDropdownState` hook (`src/components/ui/useDropdownState.ts`): open/setOpen/ref + listener click-outside extraído de Dropdown — compartilhado com CitySelector
-- `DropdownMenu` componente (`src/components/ui/DropdownMenu.tsx`): lista UL reutilizável com auto-sizing (`width: max-content; min-width: 100%`) — acomoda a opção mais larga sem distorcer quando o trigger hugs content de opção curta
-- InsetBar: novo componente de design system (`ui/InsetBar.tsx`) — barra encaixada no topo de SectionCard com label + controle
-- PanoramaMediaInfo: exibe valor do município selecionado (com destaque accent) e maior valor do estado, além da média estadual
-- Design system: classe `.grid-5` em `index.css` (5 colunas, gap-xs), seguindo padrão de `.grid-2` e `.grid-3`
+
+**Design system**
+- Tokens de icon size `iconSizes` (xs 12 / sm 16 / md 20 / lg 24 / xl 32) co-localizados com os re-exports de ícones em `src/components/icons/index.ts`
+- Classes utilitárias `.radius-sm/md/lg/xl/full` e `.bg-primary/surface/surface-secondary/accent` em `index.css` — substituem `rounded-[var(--radius-*)]` e `bg-[var(--semantic-*)]` inline
+- Classe `.grid-5` (5 colunas, gap-xs) — completa a família `.grid-2` / `.grid-3`
+
+**Primitivas de UI**
+- `ui/InsetBar` — barra encaixada no topo de SectionCard com label + controle
+- `ui/useDropdownState` — hook compartilhado com open/setOpen/ref + click-outside
+- `ui/DropdownMenu` — lista UL reutilizável com auto-sizing (`max-content` + `min-width: 100%`)
+- `ui/buttons/IconButton` — botão circular icon-only com 4 variants × 3 sizes (sm 24×24, md 40×40, lg 48×48) e `aria-label` obrigatório
+- `components/icons/index.ts` — re-exports `ArrowLeft`, `ChevronUp` e tipo `LucideIcon`
+
+**Seções**
+- PanoramaMediaInfo exibe agora valor do município selecionado (destaque accent) e maior valor estadual, além da média
+
+**Qualidade**
+- ESLint `no-restricted-imports` bloqueia imports diretos de `lucide-react` fora de `components/icons/index.ts`
 
 ### Changed
-- Todos os imports de `lucide-react` migrados para `@/components/icons` (9 arquivos) — único ponto de entrada para ícones
-- Props `size={N}` hardcoded substituídas por `ICON_SIZES.xs/sm/md/lg/xl` em todos os consumidores (CitySelector, CaseStudiesCard, CoursesCardRow, Dropdown, EconomicsCard, PillButton, ScrollArrowButton, SectionCapacitacao)
-- ESLint: regra `no-restricted-imports` bloqueia imports de `lucide-react` fora de `components/icons/index.ts` — previne regressões
-- Dropdown: refatorado para consumir `useDropdownState` + `DropdownMenu`; trigger hugs content (sem `w-full`)
-- SectionPanorama: removido `className="w-[240px]"` do Dropdown — menu agora auto-sizes pela opção mais larga
-- CitySelector: refatorado para consumir `useDropdownState` + `DropdownMenu` — dedupe da lista vs Dropdown, comportamento idêntico
-- Pasta `src/components/ui/buttons/` criada; `Button.tsx` e `PillButton.tsx` movidos para lá (agrupa variações de botão separadas dos primitivos de layout)
-- Reorganização de primitivos da raiz `src/components/`: `ParaibaMap` → `map/`, `CitySelector` + `User` → `layout/`, `TitleSubtitle` + `SectionHeader` → `ui/`. Raiz fica sem arquivos órfãos; cada primitivo vive no seu domínio.
-- CLAUDE.md: seção "Estrutura de Pastas", "Componentes do Figma" e "Design Tokens" atualizadas para refletir a nova taxonomia de botões (Button/IconButton/PillButton), `ui/buttons/`, primitivas de dropdown (`DropdownMenu`, `useDropdownState`), `constants/icons.ts` e tokens `--icon-size-*`
-- `Button`: API nova — `label: string` (obrigatório) substitui `children`, nova variant `ghost`, props opcionais `icon: LucideIcon` + `iconPosition: 'left' | 'right'` (default `'right'`). Tamanho do ícone derivado automaticamente do `size` do botão. Callsites migrados (SectionAIAssistant, SectionCapacitacao)
-- `IconButton` componente (`src/components/ui/buttons/IconButton.tsx`): botão circular icon-only com 4 variants × 3 sizes (sm 24×24, md 40×40, lg 48×48). `aria-label` obrigatório. Reutilizado em ScrollArrowButton (removido) e dentro de PillButton
 
-- `PillButton`: prop `size: 'sm' | 'md' | 'lg'` (default `'lg'`, retrocompat). Variantes sm/md têm shell transparente + círculo gray 24×24 com seta 12px; lg preserva design atual (64×340 gray + círculo white 48×48 + seta 24px). Cobertura dos CTAs de CaseStudiesCard (sm) e CoursesCardRow (md) nos próximos commits
+**API de botões**
+- `Button`: `label: string` (obrigatório) substitui `children`; nova variant `ghost`; props opcionais `icon: LucideIcon` + `iconPosition: 'left' | 'right'` (default `right`). Tamanho do ícone derivado automaticamente do `size` do botão.
+- `PillButton`: prop `size: 'sm' | 'md' | 'lg'` (default `lg`, retrocompat). Variantes sm/md têm shell transparente + círculo gray 24×24 com seta 12px; lg preserva design original (64×340 + círculo 48×48 + seta 24px).
 
-### Removed
-- `ScrollArrowButton` (`src/components/ui/ScrollArrowButton.tsx`): substituído por `IconButton variant="secondary" size="lg"` em SectionCasosSucesso. Mesmo comportamento visual, agora via primitiva do design system
+**Refatorações**
+- `Dropdown` e `CitySelector` consomem `useDropdownState` + `DropdownMenu` — dedupe da lógica de open/close e click-outside
+- `CitySelector.query` passa a ser estado derivado (`open ? draft : municipio.nome`) — elimina setState-in-effect
+- Imports de `lucide-react` migrados para `@/components/icons` em 9 arquivos — único ponto de entrada
+- Props `size={N}` hardcoded trocadas por `iconSizes.xs/sm/md/lg/xl` em todos os consumidores
+- ~45 ocorrências de `rounded-[var(--radius-*)]` e `bg-[var(--semantic-*)]` substituídas pelas novas classes em 20 componentes
+
+**Reorganização de pastas**
+- `src/components/ui/buttons/` criada; `Button.tsx` e `PillButton.tsx` movidos para lá (junto do novo `IconButton`)
+- Primitivos da raiz reorganizados por domínio: `ParaibaMap` → `map/`, `CitySelector` + `User` → `layout/`, `TitleSubtitle` + `SectionHeader` → `ui/`
+- `SectionCard`: wrapper `<div>` → `<section>` (HTML semântico)
+
+**Docs**
+- `CLAUDE.md` atualizado: nova taxonomia de botões (Button / IconButton / PillButton), `ui/buttons/`, primitivas de dropdown (`DropdownMenu`, `useDropdownState`) e tokens de icon size
 
 ### Fixed
-- CaseStudiesCard CTA: `<div>` estilizado (não clicável, não focável) substituído por `PillButton size="sm"` — corrige bug de acessibilidade
-- CoursesCardRow CTA: idem — `<div>` substituído por `PillButton size="md"`
-- EconomicsCard e ResourcesCard: removida largura fixa dos cards; layout controlado pelo pai via `.grid-5`
-- SectionBaseEconomica e SectionRecursos: trocado `flex flex-wrap` com calc por `grid-5`
-- ParaibaMap: removido `z-[1000]` desnecessário do overlay de ativação do mapa
-- SectionPanorama: removido `padding="md"` do SectionCard; header do dropdown agora encaixado como inset-bar no topo
-- Dropdown: cor de fundo do botão trocada de `bg-surface-secondary` para `bg-surface`
-- SectionBaseEconomica: gap vertical ajustado de `gap-lg` para `gap-md`
-- Tipografia: `--font-size-display-small` ajustado de 24px para 28px
 
-### Changed
-- Design system: classes `.radius-sm/md/lg/xl/full` e `.bg-primary/surface/surface-secondary/accent` extraídas para `index.css`
-- ~45 ocorrências de `rounded-[var(--radius-*)]` e `bg-[var(--semantic-*)]` substituídas pelas novas classes em 20 componentes
-- Nomes `.radius-*` (não `.rounded-*`) para evitar colisão com utilities nativas do Tailwind
-- SectionCard: wrapper trocado de `<div>` para `<section>` para HTML semântico
+- CaseStudiesCard CTA: `<div>` estilizado substituído por `PillButton size="sm"` — corrige acessibilidade (agora clicável e focável)
+- CoursesCardRow CTA: idem — `<div>` → `PillButton size="md"`
+- EconomicsCard e ResourcesCard: largura fixa removida; layout agora controlado pelo pai via `.grid-5`
+- SectionBaseEconomica e SectionRecursos: `flex flex-wrap` + calc substituído por `grid-5`
+- SectionPanorama: `padding="md"` removido do SectionCard; header do dropdown agora encaixado como `InsetBar`
+- SectionBaseEconomica: gap vertical ajustado (`gap-lg` → `gap-md`)
+- Dropdown: background do trigger ajustado (`bg-surface-secondary` → `bg-surface`)
+- ParaibaMap: `z-[1000]` desnecessário removido do overlay de ativação
+- Tipografia: `--font-size-display-small` corrigido de 24px para 28px
+- Classes nomeadas `.radius-*` (não `.rounded-*`) para evitar colisão com utilities nativas do Tailwind
+
+### Removed
+
+- `ui/ScrollArrowButton` — substituído por `IconButton variant="secondary" size="lg"` em SectionCasosSucesso
+- Pasta `src/constants/` — tokens de icon size consolidados em `components/icons`
+- CSS vars `--icon-size-*` não-consumidas descartadas de `index.css` (fonte única passa a ser `iconSizes` em JS)
 
 ## [0.1.0] — 2026-04-15
 
