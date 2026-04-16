@@ -45,7 +45,7 @@ export default function Footer({ className = '' }: { className?: string }) {
 
       {/* Bottom */}
       <div className="flex flex-col gap-lg items-start mt-[var(--spacing-lg)] pb-2xl">
-        <div className="divider-primary" />
+        <div className="divider" />
         <p className="typo-body">
           {copyright}
         </p>

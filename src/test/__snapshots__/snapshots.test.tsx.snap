@@ -305,7 +305,7 @@ decisões estratégicas.
     class="flex flex-col gap-lg items-start mt-[var(--spacing-lg)] pb-2xl"
   >
     <div
-      class="divider-primary"
+      class="divider"
     />
     <p
       class="typo-body"
