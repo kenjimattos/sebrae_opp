@@ -63,6 +63,7 @@ Weights:    --typo-weight-{regular|semibold|bold|black}
 Line-height:--typo-lh-{auto|body}
 Spacing:    --spacing-{2xs|xs|sm|md|lg|xl|2xl|3xl|margin}
 Radius:     --radius-{sm|md|lg|xl|full}
+Icon Sizes: --icon-size-{xs|sm|md|lg|xl}  (12, 16, 20, 24, 32 — paralelo a ICON_SIZES em src/constants/icons.ts)
 Colors:     --primitives-{gray|blue|green|yellow|red}-{100..900}
 Semantic:   --semantic-{background-primary|surface-primary|surface-secondary|text-primary|text-inactive|...}
 Accent:     --semantic-accent{|-hover|-surface}
@@ -110,34 +111,46 @@ src/
 │   │   └── RisksCard.tsx             # Figma: Risks/Card (set 563:4445) — dinâmico, derivado dos indicadores
 │   ├── resources/
 │   │   └── ResourcesCard.tsx         # Figma: Resources/Card (287:12)
-│   ├── courses/                       # ⬜ Pendente — diretório vazio
-│   ├── case-studies/                  # ⬜ Pendente — diretório vazio
-│   ├── formulador/                    # ⬜ Pendente — diretório vazio
-│   ├── sections/
-│   │   ├── SectionAgendas.tsx        # Figma: 390:567
-│   │   ├── SectionPanorama.tsx       # Figma: 390:578
-│   │   ├── SectionBaseEconomica.tsx  # Figma: 390:581
-│   │   ├── SectionRiscos.tsx         # Figma: 390:594 — dinâmico: extrai alert/warning das agendas
-│   │   ├── SectionRecursos.tsx       # Figma: 390:600
-│   │   ├── SectionCapacitacao.tsx    # Figma: 390:611
-│   │   ├── SectionCasosSucesso.tsx   # Figma: 390:623
-│   │   └── SectionAIAssistant.tsx    # Figma: 390:635
-│   ├── ui/
-│   │   ├── SectionContainer.tsx      # Wrapper 1440px + padding lateral
-│   │   ├── Grid.tsx                  # Grid configurável (cols, gap)
-│   │   ├── Button.tsx                # primary/secondary/tertiary + sm/md/lg + hover/focus/active/disabled
-│   │   ├── PillButton.tsx            # CTA pill-shaped com ícone seta + hover/focus/active
-│   │   └── Dropdown.tsx              # Select estilizado (button + ul)
-│   ├── SectionHeader.tsx             # Figma: SectionHeader (set 327:1963)
-│   ├── TitleSubtitle.tsx             # Figma: TitleSubtitle (set 405:1388)
-│   ├── CitySelector.tsx              # Figma: CitySelector (509:3274)
-│   ├── User.tsx                      # Figma: User (405:2038)
-│   ├── ParaibaMap.tsx                # Mapa Leaflet interativo com zoom, tooltip, cores por indicador
+│   ├── courses/
+│   │   ├── CoursesCard.tsx            # Figma: Courses/Card (298:8)
+│   │   └── CoursesCardRow.tsx         # Figma: Courses/CardRow (297:8)
+│   ├── case-studies/
+│   │   └── CaseStudiesCard.tsx        # Figma: CaseStudies/Card (288:8)
+│   ├── formulador/
+│   │   └── FormuladorCard.tsx         # Figma: Formulador/Card (296:8)
+│   ├── icons/
+│   │   ├── index.ts                   # Re-export centralizado de ícones Lucide + UserAvatar
+│   │   └── UserAvatar.tsx             # SVG custom (não existe no Lucide)
 │   ├── map/
-│   │   └── ValueBadges.tsx           # Badge markers (DivIcon) sobre centróides no mapa
-│   └── panorama/
-│       ├── PanoramaLegend.tsx        # Legenda de status (bom/atenção/crítico)
-│       └── PanoramaMediaInfo.tsx     # Média estadual do indicador selecionado
+│   │   ├── ParaibaMap.tsx             # Mapa Leaflet interativo com zoom, tooltip, cores por indicador
+│   │   └── ValueBadges.tsx            # Badge markers (DivIcon) sobre centróides no mapa
+│   ├── panorama/
+│   │   ├── PanoramaLegend.tsx         # Legenda de status (bom/atenção/crítico)
+│   │   └── PanoramaMediaInfo.tsx      # Média estadual do indicador selecionado
+│   ├── sections/
+│   │   ├── SectionAgendas.tsx         # Figma: 390:567
+│   │   ├── SectionPanorama.tsx        # Figma: 390:578
+│   │   ├── SectionBaseEconomica.tsx   # Figma: 390:581
+│   │   ├── SectionRiscos.tsx          # Figma: 390:594 — dinâmico: extrai alert/warning das agendas
+│   │   ├── SectionRecursos.tsx        # Figma: 390:600
+│   │   ├── SectionCapacitacao.tsx     # Figma: 390:611
+│   │   ├── SectionCasosSucesso.tsx    # Figma: 390:623
+│   │   ├── SectionFormulador.tsx      # Figma: 390:635
+│   │   └── SectionAIAssistant.tsx     # Figma: 390:635
+│   └── ui/
+│       ├── buttons/
+│       │   ├── Button.tsx             # primary/secondary/tertiary/ghost + sm/md/lg + label + icon opcional
+│       │   ├── IconButton.tsx         # Circular icon-only + 4 variants × 3 sizes + aria-label obrigatório
+│       │   └── PillButton.tsx         # CTA pill + 3 sizes (sm/md/lg) + label + seta em círculo
+│       ├── SectionContainer.tsx       # Wrapper 1440px + padding lateral
+│       ├── SectionCard.tsx            # Card-surface wrapper com padding configurável
+│       ├── SectionHeader.tsx          # Figma: SectionHeader (set 327:1963)
+│       ├── TitleSubtitle.tsx          # Figma: TitleSubtitle (set 405:1388)
+│       ├── InsetBar.tsx               # Barra encaixada no topo de SectionCard
+│       ├── Grid.tsx                   # Grid configurável (cols, gap)
+│       ├── Dropdown.tsx               # Select estilizado — consome useDropdownState + DropdownMenu
+│       ├── DropdownMenu.tsx           # Lista UL reutilizável — max-content + min-w-full (auto-sizing)
+│       └── useDropdownState.ts        # Hook compartilhado: open/setOpen/ref + click-outside
 ├── data/
 │   ├── municipios.json               # Lista dos 3 municípios (id IBGE, nome, slug)
 │   ├── sections.ts                   # Títulos e descrições centralizados de todas as seções
@@ -159,6 +172,8 @@ src/
 │   ├── MunicipioProvider.tsx          # Provider que carrega JSON por município
 │   ├── usePanoramaIndicadores.ts     # Dropdown options derivadas das agendas
 │   └── usePanoramaMedia.ts           # Cálculo de média estadual do indicador
+├── constants/
+│   └── icons.ts                     # ICON_SIZES { xs:12, sm:16, md:20, lg:24, xl:32 } — paralelo a --icon-size-* CSS vars
 ├── utils/
 │   ├── statusStyles.ts               # Mapa de classes CSS de status compartilhado
 │   └── mapHelpers.ts                 # Helpers do mapa (getCSSVar, getStatus, getCentroid, etc.)
@@ -187,11 +202,11 @@ src/
 |---|---|---|
 | Header | `405:2044` | `layout/Header.tsx` |
 | Footer | `419:917` | `layout/Footer.tsx` |
-| User | `405:2038` | `User.tsx` |
-| CitySelector | `509:3274` | `CitySelector.tsx` |
-| SectionHeader | `327:1963` | `SectionHeader.tsx` |
-| TitleSubtitle | `405:1388` | `TitleSubtitle.tsx` |
-| Buttons | `378:477` | `ui/Button.tsx` |
+| User | `405:2038` | `layout/User.tsx` |
+| CitySelector | `509:3274` | `layout/CitySelector.tsx` |
+| SectionHeader | `327:1963` | `ui/SectionHeader.tsx` |
+| TitleSubtitle | `405:1388` | `ui/TitleSubtitle.tsx` |
+| Buttons | `378:477` | `ui/buttons/Button.tsx` |
 | Agenda/Card | `603:1874` | `agenda/AgendaCard.tsx` |
 | Agenda/Indicator | `300:32` | `agenda/AgendaIndicator.tsx` |
 | Agenda/Badge | `563:3818` | `agenda/AgendaBadge.tsx` |
@@ -200,6 +215,10 @@ src/
 | Economics/Analysis | `368:834` | `economics/EconomicsAnalysis.tsx` |
 | Risks/Card | `563:4445` | `risks/RisksCard.tsx` |
 | Resources/Card | `287:12` | `resources/ResourcesCard.tsx` |
+| Courses/Card | `298:8` | `courses/CoursesCard.tsx` |
+| Courses/CardRow | `297:8` | `courses/CoursesCardRow.tsx` |
+| CaseStudies/Card | `288:8` | `case-studies/CaseStudiesCard.tsx` |
+| Formulador/Card | `296:8` | `formulador/FormuladorCard.tsx` |
 
 ### ⬜ Pendentes (existem no Figma, não implementados)
 
@@ -208,10 +227,6 @@ src/
 | Agenda/Tooltip | `498:1024` | Tooltip de análise |
 | Icons | `380:482` | Biblioteca de ícones (usamos SVGs inline por enquanto) |
 | TextInput | `603:2011` | Input de texto com variantes |
-| Courses/CardRow | `297:8` | Linha de curso |
-| Courses/Card | `298:8` | Card de trilha |
-| CaseStudies/Card | `288:8` | Card de caso de sucesso |
-| Formulador/Card | `296:8` | Card principal do formulador |
 | Formulador/FormCard | `696:2665` | Card de formulário |
 | Formulador/Progress | `620:4417` | Barra de progresso |
 | Formulador/ProjectSteps | `603:2135` | Lista de etapas |
@@ -222,10 +237,16 @@ src/
 
 | Componente | Status | Notas |
 |---|---|---|
-| `SectionContainer.tsx` | ✅ | Wrapper 1440px + margin |
-| `Grid.tsx` | ✅ | Grid configurável |
-| `Button.tsx` | ✅ | primary/secondary/tertiary |
-| `Dropdown.tsx` | ✅ | Seletor de indicador do mapa |
+| `ui/SectionContainer.tsx` | ✅ | Wrapper 1440px + margin |
+| `ui/SectionCard.tsx` | ✅ | Card-surface wrapper com padding configurável |
+| `ui/InsetBar.tsx` | ✅ | Barra encaixada no topo de SectionCard |
+| `ui/Grid.tsx` | ✅ | Grid configurável |
+| `ui/buttons/Button.tsx` | ✅ | primary/secondary/tertiary/ghost + sm/md/lg + label + icon opcional |
+| `ui/buttons/IconButton.tsx` | ✅ | Circular icon-only + 4 variants × 3 sizes |
+| `ui/buttons/PillButton.tsx` | ✅ | CTA pill + 3 sizes (sm/md/lg) |
+| `ui/Dropdown.tsx` | ✅ | Select — consome `useDropdownState` + `DropdownMenu` |
+| `ui/DropdownMenu.tsx` | ✅ | Lista UL com auto-sizing (`max-content` + `min-w-full`) |
+| `ui/useDropdownState.ts` | ✅ | Hook com open/setOpen/ref + click-outside |
 | `Tabs.tsx` | ⬜ | Se necessário para alternar visualizações |
 | `ScrollRow.tsx` | ⬜ | Scroll horizontal com snap |
 | `ProgressBar.tsx` | ⬜ | Para Formulador/Progress |
