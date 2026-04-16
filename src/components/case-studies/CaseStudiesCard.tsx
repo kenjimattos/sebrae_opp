@@ -1,8 +1,7 @@
 // Figma: CaseStudies/Card (288:8)
 
-import { ArrowRight } from '@/components/icons'
-import { ICON_SIZES } from '@/constants/icons'
 import TitleSubtitle from '@/components/TitleSubtitle'
+import PillButton from '@/components/ui/buttons/PillButton'
 import { ctaLabels } from '@/data/labels'
 import type { CasoSucesso } from '@/data/casos-sucesso'
 
@@ -40,14 +39,7 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
         </div>
 
         {/* CTA link */}
-        <div className="flex gap-[12px] h-[24px] items-center pl-sm radius-full w-[198px]">
-          <span className="flex-1 typo-button-sm">
-            {ctaLabels.verEstudoDeCaso}
-          </span>
-          <span className="flex items-center justify-center w-[24px] h-[24px] bg-surface-secondary radius-full shrink-0">
-            <ArrowRight size={ICON_SIZES.xs} />
-          </span>
-        </div>
+        <PillButton size="sm" label={ctaLabels.verEstudoDeCaso} href="#" className="w-[198px]" />
       </div>
     </div>
   )

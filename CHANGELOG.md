@@ -30,6 +30,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - `ScrollArrowButton` (`src/components/ui/ScrollArrowButton.tsx`): substituído por `IconButton variant="secondary" size="lg"` em SectionCasosSucesso. Mesmo comportamento visual, agora via primitiva do design system
 
 ### Fixed
+- CaseStudiesCard CTA: `<div>` estilizado (não clicável, não focável) substituído por `PillButton size="sm"` — corrige bug de acessibilidade
 - EconomicsCard e ResourcesCard: removida largura fixa dos cards; layout controlado pelo pai via `.grid-5`
 - SectionBaseEconomica e SectionRecursos: trocado `flex flex-wrap` com calc por `grid-5`
 - ParaibaMap: removido `z-[1000]` desnecessário do overlay de ativação do mapa
