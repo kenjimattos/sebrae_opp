@@ -11,6 +11,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ### Changed
 - Todos os imports de `lucide-react` migrados para `@/components/icons` (9 arquivos) — único ponto de entrada para ícones
 - Props `size={N}` hardcoded substituídas por `ICON_SIZES.xs/sm/md/lg/xl` em todos os consumidores (CitySelector, CaseStudiesCard, CoursesCardRow, Dropdown, EconomicsCard, PillButton, ScrollArrowButton, SectionCapacitacao)
+- ESLint: regra `no-restricted-imports` bloqueia imports de `lucide-react` fora de `components/icons/index.ts` — previne regressões
 - InsetBar: novo componente de design system (`ui/InsetBar.tsx`) — barra encaixada no topo de SectionCard com label + controle
 - PanoramaMediaInfo: exibe valor do município selecionado (com destaque accent) e maior valor do estado, além da média estadual
 - Design system: classe `.grid-5` em `index.css` (5 colunas, gap-xs), seguindo padrão de `.grid-2` e `.grid-3`
