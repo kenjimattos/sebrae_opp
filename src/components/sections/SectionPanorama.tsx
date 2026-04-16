@@ -36,7 +36,6 @@ export default function SectionPanorama() {
             options={dropdownOptions}
             value={indicador}
             onChange={(v) => setIndicador(v as IndicadorKey)}
-            className="w-[240px]"
           />
         </InsetBar>
 

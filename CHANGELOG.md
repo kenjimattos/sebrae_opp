@@ -17,6 +17,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - Todos os imports de `lucide-react` migrados para `@/components/icons` (9 arquivos) — único ponto de entrada para ícones
 - Props `size={N}` hardcoded substituídas por `ICON_SIZES.xs/sm/md/lg/xl` em todos os consumidores (CitySelector, CaseStudiesCard, CoursesCardRow, Dropdown, EconomicsCard, PillButton, ScrollArrowButton, SectionCapacitacao)
 - ESLint: regra `no-restricted-imports` bloqueia imports de `lucide-react` fora de `components/icons/index.ts` — previne regressões
+- Dropdown: refatorado para consumir `useDropdownState` + `DropdownMenu`; trigger hugs content (sem `w-full`)
+- SectionPanorama: removido `className="w-[240px]"` do Dropdown — menu agora auto-sizes pela opção mais larga
 
 ### Fixed
 - EconomicsCard e ResourcesCard: removida largura fixa dos cards; layout controlado pelo pai via `.grid-5`

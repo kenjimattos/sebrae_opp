@@ -1,68 +1,45 @@
 // Tailwind pure — no Figma equivalent
-// Select estilizado: button + ul controlados por estado
+// Select estilizado: button trigger + DropdownMenu controlados por useDropdownState
 
-import { useState, useRef, useEffect } from 'react'
 import { ChevronDown } from '@/components/icons'
 import { ICON_SIZES } from '@/constants/icons'
-
-interface DropdownOption {
-  label: string
-  value: string
-}
+import DropdownMenu, { type DropdownMenuOption } from '@/components/ui/DropdownMenu'
+import { useDropdownState } from '@/components/ui/useDropdownState'
 
 interface DropdownProps {
-  options: DropdownOption[]
+  options: DropdownMenuOption[]
   value: string
   onChange: (value: string) => void
   className?: string
 }
 
 export default function Dropdown({ options, value, onChange, className = '' }: DropdownProps) {
-  const [open, setOpen] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
-
+  const { open, setOpen, ref } = useDropdownState()
   const selected = options.find((o) => o.value === value)
-
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
 
   return (
     <div ref={ref} className={`relative ${className}`}>
       <button
+        type="button"
         onClick={() => setOpen(!open)}
-        className="flex-between gap-xs w-full bg-surface radius-full px-sm py-xs typo-body-bold cursor-pointer"
+        className="flex items-center gap-xs bg-surface radius-full px-sm py-xs typo-body-bold cursor-pointer whitespace-nowrap"
       >
         {selected?.label ?? 'Selecionar'}
-        <ChevronDown size={ICON_SIZES.sm} className={`shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown
+          size={ICON_SIZES.sm}
+          className={`shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
+        />
       </button>
 
       {open && (
-        <ul className="absolute z-10 top-full left-0 mt-[var(--spacing-2xs)] w-full card-surface shadow-lg overflow-hidden">
-          {options.map((option) => (
-            <li key={option.value}>
-              <button
-                onClick={() => {
-                  onChange(option.value)
-                  setOpen(false)
-                }}
-                className={`w-full text-left px-sm py-xs cursor-pointer transition-colors ${
-                  option.value === value
-                    ? 'bg-[var(--semantic-accent-surface)] typo-body-bold text-accent'
-                    : 'typo-body hover:bg-surface-secondary'
-                }`}
-              >
-                {option.label}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <DropdownMenu
+          options={options}
+          value={value}
+          onSelect={(v) => {
+            onChange(v)
+            setOpen(false)
+          }}
+        />
       )}
     </div>
   )
