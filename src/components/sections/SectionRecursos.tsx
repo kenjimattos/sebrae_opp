@@ -18,12 +18,12 @@ export default function SectionRecursos() {
       {/* Cards agrupados com gap menor */}
       <div className="flex flex-col gap-md">
       {/* Container principal branco */}
-      <SectionCard padding="xl" className="flex flex-col gap-3xl items-center">
+      <SectionCard className="flex flex-col gap-3xl items-center">
           {/* Bloco 1 — Emendas parlamentares */}
           <div className="flex flex-col gap-xl items-start w-full">
             <TitleSubtitle
               title={recursosContent.emendas.title}
-              content={recursosContent.emendas.description}
+              subtitle={recursosContent.emendas.description}
             />
 
             <div className="flex flex-col gap-md w-full">
@@ -43,7 +43,7 @@ export default function SectionRecursos() {
           <div className="flex flex-col gap-xl items-start w-full">
             <TitleSubtitle
               title={recursosContent.distribuicao.title}
-              content={recursosContent.distribuicao.description}
+              subtitle={recursosContent.distribuicao.description}
             />
 
             <a
@@ -74,10 +74,10 @@ export default function SectionRecursos() {
         </SectionCard>
 
         {/* Bloco 3 — Editais e programas */}
-        <SectionCard padding="xl" className="py-3xl flex items-center gap-2xl">
+        <SectionCard className="flex items-center gap-2xl">
           <TitleSubtitle
             title={recursosContent.editais.title}
-            content={recursosContent.editais.description}
+            subtitle={recursosContent.editais.description}
             className="flex-1"
           />
           <PillButton label={recursosContent.buttons.verOportunidades} href="#" className="shrink-0" />

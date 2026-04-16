@@ -2,6 +2,19 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Unreleased]
+
+### Changed
+
+- `TitleSubtitle`: prop `content` renomeada para `subtitle` — mais descritiva. Consumidores atualizados: `CaseStudiesCard`, `CoursesCard`, `SectionRecursos`, `FormuladorCard`.
+- `SectionCard`: aplica `min-h-[35dvh]` por padrão. Overrides `padding="xl"` removidos de `CoursesCard` e `SectionRecursos` — agora usam o default `lg`.
+- `FormuladorCard`: reescrito para usar `SectionCard` + `TitleSubtitle` no lugar de markup inline.
+- `EconomicsAnalysis`: wrapper `<div>` → `<section>` (HTML semântico).
+
+### Removed
+
+- Card "Modelos de projeto" do formulador — resta apenas o card do assistente IA.
+
 ## [0.2.0] — 2026-04-16
 
 Consolidação do design system, nova taxonomia de botões e reorganização por domínio. 33 commits desde 0.1.0, sem quebra de comportamento do protótipo.

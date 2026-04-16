@@ -5,7 +5,7 @@ type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
 interface TitleSubtitleProps {
   title: string
-  content: string
+  subtitle: string
   size?: 'lg' | 'md' | 'sm'
   as?: HeadingTag
   className?: string
@@ -19,7 +19,7 @@ const sizeConfig = {
 
 export default function TitleSubtitle({
   title,
-  content,
+  subtitle,
   size = 'md',
   as,
   className = '',
@@ -33,7 +33,7 @@ export default function TitleSubtitle({
         {title}
       </Tag>
       <p className={`w-full ${typoBody}`}>
-        {content}
+        {subtitle}
       </p>
     </div>
   )

@@ -17,7 +17,7 @@ const paddingStyles: Record<string, string> = {
 export default function SectionCard({ children, padding = 'lg', className = '' }: SectionCardProps) {
   return (
     <section
-      className={`card-surface ${paddingStyles[padding]} ${className}`}
+      className={`card-surface ${paddingStyles[padding]} ${className} min-h-[35dvh]`}
     >
       {children}
     </section>

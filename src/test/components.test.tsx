@@ -171,7 +171,7 @@ describe('Shared components', () => {
 
   it('renders TitleSubtitle', () => {
     const { container } = render(
-      <TitleSubtitle title="Título" content="Conteúdo" />,
+      <TitleSubtitle title="Título" subtitle="Conteúdo" />,
     )
     expect(container).toBeTruthy()
   })

@@ -1,6 +1,8 @@
 // Figma: Formulador/Card (296:8)
 
 import PillButton from '@/components/ui/buttons/PillButton'
+import TitleSubtitle from '../ui/TitleSubtitle'
+import SectionCard from '../ui/SectionCard'
 
 interface FormuladorCardProps {
   titulo: string
@@ -18,16 +20,14 @@ export default function FormuladorCard({
   className = '',
 }: FormuladorCardProps) {
   return (
-    <div
-      className={`bg-surface flex flex-1 flex-col justify-between items-end p-xl radius-sm min-h-[600px] ${className}`}
-    >
-      <h3 className="w-full typo-h2">
-        {titulo}
-      </h3>
-      <p className="w-full typo-body-lg">
-        {descricao}
-      </p>
+    <SectionCard className="flex flex-col items-end gap-lg">
+      
+      <TitleSubtitle
+        title={titulo}
+        subtitle={descricao}
+      />
+
       <PillButton label={buttonLabel} href={buttonHref} />
-    </div>
+    </SectionCard>
   )
 }

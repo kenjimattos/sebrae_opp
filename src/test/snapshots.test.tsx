@@ -79,7 +79,7 @@ describe('Snapshot tests — CSS refactor safety', () => {
 
   it('TitleSubtitle', () => {
     const { container } = render(
-      <TitleSubtitle title="Emendas parlamentares" content="Recursos destinados" />,
+      <TitleSubtitle title="Emendas parlamentares" subtitle="Recursos destinados" />,
     )
     expect(container.firstChild).toMatchSnapshot()
   })
