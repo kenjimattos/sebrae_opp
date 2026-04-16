@@ -2,6 +2,7 @@
 // Bloco de análise textual — futuro: conectado a LLM
 
 import { defaultAnalise, analiseLabel } from '@/data/economics'
+import Card from '@/components/ui/Card'
 
 interface EconomicsAnalysisProps {
   analise?: string
@@ -10,8 +11,10 @@ interface EconomicsAnalysisProps {
 
 export default function EconomicsAnalysis({ analise = defaultAnalise, className = '' }: EconomicsAnalysisProps) {
   return (
-    <section
-      className={`card-surface px-xl py-md flex flex-col gap-xs w-full ${className}`}
+    <Card
+      as="section"
+      padding={{ x: 'xl', y: 'md' }}
+      className={`flex flex-col gap-xs w-full ${className}`}
     >
       <h4 className="typo-body-bold">
         {analiseLabel}
@@ -19,6 +22,6 @@ export default function EconomicsAnalysis({ analise = defaultAnalise, className 
       <p className="typo-body">
         {analise}
       </p>
-    </section>
+    </Card>
   )
 }

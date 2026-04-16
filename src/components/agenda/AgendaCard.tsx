@@ -3,6 +3,7 @@
 
 import type { Indicador } from '@/types/indicadores'
 import AgendaIndicator from '@/components/agenda/AgendaIndicator'
+import Card from '@/components/ui/Card'
 
 interface AgendaCardProps {
   title: string
@@ -12,8 +13,9 @@ interface AgendaCardProps {
 
 export default function AgendaCard({ title, indicadores, className = '' }: AgendaCardProps) {
   return (
-    <div
-      className={`flex flex-col gap-lg card-surface px-md py-lg min-h-[384px] ${className}`}
+    <Card
+      padding={{ x: 'md', y: 'lg' }}
+      className={`flex flex-col gap-lg min-h-[384px] ${className}`}
     >
       <h3 className="typo-body-bold">
         {title}
@@ -28,6 +30,6 @@ export default function AgendaCard({ title, indicadores, className = '' }: Agend
           />
         ))}
       </div>
-    </div>
+    </Card>
   )
 }

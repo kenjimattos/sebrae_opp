@@ -11,6 +11,7 @@ import {
   iconSizes,
   type LucideIcon,
 } from '@/components/icons'
+import Card from '@/components/ui/Card'
 
 interface EconomicsCardProps {
   label: string
@@ -33,8 +34,9 @@ export default function EconomicsCard({ label, valor, variacao, icone, className
   const Icon = icone ? iconMap[icone] : undefined
 
   return (
-    <div
-      className={`flex-col-start justify-between card-surface border border-solid border-[var(--semantic-surface-primary)] p-md h-[172px] ${className}`}
+    <Card
+      padding="md"
+      className={`flex-col-start justify-between h-[172px] ${className}`}
     >
       <div className="flex items-center gap-sm w-full">
         {Icon && (
@@ -54,6 +56,6 @@ export default function EconomicsCard({ label, valor, variacao, icone, className
           {variacao}
         </span>
       </div>
-    </div>
+    </Card>
   )
 }

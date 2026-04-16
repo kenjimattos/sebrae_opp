@@ -4,6 +4,7 @@
 import type { StatusType } from '@/types/indicadores'
 import { statusStyles } from '@/utils/statusStyles'
 import { statusLabels, agendaStatsLabel } from '@/data/labels'
+import Card from '@/components/ui/Card'
 
 interface AgendaStatsProps {
   total: number
@@ -13,8 +14,9 @@ interface AgendaStatsProps {
 
 export default function AgendaStats({ total, counts, className = '' }: AgendaStatsProps) {
   return (
-    <div
-      className={`flex-between card-surface px-lg py-md w-full ${className}`}
+    <Card
+      padding={{ x: 'lg', y: 'md' }}
+      className={`flex-between w-full ${className}`}
     >
       <div className="flex-center gap-md">
         <span className="typo-display">
@@ -41,6 +43,6 @@ export default function AgendaStats({ total, counts, className = '' }: AgendaSta
           </div>
         ))}
       </div>
-    </div>
+    </Card>
   )
 }
