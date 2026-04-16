@@ -8,6 +8,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - Design tokens: `--icon-size-xs/sm/md/lg/xl` em `index.css` e constantes `ICON_SIZES` em `src/constants/icons.ts` — paridade com spacing/radius/typography para uso em props `size={...}` de ícones
 - `components/icons/index.ts`: novos re-exports `ArrowLeft`, `ChevronUp` e tipo `LucideIcon` — cobertura completa dos ícones usados no projeto
 - `useDropdownState` hook (`src/components/ui/useDropdownState.ts`): open/setOpen/ref + listener click-outside extraído de Dropdown — compartilhado com CitySelector
+- `DropdownMenu` componente (`src/components/ui/DropdownMenu.tsx`): lista UL reutilizável com auto-sizing (`width: max-content; min-width: 100%`) — acomoda a opção mais larga sem distorcer quando o trigger hugs content de opção curta
 - InsetBar: novo componente de design system (`ui/InsetBar.tsx`) — barra encaixada no topo de SectionCard com label + controle
 - PanoramaMediaInfo: exibe valor do município selecionado (com destaque accent) e maior valor do estado, além da média estadual
 - Design system: classe `.grid-5` em `index.css` (5 colunas, gap-xs), seguindo padrão de `.grid-2` e `.grid-3`
