@@ -4,6 +4,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { Search } from '@/components/icons'
 import { ICON_SIZES } from '@/constants/icons'
+import DropdownMenu from '@/components/ui/DropdownMenu'
+import { useDropdownState } from '@/components/ui/useDropdownState'
 import { useMunicipio } from '@/hooks/useMunicipio'
 import municipios from '@/data/municipios.json'
 
@@ -14,40 +16,32 @@ interface CitySelectorProps {
 export default function CitySelector({ className = '' }: CitySelectorProps) {
   const { municipio, setMunicipio } = useMunicipio()
   const [query, setQuery] = useState(municipio.nome)
-  const [open, setOpen] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const { open, setOpen, ref } = useDropdownState()
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // Sync query when municipality changes externally
+  // Keep query in sync with selected municipality when closed.
+  // Handles both external changes (map click) and resetting after click-outside.
   useEffect(() => {
-    setQuery(municipio.nome)
-  }, [municipio.nome])
-
-  // Close on click outside
-  useEffect(() => {
-    function handleClick(e: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setOpen(false)
-        setQuery(municipio.nome)
-      }
-    }
-    document.addEventListener('mousedown', handleClick)
-    return () => document.removeEventListener('mousedown', handleClick)
-  }, [municipio.nome])
+    if (!open) setQuery(municipio.nome)
+  }, [open, municipio.nome])
 
   const filtered = municipios.filter((m) =>
     m.nome.toLowerCase().includes(query.toLowerCase()),
   )
 
-  function handleSelect(id: string, nome: string) {
-    setMunicipio(id, nome)
-    setQuery(nome)
+  const menuOptions = filtered.map((m) => ({ label: m.nome, value: m.id }))
+
+  function handleSelect(id: string) {
+    const match = municipios.find((m) => m.id === id)
+    if (!match) return
+    setMunicipio(match.id, match.nome)
+    setQuery(match.nome)
     setOpen(false)
     inputRef.current?.blur()
   }
 
   return (
-    <div ref={containerRef} className={`relative ${className}`}>
+    <div ref={ref} className={`relative ${className}`}>
       <div className="flex items-center gap-sm bg-surface-secondary radius-full px-sm py-xs overflow-hidden">
         <Search size={ICON_SIZES.md} className="shrink-0 text-inactive" />
         <input
@@ -67,22 +61,12 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
         />
       </div>
 
-      {open && filtered.length > 0 && (
-        <ul className="absolute top-full left-0 right-0 mt-xs bg-surface radius-md shadow-lg z-50 overflow-hidden">
-          {filtered.map((m) => (
-            <li key={m.id}>
-              <button
-                type="button"
-                onClick={() => handleSelect(m.id, m.nome)}
-                className={`typo-body w-full text-left px-sm py-xs hover:bg-surface-secondary transition-colors ${
-                  m.id === municipio.id ? 'text-accent' : ''
-                }`}
-              >
-                {m.nome}
-              </button>
-            </li>
-          ))}
-        </ul>
+      {open && menuOptions.length > 0 && (
+        <DropdownMenu
+          options={menuOptions}
+          value={municipio.id}
+          onSelect={handleSelect}
+        />
       )}
     </div>
   )

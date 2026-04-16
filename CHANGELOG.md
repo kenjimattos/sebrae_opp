@@ -19,6 +19,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - ESLint: regra `no-restricted-imports` bloqueia imports de `lucide-react` fora de `components/icons/index.ts` — previne regressões
 - Dropdown: refatorado para consumir `useDropdownState` + `DropdownMenu`; trigger hugs content (sem `w-full`)
 - SectionPanorama: removido `className="w-[240px]"` do Dropdown — menu agora auto-sizes pela opção mais larga
+- CitySelector: refatorado para consumir `useDropdownState` + `DropdownMenu` — dedupe da lista vs Dropdown, comportamento idêntico
 
 ### Fixed
 - EconomicsCard e ResourcesCard: removida largura fixa dos cards; layout controlado pelo pai via `.grid-5`
