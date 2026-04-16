@@ -1,7 +1,7 @@
 // Figma: CitySelector (509:3274)
 // Combobox: searchable dropdown to select municipality
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { Search, iconSizes } from '@/components/icons'
 import DropdownMenu from '@/components/ui/DropdownMenu'
 import { useDropdownState } from '@/components/ui/useDropdownState'
@@ -14,15 +14,13 @@ interface CitySelectorProps {
 
 export default function CitySelector({ className = '' }: CitySelectorProps) {
   const { municipio, setMunicipio } = useMunicipio()
-  const [query, setQuery] = useState(municipio.nome)
   const { open, setOpen, ref } = useDropdownState()
+  const [draft, setDraft] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // Keep query in sync with selected municipality when closed.
-  // Handles both external changes (map click) and resetting after click-outside.
-  useEffect(() => {
-    if (!open) setQuery(municipio.nome)
-  }, [open, municipio.nome])
+  // Input shows the draft while open (user is searching) or the selected name
+  // when closed. Deriving avoids a setState-in-effect sync between them.
+  const query = open ? draft : municipio.nome
 
   const filtered = municipios.filter((m) =>
     m.nome.toLowerCase().includes(query.toLowerCase()),
@@ -34,7 +32,6 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
     const match = municipios.find((m) => m.id === id)
     if (!match) return
     setMunicipio(match.id, match.nome)
-    setQuery(match.nome)
     setOpen(false)
     inputRef.current?.blur()
   }
@@ -48,10 +45,13 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
           type="text"
           value={query}
           onChange={(e) => {
-            setQuery(e.target.value)
+            setDraft(e.target.value)
             setOpen(true)
           }}
           onFocus={() => {
+            // Seed the draft from the current selection so the first keystroke
+            // replaces the name instead of appending to an empty string.
+            setDraft(municipio.nome)
             setOpen(true)
             inputRef.current?.select()
           }}

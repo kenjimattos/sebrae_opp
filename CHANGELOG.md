@@ -6,6 +6,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Changed
 - Tokens de tamanho de ícones consolidados em fonte única: `iconSizes` (camelCase) agora vive em `src/components/icons/index.ts`, co-localizado com os re-exports de ícones. Pasta `src/constants/` removida e CSS vars `--icon-size-*` (não-consumidas) descartadas de `index.css`. 6 consumidores atualizados para importar do novo caminho.
+- CitySelector: `query` passa a ser derivado (`open ? draft : municipio.nome`) em vez de estado sincronizado via `useEffect`. Elimina setState-in-effect e simplifica o fluxo — `draft` só existe enquanto o dropdown está aberto
 
 ### Added
 - Design tokens: `--icon-size-xs/sm/md/lg/xl` em `index.css` e constantes `ICON_SIZES` em `src/constants/icons.ts` — paridade com spacing/radius/typography para uso em props `size={...}` de ícones
