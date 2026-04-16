@@ -12,11 +12,17 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ### Fixed
 - EconomicsCard e ResourcesCard: removida largura fixa dos cards; layout controlado pelo pai via `.grid-5`
 - SectionBaseEconomica e SectionRecursos: trocado `flex flex-wrap` com calc por `grid-5`
+- ParaibaMap: removido `z-[1000]` desnecessário do overlay de ativação do mapa
+- SectionPanorama: removido `padding="md"` do SectionCard; header do dropdown agora encaixado como inset-bar no topo
+- Dropdown: cor de fundo do botão trocada de `bg-surface-secondary` para `bg-surface`
+- SectionBaseEconomica: gap vertical ajustado de `gap-lg` para `gap-md`
+- Tipografia: `--font-size-display-small` ajustado de 24px para 28px
 
 ### Changed
 - Design system: classes `.radius-sm/md/lg/xl/full` e `.bg-primary/surface/surface-secondary/accent` extraídas para `index.css`
 - ~45 ocorrências de `rounded-[var(--radius-*)]` e `bg-[var(--semantic-*)]` substituídas pelas novas classes em 20 componentes
 - Nomes `.radius-*` (não `.rounded-*`) para evitar colisão com utilities nativas do Tailwind
+- SectionCard: wrapper trocado de `<div>` para `<section>` para HTML semântico
 
 ## [0.1.0] — 2026-04-15
 
