@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight } from '@/components/icons'
 import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/SectionHeader'
 import CaseStudiesCard from '@/components/case-studies/CaseStudiesCard'
-import ScrollArrowButton from '@/components/ui/ScrollArrowButton'
+import IconButton from '@/components/ui/buttons/IconButton'
 import { sectionContent } from '@/data/sections'
 import { casosSucesso } from '@/data/casos-sucesso'
 
@@ -40,8 +40,8 @@ export default function SectionCasosSucesso() {
 
         {/* Navigation arrows */}
         <div className="flex gap-xl items-center justify-end w-full">
-          <ScrollArrowButton icon={ArrowLeft} onClick={() => scroll('left')} ariaLabel="Anterior" />
-          <ScrollArrowButton icon={ArrowRight} onClick={() => scroll('right')} ariaLabel="Próximo" />
+          <IconButton icon={ArrowLeft} onClick={() => scroll('left')} aria-label="Anterior" variant="secondary" size="lg" />
+          <IconButton icon={ArrowRight} onClick={() => scroll('right')} aria-label="Próximo" variant="secondary" size="lg" />
         </div>
       </div>
     </SectionContainer>
