@@ -24,6 +24,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - `Button`: API nova — `label: string` (obrigatório) substitui `children`, nova variant `ghost`, props opcionais `icon: LucideIcon` + `iconPosition: 'left' | 'right'` (default `'right'`). Tamanho do ícone derivado automaticamente do `size` do botão. Callsites migrados (SectionAIAssistant, SectionCapacitacao)
 - `IconButton` componente (`src/components/ui/buttons/IconButton.tsx`): botão circular icon-only com 4 variants × 3 sizes (sm 24×24, md 40×40, lg 48×48). `aria-label` obrigatório. Reutilizado em ScrollArrowButton (removido) e dentro de PillButton
 
+- `PillButton`: prop `size: 'sm' | 'md' | 'lg'` (default `'lg'`, retrocompat). Variantes sm/md têm shell transparente + círculo gray 24×24 com seta 12px; lg preserva design atual (64×340 gray + círculo white 48×48 + seta 24px). Cobertura dos CTAs de CaseStudiesCard (sm) e CoursesCardRow (md) nos próximos commits
+
 ### Removed
 - `ScrollArrowButton` (`src/components/ui/ScrollArrowButton.tsx`): substituído por `IconButton variant="secondary" size="lg"` em SectionCasosSucesso. Mesmo comportamento visual, agora via primitiva do design system
 
