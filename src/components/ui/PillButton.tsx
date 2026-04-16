@@ -1,7 +1,8 @@
 // Figma: Buttons pill variant (817:3129)
 // Pill-shaped button with label + arrow icon in circle — used for CTAs
 
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight } from '@/components/icons'
+import { ICON_SIZES } from '@/constants/icons'
 
 interface PillButtonProps {
   label: string
@@ -21,7 +22,7 @@ export default function PillButton({ label, href, className = '' }: PillButtonPr
         {label}
       </span>
       <span className="flex items-center justify-center w-[48px] h-[48px] bg-surface radius-full shrink-0">
-        <ArrowRight size={24} />
+        <ArrowRight size={ICON_SIZES.lg} />
       </span>
     </a>
   )

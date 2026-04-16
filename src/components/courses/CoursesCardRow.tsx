@@ -1,7 +1,8 @@
 // Figma: Courses/CardRow (297:8)
 // Row inside a course trail card — title (uppercase) + hours + "Ver curso" link
 
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight } from '@/components/icons'
+import { ICON_SIZES } from '@/constants/icons'
 import { ctaLabels } from '@/data/labels'
 
 interface CoursesCardRowProps {
@@ -31,7 +32,7 @@ export default function CoursesCardRow({ title, subtitle, className = '' }: Cour
           {ctaLabels.verCurso}
         </span>
         <span className="flex items-center justify-center w-[24px] h-[24px] bg-surface-secondary radius-full shrink-0">
-          <ArrowRight size={12} />
+          <ArrowRight size={ICON_SIZES.xs} />
         </span>
       </div>
     </div>

@@ -1,7 +1,8 @@
 // Figma: Section/Capacitacao (390:611)
 
 import { useState } from 'react'
-import { ChevronDown, ChevronUp } from 'lucide-react'
+import { ChevronDown, ChevronUp } from '@/components/icons'
+import { ICON_SIZES } from '@/constants/icons'
 import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/SectionHeader'
 import CoursesCard from '@/components/courses/CoursesCard'
@@ -39,7 +40,7 @@ export default function SectionCapacitacao() {
             className="gap-sm"
           >
             {expanded ? 'Ver menos trilhas' : `Ver todas as trilhas (${trilhas.length})`}
-            {expanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+            {expanded ? <ChevronUp size={ICON_SIZES.md} /> : <ChevronDown size={ICON_SIZES.md} />}
           </Button>
         </div>
       )}

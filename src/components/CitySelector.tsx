@@ -1,8 +1,9 @@
 // Figma: CitySelector (509:3274)
 // Combobox: searchable dropdown to select municipality
 
-import { Search } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
+import { Search } from '@/components/icons'
+import { ICON_SIZES } from '@/constants/icons'
 import { useMunicipio } from '@/hooks/useMunicipio'
 import municipios from '@/data/municipios.json'
 
@@ -48,7 +49,7 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
   return (
     <div ref={containerRef} className={`relative ${className}`}>
       <div className="flex items-center gap-sm bg-surface-secondary radius-full px-sm py-xs overflow-hidden">
-        <Search size={20} className="shrink-0 text-inactive" />
+        <Search size={ICON_SIZES.md} className="shrink-0 text-inactive" />
         <input
           ref={inputRef}
           type="text"

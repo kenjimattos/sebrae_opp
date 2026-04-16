@@ -2,7 +2,8 @@
 // Select estilizado: button + ul controlados por estado
 
 import { useState, useRef, useEffect } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown } from '@/components/icons'
+import { ICON_SIZES } from '@/constants/icons'
 
 interface DropdownOption {
   label: string
@@ -39,7 +40,7 @@ export default function Dropdown({ options, value, onChange, className = '' }: D
         className="flex-between gap-xs w-full bg-surface radius-full px-sm py-xs typo-body-bold cursor-pointer"
       >
         {selected?.label ?? 'Selecionar'}
-        <ChevronDown size={16} className={`shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown size={ICON_SIZES.sm} className={`shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
 
       {open && (

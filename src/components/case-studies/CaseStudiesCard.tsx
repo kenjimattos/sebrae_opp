@@ -1,6 +1,7 @@
 // Figma: CaseStudies/Card (288:8)
 
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight } from '@/components/icons'
+import { ICON_SIZES } from '@/constants/icons'
 import TitleSubtitle from '@/components/TitleSubtitle'
 import { ctaLabels } from '@/data/labels'
 import type { CasoSucesso } from '@/data/casos-sucesso'
@@ -44,7 +45,7 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
             {ctaLabels.verEstudoDeCaso}
           </span>
           <span className="flex items-center justify-center w-[24px] h-[24px] bg-surface-secondary radius-full shrink-0">
-            <ArrowRight size={12} />
+            <ArrowRight size={ICON_SIZES.xs} />
           </span>
         </div>
       </div>

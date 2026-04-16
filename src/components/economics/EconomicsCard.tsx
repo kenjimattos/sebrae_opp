@@ -1,8 +1,16 @@
 // Figma: Economics/Card (563:4015)
 // Metric card: icon (32x32) + label (uppercase) + large value + variation
 
-import type { LucideIcon } from 'lucide-react'
-import { TrendingUp, Building2, Users, ChartColumn, Briefcase, Landmark } from 'lucide-react'
+import {
+  TrendingUp,
+  Building2,
+  Users,
+  ChartColumn,
+  Briefcase,
+  Landmark,
+  type LucideIcon,
+} from '@/components/icons'
+import { ICON_SIZES } from '@/constants/icons'
 
 interface EconomicsCardProps {
   label: string
@@ -31,7 +39,7 @@ export default function EconomicsCard({ label, valor, variacao, icone, className
       <div className="flex items-center gap-sm w-full">
         {Icon && (
           <div className="shrink-0 size-[32px] radius-full bg-surface-secondary flex items-center justify-center">
-            <Icon size={16} className="text-[var(--semantic-text-primary)]" />
+            <Icon size={ICON_SIZES.sm} className="text-[var(--semantic-text-primary)]" />
           </div>
         )}
         <span className="typo-h4">

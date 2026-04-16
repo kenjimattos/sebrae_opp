@@ -1,7 +1,7 @@
 // Figma: Section/CasosSucesso (390:623)
 
 import { useRef } from 'react'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from '@/components/icons'
 import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/SectionHeader'
 import CaseStudiesCard from '@/components/case-studies/CaseStudiesCard'
