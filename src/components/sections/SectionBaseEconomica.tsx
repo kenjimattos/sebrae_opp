@@ -16,7 +16,7 @@ export default function SectionBaseEconomica({ dados }: SectionBaseEconomicaProp
     <SectionContainer>
       <SectionHeader title={sectionContent.baseEconomica.title} />
 
-      <div className="flex flex-col gap-lg">
+      <div className="flex flex-col gap-md">
         <div className="grid-5 w-full">
           {dados.map((item) => (
             <EconomicsCard
