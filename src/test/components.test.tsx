@@ -189,7 +189,7 @@ describe('Shared components', () => {
 
 describe('UI primitives', () => {
   it('renders Button', () => {
-    const { container } = render(<Button>Click</Button>)
+    const { container } = render(<Button label="Click" />)
     expect(container).toBeTruthy()
   })
 

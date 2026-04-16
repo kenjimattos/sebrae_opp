@@ -27,7 +27,7 @@ export default function SectionAIAssistant() {
 
         <div className="flex gap-sm">
           {aiActionButtons.map((btn) => (
-            <Button key={btn.label} variant={btn.variant}>{btn.label}</Button>
+            <Button key={btn.label} variant={btn.variant} label={btn.label} />
           ))}
         </div>
       </SectionCard>

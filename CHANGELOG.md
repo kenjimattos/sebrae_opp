@@ -21,6 +21,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - SectionPanorama: removido `className="w-[240px]"` do Dropdown — menu agora auto-sizes pela opção mais larga
 - CitySelector: refatorado para consumir `useDropdownState` + `DropdownMenu` — dedupe da lista vs Dropdown, comportamento idêntico
 - Pasta `src/components/ui/buttons/` criada; `Button.tsx` e `PillButton.tsx` movidos para lá (agrupa variações de botão separadas dos primitivos de layout)
+- `Button`: API nova — `label: string` (obrigatório) substitui `children`, nova variant `ghost`, props opcionais `icon: LucideIcon` + `iconPosition: 'left' | 'right'` (default `'right'`). Tamanho do ícone derivado automaticamente do `size` do botão. Callsites migrados (SectionAIAssistant, SectionCapacitacao)
 
 ### Fixed
 - EconomicsCard e ResourcesCard: removida largura fixa dos cards; layout controlado pelo pai via `.grid-5`

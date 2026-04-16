@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { ChevronDown, ChevronUp } from '@/components/icons'
-import { ICON_SIZES } from '@/constants/icons'
 import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/SectionHeader'
 import CoursesCard from '@/components/courses/CoursesCard'
@@ -36,12 +35,11 @@ export default function SectionCapacitacao() {
           <Button
             variant="secondary"
             size="lg"
+            label={expanded ? 'Ver menos trilhas' : `Ver todas as trilhas (${trilhas.length})`}
+            icon={expanded ? ChevronUp : ChevronDown}
+            iconPosition="right"
             onClick={() => setExpanded(!expanded)}
-            className="gap-sm"
-          >
-            {expanded ? 'Ver menos trilhas' : `Ver todas as trilhas (${trilhas.length})`}
-            {expanded ? <ChevronUp size={ICON_SIZES.md} /> : <ChevronDown size={ICON_SIZES.md} />}
-          </Button>
+          />
         </div>
       )}
     </SectionContainer>
