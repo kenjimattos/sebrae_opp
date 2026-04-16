@@ -32,7 +32,7 @@ const sizeStyles: Record<
 > = {
   sm: {
     shell: 'h-[24px] pl-sm gap-[12px]',
-    typo: 'typo-button-sm',
+    typo: 'typo-button-secondary-sm',
     shellBg: '',
     circle: 'w-[24px] h-[24px]',
     circleBg: 'bg-surface-secondary',
@@ -40,17 +40,17 @@ const sizeStyles: Record<
   },
   md: {
     shell: 'h-[40px] pl-sm gap-[12px]',
-    typo: 'typo-button-sm',
+    typo: 'typo-button-secondary',
     shellBg: '',
     circle: 'w-[24px] h-[24px]',
     circleBg: 'bg-surface-secondary',
     iconSize: 'xs',
   },
   lg: {
-    shell: 'h-[64px] w-[340px] pl-md pr-xs py-xs gap-md',
+    shell: 'pl-md pr-xs py-xs gap-md',
     typo: 'typo-button',
-    shellBg: 'bg-surface-secondary',
-    circle: 'w-[48px] h-[48px]',
+    shellBg: 'bg-accent',
+    circle: 'w-[40px] h-[40px]',
     circleBg: 'bg-surface',
     iconSize: 'lg',
   },
