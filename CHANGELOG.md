@@ -20,6 +20,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - Dropdown: refatorado para consumir `useDropdownState` + `DropdownMenu`; trigger hugs content (sem `w-full`)
 - SectionPanorama: removido `className="w-[240px]"` do Dropdown — menu agora auto-sizes pela opção mais larga
 - CitySelector: refatorado para consumir `useDropdownState` + `DropdownMenu` — dedupe da lista vs Dropdown, comportamento idêntico
+- Pasta `src/components/ui/buttons/` criada; `Button.tsx` e `PillButton.tsx` movidos para lá (agrupa variações de botão separadas dos primitivos de layout)
 
 ### Fixed
 - EconomicsCard e ResourcesCard: removida largura fixa dos cards; layout controlado pelo pai via `.grid-5`

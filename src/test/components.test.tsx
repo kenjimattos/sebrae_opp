@@ -33,8 +33,8 @@ import User from '@/components/User'
 import CitySelector from '@/components/CitySelector'
 
 // UI primitives
-import Button from '@/components/ui/Button'
-import PillButton from '@/components/ui/PillButton'
+import Button from '@/components/ui/buttons/Button'
+import PillButton from '@/components/ui/buttons/PillButton'
 import Dropdown from '@/components/ui/Dropdown'
 import SectionCard from '@/components/ui/SectionCard'
 import SectionContainer from '@/components/ui/SectionContainer'

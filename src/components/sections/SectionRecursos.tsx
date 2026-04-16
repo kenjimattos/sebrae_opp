@@ -6,7 +6,7 @@ import SectionCard from '@/components/ui/SectionCard'
 import SectionHeader from '@/components/SectionHeader'
 import TitleSubtitle from '@/components/TitleSubtitle'
 import ResourcesCard from '@/components/resources/ResourcesCard'
-import PillButton from '@/components/ui/PillButton'
+import PillButton from '@/components/ui/buttons/PillButton'
 import { sectionContent } from '@/data/sections'
 import { DATAPEDIA_URL, resourceCards, recursosContent } from '@/data/recursos'
 

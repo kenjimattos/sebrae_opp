@@ -1,6 +1,6 @@
 // Figma: Formulador/Card (296:8)
 
-import PillButton from '@/components/ui/PillButton'
+import PillButton from '@/components/ui/buttons/PillButton'
 
 interface FormuladorCardProps {
   titulo: string

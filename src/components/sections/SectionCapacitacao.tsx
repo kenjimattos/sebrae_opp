@@ -6,7 +6,7 @@ import { ICON_SIZES } from '@/constants/icons'
 import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/SectionHeader'
 import CoursesCard from '@/components/courses/CoursesCard'
-import Button from '@/components/ui/Button'
+import Button from '@/components/ui/buttons/Button'
 import { sectionContent } from '@/data/sections'
 import { trilhas } from '@/data/capacitacao'
 

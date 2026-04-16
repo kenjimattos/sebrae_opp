@@ -4,7 +4,7 @@
 import SectionCard from '@/components/ui/SectionCard'
 import TitleSubtitle from '@/components/TitleSubtitle'
 import CoursesCardRow from '@/components/courses/CoursesCardRow'
-import PillButton from '@/components/ui/PillButton'
+import PillButton from '@/components/ui/buttons/PillButton'
 import { ctaLabels } from '@/data/labels'
 
 interface Curso {

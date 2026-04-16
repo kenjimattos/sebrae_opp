@@ -2,7 +2,7 @@
 
 import SectionContainer from '@/components/ui/SectionContainer'
 import SectionCard from '@/components/ui/SectionCard'
-import Button from '@/components/ui/Button'
+import Button from '@/components/ui/buttons/Button'
 import { sectionContent } from '@/data/sections'
 import { aiAssistantPlaceholder, aiActionButtons } from '@/data/ai-assistant'
 
