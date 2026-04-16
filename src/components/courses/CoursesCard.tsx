@@ -42,7 +42,7 @@ export default function CoursesCard({ title, description, cursos, className = ''
 
       {/* CTA */}
       <div className="flex items-start justify-end w-full">
-        <PillButton label={ctaLabels.verTrilhaCompleta} href="#" className="w-[325px]" />
+        <PillButton label={ctaLabels.verTrilhaCompleta} href="#" />
       </div>
     </Card>
   )
