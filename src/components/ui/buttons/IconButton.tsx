@@ -7,8 +7,7 @@
 //
 // aria-label é obrigatório (icon-only buttons precisam de rótulo textual).
 
-import type { LucideIcon } from '@/components/icons'
-import { ICON_SIZES, type IconSize } from '@/constants/icons'
+import { iconSizes, type IconSize, type LucideIcon } from '@/components/icons'
 
 interface IconButtonProps {
   icon: LucideIcon
@@ -55,7 +54,7 @@ export default function IconButton({
       disabled={disabled}
       className={`inline-flex items-center justify-center shrink-0 radius-full cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${variantStyles[variant]} ${s.dimensions} ${className}`}
     >
-      <Icon size={ICON_SIZES[s.iconSize]} />
+      <Icon size={iconSizes[s.iconSize]} />
     </button>
   )
 }

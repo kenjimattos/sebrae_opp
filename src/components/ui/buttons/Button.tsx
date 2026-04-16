@@ -4,8 +4,7 @@
 // Button always renders a <button>. For icon-only buttons use IconButton.
 // Icon is optional; when provided, it sits left or right of the label (default 'right').
 
-import type { LucideIcon } from '@/components/icons'
-import { ICON_SIZES, type IconSize } from '@/constants/icons'
+import { iconSizes, type IconSize, type LucideIcon } from '@/components/icons'
 
 interface ButtonProps {
   label: string
@@ -46,7 +45,7 @@ export default function Button({
   className = '',
 }: ButtonProps) {
   const s = sizeStyles[size]
-  const iconEl = Icon ? <Icon size={ICON_SIZES[s.iconSize]} className="shrink-0" /> : null
+  const iconEl = Icon ? <Icon size={iconSizes[s.iconSize]} className="shrink-0" /> : null
   return (
     <button
       type="button"

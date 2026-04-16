@@ -10,8 +10,7 @@
 // - md: h-[40px], shell transparente, círculo 24×24 bg-surface-secondary, seta 12px
 // - lg: h-[64px] w-[340px], shell bg-surface-secondary, círculo 48×48 bg-surface, seta 24px
 
-import { ArrowRight } from '@/components/icons'
-import { ICON_SIZES, type IconSize } from '@/constants/icons'
+import { ArrowRight, iconSizes, type IconSize } from '@/components/icons'
 
 interface PillButtonProps {
   label: string
@@ -76,7 +75,7 @@ export default function PillButton({
         aria-hidden
         className={`flex items-center justify-center shrink-0 radius-full ${s.circle} ${s.circleBg}`}
       >
-        <ArrowRight size={ICON_SIZES[s.iconSize]} />
+        <ArrowRight size={iconSizes[s.iconSize]} />
       </span>
     </a>
   )

@@ -1,8 +1,7 @@
 // Tailwind pure — no Figma equivalent
 // Select estilizado: button trigger + DropdownMenu controlados por useDropdownState
 
-import { ChevronDown } from '@/components/icons'
-import { ICON_SIZES } from '@/constants/icons'
+import { ChevronDown, iconSizes } from '@/components/icons'
 import DropdownMenu, { type DropdownMenuOption } from '@/components/ui/DropdownMenu'
 import { useDropdownState } from '@/components/ui/useDropdownState'
 
@@ -26,7 +25,7 @@ export default function Dropdown({ options, value, onChange, className = '' }: D
       >
         {selected?.label ?? 'Selecionar'}
         <ChevronDown
-          size={ICON_SIZES.sm}
+          size={iconSizes.sm}
           className={`shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
         />
       </button>
