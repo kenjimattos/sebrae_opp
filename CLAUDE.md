@@ -143,7 +143,7 @@ src/
 │       │   ├── IconButton.tsx         # Circular icon-only + 4 variants × 3 sizes + aria-label obrigatório
 │       │   └── PillButton.tsx         # CTA pill + 3 sizes (sm/md/lg) + label + seta em círculo
 │       ├── SectionContainer.tsx       # Wrapper 1440px + padding lateral
-│       ├── SectionCard.tsx            # Card-surface wrapper com padding configurável
+│       ├── Card.tsx                   # Primitivo unificado: surface (primary/secondary/success/warning/alert) + padding + bordered + radius
 │       ├── SectionHeader.tsx          # Figma: SectionHeader (set 327:1963)
 │       ├── TitleSubtitle.tsx          # Figma: TitleSubtitle (set 405:1388)
 │       ├── InsetBar.tsx               # Barra encaixada no topo de SectionCard
@@ -238,8 +238,8 @@ src/
 | Componente | Status | Notas |
 |---|---|---|
 | `ui/SectionContainer.tsx` | ✅ | Wrapper 1440px + margin |
-| `ui/SectionCard.tsx` | ✅ | Card-surface wrapper com padding configurável |
-| `ui/InsetBar.tsx` | ✅ | Barra encaixada no topo de SectionCard |
+| `ui/Card.tsx` | ✅ | Primitivo unificado: surface (primary/secondary/success/warning/alert) + padding (all ou {x,y}) + bordered + radius |
+| `ui/InsetBar.tsx` | ✅ | Barra encaixada no topo de Card |
 | `ui/Grid.tsx` | ✅ | Grid configurável |
 | `ui/buttons/Button.tsx` | ✅ | primary/secondary/tertiary/ghost + sm/md/lg + label + icon opcional |
 | `ui/buttons/IconButton.tsx` | ✅ | Circular icon-only + 4 variants × 3 sizes |

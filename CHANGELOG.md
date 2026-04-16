@@ -4,15 +4,24 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Added
+
+- `ui/Card` — primitivo unificado para superfície de card. Variantes tipadas: `surface` (primary/secondary/success/warning/alert), `padding` (all ou `{x, y}`), `bordered`, `radius` (sm/md), `as` (div/section). Consolida 4 padrões que estavam espalhados em 9 cards (`.card-surface` inline, `bg-[var]+rounded-[var]` inline, variantes de status hardcoded no `RisksCard`, e o wrapper `SectionCard`).
+- `.card-surface-secondary` em `index.css` — espelha `.card-surface` para surface cinza (background + border-radius num único utility).
+
 ### Changed
 
+- 9 cards migrados para `<Card>`: `AgendaCard`, `AgendaStats`, `EconomicsCard`, `EconomicsAnalysis`, `ResourcesCard`, `RisksCard`, `CaseStudiesCard`, `FormuladorCard`, `CoursesCard`. Bloco do `SectionAIAssistant` e wrappers de `SectionPanorama` / `SectionRecursos` também passam a usar `Card`.
+- `RisksCard`: mapa `tipoStyles` local (bg+border por variante) eliminado — agora delegado ao `<Card surface={tipo} bordered>`.
+- `CoursesCard`: padding `px-xl py-2xl` (que ficava escondido no map interno do antigo `SectionCard`) agora explícito como `padding={{x: 'xl', y: '2xl'}}` no call-site.
 - `TitleSubtitle`: prop `content` renomeada para `subtitle` — mais descritiva. Consumidores atualizados: `CaseStudiesCard`, `CoursesCard`, `SectionRecursos`, `FormuladorCard`.
-- `SectionCard`: aplica `min-h-[35dvh]` por padrão. Overrides `padding="xl"` removidos de `CoursesCard` e `SectionRecursos` — agora usam o default `lg`.
-- `FormuladorCard`: reescrito para usar `SectionCard` + `TitleSubtitle` no lugar de markup inline.
-- `EconomicsAnalysis`: wrapper `<div>` → `<section>` (HTML semântico).
+- `FormuladorCard`: reescrito para usar `Card` + `TitleSubtitle` no lugar de markup inline.
+- `EconomicsAnalysis`: wrapper `<div>` → `<section>` (HTML semântico), preservado via nova prop `as` do `Card`.
 
 ### Removed
 
+- `ui/SectionCard` — substituído pelo novo `ui/Card`.
+- Borda invisível do `EconomicsCard` (`border` na mesma cor do background — artefato, não feature).
 - Card "Modelos de projeto" do formulador — resta apenas o card do assistente IA.
 
 ## [0.2.0] — 2026-04-16
