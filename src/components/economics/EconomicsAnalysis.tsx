@@ -10,7 +10,7 @@ interface EconomicsAnalysisProps {
 
 export default function EconomicsAnalysis({ analise = defaultAnalise, className = '' }: EconomicsAnalysisProps) {
   return (
-    <div
+    <section
       className={`card-surface px-xl py-md flex flex-col gap-xs w-full ${className}`}
     >
       <h4 className="typo-body-bold">
@@ -19,6 +19,6 @@ export default function EconomicsAnalysis({ analise = defaultAnalise, className 
       <p className="typo-body">
         {analise}
       </p>
-    </div>
+    </section>
   )
 }
