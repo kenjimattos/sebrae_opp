@@ -2,7 +2,7 @@
 // Emendas parlamentares + mapa Datapedia + editais e programas
 
 import SectionContainer from '@/components/ui/SectionContainer'
-import SectionCard from '@/components/ui/SectionCard'
+import Card from '@/components/ui/Card'
 import SectionHeader from '@/components/ui/SectionHeader'
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import ResourcesCard from '@/components/resources/ResourcesCard'
@@ -18,7 +18,7 @@ export default function SectionRecursos() {
       {/* Cards agrupados com gap menor */}
       <div className="flex flex-col gap-md">
       {/* Container principal branco */}
-      <SectionCard className="flex flex-col gap-3xl items-center">
+      <Card as="section" padding="lg" className="flex flex-col gap-3xl items-center min-h-[35dvh]">
           {/* Bloco 1 — Emendas parlamentares */}
           <div className="flex flex-col gap-xl items-start w-full">
             <TitleSubtitle
@@ -71,17 +71,17 @@ export default function SectionRecursos() {
           <div className="flex justify-end w-full">
             <PillButton label={recursosContent.buttons.explorarEmendas} href={DATAPEDIA_URL} />
           </div>
-        </SectionCard>
+        </Card>
 
         {/* Bloco 3 — Editais e programas */}
-        <SectionCard className="flex items-center gap-2xl">
+        <Card as="section" padding="lg" className="flex items-center gap-2xl min-h-[35dvh]">
           <TitleSubtitle
             title={recursosContent.editais.title}
             subtitle={recursosContent.editais.description}
             className="flex-1"
           />
           <PillButton label={recursosContent.buttons.verOportunidades} href="#" className="shrink-0" />
-        </SectionCard>
+        </Card>
       </div>
 
     </SectionContainer>

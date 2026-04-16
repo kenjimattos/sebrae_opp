@@ -48,7 +48,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
 <div
-  class="flex-between card-surface px-lg py-md w-full "
+  class="card-surface px-lg py-md flex-between w-full "
 >
   <div
     class="flex-center gap-md"
@@ -122,9 +122,19 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
 </div>
 `;
 
+exports[`Snapshot tests — CSS refactor safety > Card 1`] = `
+<div
+  class="card-surface p-md"
+>
+  <div>
+    Content
+  </div>
+</div>
+`;
+
 exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
 <div
-  class="flex-col-start justify-between card-surface border border-solid border-[var(--semantic-surface-primary)] p-md h-[172px] "
+  class="card-surface p-md flex-col-start justify-between h-[172px] "
 >
   <div
     class="flex items-center gap-sm w-full"
@@ -421,7 +431,7 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > ResourcesCard 1`] = `
 <div
-  class="flex flex-col gap-sm bg-[var(--semantic-surface-secondary)] rounded-[var(--radius-sm)] p-md justify-between "
+  class="card-surface-secondary p-md flex flex-col gap-sm justify-between "
 >
   <span
     class="typo-body"
@@ -438,7 +448,7 @@ exports[`Snapshot tests — CSS refactor safety > ResourcesCard 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > RisksCard 1`] = `
 <div
-  class="flex flex-col gap-md border border-solid radius-sm p-lg bg-[var(--semantic-alert-surface)] border-[var(--semantic-alert)] "
+  class="status-alert-bg radius-sm p-lg border border-solid border-[var(--semantic-alert)] flex flex-col gap-md "
 >
   <div
     class="flex items-start gap-md w-full"
@@ -470,16 +480,6 @@ exports[`Snapshot tests — CSS refactor safety > RisksCard 1`] = `
     Contexto de risco
   </p>
 </div>
-`;
-
-exports[`Snapshot tests — CSS refactor safety > SectionCard 1`] = `
-<section
-  class="card-surface p-md  min-h-[35dvh]"
->
-  <div>
-    Content
-  </div>
-</section>
 `;
 
 exports[`Snapshot tests — CSS refactor safety > SectionContainer 1`] = `

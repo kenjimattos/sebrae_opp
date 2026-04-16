@@ -1,7 +1,7 @@
 // Figma: Courses/Card (298:8)
 // Trail card with title, description, course rows, and CTA button
 
-import SectionCard from '@/components/ui/SectionCard'
+import Card from '@/components/ui/Card'
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import CoursesCardRow from '@/components/courses/CoursesCardRow'
 import PillButton from '@/components/ui/buttons/PillButton'
@@ -21,7 +21,11 @@ interface CoursesCardProps {
 
 export default function CoursesCard({ title, description, cursos, className = '' }: CoursesCardProps) {
   return (
-    <SectionCard className={`flex flex-col gap-lg items-start h-full ${className}`}>
+    <Card
+      as="section"
+      padding={{ x: 'xl', y: '2xl' }}
+      className={`flex flex-col gap-lg items-start h-full min-h-[35dvh] ${className}`}
+    >
       <TitleSubtitle title={title} subtitle={description} size="sm" />
 
       {/* Course rows — flex-1 pushes CTA to the bottom */}
@@ -40,6 +44,6 @@ export default function CoursesCard({ title, description, cursos, className = ''
       <div className="flex items-start justify-end w-full">
         <PillButton label={ctaLabels.verTrilhaCompleta} href="#" className="w-[325px]" />
       </div>
-    </SectionCard>
+    </Card>
   )
 }

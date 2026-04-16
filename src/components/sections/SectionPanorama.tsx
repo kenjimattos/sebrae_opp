@@ -3,7 +3,7 @@
 
 import { useState } from 'react'
 import SectionContainer from '@/components/ui/SectionContainer'
-import SectionCard from '@/components/ui/SectionCard'
+import Card from '@/components/ui/Card'
 import SectionHeader from '@/components/ui/SectionHeader'
 import Dropdown from '@/components/ui/Dropdown'
 import InsetBar from '@/components/ui/InsetBar'
@@ -30,7 +30,7 @@ export default function SectionPanorama() {
         description={sectionContent.panorama.description}
       />
 
-      <SectionCard className="flex flex-col gap-md">
+      <Card as="section" padding="lg" className="flex flex-col gap-md min-h-[35dvh]">
         <InsetBar label={panoramaLabels.indicadorNoMapa}>
           <Dropdown
             options={dropdownOptions}
@@ -55,7 +55,7 @@ export default function SectionPanorama() {
           selectedId={municipio.id}
           indicador={indicador}
         />
-      </SectionCard>
+      </Card>
     </SectionContainer>
   )
 }

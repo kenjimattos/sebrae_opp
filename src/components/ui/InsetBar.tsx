@@ -1,5 +1,5 @@
 // Tailwind pure — no Figma equivalent
-// Barra encaixada no topo de um SectionCard via -mt negativo
+// Barra encaixada no topo de um Card via -mt negativo
 // Aceita label + controle (dropdown, tabs, etc.)
 
 interface InsetBarProps {

@@ -1,7 +1,7 @@
 // Figma: Section/AIAssistant (390:635)
 
 import SectionContainer from '@/components/ui/SectionContainer'
-import SectionCard from '@/components/ui/SectionCard'
+import Card from '@/components/ui/Card'
 import Button from '@/components/ui/buttons/Button'
 import { sectionContent } from '@/data/sections'
 import { aiAssistantPlaceholder, aiActionButtons } from '@/data/ai-assistant'
@@ -18,7 +18,12 @@ export default function SectionAIAssistant() {
         </p>
       </div>
 
-      <SectionCard padding="lg" className="flex flex-col gap-md radius-md w-full max-w-[800px]">
+      <Card
+        as="section"
+        padding="lg"
+        radius="md"
+        className="flex flex-col gap-md w-full max-w-[800px] min-h-[35dvh]"
+      >
         <div className="bg-surface-secondary radius-sm p-md">
           <p className="typo-body text-inactive">
             {aiAssistantPlaceholder}
@@ -30,7 +35,7 @@ export default function SectionAIAssistant() {
             <Button key={btn.label} variant={btn.variant} label={btn.label} />
           ))}
         </div>
-      </SectionCard>
+      </Card>
     </SectionContainer>
   )
 }

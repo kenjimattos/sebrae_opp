@@ -36,7 +36,7 @@ import CitySelector from '@/components/layout/CitySelector'
 import Button from '@/components/ui/buttons/Button'
 import PillButton from '@/components/ui/buttons/PillButton'
 import Dropdown from '@/components/ui/Dropdown'
-import SectionCard from '@/components/ui/SectionCard'
+import Card from '@/components/ui/Card'
 import SectionContainer from '@/components/ui/SectionContainer'
 
 // Formulador
@@ -209,8 +209,8 @@ describe('UI primitives', () => {
     expect(container).toBeTruthy()
   })
 
-  it('renders SectionCard', () => {
-    const { container } = render(<SectionCard>Content</SectionCard>)
+  it('renders Card', () => {
+    const { container } = render(<Card>Content</Card>)
     expect(container).toBeTruthy()
   })
 

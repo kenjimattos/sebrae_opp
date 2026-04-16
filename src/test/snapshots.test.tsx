@@ -13,7 +13,7 @@ import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import SectionContainer from '@/components/ui/SectionContainer'
-import SectionCard from '@/components/ui/SectionCard'
+import Card from '@/components/ui/Card'
 import ResourcesCard from '@/components/resources/ResourcesCard'
 import AgendaIndicator from '@/components/agenda/AgendaIndicator'
 
@@ -103,11 +103,11 @@ describe('Snapshot tests — CSS refactor safety', () => {
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  it('SectionCard', () => {
+  it('Card', () => {
     const { container } = render(
-      <SectionCard padding="md">
+      <Card padding="md">
         <div>Content</div>
-      </SectionCard>,
+      </Card>,
     )
     expect(container.firstChild).toMatchSnapshot()
   })
