@@ -3,6 +3,7 @@
 // Shows: indicator label + value, risk description, alert label, context
 
 import type { StatusType } from '@/types/indicadores'
+import Card from '@/components/ui/Card'
 
 interface RisksCardProps {
   label: string
@@ -14,17 +15,9 @@ interface RisksCardProps {
   className?: string
 }
 
-const tipoStyles: Record<'alert' | 'warning', { bg: string; border: string; valueColor: string }> = {
-  alert: {
-    bg: 'bg-[var(--semantic-alert-surface)]',
-    border: 'border-[var(--semantic-alert)]',
-    valueColor: 'text-[color:var(--semantic-alert)]',
-  },
-  warning: {
-    bg: 'bg-[var(--semantic-warning-surface)]',
-    border: 'border-[var(--semantic-warning)]',
-    valueColor: 'text-[color:var(--semantic-warning)]',
-  },
+const valueColorClass: Record<'alert' | 'warning', string> = {
+  alert: 'text-[color:var(--semantic-alert)]',
+  warning: 'text-[color:var(--semantic-warning)]',
 }
 
 export default function RisksCard({
@@ -36,19 +29,22 @@ export default function RisksCard({
   contexto,
   className = '',
 }: RisksCardProps) {
+  // 'success' cannot be a risk — coerce to 'warning' defensively
   const effectiveTipo = tipo === 'success' ? 'warning' : tipo
-  const styles = tipoStyles[effectiveTipo]
 
   return (
-    <div
-      className={`flex flex-col gap-md border border-solid radius-sm p-lg ${styles.bg} ${styles.border} ${className}`}
+    <Card
+      surface={effectiveTipo}
+      bordered
+      padding="lg"
+      className={`flex flex-col gap-md ${className}`}
     >
       {/* Header: label + value */}
       <div className="flex items-start gap-md w-full">
         <span className="flex-1 typo-body-bold">
           {label}
         </span>
-        <span className={`shrink-0 typo-display-sm ${styles.valueColor}`}>
+        <span className={`shrink-0 typo-display-sm ${valueColorClass[effectiveTipo]}`}>
           {valor}
         </span>
       </div>
@@ -67,6 +63,6 @@ export default function RisksCard({
       <p className="typo-body">
         {contexto}
       </p>
-    </div>
+    </Card>
   )
 }
