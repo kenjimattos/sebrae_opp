@@ -474,7 +474,7 @@ exports[`Snapshot tests — CSS refactor safety > RisksCard 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > SectionCard 1`] = `
 <section
-  class="card-surface p-md "
+  class="card-surface p-md  min-h-[35dvh]"
 >
   <div>
     Content
