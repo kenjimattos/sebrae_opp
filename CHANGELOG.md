@@ -7,14 +7,15 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ### Added
 - Design tokens: `--icon-size-xs/sm/md/lg/xl` em `index.css` e constantes `ICON_SIZES` em `src/constants/icons.ts` — paridade com spacing/radius/typography para uso em props `size={...}` de ícones
 - `components/icons/index.ts`: novos re-exports `ArrowLeft`, `ChevronUp` e tipo `LucideIcon` — cobertura completa dos ícones usados no projeto
+- `useDropdownState` hook (`src/components/ui/useDropdownState.ts`): open/setOpen/ref + listener click-outside extraído de Dropdown — compartilhado com CitySelector
+- InsetBar: novo componente de design system (`ui/InsetBar.tsx`) — barra encaixada no topo de SectionCard com label + controle
+- PanoramaMediaInfo: exibe valor do município selecionado (com destaque accent) e maior valor do estado, além da média estadual
+- Design system: classe `.grid-5` em `index.css` (5 colunas, gap-xs), seguindo padrão de `.grid-2` e `.grid-3`
 
 ### Changed
 - Todos os imports de `lucide-react` migrados para `@/components/icons` (9 arquivos) — único ponto de entrada para ícones
 - Props `size={N}` hardcoded substituídas por `ICON_SIZES.xs/sm/md/lg/xl` em todos os consumidores (CitySelector, CaseStudiesCard, CoursesCardRow, Dropdown, EconomicsCard, PillButton, ScrollArrowButton, SectionCapacitacao)
 - ESLint: regra `no-restricted-imports` bloqueia imports de `lucide-react` fora de `components/icons/index.ts` — previne regressões
-- InsetBar: novo componente de design system (`ui/InsetBar.tsx`) — barra encaixada no topo de SectionCard com label + controle
-- PanoramaMediaInfo: exibe valor do município selecionado (com destaque accent) e maior valor do estado, além da média estadual
-- Design system: classe `.grid-5` em `index.css` (5 colunas, gap-xs), seguindo padrão de `.grid-2` e `.grid-3`
 
 ### Fixed
 - EconomicsCard e ResourcesCard: removida largura fixa dos cards; layout controlado pelo pai via `.grid-5`
