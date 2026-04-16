@@ -27,10 +27,10 @@ import CoursesCardRow from '@/components/courses/CoursesCardRow'
 import CaseStudiesCard from '@/components/case-studies/CaseStudiesCard'
 
 // Shared
-import SectionHeader from '@/components/SectionHeader'
-import TitleSubtitle from '@/components/TitleSubtitle'
-import User from '@/components/User'
-import CitySelector from '@/components/CitySelector'
+import SectionHeader from '@/components/ui/SectionHeader'
+import TitleSubtitle from '@/components/ui/TitleSubtitle'
+import User from '@/components/layout/User'
+import CitySelector from '@/components/layout/CitySelector'
 
 // UI primitives
 import Button from '@/components/ui/buttons/Button'

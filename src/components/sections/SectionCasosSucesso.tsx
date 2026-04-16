@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import { ArrowLeft, ArrowRight } from '@/components/icons'
 import SectionContainer from '@/components/ui/SectionContainer'
-import SectionHeader from '@/components/SectionHeader'
+import SectionHeader from '@/components/ui/SectionHeader'
 import CaseStudiesCard from '@/components/case-studies/CaseStudiesCard'
 import IconButton from '@/components/ui/buttons/IconButton'
 import { sectionContent } from '@/data/sections'

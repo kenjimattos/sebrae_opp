@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { ChevronDown, ChevronUp } from '@/components/icons'
 import SectionContainer from '@/components/ui/SectionContainer'
-import SectionHeader from '@/components/SectionHeader'
+import SectionHeader from '@/components/ui/SectionHeader'
 import CoursesCard from '@/components/courses/CoursesCard'
 import Button from '@/components/ui/buttons/Button'
 import { sectionContent } from '@/data/sections'

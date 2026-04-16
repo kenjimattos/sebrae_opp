@@ -3,8 +3,8 @@
 
 import SectionContainer from '@/components/ui/SectionContainer'
 import SectionCard from '@/components/ui/SectionCard'
-import SectionHeader from '@/components/SectionHeader'
-import TitleSubtitle from '@/components/TitleSubtitle'
+import SectionHeader from '@/components/ui/SectionHeader'
+import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import ResourcesCard from '@/components/resources/ResourcesCard'
 import PillButton from '@/components/ui/buttons/PillButton'
 import { sectionContent } from '@/data/sections'

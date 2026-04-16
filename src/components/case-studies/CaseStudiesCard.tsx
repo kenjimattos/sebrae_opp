@@ -1,6 +1,6 @@
 // Figma: CaseStudies/Card (288:8)
 
-import TitleSubtitle from '@/components/TitleSubtitle'
+import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import PillButton from '@/components/ui/buttons/PillButton'
 import { ctaLabels } from '@/data/labels'
 import type { CasoSucesso } from '@/data/casos-sucesso'

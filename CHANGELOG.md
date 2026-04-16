@@ -21,6 +21,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - SectionPanorama: removido `className="w-[240px]"` do Dropdown — menu agora auto-sizes pela opção mais larga
 - CitySelector: refatorado para consumir `useDropdownState` + `DropdownMenu` — dedupe da lista vs Dropdown, comportamento idêntico
 - Pasta `src/components/ui/buttons/` criada; `Button.tsx` e `PillButton.tsx` movidos para lá (agrupa variações de botão separadas dos primitivos de layout)
+- Reorganização de primitivos da raiz `src/components/`: `ParaibaMap` → `map/`, `CitySelector` + `User` → `layout/`, `TitleSubtitle` + `SectionHeader` → `ui/`. Raiz fica sem arquivos órfãos; cada primitivo vive no seu domínio.
 - `Button`: API nova — `label: string` (obrigatório) substitui `children`, nova variant `ghost`, props opcionais `icon: LucideIcon` + `iconPosition: 'left' | 'right'` (default `'right'`). Tamanho do ícone derivado automaticamente do `size` do botão. Callsites migrados (SectionAIAssistant, SectionCapacitacao)
 - `IconButton` componente (`src/components/ui/buttons/IconButton.tsx`): botão circular icon-only com 4 variants × 3 sizes (sm 24×24, md 40×40, lg 48×48). `aria-label` obrigatório. Reutilizado em ScrollArrowButton (removido) e dentro de PillButton
 

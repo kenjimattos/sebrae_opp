@@ -1,8 +1,8 @@
 // Figma: Header (405:2044)
 // Sticky header: Sebrae logo (scroll-to-top) | CitySelector + nav links (scroll-spy) | User avatar
 
-import CitySelector from '@/components/CitySelector'
-import User from '@/components/User'
+import CitySelector from '@/components/layout/CitySelector'
+import User from '@/components/layout/User'
 import { navLinks } from '@/data/layout'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { useMemo } from 'react'

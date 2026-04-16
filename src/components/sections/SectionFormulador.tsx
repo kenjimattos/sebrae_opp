@@ -1,7 +1,7 @@
 // Figma: Section/Formulador (390:635)
 
 import SectionContainer from '@/components/ui/SectionContainer'
-import SectionHeader from '@/components/SectionHeader'
+import SectionHeader from '@/components/ui/SectionHeader'
 import FormuladorCard from '@/components/formulador/FormuladorCard'
 import { sectionContent } from '@/data/sections'
 import { formuladorCards } from '@/data/formulador'

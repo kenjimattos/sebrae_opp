@@ -3,7 +3,7 @@
 
 import type { Agenda } from '@/types/indicadores'
 import SectionContainer from '@/components/ui/SectionContainer'
-import SectionHeader from '@/components/SectionHeader'
+import SectionHeader from '@/components/ui/SectionHeader'
 import RisksCard from '@/components/risks/RisksCard'
 import { sectionContent } from '@/data/sections'
 import { riscosContexto, defaultRiscoContexto } from '@/data/riscos-contexto'
