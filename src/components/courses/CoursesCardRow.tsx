@@ -1,8 +1,7 @@
 // Figma: Courses/CardRow (297:8)
 // Row inside a course trail card — title (uppercase) + hours + "Ver curso" link
 
-import { ArrowRight } from '@/components/icons'
-import { ICON_SIZES } from '@/constants/icons'
+import PillButton from '@/components/ui/buttons/PillButton'
 import { ctaLabels } from '@/data/labels'
 
 interface CoursesCardRowProps {
@@ -27,14 +26,7 @@ export default function CoursesCardRow({ title, subtitle, className = '' }: Cour
       </div>
 
       {/* Ver curso button */}
-      <div className="flex items-center gap-[12px] h-[38px] pl-sm radius-full shrink-0">
-        <span className="typo-button-sm">
-          {ctaLabels.verCurso}
-        </span>
-        <span className="flex items-center justify-center w-[24px] h-[24px] bg-surface-secondary radius-full shrink-0">
-          <ArrowRight size={ICON_SIZES.xs} />
-        </span>
-      </div>
+      <PillButton size="md" label={ctaLabels.verCurso} href="#" />
     </div>
   )
 }

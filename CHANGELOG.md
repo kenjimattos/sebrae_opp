@@ -31,6 +31,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Fixed
 - CaseStudiesCard CTA: `<div>` estilizado (não clicável, não focável) substituído por `PillButton size="sm"` — corrige bug de acessibilidade
+- CoursesCardRow CTA: idem — `<div>` substituído por `PillButton size="md"`
 - EconomicsCard e ResourcesCard: removida largura fixa dos cards; layout controlado pelo pai via `.grid-5`
 - SectionBaseEconomica e SectionRecursos: trocado `flex flex-wrap` com calc por `grid-5`
 - ParaibaMap: removido `z-[1000]` desnecessário do overlay de ativação do mapa
