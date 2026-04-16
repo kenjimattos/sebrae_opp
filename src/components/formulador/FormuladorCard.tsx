@@ -23,7 +23,7 @@ export default function FormuladorCard({
     <Card
       as="section"
       padding="lg"
-      className={`flex flex-col items-end gap-lg min-h-[35dvh] ${className}`}
+      className={`flex flex-col items-end gap-2xl ${className}`}
     >
       <TitleSubtitle
         title={titulo}

@@ -18,7 +18,7 @@ export default function SectionRecursos() {
       {/* Cards agrupados com gap menor */}
       <div className="flex flex-col gap-md">
       {/* Container principal branco */}
-      <Card as="section" padding="lg" className="flex flex-col gap-3xl items-center min-h-[35dvh]">
+      <Card as="section" padding="lg" className="flex flex-col gap-3xl items-center">
           {/* Bloco 1 — Emendas parlamentares */}
           <div className="flex flex-col gap-xl items-start w-full">
             <TitleSubtitle
@@ -74,7 +74,7 @@ export default function SectionRecursos() {
         </Card>
 
         {/* Bloco 3 — Editais e programas */}
-        <Card as="section" padding="lg" className="flex items-center gap-2xl min-h-[35dvh]">
+        <Card as="section" padding="lg" className="flex flex-col items-end gap-2xl">
           <TitleSubtitle
             title={recursosContent.editais.title}
             subtitle={recursosContent.editais.description}

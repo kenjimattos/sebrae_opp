@@ -14,7 +14,6 @@ export default function SectionFormulador() {
         description={sectionContent.formulador.description}
       />
 
-      {/* Grid 2 cards */}
       <div className="flex gap-md items-start w-full">
         {formuladorCards.map((card) => (
           <FormuladorCard
