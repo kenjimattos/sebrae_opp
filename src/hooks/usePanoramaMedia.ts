@@ -13,6 +13,7 @@ interface MediaInfo {
   count: number
   municipioFormatted: string | null
   maiorFormatted: string
+  maiorMunicipioNome: string
 }
 
 function formatValue(value: number, exemplo: string): string {
@@ -58,6 +59,11 @@ export function usePanoramaMedia(indicador: IndicadorKey, municipioId: string): 
       ? formatValue(municipioEntry.valorNumerico, exemplo)
       : null
 
-    return { label, formatted, count: valores.length, municipioFormatted, maiorFormatted }
+    const maiorMunicipioNome = Object.values(municipiosMapData).find(data => {
+      const val = data.indicadores[indicador]?.valorNumerico
+      return val === maior
+    })?.nome ?? ''
+
+      return { label, formatted, count: valores.length, municipioFormatted, maiorFormatted, maiorMunicipioNome }
   }, [indicador, municipioId])
 }

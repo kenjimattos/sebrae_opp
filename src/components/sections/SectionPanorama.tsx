@@ -30,7 +30,7 @@ export default function SectionPanorama() {
         description={sectionContent.panorama.description}
       />
 
-      <Card as="section" padding="lg" className="flex flex-col gap-md min-h-[35dvh]">
+      <Card as="section" padding="lg" className="flex flex-col gap-lg min-h-[35dvh]">
         <InsetBar label={panoramaLabels.indicadorNoMapa}>
           <Dropdown
             options={dropdownOptions}
@@ -38,7 +38,7 @@ export default function SectionPanorama() {
             onChange={(v) => setIndicador(v as IndicadorKey)}
           />
         </InsetBar>
-
+        <section className="flex flex-col gap-sm">
         {mediaInfo && (
           <PanoramaMediaInfo
             count={mediaInfo.count}
@@ -46,6 +46,7 @@ export default function SectionPanorama() {
             municipioNome={municipio.nome}
             municipioFormatted={mediaInfo.municipioFormatted}
             maiorFormatted={mediaInfo.maiorFormatted}
+            maiorMunicipioNome={mediaInfo.maiorMunicipioNome}
           />
         )}
 
@@ -55,6 +56,7 @@ export default function SectionPanorama() {
           selectedId={municipio.id}
           indicador={indicador}
         />
+        </section>
       </Card>
     </SectionContainer>
   )

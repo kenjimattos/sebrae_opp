@@ -8,6 +8,7 @@ interface PanoramaMediaInfoProps {
   municipioNome: string
   municipioFormatted: string | null
   maiorFormatted: string
+  maiorMunicipioNome: string
 }
 
 export default function PanoramaMediaInfo({
@@ -16,33 +17,34 @@ export default function PanoramaMediaInfo({
   municipioNome,
   municipioFormatted,
   maiorFormatted,
+  maiorMunicipioNome
 }: PanoramaMediaInfoProps) {
   return (
     <div className="flex items-center gap-lg flex-wrap">
       {municipioFormatted && (
         <div className="flex-center gap-xs">
-          <span className="typo-body-sm text-inactive">
+          <span className="typo-body">
             {municipioNome}:
           </span>
-          <span className="typo-body-bold text-[color:var(--semantic-accent)]">
+          <span className="typo-body-bold">
             {municipioFormatted}
           </span>
         </div>
       )}
       <div className="flex-center gap-xs">
-        <span className="typo-body-sm text-inactive">
-          {panoramaLabels.mediaEstadual} ({count} municípios):
+        <span className="typo-body">
+          {panoramaLabels.mediaEstadual}:
         </span>
         <span className="typo-body-bold">
           {formatted}
         </span>
       </div>
       <div className="flex-center gap-xs">
-        <span className="typo-body-sm text-inactive">
+        <span className="typo-body">
           {panoramaLabels.maior}:
         </span>
         <span className="typo-body-bold">
-          {maiorFormatted}
+          {maiorFormatted} ({maiorMunicipioNome})
         </span>
       </div>
     </div>
