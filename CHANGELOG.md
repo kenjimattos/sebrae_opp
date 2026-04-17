@@ -16,6 +16,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - **`AIAssistant`** (`components/formulador/AIAssistant.tsx`) — sidebar direita do Formulador (`Card surface="secondary"`). Exibe descrição, exemplos com divider e lista de ações. Ações disparam `onAction(label)` — no-op por padrão.
 - **`FormCard`** (`components/formulador/FormCard.tsx`) — card central. Header título/subtítulo, slot para o form, footer com Anterior (oculto na etapa 1), "X/10 etapas" e Próxima/Finalizar (primary preto na última etapa).
 - **`formulador-ai.ts`** (`data/`) — conteúdo do AIAssistant por etapa. Placeholder v1: mesma descrição/exemplos/ações para todas; no futuro gerado por LLM.
+- **`FormuladorContext` + `FormuladorProvider` + `useFormulador`** (`hooks/`) — estado global do rascunho de projeto. Um rascunho por município (chave `formulador:${ibgeId}` em `localStorage`), hidratação no mount, persistência automática a cada mudança. Helpers `setSlice(key, value)`, `markVisited(slug)`, `reset()`. A troca de município recarrega o rascunho correspondente via render-phase state update (sem `useEffect` para evitar cascading renders).
+- **`types/formulador.ts`** — tipos de cada etapa (`IdentificacaoData`, `JustificativaData`, etc.) + `FormuladorState` + `EMPTY_FORMULADOR_STATE`.
 
 ## [0.5.1] — 2026-04-17
 
