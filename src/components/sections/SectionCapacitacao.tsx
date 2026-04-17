@@ -21,28 +21,28 @@ export default function SectionCapacitacao() {
 
       <section className="flex-col-start gap-md mb-lg">
         <section className="flex-col-start gap-md">
-        {visibleTrilhas.map((trilha) => (
-          <CoursesCard
-            key={trilha.title}
-            title={trilha.title}
-            description={trilha.description}
-            cursos={trilha.cursos}
-          />
-        ))}
+          {visibleTrilhas.map((trilha) => (
+            <CoursesCard
+              key={trilha.title}
+              title={trilha.title}
+              description={trilha.description}
+              cursos={trilha.cursos}
+            />
+          ))}
         </section>
 
-      {trilhas.length > VISIBLE_COUNT && (
-        <div className="flex justify-center w-full mt-md">
-          <Button
+        {trilhas.length > VISIBLE_COUNT && (
+          <div className="flex justify-center w-full mt-md">
+            <Button
               variant="primary"
-            size="lg"
+              size="lg"
               label={expanded ? 'Ver menos trilhas' : `Ver todas as trilhas`}
-            icon={expanded ? ChevronUp : ChevronDown}
-            iconPosition="right"
-            onClick={() => setExpanded(!expanded)}
-          />
-        </div>
-      )}
+              icon={expanded ? ChevronUp : ChevronDown}
+              iconPosition="right"
+              onClick={() => setExpanded(!expanded)}
+            />
+          </div>
+        )}
       </section>
     </SectionContainer>
   )
