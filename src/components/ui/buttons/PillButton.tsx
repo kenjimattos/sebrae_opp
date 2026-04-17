@@ -43,9 +43,9 @@ interface SizeStyle {
 
 const sizeStyles: Record<string, SizeStyle> = {
   sm: {
-    shell: 'h-[24px] gap-sm',
-    paddingRight: 'pl-sm',
-    paddingLeft: 'pr-sm',
+    shell: 'h-[32px] gap-sm',
+    paddingRight: 'pl-sm pr-2xs',
+    paddingLeft: 'pl-2xs pr-sm',
     typoPrimary: 'typo-button-sm',
     typoSecondary: 'typo-button-secondary-sm',
     circle: 'w-[24px] h-[24px]',
