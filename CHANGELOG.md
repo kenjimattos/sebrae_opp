@@ -4,6 +4,11 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Added
+
+- **`TextInput`** (`components/ui/TextInput.tsx`) — primitivo de input/textarea com props `title`, `subtitle`, `hint`, `disabled`, `multiline`, `rows`. Controlado via `value` + `onChange`. Cobre as 9 variantes do Figma (`603:2011`) com booleans ao invés de enum.
+- **`ProgressBar`** (`components/ui/ProgressBar.tsx`) — barra de progresso horizontal genérica. Aceita `value` (0–100, com clamp), usa `role="progressbar"` + `aria-valuenow`.
+
 ## [0.5.1] — 2026-04-17
 
 Versão focada em consolidar a conexão entre agendas e a seção Panorama, e em adicionar affordances de contexto via tooltips (objetivo por agenda e descrição por indicador). Inclui refresh completo dos indicadores para espelhar a última versão do Figma e ajuste do `DropdownMenu` para não vazar da tela com a lista mais longa.

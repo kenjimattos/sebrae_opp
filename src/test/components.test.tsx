@@ -38,6 +38,8 @@ import PillButton from '@/components/ui/buttons/PillButton'
 import Dropdown from '@/components/ui/Dropdown'
 import Card from '@/components/ui/Card'
 import SectionContainer from '@/components/ui/SectionContainer'
+import TextInput from '@/components/ui/TextInput'
+import ProgressBar from '@/components/ui/ProgressBar'
 
 // Formulador
 import FormuladorCard from '@/components/formulador/FormuladorCard'
@@ -216,6 +218,25 @@ describe('UI primitives', () => {
 
   it('renders SectionContainer', () => {
     const { container } = render(<SectionContainer>Content</SectionContainer>)
+    expect(container).toBeTruthy()
+  })
+
+  it('renders TextInput', () => {
+    const { container } = render(
+      <TextInput value="" onChange={() => {}} title="Título" hint="Digite..." />,
+    )
+    expect(container).toBeTruthy()
+  })
+
+  it('renders TextInput multiline', () => {
+    const { container } = render(
+      <TextInput value="" onChange={() => {}} multiline subtitle="Dica" hint="..." />,
+    )
+    expect(container).toBeTruthy()
+  })
+
+  it('renders ProgressBar', () => {
+    const { container } = render(<ProgressBar value={40} />)
     expect(container).toBeTruthy()
   })
 })
