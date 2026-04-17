@@ -10,6 +10,7 @@ import ProjectSteps from '@/components/formulador/ProjectSteps'
 import { Check, ArrowRight } from '@/components/icons'
 import { etapasFormulador } from '@/data/formulador-etapas'
 import { useFormulador } from '@/hooks/useFormulador'
+import { useMunicipio } from '@/hooks/useMunicipio'
 import type { FormuladorState } from '@/types/formulador'
 import { iconSizes } from '@/components/icons'
 
@@ -17,14 +18,18 @@ function joinNonEmpty(parts: string[], sep = '\n'): string {
   return parts.filter((p) => p && p.trim().length > 0).join(sep)
 }
 
-function renderSection(slug: string, state: FormuladorState): { blocks: { label: string; value: string }[] } {
+function renderSection(
+  slug: string,
+  state: FormuladorState,
+  municipioNome: string,
+): { blocks: { label: string; value: string }[] } {
   switch (slug) {
     case 'identificacao': {
       const d = state.identificacao
       return {
         blocks: [
           { label: 'Título do Projeto', value: d.titulo },
-          { label: 'Município', value: d.municipio },
+          { label: 'Município', value: municipioNome },
           { label: 'Responsável', value: d.responsavel },
           { label: 'Órgão Executor', value: d.orgao },
           { label: 'Duração Prevista', value: d.duracao },
@@ -127,6 +132,7 @@ function renderSection(slug: string, state: FormuladorState): { blocks: { label:
 
 export default function FormuladorConclusao() {
   const { state } = useFormulador()
+  const { municipio } = useMunicipio()
   const allVisited = etapasFormulador.map((e) => e.slug)
   const [enviado, setEnviado] = useState(false)
 
@@ -169,7 +175,7 @@ export default function FormuladorConclusao() {
 
         <div className="flex flex-col gap-md">
           {etapasFormulador.map((etapa, idx) => {
-            const { blocks } = renderSection(etapa.slug, state)
+            const { blocks } = renderSection(etapa.slug, state, municipio.nome)
             const hasContent = blocks.some((b) => b.value && b.value.trim().length > 0)
             return (
               <Card key={etapa.slug} surface="secondary" padding="md" radius="sm" className="flex flex-col gap-sm">

@@ -1,9 +1,10 @@
 // Shape do rascunho de um projeto no Formulador.
 // Persistido em localStorage por município.
 
+// Nota: `municipio` não está aqui — é a fonte de verdade do MunicipioProvider
+// (CitySelector na home + Dropdown na etapa Identificação apontam para o mesmo estado).
 export interface IdentificacaoData {
   titulo: string
-  municipio: string
   responsavel: string
   orgao: string
   duracao: string
@@ -77,7 +78,7 @@ export interface FormuladorState {
 }
 
 export const EMPTY_FORMULADOR_STATE: FormuladorState = {
-  identificacao: { titulo: '', municipio: '', responsavel: '', orgao: '', duracao: '' },
+  identificacao: { titulo: '', responsavel: '', orgao: '', duracao: '' },
   justificativa: { problema: '', evidencias: '', impacto: '' },
   objetivos: { geral: '', especificos: [''] },
   publicoAlvo: { principal: '', secundario: '', estimativa: '' },

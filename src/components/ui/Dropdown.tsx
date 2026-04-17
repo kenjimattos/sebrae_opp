@@ -11,9 +11,10 @@ interface DropdownProps {
   value: string
   onChange: (value: string) => void
   className?: string
+  ButtonVariant?: 'primary' | 'secondary' | 'tertiary' | 'ghost'
 }
 
-export default function Dropdown({ options, value, onChange, className = '' }: DropdownProps) {
+export default function Dropdown({ options, value, onChange, className = '', ButtonVariant = 'primary' }: DropdownProps) {
   const { open, setOpen, ref } = useDropdownState()
   const selected = options.find((o) => o.value === value)
 
@@ -21,7 +22,7 @@ export default function Dropdown({ options, value, onChange, className = '' }: D
     <div ref={ref} className={`relative ${className}`}>
       <Button
         label={selected ? selected.label : 'Select an option'}
-        variant="primary"
+        variant={ButtonVariant}
         size="md"
         icon={ChevronDown}
         iconPosition="right"

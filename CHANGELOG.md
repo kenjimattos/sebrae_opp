@@ -26,6 +26,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ### Changed
 
 - **`FormuladorConclusao`** — banner verde "Projeto enviado com sucesso!" agora aparece apenas depois que o usuário clica em "Enviar para análise". Após o clique, o botão troca para a nova variante `success` (fundo verde + ícone `Check` + label "Enviado") e o `onClick` vira no-op para evitar re-envio.
+- **`Header`** — esconde o `CitySelector` na rota `/formulador*` (a seleção de município nessa página vem do Dropdown na etapa Identificação).
+- **`StepIdentificacao`** — o campo "Município" virou um `Dropdown` sincronizado com o `MunicipioProvider`. Trocar o município no Dropdown dispara `setMunicipio(...)` e o rascunho do Formulador recarrega automaticamente o do novo município (como se o usuário tivesse trocado pelo `CitySelector`). Isso elimina a divergência que existia entre o município global e o digitado à mão. O Dropdown é exibido com `ButtonVariant="tertiary"` para combinar com o resto do form.
+- **`IdentificacaoData`** — campo `municipio` removido do rascunho. Fonte única de verdade passa a ser o `MunicipioProvider` (usado tanto pelo `CitySelector` quanto pelo Dropdown do form). O resumo da Conclusão lê `municipio.nome` direto do contexto global.
+- **`Dropdown`** — novo prop opcional `ButtonVariant` (`'primary' | 'secondary' | 'tertiary' | 'ghost'`) para escolher a variante do `Button` interno. Default mantém `'primary'` — callers existentes (`SectionPanorama`) seguem iguais.
 - **`Button`** — nova variante `success` (fundo `--semantic-success`, label branco).
 - **`StepObjetivos`** — agora permite remover objetivos específicos. Cada linha tem um botão de lixeira (`IconButton` ghost com ícone `Trash2`) que some quando só resta 1 objetivo (garante que a lista nunca fica vazia).
 - **`StepIndicadores`** — os três grupos (Resultado, Impacto e Metas Quantitativas) passam a ter uma linha por objetivo específico (etapa 3). O label de cada linha é o texto do objetivo correspondente, com fallback "Objetivo N"/"Indicador N" quando o objetivo está vazio.

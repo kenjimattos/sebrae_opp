@@ -1,12 +1,23 @@
 import TextInput from '@/components/ui/TextInput'
+import Dropdown from '@/components/ui/Dropdown'
 import { useFormulador } from '@/hooks/useFormulador'
+import { useMunicipio } from '@/hooks/useMunicipio'
+import municipios from '@/data/municipios.json'
 
 export default function StepIdentificacao() {
   const { state, setSlice } = useFormulador()
+  const { municipio, setMunicipio } = useMunicipio()
   const data = state.identificacao
 
   const update = (patch: Partial<typeof data>) =>
     setSlice('identificacao', { ...data, ...patch })
+
+  const municipioOptions = municipios.map((m) => ({ label: m.nome, value: m.id }))
+
+  function handleMunicipioChange(id: string) {
+    const match = municipios.find((m) => m.id === id)
+    if (match) setMunicipio(match.id, match.nome)
+  }
 
   return (
     <div className="flex flex-col gap-md">
@@ -16,12 +27,17 @@ export default function StepIdentificacao() {
         value={data.titulo}
         onChange={(v) => update({ titulo: v })}
       />
-      <TextInput
-        title="Município"
-        hint="Ex.: Campina Grande"
-        value={data.municipio}
-        onChange={(v) => update({ municipio: v })}
-      />
+
+      <div className="flex flex-col gap-xs">
+        <label className="typo-body-bold">Município</label>
+        <Dropdown
+          options={municipioOptions}
+          value={municipio.id}
+          onChange={handleMunicipioChange}
+          ButtonVariant="tertiary"
+        />
+      </div>
+
       <TextInput
         title="Responsável"
         hint="Nome do gestor ou coordenador"
