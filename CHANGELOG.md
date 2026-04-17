@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Added
+
+- **`vercel.json`** com rewrite `"/(.*)" → "/index.html"` para suportar SPA routing — sem isso, acessar rotas como `/formulador` direto na Vercel retornava 404.
+
 ### Changed
 
 - **Tokens de tipografia de botão rescalados** (`src/index.css`): `--font-size-button-lg` 40→24px, `--font-size-button` 20→16px, `--font-size-button-sm` 16→14px. Os valores anteriores estavam grandes demais para os contêineres dos botões.
