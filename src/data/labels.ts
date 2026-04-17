@@ -18,7 +18,7 @@ export const statusLabelsMap: Record<StatusType, string> = {
 export const ctaLabels = {
   verEstudoDeCaso: 'Ver estudo de caso',
   verTrilhaCompleta: 'Ver trilha completa',
-  verCurso: 'Ver curso',
+  verCurso: 'ver curso',
 } as const
 
 /** Panorama section labels */

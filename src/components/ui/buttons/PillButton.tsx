@@ -42,9 +42,9 @@ const sizeStyles: Record<
     shell: 'h-[40px] pl-sm gap-[12px]',
     typo: 'typo-button-secondary',
     shellBg: '',
-    circle: 'w-[24px] h-[24px]',
+    circle: 'w-[32px] h-[32px]',
     circleBg: 'bg-surface-secondary',
-    iconSize: 'xs',
+    iconSize: 'md',
   },
   lg: {
     shell: 'pl-md pr-xs py-xs gap-md',
