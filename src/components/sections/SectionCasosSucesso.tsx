@@ -29,9 +29,11 @@ export default function SectionCasosSucesso() {
       </div>
       <div className="flex flex-col items-center gap-sm">
         {/* Cards scroll */}
+        {/* py-xs + -my-xs: respiro interno para o lift + anel do card-hoverable
+            sem alterar o espaçamento externo (overflow-x força overflow-y a clipar) */}
         <div
           ref={scrollRef}
-          className="flex gap-sm overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide"
+          className="flex gap-sm overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide py-xs -my-[var(--spacing-xs)]"
         >
           {casosSucesso.map((caso) => (
             <CaseStudiesCard key={caso.id} caso={caso} className="snap-start" />
