@@ -5,6 +5,8 @@
 import SectionContainer from '@/components/ui/SectionContainer'
 import { ArrowRight, ChartColumn, Briefcase, Users, type LucideIcon, iconSizes } from '@/components/icons'
 import { sectionContent } from '@/data/sections'
+import TitleSubtitle from '../ui/TitleSubtitle'
+import Card from '../ui/Card'
 
 const HEADER_HEIGHT = 95
 
@@ -60,11 +62,8 @@ export default function SectionHero() {
           const Icon = ctaIcons[cta.id]
           const step = String(index + 1).padStart(2, '0')
           return (
-            <button
-              key={cta.id}
-              type="button"
-              onClick={() => scrollToSection(cta.sectionId)}
-              className="group card-surface p-lg flex flex-col gap-md text-left cursor-pointer transition-all duration-200 hover:translate-y-[-2px] hover:shadow-[0_12px_32px_rgba(0,55,179,0.08)] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none border border-solid border-[var(--semantic-surface-secondary)] hover:border-[var(--semantic-accent-surface)]"
+            <Card
+              className="flex flex-col card-surface gap-md py-lg cursor-pointer transition-all duration-200 hover:translate-y-[-2px] hover:shadow-lg focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none border border-solid border-[var(--semantic-surface-secondary)] hover:border-[var(--semantic-accent-surface)]"
               aria-label={`Etapa ${step}: ${cta.label}`}
             >
               {/* Step number + icon */}
@@ -83,29 +82,15 @@ export default function SectionHero() {
                     strokeWidth={1.75}
                   />
                 </div>
-                <span
-                  className="typo-body-sm-bold tracking-[0.12em] text-inactive"
-                  aria-hidden="true"
-                >
-                  {step}
-                </span>
               </div>
 
               {/* Title + description */}
-              <div className="flex flex-col gap-xs">
-                <h3 className="typo-h3">{cta.label}</h3>
-                <p className="typo-body text-inactive">{cta.description}</p>
-              </div>
-
-              {/* CTA with sliding arrow */}
-              <div className="flex items-center gap-xs text-accent typo-body-bold mt-auto pt-xs">
-                <span>Começar</span>
-                <ArrowRight
-                  size={iconSizes.sm}
-                  className="transition-transform duration-200 group-hover:translate-x-1"
-                />
-              </div>
-            </button>
+              <TitleSubtitle
+                size="sm"
+                title={cta.label}
+                subtitle={cta.description}
+              />
+            </Card>
           )
         })}
       </div>
