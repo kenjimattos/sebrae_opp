@@ -32,7 +32,7 @@ export default function Formulador() {
     <div className="min-h-screen bg-primary">
       <Header />
 
-      <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-2xl py-3xl px-margin">
+      <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-md py-2xl px-2xl">
         <div className="flex flex-col gap-sm">
           <h1 className="typo-h2">{sectionContent.formuladorPagina.title}</h1>
           <p className="typo-body">{sectionContent.formuladorPagina.description}</p>

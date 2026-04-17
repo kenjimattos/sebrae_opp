@@ -410,7 +410,7 @@ decisões estratégicas.
 
 exports[`Snapshot tests — CSS refactor safety > FormuladorProgress 1`] = `
 <div
-  class="card-surface radius-md px-lg py-sm flex flex-col items-start gap-sm w-full "
+  class="card-surface radius-md p-lg flex flex-col items-start gap-sm w-full "
 >
   <div
     class="flex items-center justify-between w-full"

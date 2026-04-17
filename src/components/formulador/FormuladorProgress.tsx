@@ -24,7 +24,7 @@ export default function FormuladorProgress({
 
   return (
     <Card
-      padding={{ x: 'lg', y: 'sm' }}
+      padding="lg"
       radius="md"
       className={`flex flex-col items-start gap-sm w-full ${className}`}
     >
