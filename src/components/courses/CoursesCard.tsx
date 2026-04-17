@@ -29,10 +29,10 @@ export default function CoursesCard({ title, description, cursos, className = ''
   return (
     <Card
       as="section"
-      padding={{ x: 'xl', y: '2xl' }}
-      className={`flex flex-col gap-lg items-start h-full min-h-[35dvh] ${className}`}
+      padding="xl"
+      className={`flex flex-col gap-lg items-start h-full w-full ${className}`}
     >
-      <TitleSubtitle title={title} subtitle={description} size="sm" />
+      <TitleSubtitle title={title} subtitle={description} size="md" />
 
       {/* Course rows — flex-1 pushes CTA to the bottom */}
       <div className="flex flex-col gap-sm items-start w-full flex-1 px-lg">
@@ -55,7 +55,7 @@ export default function CoursesCard({ title, description, cursos, className = ''
             iconPosition="right"
             onClick={() => setExpanded(!expanded)}
           />
-      </div>
+        </div>
       )}
       </div>
     </Card>
