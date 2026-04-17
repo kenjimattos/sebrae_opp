@@ -134,7 +134,7 @@ exports[`Snapshot tests — CSS refactor safety > Card 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
 <div
-  class="card-surface p-md flex-col-start justify-between h-[172px] "
+  class="card-surface p-md flex-col-start justify-between h-[172px] card-hoverable "
 >
   <div
     class="flex items-center gap-sm w-full"
@@ -431,7 +431,7 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > ResourcesCard 1`] = `
 <div
-  class="card-surface-secondary p-md flex flex-col gap-sm justify-between "
+  class="card-surface-secondary p-md flex flex-col gap-sm justify-between card-hoverable "
 >
   <span
     class="typo-body"

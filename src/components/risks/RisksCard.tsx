@@ -37,7 +37,7 @@ export default function RisksCard({
       surface={effectiveTipo}
       bordered
       padding="lg"
-      className={`flex flex-col gap-md ${className}`}
+      className={`flex flex-col gap-md card-hoverable ${className}`}
     >
       {/* Header: label + value */}
       <div className="flex items-start gap-md w-full">

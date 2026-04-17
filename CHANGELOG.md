@@ -45,8 +45,16 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - Hover extraído para utilitário do DS `.card-hoverable` (`index.css`) — agrupa `cursor-pointer`, `transition` e, no `:hover`, lift (`translateY(-2px)`) + sombra com anel 1px em `--semantic-accent-surface` renderizado **por fora do border-box** (via `box-shadow` com spread, não via `border`). Assim o anel funciona em qualquer card: sem borda própria aparece só o anel; com borda própria (ex.: `Card bordered`) a cor da borda permanece intocada e o anel surge por fora. `:focus-visible` usa `outline` accent independente.
 - Removidos: step number (`01`/`02`/`03`), rodapé "Começar" com `ArrowRight`, constante `HEADER_HEIGHT` e função `scrollToSection` — cards deixam de ter navegação por click para as seções de destino nesta iteração.
 
-**RisksCard** (`components/risks/RisksCard.tsx`)
-- Adota `.card-hoverable` — como usa `<Card bordered surface={alert|warning}>`, a borda colorida própria é preservada e o anel accent do hover aparece por fora dela (valida o comportamento da utility em cards com borda).
+**Adoção de `.card-hoverable` nos cards interativos**
+- `AgendaCard` (`components/agenda/AgendaCard.tsx`)
+- `CaseStudiesCard` (`components/case-studies/CaseStudiesCard.tsx`)
+- `EconomicsCard` (`components/economics/EconomicsCard.tsx`)
+- `EconomicsAnalysis` (`components/economics/EconomicsAnalysis.tsx`)
+- `ResourcesCard` (`components/resources/ResourcesCard.tsx`)
+- `RisksCard` (`components/risks/RisksCard.tsx`) — caso com `Card bordered surface={alert|warning}`: borda colorida permanece intocada e o anel accent surge por fora dela.
+
+**SectionCasosSucesso** (`components/sections/SectionCasosSucesso.tsx`)
+- Scroll container de cards ganha `py-xs -my-[var(--spacing-xs)]`: dá respiro vertical para o lift + anel do `.card-hoverable` (o `overflow-x-auto` força `overflow-y` a clipar, cortando a animação no topo/base) sem alterar o espaçamento externo.
 
 ## [0.4.0] — 2026-04-16
 

@@ -15,7 +15,7 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
   return (
     <Card
       padding="none"
-      className={`flex-col-start overflow-clip w-[350px] shrink-0 ${className}`}
+      className={`flex-col-start overflow-clip w-[350px] shrink-0 card-hoverable ${className}`}
     >
       {/* Image */}
       <div className="h-[180px] w-full relative">

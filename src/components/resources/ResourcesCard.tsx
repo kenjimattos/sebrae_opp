@@ -14,7 +14,7 @@ export default function ResourcesCard({ title, value, className = '' }: Resource
     <Card
       surface="secondary"
       padding="md"
-      className={`flex flex-col gap-sm justify-between ${className}`}
+      className={`flex flex-col gap-sm justify-between card-hoverable ${className}`}
     >
       <span className="typo-body">
         {title}

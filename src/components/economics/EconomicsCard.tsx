@@ -36,7 +36,7 @@ export default function EconomicsCard({ label, valor, variacao, icone, className
   return (
     <Card
       padding="md"
-      className={`flex-col-start justify-between h-[172px] ${className}`}
+      className={`flex-col-start justify-between h-[172px] card-hoverable ${className}`}
     >
       <div className="flex items-center gap-sm w-full">
         {Icon && (
