@@ -8,7 +8,7 @@ import { iconSizes, type IconSize, type LucideIcon } from '@/components/icons'
 
 interface ButtonProps {
   label: string
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost'
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'success'
   size?: 'sm' | 'md' | 'lg'
   icon?: LucideIcon
   iconPosition?: 'left' | 'right'
@@ -26,6 +26,8 @@ const variantStyles: Record<string, string> = {
     'bg-[var(--semantic-button-tertiary)] text-[color:var(--semantic-button-label-tertiary)]',
   ghost:
     'bg-transparent text-[color:var(--semantic-text-primary)]',
+  success:
+    'bg-[var(--semantic-success)] text-[color:var(--primitives-white)]',
 }
 
 const sizeStyles: Record<string, { container: string; typo: string; iconSize: IconSize }> = {

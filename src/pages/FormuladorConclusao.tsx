@@ -149,12 +149,11 @@ export default function FormuladorConclusao() {
           <Button label="Baixar PDF" variant="secondary" size="md" onClick={() => window.print()} />
           <Button
             label={enviado ? 'Enviado' : 'Enviar para análise'}
-            variant="primary"
+            variant={enviado ? 'success' : 'primary'}
             size="md"
-            icon={ArrowRight}
+            icon={enviado ? Check : ArrowRight}
             iconPosition="right"
-            disabled={enviado}
-            onClick={() => setEnviado(true)}
+            onClick={() => !enviado && setEnviado(true)}
           />
         </div>
 

@@ -25,7 +25,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Changed
 
-- **`FormuladorConclusao`** — banner verde "Projeto enviado com sucesso!" agora aparece apenas depois que o usuário clica em "Enviar para análise". O botão é desabilitado e o label vira "Enviado" após o clique.
+- **`FormuladorConclusao`** — banner verde "Projeto enviado com sucesso!" agora aparece apenas depois que o usuário clica em "Enviar para análise". Após o clique, o botão troca para a nova variante `success` (fundo verde + ícone `Check` + label "Enviado") e o `onClick` vira no-op para evitar re-envio.
+- **`Button`** — nova variante `success` (fundo `--semantic-success`, label branco).
 - **`StepObjetivos`** — agora permite remover objetivos específicos. Cada linha tem um botão de lixeira (`IconButton` ghost com ícone `Trash2`) que some quando só resta 1 objetivo (garante que a lista nunca fica vazia).
 - **`StepIndicadores`** — os três grupos (Resultado, Impacto e Metas Quantitativas) passam a ter uma linha por objetivo específico (etapa 3). O label de cada linha é o texto do objetivo correspondente, com fallback "Objetivo N"/"Indicador N" quando o objetivo está vazio.
 - Ícone `Trash2` exportado de `components/icons`.
