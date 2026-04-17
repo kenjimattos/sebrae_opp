@@ -151,8 +151,8 @@ export default function FormuladorConclusao() {
         </div>
 
         <div className="flex items-center gap-sm">
-          <Button label="Editar projeto" variant="secondary" size="md" onClick={() => history.back()} />
-          <Button label="Baixar PDF" variant="secondary" size="md" onClick={() => window.print()} />
+          <Button label="Editar projeto" variant="tertiary" size="md" onClick={() => history.back()} />
+          <Button label="Baixar PDF" variant="tertiary" size="md" onClick={() => window.print()} />
           <Button
             label={enviado ? 'Enviado' : 'Enviar para análise'}
             variant={enviado ? 'success' : 'primary'}
