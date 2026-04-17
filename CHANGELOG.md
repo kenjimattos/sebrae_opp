@@ -4,6 +4,16 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Changed
+
+- **Resumo na tela de Conclusão** alinhado label-a-label com o Figma:
+  - **Cronograma** agora "explode" o textarea em blocos individuais: cada linha do campo `fases` (e `marcos`) no formato `"Fase 1 - Diagnóstico: Meses 1-2"` vira uma linha label/value própria no resumo. Novo helper `parseLinesIntoBlocks` cuida do parsing; linhas sem `":"` caem no `value` com label vazio (o renderer pula o `<p>` da label nesses casos).
+  - **Orçamento** ganha um bloco calculado "Valor Total do Projeto" (reusa a lógica `parseValor` + `formatBRL` do StepOrcamento, agora também in-line nessa página) e passa a listar cada rubrica como label/value próprio (ao invés de concatenar tudo num único block "Rubricas").
+  - **Plano de Ação**: label `"Atividades Previstas"` → `"Principais Ações"`.
+  - **Justificativa**: label `"Problema central"` → `"Problema Central"`.
+  - **Sustentabilidade**: label `"Parcerias Institucionais"` → `"Parcerias Previstas"`.
+  - Renderer do resumo agora oculta o `<p>` da label quando ela vem vazia (caso de linha sem `":"` no parseador).
+
 ### Added
 
 - **`TextInput`** (`components/ui/TextInput.tsx`) — primitivo de input/textarea com props `title`, `subtitle`, `hint`, `disabled`, `multiline`, `rows`. Controlado via `value` + `onChange`. Cobre as 9 variantes do Figma (`603:2011`) com booleans ao invés de enum.

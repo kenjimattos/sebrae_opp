@@ -19,6 +19,40 @@ function joinNonEmpty(parts: string[], sep = '\n'): string {
   return parts.filter((p) => p && p.trim().length > 0).join(sep)
 }
 
+// Parse um textarea multi-linha (formato "Rótulo: Valor" por linha) em blocos
+// label/value individuais. Linhas sem ":" entram com label vazio (o renderer
+// só renderiza o <p> da label quando ela existe).
+function parseLinesIntoBlocks(text: string): { label: string; value: string }[] {
+  return text
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const i = line.indexOf(':')
+      if (i === -1) return { label: '', value: line }
+      return { label: line.slice(0, i).trim(), value: line.slice(i + 1).trim() }
+    })
+}
+
+// Parsing/formatação BRL — espelha o que StepOrcamento faz pra preencher o
+// campo "Valor Total" calculado a partir das rubricas.
+function parseValor(valor: string): number {
+  const cleaned = valor
+    .replace(/[^\d,.-]/g, '')
+    .replace(/\./g, '')
+    .replace(',', '.')
+  const num = parseFloat(cleaned)
+  return Number.isFinite(num) ? num : 0
+}
+
+function formatBRL(value: number): string {
+  return value.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2,
+  })
+}
+
 function renderSection(
   slug: string,
   state: FormuladorState,
@@ -41,7 +75,7 @@ function renderSection(
       const d = state.justificativa
       return {
         blocks: [
-          { label: 'Problema central', value: d.problema },
+          { label: 'Problema Central', value: d.problema },
           { label: 'Evidências e Dados', value: d.evidencias },
           { label: 'Impacto da Inação', value: d.impacto },
         ],
@@ -75,18 +109,18 @@ function renderSection(
       )
       return {
         blocks: [
-          { label: 'Atividades Previstas', value: atividadesBullets },
+          { label: 'Principais Ações', value: atividadesBullets },
           { label: 'Metodologia', value: d.metodologia },
         ],
       }
     }
     case 'cronograma': {
       const d = state.cronograma
+      // Espalha as fases (e marcos) em blocos individuais — cada linha do
+      // textarea no formato "Fase 1 - Diagnóstico: Meses 1-2" vira uma
+      // linha label/value, como no Figma.
       return {
-        blocks: [
-          { label: 'Fases do projeto', value: d.fases },
-          { label: 'Marcos e Entregas', value: d.marcos },
-        ],
+        blocks: [...parseLinesIntoBlocks(d.fases), ...parseLinesIntoBlocks(d.marcos)],
       }
     }
     case 'indicadores': {
@@ -101,14 +135,14 @@ function renderSection(
     }
     case 'orcamento': {
       const d = state.orcamento
+      const total = d.rubricas.reduce((acc, r) => acc + parseValor(r.valor), 0)
+      const rubricaBlocks = d.rubricas
+        .filter((r) => r.label || r.valor)
+        .map((r) => ({ label: r.label || '—', value: r.valor || '—' }))
       return {
         blocks: [
-          {
-            label: 'Rubricas',
-            value: joinNonEmpty(
-              d.rubricas.map((r) => (r.label || r.valor) ? `${r.label || '—'}: ${r.valor || '—'}` : ''),
-            ),
-          },
+          ...(total > 0 ? [{ label: 'Valor Total do Projeto', value: formatBRL(total) }] : []),
+          ...rubricaBlocks,
         ],
       }
     }
@@ -117,7 +151,7 @@ function renderSection(
       return {
         blocks: [
           { label: 'Estratégia de Continuidade', value: d.continuidade },
-          { label: 'Parcerias Institucionais', value: d.parcerias },
+          { label: 'Parcerias Previstas', value: d.parcerias },
         ],
       }
     }
@@ -192,9 +226,9 @@ export default function FormuladorConclusao() {
                 </div>
                 <div className="bg-primary radius-sm p-md flex flex-col gap-xs">
                   {hasContent ? (
-                    blocks.map((b) => b.value && (
-                      <div key={b.label} className="flex flex-col gap-2xs">
-                        <p className="typo-body-sm-bold text-inactive">{b.label}</p>
+                    blocks.map((b, i) => b.value && (
+                      <div key={i} className="flex flex-col gap-2xs">
+                        {b.label && <p className="typo-body-sm-bold text-inactive">{b.label}</p>}
                         <p className="typo-body-sm whitespace-pre-line">{b.value}</p>
                       </div>
                     ))
