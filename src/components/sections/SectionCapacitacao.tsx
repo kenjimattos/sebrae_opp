@@ -19,7 +19,8 @@ export default function SectionCapacitacao() {
     <SectionContainer>
       <SectionHeader title={sectionContent.capacitacao.title} description={sectionContent.capacitacao.description}  />
 
-      <div className="grid-2 w-full">
+      <section className="flex-col-start gap-md mb-lg">
+        <section className="flex-col-start gap-md">
         {visibleTrilhas.map((trilha) => (
           <CoursesCard
             key={trilha.title}
