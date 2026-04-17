@@ -3,7 +3,7 @@
 // com scroll suave para as seções de destino
 
 import SectionContainer from '@/components/ui/SectionContainer'
-import { ArrowRight, ChartColumn, Briefcase, Users, type LucideIcon, iconSizes } from '@/components/icons'
+import { ChartColumn, Briefcase, Users, type LucideIcon, iconSizes } from '@/components/icons'
 import { sectionContent } from '@/data/sections'
 import TitleSubtitle from '../ui/TitleSubtitle'
 import Card from '../ui/Card'
