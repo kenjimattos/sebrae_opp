@@ -8,6 +8,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 - **`TextInput`** (`components/ui/TextInput.tsx`) — primitivo de input/textarea com props `title`, `subtitle`, `hint`, `disabled`, `multiline`, `rows`. Controlado via `value` + `onChange`. Cobre as 9 variantes do Figma (`603:2011`) com booleans ao invés de enum.
 - **`ProgressBar`** (`components/ui/ProgressBar.tsx`) — barra de progresso horizontal genérica. Aceita `value` (0–100, com clamp), usa `role="progressbar"` + `aria-valuenow`.
+- **`StepIndicator`** (`components/formulador/StepIndicator.tsx`) — item da sidebar com 3 variantes de status (unchecked/current/checked) usando `Circle`/`CircleDot`/`Check` do Lucide. Clicável quando `onClick` é fornecido.
+- **`ProjectSteps`** (`components/formulador/ProjectSteps.tsx`) — sidebar do Formulador. Itera as 10 etapas e deriva o status de cada uma a partir de `currentSlug` + `visitedSlugs`.
+- **`formulador-etapas.ts`** (`data/`) — fonte única de verdade para as 10 etapas do Formulador: `slug`, `label` (sidebar), `nome` (progress), `titulo` + `subtitle` (FormCard). Helpers `findEtapaBySlug` e `findEtapaIndex`.
+- Ícones `Check`, `Circle`, `CircleDot`, `Plus` exportados de `components/icons`.
 
 ## [0.5.1] — 2026-04-17
 

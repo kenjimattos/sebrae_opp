@@ -43,6 +43,8 @@ import ProgressBar from '@/components/ui/ProgressBar'
 
 // Formulador
 import FormuladorCard from '@/components/formulador/FormuladorCard'
+import StepIndicator from '@/components/formulador/StepIndicator'
+import ProjectSteps from '@/components/formulador/ProjectSteps'
 
 // Layout
 import Header from '@/components/layout/Header'
@@ -249,6 +251,25 @@ describe('Formulador components', () => {
         descricao="Crie um novo projeto"
         buttonLabel="Começar"
         buttonHref="#"
+      />,
+    )
+    expect(container).toBeTruthy()
+  })
+
+  it('renders StepIndicator (unchecked/current/checked)', () => {
+    const unchecked = render(<StepIndicator label="1. Identificação" status="unchecked" />)
+    const current = render(<StepIndicator label="1. Identificação" status="current" />)
+    const checked = render(<StepIndicator label="1. Identificação" status="checked" />)
+    expect(unchecked.container).toBeTruthy()
+    expect(current.container).toBeTruthy()
+    expect(checked.container).toBeTruthy()
+  })
+
+  it('renders ProjectSteps with current + visited slugs', () => {
+    const { container } = render(
+      <ProjectSteps
+        currentSlug="justificativa"
+        visitedSlugs={['identificacao']}
       />,
     )
     expect(container).toBeTruthy()
