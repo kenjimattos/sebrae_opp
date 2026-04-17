@@ -16,12 +16,7 @@ const ctaIcons: Record<string, LucideIcon> = {
   formule: Briefcase,
 }
 
-function scrollToSection(sectionId: string) {
-  const el = document.getElementById(sectionId)
-  if (!el) return
-  const top = el.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT
-  window.scrollTo({ top, behavior: 'smooth' })
-}
+
 
 export default function SectionHero() {
   return (
