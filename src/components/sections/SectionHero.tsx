@@ -60,7 +60,7 @@ export default function SectionHero() {
               className="flex flex-col card-surface gap-md py-lg cursor-pointer transition-all duration-200 hover:translate-y-[-2px] hover:shadow-lg focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none border border-solid border-[var(--semantic-surface-secondary)] hover:border-[var(--semantic-accent-surface)]"
               aria-label={`Etapa ${step}: ${cta.label}`}
             >
-              {/* Step number + icon */}
+
               <div className="flex items-start justify-between">
                 <div
                   className="flex-center justify-center radius-full transition-colors duration-200 bg-surface-secondary "
@@ -75,7 +75,7 @@ export default function SectionHero() {
                 </div>
               </div>
 
-              {/* Title + description */}
+
               <TitleSubtitle
                 size="sm"
                 title={cta.label}
