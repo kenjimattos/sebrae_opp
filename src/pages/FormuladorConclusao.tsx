@@ -3,6 +3,7 @@
 // + coluna central com 3 botões de ação, banner de sucesso e resumo das 10 etapas.
 // Sem AIAssistant na lateral direita.
 
+import { useState } from 'react'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/buttons/Button'
 import ProjectSteps from '@/components/formulador/ProjectSteps'
@@ -127,6 +128,7 @@ function renderSection(slug: string, state: FormuladorState): { blocks: { label:
 export default function FormuladorConclusao() {
   const { state } = useFormulador()
   const allVisited = etapasFormulador.map((e) => e.slug)
+  const [enviado, setEnviado] = useState(false)
 
   return (
     <div className="flex items-start gap-md w-full">
@@ -145,16 +147,26 @@ export default function FormuladorConclusao() {
         <div className="flex items-center gap-sm">
           <Button label="Editar projeto" variant="secondary" size="md" onClick={() => history.back()} />
           <Button label="Baixar PDF" variant="secondary" size="md" onClick={() => window.print()} />
-          <Button label="Enviar para análise" variant="primary" size="md" icon={ArrowRight} iconPosition="right" />
+          <Button
+            label={enviado ? 'Enviado' : 'Enviar para análise'}
+            variant="primary"
+            size="md"
+            icon={ArrowRight}
+            iconPosition="right"
+            disabled={enviado}
+            onClick={() => setEnviado(true)}
+          />
         </div>
 
-        <Card surface="success" padding="md" radius="sm" bordered className="flex items-start gap-sm">
-          <Check size={iconSizes.md} className="shrink-0 text-[color:var(--semantic-success)] mt-[2px]" />
-          <div className="flex flex-col gap-2xs">
-            <p className="typo-body-bold">Projeto enviado com sucesso!</p>
-            <p className="typo-body-sm">Seu projeto agora segue para análise. Fique atento aos canais de comunicação.</p>
-          </div>
-        </Card>
+        {enviado && (
+          <Card surface="success" padding="md" radius="sm" bordered className="flex items-start gap-sm">
+            <Check size={iconSizes.md} className="shrink-0 text-[color:var(--semantic-success)] mt-[2px]" />
+            <div className="flex flex-col gap-2xs">
+              <p className="typo-body-bold">Projeto enviado com sucesso!</p>
+              <p className="typo-body-sm">Seu projeto agora segue para análise. Fique atento aos canais de comunicação.</p>
+            </div>
+          </Card>
+        )}
 
         <div className="flex flex-col gap-md">
           {etapasFormulador.map((etapa, idx) => {
