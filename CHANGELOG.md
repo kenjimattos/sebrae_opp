@@ -4,6 +4,15 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+## [0.3.1] — 2026-04-16
+
+Corrige erro de build
+
+### Changed
+
+**Panorama**
+- `PanoramaMediaInfo`: prop `count` (não consumida) removida.
+
 ## [0.3.0] — 2026-04-16
 
 Primitivo `Card` consolidando 9 cards + 3 seções, sistema de cores de botão (primary azul, texto automático) e padronização de layout. 22 commits desde 0.2.0, sem quebra de comportamento do protótipo.
