@@ -1,20 +1,24 @@
 // Figma: Buttons pill variant (817:3129)
-// Pill-shaped CTA: <a> com label + seta em círculo (decorativo).
+// Pill-shaped CTA com label + seta em círculo (decorativo).
 //
+// Renderiza <a> quando `href` é fornecido; senão renderiza <button type="button">.
 // Variants: primary (bg accent + círculo surface)
 //           secondary (bg surface-secondary + círculo surface)
 //           ghost (shell transparente + círculo surface-secondary)
 // Sizes:    sm (24px) | md (40px) | lg (64px com shell preenchido + círculo 40px)
 // iconPosition: 'right' (default) | 'left' — inverte posição e direção da seta.
 //
-// O círculo é <span> decorativo (não IconButton): <button> dentro de <a>
-// é HTML inválido. O clique alvo é o próprio <a>.
+// O círculo é <span> decorativo (não IconButton): <button> dentro de outro
+// elemento clicável seria inválido/duplicado. O clique alvo é o próprio
+// <a>/<button> externo.
 
 import { ArrowLeft, ArrowRight, iconSizes, type IconSize } from '@/components/icons'
 
 interface PillButtonProps {
   label: string
-  href: string
+  href?: string
+  onClick?: () => void
+  disabled?: boolean
   variant?: 'primary' | 'secondary' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
   iconPosition?: 'left' | 'right'
@@ -70,6 +74,8 @@ const sizeStyles: Record<string, SizeStyle> = {
 export default function PillButton({
   label,
   href,
+  onClick,
+  disabled = false,
   variant = 'primary',
   size = 'lg',
   iconPosition = 'right',
@@ -80,10 +86,6 @@ export default function PillButton({
   const typo = variant === 'primary' ? s.typoPrimary : s.typoSecondary
   const padding = iconPosition === 'right' ? s.paddingRight : s.paddingLeft
   const Arrow = iconPosition === 'right' ? ArrowRight : ArrowLeft
-  const isInternal = href.startsWith('/') && !href.startsWith('//')
-  const externalProps = isInternal
-    ? {}
-    : { target: '_blank', rel: 'noopener noreferrer' }
 
   const labelEl = <span className={`flex-1 ${typo}`}>{label}</span>
   const circleEl = (
@@ -95,23 +97,41 @@ export default function PillButton({
     </span>
   )
 
+  const content =
+    iconPosition === 'left' ? (
+      <>
+        {circleEl}
+        {labelEl}
+      </>
+    ) : (
+      <>
+        {labelEl}
+        {circleEl}
+      </>
+    )
+
+  const sharedClassName = `inline-flex items-center radius-full no-underline transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${v.shellBg} ${s.shell} ${padding} ${className}`
+
+  if (href !== undefined) {
+    const isInternal = href.startsWith('/') && !href.startsWith('//')
+    const externalProps = isInternal
+      ? {}
+      : { target: '_blank', rel: 'noopener noreferrer' }
+    return (
+      <a href={href} {...externalProps} className={sharedClassName}>
+        {content}
+      </a>
+    )
+  }
+
   return (
-    <a
-      href={href}
-      {...externalProps}
-      className={`inline-flex items-center radius-full no-underline transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none ${v.shellBg} ${s.shell} ${padding} ${className}`}
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      className={`cursor-pointer ${sharedClassName}`}
     >
-      {iconPosition === 'left' ? (
-        <>
-          {circleEl}
-          {labelEl}
-        </>
-      ) : (
-        <>
-          {labelEl}
-          {circleEl}
-        </>
-      )}
-    </a>
+      {content}
+    </button>
   )
 }
