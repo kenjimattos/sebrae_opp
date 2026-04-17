@@ -9,7 +9,7 @@ import Button from '@/components/ui/buttons/Button'
 import { sectionContent } from '@/data/sections'
 import { trilhas } from '@/data/capacitacao'
 
-const VISIBLE_COUNT = 2
+const VISIBLE_COUNT = 1
 
 export default function SectionCapacitacao() {
   const [expanded, setExpanded] = useState(false)
