@@ -56,7 +56,7 @@ export const sectionContent = {
     description: 'Veja como outros municípios implementaram estratégias eficazes para melhorar seu ambiente de negócios.'
   },
   formulador: {
-    title: 'Formulador de projetos e politicas publicas',
+    title: 'Como escrever projetos de políticas públicas?',
     description:
       'Com base nos riscos estratégicos e pontos de atenção identificados, comece a escrever seu projeto para fortalecer o ambiente de negócios no seu município.',
   },
