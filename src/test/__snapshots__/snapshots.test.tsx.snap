@@ -1,5 +1,97 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Snapshot tests — CSS refactor safety > AIAssistant 1`] = `
+<div
+  class="card-surface-secondary radius-md p-md flex flex-col items-start gap-md w-[248px] "
+>
+  <div
+    class="flex flex-col items-start gap-md w-full"
+  >
+    <p
+      class="typo-body-bold"
+    >
+      Assistente IA
+    </p>
+    <p
+      class="typo-body-sm"
+    >
+      A identificação clara do projeto facilita sua aprovação. Utilize um título objetivo que reflita o problema a ser resolvido.
+    </p>
+  </div>
+  <div
+    class="flex flex-col items-start gap-md w-full"
+  >
+    <p
+      class="typo-body-bold"
+    >
+      Exemplo
+    </p>
+    <div
+      class="flex flex-col items-start gap-sm w-full"
+    >
+      <div
+        class="w-full flex flex-col gap-sm"
+      >
+        <p
+          class="typo-body-sm"
+        >
+          "Programa de Digitalização de Microempresas de Campina Grande"
+        </p>
+        <div
+          class="divider"
+        />
+      </div>
+      <div
+        class="w-full flex flex-col gap-sm"
+      >
+        <p
+          class="typo-body-sm"
+        >
+          "Projeto de Capacitação Empreendedora Jovem - PB"
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    class="flex flex-col items-start gap-md w-full"
+  >
+    <p
+      class="typo-body-bold"
+    >
+      Ações da IA
+    </p>
+    <div
+      class="flex flex-col items-center gap-xs w-full"
+    >
+      <button
+        class="inline-flex items-center justify-center radius-full cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)] h-[40px] px-md gap-xs typo-button-sm w-[200px]"
+        type="button"
+      >
+        Gerar sugestão
+      </button>
+      <button
+        class="inline-flex items-center justify-center radius-full cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)] h-[40px] px-md gap-xs typo-button-sm w-[200px]"
+        type="button"
+      >
+        Melhorar texto
+      </button>
+      <button
+        class="inline-flex items-center justify-center radius-full cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)] h-[40px] px-md gap-xs typo-button-sm w-[200px]"
+        type="button"
+      >
+        Adaptar para edital
+      </button>
+      <button
+        class="inline-flex items-center justify-center radius-full cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)] h-[40px] px-md gap-xs typo-button-sm w-[200px]"
+        type="button"
+      >
+        Validar conteúdo
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Snapshot tests — CSS refactor safety > AgendaBadge 1`] = `
 <div
   class="flex-center gap-xs px-sm py-2xs radius-md status-warning-bg "
@@ -316,6 +408,44 @@ decisões estratégicas.
 </footer>
 `;
 
+exports[`Snapshot tests — CSS refactor safety > FormuladorProgress 1`] = `
+<div
+  class="card-surface radius-md px-lg py-sm flex flex-col items-start gap-sm w-full "
+>
+  <div
+    class="flex items-center justify-between w-full"
+  >
+    <p
+      class="typo-body-bold"
+    >
+      0
+      % concluído
+    </p>
+    <p
+      class="typo-body"
+    >
+      1
+      /
+      10
+       etapas • Etapa Atual: 
+      Identificação
+    </p>
+  </div>
+  <div
+    aria-valuemax="100"
+    aria-valuemin="0"
+    aria-valuenow="0"
+    class="w-full h-[11px] radius-full bg-[var(--semantic-background-primary)] overflow-hidden "
+    role="progressbar"
+  >
+    <div
+      class="h-full radius-full bg-[var(--semantic-text-primary)] transition-[width] duration-200"
+      style="width: 0%;"
+    />
+  </div>
+</div>
+`;
+
 exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
 <header
   class="flex-between mx-auto w-full max-w-[1440px] sticky top-0 z-50 py-md px-lg bg-primary "
@@ -429,6 +559,21 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
 </header>
 `;
 
+exports[`Snapshot tests — CSS refactor safety > ProgressBar 1`] = `
+<div
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="40"
+  class="w-full h-[11px] radius-full bg-[var(--semantic-background-primary)] overflow-hidden "
+  role="progressbar"
+>
+  <div
+    class="h-full radius-full bg-[var(--semantic-text-primary)] transition-[width] duration-200"
+    style="width: 40%;"
+  />
+</div>
+`;
+
 exports[`Snapshot tests — CSS refactor safety > ResourcesCard 1`] = `
 <div
   class="card-surface-secondary p-md flex flex-col gap-sm justify-between card-hoverable "
@@ -518,6 +663,82 @@ exports[`Snapshot tests — CSS refactor safety > SectionHeader — with descrip
   >
     Descrição da seção
   </p>
+</div>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > StepIndicator — checked 1`] = `
+<div
+  class="flex items-center gap-sm w-full text-left "
+>
+  <svg
+    aria-hidden="true"
+    class="lucide lucide-check shrink-0 text-[color:var(--semantic-success)]"
+    fill="none"
+    height="20"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    viewBox="0 0 24 24"
+    width="20"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M20 6 9 17l-5-5"
+    />
+  </svg>
+  <div
+    class="flex flex-col items-start"
+  >
+    <span
+      class="typo-body-bold text-[color:var(--semantic-text-primary)]"
+    >
+      1. Identificação
+    </span>
+    <span
+      class="typo-body-sm text-[color:var(--semantic-text-primary)]"
+    >
+      Concluído
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > TextInput — all props 1`] = `
+<div
+  class="flex flex-col items-start gap-xs w-full "
+>
+  <label
+    class="typo-body-bold"
+    for="_r_0_"
+  >
+    Problema central
+  </label>
+  <p
+    class="typo-body-sm"
+  >
+    💡 Use dados do diagnóstico para fundamentar.
+  </p>
+  <input
+    class="w-full typo-body px-sm py-xs border border-solid rounded-[var(--spacing-xs)] bg-[var(--semantic-surface-primary)] border-[var(--semantic-surface-secondary)] focus:outline-none focus:border-[var(--semantic-text-primary)] placeholder:text-[color:var(--semantic-text-inactive)]"
+    id="_r_0_"
+    placeholder="Descreva o problema que quer resolver"
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > TextInput — multiline 1`] = `
+<div
+  class="flex flex-col items-start gap-xs w-full "
+>
+  <textarea
+    class="w-full typo-body px-sm py-xs border border-solid rounded-[var(--spacing-xs)] bg-[var(--semantic-surface-primary)] border-[var(--semantic-surface-secondary)] focus:outline-none focus:border-[var(--semantic-text-primary)] placeholder:text-[color:var(--semantic-text-inactive)] resize-none"
+    id="_r_1_"
+    placeholder="..."
+    rows="3"
+  />
 </div>
 `;
 

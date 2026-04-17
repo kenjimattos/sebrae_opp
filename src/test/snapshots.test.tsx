@@ -16,6 +16,12 @@ import SectionContainer from '@/components/ui/SectionContainer'
 import Card from '@/components/ui/Card'
 import ResourcesCard from '@/components/resources/ResourcesCard'
 import AgendaIndicator from '@/components/agenda/AgendaIndicator'
+import TextInput from '@/components/ui/TextInput'
+import ProgressBar from '@/components/ui/ProgressBar'
+import StepIndicator from '@/components/formulador/StepIndicator'
+import FormuladorProgress from '@/components/formulador/FormuladorProgress'
+import AIAssistant from '@/components/formulador/AIAssistant'
+import { aiAssistantByEtapa } from '@/data/formulador-ai'
 
 describe('Snapshot tests — CSS refactor safety', () => {
   it('AgendaBadge', () => {
@@ -108,6 +114,50 @@ describe('Snapshot tests — CSS refactor safety', () => {
       <Card padding="md">
         <div>Content</div>
       </Card>,
+    )
+    expect(container.firstChild).toMatchSnapshot()
+  })
+
+  it('TextInput — all props', () => {
+    const { container } = render(
+      <TextInput
+        title="Problema central"
+        subtitle="💡 Use dados do diagnóstico para fundamentar."
+        hint="Descreva o problema que quer resolver"
+        value=""
+        onChange={() => {}}
+      />,
+    )
+    expect(container.firstChild).toMatchSnapshot()
+  })
+
+  it('TextInput — multiline', () => {
+    const { container } = render(
+      <TextInput multiline rows={3} value="" onChange={() => {}} hint="..." />,
+    )
+    expect(container.firstChild).toMatchSnapshot()
+  })
+
+  it('ProgressBar', () => {
+    const { container } = render(<ProgressBar value={40} />)
+    expect(container.firstChild).toMatchSnapshot()
+  })
+
+  it('StepIndicator — checked', () => {
+    const { container } = render(
+      <StepIndicator label="1. Identificação" status="checked" />,
+    )
+    expect(container.firstChild).toMatchSnapshot()
+  })
+
+  it('FormuladorProgress', () => {
+    const { container } = render(<FormuladorProgress currentIndex={0} percent={0} />)
+    expect(container.firstChild).toMatchSnapshot()
+  })
+
+  it('AIAssistant', () => {
+    const { container } = render(
+      <AIAssistant content={aiAssistantByEtapa.identificacao} />,
     )
     expect(container.firstChild).toMatchSnapshot()
   })
