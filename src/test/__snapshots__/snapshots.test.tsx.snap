@@ -191,7 +191,7 @@ exports[`Snapshot tests — CSS refactor safety > Footer 1`] = `
   class="bg-surface px-margin py-2xl "
 >
   <div
-    class="flex items-start justify-between"
+    class="flex items-start mx-auto w-full max-w-[1440px] justify-between"
   >
     <div
       class="flex flex-col gap-sm items-start"
@@ -302,7 +302,7 @@ decisões estratégicas.
     </div>
   </div>
   <div
-    class="flex flex-col gap-lg items-start mt-[var(--spacing-lg)] pb-2xl"
+    class="flex flex-col mx-auto w-full max-w-[1440px] gap-lg items-start mt-[var(--spacing-lg)] pb-2xl"
   >
     <div
       class="divider"
