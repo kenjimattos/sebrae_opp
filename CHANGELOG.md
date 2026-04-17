@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+## [0.6.1] — 2026-04-17
+
+Versão de polimento pós-`0.6.0`: rebalanceia a escala tipográfica dos botões (que vinha herdando valores grandes demais dos tokens originais), ajusta o CTA do card do Formulador e habilita o roteamento client-side em deploys da Vercel.
+
 ### Added
 
 - **`vercel.json`** com rewrite `"/(.*)" → "/index.html"` para suportar SPA routing — sem isso, acessar rotas como `/formulador` direto na Vercel retornava 404.
@@ -14,6 +18,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - **`Button`** — mapeamento de tipografia por tamanho padronizado: `sm` agora usa `typo-button-sm`, `md` usa `typo-button`, `lg` usa `typo-button-lg` (antes estavam deslocados em um nível).
 - **`PillButton`** — `size="md"` ganha padding horizontal maior (`pl-md`/`pr-md` no lado oposto ao círculo) para dar respiro ao label; `size="lg"` passa a usar `typo-button-lg`; default do `size` muda de `lg` para `md`.
 - **`SectionCapacitacao`** — botão "Ver todas as trilhas / Ver menos trilhas" passa de `size="lg"` para `size="md"` para harmonizar com a nova escala.
+- **`FormuladorCardData`** (`src/data/formulador.ts`) — label do CTA do card do Formulador na Home: "Começar com a ajuda da IA" → "Começar agora".
 
 ## [0.6.0] — 2026-04-17
 
