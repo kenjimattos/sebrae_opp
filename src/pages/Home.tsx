@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import SectionHero from '@/components/sections/SectionHero'
@@ -12,9 +14,24 @@ import SectionFormulador from '@/components/sections/SectionFormulador'
 // import SectionAIAssistant from '@/components/sections/SectionAIAssistant'
 import { useMunicipio } from '@/hooks/useMunicipio'
 
+const HEADER_OFFSET = 95
+
 export default function Home() {
   const { municipio } = useMunicipio()
+  const { hash } = useLocation()
   const dados = municipio.dados
+
+  // Suporta navegação por hash (`/#agendas`) — usada quando o usuário sai do
+  // Formulador clicando num link do Header. Scroll respeita o offset do
+  // header sticky.
+  useEffect(() => {
+    if (!hash) return
+    const id = hash.slice(1)
+    const el = document.getElementById(id)
+    if (!el) return
+    const top = el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET
+    window.scrollTo({ top, behavior: 'smooth' })
+  }, [hash])
 
   return (
     <div className="min-h-screen bg-primary">
