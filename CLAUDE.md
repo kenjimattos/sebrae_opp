@@ -3,7 +3,7 @@
 Guia de desenvolvimento para a Plataforma OPP (Observatório de Políticas Públicas).
 Leia este arquivo inteiro antes de começar qualquer tarefa.
 
-> **Status atual:** Protótipo funcional com 8 seções implementadas, mapa interativo da Paraíba, estado global por município, e dados mock para 3 municípios (João Pessoa, Campina Grande, Patos). Viewport desktop 1440px. Dark mode configurado via tokens mas sem toggle na UI.
+> **Status atual:** Protótipo funcional com 8 seções implementadas, mapa interativo da Paraíba, estado global por município, e dados mock para 3 municípios (João Pessoa, Campina Grande, Patos). Viewport desktop 1440px. Dark mode configurado via tokens mas sem toggle na UI. **Rota `/formulador` implementada** — fluxo em 10 etapas + tela de conclusão, persistência por município em `localStorage`.
 
 ---
 
@@ -117,7 +117,13 @@ src/
 │   ├── case-studies/
 │   │   └── CaseStudiesCard.tsx        # Figma: CaseStudies/Card (288:8)
 │   ├── formulador/
-│   │   └── FormuladorCard.tsx         # Figma: Formulador/Card (296:8)
+│   │   ├── FormuladorCard.tsx         # Figma: Formulador/Card (296:8) — card de entrada na home
+│   │   ├── FormCard.tsx               # Figma: Formulador/FormCard (696:2665) — wrapper do form central (título/subtítulo/slot/footer Anterior+Próxima/Finalizar)
+│   │   ├── FormuladorProgress.tsx     # Figma: Formulador/Progress (620:4417) — barra topo "X% concluído"
+│   │   ├── ProjectSteps.tsx           # Figma: Formulador/ProjectSteps (603:2135) — sidebar esquerda
+│   │   ├── StepIndicator.tsx          # Figma: Formulador/StepIndicator (603:1560) — 3 variantes (unchecked/current/checked)
+│   │   ├── AIAssistant.tsx            # Figma: Formulador/AIAssistant (603:1803) — sidebar direita
+│   │   └── steps/                     # 10 componentes de etapa + dispatcher (StepForm)
 │   ├── icons/
 │   │   ├── index.ts                   # Re-export centralizado de ícones Lucide + UserAvatar
 │   │   └── UserAvatar.tsx             # SVG custom (não existe no Lucide)
@@ -150,7 +156,9 @@ src/
 │       ├── Grid.tsx                   # Grid configurável (cols, gap)
 │       ├── Dropdown.tsx               # Select estilizado — consome useDropdownState + DropdownMenu
 │       ├── DropdownMenu.tsx           # Lista UL reutilizável — max-content + min-w-full (auto-sizing)
-│       └── useDropdownState.ts        # Hook compartilhado: open/setOpen/ref + click-outside
+│       ├── useDropdownState.ts        # Hook compartilhado: open/setOpen/ref + click-outside
+│       ├── TextInput.tsx              # Input/textarea com title/subtitle/hint/disabled/multiline
+│       └── ProgressBar.tsx            # Barra de progresso 0–100 com a11y (role=progressbar)
 ├── data/
 │   ├── municipios.json               # Lista dos 3 municípios (id IBGE, nome, slug)
 │   ├── sections.ts                   # Títulos e descrições centralizados de todas as seções
@@ -160,6 +168,8 @@ src/
 │   ├── capacitacao.ts                # Trilhas e cursos (SectionCapacitacao)
 │   ├── recursos.ts                   # Cards, URLs e textos (SectionRecursos)
 │   ├── formulador.ts                 # Cards do formulador (SectionFormulador)
+│   ├── formulador-etapas.ts          # Fonte de verdade das 10 etapas (slug/label/titulo/subtitle)
+│   ├── formulador-ai.ts              # Conteúdo do AIAssistant por etapa
 │   ├── ai-assistant.ts              # Placeholder + botões (SectionAIAssistant)
 │   ├── layout.ts                     # navLinks, footerColumns, brandText, copyright
 │   ├── economics.ts                  # Texto de análise econômica
@@ -170,6 +180,8 @@ src/
 ├── hooks/
 │   ├── useMunicipio.ts               # Hook + Context type + MunicipioState interface
 │   ├── MunicipioProvider.tsx          # Provider que carrega JSON por município
+│   ├── useFormulador.ts              # Hook + Context type do rascunho de projeto
+│   ├── FormuladorProvider.tsx         # Provider do rascunho — persiste por município em localStorage
 │   ├── usePanoramaIndicadores.ts     # Dropdown options derivadas das agendas
 │   └── usePanoramaMedia.ts           # Cálculo de média estadual do indicador
 ├── constants/
@@ -184,10 +196,14 @@ src/
 │   ├── snapshots.test.tsx            # Snapshot tests para segurança de refactor CSS
 │   └── mocks/                        # Mocks (municipio, leaflet, wrapper)
 ├── types/
-│   └── indicadores.ts                # IndicadoresData, Agenda, Indicador, etc.
+│   ├── indicadores.ts                # IndicadoresData, Agenda, Indicador, etc.
+│   └── formulador.ts                 # FormuladorState + tipos de cada etapa + EMPTY_FORMULADOR_STATE
 ├── pages/
-│   └── Home.tsx                      # Página principal com todas as seções
-├── App.tsx                           # BrowserRouter + MunicipioProvider
+│   ├── Home.tsx                      # Página principal com todas as seções
+│   ├── Formulador.tsx                # Layout da rota /formulador (hero + progress + <Outlet>)
+│   ├── FormuladorStep.tsx            # /formulador/:stepSlug — sidebar + FormCard + AIAssistant
+│   └── FormuladorConclusao.tsx       # /formulador/conclusao — revisão + banner + cards por etapa
+├── App.tsx                           # BrowserRouter + MunicipioProvider + FormuladorProvider
 ├── main.tsx
 └── index.css                         # Design tokens (typography, spacing, radius, colors, dark mode)
 ```
@@ -219,6 +235,12 @@ src/
 | Courses/CardRow | `297:8` | `courses/CoursesCardRow.tsx` |
 | CaseStudies/Card | `288:8` | `case-studies/CaseStudiesCard.tsx` |
 | Formulador/Card | `296:8` | `formulador/FormuladorCard.tsx` |
+| Formulador/FormCard | `696:2665` | `formulador/FormCard.tsx` |
+| Formulador/Progress | `620:4417` | `formulador/FormuladorProgress.tsx` |
+| Formulador/ProjectSteps | `603:2135` | `formulador/ProjectSteps.tsx` |
+| Formulador/AIAssistant | `603:1803` | `formulador/AIAssistant.tsx` |
+| Formulador/StepIndicator | `603:1560` | `formulador/StepIndicator.tsx` |
+| TextInput | `603:2011` | `ui/TextInput.tsx` |
 
 ### ⬜ Pendentes (existem no Figma, não implementados)
 
@@ -226,12 +248,6 @@ src/
 |---|---|---|
 | Agenda/Tooltip | `498:1024` | Tooltip de análise |
 | Icons | `380:482` | Biblioteca de ícones (usamos SVGs inline por enquanto) |
-| TextInput | `603:2011` | Input de texto com variantes |
-| Formulador/FormCard | `696:2665` | Card de formulário |
-| Formulador/Progress | `620:4417` | Barra de progresso |
-| Formulador/ProjectSteps | `603:2135` | Lista de etapas |
-| Formulador/AIAssistant | `603:1803` | Bloco assistente IA |
-| Formulador/StepIndicator | `603:1560` | Indicador de passo |
 
 ### Componentes Tailwind puros (sem Figma)
 
@@ -247,9 +263,9 @@ src/
 | `ui/Dropdown.tsx` | ✅ | Select — consome `useDropdownState` + `DropdownMenu` |
 | `ui/DropdownMenu.tsx` | ✅ | Lista UL com auto-sizing (`max-content` + `min-w-full`) |
 | `ui/useDropdownState.ts` | ✅ | Hook com open/setOpen/ref + click-outside |
+| `ui/ProgressBar.tsx` | ✅ | Barra 0–100 com `role=progressbar` (usada em FormuladorProgress) |
 | `Tabs.tsx` | ⬜ | Se necessário para alternar visualizações |
 | `ScrollRow.tsx` | ⬜ | Scroll horizontal com snap |
-| `ProgressBar.tsx` | ⬜ | Para Formulador/Progress |
 | `Skeleton.tsx` | ⬜ | Placeholder de loading (opcional) |
 | `Modal.tsx` | ⬜ | Se necessário para detalhes |
 
@@ -311,6 +327,29 @@ As descrições e contextos de risco estão em `src/data/riscos-contexto.ts` (ch
 
 ---
 
+## Formulador de Projetos
+
+Rota `/formulador` com fluxo em 10 etapas + conclusão. Layout 3 colunas:
+
+- **Esquerda:** `<ProjectSteps>` — sidebar com as 10 etapas. Cada `<StepIndicator>` deriva status (`unchecked`/`current`/`checked`) de `currentSlug` + `etapasVisitadas`.
+- **Centro:** `<FormCard>` — título + subtítulo da etapa + form (`<StepForm slug={…} />`) + footer (Anterior/Próxima/Finalizar).
+- **Direita:** `<AIAssistant>` — painel cinza com descrição, exemplos, 4 botões pílula (no-op v1).
+
+**Rotas:**
+- `/formulador` → redireciona para `/formulador/identificacao` (index route)
+- `/formulador/:stepSlug` → `<FormuladorStep>` dispatcha para um dos 10 forms
+- `/formulador/conclusao` → `<FormuladorConclusao>` (sem AIAssistant; com cards resumo)
+
+**Estado:** `FormuladorContext` via `FormuladorProvider` (envolve o App). Um rascunho por município em `localStorage` (`formulador:${ibgeId}`). Troca de município recarrega o rascunho correspondente via render-phase state update. Forma do estado em `src/types/formulador.ts` (`FormuladorState` + `EMPTY_FORMULADOR_STATE`).
+
+**Fonte de verdade das etapas:** `src/data/formulador-etapas.ts` — array de `{ slug, label, nome, titulo, subtitle }` consumido pela sidebar, progress e FormCard. Helpers `findEtapaBySlug`, `findEtapaIndex`.
+
+**"Etapa concluída" é heurística:** uma etapa é marcada como `checked` quando o usuário clica Próxima/Finalizar (via `markVisited(slug)`). Não há validação de campos preenchidos na v1.
+
+**AIAssistant:** conteúdo em `src/data/formulador-ai.ts`. Placeholder estático v1 (mesma descrição/exemplos/ações para as 10 etapas) — no futuro gerado por LLM.
+
+---
+
 ## Estado Global
 
 Context API + `useMunicipio` hook. O município default é **Campina Grande** (código IBGE `2504009`).
@@ -356,7 +395,7 @@ Toda a estrutura de dados está em `src/data/` e `src/types/indicadores.ts`.
 ## Regras de Desenvolvimento
 
 ### Testes
-- **46 testes** cobrindo smoke tests (9 seções + 18 componentes) e snapshot tests (13 componentes)
+- **62 testes** cobrindo smoke tests (9 seções + 27 componentes) e snapshot tests (19 componentes)
 - Rodar `npm run test:run` antes de commitar
 - Se mudanças CSS intencionais quebrarem snapshots: revisar diff → `npx vitest run -u` → commitar snapshots atualizados
 - Mocks em `src/test/mocks/` (Leaflet, MunicipioProvider)
