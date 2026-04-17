@@ -7,9 +7,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ### Added
 
 - **`DropdownMenu` com limite de altura + auto-scroll no hover** (`components/ui/DropdownMenu.tsx`) — com o dropdown do Panorama agora listando todos os indicadores das 6 agendas (24 itens), a lista estava vazando a tela. Adicionado `max-h: 40dvh` (viewport-relative) + `overflow-y-auto` na UL. Quando há overflow, chevrons `ChevronUp`/`ChevronDown` aparecem no topo/base com fade gradient; ao hover, a lista auto-rola (interval 16ms × 4px). Detecção via `scroll` event + `ResizeObserver`.
-- **`Tooltip`** (`components/ui/Tooltip.tsx`) — componente hover/focus reutilizável, usa `Card` como base para o painel flutuante. Props: `content`, `placement` (top/bottom), `align` (start/end), `width`. Abre em hover + focus (keyboard-friendly), role="tooltip" para a11y.
+- **`Tooltip`** (`components/ui/Tooltip.tsx`) — componente reutilizável, usa `Card` como base para o painel flutuante. Props: `content`, `placement` (top/bottom), `align` (start/end), `width`, `trigger` (`hover` | `click`), `followCursor`. Em `hover`, abre em hover + focus (keyboard-friendly); em `click`, abre/fecha no clique com click-outside e `Escape` para fechar; com `followCursor`, o painel é **portalado ao `<body>`** e posicionado com `position: fixed` à direita do cursor (16px offset), `pointer-events-none`, escapando stacking contexts dos cards vizinhos. `role="tooltip"` para a11y.
 - **Objetivos das agendas** (`data/agenda-objetivos.ts`) — mapa `{ [nomeDaAgenda]: objetivo }` com os 6 objetivos extraídos do Figma (Governança, Simplificação, Inovação ELI, Educação, Financiamento, Inclusão produtiva).
 - **Tooltip de objetivo no `AgendaCard`** — ícone `Info` no canto superior direito do card exibe o objetivo da agenda em tooltip ao hover/focus. Texto segue `.typo-body-sm` com destaque bold no heading "Objetivo".
+- **Tooltip de descrição em `AgendaIndicator`** — hover da linha do indicador abre um tooltip com `followCursor` à direita do cursor, mostrando o label em bold + descrição curta (o que o indicador mede / fonte). Sem ícone adicional — a própria linha é o trigger (`cursor-help` quando há descrição). Dados em `data/indicador-info.ts` (mapa label → descrição para os 24 indicadores das agendas).
 - Ícone `Info` exportado de `components/icons`.
 
 ### Changed

@@ -20,7 +20,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
   class="flex flex-col gap-sm w-full"
 >
   <div
-    class="flex items-center gap-md px-xs w-full"
+    class="flex items-center gap-md px-xs w-full "
   >
     <span
       class="flex-1 typo-body-sm"

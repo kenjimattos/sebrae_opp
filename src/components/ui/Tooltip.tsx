@@ -1,17 +1,23 @@
 // Tailwind pure — no Figma equivalent
-// Reusable hover/focus tooltip. Floating panel uses the Card primitive.
+// Reusable tooltip with hover/click trigger. Floating panel uses the Card primitive.
+// In `followCursor` mode, the panel is portaled to <body> and position: fixed so it
+// escapes sibling stacking contexts (e.g. adjacent cards in a grid).
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import Card from '@/components/ui/Card'
 
 type TooltipPlacement = 'top' | 'bottom'
 type TooltipAlign = 'start' | 'end'
+type TooltipTrigger = 'hover' | 'click'
 
 interface TooltipProps {
   content: React.ReactNode
   placement?: TooltipPlacement
   align?: TooltipAlign
   width?: number
+  trigger?: TooltipTrigger
+  followCursor?: boolean
   children: React.ReactNode
   className?: string
 }
@@ -26,41 +32,92 @@ const alignClass: Record<TooltipAlign, string> = {
   end: 'right-0',
 }
 
+const CURSOR_OFFSET_PX = 16
+
 export default function Tooltip({
   content,
   placement = 'bottom',
   align = 'end',
   width = 300,
+  trigger = 'hover',
+  followCursor = false,
   children,
   className = '',
 }: TooltipProps) {
   const [open, setOpen] = useState(false)
+  const [cursorPos, setCursorPos] = useState<{ x: number; y: number } | null>(null)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (trigger !== 'click') return
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false)
+      }
+    }
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('keydown', handleEscape)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('keydown', handleEscape)
+    }
+  }, [trigger])
+
+  function updateCursorFromEvent(e: React.MouseEvent) {
+    setCursorPos({ x: e.clientX, y: e.clientY })
+  }
+
+  const interactionProps =
+    trigger === 'click'
+      ? { onClick: () => setOpen((v) => !v) }
+      : {
+          onMouseEnter: (e: React.MouseEvent) => {
+            if (followCursor) updateCursorFromEvent(e)
+            setOpen(true)
+          },
+          onMouseMove: followCursor
+            ? (e: React.MouseEvent) => updateCursorFromEvent(e)
+            : undefined,
+          onMouseLeave: () => {
+            setOpen(false)
+            if (followCursor) setCursorPos(null)
+          },
+          onFocus: () => setOpen(true),
+          onBlur: () => setOpen(false),
+        }
+
+  const useCursorPos = followCursor && cursorPos
+  const panelClass = useCursorPos
+    ? 'fixed z-50 pointer-events-none'
+    : `absolute z-50 ${placementClass[placement]} ${alignClass[align]}`
+  const panelStyle: React.CSSProperties = useCursorPos
+    ? { left: cursorPos.x + CURSOR_OFFSET_PX, top: cursorPos.y, width }
+    : { width }
+
+  const panel = open ? (
+    <div role="tooltip" className={panelClass} style={panelStyle}>
+      <Card
+        surface="primary"
+        padding="md"
+        bordered
+        className="typo-body-sm shadow-lg"
+      >
+        {content}
+      </Card>
+    </div>
+  ) : null
 
   return (
-    <span
-      className={`relative inline-flex ${className}`}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-      onFocus={() => setOpen(true)}
-      onBlur={() => setOpen(false)}
+    <div
+      ref={ref}
+      className={`relative ${className}`}
+      {...interactionProps}
     >
       {children}
-      {open && (
-        <span
-          role="tooltip"
-          className={`absolute z-50 ${placementClass[placement]} ${alignClass[align]}`}
-          style={{ width }}
-        >
-          <Card
-            surface="primary"
-            padding="md"
-            bordered
-            className="typo-body-sm shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
-          >
-            {content}
-          </Card>
-        </span>
-      )}
-    </span>
+      {useCursorPos && panel ? createPortal(panel, document.body) : panel}
+    </div>
   )
 }
