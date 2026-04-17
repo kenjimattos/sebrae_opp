@@ -16,13 +16,13 @@ export default function AgendaStats({ total, counts, className = '' }: AgendaSta
   return (
     <Card
       padding={{ x: 'lg', y: 'md' }}
-      className={`flex-between w-full ${className}`}
+      className={`flex-between gap-3xl w-full ${className}`}
     >
-      <div className="flex-center gap-md">
+      <div className="flex-center gap-sm">
         <span className="typo-display">
           {total}
         </span>
-        <span className="typo-body-lg">
+        <span className="typo-body">
           {agendaStatsLabel}
         </span>
       </div>

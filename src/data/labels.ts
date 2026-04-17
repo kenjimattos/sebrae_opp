@@ -30,7 +30,9 @@ export const panoramaLabels = {
 } as const
 
 /** AgendaStats label */
-export const agendaStatsLabel = 'indicadores avaliados' as const
+export const agendaStatsLabel =
+  'indicadores alinhados às agendas estratégicas ' +
+  'para melhorar o ambiente de negócios do seu município'
 
 /** Default user name */
 export const defaultUserName = 'João Maria' as const
