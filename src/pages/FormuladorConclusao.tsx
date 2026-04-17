@@ -176,6 +176,8 @@ export default function FormuladorConclusao() {
   const allVisited = etapasFormulador.map((e) => e.slug)
   const [enviado, setEnviado] = useState(false)
 
+  const tituloProjeto = state.identificacao.titulo.trim()
+
   return (
     <div className="flex items-start gap-sm w-full">
       <ProjectSteps
@@ -203,17 +205,28 @@ export default function FormuladorConclusao() {
           />
         </div>
 
-        {enviado && (
-          <Card surface="success" padding="md" radius="sm" bordered className="flex items-start gap-sm">
-            <Check size={iconSizes.md} className="shrink-0 text-[color:var(--semantic-success)] mt-[2px]" />
-            <div className="flex flex-col gap-2xs">
-              <p className="typo-body-bold">Projeto enviado com sucesso!</p>
-              <p className="typo-body-sm">Seu projeto agora segue para análise. Fique atento aos canais de comunicação.</p>
-            </div>
-          </Card>
-        )}
+        {/* Tudo a partir daqui (.print-area) é o que o PDF captura. Acima,
+            o título/subtítulo da Conclusão e a linha de botões ficam ocultos
+            no @media print via CSS. */}
+        <div className="print-area flex flex-col gap-lg">
+          {/* Título exclusivo do PDF — só aparece no print. */}
+          <div className="hidden print:flex print:flex-col print:gap-xs">
+            <h1 className="typo-h2">Resumo do projeto</h1>
+            {tituloProjeto && <p className="typo-body-lg-bold">{tituloProjeto}</p>}
+            <p className="typo-body">{municipio.nome}</p>
+          </div>
 
-        <div className="flex flex-col gap-md">
+          {enviado && (
+            <Card surface="success" padding="md" radius="sm" bordered className="flex items-start gap-sm">
+              <Check size={iconSizes.md} className="shrink-0 text-[color:var(--semantic-success)] mt-[2px]" />
+              <div className="flex flex-col gap-2xs">
+                <p className="typo-body-bold">Projeto enviado com sucesso!</p>
+                <p className="typo-body-sm">Seu projeto agora segue para análise. Fique atento aos canais de comunicação.</p>
+              </div>
+            </Card>
+          )}
+
+          <div className="flex flex-col gap-md">
           {etapasFormulador.map((etapa, idx) => {
             const { blocks } = renderSection(etapa.slug, state, municipio.nome)
             const hasContent = blocks.some((b) => b.value && b.value.trim().length > 0)
@@ -238,6 +251,7 @@ export default function FormuladorConclusao() {
               </div>
             )
           })}
+          </div>
         </div>
       </Card>
     </div>

@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Added
+
+- **Exportação PDF da Conclusão** — botão "Baixar PDF" dispara `window.print()` e agora só o conteúdo do resumo aparece no PDF. Header/Footer, hero + barra de progresso, sidebar das etapas, título "Conclusão" e a linha de botões ficam ocultos via `@media print` em `src/index.css`. Um título exclusivo do PDF ("Resumo do projeto" + título do projeto + município) aparece só na versão impressa (via `hidden print:flex` do Tailwind). A isolação usa o padrão `visibility: hidden` em `body *` + `visibility: visible` na `.print-area`, com a área reposicionada absolutamente no topo da página.
+
 ### Changed
 
 - **Resumo na tela de Conclusão** alinhado label-a-label com o Figma:

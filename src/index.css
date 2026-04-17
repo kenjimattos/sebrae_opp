@@ -355,3 +355,40 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* ============ PRINT ============ */
+/* "Baixar PDF" usa window.print(). Só o conteúdo marcado com .print-area
+   sai no PDF — header, footer, sidebar do Formulador, título/botões da
+   Conclusão ficam escondidos. */
+@media print {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: white;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+
+  .print-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px;
+    max-width: none;
+    background: white;
+  }
+
+  /* Evita quebra feia no meio de um card de etapa. */
+  .print-area > * {
+    break-inside: avoid;
+  }
+}
