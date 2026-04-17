@@ -25,7 +25,7 @@ export default function SectionCasosSucesso() {
     <SectionContainer>
       {/* Header row */}
       <div className="flex-between w-full">
-        <SectionHeader title={sectionContent.casosSucesso.title} />
+        <SectionHeader title={sectionContent.casosSucesso.title} description={sectionContent.casosSucesso.description} />
       </div>
       <div className="flex flex-col items-center gap-sm">
         {/* Cards scroll */}

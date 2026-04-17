@@ -52,7 +52,8 @@ export const sectionContent = {
     description: 'Curadoria de cursos e conteúdos de aprimoramento para uma gestão pública cada vez mais inovadora.'
   },
   casosSucesso: {
-    title: 'Municípios que transformaram seu ambiente de negócios',
+    title: 'Inspire-se com casos de sucesso',
+    description: 'Veja como outros municípios implementaram estratégias eficazes para melhorar seu ambiente de negócios.'
   },
   formulador: {
     title: 'Formulador de projetos e politicas publicas',
