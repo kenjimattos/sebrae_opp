@@ -5,8 +5,8 @@ export interface NavLink {
 
 export const navLinks: NavLink[] = [
   { label: 'Agenda prioritária', sectionId: 'agendas' },
-  { label: 'Acesso a recursos', sectionId: 'recursos' },
-  { label: 'Formulador', sectionId: 'formulador' },
+  { label: 'Mapeamento de recursos', sectionId: 'recursos' },
+  { label: 'Formulador de iniciativas', sectionId: 'formulador' },
 ]
 
 export interface FooterColumn {
