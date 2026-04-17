@@ -42,8 +42,11 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 **SectionHero** (`components/sections/SectionHero.tsx`)
 - CTAs migrados para o design system: `<button>` customizado → primitivo `Card` (`ui/Card`); `<h3>` + `<p>` inline → `TitleSubtitle size="sm"`.
 - Ícone circular: `radius-md` + `bg: --semantic-accent-surface` + cor accent → `radius-full` + `bg-surface-secondary` com cor padrão do ícone.
-- Hover extraído para utilitário do DS `.card-hoverable` (`index.css`) — agrupa `cursor-pointer`, borda transparente default (sem layout shift), `transform`/`box-shadow`/`border-color` animados e anel de `:focus-visible` em accent. Borda em `--semantic-accent-surface` aparece somente no hover.
+- Hover extraído para utilitário do DS `.card-hoverable` (`index.css`) — agrupa `cursor-pointer`, `transition` e, no `:hover`, lift (`translateY(-2px)`) + sombra com anel 1px em `--semantic-accent-surface` renderizado **por fora do border-box** (via `box-shadow` com spread, não via `border`). Assim o anel funciona em qualquer card: sem borda própria aparece só o anel; com borda própria (ex.: `Card bordered`) a cor da borda permanece intocada e o anel surge por fora. `:focus-visible` usa `outline` accent independente.
 - Removidos: step number (`01`/`02`/`03`), rodapé "Começar" com `ArrowRight`, constante `HEADER_HEIGHT` e função `scrollToSection` — cards deixam de ter navegação por click para as seções de destino nesta iteração.
+
+**RisksCard** (`components/risks/RisksCard.tsx`)
+- Adota `.card-hoverable` — como usa `<Card bordered surface={alert|warning}>`, a borda colorida própria é preservada e o anel accent do hover aparece por fora dela (valida o comportamento da utility em cards com borda).
 
 ## [0.4.0] — 2026-04-16
 

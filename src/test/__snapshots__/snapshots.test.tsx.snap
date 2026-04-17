@@ -448,7 +448,7 @@ exports[`Snapshot tests — CSS refactor safety > ResourcesCard 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > RisksCard 1`] = `
 <div
-  class="status-alert-bg radius-sm p-lg border border-solid border-[var(--semantic-alert)] flex flex-col gap-md "
+  class="status-alert-bg radius-sm p-lg border border-solid border-[var(--semantic-alert)] flex flex-col gap-md card-hoverable "
 >
   <div
     class="flex items-start gap-md w-full"

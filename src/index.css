@@ -222,13 +222,16 @@
   .card-surface-secondary { background-color: var(--semantic-surface-secondary); border-radius: var(--radius-sm); }
   .card-hoverable {
     cursor: pointer;
-    border: 1px solid transparent;
-    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+    transition: transform 200ms ease, box-shadow 200ms ease;
   }
   .card-hoverable:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    border-color: var(--semantic-accent-surface);
+    /* 1ª sombra: anel 1px por fora do border-box — não sobrescreve border do card.
+       2ª/3ª: lift padrão. */
+    box-shadow:
+      0 0 0 1px var(--semantic-accent-surface),
+      0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
   }
   .card-hoverable:focus-visible {
     outline: 2px solid var(--semantic-accent);
