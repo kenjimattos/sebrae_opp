@@ -439,7 +439,7 @@ exports[`Snapshot tests — CSS refactor safety > FormuladorProgress 1`] = `
     role="progressbar"
   >
     <div
-      class="h-full radius-full bg-[var(--semantic-text-primary)] transition-[width] duration-200"
+      class="h-full radius-full bg-accent transition-[width] duration-200"
       style="width: 0%;"
     />
   </div>
@@ -568,7 +568,7 @@ exports[`Snapshot tests — CSS refactor safety > ProgressBar 1`] = `
   role="progressbar"
 >
   <div
-    class="h-full radius-full bg-[var(--semantic-text-primary)] transition-[width] duration-200"
+    class="h-full radius-full bg-accent transition-[width] duration-200"
     style="width: 40%;"
   />
 </div>

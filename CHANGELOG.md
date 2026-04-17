@@ -37,6 +37,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
   - O link "Formulador de iniciativas" fica destacado como ativo (o scroll-spy da Home não tem seções pra inferir aqui; o realce é pinado por `pathname.startsWith('/formulador')`).
   - Clicar no logo ou em qualquer link de navegação abre um `window.confirm` avisando que o rascunho do formulário será perdido. Se o usuário confirmar, `reset()` limpa o rascunho do município atual e a Home é aberta no destino desejado: logo → topo; links de seção → Home ancorada na seção correspondente via hash (`/#agendas`, `/#recursos`, `/#formulador`).
 - **`Home`** — passa a observar `location.hash` e faz scroll para a seção correspondente com offset do header sticky (95px). Cobre o caso de voltar do Formulador clicando em um link do Header, além de tornar URLs como `/#panorama` funcionais para deep-linking.
+- **`ProgressBar`** — fill passa de `bg-[var(--semantic-text-primary)]` (preto) para `bg-accent` (azul do accent), dando mais presença visual à barra no `FormuladorProgress`.
 - **`TestWrapper`** — envolve os children em `FormuladorProvider` (necessário agora que o `Header` consome `useFormulador` para acessar `reset()`).
 - **`Button`** — nova variante `success` (fundo `--semantic-success`, label branco).
 - **`StepObjetivos`** — agora permite remover objetivos específicos. Cada linha tem um botão de lixeira (`IconButton` ghost com ícone `Trash2`) que some quando só resta 1 objetivo (garante que a lista nunca fica vazia).

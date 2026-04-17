@@ -18,7 +18,7 @@ export default function ProgressBar({ value, className = '' }: ProgressBarProps)
       className={`w-full h-[11px] radius-full bg-[var(--semantic-background-primary)] overflow-hidden ${className}`}
     >
       <div
-        className="h-full radius-full bg-[var(--semantic-text-primary)] transition-[width] duration-200"
+        className="h-full radius-full bg-accent transition-[width] duration-200"
         style={{ width: `${clamped}%` }}
       />
     </div>
