@@ -1,6 +1,7 @@
 import TextInput from '@/components/ui/TextInput'
 import Button from '@/components/ui/buttons/Button'
-import { Plus } from '@/components/icons'
+import IconButton from '@/components/ui/buttons/IconButton'
+import { Plus, Trash2 } from '@/components/icons'
 import { useFormulador } from '@/hooks/useFormulador'
 
 export default function StepObjetivos() {
@@ -17,6 +18,14 @@ export default function StepObjetivos() {
 
   const addEspecifico = () =>
     setSlice('objetivos', { ...data, especificos: [...data.especificos, ''] })
+
+  const removeEspecifico = (idx: number) =>
+    setSlice('objetivos', {
+      ...data,
+      especificos: data.especificos.filter((_, i) => i !== idx),
+    })
+
+  const canRemove = data.especificos.length > 1
 
   return (
     <div className="flex flex-col gap-md">
@@ -35,12 +44,22 @@ export default function StepObjetivos() {
         <p className="typo-body-sm">💡 Liste os objetivos específicos (um por linha)</p>
         <div className="flex flex-col gap-sm">
           {data.especificos.map((texto, idx) => (
-            <TextInput
-              key={idx}
-              value={texto}
-              hint={`Objetivo ${idx + 1}`}
-              onChange={(v) => setEspecifico(idx, v)}
-            />
+            <div key={idx} className="flex items-start gap-xs">
+              <TextInput
+                value={texto}
+                hint={`Objetivo ${idx + 1}`}
+                onChange={(v) => setEspecifico(idx, v)}
+              />
+              {canRemove && (
+                <IconButton
+                  icon={Trash2}
+                  aria-label={`Remover objetivo ${idx + 1}`}
+                  variant="ghost"
+                  size="md"
+                  onClick={() => removeEspecifico(idx)}
+                />
+              )}
+            </div>
           ))}
         </div>
         <div className="mt-xs">

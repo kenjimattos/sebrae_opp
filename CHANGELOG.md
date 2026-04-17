@@ -25,6 +25,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Changed
 
+- **`StepObjetivos`** — agora permite remover objetivos específicos. Cada linha tem um botão de lixeira (`IconButton` ghost com ícone `Trash2`) que some quando só resta 1 objetivo (garante que a lista nunca fica vazia).
+- Ícone `Trash2` exportado de `components/icons`.
 - **`PillButton`** (`components/ui/buttons/PillButton.tsx`) — detecta href interno (começa com `/`) e omite `target="_blank"` + `rel="noopener noreferrer"` para navegação no mesmo tab. URLs externas mantêm o comportamento de abrir em nova aba.
 - **`formuladorCards`** (`data/formulador.ts`) — `buttonHref` do card "Assistente de formulação de projetos" aponta agora para `/formulador` ao invés de `#`.
 - **Testes** — 62 testes (antes 56). Smoke tests para `TextInput` (2 variantes), `ProgressBar`, `StepIndicator` (3 variantes), `ProjectSteps`, `FormuladorProgress`, `AIAssistant`, `FormCard` (2 variantes). Snapshots para `TextInput` (2 variantes), `ProgressBar`, `StepIndicator` checked, `FormuladorProgress`, `AIAssistant`.

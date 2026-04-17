@@ -30,6 +30,7 @@ export {
   Landmark,
   Plus,
   Search,
+  Trash2,
   TrendingUp,
   Users,
 } from 'lucide-react'
