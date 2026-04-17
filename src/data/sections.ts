@@ -34,7 +34,7 @@ export const sectionContent = {
   panorama: {
     title: 'Como está o Ambiente de Negócios no Estado?',
     description:
-      'Explore como o ambiente de negócios se distribui entre os municípios do estado e compare indicadores entre territórios.',
+      'Explore como está o Ambiente de Negócios do estado e a distribuição entre os municípios.',
   },
   baseEconomica: {
     title: 'Base Econômica e Competitiva',
