@@ -48,10 +48,10 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
 <div
-  class="card-surface px-lg py-md flex-between w-full "
+  class="card-surface px-lg py-md flex-between gap-3xl w-full "
 >
   <div
-    class="flex-center gap-md"
+    class="flex-center gap-sm"
   >
     <span
       class="typo-display"
@@ -59,9 +59,9 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
       10
     </span>
     <span
-      class="typo-body-lg"
+      class="typo-body"
     >
-      indicadores avaliados
+      indicadores alinhados às agendas estratégicas para melhorar o ambiente de negócios do seu município
     </span>
   </div>
   <div
@@ -494,10 +494,10 @@ exports[`Snapshot tests — CSS refactor safety > SectionContainer 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > SectionHeader — title only 1`] = `
 <div
-  class="flex-col-start justify-center max-w-[1000px] "
+  class="flex "
 >
   <h2
-    class="w-full typo-h1"
+    class="w-3/4 typo-h1"
   >
     Panorama
   </h2>
@@ -509,12 +509,12 @@ exports[`Snapshot tests — CSS refactor safety > SectionHeader — with descrip
   class="flex items-center gap-md "
 >
   <h2
-    class="flex-1 max-w-[690px] typo-h1"
+    class="w-2/3 typo-h1"
   >
     Panorama
   </h2>
   <p
-    class="flex-1 max-w-[400px] typo-body"
+    class="w-1/3 typo-body"
   >
     Descrição da seção
   </p>
