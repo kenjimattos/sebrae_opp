@@ -1,57 +1,68 @@
 // Figma: Buttons pill variant (817:3129)
-// Pill-shaped CTA: <a> with label + decorative arrow in circle (trailing).
+// Pill-shaped CTA: <a> com label + seta em círculo (decorativo).
 //
-// O círculo da seta é renderizado como <span> (decorativo) — não é um
-// IconButton porque <button> dentro de <a> é HTML inválido. O clique
-// alvo é o próprio <a>.
+// Variants: primary (bg accent + círculo surface)
+//           secondary (bg surface-secondary + círculo surface)
+//           ghost (shell transparente + círculo surface-secondary)
+// Sizes:    sm (24px) | md (40px) | lg (64px com shell preenchido + círculo 40px)
+// iconPosition: 'right' (default) | 'left' — inverte posição e direção da seta.
 //
-// Sizes:
-// - sm: h-[24px], shell transparente, círculo 24×24 bg-surface-secondary, seta 12px
-// - md: h-[40px], shell transparente, círculo 24×24 bg-surface-secondary, seta 12px
-// - lg: h-[64px] w-[340px], shell bg-surface-secondary, círculo 48×48 bg-surface, seta 24px
+// O círculo é <span> decorativo (não IconButton): <button> dentro de <a>
+// é HTML inválido. O clique alvo é o próprio <a>.
 
-import { ArrowRight, iconSizes, type IconSize } from '@/components/icons'
+import { ArrowLeft, ArrowRight, iconSizes, type IconSize } from '@/components/icons'
 
 interface PillButtonProps {
   label: string
   href: string
+  variant?: 'primary' | 'secondary' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
+  iconPosition?: 'left' | 'right'
   className?: string
 }
 
-const sizeStyles: Record<
-  string,
-  {
-    shell: string
-    typo: string
-    shellBg: string
-    circle: string
-    circleBg: string
-    iconSize: IconSize
-  }
-> = {
+const variantStyles: Record<string, { shellBg: string; circleBg: string }> = {
+  primary:   { shellBg: 'bg-accent',            circleBg: 'bg-surface' },
+  secondary: { shellBg: 'bg-surface-secondary', circleBg: 'bg-surface' },
+  ghost:     { shellBg: '',                     circleBg: 'bg-surface-secondary' },
+}
+
+interface SizeStyle {
+  shell: string
+  paddingRight: string
+  paddingLeft: string
+  typoPrimary: string
+  typoSecondary: string
+  circle: string
+  iconSize: IconSize
+}
+
+const sizeStyles: Record<string, SizeStyle> = {
   sm: {
-    shell: 'h-[24px] pl-sm gap-[12px]',
-    typo: 'typo-button-secondary-sm',
-    shellBg: '',
+    shell: 'h-[24px] gap-sm',
+    paddingRight: 'pl-sm',
+    paddingLeft: 'pr-sm',
+    typoPrimary: 'typo-button-sm',
+    typoSecondary: 'typo-button-secondary-sm',
     circle: 'w-[24px] h-[24px]',
-    circleBg: 'bg-surface-secondary',
     iconSize: 'xs',
   },
   md: {
-    shell: 'h-[40px] pl-sm gap-[12px]',
-    typo: 'typo-button-secondary',
-    shellBg: '',
+    shell: 'h-[40px] gap-sm',
+    paddingRight: 'pl-sm pr-2xs',
+    paddingLeft: 'pl-2xs pr-sm',
+    typoPrimary: 'typo-button',
+    typoSecondary: 'typo-button-secondary',
     circle: 'w-[32px] h-[32px]',
-    circleBg: 'bg-surface-secondary',
     iconSize: 'md',
   },
   lg: {
-    shell: 'pl-md pr-xs py-xs gap-md',
-    typo: 'typo-button',
-    shellBg: 'bg-accent',
+    shell: 'py-xs gap-md',
+    paddingRight: 'pl-md pr-xs',
+    paddingLeft: 'pl-xs pr-md',
+    typoPrimary: 'typo-button',
+    typoSecondary: 'typo-button-secondary',
     circle: 'w-[40px] h-[40px]',
-    circleBg: 'bg-surface',
     iconSize: 'lg',
   },
 }
@@ -59,27 +70,48 @@ const sizeStyles: Record<
 export default function PillButton({
   label,
   href,
+  variant = 'primary',
   size = 'lg',
+  iconPosition = 'right',
   className = '',
 }: PillButtonProps) {
   const s = sizeStyles[size]
+  const v = variantStyles[variant]
+  const typo = variant === 'primary' ? s.typoPrimary : s.typoSecondary
+  const padding = iconPosition === 'right' ? s.paddingRight : s.paddingLeft
+  const Arrow = iconPosition === 'right' ? ArrowRight : ArrowLeft
   const isInternal = href.startsWith('/') && !href.startsWith('//')
   const externalProps = isInternal
     ? {}
     : { target: '_blank', rel: 'noopener noreferrer' }
+
+  const labelEl = <span className={`flex-1 ${typo}`}>{label}</span>
+  const circleEl = (
+    <span
+      aria-hidden
+      className={`flex items-center justify-center shrink-0 radius-full ${s.circle} ${v.circleBg}`}
+    >
+      <Arrow size={iconSizes[s.iconSize]} />
+    </span>
+  )
+
   return (
     <a
       href={href}
       {...externalProps}
-      className={`inline-flex items-center radius-full no-underline transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none ${s.shellBg} ${s.shell} ${className}`}
+      className={`inline-flex items-center radius-full no-underline transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none ${v.shellBg} ${s.shell} ${padding} ${className}`}
     >
-      <span className={`flex-1 ${s.typo}`}>{label}</span>
-      <span
-        aria-hidden
-        className={`flex items-center justify-center shrink-0 radius-full ${s.circle} ${s.circleBg}`}
-      >
-        <ArrowRight size={iconSizes[s.iconSize]} />
-      </span>
+      {iconPosition === 'left' ? (
+        <>
+          {circleEl}
+          {labelEl}
+        </>
+      ) : (
+        <>
+          {labelEl}
+          {circleEl}
+        </>
+      )}
     </a>
   )
 }

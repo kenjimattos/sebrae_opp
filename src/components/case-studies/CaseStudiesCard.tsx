@@ -41,7 +41,13 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
         </div>
 
         {/* CTA link */}
-        <PillButton size="sm" label={ctaLabels.verEstudoDeCaso} href="#" className="w-[198px]" />
+        <PillButton
+          variant="ghost"
+          size="sm"
+          label={ctaLabels.verEstudoDeCaso}
+          href="#"
+          className="w-[198px]"
+        />
       </div>
     </Card>
   )

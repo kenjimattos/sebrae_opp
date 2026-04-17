@@ -26,7 +26,7 @@ export default function CoursesCardRow({ title, subtitle, className = '' }: Cour
       </div>
 
       {/* Ver curso button */}
-      <PillButton size="sm" label={ctaLabels.verCurso} href="#" />
+      <PillButton variant="ghost" size="sm" label={ctaLabels.verCurso} href="#" />
     </div>
   )
 }
