@@ -9,39 +9,29 @@ interface RiscoContexto {
 }
 
 export const riscosContexto: Record<string, RiscoContexto> = {
-  // Alertas de Campina Grande
-  'ISDEL': {
-    descricao: 'Índice abaixo do limiar mínimo de sustentabilidade econômica local',
-    indicadorLabel: 'Indicador de alerta',
-    contexto: 'Municípios com ISDEL abaixo de 0,5 tendem a ter maior dependência de transferências federais',
-  },
-  'Trabalhadores formais com Ensino Superior Completo': {
-    descricao: 'Perda de acesso a linhas de crédito verde e fundos ESG até 2028',
-    indicadorLabel: 'Indicador de alerta',
-    contexto: 'Apenas 12% das MPE possuem práticas sustentáveis formalizadas',
-  },
-  'Taxa de crescimento do valor das Operações de Crédito': {
-    descricao: 'Risco de estagnação tecnológica e perda de competitividade regional',
-    indicadorLabel: 'Indicador de alerta',
-    contexto: 'Investimento em P&D representa apenas 0.3% do PIB municipal',
-  },
-  'Total de pequenos negócios extintos no período': {
-    descricao: 'Vulnerabilidade a choques setoriais e ciclos de dependência fiscal',
-    indicadorLabel: 'Indicador de alerta',
-    contexto: '72% da atividade econômica concentrada em 3 setores',
-  },
-  // Atenções genéricas
-  'Índice CFA de Governança Municipal': {
+  // Governança
+  'IGM – Índice CFA de Governança Municipal (Finanças, Gestão e Desempenho) 2025': {
     descricao: 'Governança municipal com lacunas em transparência e participação social',
     indicadorLabel: 'Indicador de atenção',
     contexto: 'Score abaixo de 7,0 indica necessidade de fortalecimento institucional',
   },
-  'Tempo médio de viabilidade de empresa': {
+  'Governança para o Desenvolvimento – ISDEL 2023': {
+    descricao: 'Índice abaixo do limiar mínimo de sustentabilidade econômica local',
+    indicadorLabel: 'Indicador de alerta',
+    contexto: 'Municípios com ISDEL abaixo de 0,5 tendem a ter maior dependência de transferências federais',
+  },
+  'Índice de Gestão Municipal Áquila (IGMA)': {
+    descricao: 'Gestão municipal com baixa maturidade institucional e processos fragmentados',
+    indicadorLabel: 'Indicador de atenção',
+    contexto: 'IGMA abaixo de 0,55 indica necessidade de fortalecer planejamento e execução',
+  },
+  // Simplificação
+  'Tempo médio de viabilidade da empresa (h) em relação à média estadual': {
     descricao: 'Burocracia acima da média estadual impacta abertura de novos negócios',
     indicadorLabel: 'Indicador de atenção',
     contexto: 'Meta Redesim é reduzir para 15 dias até 2026',
   },
-  'Ranking Redesim': {
+  'Ranking municipal Redesim/PB': {
     descricao: 'Integração parcial com a rede nacional de simplificação',
     indicadorLabel: 'Indicador de atenção',
     contexto: 'Municípios com integração total têm 40% mais abertura de empresas',
@@ -51,25 +41,74 @@ export const riscosContexto: Record<string, RiscoContexto> = {
     indicadorLabel: 'Indicador de atenção',
     contexto: 'Benchmark regional é de 10 dias para licenças de baixo risco',
   },
+  // Inovação
   'Trabalhadores nos setores da economia criativa, inovação e TIC': {
     descricao: 'Baixa representatividade da economia criativa no mercado formal',
     indicadorLabel: 'Indicador de atenção',
     contexto: 'Média nacional é de 5,8% dos trabalhadores formais',
   },
-  'Educação Empreendedora - ISDEL': {
+  'Taxa de crescimento de MPE formalizadas nos ELI com apoio Sebrae': {
+    descricao: 'Baixo crescimento de formalização nos Ecossistemas Locais de Inovação',
+    indicadorLabel: 'Indicador de atenção',
+    contexto: 'Meta estadual é atingir crescimento de +10% a.a. até 2027',
+  },
+  'Taxa de crescimento do valor das compras públicas de inovação nos pequenos negócios': {
+    descricao: 'Compras públicas de inovação insuficientes para movimentar MPE locais',
+    indicadorLabel: 'Indicador de atenção',
+    contexto: 'Lei Complementar 123 prevê tratamento diferenciado para MPE em licitações',
+  },
+  // Educação empreendedora
+  'Subdimensão Educação Empreendedora, da dimensão Capital Empreendedor – ISDEL': {
     descricao: 'Cobertura limitada de educação empreendedora na rede escolar',
     indicadorLabel: 'Indicador de atenção',
-    contexto: 'Meta estadual é atingir 25 escolas com programa ativo até 2027',
+    contexto: 'Meta estadual é atingir subdimensão ISDEL acima de 0,6 até 2027',
   },
-  'Taxa de crescimento do valor dos Financiamentos - BACEN': {
-    descricao: 'Crescimento marginal de financiamentos indica acesso restrito a crédito',
+  'Trabalhadores formais com pelo menos o Ensino Superior Completo': {
+    descricao: 'Baixa qualificação da força de trabalho formal no município',
+    indicadorLabel: 'Indicador de alerta',
+    contexto: 'Municípios com menos de 20% tendem a ter menor inserção em cadeias de valor',
+  },
+  // Financiamento e crédito
+  'Valor (R$) das operações de crédito e de financiamento concedidos no município': {
+    descricao: 'Volume de crédito concedido limitado restringe investimentos produtivos',
+    indicadorLabel: 'Indicador de alerta',
+    contexto: 'Acesso a crédito orientado é fator crítico para sobrevivência de MPE',
+  },
+  'Valor (R$) total das Operações diretas e indiretas não automáticas (financiamento e crédito)': {
+    descricao: 'Operações estruturadas de financiamento incipientes no município',
     indicadorLabel: 'Indicador de atenção',
-    contexto: 'MPEs representam apenas 18% do total de financiamentos no município',
+    contexto: 'FAMPE e linhas BNDES disponíveis exigem articulação local para execução',
   },
+  // Inclusão produtiva
   'Total de pequenos negócios abertos': {
     descricao: 'Taxa de sobrevivência de novos negócios precisa ser monitorada',
     indicadorLabel: 'Indicador de atenção',
     contexto: 'Relação abertos/extintos de 1,39 está abaixo da média estadual de 1,8',
+  },
+  'Total de pequenos negócios extintos no período': {
+    descricao: 'Vulnerabilidade a choques setoriais e ciclos de dependência fiscal',
+    indicadorLabel: 'Indicador de alerta',
+    contexto: '72% da atividade econômica concentrada em 3 setores',
+  },
+  'Taxa de crescimento anual de beneficiários do Bolsa Família entre 18 e 50 anos': {
+    descricao: 'Aumento de beneficiários em idade produtiva sinaliza deterioração do mercado',
+    indicadorLabel: 'Indicador de alerta',
+    contexto: 'Crescimento acima de 5% a.a. indica piora na inserção produtiva da população adulta',
+  },
+  'Número de pequenos negócios apoiados pelo Sebrae': {
+    descricao: 'Cobertura limitada do apoio Sebrae à base empresarial local',
+    indicadorLabel: 'Indicador de atenção',
+    contexto: 'Municípios com cobertura abaixo de 10% da base ativa subutilizam o suporte disponível',
+  },
+  '% dos pequenos negócios no total de compras públicas no município': {
+    descricao: 'Participação das MPE nas compras públicas aquém do potencial',
+    indicadorLabel: 'Indicador de atenção',
+    contexto: 'Benchmark nacional é de 25% do valor total de compras públicas para MPE',
+  },
+  'Linhas de Crédito Disponíveis': {
+    descricao: 'Poucas linhas de crédito operacionais no município para MPE',
+    indicadorLabel: 'Indicador de atenção',
+    contexto: 'Ampliar convênios com agentes financeiros e cooperativas pode elevar acesso',
   },
 }
 

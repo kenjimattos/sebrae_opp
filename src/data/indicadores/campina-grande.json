@@ -4,17 +4,18 @@
     {
       "nome": "Governança multissetorial para o Desenvolvimento Local",
       "indicadores": [
-        { "label": "Índice CFA de Governança Municipal", "valor": "6,2", "status": "warning" },
-        { "label": "IDH-M", "valor": "0,720", "status": "success" },
-        { "label": "ISDEL", "valor": "0,48", "status": "alert" }
+        { "label": "IGM – Índice CFA de Governança Municipal (Finanças, Gestão e Desempenho) 2025", "valor": "6,2", "status": "warning" },
+        { "label": "IDH-M 2021", "valor": "0,720", "status": "success" },
+        { "label": "Governança para o Desenvolvimento – ISDEL 2023", "valor": "0,48", "status": "alert" },
+        { "label": "Índice de Gestão Municipal Áquila (IGMA)", "valor": "0,54", "status": "warning" }
       ]
     },
     {
       "nome": "Simplificação e digitalização de serviços públicos para os Pequenos Negócios",
       "indicadores": [
-        { "label": "Tempo médio de abertura de empresa", "valor": "18h", "status": "success" },
-        { "label": "Tempo médio de viabilidade de empresa", "valor": "22 dias", "status": "warning" },
-        { "label": "Ranking Redesim", "valor": "Parcial", "status": "warning" },
+        { "label": "Tempo médio de viabilidade da empresa (h) em relação à média estadual", "valor": "22 dias", "status": "warning" },
+        { "label": "Tempo médio de abertura da empresa (h)", "valor": "18h", "status": "success" },
+        { "label": "Ranking municipal Redesim/PB", "valor": "Parcial", "status": "warning" },
         { "label": "Tempo de licenciamento", "valor": "15 dias", "status": "warning" }
       ]
     },
@@ -22,29 +23,36 @@
       "nome": "Ecossistemas de Inovação: Inclusão e digitalização para Pequenos Negócios",
       "indicadores": [
         { "label": "Trabalhadores nas ocupações de C&T", "valor": "1.420", "status": "success" },
-        { "label": "Trabalhadores nos setores da economia criativa, inovação e TIC", "valor": "3,2%", "status": "warning" }
+        { "label": "Trabalhadores nos setores da economia criativa, inovação e TIC", "valor": "3,2%", "status": "warning" },
+        { "label": "Taxa de crescimento de MPE formalizadas nos ELI com apoio Sebrae", "valor": "+5%", "status": "warning" },
+        { "label": "Taxa de crescimento do valor das compras públicas de inovação nos pequenos negócios", "valor": "+4%", "status": "warning" }
       ]
     },
     {
       "nome": "Educação empreendedora",
       "indicadores": [
-        { "label": "Educação Empreendedora - ISDEL", "valor": "8 escolas", "status": "warning" },
-        { "label": "Trabalhadores formais com Ensino Médio Completo", "valor": "72%", "status": "success" },
-        { "label": "Trabalhadores formais com Ensino Superior Completo", "valor": "18%", "status": "alert" }
+        { "label": "Subdimensão Educação Empreendedora, da dimensão Capital Empreendedor – ISDEL", "valor": "0,42", "status": "warning" },
+        { "label": "Trabalhadores formais com pelo menos o Ensino Médio Completo", "valor": "72%", "status": "success" },
+        { "label": "Trabalhadores formais com pelo menos o Ensino Superior Completo", "valor": "18%", "status": "alert" }
       ]
     },
     {
       "nome": "Acesso a crédito e viabilização financeira",
       "indicadores": [
-        { "label": "Taxa de crescimento do valor das Operações de Crédito", "valor": "-5%", "status": "alert" },
-        { "label": "Taxa de crescimento do valor dos Financiamentos - BACEN", "valor": "1%", "status": "warning" }
+        { "label": "Valor (R$) das operações de crédito e de financiamento concedidos no município", "valor": "R$ 185M", "status": "warning" },
+        { "label": "Valor (R$) total das Operações diretas e indiretas não automáticas (financiamento e crédito)", "valor": "R$ 32M", "status": "warning" }
       ]
     },
     {
       "nome": "Inclusão produtiva",
       "indicadores": [
         { "label": "Total de pequenos negócios abertos", "valor": "1.240", "status": "success" },
-        { "label": "Total de pequenos negócios extintos no período", "valor": "890", "status": "warning" }
+        { "label": "Total de empresas ativas", "valor": "12.840", "status": "success" },
+        { "label": "Total de pequenos negócios extintos no período", "valor": "890", "status": "warning" },
+        { "label": "Taxa de crescimento anual de beneficiários do Bolsa Família entre 18 e 50 anos", "valor": "+3,8%", "status": "warning" },
+        { "label": "Número de pequenos negócios apoiados pelo Sebrae", "valor": "620", "status": "warning" },
+        { "label": "% dos pequenos negócios no total de compras públicas no município", "valor": "12%", "status": "warning" },
+        { "label": "Linhas de Crédito Disponíveis", "valor": "10", "status": "warning" }
       ]
     }
   ],
