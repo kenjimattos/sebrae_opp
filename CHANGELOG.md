@@ -18,6 +18,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - **`formulador-ai.ts`** (`data/`) — conteúdo do AIAssistant por etapa. Placeholder v1: mesma descrição/exemplos/ações para todas; no futuro gerado por LLM.
 - **`FormuladorContext` + `FormuladorProvider` + `useFormulador`** (`hooks/`) — estado global do rascunho de projeto. Um rascunho por município (chave `formulador:${ibgeId}` em `localStorage`), hidratação no mount, persistência automática a cada mudança. Helpers `setSlice(key, value)`, `markVisited(slug)`, `reset()`. A troca de município recarrega o rascunho correspondente via render-phase state update (sem `useEffect` para evitar cascading renders).
 - **`types/formulador.ts`** — tipos de cada etapa (`IdentificacaoData`, `JustificativaData`, etc.) + `FormuladorState` + `EMPTY_FORMULADOR_STATE`.
+- **Rota `/formulador`** — nova página do formulador com rotas aninhadas (`:stepSlug` e `conclusao`, index redireciona para `identificacao`). Layout: Header + hero + `FormuladorProgress` + grid 3 colunas (`ProjectSteps` | `FormCard` | `AIAssistant`) + Footer. Slug inválido redireciona para a primeira etapa.
+- **`FormuladorProvider`** agora envolve `App` (via `main.tsx`/`App.tsx`) — disponível em toda a árvore para integração futura entre seções da Home e o Formulador.
 
 ## [0.5.1] — 2026-04-17
 

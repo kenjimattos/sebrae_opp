@@ -60,6 +60,11 @@ export const sectionContent = {
     description:
       'Com base nos riscos estratégicos e pontos de atenção identificados, comece a escrever seu projeto para fortalecer o ambiente de negócios no seu município.',
   },
+  formuladorPagina: {
+    title: 'Formulador de projetos e politicas publicas',
+    description:
+      'Com base nos riscos estratégicos e pontos de atenção identificados, comece a escrever seu projeto para fortalecer o ambiente de negócios no seu município.',
+  },
   aiAssistant: {
     title: 'Assistente IA',
     description:
