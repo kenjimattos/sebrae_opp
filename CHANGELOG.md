@@ -42,6 +42,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 **SectionHero** (`components/sections/SectionHero.tsx`)
 - CTAs migrados para o design system: `<button>` customizado → primitivo `Card` (`ui/Card`); `<h3>` + `<p>` inline → `TitleSubtitle size="sm"`.
 - Ícone circular: `radius-md` + `bg: --semantic-accent-surface` + cor accent → `radius-full` + `bg-surface-secondary` com cor padrão do ícone.
+- Hover extraído para utilitário do DS `.card-hoverable` (`index.css`) — agrupa `cursor-pointer`, borda transparente default (sem layout shift), `transform`/`box-shadow`/`border-color` animados e anel de `:focus-visible` em accent. Borda em `--semantic-accent-surface` aparece somente no hover.
 - Removidos: step number (`01`/`02`/`03`), rodapé "Começar" com `ArrowRight`, constante `HEADER_HEIGHT` e função `scrollToSection` — cards deixam de ter navegação por click para as seções de destino nesta iteração.
 
 ## [0.4.0] — 2026-04-16

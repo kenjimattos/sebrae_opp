@@ -220,6 +220,20 @@
   }
   .card-surface           { background-color: var(--semantic-surface-primary);   border-radius: var(--radius-sm); }
   .card-surface-secondary { background-color: var(--semantic-surface-secondary); border-radius: var(--radius-sm); }
+  .card-hoverable {
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  }
+  .card-hoverable:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    border-color: var(--semantic-accent-surface);
+  }
+  .card-hoverable:focus-visible {
+    outline: 2px solid var(--semantic-accent);
+    outline-offset: 2px;
+  }
   .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-sm); }
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-sm); }
   .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--spacing-xs); }

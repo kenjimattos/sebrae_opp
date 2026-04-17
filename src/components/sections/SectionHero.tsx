@@ -57,7 +57,7 @@ export default function SectionHero() {
           const step = String(index + 1).padStart(2, '0')
           return (
             <Card
-              className="flex flex-col card-surface gap-md py-lg cursor-pointer transition-all duration-200 hover:translate-y-[-2px] hover:shadow-lg focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none border border-solid border-[var(--semantic-surface-secondary)] hover:border-[var(--semantic-accent-surface)]"
+              className="flex flex-col gap-md py-lg card-hoverable"
               aria-label={`Etapa ${step}: ${cta.label}`}
             >
 
