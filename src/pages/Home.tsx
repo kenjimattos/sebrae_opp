@@ -20,7 +20,7 @@ export default function Home() {
     <div className="min-h-screen bg-primary">
       <Header />
 
-      <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-2xl py-xl">
+      <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-2xl pb-3xl">
         <div id="hero">
           <SectionHero />
         </div>
