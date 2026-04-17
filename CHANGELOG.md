@@ -4,6 +4,13 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Added
+
+- **`Tooltip`** (`components/ui/Tooltip.tsx`) — componente hover/focus reutilizável, usa `Card` como base para o painel flutuante. Props: `content`, `placement` (top/bottom), `align` (start/end), `width`. Abre em hover + focus (keyboard-friendly), role="tooltip" para a11y.
+- **Objetivos das agendas** (`data/agenda-objetivos.ts`) — mapa `{ [nomeDaAgenda]: objetivo }` com os 6 objetivos extraídos do Figma (Governança, Simplificação, Inovação ELI, Educação, Financiamento, Inclusão produtiva).
+- **Tooltip de objetivo no `AgendaCard`** — ícone `Info` no canto superior direito do card exibe o objetivo da agenda em tooltip ao hover/focus. Texto segue `.typo-body-sm` com destaque bold no heading "Objetivo".
+- Ícone `Info` exportado de `components/icons`.
+
 ### Changed
 
 **Indicadores das agendas** (`data/indicadores/*.json` — 3 municípios)

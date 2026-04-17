@@ -23,6 +23,7 @@ export {
   ChevronUp,
   GraduationCap,
   DollarSign,
+  Info,
   Landmark,
   Search,
   TrendingUp,
