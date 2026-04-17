@@ -19,7 +19,7 @@
       ]
     },
     {
-      "nome": "Inovação inclusiva e digitalização para Pequenos Negócios, em ELI",
+      "nome": "Ecossistemas de Inovação: Inclusão e digitalização para Pequenos Negócios",
       "indicadores": [
         { "label": "Trabalhadores nas ocupações de C&T", "valor": "1.420", "status": "success" },
         { "label": "Trabalhadores nos setores da economia criativa, inovação e TIC", "valor": "3,2%", "status": "warning" }
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "nome": "Viabilização financeira e crédito orientado",
+      "nome": "Acesso a crédito e viabilização financeira",
       "indicadores": [
         { "label": "Taxa de crescimento do valor das Operações de Crédito", "valor": "-5%", "status": "alert" },
         { "label": "Taxa de crescimento do valor dos Financiamentos - BACEN", "valor": "1%", "status": "warning" }
