@@ -160,6 +160,7 @@ export default function FormuladorConclusao() {
             icon={enviado ? Check : ArrowRight}
             iconPosition="right"
             onClick={() => !enviado && setEnviado(true)}
+            className="ml-auto"
           />
         </div>
 
