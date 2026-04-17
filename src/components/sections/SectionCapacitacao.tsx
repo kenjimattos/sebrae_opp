@@ -35,7 +35,7 @@ export default function SectionCapacitacao() {
           <div className="flex justify-center w-full mt-md">
             <Button
               variant="primary"
-              size="lg"
+              size="md"
               label={expanded ? 'Ver menos trilhas' : `Ver todas as trilhas`}
               icon={expanded ? ChevronUp : ChevronDown}
               iconPosition="right"

@@ -53,8 +53,8 @@ const sizeStyles: Record<string, SizeStyle> = {
   },
   md: {
     shell: 'h-[40px] gap-sm',
-    paddingRight: 'pl-sm pr-2xs',
-    paddingLeft: 'pl-2xs pr-sm',
+    paddingRight: 'pl-md pr-2xs',
+    paddingLeft: 'pl-2xs pr-md',
     typoPrimary: 'typo-button',
     typoSecondary: 'typo-button-secondary',
     circle: 'w-[32px] h-[32px]',
@@ -64,7 +64,7 @@ const sizeStyles: Record<string, SizeStyle> = {
     shell: 'py-xs gap-md',
     paddingRight: 'pl-md pr-xs',
     paddingLeft: 'pl-xs pr-md',
-    typoPrimary: 'typo-button',
+    typoPrimary: 'typo-button-lg',
     typoSecondary: 'typo-button-secondary',
     circle: 'w-[40px] h-[40px]',
     iconSize: 'lg',
@@ -77,7 +77,7 @@ export default function PillButton({
   onClick,
   disabled = false,
   variant = 'primary',
-  size = 'lg',
+  size = 'md',
   iconPosition = 'right',
   className = '',
 }: PillButtonProps) {

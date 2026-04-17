@@ -4,6 +4,13 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Changed
+
+- **Tokens de tipografia de botão rescalados** (`src/index.css`): `--font-size-button-lg` 40→24px, `--font-size-button` 20→16px, `--font-size-button-sm` 16→14px. Os valores anteriores estavam grandes demais para os contêineres dos botões.
+- **`Button`** — mapeamento de tipografia por tamanho padronizado: `sm` agora usa `typo-button-sm`, `md` usa `typo-button`, `lg` usa `typo-button-lg` (antes estavam deslocados em um nível).
+- **`PillButton`** — `size="md"` ganha padding horizontal maior (`pl-md`/`pr-md` no lado oposto ao círculo) para dar respiro ao label; `size="lg"` passa a usar `typo-button-lg`; default do `size` muda de `lg` para `md`.
+- **`SectionCapacitacao`** — botão "Ver todas as trilhas / Ver menos trilhas" passa de `size="lg"` para `size="md"` para harmonizar com a nova escala.
+
 ## [0.6.0] — 2026-04-17
 
 Versão que introduz o **Formulador de Projetos** — um fluxo em 10 etapas + tela de Conclusão com resumo exportável em PDF, persistência local por município e integração dos links do Header com a Home via deep-linking. Para sustentar a experiência, o design system ganha três primitivos novos (`TextInput`, `ProgressBar`, `NumberBullet`), o `PillButton` foi generalizado (variantes, posição do ícone, polimórfico `<a>`/`<button>`) e surgiram variantes novas de `Button` (`success`) e `Dropdown` (`ButtonVariant`).

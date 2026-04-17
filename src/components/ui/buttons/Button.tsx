@@ -31,9 +31,9 @@ const variantStyles: Record<string, string> = {
 }
 
 const sizeStyles: Record<string, { container: string; typo: string; iconSize: IconSize }> = {
-  sm: { container: 'h-[24px] px-2xs gap-2xs', typo: 'typo-body-sm-bold', iconSize: 'xs' },
-  md: { container: 'h-[40px] px-md gap-xs',  typo: 'typo-button-sm',    iconSize: 'sm' },
-  lg: { container: 'h-[64px] px-md gap-sm',  typo: 'typo-button',       iconSize: 'md' },
+  sm: { container: 'h-[24px] px-2xs gap-2xs', typo: 'typo-button-sm', iconSize: 'xs' },
+  md: { container: 'h-[40px] px-md gap-xs',  typo: 'typo-button',    iconSize: 'sm' },
+  lg: { container: 'h-[64px] px-md gap-sm',  typo: 'typo-button-lg',       iconSize: 'md' },
 }
 
 export default function Button({
