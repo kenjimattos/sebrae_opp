@@ -20,6 +20,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - **`types/formulador.ts`** — tipos de cada etapa (`IdentificacaoData`, `JustificativaData`, etc.) + `FormuladorState` + `EMPTY_FORMULADOR_STATE`.
 - **Rota `/formulador`** — nova página do formulador com rotas aninhadas (`:stepSlug` e `conclusao`, index redireciona para `identificacao`). Layout: Header + hero + `FormuladorProgress` + grid 3 colunas (`ProjectSteps` | `FormCard` | `AIAssistant`) + Footer. Slug inválido redireciona para a primeira etapa.
 - **`FormuladorProvider`** agora envolve `App` (via `main.tsx`/`App.tsx`) — disponível em toda a árvore para integração futura entre seções da Home e o Formulador.
+- **10 componentes de etapa** (`components/formulador/steps/`): `StepIdentificacao`, `StepJustificativa`, `StepObjetivos`, `StepPublicoAlvo`, `StepPlanoAcao`, `StepCronograma`, `StepIndicadores`, `StepOrcamento`, `StepSustentabilidade`, `StepGovernanca`. Cada um é um wrapper fino que lê/escreve um slice do `FormuladorContext` usando `TextInput`. Objetivos e Orçamento têm listas dinâmicas (+ Adicionar). Orçamento calcula Valor Total via `useMemo` (parse pt-BR + `Intl` para formatação).
 
 ## [0.5.1] — 2026-04-17
 
