@@ -44,7 +44,8 @@ export const sectionContent = {
     description: 'Veja quais são os riscos para o município com base nas agendas estrtatégicas para um melhor ambiente de negócios'
   },
   recursos: {
-    title: 'Recursos e Capacitação para o Desenvolvimento do Município',
+    title: 'Onde acessar oportunidades de captação de recursos?',
+    description: 'Mapeamento de oportunidades abertas para captação de recursos para iniciativas de aprimoramento de Ambiente de Negócios local'
   },
   capacitacao: {
     title: 'Habilidades para uma gestão pública inovadora',

@@ -16,7 +16,7 @@ export const resourceCards: ResourceCardData[] = [
 
 export const recursosContent = {
   emendas: {
-    title: 'Emendas parlamentares disponíveis',
+    title: 'Emendas federais e estaduais mapeadas',
     description: 'Recursos destinados por deputados federais e senadores que podem financiar projetos estruturantes no município.',
     footnote: 'Recursos federais representam uma das principais fontes de financiamento para projetos estruturantes nos municípios.',
   },
@@ -31,7 +31,7 @@ export const recursosContent = {
     description: 'Programas federais, estaduais e institucionais com recursos disponíveis para desenvolvimento econômico, inovação e fortalecimento de pequenos negócios.',
   },
   buttons: {
-    explorarEmendas: 'Explorar emendas',
+    explorarEmendas: 'Explorar oportunidades de emendas',
     verOportunidades: 'Ver oportunidades',
   },
 } as const

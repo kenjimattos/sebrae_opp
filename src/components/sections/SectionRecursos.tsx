@@ -13,7 +13,7 @@ import { DATAPEDIA_URL, resourceCards, recursosContent } from '@/data/recursos'
 export default function SectionRecursos() {
   return (
     <SectionContainer>
-      <SectionHeader title={sectionContent.recursos.title} />
+      <SectionHeader title={sectionContent.recursos.title} description={sectionContent.recursos.description}/>
 
       {/* Cards agrupados com gap menor */}
       <div className="flex flex-col gap-md">
