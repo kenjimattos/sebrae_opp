@@ -34,9 +34,9 @@ export default function SectionCapacitacao() {
       {trilhas.length > VISIBLE_COUNT && (
         <div className="flex justify-center w-full mt-md">
           <Button
-            variant="secondary"
+              variant="primary"
             size="lg"
-            label={expanded ? 'Ver menos trilhas' : `Ver todas as trilhas (${trilhas.length})`}
+              label={expanded ? 'Ver menos trilhas' : `Ver todas as trilhas`}
             icon={expanded ? ChevronUp : ChevronDown}
             iconPosition="right"
             onClick={() => setExpanded(!expanded)}
