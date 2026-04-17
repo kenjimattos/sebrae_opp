@@ -29,7 +29,7 @@ export default function SectionCapacitacao() {
             cursos={trilha.cursos}
           />
         ))}
-      </div>
+        </section>
 
       {trilhas.length > VISIBLE_COUNT && (
         <div className="flex justify-center w-full mt-md">
@@ -43,6 +43,7 @@ export default function SectionCapacitacao() {
           />
         </div>
       )}
+      </section>
     </SectionContainer>
   )
 }
