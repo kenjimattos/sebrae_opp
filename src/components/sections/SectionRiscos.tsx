@@ -31,7 +31,7 @@ export default function SectionRiscos({ agendas }: SectionRiscosProps) {
 
   return (
     <SectionContainer>
-      <SectionHeader title={sectionContent.riscos.title} />
+      <SectionHeader title={sectionContent.riscos.title} description={sectionContent.riscos.description}/>
 
       <div className="grid-3 w-full">
         {topRiscos.map((risco) => {

@@ -41,6 +41,7 @@ export const sectionContent = {
   },
   riscos: {
     title: 'Onde estão os riscos estratégicos?',
+    description: 'Veja quais são os riscos para o município com base nas agendas estrtatégicas para um melhor ambiente de negócios'
   },
   recursos: {
     title: 'Recursos e Capacitação para o Desenvolvimento do Município',
