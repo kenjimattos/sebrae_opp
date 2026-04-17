@@ -37,7 +37,7 @@ export const sectionContent = {
       'Explore como está o Ambiente de Negócios do estado e a distribuição entre os municípios.',
   },
   baseEconomica: {
-    title: 'Base Econômica e Competitiva',
+    title: 'Qual o panorâma sócioeconômico do município?',
   },
   riscos: {
     title: 'Onde estão os riscos estratégicos?',
