@@ -12,6 +12,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - **`ProjectSteps`** (`components/formulador/ProjectSteps.tsx`) — sidebar do Formulador. Itera as 10 etapas e deriva o status de cada uma a partir de `currentSlug` + `visitedSlugs`.
 - **`formulador-etapas.ts`** (`data/`) — fonte única de verdade para as 10 etapas do Formulador: `slug`, `label` (sidebar), `nome` (progress), `titulo` + `subtitle` (FormCard). Helpers `findEtapaBySlug` e `findEtapaIndex`.
 - Ícones `Check`, `Circle`, `CircleDot`, `Plus` exportados de `components/icons`.
+- **`FormuladorProgress`** (`components/formulador/FormuladorProgress.tsx`) — Card com `ProgressBar` + labels "X% concluído" e "Y/10 etapas • Etapa Atual: …". Deriva o nome da etapa de `formulador-etapas.ts`.
+- **`AIAssistant`** (`components/formulador/AIAssistant.tsx`) — sidebar direita do Formulador (`Card surface="secondary"`). Exibe descrição, exemplos com divider e lista de ações. Ações disparam `onAction(label)` — no-op por padrão.
+- **`FormCard`** (`components/formulador/FormCard.tsx`) — card central. Header título/subtítulo, slot para o form, footer com Anterior (oculto na etapa 1), "X/10 etapas" e Próxima/Finalizar (primary preto na última etapa).
+- **`formulador-ai.ts`** (`data/`) — conteúdo do AIAssistant por etapa. Placeholder v1: mesma descrição/exemplos/ações para todas; no futuro gerado por LLM.
 
 ## [0.5.1] — 2026-04-17
 

@@ -45,6 +45,10 @@ import ProgressBar from '@/components/ui/ProgressBar'
 import FormuladorCard from '@/components/formulador/FormuladorCard'
 import StepIndicator from '@/components/formulador/StepIndicator'
 import ProjectSteps from '@/components/formulador/ProjectSteps'
+import FormuladorProgress from '@/components/formulador/FormuladorProgress'
+import AIAssistant from '@/components/formulador/AIAssistant'
+import FormCard from '@/components/formulador/FormCard'
+import { aiAssistantByEtapa } from '@/data/formulador-ai'
 
 // Layout
 import Header from '@/components/layout/Header'
@@ -271,6 +275,36 @@ describe('Formulador components', () => {
         currentSlug="justificativa"
         visitedSlugs={['identificacao']}
       />,
+    )
+    expect(container).toBeTruthy()
+  })
+
+  it('renders FormuladorProgress', () => {
+    const { container } = render(<FormuladorProgress currentIndex={0} percent={0} />)
+    expect(container).toBeTruthy()
+  })
+
+  it('renders AIAssistant', () => {
+    const { container } = render(
+      <AIAssistant content={aiAssistantByEtapa.identificacao} />,
+    )
+    expect(container).toBeTruthy()
+  })
+
+  it('renders FormCard (first step)', () => {
+    const { container } = render(
+      <FormCard titulo="Identificação" subtitle="..." currentIndex={0} onNext={() => {}}>
+        <div>slot</div>
+      </FormCard>,
+    )
+    expect(container).toBeTruthy()
+  })
+
+  it('renders FormCard (last step → Finalizar)', () => {
+    const { container } = render(
+      <FormCard titulo="Governança" subtitle="..." currentIndex={9} onNext={() => {}} onPrev={() => {}}>
+        <div>slot</div>
+      </FormCard>,
     )
     expect(container).toBeTruthy()
   })
