@@ -8,7 +8,7 @@ export default function Footer({ className = '' }: { className?: string }) {
     <footer
       className={`bg-surface px-margin py-2xl ${className}`}
     >
-      <div className="flex items-start justify-between">
+      <div className="flex items-start mx-auto w-full max-w-[1440px] justify-between">
         {/* Brand */}
         <div className="flex flex-col gap-sm items-start">
           <img
@@ -44,7 +44,7 @@ export default function Footer({ className = '' }: { className?: string }) {
       </div>
 
       {/* Bottom */}
-      <div className="flex flex-col gap-lg items-start mt-[var(--spacing-lg)] pb-2xl">
+      <div className="flex flex-col mx-auto w-full max-w-[1440px] gap-lg items-start mt-[var(--spacing-lg)] pb-2xl">
         <div className="divider" />
         <p className="typo-body">
           {copyright}
