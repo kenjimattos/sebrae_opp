@@ -12,7 +12,6 @@ interface PanoramaMediaInfoProps {
 }
 
 export default function PanoramaMediaInfo({
-  count,
   formatted,
   municipioNome,
   municipioFormatted,
