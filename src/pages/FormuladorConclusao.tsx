@@ -177,14 +177,13 @@ export default function FormuladorConclusao() {
   const [enviado, setEnviado] = useState(false)
 
   return (
-    <div className="flex items-start gap-md w-full">
+    <div className="flex items-start gap-sm w-full">
       <ProjectSteps
         currentSlug=""
         visitedSlugs={allVisited}
-        className="w-[229px] shrink-0"
       />
 
-      <Card padding="lg" radius="md" className="flex flex-col gap-lg flex-1">
+      <Card padding="lg" radius="sm" className="flex flex-col gap-lg flex-1">
         <div className="flex flex-col gap-xs">
           <h2 className="typo-body-lg-bold">Conclusão</h2>
           <p className="typo-body">Confira as informações sobre o seu projeto antes da submissão final</p>
