@@ -26,6 +26,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ### Changed
 
 - **`StepObjetivos`** — agora permite remover objetivos específicos. Cada linha tem um botão de lixeira (`IconButton` ghost com ícone `Trash2`) que some quando só resta 1 objetivo (garante que a lista nunca fica vazia).
+- **`StepIndicadores`** — o grupo "Indicadores de Resultado" passa a ter uma linha por objetivo específico (etapa 3). O label de cada linha é o texto do objetivo correspondente, com fallback "Objetivo N" quando o texto está vazio. Impacto e Metas Quantitativas continuam com tamanho fixo.
 - Ícone `Trash2` exportado de `components/icons`.
 - **`PillButton`** (`components/ui/buttons/PillButton.tsx`) — detecta href interno (começa com `/`) e omite `target="_blank"` + `rel="noopener noreferrer"` para navegação no mesmo tab. URLs externas mantêm o comportamento de abrir em nova aba.
 - **`formuladorCards`** (`data/formulador.ts`) — `buttonHref` do card "Assistente de formulação de projetos" aponta agora para `/formulador` ao invés de `#`.
