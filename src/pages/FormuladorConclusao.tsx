@@ -6,6 +6,7 @@
 import { useState } from 'react'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/buttons/Button'
+import NumberBullet from '@/components/ui/NumberBullet'
 import ProjectSteps from '@/components/formulador/ProjectSteps'
 import { Check, ArrowRight } from '@/components/icons'
 import { etapasFormulador } from '@/data/formulador-etapas'
@@ -67,9 +68,14 @@ function renderSection(
     }
     case 'plano-acao': {
       const d = state.planoAcao
+      const atividadesBullets = joinNonEmpty(
+        d.atividades
+          .split('\n')
+          .map((t) => (t.trim() ? `• ${t.trim()}` : '')),
+      )
       return {
         blocks: [
-          { label: 'Atividades Previstas', value: d.atividades },
+          { label: 'Atividades Previstas', value: atividadesBullets },
           { label: 'Metodologia', value: d.metodologia },
         ],
       }
@@ -179,24 +185,24 @@ export default function FormuladorConclusao() {
             const { blocks } = renderSection(etapa.slug, state, municipio.nome)
             const hasContent = blocks.some((b) => b.value && b.value.trim().length > 0)
             return (
-              <Card key={etapa.slug} surface="secondary" padding="md" radius="sm" className="flex flex-col gap-sm">
-                <div className="flex items-center gap-sm">
-                  <span className="typo-body-bold">{idx + 1}</span>
+              <div key={etapa.slug} className="flex flex-col gap-sm">
+                <div className="flex items-center gap-xs">
+                  <NumberBullet value={idx + 1} variant="primary" />
                   <span className="typo-body-bold">{etapa.titulo}</span>
                 </div>
-                {hasContent ? (
-                  <div className="flex flex-col gap-sm">
-                    {blocks.map((b) => b.value && (
+                <div className="bg-primary radius-sm p-md flex flex-col gap-xs">
+                  {hasContent ? (
+                    blocks.map((b) => b.value && (
                       <div key={b.label} className="flex flex-col gap-2xs">
-                        <p className="typo-body-sm-bold">{b.label}</p>
+                        <p className="typo-body-sm-bold text-inactive">{b.label}</p>
                         <p className="typo-body-sm whitespace-pre-line">{b.value}</p>
                       </div>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="typo-body-sm text-inactive">Sem informações preenchidas</p>
-                )}
-              </Card>
+                    ))
+                  ) : (
+                    <p className="typo-body-sm text-inactive">Sem informações preenchidas</p>
+                  )}
+                </div>
+              </div>
             )
           })}
         </div>

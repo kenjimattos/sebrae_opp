@@ -41,9 +41,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - **`ProgressBar`** — fill passa de `bg-[var(--semantic-text-primary)]` (preto) para `bg-accent` (azul do accent), dando mais presença visual à barra no `FormuladorProgress`.
 - **`FormuladorConclusao`** alinhada com o Figma:
   - Topo: "Editar projeto" e "Baixar PDF" (`variant="tertiary"`) à esquerda; "Enviar para análise" empurrado para a direita (`ml-auto`).
-  - Cada etapa do resumo agora exibe um círculo numerado preto (24×24) antes do título, com o número em branco 12px semibold.
+  - Cada etapa do resumo agora exibe um `<NumberBullet variant="primary">` antes do título (círculo azul 24×24 com número branco).
   - O título da etapa fica fora do card de campos; os campos vão para um card com fundo mais claro (`bg-primary` ≈ `#f3f3f3`) e labels em `text-inactive`, espelhando o Figma.
   - "Plano de Ação > Atividades Previstas" passa a renderizar cada linha do textarea como um bullet (`• …`), igual à lista mostrada no Figma.
+- **Token semântico `--semantic-text-secondary`** adicionado em `src/index.css` (light mode: `--primitives-white`) — habilita o variant `primary` do `NumberBullet` a ter texto branco sobre fundo accent.
 - **`TestWrapper`** — envolve os children em `FormuladorProvider` (necessário agora que o `Header` consome `useFormulador` para acessar `reset()`).
 - **`Button`** — nova variante `success` (fundo `--semantic-success`, label branco).
 - **`StepObjetivos`** — agora permite remover objetivos específicos. Cada linha tem um botão de lixeira (`IconButton` ghost com ícone `Trash2`) que some quando só resta 1 objetivo (garante que a lista nunca fica vazia).

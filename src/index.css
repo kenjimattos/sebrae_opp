@@ -101,6 +101,7 @@
   --semantic-surface-tertiary: var(--primitives-gray-500);
 
   --semantic-text-primary: var(--primitives-black);
+  --semantic-text-secondary: var(--primitives-white);
   --semantic-text-inactive: var(--primitives-gray-600);
   --semantic-info-text-info: var(--primitives-blue-500);
 
