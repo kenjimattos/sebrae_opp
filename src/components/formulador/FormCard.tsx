@@ -3,8 +3,7 @@
 // Footer exibe Anterior (quando não é a primeira etapa), "X/10 etapas" ao centro, e Próxima/Finalizar à direita.
 
 import Card from '@/components/ui/Card'
-import Button from '@/components/ui/buttons/Button'
-import { ArrowLeft, ArrowRight } from '@/components/icons'
+import PillButton from '@/components/ui/buttons/PillButton'
 import { etapasFormulador } from '@/data/formulador-etapas'
 
 interface FormCardProps {
@@ -46,11 +45,10 @@ export default function FormCard({
       <div className="flex items-center justify-between">
         <div className="min-w-[120px]">
           {!isFirst && onPrev && (
-            <Button
+            <PillButton
               label="Anterior"
               variant="secondary"
-              size="md"
-              icon={ArrowLeft}
+              size="sm"
               iconPosition="left"
               onClick={onPrev}
             />
@@ -60,11 +58,10 @@ export default function FormCard({
           {currentIndex + 1}/{total} etapas
         </p>
         <div className="min-w-[120px] flex justify-end">
-          <Button
+          <PillButton
             label={isLast ? 'Finalizar' : 'Próxima'}
             variant={isLast ? 'primary' : 'secondary'}
-            size="md"
-            icon={ArrowRight}
+            size="sm"
             iconPosition="right"
             onClick={onNext}
           />
