@@ -4,71 +4,82 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
-### Added
+## [0.6.0] — 2026-04-17
 
-- **Exportação PDF da Conclusão** — botão "Baixar PDF" dispara `window.print()` e agora só o conteúdo do resumo aparece no PDF. Header/Footer, hero + barra de progresso, sidebar das etapas, título "Conclusão" e a linha de botões ficam ocultos via `@media print` em `src/index.css`. Um título exclusivo do PDF ("Resumo do projeto" + título do projeto + município) aparece só na versão impressa (via `hidden print:flex` do Tailwind). A isolação usa o padrão `visibility: hidden` em `body *` + `visibility: visible` na `.print-area`, com a área reposicionada absolutamente no topo da página.
-
-### Changed
-
-- **Resumo na tela de Conclusão** alinhado label-a-label com o Figma:
-  - **Cronograma** agora "explode" o textarea em blocos individuais: cada linha do campo `fases` (e `marcos`) no formato `"Fase 1 - Diagnóstico: Meses 1-2"` vira uma linha label/value própria no resumo. Novo helper `parseLinesIntoBlocks` cuida do parsing; linhas sem `":"` caem no `value` com label vazio (o renderer pula o `<p>` da label nesses casos).
-  - **Orçamento** ganha um bloco calculado "Valor Total do Projeto" (reusa a lógica `parseValor` + `formatBRL` do StepOrcamento, agora também in-line nessa página) e passa a listar cada rubrica como label/value próprio (ao invés de concatenar tudo num único block "Rubricas").
-  - **Plano de Ação**: label `"Atividades Previstas"` → `"Principais Ações"`.
-  - **Justificativa**: label `"Problema central"` → `"Problema Central"`.
-  - **Sustentabilidade**: label `"Parcerias Institucionais"` → `"Parcerias Previstas"`.
-  - Renderer do resumo agora oculta o `<p>` da label quando ela vem vazia (caso de linha sem `":"` no parseador).
+Versão que introduz o **Formulador de Projetos** — um fluxo em 10 etapas + tela de Conclusão com resumo exportável em PDF, persistência local por município e integração dos links do Header com a Home via deep-linking. Para sustentar a experiência, o design system ganha três primitivos novos (`TextInput`, `ProgressBar`, `NumberBullet`), o `PillButton` foi generalizado (variantes, posição do ícone, polimórfico `<a>`/`<button>`) e surgiram variantes novas de `Button` (`success`) e `Dropdown` (`ButtonVariant`).
 
 ### Added
 
-- **`TextInput`** (`components/ui/TextInput.tsx`) — primitivo de input/textarea com props `title`, `subtitle`, `hint`, `disabled`, `multiline`, `rows`. Controlado via `value` + `onChange`. Cobre as 9 variantes do Figma (`603:2011`) com booleans ao invés de enum.
-- **`ProgressBar`** (`components/ui/ProgressBar.tsx`) — barra de progresso horizontal genérica. Aceita `value` (0–100, com clamp), usa `role="progressbar"` + `aria-valuenow`.
-- **`NumberBullet`** (`components/ui/NumberBullet.tsx`) — bullet numérico circular para listas ordenadas / outlines / resumos. Props: `value` (número ou string), `variant` (`'primary'` = fundo accent + texto `--semantic-text-secondary`, `'secondary'` = cinza claro + texto preto; default secondary), `size` (`'sm'` = 24px, `'md'` = 32px; default sm), `className`. Consumido pela tela de Conclusão do Formulador.
-- **`StepIndicator`** (`components/formulador/StepIndicator.tsx`) — item da sidebar com 3 variantes de status (unchecked/current/checked) usando `Circle`/`CircleDot`/`Check` do Lucide. Clicável quando `onClick` é fornecido.
-- **`ProjectSteps`** (`components/formulador/ProjectSteps.tsx`) — sidebar do Formulador. Itera as 10 etapas e deriva o status de cada uma a partir de `currentSlug` + `visitedSlugs`.
-- **`formulador-etapas.ts`** (`data/`) — fonte única de verdade para as 10 etapas do Formulador: `slug`, `label` (sidebar), `nome` (progress), `titulo` + `subtitle` (FormCard). Helpers `findEtapaBySlug` e `findEtapaIndex`.
-- Ícones `Check`, `Circle`, `CircleDot`, `Plus` exportados de `components/icons`.
-- **`FormuladorProgress`** (`components/formulador/FormuladorProgress.tsx`) — Card com `ProgressBar` + labels "X% concluído" e "Y/10 etapas • Etapa Atual: …". Deriva o nome da etapa de `formulador-etapas.ts`.
-- **`AIAssistant`** (`components/formulador/AIAssistant.tsx`) — sidebar direita do Formulador (`Card surface="secondary"`). Exibe descrição, exemplos com divider e lista de ações. Ações disparam `onAction(label)` — no-op por padrão.
-- **`FormCard`** (`components/formulador/FormCard.tsx`) — card central. Header título/subtítulo, slot para o form, footer com Anterior (oculto na etapa 1), "X/10 etapas" e Próxima/Finalizar (primary preto na última etapa).
-- **`formulador-ai.ts`** (`data/`) — conteúdo do AIAssistant por etapa. Placeholder v1: mesma descrição/exemplos/ações para todas; no futuro gerado por LLM.
-- **`FormuladorContext` + `FormuladorProvider` + `useFormulador`** (`hooks/`) — estado global do rascunho de projeto. Um rascunho por município (chave `formulador:${ibgeId}` em `localStorage`), hidratação no mount, persistência automática a cada mudança. Helpers `setSlice(key, value)`, `markVisited(slug)`, `reset()`. A troca de município recarrega o rascunho correspondente via render-phase state update (sem `useEffect` para evitar cascading renders).
-- **`types/formulador.ts`** — tipos de cada etapa (`IdentificacaoData`, `JustificativaData`, etc.) + `FormuladorState` + `EMPTY_FORMULADOR_STATE`.
-- **Rota `/formulador`** — nova página do formulador com rotas aninhadas (`:stepSlug` e `conclusao`, index redireciona para `identificacao`). Layout: Header + hero + `FormuladorProgress` + grid 3 colunas (`ProjectSteps` | `FormCard` | `AIAssistant`) + Footer. Slug inválido redireciona para a primeira etapa.
-- **`FormuladorProvider`** agora envolve `App` (via `main.tsx`/`App.tsx`) — disponível em toda a árvore para integração futura entre seções da Home e o Formulador.
-- **10 componentes de etapa** (`components/formulador/steps/`): `StepIdentificacao`, `StepJustificativa`, `StepObjetivos`, `StepPublicoAlvo`, `StepPlanoAcao`, `StepCronograma`, `StepIndicadores`, `StepOrcamento`, `StepSustentabilidade`, `StepGovernanca`. Cada um é um wrapper fino que lê/escreve um slice do `FormuladorContext` usando `TextInput`. Objetivos e Orçamento têm listas dinâmicas (+ Adicionar). Orçamento calcula Valor Total via `useMemo` (parse pt-BR + `Intl` para formatação).
-- **Tela de Conclusão** (`pages/FormuladorConclusao.tsx`) — sidebar com todas as etapas marcadas como concluídas + coluna de revisão com título, 3 botões de ação (Editar / Baixar PDF / Enviar para análise), banner verde de sucesso e cards por etapa com o conteúdo preenchido (ou "Sem informações preenchidas" quando vazio).
+**Formulador**
+
+- **Rota `/formulador`** (`pages/Formulador.tsx` + `FormuladorStep.tsx` + `FormuladorConclusao.tsx`) com rotas aninhadas: `/formulador` → redirect pra `identificacao`, `/formulador/:stepSlug` → etapa, `/formulador/conclusao` → resumo. Slug inválido volta pra primeira etapa.
+- **10 componentes de etapa** (`components/formulador/steps/`): `StepIdentificacao`, `StepJustificativa`, `StepObjetivos`, `StepPublicoAlvo`, `StepPlanoAcao`, `StepCronograma`, `StepIndicadores`, `StepOrcamento`, `StepSustentabilidade`, `StepGovernanca`. Cada um lê/escreve um slice do `FormuladorContext` via `TextInput`. Objetivos e Orçamento têm listas dinâmicas (+ Adicionar); Orçamento calcula Valor Total via `useMemo` (parse pt-BR + `Intl`).
+- **Estado global do Formulador** (`FormuladorContext` + `FormuladorProvider` + `useFormulador`) — um rascunho por município (chave `formulador:${ibgeId}` em `localStorage`), hidratação no mount, persistência automática a cada mudança. Helpers `setSlice(key, value)`, `markVisited(slug)`, `reset()`. Troca de município recarrega o rascunho correspondente via render-phase state update.
+- **Tipagem em `types/formulador.ts`** — um tipo por etapa + `FormuladorState` + `EMPTY_FORMULADOR_STATE`.
+- **Componentes do layout do Formulador** (`components/formulador/`):
+  - `FormCard` — título/subtítulo + slot + footer paginado (Anterior / X de N / Próxima ou Finalizar).
+  - `FormuladorProgress` — `Card` com `ProgressBar` + "X% concluído" + "Y/10 etapas • Etapa Atual: …".
+  - `ProjectSteps` — sidebar das 10 etapas (deriva status de `currentSlug` + `visitedSlugs`).
+  - `StepIndicator` — item da sidebar com 3 variantes (unchecked/current/checked).
+  - `AIAssistant` — painel cinza com descrição + exemplos + ações (no-op placeholder v1; removido do layout posteriormente).
+- **Fontes de verdade** em `data/`: `formulador-etapas.ts` (slug, label, nome, título, subtitle das 10 etapas + helpers) e `formulador-ai.ts` (conteúdo do AIAssistant por etapa).
+
+**Design system**
+
+- **`TextInput`** (`components/ui/TextInput.tsx`) — primitivo de input/textarea com `title`, `subtitle`, `hint`, `disabled`, `multiline`, `rows`. Cobre as 9 variantes do Figma (`603:2011`) com booleans ao invés de enum.
+- **`ProgressBar`** (`components/ui/ProgressBar.tsx`) — barra 0–100 genérica, `role="progressbar"` + `aria-valuenow`, fill em `bg-accent`.
+- **`NumberBullet`** (`components/ui/NumberBullet.tsx`) — bullet numérico circular. Variants `primary` (accent + texto `--semantic-text-secondary`) / `secondary` (cinza + texto preto); sizes `sm` (24px) / `md` (32px).
+- **Token semântico `--semantic-text-secondary`** adicionado em `src/index.css` (light mode: `--primitives-white`) — habilita o variant `primary` do `NumberBullet`.
+- Ícones `Check`, `Circle`, `CircleDot`, `Plus`, `Trash2`, `X` exportados de `components/icons`.
+
+**Outras**
+
+- **Exportação PDF da Conclusão** — "Baixar PDF" (via `window.print()`) agora captura só a área de resumo. `@media print` em `src/index.css` esconde header/footer/hero/progress/sidebar/botões via `visibility: hidden` e revela apenas `.print-area`. Título exclusivo ("Resumo do projeto" + título do projeto + município) aparece só no PDF via `hidden print:flex`. `break-inside: avoid` nos cards de cada etapa.
 
 ### Changed
 
-- **`PillButton`** — agora expõe `variant` (`'primary'` | `'secondary'` | `'ghost'`, default `primary`) e `iconPosition` (`'left'` | `'right'`, default `right`). Combinado com `size` (sm/md/lg), gera 9 combinações de cor × 3 tamanhos. `primary` = shell accent + círculo surface; `secondary` = shell surface-secondary + círculo surface; `ghost` = shell transparente + círculo surface-secondary. Quando `iconPosition='left'`, a seta vira `ArrowLeft` e o padding é invertido. Também passou a ser polimórfico: renderiza `<a>` quando `href` é fornecido, senão renderiza `<button type="button">` (com suporte a `onClick` e `disabled`). `size="sm"` passou a ter altura 32px com o círculo 24px inset 4px do shell (antes era 24px flush). Novas utilidades `.pl-2xs` / `.pr-2xs` adicionadas ao design system para permitir inset de 4px em `size="sm"` e `size="md"`. Call sites `CaseStudiesCard` e `CoursesCardRow` passam a usar `variant="ghost"` explicitamente para preservar o visual anterior no tamanho `sm`.
-- **`FormCard`** — botões Anterior e Próxima/Finalizar agora usam `PillButton` em vez de `Button`, em tamanho `sm`. Anterior e Próxima = `variant="secondary"`; Finalizar = `variant="primary"` (destaque na última etapa). `iconPosition="left"` no Anterior, `iconPosition="right"` nos demais.
-- **`FormuladorConclusao`** — banner verde "Projeto enviado com sucesso!" agora aparece apenas depois que o usuário clica em "Enviar para análise". Após o clique, o botão troca para a nova variante `success` (fundo verde + ícone `Check` + label "Enviado") e o `onClick` vira no-op para evitar re-envio.
-- **`Header`** — esconde o `CitySelector` na rota `/formulador*` (a seleção de município nessa página vem do Dropdown na etapa Identificação).
-- **`StepIdentificacao`** — o campo "Município" virou um `Dropdown` sincronizado com o `MunicipioProvider`. Trocar o município no Dropdown dispara `setMunicipio(...)` e o rascunho do Formulador recarrega automaticamente o do novo município (como se o usuário tivesse trocado pelo `CitySelector`). Isso elimina a divergência que existia entre o município global e o digitado à mão. O Dropdown é exibido com `ButtonVariant="tertiary"` para combinar com o resto do form.
-- **`IdentificacaoData`** — campo `municipio` removido do rascunho. Fonte única de verdade passa a ser o `MunicipioProvider` (usado tanto pelo `CitySelector` quanto pelo Dropdown do form). O resumo da Conclusão lê `municipio.nome` direto do contexto global.
-- **`Dropdown`** — novo prop opcional `ButtonVariant` (`'primary' | 'secondary' | 'tertiary' | 'ghost'`) para escolher a variante do `Button` interno. Default mantém `'primary'` — callers existentes (`SectionPanorama`) seguem iguais.
-- **Layout da página `/formulador`** — hero agora usa `<TitleSubtitle>` ao invés do par `<h1> + <p>` manual, estrutura semântica ajustada (`<main>` externo + `<section>` internos) e espaçamento entre hero, `FormuladorProgress` e o conteúdo da etapa reorganizado (gap-xl entre blocos, gap-sm dentro do grid de etapa).
-- **Cards do Formulador** — `FormCard`, `FormuladorProgress` e `ProjectSteps` passam a usar `radius="sm"` (e `ProjectSteps` com `padding="lg"` simétrico) para uniformizar o arredondamento com o restante do produto.
-- **`FormuladorStep`** — `AIAssistant` removido do layout (o conteúdo era placeholder idêntico em todas as etapas e não agregava valor na v1). O grid interno vira só `ProjectSteps` + `FormCard`, com `gap-sm`. Imports do `AIAssistant` e `aiAssistantByEtapa` removidos.
+**Header e navegação**
+
 - **`Header`** na rota `/formulador`:
-  - O link "Formulador de iniciativas" fica destacado como ativo (o scroll-spy da Home não tem seções pra inferir aqui; o realce é pinado por `pathname.startsWith('/formulador')`).
-  - Clicar no logo ou em qualquer link de navegação abre um `window.confirm` avisando que o rascunho do formulário será perdido. Se o usuário confirmar, `reset()` limpa o rascunho do município atual e a Home é aberta no destino desejado: logo → topo; links de seção → Home ancorada na seção correspondente via hash (`/#agendas`, `/#recursos`, `/#formulador`).
-- **`Home`** — passa a observar `location.hash` e faz scroll para a seção correspondente com offset do header sticky (95px). Cobre o caso de voltar do Formulador clicando em um link do Header, além de tornar URLs como `/#panorama` funcionais para deep-linking.
-- **`ProgressBar`** — fill passa de `bg-[var(--semantic-text-primary)]` (preto) para `bg-accent` (azul do accent), dando mais presença visual à barra no `FormuladorProgress`.
-- **`FormuladorConclusao`** alinhada com o Figma:
-  - Topo: "Editar projeto" e "Baixar PDF" (`variant="tertiary"`) à esquerda; "Enviar para análise" empurrado para a direita (`ml-auto`).
-  - Cada etapa do resumo agora exibe um `<NumberBullet variant="primary">` antes do título (círculo azul 24×24 com número branco).
-  - O título da etapa fica fora do card de campos; os campos vão para um card com fundo mais claro (`bg-primary` ≈ `#f3f3f3`) e labels em `text-inactive`, espelhando o Figma.
-  - "Plano de Ação > Atividades Previstas" passa a renderizar cada linha do textarea como um bullet (`• …`), igual à lista mostrada no Figma.
-- **Token semântico `--semantic-text-secondary`** adicionado em `src/index.css` (light mode: `--primitives-white`) — habilita o variant `primary` do `NumberBullet` a ter texto branco sobre fundo accent.
-- **`TestWrapper`** — envolve os children em `FormuladorProvider` (necessário agora que o `Header` consome `useFormulador` para acessar `reset()`).
+  - Link "Formulador de iniciativas" fica destacado como ativo (pinado por `pathname.startsWith('/formulador')`; scroll-spy não tem seções pra inferir aqui).
+  - `CitySelector` é ocultado (seleção de município passa a ser o Dropdown da etapa Identificação).
+  - Logo e qualquer link de navegação disparam `window.confirm('Você perderá o rascunho do formulário deste município. Deseja continuar?')`. Se OK, `reset()` limpa o rascunho e o usuário vai pra Home: logo → topo; link → `/#<sectionId>`.
+- **`Home`** passa a observar `location.hash` e faz scroll pra seção correspondente com offset do header sticky (95px). Cobre o retorno do Formulador e torna `/#panorama`, `/#recursos` etc. deep-linkáveis.
+
+**Componentes UI**
+
+- **`PillButton`** — agora expõe `variant` (`'primary'` | `'secondary'` | `'ghost'`, default `primary`) e `iconPosition` (`'left'` | `'right'`, default `right`). Combinado com `size` (sm/md/lg), gera 9 cores × 3 tamanhos. `iconPosition='left'` inverte padding e troca pra `ArrowLeft`. Passou a ser **polimórfico**: renderiza `<a>` quando `href` é fornecido, senão `<button type="button">` (com `onClick` e `disabled`). Detecta href interno (começa com `/`) e omite `target="_blank"` pra navegação SPA. `size="sm"` ganhou altura 32px com círculo 24px inset 4px; novas utilidades `.pl-2xs` / `.pr-2xs` no design system. Call sites `CaseStudiesCard` e `CoursesCardRow` passam a usar `variant="ghost"` explicitamente.
 - **`Button`** — nova variante `success` (fundo `--semantic-success`, label branco).
-- **`StepObjetivos`** — agora permite remover objetivos específicos. Cada linha tem um botão de lixeira (`IconButton` ghost com ícone `Trash2`) que some quando só resta 1 objetivo (garante que a lista nunca fica vazia).
-- **`StepIndicadores`** — os três grupos (Resultado, Impacto e Metas Quantitativas) passam a ter uma linha por objetivo específico (etapa 3). O label de cada linha é o texto do objetivo correspondente, com fallback "Objetivo N"/"Indicador N" quando o objetivo está vazio.
-- Ícone `Trash2` exportado de `components/icons`.
-- **`PillButton`** (`components/ui/buttons/PillButton.tsx`) — detecta href interno (começa com `/`) e omite `target="_blank"` + `rel="noopener noreferrer"` para navegação no mesmo tab. URLs externas mantêm o comportamento de abrir em nova aba.
-- **`formuladorCards`** (`data/formulador.ts`) — `buttonHref` do card "Assistente de formulação de projetos" aponta agora para `/formulador` ao invés de `#`.
-- **Testes** — 62 testes (antes 56). Smoke tests para `TextInput` (2 variantes), `ProgressBar`, `StepIndicator` (3 variantes), `ProjectSteps`, `FormuladorProgress`, `AIAssistant`, `FormCard` (2 variantes). Snapshots para `TextInput` (2 variantes), `ProgressBar`, `StepIndicator` checked, `FormuladorProgress`, `AIAssistant`.
+- **`Dropdown`** — novo prop opcional `ButtonVariant` (`'primary' | 'secondary' | 'tertiary' | 'ghost'`, default `'primary'`) pra customizar o trigger. Callers existentes (`SectionPanorama`) seguem iguais.
+- **`ProgressBar`** — fill passa de preto para `bg-accent`.
+
+**Formulador**
+
+- **`FormCard`** — botões Anterior e Próxima/Finalizar agora usam `PillButton` (tamanho `sm`). Anterior/Próxima = `variant="secondary"`; Finalizar = `variant="primary"` na última etapa. Cards de layout (`FormCard`, `FormuladorProgress`, `ProjectSteps`) passam a usar `radius="sm"` uniformemente.
+- **Layout da página `/formulador`** — hero usa `<TitleSubtitle>` e estrutura semântica ajustada (`<main>` + `<section>` aninhados; gap-xl entre blocos, gap-sm dentro do grid de etapa).
+- **`FormuladorStep`** — `AIAssistant` removido do layout (placeholder idêntico em todas as etapas na v1). Grid interno vira só `ProjectSteps` + `FormCard`.
+- **`StepIdentificacao`** — campo "Município" virou um `Dropdown` sincronizado com o `MunicipioProvider` (`ButtonVariant="tertiary"`). Trocar no Dropdown dispara `setMunicipio(...)` e o rascunho recarrega o do novo município. Fim da divergência entre município global e digitado à mão.
+- **`IdentificacaoData`** — campo `municipio` removido do rascunho (fonte única = `MunicipioProvider`); resumo da Conclusão lê `municipio.nome` direto do contexto.
+- **`StepObjetivos`** — permite remover objetivos específicos (lixeira ghost + `Trash2`; some quando só resta 1 objetivo).
+- **`StepIndicadores`** — os três grupos (Resultado, Impacto, Metas Quantitativas) passam a ter uma linha por objetivo específico (etapa 3), com o texto do objetivo como label (fallback "Objetivo N" / "Indicador N").
+
+**Tela de Conclusão**
+
+- **Banner de sucesso** só aparece depois que o usuário clica em "Enviar para análise". Após o clique, o botão troca pra variante `success` (verde + `Check` + "Enviado") e o `onClick` vira no-op.
+- **Layout alinhado com o Figma**: "Editar projeto" e "Baixar PDF" (`variant="tertiary"`) à esquerda; "Enviar para análise" empurrado pra direita com `ml-auto`. Cada etapa do resumo exibe um `<NumberBullet variant="primary">` antes do título; título fica fora do card de campos; campos vão pra card com fundo mais claro (`bg-primary` ≈ `#f3f3f3`) e labels em `text-inactive`.
+- **Resumo label-a-label com o Figma**:
+  - **Cronograma** "explode" o textarea em blocos individuais: cada linha no formato `"Fase 1 - Diagnóstico: Meses 1-2"` vira uma linha label/value própria (novo helper `parseLinesIntoBlocks`).
+  - **Orçamento** ganha "Valor Total do Projeto" calculado no topo e lista cada rubrica como label/value.
+  - **Plano de Ação**: label `"Atividades Previstas"` → `"Principais Ações"`; cada linha do textarea vira um bullet `• …`.
+  - **Justificativa**: `"Problema central"` → `"Problema Central"`.
+  - **Sustentabilidade**: `"Parcerias Institucionais"` → `"Parcerias Previstas"`.
+  - Renderer oculta o `<p>` da label quando ela vem vazia (suporte à fallback do parseador).
+
+**Outros**
+
+- **`formuladorCards`** — `buttonHref` do card "Assistente de formulação de projetos" aponta agora para `/formulador` (antes `#`).
+- **`TestWrapper`** — envolve os children em `MemoryRouter` + `FormuladorProvider` (Header consome `useFormulador` pra `reset()` e `useLocation`).
+- **Testes** — 65 testes no total (antes 56). Smoke tests para `TextInput` (2 variantes), `ProgressBar`, `NumberBullet` (2 variantes), `StepIndicator` (3 variantes), `ProjectSteps`, `FormuladorProgress`, `AIAssistant`, `FormCard` (2 variantes). Snapshots para `TextInput`, `ProgressBar`, `NumberBullet` (2 variantes), `StepIndicator` checked, `FormuladorProgress`, `AIAssistant`.
 
 ## [0.5.1] — 2026-04-17
 
