@@ -8,7 +8,6 @@ import { sectionContent } from '@/data/sections'
 import TitleSubtitle from '../ui/TitleSubtitle'
 import Card from '../ui/Card'
 
-const HEADER_HEIGHT = 95
 
 const ctaIcons: Record<string, LucideIcon> = {
   mobilize: Users,
