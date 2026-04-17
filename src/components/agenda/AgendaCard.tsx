@@ -15,7 +15,7 @@ export default function AgendaCard({ title, indicadores, className = '' }: Agend
   return (
     <Card
       padding={{ x: 'md', y: 'lg' }}
-      className={`flex flex-col gap-lg min-h-[384px] card-hoverable ${className}`}
+      className={`flex flex-col gap-lg card-hoverable ${className}`}
     >
       <h3 className="typo-body-bold">
         {title}
