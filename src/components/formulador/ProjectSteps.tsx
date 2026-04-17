@@ -23,7 +23,7 @@ export default function ProjectSteps({
   className = '',
 }: ProjectStepsProps) {
   return (
-    <Card padding={{ x: 'md', y: 'lg' }} className={`flex flex-col items-start gap-sm ${className}`}>
+    <Card padding="lg" className={`flex flex-col items-start gap-sm ${className}`}>
       <p className="typo-body-bold">Etapas do projeto</p>
       {etapasFormulador.map((etapa) => {
         const status =

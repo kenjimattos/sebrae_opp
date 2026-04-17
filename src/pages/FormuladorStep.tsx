@@ -1,13 +1,11 @@
 // Rota /formulador/:stepSlug — despacha para o form da etapa correta.
-// Layout interno: ProjectSteps (esquerda) + FormCard (centro) + AIAssistant (direita).
+// Layout interno: ProjectSteps (esquerda) + FormCard (centro).
 
 import { useParams, useNavigate, Navigate } from 'react-router-dom'
 import ProjectSteps from '@/components/formulador/ProjectSteps'
-import AIAssistant from '@/components/formulador/AIAssistant'
 import FormCard from '@/components/formulador/FormCard'
 import { etapasFormulador, findEtapaIndex, findEtapaBySlug } from '@/data/formulador-etapas'
 import { useFormulador } from '@/hooks/useFormulador'
-import { aiAssistantByEtapa } from '@/data/formulador-ai'
 import { StepForm } from '@/components/formulador/steps'
 
 export default function FormuladorStep() {
@@ -23,7 +21,6 @@ export default function FormuladorStep() {
   }
 
   const isLast = index === etapasFormulador.length - 1
-  const aiContent = aiAssistantByEtapa[stepSlug]
 
   function goToSlug(slug: string) {
     navigate(`/formulador/${slug}`)
@@ -44,12 +41,11 @@ export default function FormuladorStep() {
   }
 
   return (
-    <div className="flex items-stretch gap-md w-full">
+    <div className="flex items-stretch gap-sm w-full">
       <ProjectSteps
         currentSlug={stepSlug}
         visitedSlugs={state.etapasVisitadas}
         onSelect={goToSlug}
-        className="w-[229px] shrink-0"
       />
 
       <FormCard
@@ -61,8 +57,6 @@ export default function FormuladorStep() {
       >
         <StepForm slug={stepSlug} />
       </FormCard>
-
-      {aiContent && <AIAssistant content={aiContent} className="shrink-0" />}
     </div>
   )
 }

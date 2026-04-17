@@ -33,7 +33,7 @@ export default function FormCard({
   return (
     <Card
       padding="lg"
-      radius="md"
+      radius="sm"
       className={`flex flex-col items-stretch gap-lg flex-1 ${className}`}
     >
       <div className="flex flex-col items-start gap-xs">

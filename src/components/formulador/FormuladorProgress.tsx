@@ -25,7 +25,7 @@ export default function FormuladorProgress({
   return (
     <Card
       padding="lg"
-      radius="md"
+      radius="sm"
       className={`flex flex-col items-start gap-sm w-full ${className}`}
     >
       <div className="flex items-center justify-between w-full">

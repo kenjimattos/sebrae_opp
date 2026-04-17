@@ -9,6 +9,7 @@ import { sectionContent } from '@/data/sections'
 import { useFormulador } from '@/hooks/useFormulador'
 import { etapasFormulador } from '@/data/formulador-etapas'
 import { useLocation } from 'react-router-dom'
+import TitleSubtitle from '@/components/ui/TitleSubtitle'
 
 function currentIndexFromPath(pathname: string): number {
   const parts = pathname.split('/').filter(Boolean)
@@ -29,21 +30,16 @@ export default function Formulador() {
   )
 
   return (
-    <div className="min-h-screen bg-primary">
+    <main className="min-h-screen bg-primary">
       <Header />
-
-      <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-md py-2xl px-2xl">
-        <div className="flex flex-col gap-sm">
-          <h1 className="typo-h2">{sectionContent.formuladorPagina.title}</h1>
-          <p className="typo-body">{sectionContent.formuladorPagina.description}</p>
-        </div>
-
-        <FormuladorProgress currentIndex={currentIndex} percent={percent} />
-
-        <Outlet />
-      </main>
-
+      <section className="mx-auto w-full max-w-[1440px] flex flex-col gap-xl py-2xl px-2xl">
+        <TitleSubtitle title={sectionContent.formuladorPagina.title} subtitle={sectionContent.formuladorPagina.description} />
+        <section className="flex flex-col items-start gap-sm">
+          <FormuladorProgress currentIndex={currentIndex} percent={percent} />
+          <Outlet />
+        </section>
+      </section>
       <Footer />
-    </div>
+    </main>
   )
 }
