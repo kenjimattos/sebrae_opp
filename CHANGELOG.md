@@ -56,6 +56,9 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 **SectionCasosSucesso** (`components/sections/SectionCasosSucesso.tsx`)
 - Scroll container de cards ganha `py-xs -my-[var(--spacing-xs)]`: dá respiro vertical para o lift + anel do `.card-hoverable` (o `overflow-x-auto` força `overflow-y` a clipar, cortando a animação no topo/base) sem alterar o espaçamento externo.
 
+**Footer** (`components/layout/Footer.tsx`)
+- Linhas interna (brand + colunas) e bottom (divider + copyright) ganham `mx-auto w-full max-w-[1440px]` — conteúdo do footer agora segue a mesma largura máxima/centering das demais seções, ficando alinhado mesmo em viewports acima de 1440px.
+
 ## [0.4.0] — 2026-04-16
 
 Refino da seção Capacitação: conteúdo realinhado ao planejamento do projeto, `CoursesCard` agora é expansível individualmente e `SectionCapacitacao` adota layout empilhado com trilha única visível por padrão.
