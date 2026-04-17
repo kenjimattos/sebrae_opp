@@ -17,7 +17,9 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 **Mapa/panorama** (`data/mapa-indicadores.ts`)
 - `indicadorOptions` sincronizado com os novos labels das agendas para manter o dropdown do panorama funcional.
-- Removidos os indicadores `operacoes_credito` e `financiamentos` (substituídos pelos novos indicadores de valor absoluto na Agenda 5, que não são exibidos no mapa por enquanto).
+- Adicionadas 10 novas `IndicadorKey`s cobrindo todos os indicadores novos das agendas (IGMA, ELI Sebrae, compras públicas de inovação, operações de crédito R$, operações não automáticas R$, empresas ativas, Bolsa Família 18–50, apoiados Sebrae, MPE em compras públicas, linhas de crédito) — o dropdown do Panorama agora espelha 1:1 os indicadores das agendas.
+- Entries populadas para João Pessoa, Campina Grande e Patos; demais 9 municípios ficam sem cor/badge nos novos indicadores (comportamento padrão já tratado por `ParaibaMap` e `usePanoramaMedia`).
+- Removidos os indicadores antigos `operacoes_credito` e `financiamentos` (substituídos pelos novos indicadores de valor absoluto da Agenda 5).
 
 **Contextos de risco** (`data/riscos-contexto.ts`)
 - Chaves atualizadas para refletir os novos labels; adicionados contextos para os novos indicadores de alerta/atenção (IGMA, ELI, compras públicas, Bolsa Família, Sebrae, linhas de crédito).
