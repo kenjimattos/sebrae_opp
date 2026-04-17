@@ -23,6 +23,11 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - **10 componentes de etapa** (`components/formulador/steps/`): `StepIdentificacao`, `StepJustificativa`, `StepObjetivos`, `StepPublicoAlvo`, `StepPlanoAcao`, `StepCronograma`, `StepIndicadores`, `StepOrcamento`, `StepSustentabilidade`, `StepGovernanca`. Cada um é um wrapper fino que lê/escreve um slice do `FormuladorContext` usando `TextInput`. Objetivos e Orçamento têm listas dinâmicas (+ Adicionar). Orçamento calcula Valor Total via `useMemo` (parse pt-BR + `Intl` para formatação).
 - **Tela de Conclusão** (`pages/FormuladorConclusao.tsx`) — sidebar com todas as etapas marcadas como concluídas + coluna de revisão com título, 3 botões de ação (Editar / Baixar PDF / Enviar para análise), banner verde de sucesso e cards por etapa com o conteúdo preenchido (ou "Sem informações preenchidas" quando vazio).
 
+### Changed
+
+- **`PillButton`** (`components/ui/buttons/PillButton.tsx`) — detecta href interno (começa com `/`) e omite `target="_blank"` + `rel="noopener noreferrer"` para navegação no mesmo tab. URLs externas mantêm o comportamento de abrir em nova aba.
+- **`formuladorCards`** (`data/formulador.ts`) — `buttonHref` do card "Assistente de formulação de projetos" aponta agora para `/formulador` ao invés de `#`.
+
 ## [0.5.1] — 2026-04-17
 
 Versão focada em consolidar a conexão entre agendas e a seção Panorama, e em adicionar affordances de contexto via tooltips (objetivo por agenda e descrição por indicador). Inclui refresh completo dos indicadores para espelhar a última versão do Figma e ajuste do `DropdownMenu` para não vazar da tela com a lista mais longa.

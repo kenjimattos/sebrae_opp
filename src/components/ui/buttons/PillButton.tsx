@@ -63,11 +63,14 @@ export default function PillButton({
   className = '',
 }: PillButtonProps) {
   const s = sizeStyles[size]
+  const isInternal = href.startsWith('/') && !href.startsWith('//')
+  const externalProps = isInternal
+    ? {}
+    : { target: '_blank', rel: 'noopener noreferrer' }
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      {...externalProps}
       className={`inline-flex items-center radius-full no-underline transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none ${s.shellBg} ${s.shell} ${className}`}
     >
       <span className={`flex-1 ${s.typo}`}>{label}</span>
