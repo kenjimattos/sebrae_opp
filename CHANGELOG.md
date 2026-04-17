@@ -8,6 +8,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 - **`TextInput`** (`components/ui/TextInput.tsx`) — primitivo de input/textarea com props `title`, `subtitle`, `hint`, `disabled`, `multiline`, `rows`. Controlado via `value` + `onChange`. Cobre as 9 variantes do Figma (`603:2011`) com booleans ao invés de enum.
 - **`ProgressBar`** (`components/ui/ProgressBar.tsx`) — barra de progresso horizontal genérica. Aceita `value` (0–100, com clamp), usa `role="progressbar"` + `aria-valuenow`.
+- **`NumberBullet`** (`components/ui/NumberBullet.tsx`) — bullet numérico circular para listas ordenadas / outlines / resumos. Props: `value` (número ou string), `variant` (`'primary'` = fundo accent + texto `--semantic-text-secondary`, `'secondary'` = cinza claro + texto preto; default secondary), `size` (`'sm'` = 24px, `'md'` = 32px; default sm), `className`. Consumido pela tela de Conclusão do Formulador.
 - **`StepIndicator`** (`components/formulador/StepIndicator.tsx`) — item da sidebar com 3 variantes de status (unchecked/current/checked) usando `Circle`/`CircleDot`/`Check` do Lucide. Clicável quando `onClick` é fornecido.
 - **`ProjectSteps`** (`components/formulador/ProjectSteps.tsx`) — sidebar do Formulador. Itera as 10 etapas e deriva o status de cada uma a partir de `currentSlug` + `visitedSlugs`.
 - **`formulador-etapas.ts`** (`data/`) — fonte única de verdade para as 10 etapas do Formulador: `slug`, `label` (sidebar), `nome` (progress), `titulo` + `subtitle` (FormCard). Helpers `findEtapaBySlug` e `findEtapaIndex`.
@@ -38,6 +39,11 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
   - Clicar no logo ou em qualquer link de navegação abre um `window.confirm` avisando que o rascunho do formulário será perdido. Se o usuário confirmar, `reset()` limpa o rascunho do município atual e a Home é aberta no destino desejado: logo → topo; links de seção → Home ancorada na seção correspondente via hash (`/#agendas`, `/#recursos`, `/#formulador`).
 - **`Home`** — passa a observar `location.hash` e faz scroll para a seção correspondente com offset do header sticky (95px). Cobre o caso de voltar do Formulador clicando em um link do Header, além de tornar URLs como `/#panorama` funcionais para deep-linking.
 - **`ProgressBar`** — fill passa de `bg-[var(--semantic-text-primary)]` (preto) para `bg-accent` (azul do accent), dando mais presença visual à barra no `FormuladorProgress`.
+- **`FormuladorConclusao`** alinhada com o Figma:
+  - Topo: "Editar projeto" e "Baixar PDF" (`variant="tertiary"`) à esquerda; "Enviar para análise" empurrado para a direita (`ml-auto`).
+  - Cada etapa do resumo agora exibe um círculo numerado preto (24×24) antes do título, com o número em branco 12px semibold.
+  - O título da etapa fica fora do card de campos; os campos vão para um card com fundo mais claro (`bg-primary` ≈ `#f3f3f3`) e labels em `text-inactive`, espelhando o Figma.
+  - "Plano de Ação > Atividades Previstas" passa a renderizar cada linha do textarea como um bullet (`• …`), igual à lista mostrada no Figma.
 - **`TestWrapper`** — envolve os children em `FormuladorProvider` (necessário agora que o `Header` consome `useFormulador` para acessar `reset()`).
 - **`Button`** — nova variante `success` (fundo `--semantic-success`, label branco).
 - **`StepObjetivos`** — agora permite remover objetivos específicos. Cada linha tem um botão de lixeira (`IconButton` ghost com ícone `Trash2`) que some quando só resta 1 objetivo (garante que a lista nunca fica vazia).

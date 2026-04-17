@@ -18,6 +18,7 @@ import ResourcesCard from '@/components/resources/ResourcesCard'
 import AgendaIndicator from '@/components/agenda/AgendaIndicator'
 import TextInput from '@/components/ui/TextInput'
 import ProgressBar from '@/components/ui/ProgressBar'
+import NumberBullet from '@/components/ui/NumberBullet'
 import StepIndicator from '@/components/formulador/StepIndicator'
 import FormuladorProgress from '@/components/formulador/FormuladorProgress'
 import AIAssistant from '@/components/formulador/AIAssistant'
@@ -140,6 +141,16 @@ describe('Snapshot tests — CSS refactor safety', () => {
 
   it('ProgressBar', () => {
     const { container } = render(<ProgressBar value={40} />)
+    expect(container.firstChild).toMatchSnapshot()
+  })
+
+  it('NumberBullet — default (secondary)', () => {
+    const { container } = render(<NumberBullet value={3} />)
+    expect(container.firstChild).toMatchSnapshot()
+  })
+
+  it('NumberBullet — primary md', () => {
+    const { container } = render(<NumberBullet value={10} variant="primary" size="md" />)
     expect(container.firstChild).toMatchSnapshot()
   })
 

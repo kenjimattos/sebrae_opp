@@ -559,6 +559,22 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
 </header>
 `;
 
+exports[`Snapshot tests — CSS refactor safety > NumberBullet — default (secondary) 1`] = `
+<span
+  class="inline-flex items-center justify-center shrink-0 radius-full typo-body-sm-bold w-[24px] h-[24px] bg-surface-secondary "
+>
+  3
+</span>
+`;
+
+exports[`Snapshot tests — CSS refactor safety > NumberBullet — primary md 1`] = `
+<span
+  class="inline-flex items-center justify-center shrink-0 radius-full typo-body-sm-bold w-[32px] h-[32px] bg-accent text-[color:var(--semantic-text-secondary)] "
+>
+  10
+</span>
+`;
+
 exports[`Snapshot tests — CSS refactor safety > ProgressBar 1`] = `
 <div
   aria-valuemax="100"

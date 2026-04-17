@@ -40,6 +40,7 @@ import Card from '@/components/ui/Card'
 import SectionContainer from '@/components/ui/SectionContainer'
 import TextInput from '@/components/ui/TextInput'
 import ProgressBar from '@/components/ui/ProgressBar'
+import NumberBullet from '@/components/ui/NumberBullet'
 
 // Formulador
 import FormuladorCard from '@/components/formulador/FormuladorCard'
@@ -244,6 +245,13 @@ describe('UI primitives', () => {
   it('renders ProgressBar', () => {
     const { container } = render(<ProgressBar value={40} />)
     expect(container).toBeTruthy()
+  })
+
+  it('renders NumberBullet (default + primary variant)', () => {
+    const defaultBullet = render(<NumberBullet value={1} />)
+    const primaryBullet = render(<NumberBullet value={10} variant="primary" size="md" />)
+    expect(defaultBullet.container).toBeTruthy()
+    expect(primaryBullet.container).toBeTruthy()
   })
 })
 
