@@ -10,8 +10,8 @@ interface SectionHeaderProps {
 export default function SectionHeader({ title, description, className = '' }: SectionHeaderProps) {
   if (!description) {
     return (
-      <div className={`flex-col-start justify-center max-w-[1000px] ${className}`}>
-        <h2 className="w-full typo-h1">
+      <div className={`flex ${className}`}>
+        <h2 className="w-3/4 typo-h1">
           {title}
         </h2>
       </div>
@@ -20,10 +20,10 @@ export default function SectionHeader({ title, description, className = '' }: Se
 
   return (
     <div className={`flex items-center gap-md ${className}`}>
-      <h2 className="flex-1 max-w-[690px] typo-h1">
+      <h2 className="w-2/3 typo-h1">
         {title}
       </h2>
-      <p className="flex-1 max-w-[400px] typo-body">
+      <p className="w-1/3 typo-body">
         {description}
       </p>
     </div>
