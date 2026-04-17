@@ -1,5 +1,6 @@
-// Test wrapper with MunicipioProvider context
+// Test wrapper with MunicipioProvider context + MemoryRouter (for useLocation etc.)
 import type { ReactNode } from 'react'
+import { MemoryRouter } from 'react-router-dom'
 import { MunicipioContext } from '@/hooks/useMunicipio'
 import { mockIndicadoresData } from './municipio'
 
@@ -14,8 +15,10 @@ const mockMunicipioValue = {
 
 export function TestWrapper({ children }: { children: ReactNode }) {
   return (
-    <MunicipioContext.Provider value={mockMunicipioValue}>
-      {children}
-    </MunicipioContext.Provider>
+    <MemoryRouter>
+      <MunicipioContext.Provider value={mockMunicipioValue}>
+        {children}
+      </MunicipioContext.Provider>
+    </MemoryRouter>
   )
 }

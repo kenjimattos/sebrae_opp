@@ -6,6 +6,7 @@ import User from '@/components/layout/User'
 import { navLinks } from '@/data/layout'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { useMemo } from 'react'
+import { useLocation } from 'react-router-dom'
 
 interface HeaderProps {
   className?: string
@@ -16,6 +17,8 @@ const HEADER_HEIGHT = 95
 export default function Header({ className = '' }: HeaderProps) {
   const sectionIds = useMemo(() => navLinks.map((l) => l.sectionId), [])
   const activeSection = useActiveSection(sectionIds)
+  const { pathname } = useLocation()
+  const isFormulador = pathname.startsWith('/formulador')
 
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -42,7 +45,7 @@ export default function Header({ className = '' }: HeaderProps) {
 
       {/* Center nav pill */}
       <div className="flex-between h-[60px] gap-md bg-surface radius-full px-sm py-2xs">
-        <CitySelector/>
+        {!isFormulador && <CitySelector />}
 
         <nav className="flex-between gap-md">
           {navLinks.map(({ label, sectionId }) => {
