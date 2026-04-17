@@ -20,7 +20,8 @@ export const sectionContent = {
     title: 'Recursos e Capacitação para o Desenvolvimento do Município',
   },
   capacitacao: {
-    title: 'Capacitação para estruturar projetos e acessar recursos',
+    title: 'Habilidades para uma gestão pública inovadora',
+    description: 'Curadoria de cursos e conteúdos de aprimoramento para uma gestão pública cada vez mais inovadora.'
   },
   casosSucesso: {
     title: 'Municípios que transformaram seu ambiente de negócios',

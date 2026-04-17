@@ -17,7 +17,7 @@ export default function SectionCapacitacao() {
 
   return (
     <SectionContainer>
-      <SectionHeader title={sectionContent.capacitacao.title} />
+      <SectionHeader title={sectionContent.capacitacao.title} description={sectionContent.capacitacao.description}  />
 
       <div className="grid-2 w-full">
         {visibleTrilhas.map((trilha) => (
