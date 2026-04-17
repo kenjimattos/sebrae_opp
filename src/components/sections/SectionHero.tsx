@@ -69,17 +69,14 @@ export default function SectionHero() {
               {/* Step number + icon */}
               <div className="flex items-start justify-between">
                 <div
-                  className="flex-center justify-center radius-md transition-colors duration-200"
+                  className="flex-center justify-center radius-full transition-colors duration-200 bg-surface-secondary "
                   style={{
                     width: '56px',
                     height: '56px',
-                    backgroundColor: 'var(--semantic-accent-surface)',
                   }}
                 >
                   <Icon
                     size={iconSizes.lg}
-                    color="var(--semantic-accent)"
-                    strokeWidth={1.75}
                   />
                 </div>
               </div>
