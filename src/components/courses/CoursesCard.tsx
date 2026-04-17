@@ -4,8 +4,11 @@
 import Card from '@/components/ui/Card'
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import CoursesCardRow from '@/components/courses/CoursesCardRow'
-import PillButton from '@/components/ui/buttons/PillButton'
-import { ctaLabels } from '@/data/labels'
+import Button from '../ui/buttons/Button'
+import { ChevronDown, ChevronUp } from 'lucide-react'
+import { useState } from 'react'
+
+const VISIBLE_COUNT = 2
 
 interface Curso {
   titulo: string
@@ -20,6 +23,9 @@ interface CoursesCardProps {
 }
 
 export default function CoursesCard({ title, description, cursos, className = '' }: CoursesCardProps) {
+  const [expanded, setExpanded] = useState(false)
+  const visibleCursos = expanded ? cursos : cursos.slice(0, VISIBLE_COUNT)
+  
   return (
     <Card
       as="section"
@@ -29,8 +35,8 @@ export default function CoursesCard({ title, description, cursos, className = ''
       <TitleSubtitle title={title} subtitle={description} size="sm" />
 
       {/* Course rows — flex-1 pushes CTA to the bottom */}
-      <div className="flex flex-col gap-sm items-start w-full flex-1">
-        {cursos.map((curso, i) => (
+      <div className="flex flex-col gap-sm items-start w-full flex-1 px-lg">
+        {visibleCursos.map((curso, i) => (
           <div key={curso.titulo} className="w-full">
             {i > 0 && (
               <div className="divider mb-[var(--spacing-sm)]" />
@@ -38,11 +44,19 @@ export default function CoursesCard({ title, description, cursos, className = ''
             <CoursesCardRow title={curso.titulo} subtitle={curso.carga} />
           </div>
         ))}
-      </div>
 
-      {/* CTA */}
-      <div className="flex items-start justify-end w-full">
-        <PillButton label={ctaLabels.verTrilhaCompleta} href="#" />
+      {cursos.length > VISIBLE_COUNT && (
+        <div className="flex justify-center w-full mt-md">
+          <Button
+            variant="tertiary"
+            size="md"
+            label={expanded ? 'Ver menos cursos' : `Ver trilha completa (${cursos.length})`}
+            icon={expanded ? ChevronUp : ChevronDown}
+            iconPosition="right"
+            onClick={() => setExpanded(!expanded)}
+          />
+      </div>
+      )}
       </div>
     </Card>
   )
