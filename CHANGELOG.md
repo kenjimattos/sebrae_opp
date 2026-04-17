@@ -2,6 +2,14 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Unreleased]
+
+### Added
+
+- `SectionHero`: nova seção inserida antes de `SectionAgendas`. Apresenta o macro-objetivo da plataforma ("uma plataforma de inteligência que converte dados do território em insights e capacidade da gestão pública em ação...") com destaques em accent e 3 CTAs clicáveis (Mobilize agendas → `#agendas`, Analise o ambiente → `#panorama`, Formule soluções → `#formulador`). Cada CTA tem ícone circular em accent, título, descrição e seta "Começar" com scroll suave para a seção de destino. Atende feedback da Luisa Oliveira sobre deixar o propósito e chamadas para ação visíveis na abertura.
+- `sectionContent.hero` em `data/sections.ts` — título com marcadores `<highlight>` e array de CTAs (id, label, description, sectionId).
+- Smoke test de `SectionHero` em `test/sections.test.tsx`.
+
 ## [0.4.0] — 2026-04-16
 
 Refino da seção Capacitação: conteúdo realinhado ao planejamento do projeto, `CoursesCard` agora é expansível individualmente e `SectionCapacitacao` adota layout empilhado com trilha única visível por padrão.
