@@ -77,7 +77,7 @@ export default function SectionHero() {
 
 
               <TitleSubtitle
-                size="sm"
+                size="md"
                 title={cta.label}
                 subtitle={cta.description}
               />
