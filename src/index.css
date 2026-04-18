@@ -34,7 +34,7 @@
   --typo-weight-black: 900;
 
   --typo-lh-auto: normal;
-  --typo-lh-body: 24px;
+  --typo-lh-body: normal;
 
   /* ============ SPACING ============ */
   --spacing-2xs: 4px;
@@ -182,7 +182,7 @@
   .typo-h1 { font-size: var(--font-size-h1); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
   .typo-h2 { font-size: var(--font-size-h2); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
   .typo-h3 { font-size: var(--font-size-h3); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
-  .typo-h4 { font-size: var(--font-size-h4); font-weight: var(--typo-weight-regular); line-height: var(--typo-lh-auto); text-transform: uppercase; color: var(--semantic-text-primary); }
+  .typo-h4 { font-size: var(--font-size-h4); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
 
   /* Body */
   .typo-body-lg      { font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
