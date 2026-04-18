@@ -91,7 +91,7 @@ export default function Header({ className = '' }: HeaderProps) {
 
       {/* Center nav pill */}
       <div className="flex-between h-[60px] gap-md bg-surface radius-full px-sm py-2xs">
-        {!isFormulador && <CitySelector />}
+        {!isFormulador && !isTrilhas && <CitySelector />}
 
         <nav className="flex-between gap-md">
           {navLinks.map(({ label, sectionId }) => {
