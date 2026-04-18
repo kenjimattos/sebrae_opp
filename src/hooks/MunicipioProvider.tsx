@@ -1,21 +1,53 @@
-import { useState, useCallback, type ReactNode } from 'react'
+import { useMemo, useState, useCallback, type ReactNode } from 'react'
 import { MunicipioContext, type MunicipioState } from '@/hooks/useMunicipio'
-import type { IndicadoresData } from '@/types/indicadores'
+import type { IndicadoresData, ValoresMunicipio } from '@/types/indicadores'
+import { catalogo } from '@/data/catalogo'
+import { deriveStatus } from '@/data/thresholds'
 
-import joaoPessoaData from '@/data/indicadores/joao-pessoa.json'
-import campinaGrandeData from '@/data/indicadores/campina-grande.json'
-import patosData from '@/data/indicadores/patos.json'
+import { joaoPessoa } from '@/data/municipios/joao-pessoa'
+import { campinaGrande } from '@/data/municipios/campina-grande'
 
-const dataMap: Record<string, IndicadoresData> = {
-  '2507507': joaoPessoaData as IndicadoresData,
-  '2504009': campinaGrandeData as IndicadoresData,
-  '2510808': patosData as IndicadoresData,
+const valoresMap: Record<string, ValoresMunicipio> = {
+  '2507507': joaoPessoa,
+  '2504009': campinaGrande,
 }
 
+// Mescla catálogo (estrutura) com valores do município e aplica thresholds.
+function montarIndicadores(valores: ValoresMunicipio): IndicadoresData {
+  return {
+    municipio: valores.municipio,
+    agendas: catalogo.agendas.map((a) => ({
+      nome: a.nome,
+      indicadores: a.indicadores.map((i) => {
+        const valor = valores.agendas[i.id] ?? '—'
+        return {
+          label: i.label,
+          valor,
+          status: deriveStatus(i.id, valor),
+        }
+      }),
+    })),
+    baseEconomica: catalogo.baseEconomica.map((b) => {
+      const v = valores.baseEconomica[b.id] ?? { valor: '—', variacao: '' }
+      return {
+        label: b.label,
+        valor: v.valor,
+        variacao: v.variacao,
+        icone: b.icone,
+      }
+    }),
+  }
+}
+
+const dataMap: Record<string, IndicadoresData> = Object.fromEntries(
+  Object.entries(valoresMap).map(([id, v]) => [id, montarIndicadores(v)]),
+)
+
+const defaultId = '2504009'
 const defaultMunicipio: MunicipioState = {
-  id: '2504009',
-  nome: 'Campina Grande',
-  dados: campinaGrandeData as IndicadoresData,
+  id: defaultId,
+  nome: dataMap[defaultId].municipio,
+  dados: dataMap[defaultId],
 }
 
 export default function MunicipioProvider({ children }: { children: ReactNode }) {
@@ -29,9 +61,7 @@ export default function MunicipioProvider({ children }: { children: ReactNode })
     })
   }, [])
 
-  return (
-    <MunicipioContext.Provider value={{ municipio, setMunicipio }}>
-      {children}
-    </MunicipioContext.Provider>
-  )
+  const value = useMemo(() => ({ municipio, setMunicipio }), [municipio, setMunicipio])
+
+  return <MunicipioContext.Provider value={value}>{children}</MunicipioContext.Provider>
 }

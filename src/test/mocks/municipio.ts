@@ -27,5 +27,4 @@ export const mockIndicadoresData: IndicadoresData = {
   municipio: 'Campina Grande',
   agendas: mockAgendas,
   baseEconomica: mockBaseEconomica,
-  riscos: [],
 }

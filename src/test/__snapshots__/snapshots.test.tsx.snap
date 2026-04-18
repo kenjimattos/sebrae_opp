@@ -611,35 +611,35 @@ exports[`Snapshot tests — CSS refactor safety > RisksCard 1`] = `
 <div
   class="status-alert-bg radius-sm p-lg border border-solid border-[var(--semantic-alert)] flex flex-col gap-md card-hoverable "
 >
-  <div
-    class="flex items-start gap-md w-full"
+  <span
+    class="shrink-0 typo-display-sm text-[color:var(--semantic-alert)]"
   >
-    <span
-      class="flex-1 typo-body-bold"
-    >
-      Investimento per capita
-    </span>
-    <span
-      class="shrink-0 typo-display-sm text-[color:var(--semantic-alert)]"
-    >
-      R$ 180
-    </span>
-  </div>
+    R$ 180
+  </span>
+  <span
+    class="typo-body-bold"
+  >
+    Investimento per capita
+  </span>
   <p
     class="typo-body"
   >
     Valor abaixo da média
   </p>
-  <p
-    class="typo-body-bold"
+  <div
+    class="flex flex-col gap-2xs"
   >
-    Investimento público
-  </p>
-  <p
-    class="typo-body"
-  >
-    Contexto de risco
-  </p>
+    <p
+      class="typo-body-sm-bold"
+    >
+      Investimento público
+    </p>
+    <p
+      class="typo-body-sm"
+    >
+      Contexto de risco
+    </p>
+  </div>
 </div>
 `;
 
@@ -763,12 +763,12 @@ exports[`Snapshot tests — CSS refactor safety > TitleSubtitle 1`] = `
   class="flex-col-start gap-sm "
 >
   <h3
-    class="w-full typo-h2"
+    class="w-full typo-h3"
   >
     Emendas parlamentares
   </h3>
   <p
-    class="w-full typo-body-lg"
+    class="w-full typo-body"
   >
     Recursos destinados
   </p>

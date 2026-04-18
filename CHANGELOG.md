@@ -8,10 +8,20 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 - **`ui/Carousel`** — novo primitivo de carrossel horizontal com snap-scroll + setas de navegação. Encapsula a `useRef` + handler `scrollBy` e renderiza `IconButton`s `ArrowLeft`/`ArrowRight` abaixo do track. API: `scrollAmount` (px por clique) + `children`.
 - **`.scrollbar-hide`** (`src/index.css`) — utilitário agora implementado de verdade (`scrollbar-width: none` + `::-webkit-scrollbar { display: none }`). Antes a classe era usada nas sections mas não existia em lugar nenhum, então a barra de rolagem horizontal ficava visível.
+- **`src/data/catalogo.ts`** — fonte única da estrutura de agendas e base econômica (ids estáveis + labels + ícones). Antes, `nome` da agenda, `label` do indicador e `icone` da base econômica se repetiam em cada JSON de município.
+- **`src/data/thresholds.ts`** — régua de classificação por indicador. Converte o valor bruto em `StatusType` (`success`/`warning`/`alert`) via funções `higher-better`/`lower-better`/`enum`. Escalas oficiais: IDH-M/PNUD, ISDEL/Sebrae (faixas Muito Baixo/Baixo/Médio/Alto/Muito Alto); demais heurísticas documentadas no arquivo.
+- **`src/data/municipios/{slug}.ts`** — um arquivo por cidade contendo apenas valores (`agendas: Record<id, valor>` e `baseEconomica: Record<id, { valor, variacao }>`). O `status` é derivado pelo provider a partir de `thresholds.ts`.
 
 ### Changed
 
 - **`SectionCapacitacao`** e **`SectionCasosSucesso`** passam a usar `<Carousel>` em vez de replicar o track e as setas. `SectionCapacitacao` ganha setas de navegação (antes não tinha). `scrollAmount` passa a ser `card-width + gap-sm` (492 e 362, respectivamente) — valor anterior em CasosSucesso (`375+24`) estava desalinhado com a largura real do card (350) e o `gap-sm` (12px).
+- **`MunicipioProvider`** passa a fazer merge runtime entre catálogo (estrutura) + valores do município + thresholds (status derivado). API pública (`useMunicipio`) inalterada — componentes e testes consomem `IndicadoresData` com a mesma forma de antes.
+- **Valores de JP e Campina Grande** migrados usando o CSV de agendas como fonte primária (ex: IGM JP 7,8 → 6,54; IGMA como escala 0-100). Onde o CSV está vazio, valor é `—` com status `warning`.
+
+### Removed
+
+- **`src/data/indicadores/*.json`** — substituídos por `src/data/municipios/*.ts`. Patos removido do conjunto de municípios (passamos de 3 para 2 cidades, rumo às 8 do CSV).
+- **`Risco` type** (`src/types/indicadores.ts`) e campo `riscos` de `IndicadoresData` — nunca consumidos pela UI (`SectionRiscos` já deriva dos indicadores com `alert`/`warning`).
 
 ## [0.6.1] — 2026-04-17
 
