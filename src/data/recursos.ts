@@ -24,7 +24,7 @@ export const recursosContent = {
     title: 'Distribuição territorial das emendas',
     description: 'Veja como os recursos federais estão distribuídos entre os municípios do estado.',
     mapAlt: 'Mapa de distribuição territorial das emendas — Datapedia',
-    overlayLabel: 'Abrir no Datapedia →',
+    overlayLabel: 'Explorar emendas',
   },
   editais: {
     title: 'Editais e programas de financiamento',
