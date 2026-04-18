@@ -25,9 +25,15 @@ export default function Header({ className = '' }: HeaderProps) {
   const navigate = useNavigate()
   const { reset } = useFormulador()
   const isFormulador = pathname.startsWith('/formulador')
-  // Na rota /formulador, fixa o realce no link "Formulador" (as seções da Home
-  // não existem aqui, então o scroll-spy não consegue inferir).
-  const effectiveActive = isFormulador ? 'formulador' : activeSection
+  const isTrilhas = pathname.startsWith('/trilhas')
+  const isHome = pathname === '/'
+  // Fora da Home, o scroll-spy não tem o que observar. Fixa o realce de acordo
+  // com a rota: "Formulador" em /formulador, "Capacitação" em /trilhas.
+  const effectiveActive = isFormulador
+    ? 'formulador'
+    : isTrilhas
+      ? 'capacitacao'
+      : activeSection
 
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -48,6 +54,11 @@ export default function Header({ className = '' }: HeaderProps) {
       requestAnimationFrame(() => window.scrollTo({ top: 0 }))
       return
     }
+    if (!isHome) {
+      navigate('/')
+      requestAnimationFrame(() => window.scrollTo({ top: 0 }))
+      return
+    }
     scrollToTop()
   }
 
@@ -56,6 +67,10 @@ export default function Header({ className = '' }: HeaderProps) {
       if (!window.confirm(CONFIRM_SAIR_FORMULADOR)) return
       reset()
       // Usa hash — a Home lê e scrolla para a seção com offset do header sticky.
+      navigate(`/#${sectionId}`)
+      return
+    }
+    if (!isHome) {
       navigate(`/#${sectionId}`)
       return
     }
