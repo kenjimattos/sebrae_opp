@@ -23,12 +23,14 @@ export default function FormuladorCard({
     <Card
       as="section"
       padding="lg"
-      className={`flex flex-col items-end gap-2xl ${className}`}
+      className={`flex flex-col items-end gap-2xl w-full ${className}`}
     >
-      <TitleSubtitle
-        title={titulo}
-        subtitle={descricao}
-      />
+      <div className="w-full items-start" >
+        <TitleSubtitle
+          title={titulo}
+          subtitle={descricao}
+        />
+      </ div>
 
       <PillButton label={buttonLabel} href={buttonHref} />
     </Card>
