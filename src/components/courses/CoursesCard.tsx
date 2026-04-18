@@ -5,24 +5,22 @@ import Card from '@/components/ui/Card'
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import CoursesCardRow from '@/components/courses/CoursesCardRow'
 import PillButton from '../ui/buttons/PillButton'
+import { cursoAnchor, trilhaAnchor, type Curso } from '@/data/capacitacao'
 
 const VISIBLE_COUNT = 3
 
-interface Curso {
-  titulo: string
-  carga: string
-}
-
 interface CoursesCardProps {
+  slug: string
   title: string
   description: string
   cursos: Curso[]
   className?: string
 }
 
-export default function CoursesCard({ title, description, cursos, className = '' }: CoursesCardProps) {
+export default function CoursesCard({ slug, title, description, cursos, className = '' }: CoursesCardProps) {
   const visibleCursos = cursos.slice(0, VISIBLE_COUNT)
-  
+  const trilhaHref = `/trilhas#${trilhaAnchor(slug)}`
+
   return (
     <Card
       as="section"
@@ -35,7 +33,11 @@ export default function CoursesCard({ title, description, cursos, className = ''
           <div className="flex flex-col gap-sm w-full">
               {visibleCursos.map((curso, i) => (
                 <div key={curso.titulo} className="flex-col-start gap-md ">
-                  <CoursesCardRow title={curso.titulo} subtitle={curso.carga} />
+                  <CoursesCardRow
+                    title={curso.titulo}
+                    subtitle={curso.carga}
+                    href={`/trilhas#${cursoAnchor(slug, i)}`}
+                  />
                   {i < visibleCursos.length - 1 && (
                     <div className="divider mb-[var(--spacing-sm)]" />
                   )}
@@ -47,6 +49,7 @@ export default function CoursesCard({ title, description, cursos, className = ''
             className="mt-auto"
             label={`Ver mais ${cursos.length - VISIBLE_COUNT} cursos`}
             variant='secondary'
+            href={trilhaHref}
           />
      </div>
 

@@ -18,7 +18,8 @@ export default function SectionCapacitacao() {
       <Carousel scrollAmount={SCROLL_AMOUNT}>
         {trilhas.map((trilha) => (
           <CoursesCard
-            key={trilha.title}
+            key={trilha.slug}
+            slug={trilha.slug}
             title={trilha.title}
             description={trilha.description}
             cursos={trilha.cursos}

@@ -69,7 +69,7 @@ describe('Section components — smoke tests', () => {
   })
 
   it('renders SectionCapacitacao', () => {
-    const { container } = render(<SectionCapacitacao />)
+    const { container } = render(<SectionCapacitacao />, { wrapper: TestWrapper })
     expect(container).toBeTruthy()
   })
 
@@ -79,7 +79,7 @@ describe('Section components — smoke tests', () => {
   })
 
   it('renders SectionFormulador', () => {
-    const { container } = render(<SectionFormulador />)
+    const { container } = render(<SectionFormulador />, { wrapper: TestWrapper })
     expect(container).toBeTruthy()
   })
 

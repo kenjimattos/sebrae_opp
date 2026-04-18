@@ -7,10 +7,11 @@ import { ctaLabels } from '@/data/labels'
 interface CoursesCardRowProps {
   title: string
   subtitle: string
+  href?: string
   className?: string
 }
 
-export default function CoursesCardRow({ title, subtitle, className = '' }: CoursesCardRowProps) {
+export default function CoursesCardRow({ title, subtitle, href = '#', className = '' }: CoursesCardRowProps) {
   return (
     <div
       className={`flex-between w-full ${className}`}
@@ -26,7 +27,7 @@ export default function CoursesCardRow({ title, subtitle, className = '' }: Cour
       </div>
 
       {/* Ver curso button */}
-      <PillButton variant="ghost" size="sm" label={ctaLabels.verCurso} href="#" />
+      <PillButton variant="ghost" size="sm" label={ctaLabels.verCurso} href={href} />
     </div>
   )
 }

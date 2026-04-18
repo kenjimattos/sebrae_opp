@@ -132,10 +132,12 @@ describe('Courses components', () => {
   it('renders CoursesCard', () => {
     const { container } = render(
       <CoursesCard
+        slug="formulacao-e-avaliacao"
         title="Formulação de Políticas"
         description="Do diagnóstico ao desenho"
         cursos={[{ titulo: 'Avaliação de Impacto', carga: '36 Horas' }]}
       />,
+      { wrapper: TestWrapper },
     )
     expect(container).toBeTruthy()
   })
