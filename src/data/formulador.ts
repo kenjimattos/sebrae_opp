@@ -8,7 +8,7 @@ export interface FormuladorCardData {
 export const formuladorCards: FormuladorCardData[] = [
   {
     titulo: 'Assistente de formulação de projetos',
-    descricao: 'A IA analisa os principais desafios do município e sugere caminhos para estruturar um projeto de desenvolvimento local.',
+    descricao: ' Analise os principais desafios do seu município e desenvolva caminhos para estrururar um projeto com foco em transformação do ambiente de negócios.',
     buttonLabel: 'Começar agora',
     buttonHref: '/formulador',
   }

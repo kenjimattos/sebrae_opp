@@ -9,7 +9,6 @@ interface FormuladorCardProps {
   descricao: string
   buttonLabel: string
   buttonHref: string
-  className?: string
 }
 
 export default function FormuladorCard({
@@ -17,20 +16,14 @@ export default function FormuladorCard({
   descricao,
   buttonLabel,
   buttonHref,
-  className = '',
 }: FormuladorCardProps) {
   return (
-    <Card
-      as="section"
-      padding="lg"
-      className={`flex flex-col items-end gap-2xl w-full ${className}`}
-    >
-      <div className="w-full items-start" >
+    <Card as="section" padding="lg" className="flex flex-col items-end gap-2xl">
         <TitleSubtitle
           title={titulo}
           subtitle={descricao}
+          className="flex-1"
         />
-      </ div>
 
       <PillButton label={buttonLabel} href={buttonHref} />
     </Card>
