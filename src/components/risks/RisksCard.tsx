@@ -39,30 +39,28 @@ export default function RisksCard({
       padding="lg"
       className={`flex flex-col gap-md card-hoverable ${className}`}
     >
-      {/* Header: label + value */}
-      <div className="flex items-start gap-md w-full">
-        <span className="flex-1 typo-body-bold">
-          {label}
-        </span>
-        <span className={`shrink-0 typo-display-sm ${valueColorClass[effectiveTipo]}`}>
+      <span className={`shrink-0 typo-display-sm ${valueColorClass[effectiveTipo]}`}>
           {valor}
-        </span>
-      </div>
+      </span>
+
+      <span className="typo-body-bold">
+        {label}
+      </span>
 
       {/* Risk description */}
       <p className="typo-body">
         {descricao}
       </p>
 
-      {/* Alert indicator label */}
-      <p className="typo-body-bold">
-        {indicadorLabel}
-      </p>
+      <div className="flex flex-col gap-2xs">
+        <p className="typo-body-sm-bold">
+          {indicadorLabel}
+        </p>
+        <p className="typo-body-sm">
+          {contexto}
+        </p>
+      </div>
 
-      {/* Context */}
-      <p className="typo-body">
-        {contexto}
-      </p>
     </Card>
   )
 }
