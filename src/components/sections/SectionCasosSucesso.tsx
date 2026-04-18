@@ -23,11 +23,9 @@ export default function SectionCasosSucesso() {
 
   return (
     <SectionContainer>
-      {/* Header row */}
-      <div className="flex-between w-full">
-        <SectionHeader title={sectionContent.casosSucesso.title} description={sectionContent.casosSucesso.description} />
-      </div>
-      <div className="flex flex-col items-center gap-sm">
+      <SectionHeader title={sectionContent.casosSucesso.title} description={sectionContent.casosSucesso.description} />
+
+      <div className="flex flex-col items-center gap-md">
         {/* Cards scroll */}
         {/* py-xs + -my-xs: respiro interno para o lift + anel do card-hoverable
             sem alterar o espaçamento externo (overflow-x força overflow-y a clipar) */}
