@@ -43,7 +43,7 @@ export default function Trilhas() {
     <div className="min-h-screen bg-primary">
       <Header />
 
-      <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-3xl py-2xl px-2xl">
+      <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-3xl py-2xl px-margin">
         <TitleSubtitle
           title={sectionContent.trilhas.title}
           subtitle={sectionContent.trilhas.description}
