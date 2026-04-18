@@ -31,7 +31,7 @@ export default function SectionCasosSucesso() {
             sem alterar o espaçamento externo (overflow-x força overflow-y a clipar) */}
         <div
           ref={scrollRef}
-          className="flex gap-sm overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide py-xs -my-[var(--spacing-xs)]"
+          className="flex gap-sm overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide py-xs px-xs -my-[var(--spacing-xs)]"
         >
           {casosSucesso.map((caso) => (
             <CaseStudiesCard key={caso.id} caso={caso} className="snap-start" />
