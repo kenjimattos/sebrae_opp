@@ -1,16 +1,29 @@
 export interface Curso {
   titulo: string
   carga: string
+  descricao?: string
 }
 
 export interface Trilha {
+  slug: string
   title: string
   description: string
   cursos: Curso[]
 }
 
+/** Anchor de um curso dentro da página /trilhas — estável por slug da trilha + índice. */
+export function cursoAnchor(trilhaSlug: string, cursoIndex: number): string {
+  return `curso-${trilhaSlug}-${cursoIndex}`
+}
+
+/** Anchor de uma trilha dentro da página /trilhas. */
+export function trilhaAnchor(trilhaSlug: string): string {
+  return `trilha-${trilhaSlug}`
+}
+
 export const trilhas: Trilha[] = [
   {
+    slug: 'formulacao-e-avaliacao',
     title: 'Formulação e Avaliação de Políticas Públicas',
     description:
       'Métodos e ferramentas para avaliar políticas públicas em todas as etapas: antes, durante e após a implementação.',
@@ -26,6 +39,7 @@ export const trilhas: Trilha[] = [
     ],
   },
   {
+    slug: 'gerenciamento-de-projetos',
     title: 'Gerenciamento de Projetos',
     description:
       'Gerenciamento de projetos públicos: metodologias ágeis, lean e design para acelerar a entrega de valor à população.',
@@ -47,6 +61,7 @@ export const trilhas: Trilha[] = [
     ],
   },
   {
+    slug: 'captacao-de-recursos',
     title: 'Captação de Recursos',
     description:
       'Captação de recursos para municípios: convênios, parcerias e instrumentos de desenvolvimento urbano sustentável.',
@@ -65,6 +80,7 @@ export const trilhas: Trilha[] = [
     ],
   },
   {
+    slug: 'prestacao-de-contas',
     title: 'Prestação de contas',
     description:
       'Prestação de contas para municípios: transparência, controle social e boas práticas para uma gestão pública responsável.',
