@@ -12,6 +12,7 @@
 // elemento clicável seria inválido/duplicado. O clique alvo é o próprio
 // <a>/<button> externo.
 
+import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, iconSizes, type IconSize } from '@/components/icons'
 
 interface PillButtonProps {
@@ -114,11 +115,20 @@ export default function PillButton({
 
   if (href !== undefined) {
     const isInternal = href.startsWith('/') && !href.startsWith('//')
-    const externalProps = isInternal
-      ? {}
-      : { target: '_blank', rel: 'noopener noreferrer' }
+    if (isInternal) {
+      return (
+        <Link to={href} className={sharedClassName}>
+          {content}
+        </Link>
+      )
+    }
     return (
-      <a href={href} {...externalProps} className={sharedClassName}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={sharedClassName}
+      >
         {content}
       </a>
     )
