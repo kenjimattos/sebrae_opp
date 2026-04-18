@@ -17,7 +17,9 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - **`SectionCapacitacao`** e **`SectionCasosSucesso`** passam a usar `<Carousel>` em vez de replicar o track e as setas. `SectionCapacitacao` ganha setas de navegação (antes não tinha). `scrollAmount` passa a ser `card-width + gap-sm` (492 e 362, respectivamente) — valor anterior em CasosSucesso (`375+24`) estava desalinhado com a largura real do card (350) e o `gap-sm` (12px).
 - **`MunicipioProvider`** passa a fazer merge runtime entre catálogo (estrutura) + valores do município + thresholds (status derivado). API pública (`useMunicipio`) inalterada — componentes e testes consomem `IndicadoresData` com a mesma forma de antes.
 - **Valores de JP e Campina Grande** migrados usando o CSV de agendas como fonte primária (ex: IGM JP 7,8 → 6,54; IGMA como escala 0-100). Onde o CSV está vazio, valor é `—` com status `warning`.
-- **6 novos municípios**: Queimadas (2512507), Conde (2504603), Caaporã (2503001), Pitimbu (2511905), Monteiro (2509701), Cabaceiras (2503100). Valores de agendas vêm dos CSVs; valores de base econômica pesquisados (IBGE Cidades, Wikipedia — população Censo 2025) ou marcados com prefixo `est.` quando não há fonte municipal pública (GEM, ICE, Participação MPE no PIB, Dependência Adm. Pública).
+- **6 novos municípios**: Queimadas (2512507), Conde (2504603), Caaporã (2503001), Pitimbu (2511905), Monteiro (2509701), Cabaceiras (2503100). Valores de agendas vêm dos CSVs; valores de base econômica pesquisados (IBGE Cidades, Wikipedia — população Censo 2025).
+- **Marcador `*` para valores fictícios.** Onde não há fonte pública acessível (dados internos Sebrae, índices sem equivalente municipal como GEM/ICE, Participação MPE no PIB, Dependência Adm. Pública), o valor é inventado de forma plausível e sufixado com `*` (ex: `+3,2%*`, `R$ 420M*`, `1.950*`). Registra no arquivo quais números são demo.
+- **`parseNumeric` corrigido para formato brasileiro** (`src/data/thresholds.ts`): antes `"12.840"` virava `12.84` e `deriveStatus` rendia status errado. Agora detecta separador de milhar (`1.240` → `1240`) e mantém decimal BR (`0,763` → `0.763`).
 
 ### Removed
 

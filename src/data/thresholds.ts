@@ -10,17 +10,35 @@ type Threshold =
   | { kind: 'lower-better'; success: number; warning: number }  // x ≤ success → success; x ≤ warning → warning; else alert
   | { kind: 'enum'; map: Record<string, StatusType> }
 
-// Converte string tipo "R$ 185M", "22 dias", "+3,2%", "58,24", "0,763" em número.
+// Converte string tipo "R$ 185M", "22 dias", "+3,2%", "58,24", "12.840", "0,763"
+// em número, assumindo formato brasileiro (ponto = milhar, vírgula = decimal).
 // Retorna null quando o valor é placeholder ("—", "N/D", vazio).
 export function parseNumeric(raw: string | number): number | null {
   if (typeof raw === 'number') return raw
-  const s = raw.trim()
+  const s = String(raw).trim()
   if (!s || s === '—' || s === 'N/D' || s.toUpperCase() === 'N/A') return null
 
-  // Extrai primeiro número (aceita vírgula decimal, "1d3h" = extrai 1)
-  const match = s.match(/-?\d+(?:[.,]\d+)?/)
+  const match = s.match(/[+-]?[\d.,]+/)
   if (!match) return null
-  return parseFloat(match[0].replace(',', '.'))
+
+  const token = match[0]
+  const lastComma = token.lastIndexOf(',')
+  const lastDot = token.lastIndexOf('.')
+
+  let cleaned: string
+  if (lastComma > lastDot) {
+    // "0,763" / "12.840,5" — vírgula decimal, pontos são milhares
+    cleaned = token.replace(/\./g, '').replace(',', '.')
+  } else if (lastDot > lastComma) {
+    const parts = token.split('.')
+    // Vários pontos OU um único ponto seguido de 3 dígitos → separador de milhar
+    const treatsAsThousands =
+      parts.length > 2 || (parts.length === 2 && parts[1].length === 3 && lastComma === -1)
+    cleaned = treatsAsThousands ? parts.join('') : token
+  } else {
+    cleaned = token
+  }
+  return parseFloat(cleaned)
 }
 
 // Chave = id do indicador no catálogo.
