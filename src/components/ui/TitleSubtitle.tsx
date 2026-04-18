@@ -13,8 +13,8 @@ interface TitleSubtitleProps {
 
 const sizeConfig = {
   lg: { typoTitle: 'typo-h1', typoBody: 'typo-body-lg', defaultTag: 'h2' as HeadingTag },
-  md: { typoTitle: 'typo-h2', typoBody: 'typo-body-lg', defaultTag: 'h3' as HeadingTag },
-  sm: { typoTitle: 'typo-h3', typoBody: 'typo-body', defaultTag: 'h4' as HeadingTag },
+  md: { typoTitle: 'typo-h3', typoBody: 'typo-body', defaultTag: 'h3' as HeadingTag },
+  sm: { typoTitle: 'typo-h3', typoBody: 'typo-body-sm', defaultTag: 'h4' as HeadingTag },
 }
 
 export default function TitleSubtitle({
