@@ -307,6 +307,16 @@
   .gap-xl  { gap: var(--spacing-xl); }
   .gap-2xl { gap: var(--spacing-2xl); }
   .gap-3xl { gap: var(--spacing-3xl); }
+
+  /* ============ SCROLLBAR ============ */
+  /* Hide scrollbar mas mantém a rolagem (usado em carrosséis horizontais) */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE/Edge legado */
+    scrollbar-width: none;     /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;             /* Chrome/Safari/Opera */
+  }
 }
 
 /* ============ MAP ============ */

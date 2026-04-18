@@ -2,28 +2,30 @@
 
 import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/ui/SectionHeader'
+import Carousel from '@/components/ui/Carousel'
 import CoursesCard from '@/components/courses/CoursesCard'
 import { sectionContent } from '@/data/sections'
 import { trilhas } from '@/data/capacitacao'
 
+// CoursesCard w-480 + gap-sm (12px)
+const SCROLL_AMOUNT = 480 + 12
 
 export default function SectionCapacitacao() {
-
   return (
     <SectionContainer>
-      <SectionHeader title={sectionContent.capacitacao.title} description={sectionContent.capacitacao.description}  />
+      <SectionHeader title={sectionContent.capacitacao.title} description={sectionContent.capacitacao.description} />
 
-        <section className="flex gap-sm overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide py-xs px-xs -my-[var(--spacing-xs)]">
-          {trilhas.map((trilha) => (
-            <CoursesCard
-              key={trilha.title}
-              title={trilha.title}
-              description={trilha.description}
-              cursos={trilha.cursos}
-            />
-          ))}
-        </section>
-
+      <Carousel scrollAmount={SCROLL_AMOUNT}>
+        {trilhas.map((trilha) => (
+          <CoursesCard
+            key={trilha.title}
+            title={trilha.title}
+            description={trilha.description}
+            cursos={trilha.cursos}
+            className="snap-start"
+          />
+        ))}
+      </Carousel>
     </SectionContainer>
   )
 }

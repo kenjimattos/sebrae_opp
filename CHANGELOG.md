@@ -4,6 +4,15 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Added
+
+- **`ui/Carousel`** — novo primitivo de carrossel horizontal com snap-scroll + setas de navegação. Encapsula a `useRef` + handler `scrollBy` e renderiza `IconButton`s `ArrowLeft`/`ArrowRight` abaixo do track. API: `scrollAmount` (px por clique) + `children`.
+- **`.scrollbar-hide`** (`src/index.css`) — utilitário agora implementado de verdade (`scrollbar-width: none` + `::-webkit-scrollbar { display: none }`). Antes a classe era usada nas sections mas não existia em lugar nenhum, então a barra de rolagem horizontal ficava visível.
+
+### Changed
+
+- **`SectionCapacitacao`** e **`SectionCasosSucesso`** passam a usar `<Carousel>` em vez de replicar o track e as setas. `SectionCapacitacao` ganha setas de navegação (antes não tinha). `scrollAmount` passa a ser `card-width + gap-sm` (492 e 362, respectivamente) — valor anterior em CasosSucesso (`375+24`) estava desalinhado com a largura real do card (350) e o `gap-sm` (12px).
+
 ## [0.6.1] — 2026-04-17
 
 Versão de polimento pós-`0.6.0`: rebalanceia a escala tipográfica dos botões (que vinha herdando valores grandes demais dos tokens originais), ajusta o CTA do card do Formulador e habilita o roteamento client-side em deploys da Vercel.
