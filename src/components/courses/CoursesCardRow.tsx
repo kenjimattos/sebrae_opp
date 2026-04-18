@@ -13,14 +13,14 @@ interface CoursesCardRowProps {
 export default function CoursesCardRow({ title, subtitle, className = '' }: CoursesCardRowProps) {
   return (
     <div
-      className={`flex-between gap-3xl px-sm py-sm ${className}`}
+      className={`flex-between w-full ${className}`}
     >
       {/* Info */}
-      <div className="flex flex-col gap-xs items-start">
-        <p className="typo-body-bold w-full">
+      <div className="flex flex-col gap-xs items-start w-2/3">
+        <p className="typo-body-bold">
           {title}
         </p>
-        <p className="typo-body w-full leading-[var(--spacing-md)]">
+        <p className="typo-body w-full">
           {subtitle}
         </p>
       </div>

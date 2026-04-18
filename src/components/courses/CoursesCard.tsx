@@ -4,11 +4,9 @@
 import Card from '@/components/ui/Card'
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import CoursesCardRow from '@/components/courses/CoursesCardRow'
-import Button from '../ui/buttons/Button'
-import { ChevronDown, ChevronUp } from 'lucide-react'
-import { useState } from 'react'
+import PillButton from '../ui/buttons/PillButton'
 
-const VISIBLE_COUNT = 2
+const VISIBLE_COUNT = 3
 
 interface Curso {
   titulo: string
@@ -23,41 +21,36 @@ interface CoursesCardProps {
 }
 
 export default function CoursesCard({ title, description, cursos, className = '' }: CoursesCardProps) {
-  const [expanded, setExpanded] = useState(false)
-  const visibleCursos = expanded ? cursos : cursos.slice(0, VISIBLE_COUNT)
+  const visibleCursos = cursos.slice(0, VISIBLE_COUNT)
   
   return (
     <Card
       as="section"
-      padding="xl"
-      className={`flex flex-col gap-lg items-start h-full w-full ${className}`}
+      padding="lg"
+      className={`flex-col w-[480px] shrink-0 card-hoverable ${className}`}
     >
-      <TitleSubtitle title={title} subtitle={description} size="md" />
+        <div className="flex-col-start gap-lg h-full">
+          <TitleSubtitle title={title} subtitle={description} size="md" />
 
-      {/* Course rows — flex-1 pushes CTA to the bottom */}
-      <div className="flex flex-col gap-sm items-start w-full flex-1 px-lg">
-        {visibleCursos.map((curso, i) => (
-          <div key={curso.titulo} className="w-full">
-            {i > 0 && (
-              <div className="divider mb-[var(--spacing-sm)]" />
-            )}
-            <CoursesCardRow title={curso.titulo} subtitle={curso.carga} />
+          <div className="flex flex-col gap-sm w-full">
+              {visibleCursos.map((curso, i) => (
+                <div key={curso.titulo} className="flex-col-start gap-md ">
+                  <CoursesCardRow title={curso.titulo} subtitle={curso.carga} />
+                  {i < visibleCursos.length - 1 && (
+                    <div className="divider mb-[var(--spacing-sm)]" />
+                  )}
+                </div>
+              ))}
           </div>
-        ))}
 
-      {cursos.length > VISIBLE_COUNT && (
-        <div className="flex justify-center w-full mt-md">
-          <Button
-            variant="tertiary"
-            size="md"
-            label={expanded ? 'Ver menos cursos' : `Ver trilha completa (${cursos.length})`}
-            icon={expanded ? ChevronUp : ChevronDown}
-            iconPosition="right"
-            onClick={() => setExpanded(!expanded)}
+          <PillButton
+            className="mt-auto"
+            label={`Ver mais ${cursos.length - VISIBLE_COUNT} cursos`}
+            variant='secondary'
           />
-        </div>
-      )}
-      </div>
+     </div>
+
+
     </Card>
   )
 }
