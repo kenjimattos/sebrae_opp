@@ -5,6 +5,7 @@ import Home from '@/pages/Home'
 import Formulador from '@/pages/Formulador'
 import FormuladorStep from '@/pages/FormuladorStep'
 import FormuladorConclusao from '@/pages/FormuladorConclusao'
+import Trilhas from '@/pages/Trilhas'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <FormuladorProvider>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/trilhas" element={<Trilhas />} />
             <Route path="/formulador" element={<Formulador />}>
               <Route index element={<Navigate to="identificacao" replace />} />
               <Route path="conclusao" element={<FormuladorConclusao />} />
