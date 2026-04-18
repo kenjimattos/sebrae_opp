@@ -13,7 +13,9 @@ import TrilhaCard from '@/components/trilhas/TrilhaCard'
 import { trilhas, trilhaAnchor, cursoAnchor } from '@/data/capacitacao'
 import { sectionContent } from '@/data/sections'
 
-const HEADER_OFFSET = 95
+// Compensa o header sticky (~95px) + respiro. Aplicado via scroll-margin-top
+// nos alvos do scroll (seção da trilha e wrapper do TrilhaCard).
+const SCROLL_MARGIN_TOP = 120
 // TrilhaCard w-393 + gap-sm (12px)
 const CARD_SCROLL_AMOUNT = 393 + 12
 
@@ -30,11 +32,10 @@ export default function Trilhas() {
     requestAnimationFrame(() => {
       const el = document.getElementById(activeId)
       if (!el) return
-      // scrollIntoView rola tanto o carrossel (horizontal) quanto a página
-      // (vertical). A margem de scroll no card + seção compensa o header sticky.
+      // `block: 'start'` + `scroll-margin-top` na seção alinha o título no topo
+      // (abaixo do header sticky). `inline: 'center'` rola o carrossel horizontal
+      // quando o alvo é um TrilhaCard.
       el.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'center' })
-      // Compensa o header sticky que sobrepõe o topo da página.
-      setTimeout(() => window.scrollBy({ top: -HEADER_OFFSET, behavior: 'smooth' }), 300)
     })
   }, [activeId])
 
@@ -53,7 +54,8 @@ export default function Trilhas() {
           <section
             key={trilha.slug}
             id={trilhaAnchor(trilha.slug)}
-            className="flex flex-col gap-lg scroll-mt-[120px]"
+            className="flex flex-col gap-lg"
+            style={{ scrollMarginTop: SCROLL_MARGIN_TOP }}
           >
             <div className="flex flex-col gap-xs">
               <div className="flex items-start justify-between gap-md">
@@ -76,6 +78,7 @@ export default function Trilhas() {
                     carga={curso.carga}
                     descricao={curso.descricao}
                     highlighted={activeId === id}
+                    scrollMarginTop={SCROLL_MARGIN_TOP}
                     className="snap-start"
                   />
                 )

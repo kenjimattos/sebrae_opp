@@ -14,6 +14,7 @@ interface TrilhaCardProps {
   descricao?: string
   href?: string
   highlighted?: boolean
+  scrollMarginTop?: number
   className?: string
 }
 
@@ -27,6 +28,7 @@ export default function TrilhaCard({
   descricao,
   href = '#',
   highlighted = false,
+  scrollMarginTop,
   className = '',
 }: TrilhaCardProps) {
   const ring = highlighted
@@ -34,7 +36,11 @@ export default function TrilhaCard({
     : ''
 
   return (
-    <div id={id} className={`scroll-mt-[120px] scroll-ml-md shrink-0 ${className}`}>
+    <div
+      id={id}
+      className={`shrink-0 ${className}`}
+      style={scrollMarginTop !== undefined ? { scrollMarginTop } : undefined}
+    >
       <Card
         as="section"
         padding="lg"
