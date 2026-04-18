@@ -44,7 +44,7 @@ export default function EconomicsCard({ label, valor, variacao, icone, className
             <Icon size={iconSizes.sm} className="text-[var(--semantic-text-primary)]" />
           </div>
         )}
-        <span className="typo-h4">
+        <span className="typo-body uppercase">
           {label}
         </span>
       </div>

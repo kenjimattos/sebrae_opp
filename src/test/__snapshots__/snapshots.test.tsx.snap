@@ -256,7 +256,7 @@ exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
       </svg>
     </div>
     <span
-      class="typo-h4"
+      class="typo-body uppercase"
     >
       PIB per capita
     </span>
