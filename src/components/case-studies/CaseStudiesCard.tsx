@@ -46,7 +46,6 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
           size="sm"
           label={ctaLabels.verEstudoDeCaso}
           href="#"
-          className="w-[198px]"
         />
       </div>
     </Card>
