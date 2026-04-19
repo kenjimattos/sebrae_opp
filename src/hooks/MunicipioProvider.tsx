@@ -3,26 +3,7 @@ import { MunicipioContext, type MunicipioState } from '@/hooks/useMunicipio'
 import type { IndicadoresData, ValoresMunicipio } from '@/types/indicadores'
 import { catalogo } from '@/data/catalogo'
 import { deriveStatus } from '@/data/thresholds'
-
-import { joaoPessoa } from '@/data/municipios/joao-pessoa'
-import { campinaGrande } from '@/data/municipios/campina-grande'
-import { queimadas } from '@/data/municipios/queimadas'
-import { conde } from '@/data/municipios/conde'
-import { caapora } from '@/data/municipios/caapora'
-import { pitimbu } from '@/data/municipios/pitimbu'
-import { monteiro } from '@/data/municipios/monteiro'
-import { cabaceiras } from '@/data/municipios/cabaceiras'
-
-const valoresMap: Record<string, ValoresMunicipio> = {
-  '2507507': joaoPessoa,
-  '2504009': campinaGrande,
-  '2512507': queimadas,
-  '2504603': conde,
-  '2503001': caapora,
-  '2511905': pitimbu,
-  '2509701': monteiro,
-  '2503100': cabaceiras,
-}
+import { valoresMap } from '@/data/municipios/index'
 
 // Mescla catálogo (estrutura) com valores do município e aplica thresholds.
 function montarIndicadores(valores: ValoresMunicipio): IndicadoresData {

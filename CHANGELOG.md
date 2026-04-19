@@ -4,6 +4,24 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Fixed
+
+- **`SectionPanorama` reconectado ao novo catálogo.** Depois do refactor 0.6.2, o dropdown caía no fallback (as chaves hardcoded em `mapa-indicadores.ts` — `governanca_cfa`, `idhm` etc. — não batiam com os ids do catálogo). O mapa mostrava apenas JP e CG coloridos; Monteiro aparecia com código IBGE errado (`2508307` em vez de `2509701`) e as demais 6 cidades ficavam cinza.
+
+### Changed
+
+- **`src/data/mapa-indicadores.ts` passa a derivar do catálogo + valores + thresholds.** `indicadorOptions`, `IndicadorKey` e `municipiosMapData` são agora computados a partir de `catalogo.agendas` e `valoresMap`. `labelToKey` deixa de existir — os ids do catálogo já são as chaves. Status e `valorNumerico` saem de `parseNumeric` + `deriveStatus`.
+- **`usePanoramaIndicadores`** simplificado: retorna diretamente `indicadorOptions` (as agendas são sempre as mesmas do catálogo pós-merge).
+- **`SectionPanorama`** — default do state do indicador agora vem de `catalogo.agendas[0].indicadores[0].id` em vez de chave hardcoded.
+
+### Added
+
+- **`src/data/municipios/index.ts`** — `valoresMap` centralizado (8 municípios → `ValoresMunicipio`). Fonte única consumida pelo `MunicipioProvider` e pelo derivador do mapa.
+
+## [0.6.2] — 2026-04-18
+
+Versão que **refatora a camada de dados** — separando a estrutura das agendas (catálogo) dos valores de cada município, e centralizando a derivação de `status` em uma régua por indicador — e **expande o protótipo de 3 para 8 municípios paraibanos** (com base nos CSVs de referência). Também ganha `ui/Carousel` como primitivo de carrossel reutilizável, e um lote de ajustes de tipografia e layout em cards.
+
 ### Added
 
 - **`ui/Carousel`** — novo primitivo de carrossel horizontal com snap-scroll + setas de navegação. Encapsula a `useRef` + handler `scrollBy` e renderiza `IconButton`s `ArrowLeft`/`ArrowRight` abaixo do track. API: `scrollAmount` (px por clique) + `children`.

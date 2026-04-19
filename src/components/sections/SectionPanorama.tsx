@@ -16,10 +16,13 @@ import { usePanoramaMedia } from '@/hooks/usePanoramaMedia'
 import { sectionContent } from '@/data/sections'
 import { panoramaLabels } from '@/data/labels'
 import type { IndicadorKey } from '@/data/mapa-indicadores'
+import { catalogo } from '@/data/catalogo'
+
+const defaultIndicadorId = catalogo.agendas[0].indicadores[0].id
 
 export default function SectionPanorama() {
   const { municipio } = useMunicipio()
-  const [indicador, setIndicador] = useState<IndicadorKey>('governanca_cfa')
+  const [indicador, setIndicador] = useState<IndicadorKey>(defaultIndicadorId)
   const dropdownOptions = usePanoramaIndicadores()
   const mediaInfo = usePanoramaMedia(indicador, municipio.id)
 
