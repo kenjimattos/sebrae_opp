@@ -2,7 +2,8 @@
 // Sidebar esquerda: header "Etapas do projeto" + 10 StepIndicators.
 // Status de cada etapa é derivado:
 //   - etapa atual (currentSlug) → 'current'
-//   - etapas em visitedSlugs (exceto a atual) → 'checked'
+//   - etapa em completedSlugs → 'checked'
+//   - etapa em visitedSlugs (mas incompleta) → 'in-progress'
 //   - demais → 'unchecked'
 
 import Card from '@/components/ui/Card'
@@ -12,6 +13,7 @@ import { etapasFormulador } from '@/data/formulador-etapas'
 interface ProjectStepsProps {
   currentSlug: string
   visitedSlugs: string[]
+  completedSlugs: string[]
   onSelect?: (slug: string) => void
   className?: string
 }
@@ -19,6 +21,7 @@ interface ProjectStepsProps {
 export default function ProjectSteps({
   currentSlug,
   visitedSlugs,
+  completedSlugs,
   onSelect,
   className = '',
 }: ProjectStepsProps) {
@@ -29,9 +32,11 @@ export default function ProjectSteps({
         const status =
           etapa.slug === currentSlug
             ? 'current'
-            : visitedSlugs.includes(etapa.slug)
+            : completedSlugs.includes(etapa.slug)
               ? 'checked'
-              : 'unchecked'
+              : visitedSlugs.includes(etapa.slug)
+                ? 'in-progress'
+                : 'unchecked'
         return (
           <StepIndicator
             key={etapa.slug}

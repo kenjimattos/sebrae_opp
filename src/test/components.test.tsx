@@ -284,6 +284,7 @@ describe('Formulador components', () => {
       <ProjectSteps
         currentSlug="justificativa"
         visitedSlugs={['identificacao']}
+        completedSlugs={['identificacao']}
       />,
     )
     expect(container).toBeTruthy()

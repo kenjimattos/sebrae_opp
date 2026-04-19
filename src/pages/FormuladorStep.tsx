@@ -7,6 +7,7 @@ import FormCard from '@/components/formulador/FormCard'
 import { etapasFormulador, findEtapaIndex, findEtapaBySlug } from '@/data/formulador-etapas'
 import { useFormulador } from '@/hooks/useFormulador'
 import { StepForm } from '@/components/formulador/steps'
+import { isEtapaCompleta } from '@/utils/formuladorCompleteness'
 
 export default function FormuladorStep() {
   const { stepSlug = '' } = useParams()
@@ -45,6 +46,7 @@ export default function FormuladorStep() {
       <ProjectSteps
         currentSlug={stepSlug}
         visitedSlugs={state.etapasVisitadas}
+        completedSlugs={etapasFormulador.filter((e) => isEtapaCompleta(e.slug, state)).map((e) => e.slug)}
         onSelect={goToSlug}
       />
 

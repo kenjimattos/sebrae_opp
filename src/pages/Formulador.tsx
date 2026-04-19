@@ -10,6 +10,7 @@ import { useFormulador } from '@/hooks/useFormulador'
 import { etapasFormulador } from '@/data/formulador-etapas'
 import { useLocation } from 'react-router-dom'
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
+import { countEtapasCompletas } from '@/utils/formuladorCompleteness'
 
 function currentIndexFromPath(pathname: string): number {
   const parts = pathname.split('/').filter(Boolean)
@@ -26,7 +27,7 @@ export default function Formulador() {
 
   const percent = Math.min(
     100,
-    (state.etapasVisitadas.length / etapasFormulador.length) * 100,
+    (countEtapasCompletas(state) / etapasFormulador.length) * 100,
   )
 
   return (

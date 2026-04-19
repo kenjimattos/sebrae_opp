@@ -8,6 +8,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 - **`CitySelector`** — ao focar o input, o campo é limpo (em vez de pré-selecionar o nome do município atual). Permite que o usuário comece a digitar imediatamente sem precisar apagar o texto.
 - **`ParaibaMap`** — tooltip com nome do município aparece ao passar o mouse sobre os polígonos das **cidades com dados na plataforma** (os 8 municípios de `municipios.json`). Clicar em um desses municípios **troca a seleção global** via `setMunicipio(id, nome)`, atualizando todas as seções e o `CitySelector` no header. Municípios sem dados permanecem não-clicáveis. Cursor `pointer` aplicado nos polígonos clicáveis para sinalizar a affordance.
+- **Formulador — conclusão por preenchimento.** Uma etapa só é marcada como `Concluído` (check verde) quando **todos os campos obrigatórios** estão preenchidos. Etapas visitadas mas com campos faltando aparecem como `Em andamento` com estado inativo (cinza) — antes bastava clicar Próxima/Finalizar para marcar como concluída. Novo utilitário `src/utils/formuladorCompleteness.ts` com `isEtapaCompleta(slug, state)` e `countEtapasCompletas(state)`. `StepIndicator` ganha 4ª variante `in-progress`. `ProjectSteps` passa a receber `completedSlugs` além de `visitedSlugs`. Barra de progresso no topo (`FormuladorProgress`) agora reflete o % de etapas efetivamente completas.
 
 ## [0.6.3] — 2026-04-19
 

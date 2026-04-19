@@ -14,6 +14,7 @@ import { useFormulador } from '@/hooks/useFormulador'
 import { useMunicipio } from '@/hooks/useMunicipio'
 import type { FormuladorState } from '@/types/formulador'
 import { iconSizes } from '@/components/icons'
+import { isEtapaCompleta } from '@/utils/formuladorCompleteness'
 
 function joinNonEmpty(parts: string[], sep = '\n'): string {
   return parts.filter((p) => p && p.trim().length > 0).join(sep)
@@ -174,6 +175,9 @@ export default function FormuladorConclusao() {
   const { state } = useFormulador()
   const { municipio } = useMunicipio()
   const allVisited = etapasFormulador.map((e) => e.slug)
+  const completedSlugs = etapasFormulador
+    .filter((e) => isEtapaCompleta(e.slug, state))
+    .map((e) => e.slug)
   const [enviado, setEnviado] = useState(false)
 
   const tituloProjeto = state.identificacao.titulo.trim()
@@ -183,6 +187,7 @@ export default function FormuladorConclusao() {
       <ProjectSteps
         currentSlug=""
         visitedSlugs={allVisited}
+        completedSlugs={completedSlugs}
       />
 
       <Card padding="lg" radius="sm" className="flex flex-col gap-lg flex-1">
