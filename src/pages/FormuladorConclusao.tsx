@@ -1,19 +1,18 @@
 // Rota /formulador/conclusao — tela de revisão.
 // Sidebar esquerda (ProjectSteps com todas as etapas marcadas como visitadas)
-// + coluna central com 3 botões de ação, banner de sucesso e resumo das 10 etapas.
+// + coluna central com 3 botões de ação e resumo das 10 etapas.
 // Sem AIAssistant na lateral direita.
 
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/buttons/Button'
 import NumberBullet from '@/components/ui/NumberBullet'
 import ProjectSteps from '@/components/formulador/ProjectSteps'
-import { Check, ArrowRight } from '@/components/icons'
+import { ArrowLeft } from '@/components/icons'
 import { etapasFormulador } from '@/data/formulador-etapas'
 import { useFormulador } from '@/hooks/useFormulador'
 import { useMunicipio } from '@/hooks/useMunicipio'
 import type { FormuladorState } from '@/types/formulador'
-import { iconSizes } from '@/components/icons'
 import { isEtapaCompleta } from '@/utils/formuladorCompleteness'
 
 function joinNonEmpty(parts: string[], sep = '\n'): string {
@@ -174,11 +173,11 @@ function renderSection(
 export default function FormuladorConclusao() {
   const { state } = useFormulador()
   const { municipio } = useMunicipio()
+  const navigate = useNavigate()
   const allVisited = etapasFormulador.map((e) => e.slug)
   const completedSlugs = etapasFormulador
     .filter((e) => isEtapaCompleta(e.slug, state))
     .map((e) => e.slug)
-  const [enviado, setEnviado] = useState(false)
 
   const tituloProjeto = state.identificacao.titulo.trim()
 
@@ -200,12 +199,11 @@ export default function FormuladorConclusao() {
           <Button label="Editar projeto" variant="tertiary" size="md" onClick={() => history.back()} />
           <Button label="Baixar PDF" variant="tertiary" size="md" onClick={() => window.print()} />
           <Button
-            label={enviado ? 'Enviado' : 'Enviar para análise'}
-            variant={enviado ? 'success' : 'primary'}
+            label="Voltar para home"
+            variant="primary"
             size="md"
-            icon={enviado ? Check : ArrowRight}
-            iconPosition="right"
-            onClick={() => !enviado && setEnviado(true)}
+            iconPosition="left"
+            onClick={() => navigate('/')}
             className="ml-auto"
           />
         </div>
@@ -220,16 +218,6 @@ export default function FormuladorConclusao() {
             {tituloProjeto && <p className="typo-body-lg-bold">{tituloProjeto}</p>}
             <p className="typo-body">{municipio.nome}</p>
           </div>
-
-          {enviado && (
-            <Card surface="success" padding="md" radius="sm" bordered className="flex items-start gap-sm">
-              <Check size={iconSizes.md} className="shrink-0 text-[color:var(--semantic-success)] mt-[2px]" />
-              <div className="flex flex-col gap-2xs">
-                <p className="typo-body-bold">Projeto enviado com sucesso!</p>
-                <p className="typo-body-sm">Seu projeto agora segue para análise. Fique atento aos canais de comunicação.</p>
-              </div>
-            </Card>
-          )}
 
           <div className="flex flex-col gap-md">
           {etapasFormulador.map((etapa, idx) => {
