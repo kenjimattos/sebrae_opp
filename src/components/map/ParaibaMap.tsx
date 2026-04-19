@@ -81,10 +81,19 @@ export default function ParaibaMap({ selectedId, indicador, className = '' }: Pa
   const onEachFeature = useCallback(
     (feature: Feature, layer: Layer) => {
       const id = String(feature.properties?.id)
+      const nome = String(feature.properties?.name ?? '')
       const status = getStatus(id, indicador)
       const hasData = status !== null
 
       const path = layer as L.Path
+      if (nome) {
+        path.bindTooltip(nome, {
+          sticky: true,
+          direction: 'top',
+          offset: [0, -8],
+          className: 'paraiba-map-tooltip',
+        })
+      }
       path.on({
         mouseover: (e: LeafletMouseEvent) => {
           if (!hasData) return

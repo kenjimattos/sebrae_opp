@@ -7,6 +7,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ### Changed
 
 - **`CitySelector`** — ao focar o input, o campo é limpo (em vez de pré-selecionar o nome do município atual). Permite que o usuário comece a digitar imediatamente sem precisar apagar o texto.
+- **`ParaibaMap`** — tooltip com nome do município aparece ao passar o mouse sobre qualquer polígono (usa `bindTooltip` do Leaflet + classe `.paraiba-map-tooltip` estilizada com tokens do design system).
 
 ## [0.6.3] — 2026-04-19
 
