@@ -14,6 +14,7 @@ function montarIndicadores(valores: ValoresMunicipio): IndicadoresData {
       indicadores: a.indicadores.map((i) => {
         const valor = valores.agendas[i.id] ?? '—'
         return {
+          id: i.id,
           label: i.label,
           valor,
           status: deriveStatus(i.id, valor),

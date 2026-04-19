@@ -1,6 +1,7 @@
 export type StatusType = 'success' | 'warning' | 'alert'
 
 export interface Indicador {
+  id?: string
   label: string
   valor: string | number
   variacao?: string

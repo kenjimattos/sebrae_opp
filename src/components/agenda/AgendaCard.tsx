@@ -48,7 +48,8 @@ export default function AgendaCard({ title, indicadores, className = '' }: Agend
       <div className="flex flex-col gap-sm flex-1">
         {indicadores.map((ind) => (
           <AgendaIndicator
-            key={ind.label}
+            key={ind.id ?? ind.label}
+            id={ind.id}
             label={ind.label}
             valor={ind.valor}
             status={ind.status}

@@ -9,13 +9,14 @@ import Tooltip from '@/components/ui/Tooltip'
 import { indicadorInfo } from '@/data/indicador-info'
 
 interface AgendaIndicatorProps {
+  id?: string
   label: string
   valor: string | number
   status: StatusType
 }
 
-export default function AgendaIndicator({ label, valor, status }: AgendaIndicatorProps) {
-  const info = indicadorInfo[label]
+export default function AgendaIndicator({ id, label, valor, status }: AgendaIndicatorProps) {
+  const info = id ? indicadorInfo[id] : undefined
 
   const row = (
     <div
