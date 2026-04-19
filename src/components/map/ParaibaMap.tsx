@@ -9,9 +9,13 @@ import type { Feature } from 'geojson'
 import 'leaflet/dist/leaflet.css'
 
 import geoData from '@/data/paraiba-municipios.json'
+import municipios from '@/data/municipios.json'
 import type { IndicadorKey } from '@/data/mapa-indicadores'
 import { getCSSVar, getResolvedStatusFill, getStatus } from '@/utils/mapHelpers'
 import ValueBadges from '@/components/map/ValueBadges'
+import { useMunicipio } from '@/hooks/useMunicipio'
+
+const MUNICIPIOS_COM_DADOS = new Map(municipios.map((m) => [m.id, m.nome]))
 
 interface ParaibaMapProps {
   selectedId: string
@@ -26,6 +30,7 @@ const PARAIBA_BOUNDS: L.LatLngBoundsExpression = [
 ]
 
 export default function ParaibaMap({ selectedId, indicador, className = '' }: ParaibaMapProps) {
+  const { setMunicipio } = useMunicipio()
   const geoJsonRef = useRef<L.GeoJSON | null>(null)
   const mapRef = useRef<L.Map | null>(null)
   const [active, setActive] = useState(false)
@@ -81,22 +86,25 @@ export default function ParaibaMap({ selectedId, indicador, className = '' }: Pa
   const onEachFeature = useCallback(
     (feature: Feature, layer: Layer) => {
       const id = String(feature.properties?.id)
-      const nome = String(feature.properties?.name ?? '')
+      const nomePlataforma = MUNICIPIOS_COM_DADOS.get(id)
+      const isClickable = Boolean(nomePlataforma)
       const status = getStatus(id, indicador)
-      const hasData = status !== null
+      const hasStatus = status !== null
 
       const path = layer as L.Path
-      if (nome) {
-        path.bindTooltip(nome, {
+      if (isClickable && nomePlataforma) {
+        path.bindTooltip(nomePlataforma, {
           sticky: true,
           direction: 'top',
           offset: [0, -8],
           className: 'paraiba-map-tooltip',
         })
+        const el = (path as unknown as { getElement?: () => SVGElement | null }).getElement?.()
+        if (el) el.style.cursor = 'pointer'
       }
       path.on({
         mouseover: (e: LeafletMouseEvent) => {
-          if (!hasData) return
+          if (!isClickable && !hasStatus) return
           const isSelected = id === selectedId
           if (isSelected) return
           e.target.setStyle({
@@ -105,14 +113,18 @@ export default function ParaibaMap({ selectedId, indicador, className = '' }: Pa
           })
         },
         mouseout: () => {
-          if (!hasData) return
+          if (!isClickable && !hasStatus) return
           if (geoJsonRef.current) {
             geoJsonRef.current.resetStyle(path)
           }
         },
+        click: () => {
+          if (!isClickable || !nomePlataforma) return
+          setMunicipio(id, nomePlataforma)
+        },
       })
     },
-    [selectedId, indicador],
+    [selectedId, indicador, setMunicipio],
   )
 
   const geoKey = useMemo(() => `${indicador}-${selectedId}`, [indicador, selectedId])
