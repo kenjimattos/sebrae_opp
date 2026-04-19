@@ -49,11 +49,9 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
             setOpen(true)
           }}
           onFocus={() => {
-            // Seed the draft from the current selection so the first keystroke
-            // replaces the name instead of appending to an empty string.
-            setDraft(municipio.nome)
+            // Clear the field on focus so the user starts fresh when searching.
+            setDraft('')
             setOpen(true)
-            inputRef.current?.select()
           }}
           className="typo-body-bold bg-transparent outline-none w-full truncate"
           placeholder="Buscar município..."

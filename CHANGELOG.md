@@ -2,6 +2,12 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Unreleased]
+
+### Changed
+
+- **`CitySelector`** — ao focar o input, o campo é limpo (em vez de pré-selecionar o nome do município atual). Permite que o usuário comece a digitar imediatamente sem precisar apagar o texto.
+
 ## [0.6.3] — 2026-04-19
 
 Versão que introduz a página **/trilhas** — listagem completa de trilhas de capacitação com seus cursos em carrossel — e liga os cards da SectionCapacitacao a essa página via hash (`#trilha-{slug}` ou `#curso-{slug}-{idx}`), destacando o curso clicado quando aplicável. Também liga cada curso à sua página na Escola Virtual do Governo.
