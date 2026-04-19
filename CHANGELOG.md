@@ -2,16 +2,33 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
-## [0.6.2] — 2026-04-19
+## [Unreleased]
 
-Versão que **refatora a camada de dados** — separando a estrutura das agendas (catálogo) dos valores de cada município e centralizando a derivação de `status` em uma régua por indicador — **expande o protótipo de 3 para 8 municípios paraibanos** (com base nos CSVs de referência) e **religa o Panorama a essa nova estrutura** (dropdown, mapa e média estadual passam a consumir o catálogo diretamente). Também ganha `ui/Carousel` como primitivo reutilizável e um lote de ajustes de tipografia e layout em cards.
+Versão que introduz a página **/trilhas** — listagem completa de trilhas de capacitação com seus cursos em carrossel — e liga os cards da SectionCapacitacao a essa página via hash (`#trilha-{slug}` ou `#curso-{slug}-{idx}`), destacando o curso clicado quando aplicável.
+
+### Added
+
+- **`src/pages/Trilhas.tsx`** — nova página baseada no Figma `1103:3`. Hero com título + descrição, e cada trilha em uma seção com título, badge "X cursos", descrição e carrossel horizontal de `<TrilhaCard>`. Suporta navegação por hash: `/trilhas#trilha-{slug}` rola até a trilha; `/trilhas#curso-{slug}-{idx}` rola até o curso específico e realça o card.
+- **`src/components/trilhas/TrilhaCard.tsx`** — card individual de um curso (distinto do `CoursesCard`, que é o resumo da trilha). Mostra carga, título, descrição (fallback genérico) e CTA "ver curso". Aceita `highlighted` para realce via outline quando navegado por anchor.
+- **Rota `/trilhas`** em `App.tsx`.
+- **`src/data/capacitacao.ts`** — adicionado campo `slug` em `Trilha`, campo opcional `descricao` em `Curso`, e helpers `trilhaAnchor(slug)` / `cursoAnchor(slug, idx)` para gerar âncoras estáveis.
+- **`src/data/sections.ts`** — nova entrada `trilhas` com título e descrição da página.
+
+### Changed
+
+- **`CoursesCard`** agora recebe `slug` e liga ao `/trilhas#trilha-{slug}` via `PillButton`.
+- **`CoursesCardRow`** ganha prop opcional `href` (antes fixo em `#`). `CoursesCard` passa `/trilhas#curso-{slug}-{i}` para cada linha, permitindo navegação até o curso específico.
+- **`PillButton`** passa a usar o `Link` do React Router quando `href` é interno (começa com `/`). Antes usava `<a>` puro, que causava full reload em navegação interna.
+- **`Header`** generaliza o tratamento de rotas não-Home: em `/trilhas` (e qualquer rota fora da `/`), cliques no logo e nav links navegam para a Home via React Router em vez de tentar fazer scroll local. `CitySelector` também fica oculto em `/trilhas` (mesmo comportamento de `/formulador`).
+- **Cursos ligados à Escola Virtual do Governo.** Campo `url` adicionado em `Curso` e populado para todos os cursos. `TrilhaCard` passa o `url` para o `PillButton` "Ver curso" (abre em nova aba via `target="_blank"`).
+
+Versão que **refatora a camada de dados** — separando a estrutura das agendas (catálogo) dos valores de cada município, e centralizando a derivação de `status` em uma régua por indicador — e **expande o protótipo de 3 para 8 municípios paraibanos** (com base nos CSVs de referência). Também ganha `ui/Carousel` como primitivo de carrossel reutilizável, e um lote de ajustes de tipografia e layout em cards.
 
 ### Added
 
 - **`src/data/catalogo.ts`** — fonte única da estrutura de agendas e base econômica (ids estáveis + labels + ícones). Antes, `nome` da agenda, `label` do indicador e `icone` da base econômica se repetiam em cada JSON de município.
 - **`src/data/thresholds.ts`** — régua de classificação por indicador. Converte o valor bruto em `StatusType` (`success`/`warning`/`alert`) via funções `higher-better`/`lower-better`/`enum`. Escalas oficiais embutidas: IDH-M/PNUD (`<0,6` alert / `0,6–0,7` warning / `≥0,7` success), ISDEL/Sebrae (faixas Muito Baixo/Baixo/Médio/Alto/Muito Alto), IGMA/Áquila (0-100), IGM-CFA (0-10); demais heurísticas documentadas no arquivo.
 - **`src/data/municipios/{slug}.ts`** — um arquivo por cidade contendo apenas valores (`agendas: Record<id, string | number>` e `baseEconomica: Record<id, { valor, variacao }>`). O `status` é derivado pelo provider no merge com `thresholds.ts`.
-- **`src/data/municipios/index.ts`** — `valoresMap` centralizado (8 municípios → `ValoresMunicipio`). Fonte única consumida pelo `MunicipioProvider` e pelo derivador do mapa.
 - **6 novos municípios** (total agora: 8) — Queimadas (2512507), Conde (2504603), Caaporã (2503001), Pitimbu (2511905), Monteiro (2509701), Cabaceiras (2503100). Valores de agendas vêm dos CSVs de referência; valores de base econômica pesquisados (IBGE Cidades, Atlas Brasil/PNUD, Wikipedia — população estimativa 2025).
 - **Marcador `*` para valores fictícios.** Onde não há fonte pública acessível (dados internos Sebrae como "MPE apoiadas pelo ELI", índices sem equivalente municipal como GEM/ICE, Participação MPE no PIB, Dependência Adm. Pública), o valor é inventado de forma plausível e sufixado com `*` (ex: `+3,2%*`, `R$ 420M*`, `1.950*`). Deixa auditável em código quais números são demo.
 - **`ui/Carousel`** — novo primitivo de carrossel horizontal com snap-scroll + setas de navegação. Encapsula a `useRef` + handler `scrollBy` e renderiza `IconButton`s `ArrowLeft`/`ArrowRight` abaixo do track. API: `scrollAmount` (px por clique) + `children`.
@@ -21,9 +38,6 @@ Versão que **refatora a camada de dados** — separando a estrutura das agendas
 
 - **`MunicipioProvider`** passa a fazer merge runtime entre catálogo (estrutura) + valores do município + thresholds (status derivado). API pública (`useMunicipio`) inalterada — componentes e testes consomem `IndicadoresData` com a mesma forma de antes.
 - **Valores de João Pessoa e Campina Grande migrados** usando o CSV de agendas como fonte primária (ex: IGM JP 7,8 → 6,54; IGMA agora em escala 0-100 como a fonte oficial Áquila). Os mocks anteriores deixaram de existir.
-- **`src/data/mapa-indicadores.ts` passa a derivar do catálogo + valores + thresholds.** `indicadorOptions`, `IndicadorKey` e `municipiosMapData` são agora computados a partir de `catalogo.agendas` e `valoresMap`. `labelToKey` deixa de existir — os ids do catálogo já são as chaves. Status e `valorNumerico` saem de `parseNumeric` + `deriveStatus`. Também corrige o código IBGE de Monteiro (era `2508307` mockado, agora `2509701` real).
-- **`usePanoramaIndicadores`** simplificado — retorna diretamente `indicadorOptions` do catálogo (as agendas são sempre as mesmas pós-merge).
-- **`SectionPanorama`** — default do state do indicador agora vem de `catalogo.agendas[0].indicadores[0].id` em vez de chave hardcoded; dropdown e mapa ficam sincronizados automaticamente com qualquer mudança no catálogo.
 - **`SectionCapacitacao`** e **`SectionCasosSucesso`** passam a usar `<Carousel>` em vez de replicar o track e as setas. `SectionCapacitacao` ganha setas de navegação (antes não tinha). `SectionCasosSucesso` corrige `scrollAmount` — o valor anterior (`375+24`) estava desalinhado com a largura real do card (350) e o `gap-sm` (12px); passa a `362`. `SectionCapacitacao` usa `492`.
 - **`SectionCapacitacao`** — removida a expansão "Ver todas as trilhas / Ver menos trilhas". Todas as trilhas são exibidas direto no carrossel.
 - **`SectionCasosSucesso`** — header simplificado (removido wrapper desnecessário) e scroll container ganha padding horizontal para não cortar sombras dos cards na borda.
