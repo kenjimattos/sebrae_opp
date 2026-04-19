@@ -26,7 +26,7 @@ export default function TrilhaCard({
   titulo,
   carga,
   descricao,
-  href = '#',
+  href,
   highlighted = false,
   scrollMarginTop,
   className = '',
@@ -34,6 +34,7 @@ export default function TrilhaCard({
   const ring = highlighted
     ? 'outline outline-2 outline-[var(--semantic-accent)] outline-offset-2'
     : ''
+  const hasLink = Boolean(href)
 
   return (
     <div
@@ -52,7 +53,13 @@ export default function TrilhaCard({
           <p className="typo-body-sm">{descricao ?? DEFAULT_DESCRICAO}</p>
         </div>
         <div className="flex justify-end">
-          <PillButton variant="ghost" size="sm" label={ctaLabels.verCurso} href={href} />
+          <PillButton
+            variant="ghost"
+            size="sm"
+            label={ctaLabels.verCurso}
+            href={hasLink ? href : undefined}
+            disabled={!hasLink}
+          />
         </div>
       </Card>
     </div>

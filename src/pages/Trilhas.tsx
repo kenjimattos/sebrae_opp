@@ -77,6 +77,7 @@ export default function Trilhas() {
                     titulo={curso.titulo}
                     carga={curso.carga}
                     descricao={curso.descricao}
+                    href={curso.url}
                     highlighted={activeId === id}
                     scrollMarginTop={SCROLL_MARGIN_TOP}
                     className="snap-start"
