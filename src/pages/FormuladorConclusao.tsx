@@ -8,7 +8,6 @@ import Card from '@/components/ui/Card'
 import Button from '@/components/ui/buttons/Button'
 import NumberBullet from '@/components/ui/NumberBullet'
 import ProjectSteps from '@/components/formulador/ProjectSteps'
-import { ArrowLeft } from '@/components/icons'
 import { etapasFormulador } from '@/data/formulador-etapas'
 import { useFormulador } from '@/hooks/useFormulador'
 import { useMunicipio } from '@/hooks/useMunicipio'
@@ -202,7 +201,6 @@ export default function FormuladorConclusao() {
             label="Voltar para home"
             variant="primary"
             size="md"
-            iconPosition="left"
             onClick={() => navigate('/')}
             className="ml-auto"
           />

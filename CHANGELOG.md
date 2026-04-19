@@ -2,7 +2,9 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
-## [Unreleased]
+## [0.6.4] — 2026-04-19
+
+Versão focada no **Formulador**: a marcação de "etapa concluída" passa a refletir o preenchimento real dos campos (em vez de apenas visitar a etapa) e a tela de conclusão perde o botão mockado "Enviar para análise". Também inclui ajustes no `CitySelector` (limpa o campo no foco) e no mapa da Paraíba (tooltip/click restritos a municípios com dados).
 
 ### Changed
 
