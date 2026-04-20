@@ -14,8 +14,7 @@ export default function Oportunidades() {
       <main className="flex-1 mx-auto w-full max-w-[1440px]">
         <SectionContainer className="items-center gap-lg">
           <h1
-            className="typo-h1 text-center"
-            style={{ fontWeight: 'var(--typo-weight-regular)', lineHeight: 1.2 }}
+            className="typo-h1 text-center font-regular leading-[1.2]"
             dangerouslySetInnerHTML={{
               __html: sectionContent.oportunidades.title.replace(
                 /<highlight>(.*?)<\/highlight>/g,

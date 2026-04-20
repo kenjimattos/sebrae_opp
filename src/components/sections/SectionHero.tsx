@@ -34,29 +34,18 @@ export default function SectionHero() {
     <SectionContainer className="items-center gap-lg">
       {/* Eyebrow */}
       <div className="flex items-center gap-xs">
-        <span
-          className="typo-body-sm-bold uppercase text-accent"
-          style={{ letterSpacing: '0.12em' }}
-        >
+        <span className="typo-body-sm-bold uppercase text-accent tracking-[0.12em]">
           Plataforma OPP
         </span>
-        <span
-          className="h-px w-12"
-          style={{ backgroundColor: 'var(--semantic-accent)' }}
-          aria-hidden="true"
-        />
-        <span
-          className="typo-body-sm text-inactive uppercase"
-          style={{ letterSpacing: '0.12em' }}
-        >
+        <span className="h-px w-12 bg-accent" aria-hidden="true" />
+        <span className="typo-body-sm text-inactive uppercase tracking-[0.12em]">
           Inteligência Territorial
         </span>
       </div>
 
       {/* Macro objetivo */}
       <h1
-        className="typo-h1 text-center"
-        style={{ fontWeight: 'var(--typo-weight-regular)', lineHeight: 1.2 }}
+        className="typo-h1 text-center font-regular leading-[1.2]"
         dangerouslySetInnerHTML={{
           __html: sectionContent.hero.title.replace(
             /<highlight>(.*?)<\/highlight>/g,
@@ -66,13 +55,7 @@ export default function SectionHero() {
       />
 
       {/* 4 blocos em grid 2×2 */}
-      <div
-        className="grid w-full"
-        style={{
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: 'var(--spacing-sm)',
-        }}
-      >
+      <div className="grid grid-cols-2 gap-sm w-full">
         {sectionContent.hero.ctas.map((cta) => {
           const Icon = ctaIcons[cta.id]
 
@@ -91,7 +74,7 @@ export default function SectionHero() {
               <p className="typo-body">
                 {cta.description}
               </p>
-            
+
             </button>
           )
         })}

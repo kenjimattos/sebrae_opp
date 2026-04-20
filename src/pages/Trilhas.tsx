@@ -54,8 +54,7 @@ export default function Trilhas() {
           <section
             key={trilha.slug}
             id={trilhaAnchor(trilha.slug)}
-            className="flex flex-col gap-lg"
-            style={{ scrollMarginTop: SCROLL_MARGIN_TOP }}
+            className="flex flex-col gap-lg scroll-mt-[120px]"
           >
             <div className="flex flex-col gap-xs">
               <div className="flex items-start justify-between gap-md">

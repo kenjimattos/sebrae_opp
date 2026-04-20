@@ -18,6 +18,9 @@ Refactoring do design system: integração dos tokens no Tailwind config, elimin
 
 - **`src/components/ui/buttons/button-styles.ts`** — constantes `buttonVariantStyles` e `buttonBaseClass` compartilhadas entre Button e IconButton.
 - **`IconButton` modo decorativo** — nova prop `decorative` renderiza `<span aria-hidden>` ao invés de `<button>`, unificando o padrão "ícone em círculo" num único componente. Nova escala: `xs` (24×24), `sm` (32×32), `md` (40×40), `lg` (48×48). `SectionHero` e `EconomicsCard` migrados para usar `IconButton decorative`.
+- **`SectionHero`** — substituídos todos os `style={{}}` inline por classes Tailwind (`tracking-[0.12em]`, `bg-accent`, `font-regular leading-[1.2]`, `grid-cols-2 gap-sm`).
+- **`Oportunidades.tsx`**, **`Comunidade.tsx`** — `style={{ fontWeight, lineHeight }}` substituído por `font-regular leading-[1.2]`.
+- **`Trilhas.tsx`** — `style={{ scrollMarginTop }}` substituído por `scroll-mt-[120px]`.
 
 ## [0.6.5] — 2026-04-20
 
