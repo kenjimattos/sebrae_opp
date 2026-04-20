@@ -50,17 +50,17 @@ export default function SectionRecursos() {
               href={DATAPEDIA_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full radius-xl overflow-hidden bg-[var(--primitives-gray-900)] relative group"
+              className="block w-full rounded-xl overflow-hidden bg-[var(--primitives-gray-900)] relative group"
             >
               <img
                 src="/assets/datapedia-mapa.png"
                 alt={recursosContent.distribuicao.mapAlt}
-                className="w-full h-auto object-cover radius-xl"
+                className="w-full h-auto object-cover rounded-xl"
               />
 
               {/* Overlay no hover */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center radius-xl">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-surface typo-body-bold px-md py-sm radius-full shadow-lg">
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center rounded-xl">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-surface typo-body-bold px-md py-sm rounded-full shadow-lg">
                   {recursosContent.distribuicao.overlayLabel}
                 </span>
               </div>

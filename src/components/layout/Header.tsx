@@ -90,7 +90,7 @@ export default function Header({ className = '' }: HeaderProps) {
       />
 
       {/* Center nav pill */}
-      <div className="flex-between h-[60px] gap-md bg-surface radius-full px-sm py-2xs">
+      <div className="flex-between h-[60px] gap-md bg-surface rounded-full px-sm py-2xs">
         {!isFormulador && !isTrilhas && <CitySelector />}
 
         <nav className="flex-between gap-md">
@@ -100,7 +100,7 @@ export default function Header({ className = '' }: HeaderProps) {
               <button
                 key={sectionId}
                 onClick={() => onNavClick(sectionId)}
-                className={`typo-body-sm whitespace-nowrap transition-colors px-sm py-xs radius-full ${
+                className={`typo-body-sm whitespace-nowrap transition-colors px-sm py-xs rounded-full ${
                   isActive
                     ? 'bg-accent text-[var(--semantic-button-label-primary)]'
                     : 'hover:text-accent'

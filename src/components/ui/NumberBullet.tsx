@@ -34,7 +34,7 @@ export default function NumberBullet({
 }: NumberBulletProps) {
   return (
     <span
-      className={`inline-flex items-center justify-center shrink-0 radius-full typo-body-sm-bold ${sizeClass[size]} ${variantClass[variant]} ${className}`}
+      className={`inline-flex items-center justify-center shrink-0 rounded-full typo-body-sm-bold ${sizeClass[size]} ${variantClass[variant]} ${className}`}
     >
       {value}
     </span>

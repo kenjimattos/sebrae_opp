@@ -2,7 +2,7 @@
 
 exports[`Snapshot tests — CSS refactor safety > AIAssistant 1`] = `
 <div
-  class="card-surface-secondary radius-md p-md flex flex-col items-start gap-md w-[248px] "
+  class="card-surface-secondary rounded-md p-md flex flex-col items-start gap-md w-[248px] "
 >
   <div
     class="flex flex-col items-start gap-md w-full"
@@ -64,25 +64,25 @@ exports[`Snapshot tests — CSS refactor safety > AIAssistant 1`] = `
       class="flex flex-col items-center gap-xs w-full"
     >
       <button
-        class="inline-flex items-center justify-center radius-full cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)] h-[40px] px-md gap-xs typo-button w-[200px]"
+        class="inline-flex items-center justify-center rounded-full cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)] h-[40px] px-md gap-xs typo-button w-[200px]"
         type="button"
       >
         Gerar sugestão
       </button>
       <button
-        class="inline-flex items-center justify-center radius-full cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)] h-[40px] px-md gap-xs typo-button w-[200px]"
+        class="inline-flex items-center justify-center rounded-full cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)] h-[40px] px-md gap-xs typo-button w-[200px]"
         type="button"
       >
         Melhorar texto
       </button>
       <button
-        class="inline-flex items-center justify-center radius-full cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)] h-[40px] px-md gap-xs typo-button w-[200px]"
+        class="inline-flex items-center justify-center rounded-full cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)] h-[40px] px-md gap-xs typo-button w-[200px]"
         type="button"
       >
         Adaptar para edital
       </button>
       <button
-        class="inline-flex items-center justify-center radius-full cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)] h-[40px] px-md gap-xs typo-button w-[200px]"
+        class="inline-flex items-center justify-center rounded-full cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)] h-[40px] px-md gap-xs typo-button w-[200px]"
         type="button"
       >
         Validar conteúdo
@@ -94,10 +94,10 @@ exports[`Snapshot tests — CSS refactor safety > AIAssistant 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > AgendaBadge 1`] = `
 <div
-  class="flex-center gap-xs px-sm py-2xs radius-md status-warning-bg "
+  class="flex-center gap-xs px-sm py-2xs rounded-md status-warning-bg "
 >
   <div
-    class="size-[8px] radius-full status-warning-dot"
+    class="size-[8px] rounded-full status-warning-dot"
   />
   <span
     class="typo-body-sm-bold text-right whitespace-nowrap"
@@ -120,10 +120,10 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
       IDHM
     </span>
     <div
-      class="flex-center gap-xs px-sm py-2xs radius-md status-success-bg "
+      class="flex-center gap-xs px-sm py-2xs rounded-md status-success-bg "
     >
       <div
-        class="size-[8px] radius-full status-success-dot"
+        class="size-[8px] rounded-full status-success-dot"
       />
       <span
         class="typo-body-sm-bold text-right whitespace-nowrap"
@@ -160,10 +160,10 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
     class="flex-center gap-md"
   >
     <div
-      class="flex-center gap-xs px-sm py-xs radius-md status-success-bg"
+      class="flex-center gap-xs px-sm py-xs rounded-md status-success-bg"
     >
       <div
-        class="size-[10px] radius-full status-success-dot"
+        class="size-[10px] rounded-full status-success-dot"
       />
       <span
         class="typo-display-sm"
@@ -177,10 +177,10 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
       </span>
     </div>
     <div
-      class="flex-center gap-xs px-sm py-xs radius-md status-warning-bg"
+      class="flex-center gap-xs px-sm py-xs rounded-md status-warning-bg"
     >
       <div
-        class="size-[10px] radius-full status-warning-dot"
+        class="size-[10px] rounded-full status-warning-dot"
       />
       <span
         class="typo-display-sm"
@@ -194,10 +194,10 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
       </span>
     </div>
     <div
-      class="flex-center gap-xs px-sm py-xs radius-md status-alert-bg"
+      class="flex-center gap-xs px-sm py-xs rounded-md status-alert-bg"
     >
       <div
-        class="size-[10px] radius-full status-alert-dot"
+        class="size-[10px] rounded-full status-alert-dot"
       />
       <span
         class="typo-display-sm"
@@ -232,7 +232,7 @@ exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
     class="flex items-center gap-sm w-full"
   >
     <div
-      class="shrink-0 size-[32px] radius-full bg-surface-secondary flex items-center justify-center"
+      class="shrink-0 size-[32px] rounded-full bg-surface-secondary flex items-center justify-center"
     >
       <svg
         aria-hidden="true"
@@ -435,11 +435,11 @@ exports[`Snapshot tests — CSS refactor safety > FormuladorProgress 1`] = `
     aria-valuemax="100"
     aria-valuemin="0"
     aria-valuenow="0"
-    class="w-full h-[11px] radius-full bg-[var(--semantic-background-primary)] overflow-hidden "
+    class="w-full h-[11px] rounded-full bg-[var(--semantic-background-primary)] overflow-hidden "
     role="progressbar"
   >
     <div
-      class="h-full radius-full bg-accent transition-[width] duration-200"
+      class="h-full rounded-full bg-accent transition-[width] duration-200"
       style="width: 0%;"
     />
   </div>
@@ -456,13 +456,13 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
     src="/assets/sebrae-logo.png"
   />
   <div
-    class="flex-between h-[60px] gap-md bg-surface radius-full px-sm py-2xs"
+    class="flex-between h-[60px] gap-md bg-surface rounded-full px-sm py-2xs"
   >
     <div
       class="relative "
     >
       <div
-        class="flex items-center gap-sm bg-surface-secondary radius-full px-sm py-xs overflow-hidden"
+        class="flex items-center gap-sm bg-surface-secondary rounded-full px-sm py-xs overflow-hidden"
       >
         <svg
           aria-hidden="true"
@@ -498,34 +498,34 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
       class="flex-between gap-md"
     >
       <button
-        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs radius-full bg-accent text-[var(--semantic-button-label-primary)]"
+        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs rounded-full bg-accent text-[var(--semantic-button-label-primary)]"
       >
         Agenda prioritária
       </button>
       <button
-        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs radius-full hover:text-accent"
+        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs rounded-full hover:text-accent"
       >
         Mapeamento de recursos
       </button>
       <button
-        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs radius-full hover:text-accent"
+        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs rounded-full hover:text-accent"
       >
         Capacitação
       </button>
       <button
-        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs radius-full hover:text-accent"
+        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs rounded-full hover:text-accent"
       >
         Formulador de iniciativas
       </button>
     </nav>
   </div>
   <div
-    class="flex items-center gap-xs h-[60px] radius-full "
+    class="flex items-center gap-xs h-[60px] rounded-full "
   >
     <svg
       class="shrink-0"
       fill="none"
-      style="width: var(--radius-xl); height: var(--radius-xl);"
+      style="width: var(--rounded-xl); height: var(--rounded-xl);"
       viewBox="-6 -6 44 44"
     >
       <clippath
@@ -566,7 +566,7 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > NumberBullet — default (secondary) 1`] = `
 <span
-  class="inline-flex items-center justify-center shrink-0 radius-full typo-body-sm-bold w-[24px] h-[24px] bg-surface-secondary "
+  class="inline-flex items-center justify-center shrink-0 rounded-full typo-body-sm-bold w-[24px] h-[24px] bg-surface-secondary "
 >
   3
 </span>
@@ -574,7 +574,7 @@ exports[`Snapshot tests — CSS refactor safety > NumberBullet — default (seco
 
 exports[`Snapshot tests — CSS refactor safety > NumberBullet — primary md 1`] = `
 <span
-  class="inline-flex items-center justify-center shrink-0 radius-full typo-body-sm-bold w-[32px] h-[32px] bg-accent text-[color:var(--semantic-text-secondary)] "
+  class="inline-flex items-center justify-center shrink-0 rounded-full typo-body-sm-bold w-[32px] h-[32px] bg-accent text-[color:var(--semantic-text-secondary)] "
 >
   10
 </span>
@@ -585,11 +585,11 @@ exports[`Snapshot tests — CSS refactor safety > ProgressBar 1`] = `
   aria-valuemax="100"
   aria-valuemin="0"
   aria-valuenow="40"
-  class="w-full h-[11px] radius-full bg-[var(--semantic-background-primary)] overflow-hidden "
+  class="w-full h-[11px] rounded-full bg-[var(--semantic-background-primary)] overflow-hidden "
   role="progressbar"
 >
   <div
-    class="h-full radius-full bg-accent transition-[width] duration-200"
+    class="h-full rounded-full bg-accent transition-[width] duration-200"
     style="width: 40%;"
   />
 </div>
@@ -614,7 +614,7 @@ exports[`Snapshot tests — CSS refactor safety > ResourcesCard 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > RisksCard 1`] = `
 <div
-  class="status-alert-bg radius-sm p-lg border border-solid border-[var(--semantic-alert)] flex flex-col gap-md card-hoverable "
+  class="status-alert-bg rounded-sm p-lg border border-solid border-[var(--semantic-alert)] flex flex-col gap-md card-hoverable "
 >
   <span
     class="shrink-0 typo-display-sm text-[color:var(--semantic-alert)]"

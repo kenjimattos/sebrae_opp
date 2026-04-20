@@ -31,9 +31,9 @@ export default function AgendaStats({ total, counts, className = '' }: AgendaSta
         {(['success', 'warning', 'alert'] as StatusType[]).map((status) => (
           <div
             key={status}
-            className={`flex-center gap-xs px-sm py-xs radius-md ${statusStyles[status].bg}`}
+            className={`flex-center gap-xs px-sm py-xs rounded-md ${statusStyles[status].bg}`}
           >
-            <div className={`size-[10px] radius-full ${statusStyles[status].dot}`} />
+            <div className={`size-[10px] rounded-full ${statusStyles[status].dot}`} />
             <span className="typo-display-sm">
               {counts[status]}
             </span>

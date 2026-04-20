@@ -85,7 +85,7 @@ export default function SectionHero() {
             >
               <div className="flex items-center gap-md">
                 <div
-                  className="flex justify-center items-center radius-full bg-surface-secondary w-fit p-sm"
+                  className="flex justify-center items-center rounded-full bg-surface-secondary w-fit p-sm"
                 >
                   <Icon size={iconSizes.lg} />
                 </div>

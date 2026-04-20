@@ -24,7 +24,7 @@ export default function SectionAIAssistant() {
         radius="md"
         className="flex flex-col gap-md w-full max-w-[800px] min-h-[35dvh]"
       >
-        <div className="bg-surface-secondary radius-sm p-md">
+        <div className="bg-surface-secondary rounded-sm p-md">
           <p className="typo-body text-inactive">
             {aiAssistantPlaceholder}
           </p>

@@ -2,6 +2,17 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [0.7.0] — 2026-04-20
+
+Refactoring do design system: integração dos tokens no Tailwind config, eliminando ~80 classes custom duplicadas do `index.css`.
+
+### Changed
+
+- **`tailwind.config.js`** — `theme.extend` populado com spacing, borderRadius, backgroundColor, textColor e fontWeight mapeados para as CSS variables do design system. Classes como `gap-md`, `p-sm`, `rounded-sm`, `bg-surface`, `text-inactive` agora são nativas do Tailwind.
+- **`src/index.css`** — removidas ~80 classes utilitárias custom do `@layer components` (gap, padding, radius, background, text-color) que duplicavam o que o Tailwind agora gera nativamente. Mantidas apenas classes compostas (`.typo-*`, `.card-*`, `.flex-*`, `.grid-*`, `.status-*`, `.divider`, `.scrollbar-hide`, `.section-container`).
+- **Codebase (~30 .tsx)** — renomeado `radius-*` → `rounded-*` em todas as className strings para usar a convenção do Tailwind.
+- **`Card.tsx`** — `radiusClass` atualizado para usar `rounded-sm`/`rounded-md`.
+
 ## [0.6.5] — 2026-04-20
 
 Versão focada em **navegação e placeholders**: o hero passa a ser o mapa mental da plataforma (4 pilares em grid 2×2), o Header espelha essa estrutura, e as duas últimas CTAs órfãs (`Ver oportunidades` e `Entrar na comunidade`) agora apontam para páginas placeholder dedicadas. Inclui também limpeza tipográfica no `SectionHeader` e no sistema de `line-height`.

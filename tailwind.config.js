@@ -3,7 +3,42 @@ export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        '2xs': 'var(--spacing-2xs)',     // 4px
+        'xs':  'var(--spacing-xs)',      // 8px
+        'sm':  'var(--spacing-sm)',      // 12px
+        'md':  'var(--spacing-md)',      // 24px
+        'lg':  'var(--spacing-lg)',      // 40px
+        'xl':  'var(--spacing-xl)',      // 48px
+        '2xl': 'var(--spacing-2xl)',     // 64px
+        '3xl': 'var(--spacing-3xl)',     // 96px
+        'margin': 'var(--spacing-margin)', // 180px
+      },
+      borderRadius: {
+        'sm':   'var(--radius-sm)',   // 12px
+        'md':   'var(--radius-md)',   // 24px
+        'lg':   'var(--radius-lg)',   // 32px
+        'xl':   'var(--radius-xl)',   // 48px
+        'full': 'var(--radius-full)', // 96px
+      },
+      backgroundColor: {
+        'surface':           'var(--semantic-surface-primary)',
+        'surface-secondary': 'var(--semantic-surface-secondary)',
+        'accent':            'var(--semantic-accent)',
+        'primary':           'var(--semantic-background-primary)',
+      },
+      textColor: {
+        'inactive': 'var(--semantic-text-inactive)',
+        'accent':   'var(--semantic-accent)',
+      },
+      fontWeight: {
+        'regular':  'var(--typo-weight-regular)',   // 400
+        'semibold': 'var(--typo-weight-semibold)',   // 600
+        'bold':     'var(--typo-weight-bold)',        // 700
+        'black':    'var(--typo-weight-black)',       // 900
+      },
+    },
   },
   plugins: [],
 }

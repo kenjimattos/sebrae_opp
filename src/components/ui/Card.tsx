@@ -63,8 +63,8 @@ const paddingYClass: Record<PaddingY, string> = {
 }
 
 const radiusClass: Record<CardRadius, string> = {
-  sm: 'radius-sm',
-  md: 'radius-md',
+  sm: 'rounded-sm',
+  md: 'rounded-md',
 }
 
 function resolvePadding(padding: CardPadding): string {

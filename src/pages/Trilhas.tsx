@@ -60,7 +60,7 @@ export default function Trilhas() {
             <div className="flex flex-col gap-xs">
               <div className="flex items-start justify-between gap-md">
                 <h3 className="typo-h3">{trilha.title}</h3>
-                <span className="typo-body bg-surface radius-sm px-sm py-2xs shrink-0">
+                <span className="typo-body bg-surface rounded-sm px-sm py-2xs shrink-0">
                   {trilha.cursos.length} cursos
                 </span>
               </div>

@@ -38,7 +38,7 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
 
   return (
     <div ref={ref} className={`relative ${className}`}>
-      <div className="flex items-center gap-sm bg-surface-secondary radius-full px-sm py-xs overflow-hidden">
+      <div className="flex items-center gap-sm bg-surface-secondary rounded-full px-sm py-xs overflow-hidden">
         <Search size={iconSizes.md} className="shrink-0 text-inactive" />
         <input
           ref={inputRef}

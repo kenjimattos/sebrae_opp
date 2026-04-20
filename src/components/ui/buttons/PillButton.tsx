@@ -92,7 +92,7 @@ export default function PillButton({
   const circleEl = (
     <span
       aria-hidden
-      className={`flex items-center justify-center shrink-0 radius-full ${s.circle} ${v.circleBg}`}
+      className={`flex items-center justify-center shrink-0 rounded-full ${s.circle} ${v.circleBg}`}
     >
       <Arrow size={iconSizes[s.iconSize]} />
     </span>
@@ -111,7 +111,7 @@ export default function PillButton({
       </>
     )
 
-  const sharedClassName = `inline-flex items-center radius-full no-underline transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${v.shellBg} ${s.shell} ${padding} ${className}`
+  const sharedClassName = `inline-flex items-center rounded-full no-underline transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${v.shellBg} ${s.shell} ${padding} ${className}`
 
   if (href !== undefined) {
     const isInternal = href.startsWith('/') && !href.startsWith('//')

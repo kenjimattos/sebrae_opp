@@ -227,7 +227,7 @@ export default function FormuladorConclusao() {
                   <NumberBullet value={idx + 1} variant="primary" />
                   <span className="typo-body-bold">{etapa.titulo}</span>
                 </div>
-                <div className="bg-primary radius-sm p-md flex flex-col gap-xs">
+                <div className="bg-primary rounded-sm p-md flex flex-col gap-xs">
                   {hasContent ? (
                     blocks.map((b, i) => b.value && (
                       <div key={i} className="flex flex-col gap-2xs">

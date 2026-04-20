@@ -14,7 +14,7 @@ export default function PanoramaLegend() {
     <div className="flex-center gap-md">
       {legendItems.map(({ status, cssClass }) => (
         <div key={status} className="flex-center gap-2xs">
-          <span className={`w-[12px] h-[12px] radius-full ${cssClass}`} />
+          <span className={`w-[12px] h-[12px] rounded-full ${cssClass}`} />
           <span className="typo-body-sm text-inactive">{statusLabelsMap[status]}</span>
         </div>
       ))}
