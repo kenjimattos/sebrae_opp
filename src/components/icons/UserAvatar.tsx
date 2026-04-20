@@ -11,7 +11,7 @@ export default function UserAvatar({ className = '' }: UserAvatarProps) {
       viewBox="-6 -6 44 44"
       fill="none"
       className={className}
-      style={{ width: 'var(--rounded-xl)', height: 'var(--rounded-xl)' }}
+      style={{ width: 'var(--radius-xl)', height: 'var(--radius-xl)' }}
     >
       <clipPath id="user-avatar-clip">
         <path d="M0 16C0 7.163 7.163 0 16 0s16 7.163 16 16-7.163 16-16 16S0 24.837 0 16Z" />

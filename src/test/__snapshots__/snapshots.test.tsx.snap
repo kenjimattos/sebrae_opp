@@ -526,7 +526,7 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
     <svg
       class="shrink-0"
       fill="none"
-      style="width: var(--rounded-xl); height: var(--rounded-xl);"
+      style="width: var(--radius-xl); height: var(--radius-xl);"
       viewBox="-6 -6 44 44"
     >
       <clippath
