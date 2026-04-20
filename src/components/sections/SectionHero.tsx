@@ -4,7 +4,6 @@
 
 import SectionContainer from '@/components/ui/SectionContainer'
 import {
-  ArrowRight,
   Briefcase,
   ChartColumn,
   GraduationCap,
@@ -13,7 +12,6 @@ import {
   iconSizes,
 } from '@/components/icons'
 import { sectionContent } from '@/data/sections'
-import Card from '../ui/Card'
 
 const HEADER_HEIGHT = 95
 
