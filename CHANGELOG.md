@@ -2,7 +2,9 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
-## [Unreleased]
+## [0.6.5] — 2026-04-20
+
+Versão focada em **navegação e placeholders**: o hero passa a ser o mapa mental da plataforma (4 pilares em grid 2×2), o Header espelha essa estrutura, e as duas últimas CTAs órfãs (`Ver oportunidades` e `Entrar na comunidade`) agora apontam para páginas placeholder dedicadas. Inclui também limpeza tipográfica no `SectionHeader` e no sistema de `line-height`.
 
 ### Added
 
@@ -10,13 +12,22 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - **`src/pages/Comunidade.tsx`** — nova página placeholder `/comunidade`, acessada pelo botão "Entrar na comunidade" em `SectionCasosSucesso`. Mesma estrutura hero-only de Oportunidades.
 - **Rotas** `/oportunidades` e `/comunidade` em `App.tsx`.
 - **`src/data/sections.ts`** — novas entradas `oportunidades` e `comunidade` com título (com markup `<highlight>`) e descrição de cada placeholder.
+- **`SectionCasosSucesso`** — novo bloco "Comunidade de prática de Inovação em Políticas Públicas" abaixo do carrossel, com `TitleSubtitle` + `PillButton` "Entrar na comunidade" (hoje apontando para `/comunidade`).
+- **Header navLink "Capacitação"** entre `Mapeamento de recursos` e `Formulador de iniciativas`, espelhando os 4 pilares do hero. Ativa o caminho pré-existente `isTrilhas → effectiveActive = 'capacitacao'` para manter o realce quando o usuário está em `/trilhas`.
 
 ### Changed
 
+- **`SectionHero`** — CTAs passam de 3 para **4 blocos** em grid 2×2 (Agenda / Recursos / Capacitação / Formulador), alinhados à nova diretriz de dividir a plataforma nesses 4 pilares. Cards agora são **clicáveis** (`<button>` com `card-hoverable`) e fazem scroll suave para a seção correspondente com offset do header sticky (antes o `aria-label` indicava "etapa" mas não havia interação). Cada bloco ganha ícone distinto (`ChartColumn`/`Landmark`/`GraduationCap`/`Briefcase`), e padding interno aumentado para `lg` (40px) para dar respiro ao conteúdo.
 - **`SectionRecursos`** — botão "Ver oportunidades" agora navega para `/oportunidades` (antes `href="#"`).
 - **`SectionCasosSucesso`** — botão "Entrar na comunidade" agora navega para `/comunidade` (antes `href="#"`).
-- **`SectionHero`** — CTAs passam de 3 para **4 blocos** em grid 2×2 (Agenda / Recursos / Capacitação / Formulador), alinhados à nova diretriz de dividir a plataforma nesses 4 pilares. Cards agora são **clicáveis** (`<button>` com `card-hoverable`) e fazem scroll suave para a seção correspondente com offset do header sticky (antes o `aria-label` indicava "etapa" mas não havia interação). Cada bloco ganha ícone distinto (`ChartColumn`/`Landmark`/`GraduationCap`/`Briefcase`), e padding interno aumentado para `lg` (40px) para dar respiro ao conteúdo.
-- **`SectionHero`** — CTAs passam de 3 para **4 blocos** em grid 2×2 (Agenda / Recursos / Capacitação / Formulador), alinhados à nova diretriz de dividir a plataforma nesses 4 pilares. Cards agora são **clicáveis** (`<button>` com `card-hoverable`) e fazem scroll suave para a seção correspondente com offset do header sticky (antes o `aria-label` indicava "etapa" mas não havia interação). Cada bloco ganha ícone distinto (`ChartColumn`/`Landmark`/`GraduationCap`/`Briefcase`), e padding interno aumentado para `lg` (40px) para dar respiro ao conteúdo.
+- **`SectionHeader`** — refatorado para sempre renderizar o mesmo markup (um único branch em vez de dois). Título passa de `<h2>` para `<h1>` (alinhado ao papel do título como cabeçalho principal da seção). Descrição fica em coluna à direita com `pt-2xs` para alinhamento ótico com o título, e largura do título adapta-se (`w-3/4` sem descrição, `w-2/3` com).
+- **Header nav** — labels passam de `typo-body` para `typo-body-sm` para acomodar o novo item "Capacitação" sem quebrar o layout da pílula central.
+- **Typography (`src/index.css`)** — variáveis de `line-height` não-utilizadas removidas; `line-height` default volta a `normal`. Classes `.typo-*` foram auditadas para aplicar explicitamente o `line-height` quando necessário, eliminando heranças implícitas.
+
+### Tests
+
+- **`sections.test.tsx`** — `SectionRecursos` e `SectionCasosSucesso` agora rodam sob `TestWrapper`, necessário desde que `PillButton` passou a renderizar um `<Link>` do React Router para hrefs internos.
+- **Snapshots atualizados** — `SectionHeader` (novo markup com `<h1>` + coluna direita) e `Header` (novo navLink "Capacitação").
 
 ## [0.6.4] — 2026-04-19
 
