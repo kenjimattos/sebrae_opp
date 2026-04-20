@@ -8,24 +8,18 @@ interface SectionHeaderProps {
 }
 
 export default function SectionHeader({ title, description, className = '' }: SectionHeaderProps) {
-  if (!description) {
     return (
-      <div className={`flex ${className}`}>
-        <h2 className="w-3/4 typo-h1">
-          {title}
-        </h2>
-      </div>
-    )
-  }
-
-  return (
-    <div className={`flex items-center gap-md ${className}`}>
-      <h2 className="w-2/3 typo-h1">
+    <div className={`flex items-start gap-md ${className}`}>
+      <h1 className={`${description ? 'w-2/3' : 'w-3/4'} typo-h1`}>
         {title}
-      </h2>
-      <p className="w-1/3 typo-body">
-        {description}
-      </p>
+      </h1>
+      <div className="flex-col flex items-start gap-md w-1/3 pt-2xs">
+        { description && 
+        <p className="typo-body">
+          {description}
+        </p>
+        }
+      </div>
     </div>
   )
 }
