@@ -4,7 +4,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [0.7.0] — 2026-04-20
 
-Refactoring do design system: integração dos tokens no Tailwind config, eliminando ~80 classes custom duplicadas do `index.css`.
+Refactoring do design system: integração dos tokens no Tailwind config, eliminando ~80 classes custom duplicadas do `index.css`. Extração de estilos compartilhados de botão.
 
 ### Changed
 
@@ -12,6 +12,11 @@ Refactoring do design system: integração dos tokens no Tailwind config, elimin
 - **`src/index.css`** — removidas ~80 classes utilitárias custom do `@layer components` (gap, padding, radius, background, text-color) que duplicavam o que o Tailwind agora gera nativamente. Mantidas apenas classes compostas (`.typo-*`, `.card-*`, `.flex-*`, `.grid-*`, `.status-*`, `.divider`, `.scrollbar-hide`, `.section-container`).
 - **Codebase (~30 .tsx)** — renomeado `radius-*` → `rounded-*` em todas as className strings para usar a convenção do Tailwind.
 - **`Card.tsx`** — `radiusClass` atualizado para usar `rounded-sm`/`rounded-md`.
+- **`Button.tsx`** e **`IconButton.tsx`** — `variantStyles` e classe base extraídos para `button-styles.ts` compartilhado, eliminando duplicação.
+
+### Added
+
+- **`src/components/ui/buttons/button-styles.ts`** — constantes `buttonVariantStyles` e `buttonBaseClass` compartilhadas entre Button e IconButton.
 
 ## [0.6.5] — 2026-04-20
 

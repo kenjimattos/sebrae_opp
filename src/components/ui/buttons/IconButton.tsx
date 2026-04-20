@@ -8,6 +8,7 @@
 // aria-label é obrigatório (icon-only buttons precisam de rótulo textual).
 
 import { iconSizes, type IconSize, type LucideIcon } from '@/components/icons'
+import { buttonVariantStyles, buttonBaseClass } from './button-styles'
 
 interface IconButtonProps {
   icon: LucideIcon
@@ -17,17 +18,6 @@ interface IconButtonProps {
   disabled?: boolean
   onClick?: () => void
   className?: string
-}
-
-const variantStyles: Record<string, string> = {
-  primary:
-    'bg-[var(--semantic-button-primary)] text-[color:var(--semantic-button-label-primary)]',
-  secondary:
-    'bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)]',
-  tertiary:
-    'bg-[var(--semantic-button-tertiary)] text-[color:var(--semantic-button-label-tertiary)]',
-  ghost:
-    'bg-transparent text-[color:var(--semantic-text-primary)]',
 }
 
 const sizeStyles: Record<string, { dimensions: string; iconSize: IconSize }> = {
@@ -52,7 +42,7 @@ export default function IconButton({
       aria-label={ariaLabel}
       onClick={onClick}
       disabled={disabled}
-      className={`inline-flex items-center justify-center shrink-0 rounded-full cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${variantStyles[variant]} ${s.dimensions} ${className}`}
+      className={`${buttonBaseClass} shrink-0 ${buttonVariantStyles[variant]} ${s.dimensions} ${className}`}
     >
       <Icon size={iconSizes[s.iconSize]} />
     </button>

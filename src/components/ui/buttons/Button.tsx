@@ -5,6 +5,7 @@
 // Icon is optional; when provided, it sits left or right of the label (default 'right').
 
 import { iconSizes, type IconSize, type LucideIcon } from '@/components/icons'
+import { buttonVariantStyles, buttonBaseClass } from './button-styles'
 
 interface ButtonProps {
   label: string
@@ -15,19 +16,6 @@ interface ButtonProps {
   disabled?: boolean
   onClick?: () => void
   className?: string
-}
-
-const variantStyles: Record<string, string> = {
-  primary:
-    'bg-[var(--semantic-button-primary)] text-[color:var(--semantic-button-label-primary)]',
-  secondary:
-    'bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)]',
-  tertiary:
-    'bg-[var(--semantic-button-tertiary)] text-[color:var(--semantic-button-label-tertiary)]',
-  ghost:
-    'bg-transparent text-[color:var(--semantic-text-primary)]',
-  success:
-    'bg-[var(--semantic-success)] text-[color:var(--primitives-white)]',
 }
 
 const sizeStyles: Record<string, { container: string; typo: string; iconSize: IconSize }> = {
@@ -53,7 +41,7 @@ export default function Button({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className={`inline-flex items-center justify-center rounded-full cursor-pointer transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${variantStyles[variant]} ${s.container} ${s.typo} ${className}`}
+      className={`${buttonBaseClass} ${buttonVariantStyles[variant]} ${s.container} ${s.typo} ${className}`}
     >
       {Icon && iconPosition === 'left' && iconEl}
       {label}
