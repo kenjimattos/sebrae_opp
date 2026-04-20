@@ -33,9 +33,6 @@
   --typo-weight-bold: 700;
   --typo-weight-black: 900;
 
-  --typo-lh-auto: normal;
-  --typo-lh-body: normal;
-
   /* ============ SPACING ============ */
   --spacing-2xs: 4px;
   --spacing-xs: 8px;
@@ -174,31 +171,31 @@
 /* ============ TYPOGRAPHY — COMPOSITE CLASSES ============ */
 @layer components {
   /* Display */
-  .typo-display-lg { font-size: var(--font-size-display-large); font-weight: var(--typo-weight-black); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
-  .typo-display    { font-size: var(--font-size-display);       font-weight: var(--typo-weight-black); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
-  .typo-display-sm { font-size: var(--font-size-display-small); font-weight: var(--typo-weight-black); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
+  .typo-display-lg { font-size: var(--font-size-display-large); font-weight: var(--typo-weight-black); color: var(--semantic-text-primary); line-height: normal; }
+  .typo-display    { font-size: var(--font-size-display);       font-weight: var(--typo-weight-black); color: var(--semantic-text-primary); line-height: normal; }
+  .typo-display-sm { font-size: var(--font-size-display-small); font-weight: var(--typo-weight-black); color: var(--semantic-text-primary); line-height: normal; }
 
   /* Headings */
-  .typo-h1 { font-size: var(--font-size-h1); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
-  .typo-h2 { font-size: var(--font-size-h2); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
-  .typo-h3 { font-size: var(--font-size-h3); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
-  .typo-h4 { font-size: var(--font-size-h4); font-weight: var(--typo-weight-bold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
+  .typo-h1 { font-size: var(--font-size-h1); font-weight: var(--typo-weight-bold); color: var(--semantic-text-primary); line-height: 1; }
+  .typo-h2 { font-size: var(--font-size-h2); font-weight: var(--typo-weight-bold); color: var(--semantic-text-primary); line-height: normal; }
+  .typo-h3 { font-size: var(--font-size-h3); font-weight: var(--typo-weight-bold); color: var(--semantic-text-primary); line-height: normal; }
+  .typo-h4 { font-size: var(--font-size-h4); font-weight: var(--typo-weight-bold); color: var(--semantic-text-primary); line-height: normal; }
 
   /* Body */
-  .typo-body-lg      { font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
-  .typo-body-lg-bold { font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
-  .typo-body         { font-size: var(--font-size-body);    font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-body); color: var(--semantic-text-primary); }
-  .typo-body-bold    { font-size: var(--font-size-body);    font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-body); color: var(--semantic-text-primary); }
-  .typo-body-sm      { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-regular);  line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
-  .typo-body-sm-bold { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-text-primary); }
+  .typo-body-lg      { font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-regular);  color: var(--semantic-text-primary); line-height: normal; }
+  .typo-body-lg-bold { font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-semibold); color: var(--semantic-text-primary); line-height: normal; }
+  .typo-body         { font-size: var(--font-size-body);    font-weight: var(--typo-weight-regular);  color: var(--semantic-text-primary); line-height: normal; }
+  .typo-body-bold    { font-size: var(--font-size-body);    font-weight: var(--typo-weight-semibold); color: var(--semantic-text-primary); line-height: normal; }
+  .typo-body-sm      { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-regular);  color: var(--semantic-text-primary); line-height: normal; }
+  .typo-body-sm-bold { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-semibold); color: var(--semantic-text-primary); line-height: normal; }
 
   /* UI / Buttons */
-  .typo-button-lg { font-size: var(--font-size-button-lg); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-button-label-primary); }
-  .typo-button    { font-size: var(--font-size-button);    font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-button-label-primary); }
-  .typo-button-sm { font-size: var(--font-size-button-sm); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-button-label-primary); }
-  .typo-button-secondary-lg { font-size: var(--font-size-button-lg); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-button-label-secondary); }
-  .typo-button-secondary    { font-size: var(--font-size-button);    font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-button-label-secondary); }
-  .typo-button-secondary-sm { font-size: var(--font-size-button-sm); font-weight: var(--typo-weight-semibold); line-height: var(--typo-lh-auto); color: var(--semantic-button-label-secondary); }
+  .typo-button-lg { font-size: var(--font-size-button-lg); font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-primary); line-height: normal; }
+  .typo-button    { font-size: var(--font-size-button);    font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-primary); line-height: normal; }
+  .typo-button-sm { font-size: var(--font-size-button-sm); font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-primary); line-height: normal; }
+  .typo-button-secondary-lg { font-size: var(--font-size-button-lg); font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-secondary); line-height: normal; }
+  .typo-button-secondary    { font-size: var(--font-size-button);    font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-secondary); line-height: normal; }
+  .typo-button-secondary-sm { font-size: var(--font-size-button-sm); font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-secondary); line-height: normal; }
 
   /* Text color overrides */
   .text-inactive { color: var(--semantic-text-inactive); }
@@ -271,6 +268,7 @@
   .py-2xl { padding-top: var(--spacing-2xl); padding-bottom: var(--spacing-2xl); }
   .py-3xl { padding-top: var(--spacing-3xl); padding-bottom: var(--spacing-3xl); }
 
+  .pt-2xs { padding-top: var(--spacing-2xs); }
   .pt-md { padding-top: var(--spacing-md); }
   .pt-xl { padding-top: var(--spacing-xl); }
   .pb-2xl { padding-bottom: var(--spacing-2xl); }
