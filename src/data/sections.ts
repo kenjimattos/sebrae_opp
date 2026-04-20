@@ -7,23 +7,30 @@ export const sectionContent = {
       'Uma plataforma de inteligência que converte <highlight>dados do território em insights</highlight> e <highlight>capacidade da gestão pública em ação</highlight> para transformar o ambiente de negócios local.',
     ctas: [
       {
-        id: 'mobilize',
-        label: 'Mobilize agendas',
-        description: 'Identifique e priorize causas estratégicas para o seu território.',
+        id: 'agendas',
+        label: 'Agenda prioritária',
+        description: 'Identifique e priorize causas estratégicas para o seu território, conectando e interpretando dados públicos, de políticas e do ecossistema de negócios.',
         sectionId: 'agendas',
       },
       {
-        id: 'analisar',
-        label: 'Analise o ambiente',
+        id: 'recursos',
+        label: 'Mapeamento de Recursos',
         description:
-          'Conecte e interprete dados públicos, de políticas e do ecossistema de negócios.',
-        sectionId: 'panorama',
+          'Mapeamento de oportunidades abertas para captação de recursos (emendas, editais e outras fontes) para aprimoramento de ambiente de negócios local.',
+        sectionId: 'recursos',
       },
       {
-        id: 'formule',
-        label: 'Formule soluções',
+        id: 'capacitacao',
+        label: 'Habilidades para uma Gestão Inovadora',
         description:
-          'Acesse ferramentas para te apoiar na formulação de projetos para transformação do ambiente de negócios local.',
+          'Curadoria de cursos e casos de sucesso, além de acesso à comunidade de prática, para aprendizagem significativa de uma gestão pública inovadora.',
+        sectionId: 'capacitacao',
+      },
+      {
+        id: 'formulador',
+        label: 'Formulador de iniciativas',
+        description:
+          'Acesse ferramentas para te apoiar na formulação de projetos de políticas públicas para transformação do ambiente de negócios local.',
         sectionId: 'formulador',
       },
     ],

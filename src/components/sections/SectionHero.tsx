@@ -1,29 +1,43 @@
 // Tailwind pure — no Figma equivalent yet
-// Hero: eyebrow + macro objetivo + 3 CTAs numeradas (Mobilize → Analise → Formule)
-// com scroll suave para as seções de destino
+// Hero: eyebrow + macro objetivo + 4 blocos 2×2 (Agenda / Recursos / Capacitação / Formulador)
+// Cada bloco é clicável e faz scroll suave para a seção correspondente.
 
 import SectionContainer from '@/components/ui/SectionContainer'
-import { ChartColumn, Briefcase, Users, type LucideIcon, iconSizes } from '@/components/icons'
+import {
+  ArrowRight,
+  Briefcase,
+  ChartColumn,
+  GraduationCap,
+  Landmark,
+  type LucideIcon,
+  iconSizes,
+} from '@/components/icons'
 import { sectionContent } from '@/data/sections'
-import TitleSubtitle from '../ui/TitleSubtitle'
 import Card from '../ui/Card'
 
+const HEADER_HEIGHT = 95
 
 const ctaIcons: Record<string, LucideIcon> = {
-  mobilize: Users,
-  analisar: ChartColumn,
-  formule: Briefcase,
+  agendas: ChartColumn,
+  recursos: Landmark,
+  capacitacao: GraduationCap,
+  formulador: Briefcase,
 }
 
-
+function scrollToSection(sectionId: string) {
+  const el = document.getElementById(sectionId)
+  if (!el) return
+  const top = el.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT
+  window.scrollTo({ top, behavior: 'smooth' })
+}
 
 export default function SectionHero() {
   return (
-    <SectionContainer className="items-center">
+    <SectionContainer className="items-center gap-lg">
       {/* Eyebrow */}
       <div className="flex items-center gap-xs">
         <span
-          className="typo-body-sm-bold uppercase tracking-[0.12em] text-accent"
+          className="typo-body-sm-bold uppercase text-accent"
           style={{ letterSpacing: '0.12em' }}
         >
           Plataforma OPP
@@ -33,14 +47,17 @@ export default function SectionHero() {
           style={{ backgroundColor: 'var(--semantic-accent)' }}
           aria-hidden="true"
         />
-        <span className="typo-body-sm text-inactive uppercase tracking-[0.12em]">
+        <span
+          className="typo-body-sm text-inactive uppercase"
+          style={{ letterSpacing: '0.12em' }}
+        >
           Inteligência Territorial
         </span>
       </div>
 
       {/* Macro objetivo */}
       <h1
-        className="typo-h1 text-center max-w-[960px]"
+        className="typo-h1 text-center"
         style={{ fontWeight: 'var(--typo-weight-regular)', lineHeight: 1.2 }}
         dangerouslySetInnerHTML={{
           __html: sectionContent.hero.title.replace(
@@ -50,38 +67,39 @@ export default function SectionHero() {
         }}
       />
 
-      {/* 3 CTAs numeradas */}
-      <div className="grid-3 w-full">
-        {sectionContent.hero.ctas.map((cta, index) => {
+      {/* 4 blocos em grid 2×2 */}
+      <div
+        className="grid w-full"
+        style={{
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: 'var(--spacing-sm)',
+        }}
+      >
+        {sectionContent.hero.ctas.map((cta) => {
           const Icon = ctaIcons[cta.id]
-          const step = String(index + 1).padStart(2, '0')
-          return (
-            <Card
-              className="flex flex-col gap-md py-lg card-hoverable"
-              aria-label={`Etapa ${step}: ${cta.label}`}
-            >
 
-              <div className="flex items-start justify-between">
+          return (
+            <button
+              key={cta.id}
+              onClick={() => scrollToSection(cta.sectionId)}
+              className="card-surface card-hoverable p-lg flex flex-col gap-lg text-left"
+              aria-label={`Ir para ${cta.label}`}
+            >
+              <div className="flex items-center gap-md">
                 <div
-                  className="flex-center justify-center radius-full transition-colors duration-200 bg-surface-secondary "
-                  style={{
-                    width: '56px',
-                    height: '56px',
-                  }}
+                  className="flex justify-center items-center radius-full bg-surface-secondary w-fit p-sm"
                 >
-                  <Icon
-                    size={iconSizes.lg}
-                  />
+                  <Icon size={iconSizes.lg} />
                 </div>
+
+                <h3 className="typo-h3">{cta.label}</h3>
               </div>
 
-
-              <TitleSubtitle
-                size="md"
-                title={cta.label}
-                subtitle={cta.description}
-              />
-            </Card>
+              <p className="typo-body">
+                {cta.description}
+              </p>
+            
+            </button>
           )
         })}
       </div>
