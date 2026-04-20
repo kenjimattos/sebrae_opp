@@ -20,7 +20,7 @@ export default {
         'md':   'var(--radius-md)',   // 24px
         'lg':   'var(--radius-lg)',   // 32px
         'xl':   'var(--radius-xl)',   // 48px
-        'full': 'var(--radius-full)', // 96px
+        // rounded-full mantém o default do Tailwind (9999px) para círculos perfeitos
       },
       backgroundColor: {
         'surface':           'var(--semantic-surface-primary)',

@@ -8,7 +8,7 @@ Refactoring do design system: integração dos tokens no Tailwind config, elimin
 
 ### Changed
 
-- **`tailwind.config.js`** — `theme.extend` populado com spacing, borderRadius, backgroundColor, textColor e fontWeight mapeados para as CSS variables do design system. Classes como `gap-md`, `p-sm`, `rounded-sm`, `bg-surface`, `text-inactive` agora são nativas do Tailwind.
+- **`tailwind.config.js`** — `theme.extend` populado com spacing, borderRadius, backgroundColor, textColor e fontWeight mapeados para as CSS variables do design system. Classes como `gap-md`, `p-sm`, `rounded-sm`, `bg-surface`, `text-inactive` agora são nativas do Tailwind. `rounded-full` preserva o default do Tailwind (`9999px`) para garantir círculos perfeitos em qualquer tamanho.
 - **`src/index.css`** — removidas ~80 classes utilitárias custom do `@layer components` (gap, padding, radius, background, text-color) que duplicavam o que o Tailwind agora gera nativamente. Mantidas apenas classes compostas (`.typo-*`, `.card-*`, `.flex-*`, `.grid-*`, `.status-*`, `.divider`, `.scrollbar-hide`, `.section-container`).
 - **Codebase (~30 .tsx)** — renomeado `radius-*` → `rounded-*` em todas as className strings para usar a convenção do Tailwind.
 - **`Card.tsx`** — `radiusClass` atualizado para usar `rounded-sm`/`rounded-md`. Lookup tables de padding e radius eliminados em favor de interpolação direta (`p-${padding}`, `rounded-${radius}`), reduzindo o componente de 107 para 75 linhas.
