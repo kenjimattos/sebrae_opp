@@ -498,17 +498,22 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
       class="flex-between gap-md"
     >
       <button
-        class="typo-body whitespace-nowrap transition-colors px-sm py-xs radius-full bg-accent text-[var(--semantic-button-label-primary)]"
+        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs radius-full bg-accent text-[var(--semantic-button-label-primary)]"
       >
         Agenda prioritária
       </button>
       <button
-        class="typo-body whitespace-nowrap transition-colors px-sm py-xs radius-full hover:text-accent"
+        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs radius-full hover:text-accent"
       >
         Mapeamento de recursos
       </button>
       <button
-        class="typo-body whitespace-nowrap transition-colors px-sm py-xs radius-full hover:text-accent"
+        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs radius-full hover:text-accent"
+      >
+        Capacitação
+      </button>
+      <button
+        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs radius-full hover:text-accent"
       >
         Formulador de iniciativas
       </button>

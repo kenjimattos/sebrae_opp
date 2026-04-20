@@ -100,7 +100,7 @@ export default function Header({ className = '' }: HeaderProps) {
               <button
                 key={sectionId}
                 onClick={() => onNavClick(sectionId)}
-                className={`typo-body whitespace-nowrap transition-colors px-sm py-xs radius-full ${
+                className={`typo-body-sm whitespace-nowrap transition-colors px-sm py-xs radius-full ${
                   isActive
                     ? 'bg-accent text-[var(--semantic-button-label-primary)]'
                     : 'hover:text-accent'
