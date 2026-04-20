@@ -35,42 +35,10 @@ const borderColorClass: Record<CardSurface, string> = {
   alert: 'border-[var(--semantic-alert)]',
 }
 
-const paddingAllClass: Record<PaddingAll, string> = {
-  sm: 'p-sm',
-  md: 'p-md',
-  lg: 'p-lg',
-  xl: 'p-xl',
-}
-
-const paddingXClass: Record<PaddingX, string> = {
-  '2xs': 'px-2xs',
-  xs: 'px-xs',
-  sm: 'px-sm',
-  md: 'px-md',
-  lg: 'px-lg',
-  xl: 'px-xl',
-  '2xl': 'px-2xl',
-}
-
-const paddingYClass: Record<PaddingY, string> = {
-  '2xs': 'py-2xs',
-  xs: 'py-xs',
-  sm: 'py-sm',
-  md: 'py-md',
-  lg: 'py-lg',
-  '2xl': 'py-2xl',
-  '3xl': 'py-3xl',
-}
-
-const radiusClass: Record<CardRadius, string> = {
-  sm: 'rounded-sm',
-  md: 'rounded-md',
-}
-
 function resolvePadding(padding: CardPadding): string {
   if (padding === 'none') return ''
-  if (typeof padding === 'string') return paddingAllClass[padding]
-  return `${paddingXClass[padding.x]} ${paddingYClass[padding.y]}`
+  if (typeof padding === 'string') return `p-${padding}`
+  return `px-${padding.x} py-${padding.y}`
 }
 
 export default function Card({
@@ -88,7 +56,7 @@ export default function Card({
   // Only emit an explicit radius class for status surfaces or when overriding to a non-default radius.
   const surfaceHasBakedRadius = surface === 'primary' || surface === 'secondary'
   const needsRadiusClass = !surfaceHasBakedRadius || radius !== 'sm'
-  const radiusToken = needsRadiusClass ? radiusClass[radius] : ''
+  const radiusToken = needsRadiusClass ? `rounded-${radius}` : ''
 
   const borderToken = bordered ? `border border-solid ${borderColorClass[surface]}` : ''
 
