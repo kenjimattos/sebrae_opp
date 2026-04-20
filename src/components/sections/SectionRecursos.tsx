@@ -80,7 +80,7 @@ export default function SectionRecursos() {
             subtitle={recursosContent.editais.description}
             className="flex-1"
           />
-          <PillButton label={recursosContent.buttons.verOportunidades} href="#" className="shrink-0" />
+          <PillButton label={recursosContent.buttons.verOportunidades} href="/oportunidades" className="shrink-0" />
         </Card>
       </div>
 

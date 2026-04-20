@@ -31,7 +31,7 @@ export default function SectionCasosSucesso() {
             subtitle="Espaço de troca e aprendizado para servidores públicos interessados em inovação, com eventos, conteúdos exclusivos e networking."
             className="flex-1"
           />
-          <PillButton label="Entrar na comunidade" href="#" className="shrink-0" />
+          <PillButton label="Entrar na comunidade" href="/comunidade" className="shrink-0" />
         </Card>
       </section>
     </SectionContainer>

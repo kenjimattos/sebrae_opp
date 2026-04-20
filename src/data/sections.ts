@@ -82,4 +82,16 @@ export const sectionContent = {
     description:
       'Use inteligência artificial para analisar indicadores, gerar relatórios e encontrar oportunidades de desenvolvimento para o seu município.',
   },
+  oportunidades: {
+    title:
+      'Encontre <highlight>editais e programas de financiamento</highlight> para o seu município',
+    description:
+      'Em breve, você encontrará aqui programas federais, estaduais e institucionais com recursos disponíveis para desenvolvimento econômico, inovação e fortalecimento de pequenos negócios.',
+  },
+  comunidade: {
+    title:
+      '<highlight>Comunidade de prática</highlight> em Inovação em Políticas Públicas',
+    description:
+      'Em breve, um espaço de troca e aprendizado para servidores públicos interessados em inovação, com eventos, conteúdos exclusivos e networking.',
+  },
 } as const

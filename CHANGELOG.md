@@ -4,8 +4,17 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Added
+
+- **`src/pages/Oportunidades.tsx`** — nova página placeholder `/oportunidades`, acessada pelo botão "Ver oportunidades" em `SectionRecursos`. Hero simples com título (com `<highlight>`) + descrição centralizados, sem cards nem eyebrow. Header + Footer padrão da plataforma.
+- **`src/pages/Comunidade.tsx`** — nova página placeholder `/comunidade`, acessada pelo botão "Entrar na comunidade" em `SectionCasosSucesso`. Mesma estrutura hero-only de Oportunidades.
+- **Rotas** `/oportunidades` e `/comunidade` em `App.tsx`.
+- **`src/data/sections.ts`** — novas entradas `oportunidades` e `comunidade` com título (com markup `<highlight>`) e descrição de cada placeholder.
+
 ### Changed
 
+- **`SectionRecursos`** — botão "Ver oportunidades" agora navega para `/oportunidades` (antes `href="#"`).
+- **`SectionCasosSucesso`** — botão "Entrar na comunidade" agora navega para `/comunidade` (antes `href="#"`).
 - **`SectionHero`** — CTAs passam de 3 para **4 blocos** em grid 2×2 (Agenda / Recursos / Capacitação / Formulador), alinhados à nova diretriz de dividir a plataforma nesses 4 pilares. Cards agora são **clicáveis** (`<button>` com `card-hoverable`) e fazem scroll suave para a seção correspondente com offset do header sticky (antes o `aria-label` indicava "etapa" mas não havia interação). Cada bloco ganha ícone distinto (`ChartColumn`/`Landmark`/`GraduationCap`/`Briefcase`), e padding interno aumentado para `lg` (40px) para dar respiro ao conteúdo.
 - **`SectionHero`** — CTAs passam de 3 para **4 blocos** em grid 2×2 (Agenda / Recursos / Capacitação / Formulador), alinhados à nova diretriz de dividir a plataforma nesses 4 pilares. Cards agora são **clicáveis** (`<button>` com `card-hoverable`) e fazem scroll suave para a seção correspondente com offset do header sticky (antes o `aria-label` indicava "etapa" mas não havia interação). Cada bloco ganha ícone distinto (`ChartColumn`/`Landmark`/`GraduationCap`/`Briefcase`), e padding interno aumentado para `lg` (40px) para dar respiro ao conteúdo.
 

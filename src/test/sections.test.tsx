@@ -64,7 +64,7 @@ describe('Section components — smoke tests', () => {
   })
 
   it('renders SectionRecursos', () => {
-    const { container } = render(<SectionRecursos />)
+    const { container } = render(<SectionRecursos />, { wrapper: TestWrapper })
     expect(container).toBeTruthy()
   })
 
@@ -74,7 +74,7 @@ describe('Section components — smoke tests', () => {
   })
 
   it('renders SectionCasosSucesso', () => {
-    const { container } = render(<SectionCasosSucesso />)
+    const { container } = render(<SectionCasosSucesso />, { wrapper: TestWrapper })
     expect(container).toBeTruthy()
   })
 
