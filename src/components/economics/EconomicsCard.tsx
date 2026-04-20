@@ -8,10 +8,10 @@ import {
   ChartColumn,
   Briefcase,
   Landmark,
-  iconSizes,
   type LucideIcon,
 } from '@/components/icons'
 import Card from '@/components/ui/Card'
+import IconButton from '@/components/ui/buttons/IconButton'
 
 interface EconomicsCardProps {
   label: string
@@ -40,9 +40,7 @@ export default function EconomicsCard({ label, valor, variacao, icone, className
     >
       <div className="flex items-center gap-sm w-full">
         {Icon && (
-          <div className="shrink-0 size-[32px] rounded-full bg-surface-secondary flex items-center justify-center">
-            <Icon size={iconSizes.sm} className="text-[var(--semantic-text-primary)]" />
-          </div>
+          <IconButton icon={Icon} size="sm" variant="tertiary" decorative />
         )}
         <span className="typo-body uppercase">
           {label}

@@ -231,12 +231,13 @@ exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
   <div
     class="flex items-center gap-sm w-full"
   >
-    <div
-      class="shrink-0 size-[32px] rounded-full bg-surface-secondary flex items-center justify-center"
+    <span
+      aria-hidden="true"
+      class="inline-flex items-center justify-center shrink-0 rounded-full bg-[var(--semantic-button-tertiary)] text-[color:var(--semantic-button-label-tertiary)] w-[32px] h-[32px] "
     >
       <svg
         aria-hidden="true"
-        class="lucide lucide-trending-up text-[var(--semantic-text-primary)]"
+        class="lucide lucide-trending-up"
         fill="none"
         height="16"
         stroke="currentColor"
@@ -254,7 +255,7 @@ exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
           d="m22 7-8.5 8.5-5-5L2 17"
         />
       </svg>
-    </div>
+    </span>
     <span
       class="typo-body uppercase"
     >

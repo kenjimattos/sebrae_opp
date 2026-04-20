@@ -3,13 +3,13 @@
 // Cada bloco é clicável e faz scroll suave para a seção correspondente.
 
 import SectionContainer from '@/components/ui/SectionContainer'
+import IconButton from '@/components/ui/buttons/IconButton'
 import {
   Briefcase,
   ChartColumn,
   GraduationCap,
   Landmark,
   type LucideIcon,
-  iconSizes,
 } from '@/components/icons'
 import { sectionContent } from '@/data/sections'
 
@@ -84,12 +84,7 @@ export default function SectionHero() {
               aria-label={`Ir para ${cta.label}`}
             >
               <div className="flex items-center gap-md">
-                <div
-                  className="flex justify-center items-center rounded-full bg-surface-secondary w-fit p-sm"
-                >
-                  <Icon size={iconSizes.lg} />
-                </div>
-
+                <IconButton icon={Icon} size="lg" variant="tertiary" decorative />
                 <h3 className="typo-h3">{cta.label}</h3>
               </div>
 
