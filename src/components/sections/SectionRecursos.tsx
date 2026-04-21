@@ -50,7 +50,7 @@ export default function SectionRecursos() {
               href={DATAPEDIA_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full rounded-xl overflow-hidden bg-[var(--primitives-gray-900)] relative group"
+              className="block w-full rounded-md overflow-hidden bg-[var(--primitives-gray-900)] relative group"
             >
               <img
                 src="/assets/datapedia-mapa.png"
