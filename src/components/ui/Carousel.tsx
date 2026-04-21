@@ -48,7 +48,7 @@ export default function Carousel({ children, scrollAmount, className = '' }: Car
         icon={ArrowLeft}
         onClick={() => scroll('left')}
         aria-label="Anterior"
-        variant="secondary"
+        variant="primary"
         size="lg"
         className="absolute top-1/2 -translate-y-1/2 left-[calc(-1*var(--spacing-3xl))] z-10"
       />
@@ -56,7 +56,7 @@ export default function Carousel({ children, scrollAmount, className = '' }: Car
         icon={ArrowRight}
         onClick={() => scroll('right')}
         aria-label="Próximo"
-        variant="secondary"
+        variant="primary"
         size="lg"
         className="absolute top-1/2 -translate-y-1/2 right-[calc(-1*var(--spacing-3xl))] z-10"
       />
