@@ -28,6 +28,7 @@ Refactoring do design system: integração dos tokens no Tailwind config, elimin
 - **Codebase (~30 .tsx)** — renomeado `radius-*` → `rounded-*` em todas as className strings para usar a convenção do Tailwind.
 - **`Card.tsx`** — API de padding simplificada: removido o split `{ x, y }`, agora aceita apenas `'none' | 'sm' | 'md' | 'lg' | 'xl'`. Componente reduzido de 107 para 68 linhas. `AgendaCard`, `AgendaStats` e `EconomicsAnalysis` migrados para padding uniforme + override via `className`.
 - **`Button.tsx`** e **`IconButton.tsx`** — `variantStyles` e classe base extraídos para `button-styles.ts` compartilhado, eliminando duplicação.
+- **`PillButton.tsx`** — shell agora usa `buttonVariantStyles` (tokens semânticos de botão) em vez de `bg-accent`/`bg-surface-secondary`. Circle inverte as cores do botão (label→bg, bg→icon). Eliminada duplicação `typoPrimary`/`typoSecondary`.
 
 ### Added
 

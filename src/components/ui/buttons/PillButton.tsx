@@ -2,9 +2,7 @@
 // Pill-shaped CTA com label + seta em círculo (decorativo).
 //
 // Renderiza <a> quando `href` é fornecido; senão renderiza <button type="button">.
-// Variants: primary (bg accent + círculo surface)
-//           secondary (bg surface-secondary + círculo surface)
-//           ghost (shell transparente + círculo surface-secondary)
+// Variants: primary, secondary, ghost — usam tokens semânticos de botão (buttonVariantStyles).
 // Sizes:    sm (24px) | md (40px) | lg (64px com shell preenchido + círculo 40px)
 // iconPosition: 'right' (default) | 'left' — inverte posição e direção da seta.
 //
@@ -14,6 +12,7 @@
 
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, iconSizes, type IconSize } from '@/components/icons'
+import { buttonVariantStyles } from './button-styles'
 
 interface PillButtonProps {
   label: string
@@ -26,18 +25,18 @@ interface PillButtonProps {
   className?: string
 }
 
-const variantStyles: Record<string, { shellBg: string; circleBg: string }> = {
-  primary:   { shellBg: 'bg-accent',            circleBg: 'bg-surface' },
-  secondary: { shellBg: 'bg-surface-secondary', circleBg: 'bg-surface' },
-  ghost:     { shellBg: '',                     circleBg: 'bg-surface-secondary' },
+// Circle inverts the button colors: label color becomes bg, button bg becomes icon color.
+const circleStyles: Record<string, string> = {
+  primary:   'bg-[var(--semantic-button-label-primary)] text-[color:var(--semantic-button-primary)]',
+  secondary: 'bg-[var(--semantic-button-label-secondary)] text-[color:var(--semantic-button-secondary)]',
+  ghost:     'bg-[var(--semantic-button-tertiary)] text-[color:var(--semantic-button-label-tertiary)]',
 }
 
 interface SizeStyle {
   shell: string
   paddingRight: string
   paddingLeft: string
-  typoPrimary: string
-  typoSecondary: string
+  typo: string
   circle: string
   iconSize: IconSize
 }
@@ -47,8 +46,7 @@ const sizeStyles: Record<string, SizeStyle> = {
     shell: 'h-[32px] gap-sm',
     paddingRight: 'pl-sm pr-2xs',
     paddingLeft: 'pl-2xs pr-sm',
-    typoPrimary: 'typo-button-sm',
-    typoSecondary: 'typo-button-secondary-sm',
+    typo: 'typo-button-sm',
     circle: 'w-[24px] h-[24px]',
     iconSize: 'xs',
   },
@@ -56,8 +54,7 @@ const sizeStyles: Record<string, SizeStyle> = {
     shell: 'h-[40px] gap-sm',
     paddingRight: 'pl-md pr-2xs',
     paddingLeft: 'pl-2xs pr-md',
-    typoPrimary: 'typo-button',
-    typoSecondary: 'typo-button-secondary',
+    typo: 'typo-button',
     circle: 'w-[32px] h-[32px]',
     iconSize: 'md',
   },
@@ -65,8 +62,7 @@ const sizeStyles: Record<string, SizeStyle> = {
     shell: 'py-xs gap-md',
     paddingRight: 'pl-md pr-xs',
     paddingLeft: 'pl-xs pr-md',
-    typoPrimary: 'typo-button-lg',
-    typoSecondary: 'typo-button-secondary',
+    typo: 'typo-button-lg',
     circle: 'w-[40px] h-[40px]',
     iconSize: 'lg',
   },
@@ -83,16 +79,14 @@ export default function PillButton({
   className = '',
 }: PillButtonProps) {
   const s = sizeStyles[size]
-  const v = variantStyles[variant]
-  const typo = variant === 'primary' ? s.typoPrimary : s.typoSecondary
   const padding = iconPosition === 'right' ? s.paddingRight : s.paddingLeft
   const Arrow = iconPosition === 'right' ? ArrowRight : ArrowLeft
 
-  const labelEl = <span className={`flex-1 ${typo}`}>{label}</span>
+  const labelEl = <span className={`flex-1 ${s.typo}`}>{label}</span>
   const circleEl = (
     <span
       aria-hidden
-      className={`flex items-center justify-center shrink-0 rounded-full ${s.circle} ${v.circleBg}`}
+      className={`flex items-center justify-center shrink-0 rounded-full ${s.circle} ${circleStyles[variant]}`}
     >
       <Arrow size={iconSizes[s.iconSize]} />
     </span>
@@ -111,7 +105,7 @@ export default function PillButton({
       </>
     )
 
-  const sharedClassName = `inline-flex items-center rounded-full no-underline transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${v.shellBg} ${s.shell} ${padding} ${className}`
+  const sharedClassName = `inline-flex items-center rounded-full no-underline transition-all duration-150 hover:opacity-90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${buttonVariantStyles[variant]} ${s.shell} ${padding} ${className}`
 
   if (href !== undefined) {
     const isInternal = href.startsWith('/') && !href.startsWith('//')
