@@ -504,17 +504,17 @@ exports[`Snapshot tests — CSS refactor safety > Header 1`] = `
         Agenda prioritária
       </button>
       <button
-        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs rounded-full hover:text-accent"
+        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs rounded-full hover:bg-[var(--primitives-blue-200)]"
       >
         Mapeamento de recursos
       </button>
       <button
-        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs rounded-full hover:text-accent"
+        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs rounded-full hover:bg-[var(--primitives-blue-200)]"
       >
         Capacitação
       </button>
       <button
-        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs rounded-full hover:text-accent"
+        class="typo-body-sm whitespace-nowrap transition-colors px-sm py-xs rounded-full hover:bg-[var(--primitives-blue-200)]"
       >
         Formulador de iniciativas
       </button>

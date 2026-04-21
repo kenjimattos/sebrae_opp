@@ -6,6 +6,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Changed
 
+- **Header — hover dos nav links vira pill.** Substituído `hover:text-accent` (que só mudava a cor da fonte) por `hover:bg-[var(--primitives-blue-200)]`: como cada link já tem `px-sm py-xs rounded-full`, o hover agora aparece como pill azul-claro — consistente com o estado ativo.
+
 - **Buttons — hover escurece o bg sem afetar filhos.** Substituído `hover:opacity-90` em `Button`, `IconButton` e `PillButton` por mudança de `background-color` por variante (`buttonHoverStyles` em `button-styles.ts`): primary → blue-800, secondary → blue-200, tertiary → lime-200, ghost → surface-secondary, success → green-800. No `PillButton`, mantém o círculo interno visualmente intacto (antes, a opacidade herdada descolorava o círculo).
 
 - **Carousel — setas laterais sobrepostas.** Os botões de navegação saíram da linha abaixo do scroll e passaram a ser `IconButton` absolutamente posicionados nas laterais do carrossel (`left/right: calc(-1 * var(--spacing-xl))`), dentro do gutter da `SectionContainer` (180px de `--spacing-margin`). Permite aumentar o respiro vertical sem empurrar os botões para longe.

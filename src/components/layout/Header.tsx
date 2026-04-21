@@ -103,7 +103,7 @@ export default function Header({ className = '' }: HeaderProps) {
                 className={`typo-body-sm whitespace-nowrap transition-colors px-sm py-xs rounded-full ${
                   isActive
                     ? 'bg-accent text-[var(--semantic-button-label-primary)]'
-                    : 'hover:text-accent'
+                    : 'hover:bg-[var(--primitives-blue-200)]'
                 }`}
               >
                 {label}
