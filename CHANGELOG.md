@@ -6,6 +6,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Changed
 
+- **Design System — tokens semânticos de hover.** Adicionados `--semantic-button-{primary|secondary|tertiary|success}-hover` e `--semantic-surface-hover` em `index.css` (light + dark mode). `buttonHoverStyles` em `button-styles.ts` e o nav pill do `Header` agora consomem esses tokens em vez de apontar direto para primitives — dark mode passa a ser controlado por override de token (1 lugar), e o hover tem fonte única de verdade entre botões e superfícies hoverable.
+
 - **Header — hover dos nav links vira pill.** Substituído `hover:text-accent` (que só mudava a cor da fonte) por `hover:bg-[var(--primitives-blue-200)]`: como cada link já tem `px-sm py-xs rounded-full`, o hover agora aparece como pill azul-claro — consistente com o estado ativo.
 
 - **Buttons — hover escurece o bg sem afetar filhos.** Substituído `hover:opacity-90` em `Button`, `IconButton` e `PillButton` por mudança de `background-color` por variante (`buttonHoverStyles` em `button-styles.ts`): primary → blue-800, secondary → blue-200, tertiary → lime-200, ghost → surface-secondary, success → green-800. No `PillButton`, mantém o círculo interno visualmente intacto (antes, a opacidade herdada descolorava o círculo).

@@ -118,6 +118,13 @@
   --semantic-button-tertiary: var(--primitives-lime-300);
   --semantic-button-label-tertiary: var(--primitives-black);
 
+  /* Button hovers (bg-only, não afeta filhos) */
+  --semantic-button-primary-hover: var(--primitives-blue-800);
+  --semantic-button-secondary-hover: var(--primitives-blue-200);
+  --semantic-button-tertiary-hover: var(--primitives-lime-200);
+  --semantic-button-success-hover: var(--primitives-green-800);
+  --semantic-surface-hover: var(--primitives-blue-200);
+
   /* Status */
   --semantic-success: var(--primitives-green-700);
   --semantic-success-surface: var(--primitives-green-100);
@@ -161,6 +168,12 @@
   --semantic-button-label-secondary: var(--primitives-white);
   --semantic-button-tertiary: var(--primitives-gray-600);
   --semantic-button-label-tertiary: var(--primitives-white);
+
+  --semantic-button-primary-hover: var(--primitives-gray-200);
+  --semantic-button-secondary-hover: var(--primitives-gray-800);
+  --semantic-button-tertiary-hover: var(--primitives-gray-500);
+  --semantic-button-success-hover: var(--primitives-green-200);
+  --semantic-surface-hover: var(--primitives-gray-800);
 
   --semantic-success: var(--primitives-green-200);
   --semantic-success-surface: var(--primitives-green-800);

@@ -14,12 +14,13 @@ export const buttonVariantStyles: Record<string, string> = {
 }
 
 // Hover escurece o bg sem afetar ícones/filhos (evita opacidade herdada).
+// Consome tokens semânticos `--semantic-button-*-hover` (definidos em index.css).
 export const buttonHoverStyles: Record<string, string> = {
-  primary:   'hover:bg-[var(--primitives-blue-800)]',
-  secondary: 'hover:bg-[var(--primitives-blue-200)]',
-  tertiary:  'hover:bg-[var(--primitives-lime-200)]',
-  ghost:     'hover:bg-[var(--semantic-surface-secondary)]',
-  success:   'hover:bg-[var(--primitives-green-800)]',
+  primary:   'hover:bg-[var(--semantic-button-primary-hover)]',
+  secondary: 'hover:bg-[var(--semantic-button-secondary-hover)]',
+  tertiary:  'hover:bg-[var(--semantic-button-tertiary-hover)]',
+  ghost:     'hover:bg-[var(--semantic-surface-hover)]',
+  success:   'hover:bg-[var(--semantic-button-success-hover)]',
 }
 
 export type ButtonVariant = keyof typeof buttonVariantStyles

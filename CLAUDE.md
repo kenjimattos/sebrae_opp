@@ -68,6 +68,7 @@ Colors:     --primitives-{gray|blue|green|yellow|red}-{100..900}
 Semantic:   --semantic-{background-primary|surface-primary|surface-secondary|text-primary|text-inactive|...}
 Accent:     --semantic-accent{|-hover|-surface}
 Status:     --semantic-{success|warning|alert}{|-surface}
+Hovers:     --semantic-button-{primary|secondary|tertiary|success}-hover, --semantic-surface-hover
 ```
 
 ### Tipografia composta (classes `.typo-*`)
