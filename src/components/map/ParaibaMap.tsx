@@ -15,6 +15,7 @@ import { getCSSVar, getResolvedStatusFill, getStatus } from '@/utils/mapHelpers'
 import ValueBadges from '@/components/map/ValueBadges'
 import HoverOverlay from '@/components/ui/HoverOverlay'
 import { useMunicipio } from '@/hooks/useMunicipio'
+import { trackEvent } from '@/utils/analytics'
 
 const MUNICIPIOS_COM_DADOS = new Map(municipios.map((m) => [m.id, m.nome]))
 
@@ -38,6 +39,7 @@ export default function ParaibaMap({ selectedId, indicador, className = '' }: Pa
 
   function activateMap() {
     if (active || !mapRef.current) return
+    trackEvent('mapa_ativado')
     setActive(true)
     mapRef.current.scrollWheelZoom.enable()
     mapRef.current.dragging.enable()
@@ -121,7 +123,7 @@ export default function ParaibaMap({ selectedId, indicador, className = '' }: Pa
         },
         click: () => {
           if (!isClickable || !nomePlataforma) return
-          setMunicipio(id, nomePlataforma)
+          setMunicipio(id, nomePlataforma, 'mapa')
         },
       })
     },

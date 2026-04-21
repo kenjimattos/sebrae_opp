@@ -7,9 +7,11 @@ export interface MunicipioState {
   dados: IndicadoresData | null
 }
 
+export type MunicipioChangeOrigin = 'seletor' | 'mapa'
+
 export interface MunicipioContextType {
   municipio: MunicipioState
-  setMunicipio: (id: string, nome: string) => void
+  setMunicipio: (id: string, nome: string, origem?: MunicipioChangeOrigin) => void
 }
 
 export const MunicipioContext = createContext<MunicipioContextType | null>(null)

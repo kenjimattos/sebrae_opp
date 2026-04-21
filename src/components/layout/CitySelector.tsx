@@ -31,7 +31,7 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
   function handleSelect(id: string) {
     const match = municipios.find((m) => m.id === id)
     if (!match) return
-    setMunicipio(match.id, match.nome)
+    setMunicipio(match.id, match.nome, 'seletor')
     setOpen(false)
     inputRef.current?.blur()
   }

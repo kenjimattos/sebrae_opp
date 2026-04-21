@@ -17,6 +17,7 @@ import { sectionContent } from '@/data/sections'
 import { panoramaLabels } from '@/data/labels'
 import type { IndicadorKey } from '@/data/mapa-indicadores'
 import { catalogo } from '@/data/catalogo'
+import { trackEvent } from '@/utils/analytics'
 
 const defaultIndicadorId = catalogo.agendas[0].indicadores[0].id
 
@@ -38,7 +39,10 @@ export default function SectionPanorama() {
           <Dropdown
             options={dropdownOptions}
             value={indicador}
-            onChange={(v) => setIndicador(v as IndicadorKey)}
+            onChange={(v) => {
+              trackEvent('indicador_mapa_alterado', { indicador: v })
+              setIndicador(v as IndicadorKey)
+            }}
           />
         </InsetBar>
         <section className="flex flex-col gap-sm">

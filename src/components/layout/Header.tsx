@@ -8,6 +8,7 @@ import { useActiveSection } from '@/hooks/useActiveSection'
 import { useFormulador } from '@/hooks/useFormulador'
 import { useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { trackEvent } from '@/utils/analytics'
 
 interface HeaderProps {
   className?: string
@@ -63,6 +64,7 @@ export default function Header({ className = '' }: HeaderProps) {
   }
 
   function onNavClick(sectionId: string) {
+    trackEvent('nav_header_clicado', { secao: sectionId })
     if (isFormulador) {
       if (!window.confirm(CONFIRM_SAIR_FORMULADOR)) return
       reset()

@@ -12,6 +12,7 @@ import {
   type LucideIcon,
 } from '@/components/icons'
 import { sectionContent } from '@/data/sections'
+import { trackEvent } from '@/utils/analytics'
 
 const HEADER_HEIGHT = 95
 
@@ -62,7 +63,10 @@ export default function SectionHero() {
           return (
             <button
               key={cta.id}
-              onClick={() => scrollToSection(cta.sectionId)}
+              onClick={() => {
+                trackEvent('hero_bloco_clicado', { bloco: cta.id })
+                scrollToSection(cta.sectionId)
+              }}
               className="card-surface card-hoverable p-lg flex flex-col gap-lg text-left"
               aria-label={`Ir para ${cta.label}`}
             >
