@@ -4,9 +4,13 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Changed
+
+- **Carousel — setas laterais sobrepostas.** Os botões de navegação saíram da linha abaixo do scroll e passaram a ser `IconButton` absolutamente posicionados nas laterais do carrossel (`left/right: calc(-1 * var(--spacing-xl))`), dentro do gutter da `SectionContainer` (180px de `--spacing-margin`). Permite aumentar o respiro vertical sem empurrar os botões para longe.
+
 ### Fixed
 
-- **Carousel — crop do hover à esquerda/direita.** Adicionado `scroll-padding-inline: var(--spacing-xs)` no scroll container do `Carousel`. Sem isso, `snap-mandatory` alinhava a borda do card com x=0 do conteúdo, fazendo o anel de 1px do `.card-hoverable` cair fora do viewport (clipado pelo `overflow-x-auto`). O `px-xs` já existia mas era ignorado pelo snap — agora o snap respeita o padding interno.
+- **Carousel — crop do hover à esquerda/direita e abaixo.** Adicionado `scroll-padding-inline: var(--spacing-xs)` no scroll container do `Carousel` (sem isso, `snap-mandatory` alinhava a borda do card com x=0, clipando o anel de 1px do hover). Aumentado o respiro vertical de `py-xs -my-xs` (4px) para `py-md -my-md` (24px), suficiente para acomodar a sombra inferior do `.card-hoverable:hover` (`box-shadow 0 10px 15px -3px` estende ~23px abaixo do card).
 
 ### Changed
 
