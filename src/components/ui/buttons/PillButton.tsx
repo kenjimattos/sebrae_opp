@@ -36,7 +36,10 @@ interface SizeStyle {
   shell: string
   paddingRight: string
   paddingLeft: string
-  typo: string
+  // .typo-button-* classes bake in a color, so we need primary/secondary
+  // variants to match the shell's text color.
+  typoPrimary: string
+  typoSecondary: string
   circle: string
   iconSize: IconSize
 }
@@ -46,7 +49,8 @@ const sizeStyles: Record<string, SizeStyle> = {
     shell: 'h-[32px] gap-sm',
     paddingRight: 'pl-sm pr-2xs',
     paddingLeft: 'pl-2xs pr-sm',
-    typo: 'typo-button-sm',
+    typoPrimary: 'typo-button-sm',
+    typoSecondary: 'typo-button-secondary-sm',
     circle: 'w-[24px] h-[24px]',
     iconSize: 'xs',
   },
@@ -54,7 +58,8 @@ const sizeStyles: Record<string, SizeStyle> = {
     shell: 'h-[40px] gap-sm',
     paddingRight: 'pl-md pr-2xs',
     paddingLeft: 'pl-2xs pr-md',
-    typo: 'typo-button',
+    typoPrimary: 'typo-button',
+    typoSecondary: 'typo-button-secondary',
     circle: 'w-[32px] h-[32px]',
     iconSize: 'md',
   },
@@ -62,7 +67,8 @@ const sizeStyles: Record<string, SizeStyle> = {
     shell: 'py-xs gap-md',
     paddingRight: 'pl-md pr-xs',
     paddingLeft: 'pl-xs pr-md',
-    typo: 'typo-button-lg',
+    typoPrimary: 'typo-button-lg',
+    typoSecondary: 'typo-button-secondary',
     circle: 'w-[40px] h-[40px]',
     iconSize: 'lg',
   },
@@ -82,7 +88,8 @@ export default function PillButton({
   const padding = iconPosition === 'right' ? s.paddingRight : s.paddingLeft
   const Arrow = iconPosition === 'right' ? ArrowRight : ArrowLeft
 
-  const labelEl = <span className={`flex-1 ${s.typo}`}>{label}</span>
+  const typo = variant === 'primary' ? s.typoPrimary : s.typoSecondary
+  const labelEl = <span className={`flex-1 ${typo}`}>{label}</span>
   const circleEl = (
     <span
       aria-hidden
