@@ -73,7 +73,7 @@ export const sectionContent = {
       'Com base nos riscos estratégicos e pontos de atenção identificados, comece a escrever seu projeto para fortalecer o ambiente de negócios no seu município.',
   },
   trilhas: {
-    title: 'Capacitações para estruturar projetos e acessar recursos',
+    title: 'Capacitação para gestores públicos municipais',
     description:
       'Cursos organizados por eixo de atuação para apoiar gestores públicos na formulação, execução e financiamento de políticas públicas.',
   },
