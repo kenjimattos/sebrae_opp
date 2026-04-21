@@ -52,49 +52,57 @@
   --radius-full: 96px;
 
   /* ============ COLORS — PRIMITIVES ============ */
-  --primitives-white: #ffffff;
-  --primitives-black: #000000;
+  --primitives-white: theme('colors.slate.50');
+  --primitives-black: theme('colors.slate.900');
 
-  --primitives-gray-100: #f3f3f3;
-  --primitives-gray-200: #e5e5e5;
-  --primitives-gray-300: #d8d8d8;
-  --primitives-gray-400: #cccccc;
-  --primitives-gray-500: #a7a7a7;
-  --primitives-gray-600: #656565;
-  --primitives-gray-700: #4d4d4d;
-  --primitives-gray-800: #333333;
-  --primitives-gray-900: #1a1a1a;
+  --primitives-gray-100: theme('colors.slate.100');
+  --primitives-gray-200: theme('colors.slate.200');
+  --primitives-gray-300: theme('colors.slate.300');
+  --primitives-gray-400: theme('colors.slate.400');
+  --primitives-gray-500: theme('colors.slate.500');
+  --primitives-gray-600: theme('colors.slate.600');
+  --primitives-gray-700: theme('colors.slate.700');
+  --primitives-gray-800: theme('colors.slate.800');
+  --primitives-gray-900: theme('colors.slate.900');
 
-  --primitives-blue-100: #d3e1fe;
-  --primitives-blue-200: #7ea5f8;
-  --primitives-blue-500: #2563eb;
-  --primitives-blue-800: #0037b3;
-  --primitives-blue-900: #002987;
+  --primitives-blue-100: theme('colors.blue.100');
+  --primitives-blue-200: theme('colors.blue.200');
+  --primitives-blue-500: theme('colors.blue.600');
+  --primitives-blue-800: theme('colors.blue.800');
+  --primitives-blue-900: theme('colors.blue.900');
 
-  --primitives-green-100: #ddf6da;
-  --primitives-green-200: #a4e79b;
-  --primitives-green-500: #43c132;
-  --primitives-green-800: #318B25;
-  --primitives-green-900: #1e5617;
+  --primitives-green-100: theme('colors.green.100');
+  --primitives-green-200: theme('colors.green.200');
+  --primitives-green-500: theme('colors.green.500');
+  --primitives-green-800: theme('colors.green.800');
+  --primitives-green-900: theme('colors.green.900');
 
-  --primitives-yellow-100: #fff5d5;
-  --primitives-yellow-200: #ffde81;
-  --primitives-yellow-500: #efb008;
-  --primitives-yellow-800: #976400;
-  --primitives-yellow-900: #724b00;
+  --primitives-yellow-100: theme('colors.yellow.100');
+  --primitives-yellow-200: theme('colors.yellow.200');
+  --primitives-yellow-500: theme('colors.yellow.500');
+  --primitives-yellow-800: theme('colors.yellow.800');
+  --primitives-yellow-900: theme('colors.yellow.900');
 
-  --primitives-red-100: #ffebeb;
-  --primitives-red-200: #fc9595;
-  --primitives-red-500: #d83232;
-  --primitives-red-800: #b01212;
-  --primitives-red-900: #8c0000;
+  --primitives-red-100: theme('colors.red.100');
+  --primitives-red-200: theme('colors.red.200');
+  --primitives-red-500: theme('colors.red.500');
+  --primitives-red-800: theme('colors.red.800');
+  --primitives-red-900: theme('colors.red.900');
+
+  --primitives-lime-100: theme('colors.lime.100');
+  --primitives-lime-200: theme('colors.lime.200');
+  --primitives-lime-300: theme('colors.lime.300');
+  --primitives-lime-800: theme('colors.lime.800');
+  --primitives-lime-900: theme('colors.lime.900');
 
   /* ============ COLORS — SEMANTIC (LIGHT MODE) ============ */
-  --semantic-main: var(--primitives-black);
+  --semantic-main: var(--primitives-blue-500);
+  --semantic-secondary: var(--primitives-gray-200);
+  --semantic-tertiary: var(--primitives-lime-300);
 
   --semantic-background-primary: var(--primitives-gray-100);
   --semantic-surface-primary: var(--primitives-white);
-  --semantic-surface-secondary: var(--primitives-gray-200);
+  --semantic-surface-secondary: var(--primitives-blue-200);
   --semantic-surface-tertiary: var(--primitives-gray-500);
 
   --semantic-text-primary: var(--primitives-black);
@@ -105,9 +113,9 @@
   /* Buttons */
   --semantic-button-primary: var(--primitives-blue-500);
   --semantic-button-label-primary: var(--primitives-white);
-  --semantic-button-secondary: var(--primitives-white);
+  --semantic-button-secondary: var(--primitives-blue-100);
   --semantic-button-label-secondary: var(--primitives-black);
-  --semantic-button-tertiary: var(--primitives-gray-200);
+  --semantic-button-tertiary: var(--primitives-lime-300);
   --semantic-button-label-tertiary: var(--primitives-black);
 
   /* Status */
