@@ -13,6 +13,7 @@ import municipios from '@/data/municipios.json'
 import type { IndicadorKey } from '@/data/mapa-indicadores'
 import { getCSSVar, getResolvedStatusFill, getStatus } from '@/utils/mapHelpers'
 import ValueBadges from '@/components/map/ValueBadges'
+import HoverOverlay from '@/components/ui/HoverOverlay'
 import { useMunicipio } from '@/hooks/useMunicipio'
 
 const MUNICIPIOS_COM_DADOS = new Map(municipios.map((m) => [m.id, m.nome]))
@@ -165,13 +166,8 @@ export default function ParaibaMap({ selectedId, indicador, className = '' }: Pa
 
       {/* Overlay — click to interact */}
       {!active && (
-        <div
-          onClick={activateMap}
-          className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center rounded-sm cursor-pointer"
-        >
-          <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-surface typo-body-bold px-md py-sm rounded-full shadow-lg">
-            Clique para interagir com o mapa
-          </span>
+        <div onClick={activateMap} className="absolute inset-0 cursor-pointer">
+          <HoverOverlay label="Clique para interagir com o mapa" radius="sm" />
         </div>
       )}
     </div>

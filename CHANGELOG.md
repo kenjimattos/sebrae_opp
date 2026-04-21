@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Added
+
+- **`ui/HoverOverlay`** — primitivo para o padrão "escurece pai no hover + revela pill com hint" (antes duplicado em `ParaibaMap.tsx` e `SectionRecursos.tsx`). API mínima: `label` + `radius` (`sm|md|lg|xl`, default `md`). Requer que o elemento pai tenha `relative group`; a pill é um `<span>` decorativo, então o clique fica no pai (`<a>`, `<button>` ou `<div onClick>`) sem conflito de hit-target. Refatorados ambos os usages: `ParaibaMap` passa `radius="sm"`, `SectionRecursos` passa `radius="xl"`.
+
 ### Changed
 
 - **Design System — tokens semânticos de hover.** Adicionados `--semantic-button-{primary|secondary|tertiary|success}-hover` e `--semantic-surface-hover` em `index.css` (light + dark mode). `buttonHoverStyles` em `button-styles.ts` e o nav pill do `Header` agora consomem esses tokens em vez de apontar direto para primitives — dark mode passa a ser controlado por override de token (1 lugar), e o hover tem fonte única de verdade entre botões e superfícies hoverable.

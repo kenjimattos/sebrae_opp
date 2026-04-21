@@ -7,6 +7,7 @@ import SectionHeader from '@/components/ui/SectionHeader'
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import ResourcesCard from '@/components/resources/ResourcesCard'
 import PillButton from '@/components/ui/buttons/PillButton'
+import HoverOverlay from '@/components/ui/HoverOverlay'
 import { sectionContent } from '@/data/sections'
 import { DATAPEDIA_URL, resourceCards, recursosContent } from '@/data/recursos'
 
@@ -58,12 +59,7 @@ export default function SectionRecursos() {
                 className="w-full h-auto object-cover rounded-xl"
               />
 
-              {/* Overlay no hover */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center rounded-xl">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-surface typo-body-bold px-md py-sm rounded-full shadow-lg">
-                  {recursosContent.distribuicao.overlayLabel}
-                </span>
-              </div>
+              <HoverOverlay label={recursosContent.distribuicao.overlayLabel} radius="xl" />
             </a>
           </div>
 

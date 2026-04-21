@@ -265,6 +265,7 @@ src/
 | `ui/DropdownMenu.tsx` | ✅ | Lista UL com auto-sizing (`max-content` + `min-w-full`) |
 | `ui/useDropdownState.ts` | ✅ | Hook com open/setOpen/ref + click-outside |
 | `ui/ProgressBar.tsx` | ✅ | Barra 0–100 com `role=progressbar` (usada em FormuladorProgress) |
+| `ui/HoverOverlay.tsx` | ✅ | Overlay decorativo: escurece pai no hover + pill com hint. Pai precisa de `relative group` |
 | `Tabs.tsx` | ⬜ | Se necessário para alternar visualizações |
 | `ScrollRow.tsx` | ⬜ | Scroll horizontal com snap |
 | `Skeleton.tsx` | ⬜ | Placeholder de loading (opcional) |
