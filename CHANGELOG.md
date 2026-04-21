@@ -6,6 +6,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Changed
 
+- **PillButton — hover escurece só o shell.** Substituído `hover:opacity-90` (que aplicava opacidade no elemento inteiro e descolorava o círculo) por mudança de `background-color` por variante (`primary` → `--primitives-blue-800`, `secondary` → `--primitives-blue-200`, `ghost` → `--semantic-surface-secondary`). O círculo tem `bg` próprio, então permanece inalterado no hover.
+
 - **Carousel — setas laterais sobrepostas.** Os botões de navegação saíram da linha abaixo do scroll e passaram a ser `IconButton` absolutamente posicionados nas laterais do carrossel (`left/right: calc(-1 * var(--spacing-xl))`), dentro do gutter da `SectionContainer` (180px de `--spacing-margin`). Permite aumentar o respiro vertical sem empurrar os botões para longe.
 
 ### Fixed
