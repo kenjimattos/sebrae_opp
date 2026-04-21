@@ -35,6 +35,14 @@ export default function StepJustificativa() {
         value={data.impacto}
         onChange={(v) => update({ impacto: v })}
       />
+      <TextInput
+        title="Política pública associada"
+        hint="Qual política pública nova ou existente esse projeto está associado?"
+        multiline
+        rows={4}
+        value={data.politica}
+        onChange={(v) => update({ politica: v })}
+      />
     </div>
   )
 }

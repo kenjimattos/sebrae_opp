@@ -14,6 +14,7 @@ export interface JustificativaData {
   problema: string
   evidencias: string
   impacto: string
+  politica: string
 }
 
 export interface ObjetivosData {
@@ -79,7 +80,7 @@ export interface FormuladorState {
 
 export const EMPTY_FORMULADOR_STATE: FormuladorState = {
   identificacao: { titulo: '', responsavel: '', orgao: '', duracao: '' },
-  justificativa: { problema: '', evidencias: '', impacto: '' },
+  justificativa: { problema: '', evidencias: '', impacto: '', politica: '' },
   objetivos: { geral: '', especificos: [''] },
   publicoAlvo: { principal: '', secundario: '', estimativa: '' },
   planoAcao: { atividades: '', metodologia: '' },
