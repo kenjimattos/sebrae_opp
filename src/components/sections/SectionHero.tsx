@@ -39,7 +39,7 @@ export default function SectionHero() {
         </span>
         <span className="h-px w-12 bg-accent" aria-hidden="true" />
         <span className="typo-body-sm text-inactive uppercase tracking-[0.12em]">
-          Inteligência Territorial
+          Inteligencia em políticas públicas
         </span>
       </div>
 
