@@ -50,7 +50,7 @@ export default function EconomicsCard({ label, valor, variacao, icone, className
         <span className="typo-display-sm max-w-[130px]">
           {valor}
         </span>
-        <span className="typo-body-sm-bold">
+        <span className="typo-body-sm-bold text-right">
           {variacao}
         </span>
       </div>
