@@ -1,12 +1,8 @@
 // Tailwind pure — no Figma equivalent
 // Unified card primitive: surface variants (primary/secondary/status) + padding + radius + optional border
-// Substitui o antigo SectionCard e centraliza a composição card-surface/status-*-bg + padding/radius/border
 
 type CardSurface = 'primary' | 'secondary' | 'success' | 'warning' | 'alert'
-type PaddingAll = 'sm' | 'md' | 'lg' | 'xl'
-type PaddingX = '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
-type PaddingY = '2xs' | 'xs' | 'sm' | 'md' | 'lg' | '2xl' | '3xl'
-type CardPadding = 'none' | PaddingAll | { x: PaddingX; y: PaddingY }
+type CardPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl'
 type CardRadius = 'sm' | 'md'
 
 interface CardProps {
@@ -35,10 +31,13 @@ const borderColorClass: Record<CardSurface, string> = {
   alert: 'border-[var(--semantic-alert)]',
 }
 
-function resolvePadding(padding: CardPadding): string {
-  if (padding === 'none') return ''
-  if (typeof padding === 'string') return `p-${padding}`
-  return `px-${padding.x} py-${padding.y}`
+// Literal strings so Tailwind JIT can detect them at build time.
+const paddingClass: Record<CardPadding, string> = {
+  none: '', sm: 'p-sm', md: 'p-md', lg: 'p-lg', xl: 'p-xl',
+}
+
+const radiusClass: Record<CardRadius, string> = {
+  sm: 'rounded-sm', md: 'rounded-md',
 }
 
 export default function Card({
@@ -56,15 +55,12 @@ export default function Card({
   // Only emit an explicit radius class for status surfaces or when overriding to a non-default radius.
   const surfaceHasBakedRadius = surface === 'primary' || surface === 'secondary'
   const needsRadiusClass = !surfaceHasBakedRadius || radius !== 'sm'
-  const radiusToken = needsRadiusClass ? `rounded-${radius}` : ''
-
-  const borderToken = bordered ? `border border-solid ${borderColorClass[surface]}` : ''
 
   const classes = [
     surfaceClass[surface],
-    radiusToken,
-    resolvePadding(padding),
-    borderToken,
+    needsRadiusClass ? radiusClass[radius] : '',
+    paddingClass[padding],
+    bordered ? `border border-solid ${borderColorClass[surface]}` : '',
     className,
   ]
     .filter(Boolean)

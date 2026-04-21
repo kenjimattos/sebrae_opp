@@ -15,7 +15,7 @@ interface AgendaStatsProps {
 export default function AgendaStats({ total, counts, className = '' }: AgendaStatsProps) {
   return (
     <Card
-      padding={{ x: 'lg', y: 'md' }}
+      padding="md"
       className={`flex-between gap-3xl w-full ${className}`}
     >
       <div className="flex-center gap-sm">

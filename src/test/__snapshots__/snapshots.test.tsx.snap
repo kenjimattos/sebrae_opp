@@ -140,7 +140,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
 <div
-  class="card-surface px-lg py-md flex-between gap-3xl w-full "
+  class="card-surface p-md flex-between gap-3xl w-full "
 >
   <div
     class="flex-center gap-sm"

@@ -19,7 +19,7 @@ export default function AgendaCard({ title, indicadores, className = '' }: Agend
 
   return (
     <Card
-      padding={{ x: 'md', y: 'lg' }}
+      padding="md"
       className={`flex flex-col gap-lg card-hoverable ${className}`}
     >
       <div className="flex items-start justify-between gap-sm">

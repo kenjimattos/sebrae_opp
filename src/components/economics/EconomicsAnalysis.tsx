@@ -13,7 +13,7 @@ export default function EconomicsAnalysis({ analise = defaultAnalise, className 
   return (
     <Card
       as="section"
-      padding={{ x: 'xl', y: 'md' }}
+      padding="lg"
       className={`flex flex-col gap-xs w-full card-hoverable ${className}`}
     >
       <h4 className="typo-body-bold">
