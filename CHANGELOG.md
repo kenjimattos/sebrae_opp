@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Carousel — crop do hover à esquerda/direita.** Adicionado `scroll-padding-inline: var(--spacing-xs)` no scroll container do `Carousel`. Sem isso, `snap-mandatory` alinhava a borda do card com x=0 do conteúdo, fazendo o anel de 1px do `.card-hoverable` cair fora do viewport (clipado pelo `overflow-x-auto`). O `px-xs` já existia mas era ignorado pelo snap — agora o snap respeita o padding interno.
+
 ### Changed
 
 - **Casos de Sucesso — conteúdo real do Geocracia.** Os 5 cards fictícios (Belo Horizonte, Maringá, Sobral, Joinville, Vitória da Conquista) foram substituídos por 4 casos reais publicados em geocracia.com: Projeto Ponte Digital (PA), TerraInk (BRASIL), Atlas do Hidrogênio Verde (RN) e Crédito Rural Geoespacial (BRASIL). Nova prop `url` em `CasoSucesso` — o CTA "Ver estudo de caso" agora encaminha para o artigo original (abre em nova aba automaticamente via PillButton). Imagens og:image baixadas em `public/images/cases/`.

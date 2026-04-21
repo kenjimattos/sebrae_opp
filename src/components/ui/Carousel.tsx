@@ -25,10 +25,13 @@ export default function Carousel({ children, scrollAmount, className = '' }: Car
   return (
     <div className={`flex flex-col items-center gap-md ${className}`}>
       {/* py-xs + -my-xs: respiro interno para o lift + anel do card-hoverable
-          sem alterar o espaçamento externo (overflow-x força overflow-y a clipar) */}
+          sem alterar o espaçamento externo (overflow-x força overflow-y a clipar).
+          scroll-padding-inline evita que o snap cole o card na borda, o que
+          clipava o anel de 1px do hover à esquerda/direita. */}
       <div
         ref={scrollRef}
         className="flex gap-sm overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide py-xs px-xs -my-[var(--spacing-xs)]"
+        style={{ scrollPaddingInline: 'var(--spacing-xs)' }}
       >
         {children}
       </div>
