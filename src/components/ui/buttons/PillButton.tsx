@@ -12,7 +12,7 @@
 
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, iconSizes, type IconSize } from '@/components/icons'
-import { buttonVariantStyles } from './button-styles'
+import { buttonVariantStyles, buttonHoverStyles } from './button-styles'
 
 interface PillButtonProps {
   label: string
@@ -32,12 +32,6 @@ const circleStyles: Record<string, string> = {
   ghost:     'bg-[var(--semantic-button-tertiary)] text-[color:var(--semantic-button-label-tertiary)]',
 }
 
-// Hover escurece apenas o shell (bg) — o círculo tem bg próprio, então permanece inalterado.
-const hoverStyles: Record<string, string> = {
-  primary:   'hover:bg-[var(--primitives-blue-800)]',
-  secondary: 'hover:bg-[var(--primitives-blue-200)]',
-  ghost:     'hover:bg-[var(--semantic-surface-secondary)]',
-}
 
 interface SizeStyle {
   shell: string
@@ -119,7 +113,7 @@ export default function PillButton({
       </>
     )
 
-  const sharedClassName = `inline-flex items-center rounded-full no-underline transition-all duration-150 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${buttonVariantStyles[variant]} ${hoverStyles[variant]} ${s.shell} ${padding} ${className}`
+  const sharedClassName = `inline-flex items-center rounded-full no-underline transition-all duration-150 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${buttonVariantStyles[variant]} ${buttonHoverStyles[variant]} ${s.shell} ${padding} ${className}`
 
   if (href !== undefined) {
     const isInternal = href.startsWith('/') && !href.startsWith('//')

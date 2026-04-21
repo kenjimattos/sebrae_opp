@@ -11,7 +11,7 @@
 // Decorative mode: renderiza <span aria-hidden="true">, sem interatividade.
 
 import { iconSizes, type IconSize, type LucideIcon } from '@/components/icons'
-import { buttonVariantStyles, buttonBaseClass } from './button-styles'
+import { buttonVariantStyles, buttonHoverStyles, buttonBaseClass } from './button-styles'
 
 interface IconButtonProps {
   icon: LucideIcon
@@ -61,7 +61,7 @@ export default function IconButton({
       aria-label={ariaLabel}
       onClick={onClick}
       disabled={disabled}
-      className={`${buttonBaseClass} shrink-0 ${buttonVariantStyles[variant]} ${s.dimensions} ${className}`}
+      className={`${buttonBaseClass} shrink-0 ${buttonVariantStyles[variant]} ${buttonHoverStyles[variant]} ${s.dimensions} ${className}`}
     >
       {iconEl}
     </button>

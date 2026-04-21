@@ -6,7 +6,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Changed
 
-- **PillButton — hover escurece só o shell.** Substituído `hover:opacity-90` (que aplicava opacidade no elemento inteiro e descolorava o círculo) por mudança de `background-color` por variante (`primary` → `--primitives-blue-800`, `secondary` → `--primitives-blue-200`, `ghost` → `--semantic-surface-secondary`). O círculo tem `bg` próprio, então permanece inalterado no hover.
+- **Buttons — hover escurece o bg sem afetar filhos.** Substituído `hover:opacity-90` em `Button`, `IconButton` e `PillButton` por mudança de `background-color` por variante (`buttonHoverStyles` em `button-styles.ts`): primary → blue-800, secondary → blue-200, tertiary → lime-200, ghost → surface-secondary, success → green-800. No `PillButton`, mantém o círculo interno visualmente intacto (antes, a opacidade herdada descolorava o círculo).
 
 - **Carousel — setas laterais sobrepostas.** Os botões de navegação saíram da linha abaixo do scroll e passaram a ser `IconButton` absolutamente posicionados nas laterais do carrossel (`left/right: calc(-1 * var(--spacing-xl))`), dentro do gutter da `SectionContainer` (180px de `--spacing-margin`). Permite aumentar o respiro vertical sem empurrar os botões para longe.
 

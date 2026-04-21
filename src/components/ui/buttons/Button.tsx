@@ -5,7 +5,7 @@
 // Icon is optional; when provided, it sits left or right of the label (default 'right').
 
 import { iconSizes, type IconSize, type LucideIcon } from '@/components/icons'
-import { buttonVariantStyles, buttonBaseClass } from './button-styles'
+import { buttonVariantStyles, buttonHoverStyles, buttonBaseClass } from './button-styles'
 
 interface ButtonProps {
   label: string
@@ -41,7 +41,7 @@ export default function Button({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className={`${buttonBaseClass} ${buttonVariantStyles[variant]} ${s.container} ${s.typo} ${className}`}
+      className={`${buttonBaseClass} ${buttonVariantStyles[variant]} ${buttonHoverStyles[variant]} ${s.container} ${s.typo} ${className}`}
     >
       {Icon && iconPosition === 'left' && iconEl}
       {label}
