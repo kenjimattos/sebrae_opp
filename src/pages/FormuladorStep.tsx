@@ -1,6 +1,7 @@
 // Rota /formulador/:stepSlug — despacha para o form da etapa correta.
 // Layout interno: ProjectSteps (esquerda) + FormCard (centro).
 
+import { useEffect, useRef } from 'react'
 import { useParams, useNavigate, Navigate } from 'react-router-dom'
 import ProjectSteps from '@/components/formulador/ProjectSteps'
 import FormCard from '@/components/formulador/FormCard'
@@ -8,14 +9,27 @@ import { etapasFormulador, findEtapaIndex, findEtapaBySlug } from '@/data/formul
 import { useFormulador } from '@/hooks/useFormulador'
 import { StepForm } from '@/components/formulador/steps'
 import { isEtapaCompleta } from '@/utils/formuladorCompleteness'
+import { trackEvent } from '@/utils/analytics'
 
 export default function FormuladorStep() {
   const { stepSlug = '' } = useParams()
   const navigate = useNavigate()
   const { state, markVisited } = useFormulador()
+  const stepStartRef = useRef<number>(Date.now())
 
   const etapa = findEtapaBySlug(stepSlug)
   const index = findEtapaIndex(stepSlug)
+
+  // Dispara `formulador_step_visitado` a cada step carregado e reseta o
+  // cronômetro para medir tempo gasto até o próximo avanço.
+  useEffect(() => {
+    if (!etapa) return
+    stepStartRef.current = Date.now()
+    trackEvent('formulador_step_visitado', {
+      step: stepSlug,
+      numero: index + 1,
+    })
+  }, [stepSlug, etapa, index])
 
   if (!etapa) {
     return <Navigate to="/formulador/identificacao" replace />
@@ -34,6 +48,11 @@ export default function FormuladorStep() {
 
   function onNext() {
     markVisited(stepSlug)
+    trackEvent('formulador_step_concluido', {
+      step: stepSlug,
+      numero: index + 1,
+      tempo_ms: Date.now() - stepStartRef.current,
+    })
     if (isLast) {
       navigate('/formulador/conclusao')
     } else {

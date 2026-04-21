@@ -3,6 +3,7 @@
 // + coluna central com 3 botões de ação e resumo das 10 etapas.
 // Sem AIAssistant na lateral direita.
 
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/buttons/Button'
@@ -13,6 +14,7 @@ import { useFormulador } from '@/hooks/useFormulador'
 import { useMunicipio } from '@/hooks/useMunicipio'
 import type { FormuladorState } from '@/types/formulador'
 import { isEtapaCompleta } from '@/utils/formuladorCompleteness'
+import { trackEvent } from '@/utils/analytics'
 
 function joinNonEmpty(parts: string[], sep = '\n'): string {
   return parts.filter((p) => p && p.trim().length > 0).join(sep)
@@ -179,6 +181,13 @@ export default function FormuladorConclusao() {
     .map((e) => e.slug)
 
   const tituloProjeto = state.identificacao.titulo.trim()
+
+  useEffect(() => {
+    trackEvent('formulador_concluido', {
+      steps_completos: completedSlugs.length,
+      total_steps: etapasFormulador.length,
+    })
+  }, [completedSlugs.length])
 
   return (
     <div className="flex items-start gap-sm w-full">

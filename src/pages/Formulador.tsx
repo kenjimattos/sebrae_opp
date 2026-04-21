@@ -1,6 +1,7 @@
 // Página do Formulador — layout 3 colunas (sidebar esquerda / form central / sidebar direita).
 // Header global + hero (título + descrição) + FormuladorProgress + grid + Footer.
 
+import { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -11,6 +12,7 @@ import { etapasFormulador } from '@/data/formulador-etapas'
 import { useLocation } from 'react-router-dom'
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import { countEtapasCompletas } from '@/utils/formuladorCompleteness'
+import { trackEvent } from '@/utils/analytics'
 
 function currentIndexFromPath(pathname: string): number {
   const parts = pathname.split('/').filter(Boolean)
@@ -29,6 +31,29 @@ export default function Formulador() {
     100,
     (countEtapasCompletas(state) / etapasFormulador.length) * 100,
   )
+
+  // Evento único por sessão de Formulador: dispara no primeiro mount e não
+  // é re-emitido se o usuário navegar entre steps (Outlet muda sem remount
+  // do parent).
+  useEffect(() => {
+    trackEvent('formulador_iniciado')
+  }, [])
+
+  // Captura abandono por fechar aba / navegar pra fora do domínio. Saídas via
+  // header/logo já são rastreadas no próprio Header.
+  useEffect(() => {
+    function onBeforeUnload() {
+      if (!window.location.pathname.startsWith('/formulador')) return
+      if (window.location.pathname.includes('/conclusao')) return
+      const slug = window.location.pathname.split('/')[2] ?? ''
+      trackEvent('formulador_abandonado', {
+        ultimo_step: slug,
+        via: 'unload',
+      })
+    }
+    window.addEventListener('beforeunload', onBeforeUnload)
+    return () => window.removeEventListener('beforeunload', onBeforeUnload)
+  }, [])
 
   return (
     <main className="min-h-screen bg-primary">

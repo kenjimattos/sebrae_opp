@@ -47,9 +47,16 @@ export default function Header({ className = '' }: HeaderProps) {
     window.scrollTo({ top, behavior: 'smooth' })
   }
 
+  function trackAbandonoFormulador(via: string) {
+    const slug = pathname.split('/')[2] ?? ''
+    if (slug === 'conclusao') return
+    trackEvent('formulador_abandonado', { ultimo_step: slug, via })
+  }
+
   function onLogoClick() {
     if (isFormulador) {
       if (!window.confirm(CONFIRM_SAIR_FORMULADOR)) return
+      trackAbandonoFormulador('logo')
       reset()
       navigate('/')
       requestAnimationFrame(() => window.scrollTo({ top: 0 }))
@@ -67,6 +74,7 @@ export default function Header({ className = '' }: HeaderProps) {
     trackEvent('nav_header_clicado', { secao: sectionId })
     if (isFormulador) {
       if (!window.confirm(CONFIRM_SAIR_FORMULADOR)) return
+      trackAbandonoFormulador('nav')
       reset()
       // Usa hash — a Home lê e scrolla para a seção com offset do header sticky.
       navigate(`/#${sectionId}`)
