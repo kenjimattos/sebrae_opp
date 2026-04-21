@@ -2,9 +2,13 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
-## [Unreleased]
+## [0.7.0] — 2026-04-21
+
+Versão de consolidação do design system — tokens do `index.css` integrados ao Tailwind config (eliminando ~80 classes custom duplicadas) e paleta de cores primitivas ancorada na escala Tailwind oficial (slate/blue/green/yellow/red/lime) — e de refino da **Base Econômica**: catálogo de 12 indicadores alinhado ao CSV de referência, análise simulada por IA com efeito typewriter por município, e ajustes de layout. Também inclui o novo campo "Política pública associada" em `StepJustificativa` e pequenos refinos de texto em `SectionHero` e página `/trilhas`.
 
 ### Added
+
+**Base Econômica**
 
 - **`EconomicsAnalysis` — geração simulada por IA.** O card da seção Base Econômica agora inicia vazio, com título, subtítulo e CTA "Gerar análise com IA". Ao clicar, o texto é revelado com efeito de máquina-de-escrever (cursor piscando) até completar. No estado final aparece um botão "Gerar novamente" que reinicia a animação. Cada município tem uma análise própria (fallback para texto genérico). A troca de município reseta o card para o estado inicial via `key={municipio.id}`.
 - **`src/hooks/useTypewriter.ts`** — hook reutilizável para efeito de digitação caractere-a-caractere. API: `useTypewriter({ text, enabled, speed?, onDone? })` → `{ displayed }`. Reset ocorre via remount (nova `key` no consumidor).
@@ -12,31 +16,52 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - **`.typewriter-caret`** — classe CSS em `index.css` com animação `typewriter-caret-blink` (step-end, 0.9s).
 - **`Sparkles`** — ícone adicionado ao re-export central de `@/components/icons`.
 
+**Design system**
+
+- **`src/components/ui/buttons/button-styles.ts`** — constantes `buttonVariantStyles` e `buttonBaseClass` compartilhadas entre Button e IconButton.
+- **`IconButton` modo decorativo** — nova prop `decorative` renderiza `<span aria-hidden>` ao invés de `<button>`, unificando o padrão "ícone em círculo" num único componente. Nova escala: `xs` (24×24), `sm` (32×32), `md` (40×40), `lg` (48×48). `SectionHero` e `EconomicsCard` migrados para usar `IconButton decorative`.
+- **Primitivas `lime`** adicionadas em `src/index.css` (`--primitives-lime-{100|200|300|800|900}`) e tokens semânticos `--semantic-secondary` (gray-200) e `--semantic-tertiary` (lime-300) — habilitam o novo visual de `button-tertiary`.
+- **`.grid-4`** em `index.css` — completa a família `.grid-2` / `.grid-3` / `.grid-5` com 4 colunas e gap `--spacing-xs`.
+
+**Formulador**
+
+- **`StepJustificativa` — campo "Política pública associada".** Nova entrada `politica` em `JustificativaData` (e `EMPTY_FORMULADOR_STATE`) com textarea de 4 linhas e hint "Qual política pública nova ou existente esse projeto está associado?".
+
 ### Changed
 
-- **`EconomicsAnalysis`** — API simplificada: aceita apenas `{ analise: string }`. Consumidor controla reset via `key`. Componente agora tem máquina de estados interna (`idle` | `typing` | `done`).
-- **`SectionBaseEconomica`** — consome `useMunicipio` para derivar a análise do município atual e passa `key={municipio.id}` para garantir reset ao trocar o município.
-
-## [0.7.0] — 2026-04-20
-
-Refactoring do design system: integração dos tokens no Tailwind config, eliminando ~80 classes custom duplicadas do `index.css`. Extração de estilos compartilhados de botão.
-
-### Changed
+**Tailwind config + index.css**
 
 - **`tailwind.config.js`** — `theme.extend` populado com spacing, borderRadius, backgroundColor, textColor e fontWeight mapeados para as CSS variables do design system. Classes como `gap-md`, `p-sm`, `rounded-sm`, `bg-surface`, `text-inactive` agora são nativas do Tailwind. `rounded-full` preserva o default do Tailwind (`9999px`) para garantir círculos perfeitos em qualquer tamanho.
 - **`src/index.css`** — removidas ~80 classes utilitárias custom do `@layer components` (gap, padding, radius, background, text-color) que duplicavam o que o Tailwind agora gera nativamente. Mantidas apenas classes compostas (`.typo-*`, `.card-*`, `.flex-*`, `.grid-*`, `.status-*`, `.divider`, `.scrollbar-hide`, `.section-container`).
 - **Codebase (~30 .tsx)** — renomeado `radius-*` → `rounded-*` em todas as className strings para usar a convenção do Tailwind.
-- **`Card.tsx`** — API de padding simplificada: removido o split `{ x, y }`, agora aceita apenas `'none' | 'sm' | 'md' | 'lg' | 'xl'`. Componente reduzido de 107 para 68 linhas. `AgendaCard`, `AgendaStats` e `EconomicsAnalysis` migrados para padding uniforme + override via `className`.
+- **Cores primitivas ancoradas no Tailwind.** Valores hex hardcoded substituídos por `theme('colors.<palette>.<shade>')` — `gray-*` passa a usar `slate.*`; `blue-500` passa a referenciar `blue.600`; `white`/`black` viram `slate.50`/`slate.900`. Tokens semânticos ajustados: `--semantic-main` agora é azul (antes preto), `--semantic-surface-secondary` vira azul claro (blue-100), `--semantic-button-secondary` vira blue-100 e `--semantic-button-tertiary` vira lime-300 (antes gray-200). Resultado: paleta controlada pelo Tailwind, com botões tertiary em lime e secondary em azul claro.
+- **Status com contraste maior.** `--primitives-{green|yellow|red}-500` → `-700` para as cores de status (`--semantic-success`, `--semantic-warning`, `--semantic-alert`), melhorando a legibilidade do texto sobre os surfaces claros.
+- **Escala de display rescalada** (`src/index.css`): `--font-size-display-large` 96→64px, `--font-size-display` 56→32px. Os valores anteriores estavam grandes demais para os números exibidos em `AgendaStats` e `RisksCard`.
+- **`AgendaStats`** — total agora usa `typo-display-lg` (antes `typo-display`) e `gap-md` interno (antes `gap-sm`), ganhando peso visual adequado após o rescale da escala display.
+- **`RisksCard`** — valor passa de `typo-display-sm` para `typo-display`, harmonizando com a nova escala.
+
+**Componentes UI**
+
+- **`Card.tsx`** — API de padding simplificada: removido o split `{ x, y }`, agora aceita apenas `'none' | 'sm' | 'md' | 'lg' | 'xl'`. Componente reduzido de 107 para 68 linhas. `AgendaCard`, `AgendaStats` e `EconomicsAnalysis` migrados para padding uniforme + override via `className`. Resolução de padding/radius simplificada aproveitando a integração de tokens no Tailwind.
 - **`Button.tsx`** e **`IconButton.tsx`** — `variantStyles` e classe base extraídos para `button-styles.ts` compartilhado, eliminando duplicação.
-- **`PillButton.tsx`** — shell agora usa `buttonVariantStyles` (tokens semânticos de botão) em vez de `bg-accent`/`bg-surface-secondary`. Circle inverte as cores do botão (label→bg, bg→icon). Eliminada duplicação `typoPrimary`/`typoSecondary`.
+- **`PillButton.tsx`** — shell agora usa `buttonVariantStyles` (tokens semânticos de botão) em vez de `bg-accent`/`bg-surface-secondary`. Circle inverte as cores do botão (label→bg, bg→icon). Depois restaurado o split `typoPrimary`/`typoSecondary` (as classes `.typo-button-*` trazem cor embutida que sobrescreve a variant com mesma especificidade, causando texto branco em shell claro).
+- **`EconomicsAnalysis`** — `Card` passa a usar `surface="secondary"` para destacar visualmente o bloco de análise (antes aparecia como mais um card branco indistinguível dos EconomicsCard).
+- **`SectionBaseEconomica`** — grid passa de `.grid-5` para `.grid-4` para acomodar os 12 indicadores novos em linhas de 4 cards.
+- **`UserAvatar`** — `--radius-xl` restaurado para alinhar com o design original (após ajustes no Tailwind config).
 
-### Added
+**Dados**
 
-- **`src/components/ui/buttons/button-styles.ts`** — constantes `buttonVariantStyles` e `buttonBaseClass` compartilhadas entre Button e IconButton.
-- **`IconButton` modo decorativo** — nova prop `decorative` renderiza `<span aria-hidden>` ao invés de `<button>`, unificando o padrão "ícone em círculo" num único componente. Nova escala: `xs` (24×24), `sm` (32×32), `md` (40×40), `lg` (48×48). `SectionHero` e `EconomicsCard` migrados para usar `IconButton decorative`.
-- **`SectionHero`** — substituídos todos os `style={{}}` inline por classes Tailwind (`tracking-[0.12em]`, `bg-accent`, `font-regular leading-[1.2]`, `grid-cols-2 gap-sm`).
-- **`Oportunidades.tsx`**, **`Comunidade.tsx`** — `style={{ fontWeight, lineHeight }}` substituído por `font-regular leading-[1.2]`.
-- **`Trilhas.tsx`** — `style={{ scrollMarginTop }}` substituído por `scroll-mt-[120px]`.
+- **Base Econômica — 12 indicadores do CSV de referência.** `catalogo.baseEconomica` substituído pela lista do `indicadores_base_economica.csv`: IDSC, IDH-M, Cobertura Atenção Básica, IDEB Anos Iniciais/Finais, GINI, Remuneração média, Empresas Ativas, PIB per capita, MEIs, MEs, EPPs. Todos os 8 municípios atualizados — valores do CSV onde disponíveis, preenchimentos fictícios com sufixo `*` nos demais (mesma convenção das agendas).
+- **Variações percentuais fictícias.** Valores placeholder de `variacao` (labels como `'2021'` ou `'*'`) substituídos por deltas plausíveis (`+X,X%*`) para que cada `EconomicsCard` exiba um indicador de crescimento.
+
+**Texto / refinos visuais**
+
+- **`SectionHero`** — gap interno do `SectionContainer` ajustado de `gap-lg` para `gap-2xl` (mais respiro entre os blocos); subtítulo "Inteligência Territorial" → "Inteligencia em políticas públicas" (reflete melhor o foco da plataforma).
+- **`/trilhas`** — título da página: "Capacitações para estruturar projetos e acessar recursos" → "Capacitação para gestores públicos municipais" (foco no público-alvo).
+
+### Tests
+
+- **Snapshots atualizados** — `EconomicsCard` (variação de `text-right`), `AgendaStats` (`typo-display-lg` + `gap-md`) e `RisksCard` (`typo-display`).
 
 ## [0.6.5] — 2026-04-20
 
