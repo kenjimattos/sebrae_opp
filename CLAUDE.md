@@ -3,7 +3,7 @@
 Guia de desenvolvimento para a Plataforma OPP (Observatório de Políticas Públicas).
 Leia este arquivo inteiro antes de começar qualquer tarefa.
 
-> **Status atual:** Protótipo funcional com 8 seções implementadas, mapa interativo da Paraíba, estado global por município, e dados mock para 3 municípios (João Pessoa, Campina Grande, Patos). Viewport desktop 1440px. Dark mode configurado via tokens mas sem toggle na UI. **Rota `/formulador` implementada** — fluxo em 10 etapas + tela de conclusão, persistência por município em `localStorage`.
+> **Status atual:** Protótipo funcional com Hero + 8 seções implementadas, mapa interativo da Paraíba, estado global por município, e dados para 8 municípios (João Pessoa, Campina Grande, Queimadas, Conde, Caaporã, Pitimbu, Monteiro, Cabaceiras). Viewport desktop 1440px. Dark mode configurado via tokens mas sem toggle na UI. **Rota `/formulador` implementada** — fluxo em 10 etapas + tela de conclusão com exportação PDF, persistência por município em `localStorage`. **Páginas `/trilhas`, `/oportunidades` e `/comunidade` implementadas.**
 
 ---
 
@@ -86,8 +86,8 @@ UI:       .typo-button-lg | .typo-button | .typo-button-sm
 > Errado: `className="font-bold text-[length:var(--font-size-h1)] leading-none"`
 
 > **Regra:** sempre usar CSS variables para cores, espaçamentos e radius. Nunca hardcodar.
-> Correto: `className="rounded-[var(--radius-md)] p-[var(--spacing-md)] bg-[var(--semantic-surface-primary)]"`
-> Errado: `className="rounded-3xl p-6 bg-white"`
+> Correto: `className="rounded-md p-md bg-surface"` (classes nativas via tokens do Tailwind config)
+> Errado: `className="rounded-3xl p-6 bg-white"` (valores hardcoded do Tailwind default)
 
 ---
 
@@ -160,7 +160,7 @@ src/
 │       ├── TextInput.tsx              # Input/textarea com title/subtitle/hint/disabled/multiline
 │       └── ProgressBar.tsx            # Barra de progresso 0–100 com a11y (role=progressbar)
 ├── data/
-│   ├── municipios.json               # Lista dos 3 municípios (id IBGE, nome, slug)
+│   ├── municipios.json               # Lista dos 8 municípios (id IBGE, nome, slug)
 │   ├── sections.ts                   # Títulos e descrições centralizados de todas as seções
 │   ├── mapa-indicadores.ts           # Dados de indicadores por município para coloração do mapa
 │   ├── riscos-contexto.ts            # Descrições e contextos de risco por indicador (futuro: LLM)
@@ -283,7 +283,7 @@ src/
 | — | Header | `405:2044` | ✅ | Logo + nav pill + User |
 | 1 | Agendas | `390:567` | ✅ | Stats bar + grid 3 colunas de AgendaCards |
 | 2 | Panorama | `390:578` | ✅ | Mapa interativo + ranking IDHM |
-| 3 | Base Econômica | `390:581` | ✅ | 10 cards com ícones + bloco Análise |
+| 3 | Base Econômica | `390:581` | ✅ | 12 cards (grid-4) com ícones + bloco Análise gerada por IA (typewriter) |
 | 4 | Riscos | `390:594` | ✅ | **Dinâmico** — extrai top 3 alert/warning das agendas |
 | 5 | Recursos | `390:600` | ✅ | Emendas + convênios (dados estáticos) |
 | 6 | Capacitação | `390:611` | ✅ | Lista de cursos (dados estáticos) |
@@ -373,8 +373,10 @@ Toda a estrutura de dados está em `src/data/` e `src/types/indicadores.ts`.
 
 | Arquivo | Descrição |
 |---|---|
-| `indicadores/*.json` | Dados completos por município (agendas, baseEconomica, panorama) |
-| `municipios.json` | Lista dos 3 municípios (id, nome, slug) |
+| `municipios/*.ts` | Valores por município (agendas + baseEconomica). Merge com `catalogo.ts` + `thresholds.ts` no provider |
+| `catalogo.ts` | Estrutura/labels/ícones das agendas e base econômica (fonte única) |
+| `thresholds.ts` | Régua de classificação por indicador (status derivado do valor) |
+| `municipios.json` | Lista dos 8 municípios (id, nome, slug) |
 | `sections.ts` | Títulos e descrições de todas as seções (centralizado) |
 | `mapa-indicadores.ts` | Valores de indicadores por município para coloração do mapa |
 | `riscos-contexto.ts` | Descrições de risco por indicador (futuro: LLM) |
@@ -401,19 +403,24 @@ Toda a estrutura de dados está em `src/data/` e `src/types/indicadores.ts`.
 - Mocks em `src/test/mocks/` (Leaflet, MunicipioProvider)
 
 ### CSS — Design System Classes
-Além dos tokens (vars) e das classes `.typo-*`, o `index.css` tem classes utilitárias em `@layer components`:
 
-- **Cor de texto:** `.text-inactive`, `.text-accent` (override; cor default já vem nas `.typo-*`)
-- **Backgrounds:** `.bg-primary`, `.bg-surface`, `.bg-surface-secondary`, `.bg-accent`
-- **Border radius:** `.radius-sm`, `.radius-md`, `.radius-lg`, `.radius-xl`, `.radius-full`
-- **Gap:** `.gap-2xs` a `.gap-3xl` (mapeados aos tokens `--spacing-*`)
-- **Padding:** `.p-sm/md/lg/xl`, `.px-*`, `.py-*`, `.pt-*`, `.pb-*`, `.pl-*`, `.pr-*`
-- **Flex:** `.flex-center`, `.flex-between`, `.flex-col-start`
-- **Compostos:** `.section-container`, `.card-surface`, `.grid-2`, `.grid-3`
-- **Dividers:** `.divider`, `.divider-primary`
-- **Status:** `.status-{success,warning,alert}-{bg,dot}`
+A partir da 0.7.0, tokens do design system (spacing, borderRadius, backgroundColor, textColor, fontWeight) estão integrados ao `tailwind.config.js`. Isso significa que classes como `gap-md`, `p-sm`, `rounded-sm`, `bg-surface`, `text-inactive` são **nativas do Tailwind** — não precisam estar declaradas em `@layer components`.
 
-> **Regra:** usar essas classes do design system ao invés de Tailwind inline equivalente. Ex: `gap-md` e não `gap-[var(--spacing-md)]`.
+**Convenções:**
+- **Border radius:** `rounded-sm/md/lg/xl/full` (Tailwind resolve para as CSS vars `--radius-*`; `rounded-full` preserva `9999px` para círculos perfeitos)
+- **Gap / Padding:** `gap-2xs` a `gap-3xl` / `p-sm`, `px-md`, `pt-lg`, etc. (mapeados para `--spacing-*`)
+- **Cor de texto:** `text-inactive`, `text-accent` (override; cor default já vem nas `.typo-*`)
+- **Backgrounds:** `bg-primary`, `bg-surface`, `bg-surface-secondary`, `bg-accent`
+
+**Classes compostas ainda declaradas em `index.css` (@layer components):**
+- `.typo-*` (16 estilos tipográficos)
+- `.card-surface`, `.card-surface-secondary`, `.card-hoverable`
+- `.flex-center`, `.flex-between`, `.flex-col-start`
+- `.grid-2`, `.grid-3`, `.grid-4`, `.grid-5`
+- `.status-{success,warning,alert}-{bg,dot}`
+- `.divider`, `.scrollbar-hide`, `.section-container`, `.typewriter-caret`
+
+> **Regra:** usar as classes nativas do Tailwind (via tokens) ao invés de arbitrary values. Ex: `gap-md` e não `gap-[var(--spacing-md)]`; `rounded-sm` e não `rounded-[var(--radius-sm)]`.
 
 ### Componentes
 - Estrutura de pastas espelha os grupos do Figma: `Agenda/Card` → `src/components/agenda/AgendaCard.tsx`

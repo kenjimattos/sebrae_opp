@@ -19,22 +19,30 @@ Plataforma de dados municipais para o Sebrae Paraiba. Consolida indicadores soci
 
 ## Funcionalidades
 
-- **Agendas prioritarias** — 6 eixos com 16 indicadores por municipio, status semaforo (bom/atencao/critico)
-- **Panorama territorial** — mapa interativo da Paraiba com poligonos coloridos por indicador
-- **Base economica** — 10 cards com indicadores economicos e bloco de analise textual
-- **Riscos estrategicos** — extracao automatica dos top 3 indicadores em alerta
+- **Hero** — secao de abertura com 4 pilares clicaveis (Agenda / Recursos / Capacitacao / Formulador)
+- **Agendas prioritarias** — 6 eixos com indicadores por municipio, status semaforo (bom/atencao/critico) derivado de thresholds oficiais
+- **Panorama territorial** — mapa interativo da Paraiba com poligonos coloridos por indicador; clique em municipio com dados troca a selecao global
+- **Base economica** — 12 cards com indicadores (IDSC, IDH-M, IDEB, GINI, PIB per capita, MEIs, MEs, EPPs, etc.) + bloco de Analise simulada por IA (efeito typewriter, unica por municipio)
+- **Riscos estrategicos** — extracao automatica dos top 3 indicadores em alerta / atencao
 - **Recursos** — emendas parlamentares, convenios e mapa Datapedia
-- **Capacitacao** — 4 trilhas com 37 cursos do Sebrae
+- **Capacitacao** — trilhas com carrossel de cursos ligados a Escola Virtual do Governo, pagina `/trilhas` dedicada
 - **Casos de sucesso** — scroll horizontal de cases municipais
-- **Header sticky** — scroll-spy com pill de acento, seletor de cidade digitavel
+- **Formulador de projetos** — rota `/formulador` com fluxo em 10 etapas + tela de Conclusao (exportavel em PDF), rascunho por municipio em `localStorage`
+- **Paginas placeholder** — `/oportunidades` e `/comunidade`
+- **Header sticky** — scroll-spy com pill de acento, seletor de cidade digitavel, deep-linking via hash
 
-## Municipios com dados
+## Municipios com dados (8)
 
 | Municipio | Codigo IBGE |
 |---|---|
 | Joao Pessoa | 2507507 |
 | Campina Grande | 2504009 |
-| Patos | 2510808 |
+| Queimadas | 2512507 |
+| Conde | 2504603 |
+| Caapora | 2503001 |
+| Pitimbu | 2511905 |
+| Monteiro | 2509701 |
+| Cabaceiras | 2503100 |
 
 ## Desenvolvimento
 
@@ -66,18 +74,20 @@ src/
 │   ├── resources/  # ResourcesCard
 │   ├── courses/    # CoursesCard, CoursesCardRow
 │   ├── case-studies/ # CaseStudiesCard
-│   ├── formulador/ # FormuladorCard
-│   ├── sections/   # 8 secoes da pagina principal
-│   ├── layout/     # Header, Footer
-│   ├── ui/         # Button, Dropdown, SectionContainer, etc.
-│   ├── map/        # ValueBadges
+│   ├── formulador/ # FormuladorCard + FormCard + 10 steps + sidebar
+│   ├── trilhas/    # TrilhaCard
+│   ├── sections/   # Hero + 8 secoes da pagina principal
+│   ├── layout/     # Header, Footer, CitySelector, User
+│   ├── ui/         # Button, IconButton, PillButton, Card, Dropdown, Carousel, etc.
+│   ├── icons/      # Re-exports Lucide + UserAvatar
+│   ├── map/        # ParaibaMap, ValueBadges
 │   └── panorama/   # PanoramaLegend, PanoramaMediaInfo
-├── data/           # JSON e TS com dados mock
-├── hooks/          # useMunicipio, useActiveSection, usePanorama*
+├── data/           # catalogo, municipios/*.ts, thresholds, sections, etc.
+├── hooks/          # useMunicipio, useFormulador, useTypewriter, etc.
 ├── types/          # Interfaces TypeScript
-├── pages/          # Home
+├── pages/          # Home, Formulador, FormuladorStep, FormuladorConclusao, Trilhas, Oportunidades, Comunidade
 ├── utils/          # Helpers compartilhados
-└── index.css       # Design tokens
+└── index.css       # Design tokens (integrados ao Tailwind config)
 ```
 
 ## Design
