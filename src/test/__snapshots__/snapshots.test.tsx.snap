@@ -271,7 +271,7 @@ exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
       R$ 22.500
     </span>
     <span
-      class="typo-body-sm-bold"
+      class="typo-body-sm-bold text-right"
     >
       +3,2%
     </span>
