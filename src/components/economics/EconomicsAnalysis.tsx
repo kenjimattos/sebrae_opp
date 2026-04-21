@@ -42,6 +42,7 @@ export default function EconomicsAnalysis({ analise, className = '' }: Economics
   return (
     <Card
       as="section"
+      surface="secondary"
       padding="lg"
       className={`flex flex-col gap-sm w-full card-hoverable ${className}`}
     >
