@@ -123,7 +123,7 @@
   --semantic-button-secondary-hover: var(--primitives-blue-200);
   --semantic-button-tertiary-hover: var(--primitives-lime-200);
   --semantic-button-success-hover: var(--primitives-green-800);
-  --semantic-surface-hover: var(--primitives-blue-200);
+  --semantic-surface-hover: var(--primitives-blue-100);
 
   /* Status */
   --semantic-success: var(--primitives-green-700);
