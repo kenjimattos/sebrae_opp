@@ -25,7 +25,7 @@ export default function CoursesCard({ slug, title, description, cursos, classNam
     <Card
       as="section"
       padding="lg"
-      className={`flex-col w-[480px] shrink-0 card-hoverable ${className}`}
+      className={`flex-col w-[480px] shrink-0 ${className}`}
     >
         <div className="flex-col-start gap-lg h-full">
           <TitleSubtitle title={title} subtitle={description} size="md" />
