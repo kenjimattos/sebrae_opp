@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import MunicipioProvider from '@/hooks/MunicipioProvider'
 import FormuladorProvider from '@/hooks/FormuladorProvider'
 import ScrollToTop from '@/components/ScrollToTop'
+import AnalyticsTracker from '@/components/AnalyticsTracker'
+import ConsentBanner from '@/components/ui/ConsentBanner'
 import Home from '@/pages/Home'
 import Formulador from '@/pages/Formulador'
 import FormuladorStep from '@/pages/FormuladorStep'
@@ -14,6 +16,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <AnalyticsTracker />
       <MunicipioProvider>
         <FormuladorProvider>
           <Routes>
@@ -27,6 +30,7 @@ function App() {
               <Route path=":stepSlug" element={<FormuladorStep />} />
             </Route>
           </Routes>
+          <ConsentBanner />
         </FormuladorProvider>
       </MunicipioProvider>
     </BrowserRouter>

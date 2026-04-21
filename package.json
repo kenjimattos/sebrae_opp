@@ -12,6 +12,7 @@
     "test:run": "vitest run"
   },
   "dependencies": {
+    "@microsoft/clarity": "^1.0.2",
     "autoprefixer": "^10.4.27",
     "leaflet": "^1.9.4",
     "lucide-react": "^1.8.0",
