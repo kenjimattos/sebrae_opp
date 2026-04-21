@@ -160,6 +160,7 @@ describe('Case Studies components', () => {
           titulo: 'Programa de Inovação',
           descricao: 'Descrição do caso',
           imagem: '/assets/case-1.jpg',
+          url: 'https://example.com/caso-1',
         }}
       />,
     )

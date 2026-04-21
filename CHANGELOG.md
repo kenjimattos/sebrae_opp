@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Changed
+
+- **Casos de Sucesso — conteúdo real do Geocracia.** Os 5 cards fictícios (Belo Horizonte, Maringá, Sobral, Joinville, Vitória da Conquista) foram substituídos por 4 casos reais publicados em geocracia.com: Projeto Ponte Digital (PA), TerraInk (BRASIL), Atlas do Hidrogênio Verde (RN) e Crédito Rural Geoespacial (BRASIL). Nova prop `url` em `CasoSucesso` — o CTA "Ver estudo de caso" agora encaminha para o artigo original (abre em nova aba automaticamente via PillButton). Imagens og:image baixadas em `public/images/cases/`.
+
 ### Fixed
 
 - **Scroll no topo ao trocar de rota.** Criado `src/components/ScrollToTop.tsx` (`window.scrollTo(0, 0)` a cada mudança de `pathname`, ignorando quando há `hash`) e montado dentro do `<BrowserRouter>` em `App.tsx`. Normaliza o comportamento entre browsers/máquinas — antes, as rotas `/oportunidades`, `/comunidade` e `/formulador` abriam com o scroll preservado em alguns ambientes (default `history.scrollRestoration: 'auto'` varia entre Chrome/Safari/Firefox e entre máquinas rápidas/lentas). Removido o `window.scrollTo({ top: 0 })` redundante de `Trilhas.tsx` — agora o `ScrollToTop` global cuida disso e a página só trata o caso de `hash` (scrollIntoView).

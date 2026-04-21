@@ -45,7 +45,7 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
           variant="ghost"
           size="sm"
           label={ctaLabels.verEstudoDeCaso}
-          href="#"
+          href={caso.url}
         />
       </div>
     </Card>
