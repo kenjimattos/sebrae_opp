@@ -2,6 +2,17 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Unreleased]
+
+### Fixed
+
+- **Scroll no topo ao trocar de rota.** Criado `src/components/ScrollToTop.tsx` (`window.scrollTo(0, 0)` a cada mudança de `pathname`, ignorando quando há `hash`) e montado dentro do `<BrowserRouter>` em `App.tsx`. Normaliza o comportamento entre browsers/máquinas — antes, as rotas `/oportunidades`, `/comunidade` e `/formulador` abriam com o scroll preservado em alguns ambientes (default `history.scrollRestoration: 'auto'` varia entre Chrome/Safari/Firefox e entre máquinas rápidas/lentas). Removido o `window.scrollTo({ top: 0 })` redundante de `Trilhas.tsx` — agora o `ScrollToTop` global cuida disso e a página só trata o caso de `hash` (scrollIntoView).
+
+### Changed
+
+- **`README.md`** — funcionalidades expandidas para cobrir Hero com 4 pilares, Base Econômica com 12 indicadores + análise simulada por IA, página `/formulador` em 10 etapas, páginas `/trilhas` / `/oportunidades` / `/comunidade`, e tabela de municípios expandida de 3 para 8 (João Pessoa, Campina Grande, Queimadas, Conde, Caaporã, Pitimbu, Monteiro, Cabaceiras). Árvore de `src/` atualizada com as novas pastas (`trilhas/`, `icons/`, `components/formulador/steps/`) e páginas.
+- **`CLAUDE.md`** — status atualizado para 8 municípios + páginas adicionais; tabela de dados substitui `indicadores/*.json` por `municipios/*.ts` + `catalogo.ts` + `thresholds.ts` (arquitetura da 0.6.2); Base Econômica passa a ser descrita como 12 cards em `grid-4`. Seção **"CSS — Design System Classes"** reescrita: a partir da 0.7.0, tokens de spacing/borderRadius/backgroundColor/textColor/fontWeight são integrados ao `tailwind.config.js`, então `gap-md`, `p-sm`, `rounded-sm`, `bg-surface`, `text-inactive` etc. são classes **nativas** do Tailwind (não estão mais em `@layer components`). Exemplos de código atualizados (`rounded-md p-md bg-surface` em vez de `rounded-[var(--radius-md)]`).
+
 ## [0.7.0] — 2026-04-21
 
 Versão de consolidação do design system — tokens do `index.css` integrados ao Tailwind config (eliminando ~80 classes custom duplicadas) e paleta de cores primitivas ancorada na escala Tailwind oficial (slate/blue/green/yellow/red/lime) — e de refino da **Base Econômica**: catálogo de 12 indicadores alinhado ao CSV de referência, análise simulada por IA com efeito typewriter por município, e ajustes de layout. Também inclui o novo campo "Política pública associada" em `StepJustificativa` e pequenos refinos de texto em `SectionHero` e página `/trilhas`.

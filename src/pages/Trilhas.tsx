@@ -24,10 +24,7 @@ export default function Trilhas() {
   const activeId = hash.startsWith('#') ? hash.slice(1) : ''
 
   useEffect(() => {
-    if (!activeId) {
-      window.scrollTo({ top: 0 })
-      return
-    }
+    if (!activeId) return
     // Delay de 1 frame para garantir que o carrossel terminou a renderização.
     requestAnimationFrame(() => {
       const el = document.getElementById(activeId)

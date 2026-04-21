@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import MunicipioProvider from '@/hooks/MunicipioProvider'
 import FormuladorProvider from '@/hooks/FormuladorProvider'
+import ScrollToTop from '@/components/ScrollToTop'
 import Home from '@/pages/Home'
 import Formulador from '@/pages/Formulador'
 import FormuladorStep from '@/pages/FormuladorStep'
@@ -12,6 +13,7 @@ import Comunidade from '@/pages/Comunidade'
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <MunicipioProvider>
         <FormuladorProvider>
           <Routes>
