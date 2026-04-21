@@ -52,7 +52,7 @@
   --radius-full: 96px;
 
   /* ============ COLORS — PRIMITIVES ============ */
-  --primitives-white: theme('colors.slate.50');
+  --primitives-white: white;
   --primitives-black: theme('colors.slate.900');
 
   --primitives-gray-100: theme('colors.slate.100');
