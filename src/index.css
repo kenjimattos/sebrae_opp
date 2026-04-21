@@ -73,19 +73,19 @@
 
   --primitives-green-100: theme('colors.green.100');
   --primitives-green-200: theme('colors.green.200');
-  --primitives-green-500: theme('colors.green.500');
+  --primitives-green-700: theme('colors.green.700');
   --primitives-green-800: theme('colors.green.800');
   --primitives-green-900: theme('colors.green.900');
 
   --primitives-yellow-100: theme('colors.yellow.100');
   --primitives-yellow-200: theme('colors.yellow.200');
-  --primitives-yellow-500: theme('colors.yellow.500');
+  --primitives-yellow-700: theme('colors.yellow.700');
   --primitives-yellow-800: theme('colors.yellow.800');
   --primitives-yellow-900: theme('colors.yellow.900');
 
   --primitives-red-100: theme('colors.red.100');
   --primitives-red-200: theme('colors.red.200');
-  --primitives-red-500: theme('colors.red.500');
+  --primitives-red-700: theme('colors.red.700');
   --primitives-red-800: theme('colors.red.800');
   --primitives-red-900: theme('colors.red.900');
 
@@ -102,7 +102,7 @@
 
   --semantic-background-primary: var(--primitives-gray-100);
   --semantic-surface-primary: var(--primitives-white);
-  --semantic-surface-secondary: var(--primitives-blue-200);
+  --semantic-surface-secondary: var(--primitives-blue-100);
   --semantic-surface-tertiary: var(--primitives-gray-500);
 
   --semantic-text-primary: var(--primitives-black);
@@ -119,11 +119,11 @@
   --semantic-button-label-tertiary: var(--primitives-black);
 
   /* Status */
-  --semantic-success: var(--primitives-green-500);
+  --semantic-success: var(--primitives-green-700);
   --semantic-success-surface: var(--primitives-green-100);
-  --semantic-warning: var(--primitives-yellow-500);
+  --semantic-warning: var(--primitives-yellow-700);
   --semantic-warning-surface: var(--primitives-yellow-100);
-  --semantic-alert: var(--primitives-red-500);
+  --semantic-alert: var(--primitives-red-700);
   --semantic-alert-surface: var(--primitives-red-100);
 
   /* Accent — interactive states */
