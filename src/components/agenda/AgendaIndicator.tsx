@@ -32,6 +32,7 @@ export default function AgendaIndicator({ id, label, valor, status }: AgendaIndi
       {info ? (
         <Tooltip
           followCursor
+          trackingKey={`indicador_descricao:${id ?? label}`}
           content={
             <span className="flex flex-col gap-2xs">
               <span className="typo-body-sm-bold">{label}</span>

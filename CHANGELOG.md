@@ -4,6 +4,20 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Added
+
+- **Microsoft Clarity — integração para testes com usuários.** Nova camada de analytics para coletar heatmaps, gravações de sessão e eventos customizados durante o teste com 10 participantes em 7 máquinas controladas. Stack mínima, client-side, sem impacto no servidor de produção.
+  - **`src/utils/analytics.ts`** — wrapper centralizado (`initAnalytics`, `grantConsent`/`denyConsent`, `trackEvent`, `setTag`, `identifySession`). Só efetiva em build de produção (`import.meta.env.PROD`) com `VITE_CLARITY_ID` preenchido; no-op silencioso em dev/preview e antes do consentimento.
+  - **`components/ui/ConsentBanner`** — banner LGPD com "Aceitar" / "Recusar", persiste em `localStorage` e só aparece na primeira visita.
+  - **`components/AnalyticsTracker`** — bootstrap: inicializa Clarity se já houver consentimento, identifica a sessão via `?participante=XX` (útil pra etiquetar as máquinas do teste moderado) e dispara `pagina_visitada` a cada mudança de rota.
+  - **`.env.example`** + `.env` no `.gitignore` documentando `VITE_CLARITY_ID`.
+  - **13 eventos customizados** instrumentados cobrindo os dois fluxos-alvo do teste (navegação geral + Formulador end-to-end):
+    - **Navegação:** `pagina_visitada` (rota), `hero_bloco_clicado` (bloco), `nav_header_clicado` (secao)
+    - **Município:** `municipio_alterado` (de, para, origem: `seletor` | `mapa`) + `setTag('municipio')` para filtrar gravações por cidade no dashboard
+    - **Mapa:** `mapa_ativado`, `indicador_mapa_alterado` (indicador)
+    - **Formulador:** `formulador_iniciado`, `formulador_step_visitado` (step, numero), `formulador_step_concluido` (step, numero, tempo_ms), `formulador_abandonado` (ultimo_step, via: `nav` | `logo` | `unload`), `formulador_concluido` (steps_completos, total_steps)
+    - **Descoberta:** `tooltip_aberto` (chave) — dispara uma vez por instância para não poluir em hover; `cta_externo_clicado` (destino, label) — no `PillButton` com `href` externo e no link-imagem do Datapedia em `SectionRecursos`
+
 ## [0.7.1] — 2026-04-21
 
 Versão de refinamento de **interações e hover** — tokens semânticos de hover, o novo primitivo `HoverOverlay`, mudança do padrão `opacity-90` para `background-color` por variante em todos os botões, e nav pill no Header. Além disso, o carrossel ganha setas laterais no gutter da seção, os Casos de Sucesso passam a usar conteúdo real do Geocracia, e o scroll restoration é normalizado entre browsers.

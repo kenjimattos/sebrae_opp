@@ -28,6 +28,7 @@ export default function AgendaCard({ title, indicadores, className = '' }: Agend
         </h3>
         {objetivo && (
           <Tooltip
+            trackingKey={`agenda_objetivo:${title}`}
             content={
               <span className="flex flex-col gap-2xs">
                 <span className="typo-body-sm-bold">Objetivo</span>

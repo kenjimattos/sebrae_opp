@@ -10,6 +10,7 @@ import PillButton from '@/components/ui/buttons/PillButton'
 import HoverOverlay from '@/components/ui/HoverOverlay'
 import { sectionContent } from '@/data/sections'
 import { DATAPEDIA_URL, resourceCards, recursosContent } from '@/data/recursos'
+import { trackEvent } from '@/utils/analytics'
 
 export default function SectionRecursos() {
   return (
@@ -51,6 +52,12 @@ export default function SectionRecursos() {
               href={DATAPEDIA_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                trackEvent('cta_externo_clicado', {
+                  destino: DATAPEDIA_URL,
+                  label: 'datapedia_mapa',
+                })
+              }
               className="block w-full rounded-md overflow-hidden bg-[var(--primitives-gray-900)] relative group"
             >
               <img
