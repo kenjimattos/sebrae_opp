@@ -34,7 +34,7 @@ export default function StepIdentificacao() {
           options={municipioOptions}
           value={municipio.id}
           onChange={handleMunicipioChange}
-          ButtonVariant="tertiary"
+          ButtonVariant="secondary"
         />
       </div>
 
