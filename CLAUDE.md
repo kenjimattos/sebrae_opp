@@ -134,6 +134,7 @@ src/
 │   ├── panorama/
 │   │   ├── PanoramaLegend.tsx         # Legenda de status (bom/atenção/crítico)
 │   │   └── PanoramaMediaInfo.tsx      # Média estadual do indicador selecionado
+│   ├── ScrollToTop.tsx               # Restaura scroll para topo a cada mudança de rota (ignora quando há `hash`)
 │   ├── sections/
 │   │   ├── SectionAgendas.tsx         # Figma: 390:567
 │   │   ├── SectionPanorama.tsx        # Figma: 390:578
@@ -159,7 +160,8 @@ src/
 │       ├── DropdownMenu.tsx           # Lista UL reutilizável — max-content + min-w-full (auto-sizing)
 │       ├── useDropdownState.ts        # Hook compartilhado: open/setOpen/ref + click-outside
 │       ├── TextInput.tsx              # Input/textarea com title/subtitle/hint/disabled/multiline
-│       └── ProgressBar.tsx            # Barra de progresso 0–100 com a11y (role=progressbar)
+│       ├── ProgressBar.tsx            # Barra de progresso 0–100 com a11y (role=progressbar)
+│       └── HoverOverlay.tsx           # Overlay decorativo: escurece pai no hover + pill com hint (pai precisa de `relative group`)
 ├── data/
 │   ├── municipios.json               # Lista dos 8 municípios (id IBGE, nome, slug)
 │   ├── sections.ts                   # Títulos e descrições centralizados de todas as seções

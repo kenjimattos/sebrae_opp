@@ -4,36 +4,49 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+## [0.7.1] — 2026-04-21
+
+Versão de refinamento de **interações e hover** — tokens semânticos de hover, o novo primitivo `HoverOverlay`, mudança do padrão `opacity-90` para `background-color` por variante em todos os botões, e nav pill no Header. Além disso, o carrossel ganha setas laterais no gutter da seção, os Casos de Sucesso passam a usar conteúdo real do Geocracia, e o scroll restoration é normalizado entre browsers.
+
 ### Added
 
 - **`ui/HoverOverlay`** — primitivo para o padrão "escurece pai no hover + revela pill com hint" (antes duplicado em `ParaibaMap.tsx` e `SectionRecursos.tsx`). API mínima: `label` + `radius` (`sm|md|lg|xl`, default `md`). Requer que o elemento pai tenha `relative group`; a pill é um `<span>` decorativo, então o clique fica no pai (`<a>`, `<button>` ou `<div onClick>`) sem conflito de hit-target. Refatorados ambos os usages: `ParaibaMap` passa `radius="sm"`, `SectionRecursos` passa `radius="xl"`.
+- **Design System — tokens semânticos de hover.** Adicionados `--semantic-button-{primary|secondary|tertiary|success}-hover` e `--semantic-surface-hover` em `index.css` (light + dark mode). `buttonHoverStyles` em `button-styles.ts` e o nav pill do `Header` agora consomem esses tokens em vez de apontar direto para primitives — dark mode passa a ser controlado por override de token (1 lugar), e o hover tem fonte única de verdade entre botões e superfícies hoverable.
+- **`ScrollToTop`** — criado `src/components/ScrollToTop.tsx` (`window.scrollTo(0, 0)` a cada mudança de `pathname`, ignorando quando há `hash`) e montado dentro do `<BrowserRouter>` em `App.tsx`. Normaliza o comportamento entre browsers/máquinas — antes, as rotas `/oportunidades`, `/comunidade` e `/formulador` abriam com o scroll preservado em alguns ambientes (default `history.scrollRestoration: 'auto'` varia entre Chrome/Safari/Firefox e entre máquinas rápidas/lentas). Removido o `window.scrollTo({ top: 0 })` redundante de `Trilhas.tsx`.
 
 ### Changed
 
-- **Design System — tokens semânticos de hover.** Adicionados `--semantic-button-{primary|secondary|tertiary|success}-hover` e `--semantic-surface-hover` em `index.css` (light + dark mode). `buttonHoverStyles` em `button-styles.ts` e o nav pill do `Header` agora consomem esses tokens em vez de apontar direto para primitives — dark mode passa a ser controlado por override de token (1 lugar), e o hover tem fonte única de verdade entre botões e superfícies hoverable.
-
-- **Header — hover dos nav links vira pill.** Substituído `hover:text-accent` (que só mudava a cor da fonte) por `hover:bg-[var(--primitives-blue-200)]`: como cada link já tem `px-sm py-xs rounded-full`, o hover agora aparece como pill azul-claro — consistente com o estado ativo.
+**Hover e botões**
 
 - **Buttons — hover escurece o bg sem afetar filhos.** Substituído `hover:opacity-90` em `Button`, `IconButton` e `PillButton` por mudança de `background-color` por variante (`buttonHoverStyles` em `button-styles.ts`): primary → blue-800, secondary → blue-200, tertiary → lime-200, ghost → surface-secondary, success → green-800. No `PillButton`, mantém o círculo interno visualmente intacto (antes, a opacidade herdada descolorava o círculo).
+- **Header — hover dos nav links vira pill.** Substituído `hover:text-accent` (que só mudava a cor da fonte) por `hover:bg-[var(--semantic-surface-hover)]`: como cada link já tem `px-sm py-xs rounded-full`, o hover agora aparece como pill azul-claro — consistente com o estado ativo.
+- **`--semantic-surface-hover`** ajustado para um tom mais claro (melhor contraste com o texto em superfícies `bg-surface-secondary` e no nav pill).
 
-- **Carousel — setas laterais sobrepostas.** Os botões de navegação saíram da linha abaixo do scroll e passaram a ser `IconButton` absolutamente posicionados nas laterais do carrossel (`left/right: calc(-1 * var(--spacing-xl))`), dentro do gutter da `SectionContainer` (180px de `--spacing-margin`). Permite aumentar o respiro vertical sem empurrar os botões para longe.
+**Carousel**
+
+- **Setas laterais sobrepostas.** Os botões de navegação saíram da linha abaixo do scroll e passaram a ser `IconButton` absolutamente posicionados nas laterais do carrossel (`left/right: calc(-1 * var(--spacing-xl))`), dentro do gutter da `SectionContainer` (180px de `--spacing-margin`). Variante alterada para `primary` para contraste com as imagens dos cards. Permite aumentar o respiro vertical sem empurrar os botões para longe.
+- **`card-hoverable` removido dos cards dentro de carrossel** (`CaseStudiesCard`, `CoursesCard`) — o hover-lift com sombra conflitava com `snap-mandatory` e os novos overlays.
+
+**Casos de Sucesso**
+
+- **Conteúdo real do Geocracia.** Os 5 cards fictícios (Belo Horizonte, Maringá, Sobral, Joinville, Vitória da Conquista) foram substituídos por 4 casos reais publicados em geocracia.com: Projeto Ponte Digital (PA), TerraInk (BRASIL), Atlas do Hidrogênio Verde (RN) e Crédito Rural Geoespacial (BRASIL). Nova prop `url` em `CasoSucesso` — o CTA "Ver estudo de caso" agora encaminha para o artigo original (abre em nova aba automaticamente via `PillButton`). Imagens og:image baixadas em `public/images/cases/`.
+- **`CaseStudiesCard`** — ajuste fino de largura e tamanho do título para melhor equilíbrio visual na nova grade de 4 casos.
+
+**Outros ajustes**
+
+- **`StepIdentificacao`** — `Dropdown` migrado de `variant="tertiary"` (lime) para `variant="secondary"` (azul claro), alinhando com o visual dos campos do formulador. `buttonHoverStyles.secondary` ajustado em conjunto.
+- **`SectionRecursos`** — raio dos CTAs padronizado para coincidir com os demais botões da home.
+- **`--primitives-white`** — substituído uso de `theme('colors.white')` por literal `#ffffff` em `index.css` (mais previsível; o helper `theme()` pode resolver para variações conforme configs do Tailwind).
+- **`EconomicsAnalysis`** — título do estado vazio passa de "Análise inteligente da base econômica" para "Análise de desempenho do município" (mais direto e alinhado ao contexto do município selecionado).
+
+**Documentação**
+
+- **`README.md`** — funcionalidades expandidas para cobrir Hero com 4 pilares, Base Econômica com 12 indicadores + análise simulada por IA, página `/formulador` em 10 etapas, páginas `/trilhas` / `/oportunidades` / `/comunidade`, e tabela de municípios expandida de 3 para 8 (João Pessoa, Campina Grande, Queimadas, Conde, Caaporã, Pitimbu, Monteiro, Cabaceiras). Árvore de `src/` atualizada com as novas pastas (`trilhas/`, `icons/`, `components/formulador/steps/`) e páginas.
+- **`CLAUDE.md`** — status atualizado para 8 municípios + páginas adicionais; tabela de dados substitui `indicadores/*.json` por `municipios/*.ts` + `catalogo.ts` + `thresholds.ts` (arquitetura da 0.6.2); Base Econômica passa a ser descrita como 12 cards em `grid-4`. Seção **"CSS — Design System Classes"** reescrita: a partir da 0.7.0, tokens de spacing/borderRadius/backgroundColor/textColor/fontWeight são integrados ao `tailwind.config.js`, então `gap-md`, `p-sm`, `rounded-sm`, `bg-surface`, `text-inactive` etc. são classes **nativas** do Tailwind (não estão mais em `@layer components`). Exemplos de código atualizados (`rounded-md p-md bg-surface` em vez de `rounded-[var(--radius-md)]`). `HoverOverlay` adicionado à tabela de componentes Tailwind puros.
 
 ### Fixed
 
 - **Carousel — crop do hover à esquerda/direita e abaixo.** Adicionado `scroll-padding-inline: var(--spacing-xs)` no scroll container do `Carousel` (sem isso, `snap-mandatory` alinhava a borda do card com x=0, clipando o anel de 1px do hover). Aumentado o respiro vertical de `py-xs -my-xs` (4px) para `py-md -my-md` (24px), suficiente para acomodar a sombra inferior do `.card-hoverable:hover` (`box-shadow 0 10px 15px -3px` estende ~23px abaixo do card).
-
-### Changed
-
-- **Casos de Sucesso — conteúdo real do Geocracia.** Os 5 cards fictícios (Belo Horizonte, Maringá, Sobral, Joinville, Vitória da Conquista) foram substituídos por 4 casos reais publicados em geocracia.com: Projeto Ponte Digital (PA), TerraInk (BRASIL), Atlas do Hidrogênio Verde (RN) e Crédito Rural Geoespacial (BRASIL). Nova prop `url` em `CasoSucesso` — o CTA "Ver estudo de caso" agora encaminha para o artigo original (abre em nova aba automaticamente via PillButton). Imagens og:image baixadas em `public/images/cases/`.
-
-### Fixed
-
-- **Scroll no topo ao trocar de rota.** Criado `src/components/ScrollToTop.tsx` (`window.scrollTo(0, 0)` a cada mudança de `pathname`, ignorando quando há `hash`) e montado dentro do `<BrowserRouter>` em `App.tsx`. Normaliza o comportamento entre browsers/máquinas — antes, as rotas `/oportunidades`, `/comunidade` e `/formulador` abriam com o scroll preservado em alguns ambientes (default `history.scrollRestoration: 'auto'` varia entre Chrome/Safari/Firefox e entre máquinas rápidas/lentas). Removido o `window.scrollTo({ top: 0 })` redundante de `Trilhas.tsx` — agora o `ScrollToTop` global cuida disso e a página só trata o caso de `hash` (scrollIntoView).
-
-### Changed
-
-- **`README.md`** — funcionalidades expandidas para cobrir Hero com 4 pilares, Base Econômica com 12 indicadores + análise simulada por IA, página `/formulador` em 10 etapas, páginas `/trilhas` / `/oportunidades` / `/comunidade`, e tabela de municípios expandida de 3 para 8 (João Pessoa, Campina Grande, Queimadas, Conde, Caaporã, Pitimbu, Monteiro, Cabaceiras). Árvore de `src/` atualizada com as novas pastas (`trilhas/`, `icons/`, `components/formulador/steps/`) e páginas.
-- **`CLAUDE.md`** — status atualizado para 8 municípios + páginas adicionais; tabela de dados substitui `indicadores/*.json` por `municipios/*.ts` + `catalogo.ts` + `thresholds.ts` (arquitetura da 0.6.2); Base Econômica passa a ser descrita como 12 cards em `grid-4`. Seção **"CSS — Design System Classes"** reescrita: a partir da 0.7.0, tokens de spacing/borderRadius/backgroundColor/textColor/fontWeight são integrados ao `tailwind.config.js`, então `gap-md`, `p-sm`, `rounded-sm`, `bg-surface`, `text-inactive` etc. são classes **nativas** do Tailwind (não estão mais em `@layer components`). Exemplos de código atualizados (`rounded-md p-md bg-surface` em vez de `rounded-[var(--radius-md)]`).
 
 ## [0.7.0] — 2026-04-21
 
