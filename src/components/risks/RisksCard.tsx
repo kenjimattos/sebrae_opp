@@ -39,7 +39,7 @@ export default function RisksCard({
       padding="lg"
       className={`flex flex-col gap-md card-hoverable ${className}`}
     >
-      <span className={`shrink-0 typo-display-sm ${valueColorClass[effectiveTipo]}`}>
+      <span className={`shrink-0 typo-display ${valueColorClass[effectiveTipo]}`}>
           {valor}
       </span>
 

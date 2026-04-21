@@ -143,7 +143,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
   class="card-surface p-md flex-between gap-3xl w-full "
 >
   <div
-    class="flex-center gap-sm"
+    class="flex-center gap-md"
   >
     <span
       class="typo-display-lg"
@@ -618,7 +618,7 @@ exports[`Snapshot tests — CSS refactor safety > RisksCard 1`] = `
   class="status-alert-bg rounded-sm p-lg border border-solid border-[var(--semantic-alert)] flex flex-col gap-md card-hoverable "
 >
   <span
-    class="shrink-0 typo-display-sm text-[color:var(--semantic-alert)]"
+    class="shrink-0 typo-display text-[color:var(--semantic-alert)]"
   >
     R$ 180
   </span>
