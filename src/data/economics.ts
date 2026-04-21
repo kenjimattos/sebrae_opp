@@ -4,7 +4,7 @@
 
 export const analiseLabel = 'Análise' as const
 
-export const emptyAnaliseTitle = 'Análise inteligente da base econômica' as const
+export const emptyAnaliseTitle = 'Análise de desempenho do município' as const
 export const emptyAnaliseSubtitle =
   'Gere uma leitura personalizada dos indicadores do município, com destaques, riscos e oportunidades identificadas por IA.' as const
 export const gerarAnaliseLabel = 'Gerar análise com IA' as const
