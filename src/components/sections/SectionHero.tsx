@@ -31,7 +31,7 @@ function scrollToSection(sectionId: string) {
 
 export default function SectionHero() {
   return (
-    <SectionContainer className="items-center gap-lg">
+    <SectionContainer className="items-center gap-2xl">
       {/* Eyebrow */}
       <div className="flex items-center gap-xs">
         <span className="typo-body-sm-bold uppercase text-accent tracking-[0.12em]">
