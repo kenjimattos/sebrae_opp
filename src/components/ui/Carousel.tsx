@@ -2,9 +2,9 @@
 // Usado em SectionCapacitacao e SectionCasosSucesso.
 //
 // Os botões ficam absolutamente posicionados nos gutters laterais da section
-// (dentro da faixa de 120px do --spacing-margin da SectionContainer), usando
-// `left/right: calc(-1 * var(--spacing-xl))` — deslocados para fora do content
-// box sem alargar o layout.
+// (dentro da faixa de 180px do --spacing-margin da SectionContainer), usando
+// `left/right: calc(-1 * var(--spacing-3xl))` (-96px) — deslocados para fora
+// do content box sem alargar o layout.
 
 import { useRef } from 'react'
 import { ArrowLeft, ArrowRight } from '@/components/icons'
@@ -50,7 +50,7 @@ export default function Carousel({ children, scrollAmount, className = '' }: Car
         aria-label="Anterior"
         variant="secondary"
         size="lg"
-        className="absolute top-1/2 -translate-y-1/2 left-[calc(-1*var(--spacing-xl))] z-10"
+        className="absolute top-1/2 -translate-y-1/2 left-[calc(-1*var(--spacing-3xl))] z-10"
       />
       <IconButton
         icon={ArrowRight}
@@ -58,7 +58,7 @@ export default function Carousel({ children, scrollAmount, className = '' }: Car
         aria-label="Próximo"
         variant="secondary"
         size="lg"
-        className="absolute top-1/2 -translate-y-1/2 right-[calc(-1*var(--spacing-xl))] z-10"
+        className="absolute top-1/2 -translate-y-1/2 right-[calc(-1*var(--spacing-3xl))] z-10"
       />
     </div>
   )
