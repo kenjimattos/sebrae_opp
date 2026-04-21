@@ -54,7 +54,9 @@ describe('Section components — smoke tests', () => {
   })
 
   it('renders SectionBaseEconomica', () => {
-    const { container } = render(<SectionBaseEconomica dados={mockBaseEconomica} />)
+    const { container } = render(<SectionBaseEconomica dados={mockBaseEconomica} />, {
+      wrapper: TestWrapper,
+    })
     expect(container).toBeTruthy()
   })
 

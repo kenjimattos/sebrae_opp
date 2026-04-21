@@ -30,6 +30,7 @@ export {
   Landmark,
   Plus,
   Search,
+  Sparkles,
   Trash2,
   TrendingUp,
   Users,

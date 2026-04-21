@@ -2,6 +2,21 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Unreleased]
+
+### Added
+
+- **`EconomicsAnalysis` — geração simulada por IA.** O card da seção Base Econômica agora inicia vazio, com título, subtítulo e CTA "Gerar análise com IA". Ao clicar, o texto é revelado com efeito de máquina-de-escrever (cursor piscando) até completar. No estado final aparece um botão "Gerar novamente" que reinicia a animação. Cada município tem uma análise própria (fallback para texto genérico). A troca de município reseta o card para o estado inicial via `key={municipio.id}`.
+- **`src/hooks/useTypewriter.ts`** — hook reutilizável para efeito de digitação caractere-a-caractere. API: `useTypewriter({ text, enabled, speed?, onDone? })` → `{ displayed }`. Reset ocorre via remount (nova `key` no consumidor).
+- **`src/data/economics.ts`** — `analisePorMunicipio` (8 análises, uma por código IBGE) + `getAnaliseForMunicipio(id)` com fallback para `defaultAnalise`. Novos labels: `emptyAnaliseTitle`, `emptyAnaliseSubtitle`, `gerarAnaliseLabel`, `regenerarAnaliseLabel`, `gerandoAnaliseLabel`.
+- **`.typewriter-caret`** — classe CSS em `index.css` com animação `typewriter-caret-blink` (step-end, 0.9s).
+- **`Sparkles`** — ícone adicionado ao re-export central de `@/components/icons`.
+
+### Changed
+
+- **`EconomicsAnalysis`** — API simplificada: aceita apenas `{ analise: string }`. Consumidor controla reset via `key`. Componente agora tem máquina de estados interna (`idle` | `typing` | `done`).
+- **`SectionBaseEconomica`** — consome `useMunicipio` para derivar a análise do município atual e passa `key={municipio.id}` para garantir reset ao trocar o município.
+
 ## [0.7.0] — 2026-04-20
 
 Refactoring do design system: integração dos tokens no Tailwind config, eliminando ~80 classes custom duplicadas do `index.css`. Extração de estilos compartilhados de botão.

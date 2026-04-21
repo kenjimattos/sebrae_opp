@@ -98,7 +98,7 @@ describe('Economics components', () => {
   })
 
   it('renders EconomicsAnalysis', () => {
-    const { container } = render(<EconomicsAnalysis />)
+    const { container } = render(<EconomicsAnalysis analise="Teste de análise." />)
     expect(container).toBeTruthy()
   })
 })

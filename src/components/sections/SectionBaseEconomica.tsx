@@ -6,12 +6,17 @@ import SectionHeader from '@/components/ui/SectionHeader'
 import EconomicsCard from '@/components/economics/EconomicsCard'
 import EconomicsAnalysis from '@/components/economics/EconomicsAnalysis'
 import { sectionContent } from '@/data/sections'
+import { getAnaliseForMunicipio } from '@/data/economics'
+import { useMunicipio } from '@/hooks/useMunicipio'
 
 interface SectionBaseEconomicaProps {
   dados: BaseEconomicaItem[]
 }
 
 export default function SectionBaseEconomica({ dados }: SectionBaseEconomicaProps) {
+  const { municipio } = useMunicipio()
+  const analise = getAnaliseForMunicipio(municipio.id)
+
   return (
     <SectionContainer>
       <SectionHeader title={sectionContent.baseEconomica.title} />
@@ -29,7 +34,7 @@ export default function SectionBaseEconomica({ dados }: SectionBaseEconomicaProp
           ))}
         </div>
 
-        <EconomicsAnalysis />
+        <EconomicsAnalysis key={municipio.id} analise={analise} />
       </div>
     </SectionContainer>
   )
