@@ -146,7 +146,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaStats 1`] = `
     class="flex-center gap-sm"
   >
     <span
-      class="typo-display"
+      class="typo-display-lg"
     >
       10
     </span>

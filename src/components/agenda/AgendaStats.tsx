@@ -18,8 +18,8 @@ export default function AgendaStats({ total, counts, className = '' }: AgendaSta
       padding="md"
       className={`flex-between gap-3xl w-full ${className}`}
     >
-      <div className="flex-center gap-sm">
-        <span className="typo-display">
+      <div className="flex-center gap-md">
+        <span className="typo-display-lg">
           {total}
         </span>
         <span className="typo-body">
