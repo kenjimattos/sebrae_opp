@@ -3,7 +3,6 @@
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import PillButton from '@/components/ui/buttons/PillButton'
 import Card from '@/components/ui/Card'
-import { ctaLabels } from '@/data/labels'
 import type { CasoSucesso } from '@/data/home/casos-sucesso'
 
 interface CaseStudiesCardProps {
@@ -44,7 +43,7 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
         <PillButton
           variant="ghost"
           size="sm"
-          label={ctaLabels.verEstudoDeCaso}
+          label="Ver estudo de caso"
           href={caso.url}
         />
       </div>

@@ -37,11 +37,19 @@ export const sectionContent = {
   },
   agendas: {
     title: 'Veja como está o <highlight>Ambiente de Negócios</highlight> do seu município',
+    statsLabel:
+      'indicadores alinhados às agendas estratégicas ' +
+      'para melhorar o ambiente de negócios do seu município',
   },
   panorama: {
     title: 'Como está o Ambiente de Negócios no Estado?',
     description:
       'Explore como está o Ambiente de Negócios do estado e a distribuição entre os municípios.',
+    labels: {
+      indicadorNoMapa: 'Indicador',
+      mediaEstadual: 'Média estadual',
+      maior: 'Maior valor do estado',
+    },
   },
   baseEconomica: {
     title: 'Qual o panorâma sócioeconômico do município?',

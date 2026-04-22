@@ -5,7 +5,6 @@
 
 import Card from '@/components/ui/Card'
 import PillButton from '@/components/ui/buttons/PillButton'
-import { ctaLabels } from '@/data/labels'
 
 interface TrilhaCardProps {
   id?: string
@@ -56,7 +55,7 @@ export default function TrilhaCard({
           <PillButton
             variant="ghost"
             size="sm"
-            label={ctaLabels.verCurso}
+            label="ver curso"
             href={hasLink ? href : undefined}
             disabled={!hasLink}
           />

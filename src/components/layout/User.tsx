@@ -2,14 +2,13 @@
 // Avatar circle + user name
 
 import { UserAvatar } from '@/components/icons'
-import { defaultUserName } from '@/data/labels'
 
 interface UserProps {
   name?: string
   className?: string
 }
 
-export default function User({ name = defaultUserName, className = '' }: UserProps) {
+export default function User({ name = 'João Maria', className = '' }: UserProps) {
   return (
     <div
       className={`flex items-center gap-xs h-[60px] rounded-full ${className}`}

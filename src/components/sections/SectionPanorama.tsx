@@ -14,7 +14,6 @@ import { useMunicipio } from '@/hooks/useMunicipio'
 import { usePanoramaIndicadores } from '@/hooks/usePanoramaIndicadores'
 import { usePanoramaMedia } from '@/hooks/usePanoramaMedia'
 import { sectionContent } from '@/data/home/sections'
-import { panoramaLabels } from '@/data/labels'
 import type { IndicadorKey } from '@/data/indicadores/mapa'
 import { catalogo } from '@/data/indicadores/catalogo'
 import { trackEvent } from '@/utils/analytics'
@@ -35,7 +34,7 @@ export default function SectionPanorama() {
       />
 
       <Card as="section" padding="lg" className="flex flex-col gap-lg min-h-[35dvh]">
-        <InsetBar label={panoramaLabels.indicadorNoMapa}>
+        <InsetBar label={sectionContent.panorama.labels.indicadorNoMapa}>
           <Dropdown
             options={dropdownOptions}
             value={indicador}

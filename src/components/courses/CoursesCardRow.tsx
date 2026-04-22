@@ -2,7 +2,6 @@
 // Row inside a course trail card — title (uppercase) + hours + "Ver curso" link
 
 import PillButton from '@/components/ui/buttons/PillButton'
-import { ctaLabels } from '@/data/labels'
 
 interface CoursesCardRowProps {
   title: string
@@ -27,7 +26,7 @@ export default function CoursesCardRow({ title, subtitle, href = '#', className 
       </div>
 
       {/* Ver curso button */}
-      <PillButton variant="ghost" size="sm" label={ctaLabels.verCurso} href={href} />
+      <PillButton variant="ghost" size="sm" label="ver curso" href={href} />
     </div>
   )
 }

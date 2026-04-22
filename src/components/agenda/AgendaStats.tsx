@@ -3,7 +3,8 @@
 
 import type { StatusType } from '@/types/indicadores'
 import { statusStyles } from '@/utils/statusStyles'
-import { statusLabels, agendaStatsLabel } from '@/data/labels'
+import { statusLabels } from '@/data/indicadores/status-labels'
+import { sectionContent } from '@/data/home/sections'
 import Card from '@/components/ui/Card'
 
 interface AgendaStatsProps {
@@ -23,7 +24,7 @@ export default function AgendaStats({ total, counts, className = '' }: AgendaSta
           {total}
         </span>
         <span className="typo-body">
-          {agendaStatsLabel}
+          {sectionContent.agendas.statsLabel}
         </span>
       </div>
 

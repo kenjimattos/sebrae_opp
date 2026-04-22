@@ -4,6 +4,15 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Removed
+
+- **`src/data/labels.ts`** — o arquivo misturava 5 categorias distintas (enum de status, CTAs 1:1, conteúdo de seção do Panorama, frase da seção Agendas, placeholder de usuário) sem coerência. Desmontado:
+  - `panoramaLabels` → `home/sections.ts` (`sectionContent.panorama.labels`) — pertence ao conteúdo da seção
+  - `agendaStatsLabel` → `home/sections.ts` (`sectionContent.agendas.statsLabel`) — idem
+  - `statusLabels` + `statusLabelsMap` → `indicadores/status-labels.ts`, renomeados `statusLabels` / `statusLabelsPanorama` com comentário explicando por que o Panorama usa "Crítico" em vez de "Alerta"
+  - `ctaLabels` → inline nos 3 componentes consumidores ("Ver estudo de caso", "ver curso", "ver trilha completa") — indireção sem ganho quando há 1 uso cada
+  - `defaultUserName` → inline em `User.tsx` como default prop
+
 ### Fixed
 
 - **`riscos.ts` — contextos dessincronizados do catálogo.** Várias chaves estavam com labels desatualizados (ex: `'IGM – Índice CFA de Governança Municipal (Finanças, Gestão e Desempenho) 2025'` vs catálogo `'IGM – Índice CFA de Governança Municipal'`), caindo silenciosamente no `defaultRiscoContexto`. Migração para `id` resolve e previne regressão.

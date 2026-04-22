@@ -1,7 +1,7 @@
 // Status legend for the Panorama map section
 
 import type { StatusType } from '@/types/indicadores'
-import { statusLabelsMap } from '@/data/labels'
+import { statusLabelsPanorama } from '@/data/indicadores/status-labels'
 
 const legendItems: { status: StatusType; cssClass: string }[] = [
   { status: 'success', cssClass: 'status-success-dot' },
@@ -15,7 +15,7 @@ export default function PanoramaLegend() {
       {legendItems.map(({ status, cssClass }) => (
         <div key={status} className="flex-center gap-2xs">
           <span className={`w-[12px] h-[12px] rounded-full ${cssClass}`} />
-          <span className="typo-body-sm text-inactive">{statusLabelsMap[status]}</span>
+          <span className="typo-body-sm text-inactive">{statusLabelsPanorama[status]}</span>
         </div>
       ))}
     </div>

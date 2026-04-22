@@ -169,6 +169,7 @@ src/
 │   ├── indicadores/                  # Estrutura + valores + classificação + descrições
 │   │   ├── catalogo.ts               # Fonte de verdade de agendas + base econômica (id/label/ícone)
 │   │   ├── thresholds.ts             # Régua de classificação por indicador (status derivado do valor)
+│   │   ├── status-labels.ts          # StatusType → texto ("Bom"/"Atenção"/"Alerta"); variante Panorama usa "Crítico"
 │   │   ├── mapa.ts                   # Dados derivados para coloração do ParaibaMap
 │   │   ├── municipios.json           # Lista dos 8 municípios (id IBGE, nome, slug)
 │   │   ├── valores/                  # Valores por município (merged com catalogo pelo provider)
@@ -192,7 +193,6 @@ src/
 │   │   └── ai-assistant.ts           # Conteúdo do AIAssistant por etapa
 │   ├── geo/
 │   │   └── paraiba.json              # GeoJSON da Paraíba (IBGE) — 386kb
-│   ├── labels.ts                     # Labels compartilhados (status, CTAs, panorama, user)
 │   └── layout.ts                     # navLinks, footerColumns, brandText, copyright
 ├── hooks/
 │   ├── useMunicipio.ts               # Hook + Context type + MunicipioState interface
@@ -426,12 +426,12 @@ Toda a estrutura de dados está em `src/data/` e `src/types/indicadores.ts`, org
 | `indicadores/municipios.json` | Lista dos 8 municípios (id IBGE, nome, slug) |
 | `indicadores/valores/*.ts` | Valores por município (agendas + baseEconomica). Merge com `catalogo` + `thresholds` no provider |
 | `indicadores/descricoes/*.ts` | Conteúdo de InfoTooltip (agendas, base-economica, indicadores, riscos) — futuro: LLM |
-| `home/sections.ts` | Títulos e descrições de todas as seções (centralizado) |
+| `indicadores/status-labels.ts` | `StatusType` → texto. `statusLabels` (Bom/Atenção/Alerta) + `statusLabelsPanorama` (usa "Crítico") |
+| `home/sections.ts` | Títulos, descrições e labels de seção (inclui `agendas.statsLabel`, `panorama.labels.*`) |
 | `home/{capacitacao,casos-sucesso,economics,recursos,formulador,ai-assistant}.ts` | Conteúdo das seções da home |
 | `formulador/etapas.ts` | Fonte de verdade das 10 etapas do formulador |
 | `formulador/ai-assistant.ts` | Conteúdo do AIAssistant por etapa |
 | `geo/paraiba.json` | GeoJSON da Paraíba (IBGE) — 386kb |
-| `labels.ts` | Labels compartilhados (status, CTAs, panorama, user default) |
 | `layout.ts` | navLinks, footerColumns, brandText, copyright |
 
 **Interfaces:** ver `src/types/indicadores.ts` para `IndicadoresData`, `Agenda`, `Indicador`, `BaseEconomicaItem`, `Panorama`, etc.

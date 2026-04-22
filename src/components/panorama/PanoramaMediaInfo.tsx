@@ -1,6 +1,8 @@
 // State average display for the selected indicator
 
-import { panoramaLabels } from '@/data/labels'
+import { sectionContent } from '@/data/home/sections'
+
+const { labels: panoramaLabels } = sectionContent.panorama
 
 interface PanoramaMediaInfoProps {
   count: number
