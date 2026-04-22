@@ -42,7 +42,7 @@ export default function EconomicsCard({ label, valor, variacao, icone, className
         {Icon && (
           <IconButton icon={Icon} size="sm" variant="tertiary" decorative />
         )}
-        <span className="typo-body uppercase">
+        <span className="typo-body">
           {label}
         </span>
       </div>
