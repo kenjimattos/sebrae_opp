@@ -1,7 +1,7 @@
 // Tailwind pure — no Figma equivalent
 // Reusable tooltip with hover/click trigger. Floating panel uses the Card primitive.
-// In `followCursor` mode, the panel is portaled to <body> and position: fixed so it
-// escapes sibling stacking contexts (e.g. adjacent cards in a grid).
+// `followCursor` e `portal` renderizam o panel em <body> com position: fixed — escapa
+// de stacking contexts criados por cards vizinhos no grid (ex.: transform em hover).
 
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
@@ -19,6 +19,9 @@ interface TooltipProps {
   width?: number
   trigger?: TooltipTrigger
   followCursor?: boolean
+  // Renderiza o panel via portal em <body> com position: fixed. Use quando o
+  // trigger está em stacking contexts irmãos (ex.: cards em grid com transform).
+  portal?: boolean
   children: React.ReactNode
   className?: string
   // Quando fornecido, dispara `tooltip_aberto` na primeira abertura do
@@ -37,6 +40,7 @@ const alignClass: Record<TooltipAlign, string> = {
 }
 
 const CURSOR_OFFSET_PX = 16
+const ANCHOR_OFFSET_PX = 4
 
 export default function Tooltip({
   content,
@@ -45,17 +49,22 @@ export default function Tooltip({
   width = 300,
   trigger = 'hover',
   followCursor = false,
+  portal = false,
   children,
   className = '',
   trackingKey,
 }: TooltipProps) {
   const [open, setOpen] = useState(false)
   const [cursorPos, setCursorPos] = useState<{ x: number; y: number } | null>(null)
+  const [anchorRect, setAnchorRect] = useState<DOMRect | null>(null)
   const ref = useRef<HTMLDivElement>(null)
   const trackedRef = useRef(false)
 
   function registerOpen() {
     setOpen(true)
+    if (portal && ref.current) {
+      setAnchorRect(ref.current.getBoundingClientRect())
+    }
     if (trackingKey && !trackedRef.current) {
       trackedRef.current = true
       trackEvent('tooltip_aberto', { chave: trackingKey })
@@ -104,12 +113,26 @@ export default function Tooltip({
         }
 
   const useCursorPos = followCursor && cursorPos
-  const panelClass = useCursorPos
-    ? 'fixed z-50 pointer-events-none'
-    : `absolute z-50 ${placementClass[placement]} ${alignClass[align]}`
-  const panelStyle: React.CSSProperties = useCursorPos
-    ? { left: cursorPos.x + CURSOR_OFFSET_PX, top: cursorPos.y, width }
-    : { width }
+  const usePortalAnchor = portal && anchorRect && !followCursor
+
+  let panelClass: string
+  let panelStyle: React.CSSProperties
+  if (useCursorPos) {
+    panelClass = 'fixed z-50 pointer-events-none'
+    panelStyle = { left: cursorPos.x + CURSOR_OFFSET_PX, top: cursorPos.y, width }
+  } else if (usePortalAnchor) {
+    panelClass = 'fixed z-50'
+    const top =
+      placement === 'bottom'
+        ? anchorRect.bottom + ANCHOR_OFFSET_PX
+        : anchorRect.top - ANCHOR_OFFSET_PX
+    const left = align === 'end' ? anchorRect.right - width : anchorRect.left
+    const transform = placement === 'top' ? 'translateY(-100%)' : undefined
+    panelStyle = { top, left, width, transform }
+  } else {
+    panelClass = `absolute z-50 ${placementClass[placement]} ${alignClass[align]}`
+    panelStyle = { width }
+  }
 
   const panel = open ? (
     <div role="tooltip" className={panelClass} style={panelStyle}>
@@ -124,6 +147,8 @@ export default function Tooltip({
     </div>
   ) : null
 
+  const shouldPortal = (useCursorPos || usePortalAnchor) && panel
+
   return (
     <div
       ref={ref}
@@ -131,7 +156,7 @@ export default function Tooltip({
       {...interactionProps}
     >
       {children}
-      {useCursorPos && panel ? createPortal(panel, document.body) : panel}
+      {shouldPortal ? createPortal(panel, document.body) : panel}
     </div>
   )
 }

@@ -8,6 +8,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 - **`ui/InfoTooltip`** — primitivo para o padrão "ícone `Info` que abre tooltip com título + descrição", antes inline no `AgendaCard`. Composto por `IconButton` (variant `ghost`) + `Tooltip` + `TitleSubtitle` (size `sm`). API: `title` + `subtitle` + `label` (aria-label obrigatório) + `trackingKey` opcional. Refatorado o uso existente em `AgendaCard`.
 - **`EconomicsCard` — `InfoTooltip` por indicador.** Cada card da Base Econômica agora exibe um ícone `Info` no topo à direita, abrindo tooltip com a definição do indicador. Conteúdo em `src/data/base-economica-contexto.ts` (chave = label, valor = descrição); card só renderiza o ícone quando há conteúdo registrado.
+- **`ui/Tooltip` — prop `portal`.** Renderiza o panel via portal no `<body>` com `position: fixed`, usando o `getBoundingClientRect` do trigger para posicionar. Resolve o caso em que o painel ficava atrás do card vizinho no grid por conta do stacking context criado pelo `transform` do `card-hoverable` (o `z-50` só ordena irmãos dentro do mesmo stacking context). `InfoTooltip` passa `portal` por padrão — é usado dentro de cards em grid.
 
 ## [0.7.2] — 2026-04-21
 

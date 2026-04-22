@@ -27,7 +27,7 @@ export default function InfoTooltip({
     )
   }
   return (
-    <Tooltip trackingKey={trackingKey} content={content()}>
+    <Tooltip trackingKey={trackingKey} portal content={content()}>
         <IconButton
           icon={Info}
           size="sm"
