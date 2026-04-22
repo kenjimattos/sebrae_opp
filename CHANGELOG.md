@@ -2,42 +2,49 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
-## [Unreleased]
+## [0.7.3] — 2026-04-22
 
-### Removed
-
-- **`src/data/labels.ts`** — o arquivo misturava 5 categorias distintas (enum de status, CTAs 1:1, conteúdo de seção do Panorama, frase da seção Agendas, placeholder de usuário) sem coerência. Desmontado:
-  - `panoramaLabels` → `home/sections.ts` (`sectionContent.panorama.labels`) — pertence ao conteúdo da seção
-  - `agendaStatsLabel` → `home/sections.ts` (`sectionContent.agendas.statsLabel`) — idem
-  - `statusLabels` + `statusLabelsMap` → `indicadores/status-labels.ts`, renomeados `statusLabels` / `statusLabelsPanorama` com comentário explicando por que o Panorama usa "Crítico" em vez de "Alerta"
-  - `ctaLabels` → inline nos 3 componentes consumidores ("Ver estudo de caso", "ver curso", "ver trilha completa") — indireção sem ganho quando há 1 uso cada
-  - `defaultUserName` → inline em `User.tsx` como default prop
-
-### Fixed
-
-- **`riscos.ts` — contextos dessincronizados do catálogo.** Várias chaves estavam com labels desatualizados (ex: `'IGM – Índice CFA de Governança Municipal (Finanças, Gestão e Desempenho) 2025'` vs catálogo `'IGM – Índice CFA de Governança Municipal'`), caindo silenciosamente no `defaultRiscoContexto`. Migração para `id` resolve e previne regressão.
-
-### Changed
-
-- **`descricoes/*.ts` — chaves passam a usar `id` do catálogo.** Antes, `agendas.ts` indexava por `agenda.nome`, `base-economica.ts` por `item.label` e `riscos.ts` por `indicador.label` — renomear qualquer texto no catálogo quebrava tooltips silenciosamente. Agora todos os arquivos de `descricoes/` usam o `id` estável (paralelo a `indicadores.ts` que já seguia esse padrão).
-  - `types/indicadores.ts`: `Agenda` e `BaseEconomicaItem` ganham `id` obrigatório.
-  - `MunicipioProvider`: propaga `id` do catálogo nos objetos mesclados.
-  - Consumidores (`AgendaCard`, `EconomicsCard`, `SectionAgendas`, `SectionBaseEconomica`, `SectionRiscos`, mocks de teste) passam a receber/usar `id` no lookup.
-
-- **`src/data/` — reorganização por domínio.** Arquivos antes flat viraram pastas semânticas:
-  - `indicadores/` (catalogo, thresholds, mapa, municipios.json, valores/*, descricoes/*) — tudo que descreve/classifica/valora indicadores
-  - `home/` (sections, capacitacao, casos-sucesso, economics, recursos, formulador, ai-assistant) — conteúdo das seções da home
-  - `formulador/` (etapas, ai-assistant) — rota `/formulador`
-  - `geo/paraiba.json` (antes `paraiba-municipios.json` na raiz)
-  - `labels.ts` e `layout.ts` permanecem na raiz (globais)
-  - Renomeações: `agenda-objetivos` → `indicadores/descricoes/agendas`; `base-economica-contexto` → `indicadores/descricoes/base-economica`; `indicador-info` → `indicadores/descricoes/indicadores`; `riscos-contexto` → `indicadores/descricoes/riscos`; `mapa-indicadores` → `indicadores/mapa`; `formulador-etapas` → `formulador/etapas`; `formulador-ai` → `formulador/ai-assistant`; `municipios/*` → `indicadores/valores/*`.
-  - Todos os imports atualizados em ~40 arquivos (páginas, seções, hooks, utils, tests).
+Versão de **consolidação da camada de dados** (`src/data/`) e **nova affordance de informação nos cards**. O protótipo ganha um padrão reutilizável de "ícone Info + tooltip" (primitivo `InfoTooltip`), usado nos cards de Agenda e Base Econômica; toda a pasta `src/data/` é reorganizada em domínios (`indicadores/`, `home/`, `formulador/`, `geo/`); e os arquivos de descrição passam a ser indexados por `id` do catálogo — o que, de quebra, corrige um bug silencioso em `riscos.ts` em que vários contextos caíam no fallback por labels desatualizados.
 
 ### Added
 
 - **`ui/InfoTooltip`** — primitivo para o padrão "ícone `Info` que abre tooltip com título + descrição", antes inline no `AgendaCard`. Composto por `IconButton` (variant `ghost`) + `Tooltip` + `TitleSubtitle` (size `sm`). API: `title` + `subtitle` + `label` (aria-label obrigatório) + `trackingKey` opcional. Refatorado o uso existente em `AgendaCard`.
-- **`EconomicsCard` — `InfoTooltip` por indicador.** Cada card da Base Econômica agora exibe um ícone `Info` no topo à direita, abrindo tooltip com a definição do indicador. Conteúdo em `src/data/base-economica-contexto.ts` (chave = label, valor = descrição); card só renderiza o ícone quando há conteúdo registrado.
+- **`EconomicsCard` — `InfoTooltip` por indicador.** Cada card da Base Econômica passa a exibir um ícone `Info` no topo à direita, abrindo tooltip com a definição do indicador. Conteúdo em `src/data/indicadores/descricoes/base-economica.ts` (12 indicadores cadastrados); card só renderiza o ícone quando há conteúdo registrado.
 - **`ui/Tooltip` — prop `portal`.** Renderiza o panel via portal no `<body>` com `position: fixed`, usando o `getBoundingClientRect` do trigger para posicionar. Resolve o caso em que o painel ficava atrás do card vizinho no grid por conta do stacking context criado pelo `transform` do `card-hoverable` (o `z-50` só ordena irmãos dentro do mesmo stacking context). `InfoTooltip` passa `portal` por padrão — é usado dentro de cards em grid.
+- **`src/data/indicadores/status-labels.ts`** — `statusLabels` (Bom/Atenção/Alerta) + `statusLabelsPanorama` (mesma base, mas com "Crítico" em vez de "Alerta" — vocabulário específico da legenda do mapa). Vive junto do tipo `StatusType` em vez de um `labels.ts` genérico.
+
+### Changed
+
+- **`src/data/` — reorganização por domínio.** Arquivos antes flat viraram pastas semânticas:
+  - `indicadores/` (catalogo, thresholds, mapa, municipios.json, valores/*, descricoes/*, status-labels) — tudo que descreve/classifica/valora indicadores
+  - `home/` (sections, capacitacao, casos-sucesso, economics, recursos, formulador, ai-assistant) — conteúdo das seções da home
+  - `formulador/` (etapas, ai-assistant) — rota `/formulador`
+  - `geo/paraiba.json` (antes `paraiba-municipios.json` na raiz)
+  - `layout.ts` permanece na raiz (globais)
+  - Renomeações: `agenda-objetivos` → `indicadores/descricoes/agendas`; `base-economica-contexto` → `indicadores/descricoes/base-economica`; `indicador-info` → `indicadores/descricoes/indicadores`; `riscos-contexto` → `indicadores/descricoes/riscos`; `mapa-indicadores` → `indicadores/mapa`; `formulador-etapas` → `formulador/etapas`; `formulador-ai` → `formulador/ai-assistant`; `municipios/*` → `indicadores/valores/*`.
+  - Todos os imports atualizados em ~40 arquivos (páginas, seções, hooks, utils, tests). `git mv` preservou histórico.
+- **`descricoes/*.ts` — chaves passam a usar `id` do catálogo.** Antes, `agendas.ts` indexava por `agenda.nome`, `base-economica.ts` por `item.label` e `riscos.ts` por `indicador.label` — renomear qualquer texto no catálogo quebrava tooltips silenciosamente. Agora todos os arquivos de `descricoes/` usam o `id` estável (paralelo a `indicadores.ts` que já seguia esse padrão).
+  - `types/indicadores.ts`: `Agenda` e `BaseEconomicaItem` ganham `id` obrigatório.
+  - `MunicipioProvider`: propaga `id` do catálogo nos objetos mesclados.
+  - Consumidores (`AgendaCard`, `EconomicsCard`, `SectionAgendas`, `SectionBaseEconomica`, `SectionRiscos`, mocks de teste) passam a receber/usar `id` no lookup.
+- **Desmontagem de `labels.ts`.** O arquivo misturava 5 categorias distintas (enum de status, CTAs 1:1, conteúdo de seção do Panorama, frase da seção Agendas, placeholder de usuário) sem coerência. Conteúdo dispersado para onde pertence:
+  - `panoramaLabels` → `home/sections.ts` (`sectionContent.panorama.labels`)
+  - `agendaStatsLabel` → `home/sections.ts` (`sectionContent.agendas.statsLabel`)
+  - `statusLabels` + `statusLabelsMap` → `indicadores/status-labels.ts`, renomeados `statusLabels` / `statusLabelsPanorama`
+  - `ctaLabels` → inline nos 3 componentes consumidores (1 uso cada — indireção sem ganho)
+  - `defaultUserName` → inline em `User.tsx` como default prop
+- **Catálogo — labels corrigidos.** Textos de indicadores da Base Econômica revisados no `catalogo.ts`, incluindo a ortografia de "Desenvolvimento Sustentável" no label do IDSC.
+- **`EconomicsCard` — refinamentos de layout.** Label sem `uppercase` (era incoerente com o Figma), espaçamento interno ajustado, e `max-width` removido do valor (permitia quebra desnecessária em valores mais longos).
+
+### Fixed
+
+- **`riscos.ts` — contextos dessincronizados do catálogo.** Várias chaves estavam com labels desatualizados (ex: `'IGM – Índice CFA de Governança Municipal (Finanças, Gestão e Desempenho) 2025'` vs catálogo `'IGM – Índice CFA de Governança Municipal'`), caindo silenciosamente no `defaultRiscoContexto`. Migração das chaves para `id` resolve o problema e previne regressão futura.
+- **Tooltip atrás de card vizinho.** Tooltips dentro de cards em grid (ex: AgendaCard, EconomicsCard) podiam ficar parcialmente ocultos pelo card ao lado por causa do stacking context criado pelo `transform` do `card-hoverable`. Resolvido via nova prop `portal` no `Tooltip`, que move o painel para `<body>`.
+
+### Removed
+
+- **`src/data/labels.ts`** — arquivo desmontado (ver "Changed" acima).
+- **Arquivos de indicadores não utilizados** — limpeza inicial em `src/data/indicadores/` (legado dos JSONs por município que foram substituídos pela camada `catalogo + valores + thresholds`).
 
 ## [0.7.2] — 2026-04-21
 
