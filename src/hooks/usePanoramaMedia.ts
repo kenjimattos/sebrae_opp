@@ -2,26 +2,26 @@
 
 import { useMemo } from 'react'
 import {
-  indicadorOptions,
-  municipiosMapData,
-  type IndicadorKey,
-} from '@/data/indicadores/mapa'
+  indicatorOptions,
+  municipalitiesMapData,
+  type IndicatorKey,
+} from '@/data/indicators/map-data'
 
-interface MediaInfo {
+interface AverageInfo {
   label: string
   formatted: string
   count: number
-  municipioFormatted: string | null
-  maiorFormatted: string
-  maiorMunicipioNome: string
+  municipalityFormatted: string | null
+  highestFormatted: string
+  highestMunicipalityName: string
 }
 
-function formatValue(value: number, exemplo: string): string {
-  if (exemplo.includes('%')) {
+function formatValue(value: number, example: string): string {
+  if (example.includes('%')) {
     return `${value.toFixed(1)}%`
-  } else if (exemplo.includes('R$')) {
+  } else if (example.includes('R$')) {
     return `R$ ${Math.round(value).toLocaleString('pt-BR')}`
-  } else if (exemplo.includes(',') && !exemplo.includes('.') && value < 10) {
+  } else if (example.includes(',') && !example.includes('.') && value < 10) {
     return value.toFixed(3).replace('.', ',')
   } else if (value < 100) {
     return value.toFixed(1).replace('.', ',')
@@ -30,40 +30,40 @@ function formatValue(value: number, exemplo: string): string {
   }
 }
 
-export function usePanoramaMedia(indicador: IndicadorKey, municipioId: string): MediaInfo | null {
+export function usePanoramaMedia(indicator: IndicatorKey, municipalityId: string): AverageInfo | null {
   return useMemo(() => {
-    const valores: number[] = []
-    for (const data of Object.values(municipiosMapData)) {
-      const entry = data.indicadores[indicador]
-      if (entry?.valorNumerico !== undefined) {
-        valores.push(entry.valorNumerico)
+    const values: number[] = []
+    for (const data of Object.values(municipalitiesMapData)) {
+      const entry = data.indicators[indicator]
+      if (entry?.numericValue !== undefined) {
+        values.push(entry.numericValue)
       }
     }
-    if (valores.length === 0) return null
-    const soma = valores.reduce((acc, v) => acc + v, 0)
-    const media = soma / valores.length
-    const maior = Math.max(...valores)
+    if (values.length === 0) return null
+    const sum = values.reduce((acc, v) => acc + v, 0)
+    const average = sum / values.length
+    const highest = Math.max(...values)
 
-    const opt = indicadorOptions.find((o) => o.value === indicador)
+    const opt = indicatorOptions.find((o) => o.value === indicator)
     const label = opt?.shortLabel ?? ''
 
     // Detect format from example value
-    const exemplo = Object.values(municipiosMapData)[0]?.indicadores[indicador]?.valor ?? ''
+    const example = Object.values(municipalitiesMapData)[0]?.indicators[indicator]?.value ?? ''
 
-    const formatted = formatValue(media, exemplo)
-    const maiorFormatted = formatValue(maior, exemplo)
+    const formatted = formatValue(average, example)
+    const highestFormatted = formatValue(highest, example)
 
     // Selected municipality value
-    const municipioEntry = municipiosMapData[municipioId]?.indicadores[indicador]
-    const municipioFormatted = municipioEntry?.valorNumerico !== undefined
-      ? formatValue(municipioEntry.valorNumerico, exemplo)
+    const municipalityEntry = municipalitiesMapData[municipalityId]?.indicators[indicator]
+    const municipalityFormatted = municipalityEntry?.numericValue !== undefined
+      ? formatValue(municipalityEntry.numericValue, example)
       : null
 
-    const maiorMunicipioNome = Object.values(municipiosMapData).find(data => {
-      const val = data.indicadores[indicador]?.valorNumerico
-      return val === maior
-    })?.nome ?? ''
+    const highestMunicipalityName = Object.values(municipalitiesMapData).find(data => {
+      const val = data.indicators[indicator]?.numericValue
+      return val === highest
+    })?.name ?? ''
 
-      return { label, formatted, count: valores.length, municipioFormatted, maiorFormatted, maiorMunicipioNome }
-  }, [indicador, municipioId])
+      return { label, formatted, count: values.length, municipalityFormatted, highestFormatted, highestMunicipalityName }
+  }, [indicator, municipalityId])
 }
