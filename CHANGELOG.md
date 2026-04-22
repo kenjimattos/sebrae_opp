@@ -2,6 +2,14 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [0.8.0] — 2026-04-22
+
+Refactor massivo de **padronização de nomenclatura para inglês** em todo o codebase. Identificadores de código (tipos, interfaces, propriedades, nomes de arquivo, variáveis internas) passam a usar inglês consistente. Texto exibido ao usuário (labels, títulos, descrições, botões) permanece em português. URLs de rota e nomes de eventos analytics também permanecem em português.
+
+### Changed
+
+- **ESLint — regra `quotes: single`** adicionada para forçar aspas simples em todo o código (`avoidEscape: true` para evitar conflitos em strings com apóstrofos).
+
 ## [0.7.3] — 2026-04-22
 
 Versão de **consolidação da camada de dados** (`src/data/`) e **nova affordance de informação nos cards**. O protótipo ganha um padrão reutilizável de "ícone Info + tooltip" (primitivo `InfoTooltip`), usado nos cards de Agenda e Base Econômica; toda a pasta `src/data/` é reorganizada em domínios (`indicadores/`, `home/`, `formulador/`, `geo/`); e os arquivos de descrição passam a ser indexados por `id` do catálogo — o que, de quebra, corrige um bug silencioso em `riscos.ts` em que vários contextos caíam no fallback por labels desatualizados.

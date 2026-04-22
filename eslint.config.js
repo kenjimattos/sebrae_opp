@@ -20,6 +20,7 @@ export default defineConfig([
       globals: globals.browser,
     },
     rules: {
+      quotes: ['error', 'single', { avoidEscape: true }],
       // Force all Lucide imports through @/components/icons (central registry).
       // Prevents regressions where consumers bypass the icons barrel.
       'no-restricted-imports': [
