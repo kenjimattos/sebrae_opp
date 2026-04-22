@@ -47,7 +47,7 @@ export default function EconomicsCard({ label, valor, variacao, icone, className
         </span>
       </div>
       <div className="flex items-end justify-between w-full">
-        <span className="typo-display-sm max-w-[130px]">
+        <span className="typo-display-sm">
           {valor}
         </span>
         <span className="typo-body-sm-bold text-right">
