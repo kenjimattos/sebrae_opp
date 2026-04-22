@@ -3,7 +3,7 @@
 Guia de desenvolvimento para a Plataforma OPP (Observatório de Políticas Públicas).
 Leia este arquivo inteiro antes de começar qualquer tarefa.
 
-> **Status atual:** Protótipo funcional com Hero + 8 seções implementadas, mapa interativo da Paraíba, estado global por município, e dados para 8 municípios (João Pessoa, Campina Grande, Queimadas, Conde, Caaporã, Pitimbu, Monteiro, Cabaceiras). Viewport desktop 1440px. Dark mode configurado via tokens mas sem toggle na UI. **Rota `/formulador` implementada** — fluxo em 10 etapas + tela de conclusão com exportação PDF, persistência por município em `localStorage`. **Páginas `/trilhas`, `/oportunidades` e `/comunidade` implementadas.**
+> **Status atual:** Protótipo funcional com Hero + 8 seções implementadas, mapa interativo da Paraíba, estado global por município, e dados para 8 municípios (João Pessoa, Campina Grande, Queimadas, Conde, Caaporã, Pitimbu, Monteiro, Cabaceiras). Viewport desktop 1440px. Dark mode configurado via tokens mas sem toggle na UI. **Rota `/formulador` implementada** — fluxo em 10 etapas + tela de conclusão com exportação PDF, persistência por município em `localStorage`. **Páginas `/trilhas`, `/oportunidades` e `/comunidade` implementadas.** **Microsoft Clarity** integrado (opt-in LGPD, apenas build de produção) com 13 eventos customizados para o teste moderado com usuários.
 
 ---
 
@@ -17,6 +17,7 @@ Leia este arquivo inteiro antes de começar qualquer tarefa.
 | Mapa | Leaflet + React Leaflet + GeoJSON da Paraíba (IBGE) |
 | Roteamento | React Router v7 |
 | Testes | Vitest + React Testing Library + jsdom |
+| Analytics | Microsoft Clarity (`@microsoft/clarity`) — opt-in LGPD, só em produção |
 | Deploy (protótipo) | Vercel |
 | Deploy (produção) | Servidor Sebrae — build estático servido via Nginx/Apache |
 
@@ -135,6 +136,7 @@ src/
 │   │   ├── PanoramaLegend.tsx         # Legenda de status (bom/atenção/crítico)
 │   │   └── PanoramaMediaInfo.tsx      # Média estadual do indicador selecionado
 │   ├── ScrollToTop.tsx               # Restaura scroll para topo a cada mudança de rota (ignora quando há `hash`)
+│   ├── AnalyticsTracker.tsx          # Bootstrap Clarity + tracking de rota (usa consent guardado em localStorage)
 │   ├── sections/
 │   │   ├── SectionAgendas.tsx         # Figma: 390:567
 │   │   ├── SectionPanorama.tsx        # Figma: 390:578
@@ -161,7 +163,8 @@ src/
 │       ├── useDropdownState.ts        # Hook compartilhado: open/setOpen/ref + click-outside
 │       ├── TextInput.tsx              # Input/textarea com title/subtitle/hint/disabled/multiline
 │       ├── ProgressBar.tsx            # Barra de progresso 0–100 com a11y (role=progressbar)
-│       └── HoverOverlay.tsx           # Overlay decorativo: escurece pai no hover + pill com hint (pai precisa de `relative group`)
+│       ├── HoverOverlay.tsx           # Overlay decorativo: escurece pai no hover + pill com hint (pai precisa de `relative group`)
+│       └── ConsentBanner.tsx          # Banner LGPD (Aceitar/Recusar) — gate do Clarity. Persiste em localStorage
 ├── data/
 │   ├── municipios.json               # Lista dos 8 municípios (id IBGE, nome, slug)
 │   ├── sections.ts                   # Títulos e descrições centralizados de todas as seções
@@ -191,7 +194,8 @@ src/
 │   └── icons.ts                     # ICON_SIZES { xs:12, sm:16, md:20, lg:24, xl:32 } — paralelo a --icon-size-* CSS vars
 ├── utils/
 │   ├── statusStyles.ts               # Mapa de classes CSS de status compartilhado
-│   └── mapHelpers.ts                 # Helpers do mapa (getCSSVar, getStatus, getCentroid, etc.)
+│   ├── mapHelpers.ts                 # Helpers do mapa (getCSSVar, getStatus, getCentroid, etc.)
+│   └── analytics.ts                  # Wrapper do Clarity: initAnalytics, grant/denyConsent, trackEvent, setTag, identifySession
 ├── test/
 │   ├── setup.ts                      # Setup global (@testing-library/jest-dom)
 │   ├── sections.test.tsx             # Smoke tests das 9 seções
@@ -351,6 +355,34 @@ Rota `/formulador` com fluxo em 10 etapas + conclusão. Layout 3 colunas:
 **"Etapa concluída" é heurística:** uma etapa é marcada como `checked` quando o usuário clica Próxima/Finalizar (via `markVisited(slug)`). Não há validação de campos preenchidos na v1.
 
 **AIAssistant:** conteúdo em `src/data/formulador-ai.ts`. Placeholder estático v1 (mesma descrição/exemplos/ações para as 10 etapas) — no futuro gerado por LLM.
+
+---
+
+## Analytics (Microsoft Clarity)
+
+Camada de instrumentação client-side para **teste moderado com 10 participantes em 7 máquinas**. Coleta heatmaps, gravações de sessão e eventos customizados.
+
+**Arquitetura:**
+- `src/utils/analytics.ts` — wrapper único. API: `initAnalytics`, `grantConsent`/`denyConsent`, `trackEvent(name, props?)`, `setTag(key, value)`, `identifySession(customId)`. Só efetiva quando `import.meta.env.PROD === true` **e** `VITE_CLARITY_ID` está preenchido **e** o usuário aceitou o consentimento. Em dev/preview é no-op silencioso.
+- `src/components/AnalyticsTracker.tsx` — montado dentro do `<BrowserRouter>`. Inicializa Clarity se já houver consentimento, identifica a sessão via `?participante=XX` na URL (etiqueta pra cruzar gravações com as máquinas do teste), e dispara `pagina_visitada` a cada `useLocation()`.
+- `src/components/ui/ConsentBanner.tsx` — banner LGPD fixado na base. Só aparece na primeira visita; decisão persiste em `localStorage` (`opp-clarity-consent` = `granted` | `denied`).
+
+**Variável de ambiente:** `VITE_CLARITY_ID` (ver `.env.example`). Deixada em branco em dev/preview. `.env` está no `.gitignore`.
+
+**Eventos customizados (13):**
+- Navegação: `pagina_visitada`, `hero_bloco_clicado`, `nav_header_clicado`
+- Município: `municipio_alterado` (+ `setTag('municipio')` pra filtrar gravações)
+- Mapa: `mapa_ativado`, `indicador_mapa_alterado`
+- Formulador: `formulador_iniciado`, `formulador_step_visitado`, `formulador_step_concluido` (com `tempo_ms`), `formulador_abandonado`, `formulador_concluido`
+- Descoberta: `tooltip_aberto` (dedupe por instância), `cta_externo_clicado`
+
+**Regras ao instrumentar novo evento:**
+- Nome sempre em `snake_case`, em português. Props em `snake_case` também.
+- Chamar via `trackEvent('nome', { ... })` — nunca importar `clarity` direto em componentes.
+- Se o evento puder disparar em hover/scroll, **dedupe por instância** (ver padrão em tooltip).
+- Não logar PII. `?participante=XX` é pseudonimizado (número sorteado para o teste).
+
+**Replay na Vercel:** o replay do Clarity carrega CSS/JS do site num iframe em `clarity.microsoft.com`. `vercel.json` precisa servir `/assets/*` com `Access-Control-Allow-Origin: *`, senão as gravações renderizam sem estilo.
 
 ---
 

@@ -2,7 +2,9 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
-## [Unreleased]
+## [0.7.2] — 2026-04-21
+
+Versão de instrumentação para **teste com usuários** — integração do Microsoft Clarity (heatmaps + gravações de sessão) com camada de consentimento LGPD e 13 eventos customizados cobrindo os dois fluxos-alvo do teste moderado (navegação geral + Formulador end-to-end).
 
 ### Added
 
@@ -17,6 +19,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
     - **Mapa:** `mapa_ativado`, `indicador_mapa_alterado` (indicador)
     - **Formulador:** `formulador_iniciado`, `formulador_step_visitado` (step, numero), `formulador_step_concluido` (step, numero, tempo_ms), `formulador_abandonado` (ultimo_step, via: `nav` | `logo` | `unload`), `formulador_concluido` (steps_completos, total_steps)
     - **Descoberta:** `tooltip_aberto` (chave) — dispara uma vez por instância para não poluir em hover; `cta_externo_clicado` (destino, label) — no `PillButton` com `href` externo e no link-imagem do Datapedia em `SectionRecursos`
+
+### Fixed
+
+- **Vercel — CORS em `/assets/*` para o replay do Clarity.** O replay do Microsoft Clarity busca o CSS/JS do site a partir de um iframe em `clarity.microsoft.com`. Sem `Access-Control-Allow-Origin` nos assets servidos pela Vercel, o browser bloqueava o fetch e as gravações renderizavam HTML puro (sem estilos, fontes serif, layout achatado). Adicionado `Access-Control-Allow-Origin: *` para `/assets/(.*)` em `vercel.json` — seguro porque são arquivos públicos já servidos para qualquer visitante do site.
 
 ## [0.7.1] — 2026-04-21
 

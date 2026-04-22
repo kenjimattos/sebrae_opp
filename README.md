@@ -15,6 +15,7 @@ Plataforma de dados municipais para o Sebrae Paraiba. Consolida indicadores soci
 | Estilizacao | Tailwind CSS v3 + CSS Variables (design tokens) |
 | Mapa | Leaflet + React Leaflet + GeoJSON (IBGE) |
 | Testes | Vitest + React Testing Library |
+| Analytics | Microsoft Clarity (opt-in LGPD, somente producao) |
 | Deploy | Vercel (prototipo) / Nginx (producao) |
 
 ## Funcionalidades
@@ -30,6 +31,7 @@ Plataforma de dados municipais para o Sebrae Paraiba. Consolida indicadores soci
 - **Formulador de projetos** — rota `/formulador` com fluxo em 10 etapas + tela de Conclusao (exportavel em PDF), rascunho por municipio em `localStorage`
 - **Paginas placeholder** — `/oportunidades` e `/comunidade`
 - **Header sticky** — scroll-spy com pill de acento, seletor de cidade digitavel, deep-linking via hash
+- **Analytics opt-in (Microsoft Clarity)** — banner de consentimento LGPD (Aceitar / Recusar), ativo apenas em build de producao com `VITE_CLARITY_ID` preenchido. Heatmaps, gravacoes de sessao e 13 eventos customizados (navegacao, troca de municipio, mapa, funil do Formulador, tooltips, CTAs externos). Identificacao de sessao via `?participante=XX` para etiquetar maquinas em testes moderados
 
 ## Municipios com dados (8)
 
@@ -63,6 +65,14 @@ npm run test:run
 npm run lint
 ```
 
+### Variaveis de ambiente
+
+Copie `.env.example` para `.env` e preencha conforme necessario.
+
+| Variavel | Descricao |
+|---|---|
+| `VITE_CLARITY_ID` | ID do projeto Microsoft Clarity (obtido em https://clarity.microsoft.com). Deixe em branco para desabilitar Clarity em dev/preview — so e lido em build de producao (`import.meta.env.PROD`) |
+
 ## Estrutura
 
 ```
@@ -78,15 +88,16 @@ src/
 │   ├── trilhas/    # TrilhaCard
 │   ├── sections/   # Hero + 8 secoes da pagina principal
 │   ├── layout/     # Header, Footer, CitySelector, User
-│   ├── ui/         # Button, IconButton, PillButton, Card, Dropdown, Carousel, etc.
+│   ├── ui/         # Button, IconButton, PillButton, Card, Dropdown, Carousel, ConsentBanner, etc.
 │   ├── icons/      # Re-exports Lucide + UserAvatar
 │   ├── map/        # ParaibaMap, ValueBadges
-│   └── panorama/   # PanoramaLegend, PanoramaMediaInfo
+│   ├── panorama/   # PanoramaLegend, PanoramaMediaInfo
+│   └── AnalyticsTracker.tsx # Bootstrap do Clarity + tracking de rota
 ├── data/           # catalogo, municipios/*.ts, thresholds, sections, etc.
 ├── hooks/          # useMunicipio, useFormulador, useTypewriter, etc.
 ├── types/          # Interfaces TypeScript
 ├── pages/          # Home, Formulador, FormuladorStep, FormuladorConclusao, Trilhas, Oportunidades, Comunidade
-├── utils/          # Helpers compartilhados
+├── utils/          # Helpers compartilhados (inclui analytics.ts)
 └── index.css       # Design tokens (integrados ao Tailwind config)
 ```
 
