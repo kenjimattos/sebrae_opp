@@ -1,4 +1,4 @@
-import type { StatusType } from '@/types/indicadores'
+import type { StatusType } from '@/types/indicators'
 
 export const statusStyles: Record<StatusType, { bg: string; dot: string }> = {
   success: { bg: 'status-success-bg', dot: 'status-success-dot' },

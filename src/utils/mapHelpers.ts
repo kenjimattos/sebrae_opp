@@ -1,10 +1,10 @@
 // Helper functions for the Paraíba interactive map
 
 import {
-  municipiosMapData,
-  type IndicadorKey,
-} from '@/data/indicadores/mapa'
-import type { StatusType } from '@/types/indicadores'
+  municipalitiesMapData,
+  type IndicatorKey,
+} from '@/data/indicators/map-data'
+import type { StatusType } from '@/types/indicators'
 
 /** Leaflet can't resolve CSS variables — extract computed values */
 export function getCSSVar(name: string): string {
@@ -20,16 +20,16 @@ export function getResolvedStatusFill(status: StatusType): string {
   return map[status]
 }
 
-export function getStatus(id: string, indicador: IndicadorKey): StatusType | null {
-  const data = municipiosMapData[id]
+export function getStatus(id: string, indicator: IndicatorKey): StatusType | null {
+  const data = municipalitiesMapData[id]
   if (!data) return null
-  return data.indicadores[indicador]?.status ?? null
+  return data.indicators[indicator]?.status ?? null
 }
 
-export function getDisplayValue(id: string, indicador: IndicadorKey): string | null {
-  const data = municipiosMapData[id]
+export function getDisplayValue(id: string, indicator: IndicatorKey): string | null {
+  const data = municipalitiesMapData[id]
   if (!data) return null
-  return data.indicadores[indicador]?.valor ?? null
+  return data.indicators[indicator]?.value ?? null
 }
 
 /** Compute centroid of a Polygon ring */
