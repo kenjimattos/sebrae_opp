@@ -3,7 +3,7 @@
 // No futuro, estes textos serão gerados por LLM.
 
 export const baseEconomicaContexto: Record<string, string> = {
-  'IDSC - Índice de Desenv. Sustentavel das Cidades':
+  'IDSC - Índice de Desenvolvimento Sustentável das Cidades':
     'Mede o desempenho do município em relação aos 17 Objetivos de Desenvolvimento Sustentável da ONU. Escala de 0 a 100 — quanto maior, melhor.',
   'IDH-M (2021)':
     'Índice de Desenvolvimento Humano Municipal — combina renda, longevidade e educação numa escala de 0 a 1. Quanto mais próximo de 1, melhor o nível de desenvolvimento humano.',

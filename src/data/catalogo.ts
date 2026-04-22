@@ -68,7 +68,7 @@ export const catalogo: Catalogo = {
     },
   ],
   baseEconomica: [
-    { id: 'idsc', label: 'IDSC - Índice de Desenv. Sustentavel das Cidades', icone: 'bar-chart' },
+    { id: 'idsc', label: 'IDSC - Índice de Desenvolvimento Sustentável das Cidades', icone: 'bar-chart' },
     { id: 'idh-m-total', label: 'IDH-M (2021)', icone: 'bar-chart' },
     { id: 'cobertura-atencao-basica', label: 'Cobertura Atenção Básica na Saúde', icone: 'users' },
     { id: 'ideb-anos-iniciais', label: 'IDEB 2023 - Anos Iniciais', icone: 'bar-chart' },
