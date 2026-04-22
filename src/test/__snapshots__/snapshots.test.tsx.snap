@@ -226,47 +226,51 @@ exports[`Snapshot tests — CSS refactor safety > Card 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
 <div
-  class="card-surface p-md flex-col-start justify-between h-[172px] card-hoverable "
+  class="card-surface p-md flex-col-start justify-between gap-lg card-hoverable "
 >
   <div
-    class="flex items-center gap-sm w-full"
+    class="flex justify-start gap-sm w-full"
   >
-    <span
-      aria-hidden="true"
-      class="inline-flex items-center justify-center shrink-0 rounded-full bg-[var(--semantic-button-tertiary)] text-[color:var(--semantic-button-label-tertiary)] w-[32px] h-[32px] "
+    <div
+      class="flex items-center gap-sm w-full"
     >
-      <svg
+      <span
         aria-hidden="true"
-        class="lucide lucide-trending-up"
-        fill="none"
-        height="16"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        viewBox="0 0 24 24"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
+        class="inline-flex items-center justify-center shrink-0 rounded-full bg-[var(--semantic-button-tertiary)] text-[color:var(--semantic-button-label-tertiary)] w-[32px] h-[32px] "
       >
-        <path
-          d="M16 7h6v6"
-        />
-        <path
-          d="m22 7-8.5 8.5-5-5L2 17"
-        />
-      </svg>
-    </span>
-    <span
-      class="typo-body uppercase"
-    >
-      PIB per capita
-    </span>
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-trending-up"
+          fill="none"
+          height="16"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 7h6v6"
+          />
+          <path
+            d="m22 7-8.5 8.5-5-5L2 17"
+          />
+        </svg>
+      </span>
+      <span
+        class="typo-body"
+      >
+        PIB per capita
+      </span>
+    </div>
   </div>
   <div
     class="flex items-end justify-between w-full"
   >
     <span
-      class="typo-display-sm max-w-[130px]"
+      class="typo-display-sm"
     >
       R$ 22.500
     </span>
