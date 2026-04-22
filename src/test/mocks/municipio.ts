@@ -2,6 +2,7 @@ import type { IndicadoresData, Agenda, BaseEconomicaItem } from '@/types/indicad
 
 export const mockAgendas: Agenda[] = [
   {
+    id: 'governanca',
     nome: 'Governança e Capacidade Fiscal',
     indicadores: [
       { label: 'CFA', valor: '0,521', status: 'warning' },
@@ -10,6 +11,7 @@ export const mockAgendas: Agenda[] = [
     ],
   },
   {
+    id: 'desenvolvimento-humano',
     nome: 'Desenvolvimento Humano',
     indicadores: [
       { label: 'IDHM', valor: '0,720', status: 'success' },
@@ -19,8 +21,8 @@ export const mockAgendas: Agenda[] = [
 ]
 
 export const mockBaseEconomica: BaseEconomicaItem[] = [
-  { label: 'PIB per capita', valor: 'R$ 22.500', variacao: '+3,2%', icone: 'trending-up' },
-  { label: 'Empresas ativas', valor: '12.450', variacao: '+5,1%', icone: 'building' },
+  { id: 'pib-per-capita', label: 'PIB per capita', valor: 'R$ 22.500', variacao: '+3,2%', icone: 'trending-up' },
+  { id: 'empresas-ativas-total', label: 'Empresas ativas', valor: '12.450', variacao: '+5,1%', icone: 'building' },
 ]
 
 export const mockIndicadoresData: IndicadoresData = {

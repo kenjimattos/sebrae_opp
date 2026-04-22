@@ -4,7 +4,16 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Fixed
+
+- **`riscos.ts` — contextos dessincronizados do catálogo.** Várias chaves estavam com labels desatualizados (ex: `'IGM – Índice CFA de Governança Municipal (Finanças, Gestão e Desempenho) 2025'` vs catálogo `'IGM – Índice CFA de Governança Municipal'`), caindo silenciosamente no `defaultRiscoContexto`. Migração para `id` resolve e previne regressão.
+
 ### Changed
+
+- **`descricoes/*.ts` — chaves passam a usar `id` do catálogo.** Antes, `agendas.ts` indexava por `agenda.nome`, `base-economica.ts` por `item.label` e `riscos.ts` por `indicador.label` — renomear qualquer texto no catálogo quebrava tooltips silenciosamente. Agora todos os arquivos de `descricoes/` usam o `id` estável (paralelo a `indicadores.ts` que já seguia esse padrão).
+  - `types/indicadores.ts`: `Agenda` e `BaseEconomicaItem` ganham `id` obrigatório.
+  - `MunicipioProvider`: propaga `id` do catálogo nos objetos mesclados.
+  - Consumidores (`AgendaCard`, `EconomicsCard`, `SectionAgendas`, `SectionBaseEconomica`, `SectionRiscos`, mocks de teste) passam a receber/usar `id` no lookup.
 
 - **`src/data/` — reorganização por domínio.** Arquivos antes flat viraram pastas semânticas:
   - `indicadores/` (catalogo, thresholds, mapa, municipios.json, valores/*, descricoes/*) — tudo que descreve/classifica/valora indicadores

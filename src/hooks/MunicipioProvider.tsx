@@ -15,6 +15,7 @@ function montarIndicadores(valores: ValoresMunicipio): IndicadoresData {
   return {
     municipio: valores.municipio,
     agendas: catalogo.agendas.map((a) => ({
+      id: a.id,
       nome: a.nome,
       indicadores: a.indicadores.map((i) => {
         const valor = valores.agendas[i.id] ?? '—'
@@ -29,6 +30,7 @@ function montarIndicadores(valores: ValoresMunicipio): IndicadoresData {
     baseEconomica: catalogo.baseEconomica.map((b) => {
       const v = valores.baseEconomica[b.id] ?? { valor: '—', variacao: '' }
       return {
+        id: b.id,
         label: b.label,
         valor: v.valor,
         variacao: v.variacao,

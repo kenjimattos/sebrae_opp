@@ -16,6 +16,7 @@ import InfoTooltip from '@/components/ui/InfoTooltip'
 import { baseEconomicaContexto } from '@/data/indicadores/descricoes/base-economica'
 
 interface EconomicsCardProps {
+  id: string
   label: string
   valor: string
   variacao: string
@@ -32,9 +33,9 @@ const iconMap: Record<string, LucideIcon> = {
   landmark: Landmark,
 }
 
-export default function EconomicsCard({ label, valor, variacao, icone, className = '' }: EconomicsCardProps) {
+export default function EconomicsCard({ id, label, valor, variacao, icone, className = '' }: EconomicsCardProps) {
   const Icon = icone ? iconMap[icone] : undefined
-  const contexto = baseEconomicaContexto[label]
+  const contexto = baseEconomicaContexto[id]
 
   return (
     <Card

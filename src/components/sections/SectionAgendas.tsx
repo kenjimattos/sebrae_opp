@@ -40,7 +40,8 @@ export default function SectionAgendas({ agendas }: SectionAgendasProps) {
         <div className="grid-3 w-full">
           {agendas.map((agenda) => (
             <AgendaCard
-              key={agenda.nome}
+              key={agenda.id}
+              id={agenda.id}
               title={agenda.nome}
               indicadores={agenda.indicadores}
             />

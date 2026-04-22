@@ -35,10 +35,10 @@ export default function SectionRiscos({ agendas }: SectionRiscosProps) {
 
       <div className="grid-3 w-full">
         {topRiscos.map((risco) => {
-          const ctx = riscosContexto[risco.label] ?? defaultRiscoContexto
+          const ctx = (risco.id && riscosContexto[risco.id]) || defaultRiscoContexto
           return (
             <RisksCard
-              key={risco.label}
+              key={risco.id ?? risco.label}
               label={risco.label}
               valor={risco.valor}
               tipo={risco.status}

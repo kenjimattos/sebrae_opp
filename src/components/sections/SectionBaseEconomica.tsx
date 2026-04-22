@@ -25,7 +25,8 @@ export default function SectionBaseEconomica({ dados }: SectionBaseEconomicaProp
         <div className="grid-4 w-full">
           {dados.map((item) => (
             <EconomicsCard
-              key={item.label}
+              key={item.id}
+              id={item.id}
               label={item.label}
               valor={item.valor}
               variacao={item.variacao}

@@ -59,6 +59,7 @@ describe('Agenda components', () => {
   it('renders AgendaCard', () => {
     const { container } = render(
       <AgendaCard
+        id="governanca"
         title="Governança"
         indicadores={[
           { label: 'CFA', valor: '0,521', status: 'warning' },
@@ -92,7 +93,7 @@ describe('Agenda components', () => {
 describe('Economics components', () => {
   it('renders EconomicsCard', () => {
     const { container } = render(
-      <EconomicsCard label="PIB per capita" valor="R$ 22.500" variacao="+3,2%" icone="trending-up" />,
+      <EconomicsCard id="pib-per-capita" label="PIB per capita" valor="R$ 22.500" variacao="+3,2%" icone="trending-up" />,
     )
     expect(container).toBeTruthy()
   })

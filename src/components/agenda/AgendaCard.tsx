@@ -8,13 +8,14 @@ import InfoTooltip from '@/components/ui/InfoTooltip'
 import { agendaObjetivos } from '@/data/indicadores/descricoes/agendas'
 
 interface AgendaCardProps {
+  id: string
   title: string
   indicadores: Indicador[]
   className?: string
 }
 
-export default function AgendaCard({ title, indicadores, className = '' }: AgendaCardProps) {
-  const objetivo = agendaObjetivos[title]
+export default function AgendaCard({ id, title, indicadores, className = '' }: AgendaCardProps) {
+  const objetivo = agendaObjetivos[id]
 
   return (
     <Card

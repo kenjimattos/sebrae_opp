@@ -9,11 +9,13 @@ export interface Indicador {
 }
 
 export interface Agenda {
+  id: string
   nome: string
   indicadores: Indicador[]
 }
 
 export interface BaseEconomicaItem {
+  id: string
   label: string
   valor: string
   variacao: string
