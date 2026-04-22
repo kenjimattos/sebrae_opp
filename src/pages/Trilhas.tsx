@@ -10,8 +10,8 @@ import Footer from '@/components/layout/Footer'
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import Carousel from '@/components/ui/Carousel'
 import TrilhaCard from '@/components/trilhas/TrilhaCard'
-import { trilhas, trilhaAnchor, cursoAnchor } from '@/data/capacitacao'
-import { sectionContent } from '@/data/sections'
+import { trilhas, trilhaAnchor, cursoAnchor } from '@/data/home/capacitacao'
+import { sectionContent } from '@/data/home/sections'
 
 // Compensa o header sticky (~95px) + respiro. Aplicado via scroll-margin-top
 // nos alvos do scroll (seção da trilha e wrapper do TrilhaCard).

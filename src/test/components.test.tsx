@@ -49,7 +49,7 @@ import ProjectSteps from '@/components/formulador/ProjectSteps'
 import FormuladorProgress from '@/components/formulador/FormuladorProgress'
 import AIAssistant from '@/components/formulador/AIAssistant'
 import FormCard from '@/components/formulador/FormCard'
-import { aiAssistantByEtapa } from '@/data/formulador-ai'
+import { aiAssistantByEtapa } from '@/data/formulador/ai-assistant'
 
 // Layout
 import Header from '@/components/layout/Header'

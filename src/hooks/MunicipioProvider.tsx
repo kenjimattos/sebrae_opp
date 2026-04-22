@@ -5,9 +5,9 @@ import {
   type MunicipioState,
 } from '@/hooks/useMunicipio'
 import type { IndicadoresData, ValoresMunicipio } from '@/types/indicadores'
-import { catalogo } from '@/data/catalogo'
-import { deriveStatus } from '@/data/thresholds'
-import { valoresMap } from '@/data/municipios/index'
+import { catalogo } from '@/data/indicadores/catalogo'
+import { deriveStatus } from '@/data/indicadores/thresholds'
+import { valoresMap } from '@/data/indicadores/valores/index'
 import { setTag, trackEvent } from '@/utils/analytics'
 
 // Mescla catálogo (estrutura) com valores do município e aplica thresholds.

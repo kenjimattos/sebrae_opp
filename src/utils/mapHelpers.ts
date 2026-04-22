@@ -3,7 +3,7 @@
 import {
   municipiosMapData,
   type IndicadorKey,
-} from '@/data/mapa-indicadores'
+} from '@/data/indicadores/mapa'
 import type { StatusType } from '@/types/indicadores'
 
 /** Leaflet can't resolve CSS variables — extract computed values */

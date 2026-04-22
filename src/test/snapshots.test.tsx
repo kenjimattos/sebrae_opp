@@ -22,7 +22,7 @@ import NumberBullet from '@/components/ui/NumberBullet'
 import StepIndicator from '@/components/formulador/StepIndicator'
 import FormuladorProgress from '@/components/formulador/FormuladorProgress'
 import AIAssistant from '@/components/formulador/AIAssistant'
-import { aiAssistantByEtapa } from '@/data/formulador-ai'
+import { aiAssistantByEtapa } from '@/data/formulador/ai-assistant'
 
 describe('Snapshot tests — CSS refactor safety', () => {
   it('AgendaBadge', () => {

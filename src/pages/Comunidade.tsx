@@ -5,7 +5,7 @@
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import SectionContainer from '@/components/ui/SectionContainer'
-import { sectionContent } from '@/data/sections'
+import { sectionContent } from '@/data/home/sections'
 
 export default function Comunidade() {
   return (

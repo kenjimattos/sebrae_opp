@@ -4,7 +4,7 @@ import type { Agenda, StatusType } from '@/types/indicadores'
 import SectionContainer from '@/components/ui/SectionContainer'
 import AgendaStats from '@/components/agenda/AgendaStats'
 import AgendaCard from '@/components/agenda/AgendaCard'
-import { sectionContent } from '@/data/sections'
+import { sectionContent } from '@/data/home/sections'
 
 interface SectionAgendasProps {
   agendas: Agenda[]

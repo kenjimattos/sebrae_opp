@@ -4,7 +4,7 @@ import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import PillButton from '@/components/ui/buttons/PillButton'
 import Card from '@/components/ui/Card'
 import { ctaLabels } from '@/data/labels'
-import type { CasoSucesso } from '@/data/casos-sucesso'
+import type { CasoSucesso } from '@/data/home/casos-sucesso'
 
 interface CaseStudiesCardProps {
   caso: CasoSucesso

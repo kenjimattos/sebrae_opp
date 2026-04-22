@@ -3,7 +3,7 @@
 // Arrays dinâmicos exigem pelo menos uma entrada não vazia.
 
 import type { FormuladorState } from '@/types/formulador'
-import { etapasFormulador } from '@/data/formulador-etapas'
+import { etapasFormulador } from '@/data/formulador/etapas'
 
 function nonEmpty(v: string | undefined): boolean {
   return typeof v === 'string' && v.trim().length > 0

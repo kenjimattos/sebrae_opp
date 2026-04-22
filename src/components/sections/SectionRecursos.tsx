@@ -8,8 +8,8 @@ import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import ResourcesCard from '@/components/resources/ResourcesCard'
 import PillButton from '@/components/ui/buttons/PillButton'
 import HoverOverlay from '@/components/ui/HoverOverlay'
-import { sectionContent } from '@/data/sections'
-import { DATAPEDIA_URL, resourceCards, recursosContent } from '@/data/recursos'
+import { sectionContent } from '@/data/home/sections'
+import { DATAPEDIA_URL, resourceCards, recursosContent } from '@/data/home/recursos'
 import { trackEvent } from '@/utils/analytics'
 
 export default function SectionRecursos() {

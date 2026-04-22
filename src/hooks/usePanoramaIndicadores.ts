@@ -2,7 +2,7 @@
 // Since MunicipioProvider merges every municipality with the same catalog,
 // the option list is identical regardless of the selected municipality.
 
-import { indicadorOptions } from '@/data/mapa-indicadores'
+import { indicadorOptions } from '@/data/indicadores/mapa'
 
 const options = indicadorOptions.map((o) => ({ label: o.shortLabel, value: o.value }))
 

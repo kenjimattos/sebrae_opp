@@ -3,8 +3,8 @@
 import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/ui/SectionHeader'
 import FormuladorCard from '@/components/formulador/FormuladorCard'
-import { sectionContent } from '@/data/sections'
-import { formuladorCards } from '@/data/formulador'
+import { sectionContent } from '@/data/home/sections'
+import { formuladorCards } from '@/data/home/formulador'
 
 export default function SectionFormulador() {
   return (

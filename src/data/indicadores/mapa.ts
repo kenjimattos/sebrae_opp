@@ -4,9 +4,9 @@
 // ValueBadges e usePanoramaMedia.
 
 import type { StatusType } from '@/types/indicadores'
-import { catalogo } from '@/data/catalogo'
-import { valoresMap } from '@/data/municipios/index'
-import { parseNumeric, deriveStatus } from '@/data/thresholds'
+import { catalogo } from '@/data/indicadores/catalogo'
+import { valoresMap } from '@/data/indicadores/valores/index'
+import { parseNumeric, deriveStatus } from '@/data/indicadores/thresholds'
 
 export const indicadorOptions = catalogo.agendas.flatMap((a) =>
   a.indicadores.map((i) => ({

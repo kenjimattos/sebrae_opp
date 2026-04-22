@@ -8,7 +8,7 @@
 
 import Card from '@/components/ui/Card'
 import StepIndicator from './StepIndicator'
-import { etapasFormulador } from '@/data/formulador-etapas'
+import { etapasFormulador } from '@/data/formulador/etapas'
 
 interface ProjectStepsProps {
   currentSlug: string

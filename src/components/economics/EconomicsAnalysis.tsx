@@ -13,7 +13,7 @@ import {
   gerarAnaliseLabel,
   regenerarAnaliseLabel,
   gerandoAnaliseLabel,
-} from '@/data/economics'
+} from '@/data/home/economics'
 import { Sparkles, iconSizes } from '@/components/icons'
 import Button from '@/components/ui/buttons/Button'
 import Card from '@/components/ui/Card'

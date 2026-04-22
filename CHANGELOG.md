@@ -4,6 +4,17 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Unreleased]
 
+### Changed
+
+- **`src/data/` — reorganização por domínio.** Arquivos antes flat viraram pastas semânticas:
+  - `indicadores/` (catalogo, thresholds, mapa, municipios.json, valores/*, descricoes/*) — tudo que descreve/classifica/valora indicadores
+  - `home/` (sections, capacitacao, casos-sucesso, economics, recursos, formulador, ai-assistant) — conteúdo das seções da home
+  - `formulador/` (etapas, ai-assistant) — rota `/formulador`
+  - `geo/paraiba.json` (antes `paraiba-municipios.json` na raiz)
+  - `labels.ts` e `layout.ts` permanecem na raiz (globais)
+  - Renomeações: `agenda-objetivos` → `indicadores/descricoes/agendas`; `base-economica-contexto` → `indicadores/descricoes/base-economica`; `indicador-info` → `indicadores/descricoes/indicadores`; `riscos-contexto` → `indicadores/descricoes/riscos`; `mapa-indicadores` → `indicadores/mapa`; `formulador-etapas` → `formulador/etapas`; `formulador-ai` → `formulador/ai-assistant`; `municipios/*` → `indicadores/valores/*`.
+  - Todos os imports atualizados em ~40 arquivos (páginas, seções, hooks, utils, tests).
+
 ### Added
 
 - **`ui/InfoTooltip`** — primitivo para o padrão "ícone `Info` que abre tooltip com título + descrição", antes inline no `AgendaCard`. Composto por `IconButton` (variant `ghost`) + `Tooltip` + `TitleSubtitle` (size `sm`). API: `title` + `subtitle` + `label` (aria-label obrigatório) + `trackingKey` opcional. Refatorado o uso existente em `AgendaCard`.

@@ -166,23 +166,34 @@ src/
 │       ├── HoverOverlay.tsx           # Overlay decorativo: escurece pai no hover + pill com hint (pai precisa de `relative group`)
 │       └── ConsentBanner.tsx          # Banner LGPD (Aceitar/Recusar) — gate do Clarity. Persiste em localStorage
 ├── data/
-│   ├── municipios.json               # Lista dos 8 municípios (id IBGE, nome, slug)
-│   ├── sections.ts                   # Títulos e descrições centralizados de todas as seções
-│   ├── mapa-indicadores.ts           # Dados de indicadores por município para coloração do mapa
-│   ├── riscos-contexto.ts            # Descrições e contextos de risco por indicador (futuro: LLM)
+│   ├── indicadores/                  # Estrutura + valores + classificação + descrições
+│   │   ├── catalogo.ts               # Fonte de verdade de agendas + base econômica (id/label/ícone)
+│   │   ├── thresholds.ts             # Régua de classificação por indicador (status derivado do valor)
+│   │   ├── mapa.ts                   # Dados derivados para coloração do ParaibaMap
+│   │   ├── municipios.json           # Lista dos 8 municípios (id IBGE, nome, slug)
+│   │   ├── valores/                  # Valores por município (merged com catalogo pelo provider)
+│   │   │   ├── index.ts
+│   │   │   └── {slug}.ts             # 8 arquivos: joao-pessoa, campina-grande, queimadas, etc.
+│   │   └── descricoes/               # Conteúdo de InfoTooltip por indicador (futuro: LLM)
+│   │       ├── agendas.ts            # Objetivos das 6 agendas
+│   │       ├── base-economica.ts     # Descrições dos 12 indicadores da Base Econômica
+│   │       ├── indicadores.ts        # Descrições dos indicadores individuais (AgendaIndicator)
+│   │       └── riscos.ts             # Contextos de risco
+│   ├── home/                         # Conteúdo das seções da home
+│   │   ├── sections.ts               # Títulos e descrições de todas as seções
+│   │   ├── ai-assistant.ts           # Placeholder + botões (SectionAIAssistant)
+│   │   ├── capacitacao.ts            # Trilhas e cursos (SectionCapacitacao)
+│   │   ├── casos-sucesso.ts          # Casos reais do Geocracia (SectionCasosSucesso)
+│   │   ├── economics.ts              # Texto de análise econômica por município
+│   │   ├── formulador.ts             # Cards do formulador na home (SectionFormulador)
+│   │   └── recursos.ts               # Cards, URLs e textos (SectionRecursos)
+│   ├── formulador/                   # Rota /formulador
+│   │   ├── etapas.ts                 # Fonte de verdade das 10 etapas (slug/label/titulo/subtitle)
+│   │   └── ai-assistant.ts           # Conteúdo do AIAssistant por etapa
+│   ├── geo/
+│   │   └── paraiba.json              # GeoJSON da Paraíba (IBGE) — 386kb
 │   ├── labels.ts                     # Labels compartilhados (status, CTAs, panorama, user)
-│   ├── capacitacao.ts                # Trilhas e cursos (SectionCapacitacao)
-│   ├── recursos.ts                   # Cards, URLs e textos (SectionRecursos)
-│   ├── formulador.ts                 # Cards do formulador (SectionFormulador)
-│   ├── formulador-etapas.ts          # Fonte de verdade das 10 etapas (slug/label/titulo/subtitle)
-│   ├── formulador-ai.ts              # Conteúdo do AIAssistant por etapa
-│   ├── ai-assistant.ts              # Placeholder + botões (SectionAIAssistant)
-│   ├── layout.ts                     # navLinks, footerColumns, brandText, copyright
-│   ├── economics.ts                  # Texto de análise econômica
-│   └── indicadores/
-│       ├── joao-pessoa.json
-│       ├── campina-grande.json       # Município default — dados extraídos do Figma
-│       └── patos.json
+│   └── layout.ts                     # navLinks, footerColumns, brandText, copyright
 ├── hooks/
 │   ├── useMunicipio.ts               # Hook + Context type + MunicipioState interface
 │   ├── MunicipioProvider.tsx          # Provider que carrega JSON por município
@@ -301,7 +312,7 @@ src/
 
 **Layout:** `max-width: 1440px`, `padding: 0 var(--spacing-margin)` (120px). Gap entre seções: `var(--spacing-3xl)` (96px) via `flex-col` + `gap` + `py` no `<main>`.
 
-**Títulos e descrições** de seções estão centralizados em `src/data/sections.ts`.
+**Títulos e descrições** de seções estão centralizados em `src/data/home/sections.ts`.
 
 ---
 
@@ -316,7 +327,7 @@ O mapa fica dentro de `SectionPanorama`. Implementado com React Simple Maps + `Z
 - Município selecionado (global) destacado em **azul** com borda mais grossa
 - **Hover** mostra tooltip com nome + valor do indicador
 - **Scroll** para zoom in/out, arrastar para pan
-- Dados em `src/data/mapa-indicadores.ts` (12 municípios com dados, demais ficam cinza)
+- Dados em `src/data/indicadores/mapa.ts` (12 municípios com dados, demais ficam cinza)
 
 **GeoJSON fonte:** `https://raw.githubusercontent.com/tbrugz/geodata-br/master/geojson/geojs-25-mun.json`
 
@@ -331,7 +342,7 @@ A seção de riscos **não usa dados estáticos**. Ela extrai automaticamente os
 3. Exibe os top 3 como cards (grid 3 colunas)
 4. Cada card mostra: label + valor, descrição do risco, contexto
 
-As descrições e contextos de risco estão em `src/data/riscos-contexto.ts` (chave = label do indicador). No futuro, esses textos serão gerados por LLM.
+As descrições e contextos de risco estão em `src/data/indicadores/descricoes/riscos.ts` (chave = label do indicador). No futuro, esses textos serão gerados por LLM.
 
 ---
 
@@ -350,11 +361,11 @@ Rota `/formulador` com fluxo em 10 etapas + conclusão. Layout 3 colunas:
 
 **Estado:** `FormuladorContext` via `FormuladorProvider` (envolve o App). Um rascunho por município em `localStorage` (`formulador:${ibgeId}`). Troca de município recarrega o rascunho correspondente via render-phase state update. Forma do estado em `src/types/formulador.ts` (`FormuladorState` + `EMPTY_FORMULADOR_STATE`).
 
-**Fonte de verdade das etapas:** `src/data/formulador-etapas.ts` — array de `{ slug, label, nome, titulo, subtitle }` consumido pela sidebar, progress e FormCard. Helpers `findEtapaBySlug`, `findEtapaIndex`.
+**Fonte de verdade das etapas:** `src/data/formulador/etapas.ts` — array de `{ slug, label, nome, titulo, subtitle }` consumido pela sidebar, progress e FormCard. Helpers `findEtapaBySlug`, `findEtapaIndex`.
 
 **"Etapa concluída" é heurística:** uma etapa é marcada como `checked` quando o usuário clica Próxima/Finalizar (via `markVisited(slug)`). Não há validação de campos preenchidos na v1.
 
-**AIAssistant:** conteúdo em `src/data/formulador-ai.ts`. Placeholder estático v1 (mesma descrição/exemplos/ações para as 10 etapas) — no futuro gerado por LLM.
+**AIAssistant:** conteúdo em `src/data/formulador/ai-assistant.ts`. Placeholder estático v1 (mesma descrição/exemplos/ações para as 10 etapas) — no futuro gerado por LLM.
 
 ---
 
@@ -405,24 +416,23 @@ interface MunicipioState {
 
 ## Dados
 
-Toda a estrutura de dados está em `src/data/` e `src/types/indicadores.ts`.
+Toda a estrutura de dados está em `src/data/` e `src/types/indicadores.ts`, organizada por domínio:
 
-| Arquivo | Descrição |
+| Caminho | Descrição |
 |---|---|
-| `municipios/*.ts` | Valores por município (agendas + baseEconomica). Merge com `catalogo.ts` + `thresholds.ts` no provider |
-| `catalogo.ts` | Estrutura/labels/ícones das agendas e base econômica (fonte única) |
-| `thresholds.ts` | Régua de classificação por indicador (status derivado do valor) |
-| `municipios.json` | Lista dos 8 municípios (id, nome, slug) |
-| `sections.ts` | Títulos e descrições de todas as seções (centralizado) |
-| `mapa-indicadores.ts` | Valores de indicadores por município para coloração do mapa |
-| `riscos-contexto.ts` | Descrições de risco por indicador (futuro: LLM) |
+| `indicadores/catalogo.ts` | Estrutura/labels/ícones das agendas e base econômica (fonte única) |
+| `indicadores/thresholds.ts` | Régua de classificação por indicador (status derivado do valor) |
+| `indicadores/mapa.ts` | Valores de indicadores por município para coloração do mapa |
+| `indicadores/municipios.json` | Lista dos 8 municípios (id IBGE, nome, slug) |
+| `indicadores/valores/*.ts` | Valores por município (agendas + baseEconomica). Merge com `catalogo` + `thresholds` no provider |
+| `indicadores/descricoes/*.ts` | Conteúdo de InfoTooltip (agendas, base-economica, indicadores, riscos) — futuro: LLM |
+| `home/sections.ts` | Títulos e descrições de todas as seções (centralizado) |
+| `home/{capacitacao,casos-sucesso,economics,recursos,formulador,ai-assistant}.ts` | Conteúdo das seções da home |
+| `formulador/etapas.ts` | Fonte de verdade das 10 etapas do formulador |
+| `formulador/ai-assistant.ts` | Conteúdo do AIAssistant por etapa |
+| `geo/paraiba.json` | GeoJSON da Paraíba (IBGE) — 386kb |
 | `labels.ts` | Labels compartilhados (status, CTAs, panorama, user default) |
-| `capacitacao.ts` | Trilhas e cursos da seção Capacitação |
-| `recursos.ts` | Cards, URLs e textos da seção Recursos |
-| `formulador.ts` | Cards do formulador |
-| `ai-assistant.ts` | Placeholder e botões do assistente IA |
 | `layout.ts` | navLinks, footerColumns, brandText, copyright |
-| `economics.ts` | Texto de análise econômica |
 
 **Interfaces:** ver `src/types/indicadores.ts` para `IndicadoresData`, `Agenda`, `Indicador`, `BaseEconomicaItem`, `Panorama`, etc.
 

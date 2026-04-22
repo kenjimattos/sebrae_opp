@@ -6,7 +6,7 @@
 import type { StatusType } from '@/types/indicadores'
 import AgendaBadge from '@/components/agenda/AgendaBadge'
 import Tooltip from '@/components/ui/Tooltip'
-import { indicadorInfo } from '@/data/indicador-info'
+import { indicadorInfo } from '@/data/indicadores/descricoes/indicadores'
 
 interface AgendaIndicatorProps {
   id?: string

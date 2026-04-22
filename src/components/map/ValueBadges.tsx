@@ -4,8 +4,8 @@ import { useEffect, useRef } from 'react'
 import { useMap } from 'react-leaflet'
 import L from 'leaflet'
 import type { StatusType } from '@/types/indicadores'
-import type { IndicadorKey } from '@/data/mapa-indicadores'
-import geoData from '@/data/paraiba-municipios.json'
+import type { IndicadorKey } from '@/data/indicadores/mapa'
+import geoData from '@/data/geo/paraiba.json'
 import { getCSSVar, getStatus, getDisplayValue, getCentroid } from '@/utils/mapHelpers'
 
 export default function ValueBadges({ indicador }: { indicador: IndicadorKey }) {

@@ -5,8 +5,8 @@ import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/ui/SectionHeader'
 import EconomicsCard from '@/components/economics/EconomicsCard'
 import EconomicsAnalysis from '@/components/economics/EconomicsAnalysis'
-import { sectionContent } from '@/data/sections'
-import { getAnaliseForMunicipio } from '@/data/economics'
+import { sectionContent } from '@/data/home/sections'
+import { getAnaliseForMunicipio } from '@/data/home/economics'
 import { useMunicipio } from '@/hooks/useMunicipio'
 
 interface SectionBaseEconomicaProps {

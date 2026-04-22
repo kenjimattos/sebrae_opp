@@ -3,8 +3,8 @@
 import SectionContainer from '@/components/ui/SectionContainer'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/buttons/Button'
-import { sectionContent } from '@/data/sections'
-import { aiAssistantPlaceholder, aiActionButtons } from '@/data/ai-assistant'
+import { sectionContent } from '@/data/home/sections'
+import { aiAssistantPlaceholder, aiActionButtons } from '@/data/home/ai-assistant'
 
 export default function SectionAIAssistant() {
   return (

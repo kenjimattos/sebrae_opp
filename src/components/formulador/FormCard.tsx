@@ -4,7 +4,7 @@
 
 import Card from '@/components/ui/Card'
 import PillButton from '@/components/ui/buttons/PillButton'
-import { etapasFormulador } from '@/data/formulador-etapas'
+import { etapasFormulador } from '@/data/formulador/etapas'
 
 interface FormCardProps {
   titulo: string

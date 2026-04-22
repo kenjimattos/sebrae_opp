@@ -3,7 +3,7 @@
 
 import Card from '@/components/ui/Card'
 import ProgressBar from '@/components/ui/ProgressBar'
-import { etapasFormulador } from '@/data/formulador-etapas'
+import { etapasFormulador } from '@/data/formulador/etapas'
 
 interface FormuladorProgressProps {
   currentIndex: number     // 0..9 — índice da etapa atual (10 = conclusão)

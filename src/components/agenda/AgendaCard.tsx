@@ -5,7 +5,7 @@ import type { Indicador } from '@/types/indicadores'
 import AgendaIndicator from '@/components/agenda/AgendaIndicator'
 import Card from '@/components/ui/Card'
 import InfoTooltip from '@/components/ui/InfoTooltip'
-import { agendaObjetivos } from '@/data/agenda-objetivos'
+import { agendaObjetivos } from '@/data/indicadores/descricoes/agendas'
 
 interface AgendaCardProps {
   title: string

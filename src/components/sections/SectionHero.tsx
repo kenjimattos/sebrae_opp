@@ -11,7 +11,7 @@ import {
   Landmark,
   type LucideIcon,
 } from '@/components/icons'
-import { sectionContent } from '@/data/sections'
+import { sectionContent } from '@/data/home/sections'
 import { trackEvent } from '@/utils/analytics'
 
 const HEADER_HEIGHT = 95

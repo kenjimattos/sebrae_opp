@@ -13,7 +13,7 @@ import {
 import Card from '@/components/ui/Card'
 import IconButton from '@/components/ui/buttons/IconButton'
 import InfoTooltip from '@/components/ui/InfoTooltip'
-import { baseEconomicaContexto } from '@/data/base-economica-contexto'
+import { baseEconomicaContexto } from '@/data/indicadores/descricoes/base-economica'
 
 interface EconomicsCardProps {
   label: string

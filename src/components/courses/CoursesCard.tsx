@@ -5,7 +5,7 @@ import Card from '@/components/ui/Card'
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import CoursesCardRow from '@/components/courses/CoursesCardRow'
 import PillButton from '../ui/buttons/PillButton'
-import { cursoAnchor, trilhaAnchor, type Curso } from '@/data/capacitacao'
+import { cursoAnchor, trilhaAnchor, type Curso } from '@/data/home/capacitacao'
 
 const VISIBLE_COUNT = 3
 

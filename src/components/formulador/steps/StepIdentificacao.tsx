@@ -2,7 +2,7 @@ import TextInput from '@/components/ui/TextInput'
 import Dropdown from '@/components/ui/Dropdown'
 import { useFormulador } from '@/hooks/useFormulador'
 import { useMunicipio } from '@/hooks/useMunicipio'
-import municipios from '@/data/municipios.json'
+import municipios from '@/data/indicadores/municipios.json'
 
 export default function StepIdentificacao() {
   const { state, setSlice } = useFormulador()

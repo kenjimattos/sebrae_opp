@@ -5,7 +5,7 @@ import {
   indicadorOptions,
   municipiosMapData,
   type IndicadorKey,
-} from '@/data/mapa-indicadores'
+} from '@/data/indicadores/mapa'
 
 interface MediaInfo {
   label: string

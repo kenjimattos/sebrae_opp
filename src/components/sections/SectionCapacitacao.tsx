@@ -4,8 +4,8 @@ import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/ui/SectionHeader'
 import Carousel from '@/components/ui/Carousel'
 import CoursesCard from '@/components/courses/CoursesCard'
-import { sectionContent } from '@/data/sections'
-import { trilhas } from '@/data/capacitacao'
+import { sectionContent } from '@/data/home/sections'
+import { trilhas } from '@/data/home/capacitacao'
 
 // CoursesCard w-480 + gap-sm (12px)
 const SCROLL_AMOUNT = 480 + 12

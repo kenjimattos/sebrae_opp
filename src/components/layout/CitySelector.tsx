@@ -6,7 +6,7 @@ import { Search, iconSizes } from '@/components/icons'
 import DropdownMenu from '@/components/ui/DropdownMenu'
 import { useDropdownState } from '@/components/ui/useDropdownState'
 import { useMunicipio } from '@/hooks/useMunicipio'
-import municipios from '@/data/municipios.json'
+import municipios from '@/data/indicadores/municipios.json'
 
 interface CitySelectorProps {
   className?: string

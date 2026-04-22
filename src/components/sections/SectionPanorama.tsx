@@ -13,10 +13,10 @@ import PanoramaMediaInfo from '@/components/panorama/PanoramaMediaInfo'
 import { useMunicipio } from '@/hooks/useMunicipio'
 import { usePanoramaIndicadores } from '@/hooks/usePanoramaIndicadores'
 import { usePanoramaMedia } from '@/hooks/usePanoramaMedia'
-import { sectionContent } from '@/data/sections'
+import { sectionContent } from '@/data/home/sections'
 import { panoramaLabels } from '@/data/labels'
-import type { IndicadorKey } from '@/data/mapa-indicadores'
-import { catalogo } from '@/data/catalogo'
+import type { IndicadorKey } from '@/data/indicadores/mapa'
+import { catalogo } from '@/data/indicadores/catalogo'
 import { trackEvent } from '@/utils/analytics'
 
 const defaultIndicadorId = catalogo.agendas[0].indicadores[0].id

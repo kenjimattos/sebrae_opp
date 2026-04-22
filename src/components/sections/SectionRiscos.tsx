@@ -5,8 +5,8 @@ import type { Agenda } from '@/types/indicadores'
 import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/ui/SectionHeader'
 import RisksCard from '@/components/risks/RisksCard'
-import { sectionContent } from '@/data/sections'
-import { riscosContexto, defaultRiscoContexto } from '@/data/riscos-contexto'
+import { sectionContent } from '@/data/home/sections'
+import { riscosContexto, defaultRiscoContexto } from '@/data/indicadores/descricoes/riscos'
 
 interface SectionRiscosProps {
   agendas: Agenda[]
