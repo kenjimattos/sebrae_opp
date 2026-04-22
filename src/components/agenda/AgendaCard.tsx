@@ -4,8 +4,7 @@
 import type { Indicador } from '@/types/indicadores'
 import AgendaIndicator from '@/components/agenda/AgendaIndicator'
 import Card from '@/components/ui/Card'
-import Tooltip from '@/components/ui/Tooltip'
-import { Info, iconSizes } from '@/components/icons'
+import InfoTooltip from '@/components/ui/InfoTooltip'
 import { agendaObjetivos } from '@/data/agenda-objetivos'
 
 interface AgendaCardProps {
@@ -27,23 +26,12 @@ export default function AgendaCard({ title, indicadores, className = '' }: Agend
           {title}
         </h3>
         {objetivo && (
-          <Tooltip
+          <InfoTooltip
             trackingKey={`agenda_objetivo:${title}`}
-            content={
-              <span className="flex flex-col gap-2xs">
-                <span className="typo-body-sm-bold">Objetivo</span>
-                <span className="typo-body-sm">{objetivo}</span>
-              </span>
-            }
-          >
-            <button
-              type="button"
-              aria-label={`Ver objetivo da agenda ${title}`}
-              className="flex shrink-0 items-center justify-center text-[color:var(--semantic-text-inactive)] hover:text-[color:var(--semantic-accent)] transition-colors"
-            >
-              <Info size={iconSizes.sm} aria-hidden />
-            </button>
-          </Tooltip>
+            label={`Ver objetivo da agenda ${title}`}
+            title="Objetivo"
+            subtitle={objetivo}
+          />
         )}
       </div>
       <div className="flex flex-col gap-sm flex-1">

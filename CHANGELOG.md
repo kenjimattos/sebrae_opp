@@ -2,6 +2,12 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Unreleased]
+
+### Added
+
+- **`ui/InfoTooltip`** — primitivo para o padrão "ícone `Info` que abre tooltip com título + descrição", antes inline no `AgendaCard`. Composto por `IconButton` (variant `ghost`) + `Tooltip` + `TitleSubtitle` (size `sm`). API: `title` + `subtitle` + `label` (aria-label obrigatório) + `trackingKey` opcional. Refatorado o uso existente em `AgendaCard`.
+
 ## [0.7.2] — 2026-04-21
 
 Versão de instrumentação para **teste com usuários** — integração do Microsoft Clarity (heatmaps + gravações de sessão) com camada de consentimento LGPD e 13 eventos customizados cobrindo os dois fluxos-alvo do teste moderado (navegação geral + Formulador end-to-end).
