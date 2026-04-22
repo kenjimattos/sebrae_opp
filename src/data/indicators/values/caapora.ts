@@ -1,10 +1,10 @@
 // Valores marcados com "*" são fictícios (demo). Demais vêm dos CSVs ou
 // fontes públicas (IBGE, PNUD, Sebrae).
 
-import type { ValoresMunicipio } from '@/types/indicadores'
+import type { MunicipalityValues } from '@/types/indicators'
 
-export const caapora: ValoresMunicipio = {
-  municipio: 'Caaporã',
+export const caapora: MunicipalityValues = {
+  municipality: 'Caaporã',
   agendas: {
     'igm-cfa-2025': '4,92',
     'idh-m-2021': '0,602',
@@ -31,18 +31,18 @@ export const caapora: ValoresMunicipio = {
     'mpe-compras-publicas': '5%*',
     'linhas-credito': '4*',
   },
-  baseEconomica: {
-    'idsc': { valor: '35,8*', variacao: '+1,1%*' },
-    'idh-m-total': { valor: '0,602', variacao: '+0,6%*' },
-    'cobertura-atencao-basica': { valor: '95%*', variacao: '+1,3%*' },
-    'ideb-anos-iniciais': { valor: '3,9*', variacao: '+3,8%*' },
-    'ideb-anos-finais': { valor: '3,6*', variacao: '+2,9%*' },
-    'gini': { valor: '0,500', variacao: '-0,4%*' },
-    'remuneracao-media': { valor: 'R$ 1.880*', variacao: '+2,4%*' },
-    'empresas-ativas-total': { valor: '1.120*', variacao: '+1,9%*' },
-    'pib-per-capita': { valor: 'R$ 21.157', variacao: '+2,5%*' },
-    'meis': { valor: '1.440*', variacao: '+3,6%*' },
-    'mes': { valor: '110*', variacao: '+1,4%*' },
-    'epps': { valor: '14*', variacao: '+0,6%*' },
+  economicBase: {
+    'idsc': { value: '35,8*', variation: '+1,1%*' },
+    'idh-m-total': { value: '0,602', variation: '+0,6%*' },
+    'cobertura-atencao-basica': { value: '95%*', variation: '+1,3%*' },
+    'ideb-anos-iniciais': { value: '3,9*', variation: '+3,8%*' },
+    'ideb-anos-finais': { value: '3,6*', variation: '+2,9%*' },
+    'gini': { value: '0,500', variation: '-0,4%*' },
+    'remuneracao-media': { value: 'R$ 1.880*', variation: '+2,4%*' },
+    'empresas-ativas-total': { value: '1.120*', variation: '+1,9%*' },
+    'pib-per-capita': { value: 'R$ 21.157', variation: '+2,5%*' },
+    'meis': { value: '1.440*', variation: '+3,6%*' },
+    'mes': { value: '110*', variation: '+1,4%*' },
+    'epps': { value: '14*', variation: '+0,6%*' },
   },
 }

@@ -1,9 +1,9 @@
 // Descrições dos indicadores da Base Econômica — exibidas no InfoTooltip.
-// Chave: id em `src/data/indicadores/catalogo.ts` (baseEconomica[].id).
+// Chave: id em `src/data/indicators/catalog.ts` (economicBase[].id).
 // Id é estável; renomear o `label` no catálogo não quebra o lookup.
 // No futuro, estes textos serão gerados por LLM.
 
-export const baseEconomicaContexto: Record<string, string> = {
+export const economicBaseDescriptions: Record<string, string> = {
   idsc:
     'Mede o desempenho do município em relação aos 17 Objetivos de Desenvolvimento Sustentável da ONU. Escala de 0 a 100 — quanto maior, melhor.',
   'idh-m-total':

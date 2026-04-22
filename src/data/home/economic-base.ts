@@ -2,21 +2,21 @@
 // Futuro: substituir por chamada a LLM com os indicadores da base econômica
 // como contexto.
 
-export const analiseLabel = 'Análise' as const
+export const analysisLabel = 'Análise' as const
 
-export const emptyAnaliseTitle = 'Análise de desempenho do município' as const
-export const emptyAnaliseSubtitle =
+export const emptyAnalysisTitle = 'Análise de desempenho do município' as const
+export const emptyAnalysisSubtitle =
   'Gere uma leitura personalizada dos indicadores do município, com destaques, riscos e oportunidades identificadas por IA.' as const
-export const gerarAnaliseLabel = 'Gerar análise com IA' as const
-export const regenerarAnaliseLabel = 'Gerar novamente' as const
-export const gerandoAnaliseLabel = 'Analisando indicadores…' as const
+export const generateAnalysisLabel = 'Gerar análise com IA' as const
+export const regenerateAnalysisLabel = 'Gerar novamente' as const
+export const generatingAnalysisLabel = 'Analisando indicadores…' as const
 
-export const defaultAnalise =
+export const defaultAnalysis =
   'A economia local apresenta crescimento moderado do PIB per capita e melhora nos índices de competitividade, porém mantém alta dependência do setor público e parcela significativa da população em faixa de baixa renda. O fortalecimento das MPE e a diversificação produtiva são caminhos prioritários.'
 
 // Chave = código IBGE. Mantemos uma análise específica por município; quando
 // não houver chave correspondente, caímos para `defaultAnalise`.
-export const analisePorMunicipio: Record<string, string> = {
+export const analysisByMunicipality: Record<string, string> = {
   // João Pessoa
   '2507507':
     'João Pessoa combina o maior PIB per capita do estado com forte presença de MEIs e serviços, mas o índice de Gini ainda indica distribuição de renda desigual. O IDEB dos anos finais segue abaixo da meta nacional, o que limita a formação de mão de obra qualificada. Priorize políticas de adensamento da economia criativa e de tecnologia, aproveitando a base universitária instalada, e amplie programas de qualificação voltados a jovens de bairros periféricos.',
@@ -50,7 +50,7 @@ export const analisePorMunicipio: Record<string, string> = {
     'Cabaceiras tem economia apoiada em turismo cultural ("Roliúde Nordestina"), caprinocultura e artesanato em couro. O PIB per capita é baixo, mas a renda se distribui de forma relativamente equilibrada. Oportunidades claras: denominação de origem para produtos de couro, roteiros turísticos integrados e programas de formalização para artesãos. Ampliar o IDEB e a cobertura de atenção básica deve caminhar junto com o desenvolvimento econômico.',
 }
 
-export function getAnaliseForMunicipio(id: string | undefined): string {
-  if (!id) return defaultAnalise
-  return analisePorMunicipio[id] ?? defaultAnalise
+export function getAnalysisForMunicipality(id: string | undefined): string {
+  if (!id) return defaultAnalysis
+  return analysisByMunicipality[id] ?? defaultAnalysis
 }

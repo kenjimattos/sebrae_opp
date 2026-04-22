@@ -1,8 +1,8 @@
 // Objetivos das agendas — extraídos do Figma.
-// Chave: id da agenda em `src/data/indicadores/catalogo.ts`.
-// Id é estável; renomear o `nome` no catálogo não quebra o lookup.
+// Chave: id da agenda em `src/data/indicators/catalog.ts`.
+// Id é estável; renomear o `name` no catálogo não quebra o lookup.
 
-export const agendaObjetivos: Record<string, string> = {
+export const agendaObjectives: Record<string, string> = {
   governanca:
     'Implementar fóruns e pactos territoriais (especialmente em municípios de baixo IDH), reunindo poder público, setor privado, academia e entidades sociais para co-criar planos de desenvolvimento econômico local integrado.',
   simplificacao:

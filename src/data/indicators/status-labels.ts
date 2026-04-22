@@ -1,4 +1,4 @@
-import type { StatusType } from '@/types/indicadores'
+import type { StatusType } from '@/types/indicators'
 
 // Textos curtos do enum StatusType (AgendaStats, pills de status).
 export const statusLabels: Record<StatusType, string> = {

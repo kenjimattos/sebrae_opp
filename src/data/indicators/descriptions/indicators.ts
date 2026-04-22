@@ -1,9 +1,9 @@
 // Descrições breves dos indicadores para tooltip de AgendaIndicator.
-// Chave: id do indicador no catálogo (src/data/catalogo.ts) — estável mesmo
+// Chave: id do indicador no catálogo (src/data/indicators/catalog.ts) — estável mesmo
 // se o label for editado. No futuro, essas descrições podem ser geradas por
 // LLM ou vir de CMS.
 
-export const indicadorInfo: Record<string, string> = {
+export const indicatorInfo: Record<string, string> = {
   // Governança
   'igm-cfa-2025':
     'Índice do Conselho Federal de Administração que avalia a qualidade da gestão pública municipal em três dimensões: Finanças, Gestão e Desempenho.',

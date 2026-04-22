@@ -2,67 +2,67 @@
 // Placeholder estático v1 — no futuro será gerado por LLM.
 // Todas as etapas compartilham o mesmo conjunto de ações; a descrição e os exemplos variam.
 
-import type { AIAssistantContent } from '@/components/formulador/AIAssistant'
+import type { AIAssistantContent } from '@/components/formulator/AIAssistant'
 
-const ACOES_PADRAO = ['Gerar sugestão', 'Melhorar texto', 'Adaptar para edital', 'Validar conteúdo']
+const DEFAULT_ACTIONS = ['Gerar sugestão', 'Melhorar texto', 'Adaptar para edital', 'Validar conteúdo']
 
-const DEFAULT_EXEMPLOS = [
+const DEFAULT_EXAMPLES = [
   '"Programa de Digitalização de Microempresas de Campina Grande"',
   '"Projeto de Capacitação Empreendedora Jovem - PB"',
 ]
 
-const DEFAULT_DESCRICAO =
+const DEFAULT_DESCRIPTION =
   'A identificação clara do projeto facilita sua aprovação. Utilize um título objetivo que reflita o problema a ser resolvido.'
 
-export const aiAssistantByEtapa: Record<string, AIAssistantContent> = {
+export const aiAssistantByStep: Record<string, AIAssistantContent> = {
   identificacao: {
-    descricao: DEFAULT_DESCRICAO,
-    exemplos: DEFAULT_EXEMPLOS,
-    acoes: ACOES_PADRAO,
+    description: DEFAULT_DESCRIPTION,
+    examples: DEFAULT_EXAMPLES,
+    actions: DEFAULT_ACTIONS,
   },
   justificativa: {
-    descricao: DEFAULT_DESCRICAO,
-    exemplos: DEFAULT_EXEMPLOS,
-    acoes: ACOES_PADRAO,
+    description: DEFAULT_DESCRIPTION,
+    examples: DEFAULT_EXAMPLES,
+    actions: DEFAULT_ACTIONS,
   },
   objetivos: {
-    descricao: DEFAULT_DESCRICAO,
-    exemplos: DEFAULT_EXEMPLOS,
-    acoes: ACOES_PADRAO,
+    description: DEFAULT_DESCRIPTION,
+    examples: DEFAULT_EXAMPLES,
+    actions: DEFAULT_ACTIONS,
   },
   'publico-alvo': {
-    descricao: DEFAULT_DESCRICAO,
-    exemplos: DEFAULT_EXEMPLOS,
-    acoes: ACOES_PADRAO,
+    description: DEFAULT_DESCRIPTION,
+    examples: DEFAULT_EXAMPLES,
+    actions: DEFAULT_ACTIONS,
   },
   'plano-acao': {
-    descricao: DEFAULT_DESCRICAO,
-    exemplos: DEFAULT_EXEMPLOS,
-    acoes: ACOES_PADRAO,
+    description: DEFAULT_DESCRIPTION,
+    examples: DEFAULT_EXAMPLES,
+    actions: DEFAULT_ACTIONS,
   },
   cronograma: {
-    descricao: DEFAULT_DESCRICAO,
-    exemplos: DEFAULT_EXEMPLOS,
-    acoes: ACOES_PADRAO,
+    description: DEFAULT_DESCRIPTION,
+    examples: DEFAULT_EXAMPLES,
+    actions: DEFAULT_ACTIONS,
   },
   indicadores: {
-    descricao: DEFAULT_DESCRICAO,
-    exemplos: DEFAULT_EXEMPLOS,
-    acoes: ACOES_PADRAO,
+    description: DEFAULT_DESCRIPTION,
+    examples: DEFAULT_EXAMPLES,
+    actions: DEFAULT_ACTIONS,
   },
   orcamento: {
-    descricao: DEFAULT_DESCRICAO,
-    exemplos: DEFAULT_EXEMPLOS,
-    acoes: ACOES_PADRAO,
+    description: DEFAULT_DESCRIPTION,
+    examples: DEFAULT_EXAMPLES,
+    actions: DEFAULT_ACTIONS,
   },
   sustentabilidade: {
-    descricao: DEFAULT_DESCRICAO,
-    exemplos: DEFAULT_EXEMPLOS,
-    acoes: ACOES_PADRAO,
+    description: DEFAULT_DESCRIPTION,
+    examples: DEFAULT_EXAMPLES,
+    actions: DEFAULT_ACTIONS,
   },
   governanca: {
-    descricao: DEFAULT_DESCRICAO,
-    exemplos: DEFAULT_EXEMPLOS,
-    acoes: ACOES_PADRAO,
+    description: DEFAULT_DESCRIPTION,
+    examples: DEFAULT_EXAMPLES,
+    actions: DEFAULT_ACTIONS,
   },
 }

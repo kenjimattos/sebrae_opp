@@ -3,7 +3,7 @@
 // em benchmarks públicos. O Provider aplica `deriveStatus(id, valor)` no
 // merge catálogo × valores para produzir o `Indicador` consumido pela UI.
 
-import type { StatusType } from '@/types/indicadores'
+import type { StatusType } from '@/types/indicators'
 
 type Threshold =
   | { kind: 'higher-better'; success: number; warning: number } // x ≥ success → success; x ≥ warning → warning; else alert

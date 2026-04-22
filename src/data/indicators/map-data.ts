@@ -3,52 +3,52 @@
 // em entradas { valor, valorNumerico, status } consumidas pelo ParaibaMap,
 // ValueBadges e usePanoramaMedia.
 
-import type { StatusType } from '@/types/indicadores'
-import { catalogo } from '@/data/indicadores/catalogo'
-import { valoresMap } from '@/data/indicadores/valores/index'
-import { parseNumeric, deriveStatus } from '@/data/indicadores/thresholds'
+import type { StatusType } from '@/types/indicators'
+import { catalog } from '@/data/indicators/catalog'
+import { valuesMap } from '@/data/indicators/values/index'
+import { parseNumeric, deriveStatus } from '@/data/indicators/thresholds'
 
-export const indicadorOptions = catalogo.agendas.flatMap((a) =>
-  a.indicadores.map((i) => ({
+export const indicatorOptions = catalog.agendas.flatMap((a) =>
+  a.indicators.map((i) => ({
     label: i.label,
     shortLabel: i.label,
     value: i.id,
   })),
 )
 
-export type IndicadorKey = string
+export type IndicatorKey = string
 
-interface MapIndicadorEntry {
-  valor: string
-  valorNumerico?: number
+interface MapIndicatorEntry {
+  value: string
+  numericValue?: number
   status: StatusType
 }
 
-interface MunicipioMapData {
-  nome: string
-  indicadores: Record<string, MapIndicadorEntry>
+interface MunicipalityMapData {
+  name: string
+  indicators: Record<string, MapIndicatorEntry>
 }
 
-function buildMunicipioMapData(): Record<string, MunicipioMapData> {
-  const out: Record<string, MunicipioMapData> = {}
-  for (const [ibgeId, valores] of Object.entries(valoresMap)) {
-    const indicadores: Record<string, MapIndicadorEntry> = {}
-    for (const agenda of catalogo.agendas) {
-      for (const ind of agenda.indicadores) {
-        const raw = valores.agendas[ind.id]
+function buildMunicipalityMapData(): Record<string, MunicipalityMapData> {
+  const out: Record<string, MunicipalityMapData> = {}
+  for (const [ibgeId, values] of Object.entries(valuesMap)) {
+    const indicators: Record<string, MapIndicatorEntry> = {}
+    for (const agenda of catalog.agendas) {
+      for (const ind of agenda.indicators) {
+        const raw = values.agendas[ind.id]
         if (raw === undefined) continue
         const n = parseNumeric(raw)
         if (n === null) continue
-        indicadores[ind.id] = {
-          valor: String(raw),
-          valorNumerico: n,
+        indicators[ind.id] = {
+          value: String(raw),
+          numericValue: n,
           status: deriveStatus(ind.id, raw),
         }
       }
     }
-    out[ibgeId] = { nome: valores.municipio, indicadores }
+    out[ibgeId] = { name: values.municipality, indicators }
   }
   return out
 }
 
-export const municipiosMapData: Record<string, MunicipioMapData> = buildMunicipioMapData()
+export const municipalitiesMapData: Record<string, MunicipalityMapData> = buildMunicipalityMapData()

@@ -1,10 +1,10 @@
 // Valores marcados com "*" são fictícios (demo). Demais vêm dos CSVs ou
 // fontes públicas (IBGE, PNUD, Sebrae).
 
-import type { ValoresMunicipio } from '@/types/indicadores'
+import type { MunicipalityValues } from '@/types/indicators'
 
-export const campinaGrande: ValoresMunicipio = {
-  municipio: 'Campina Grande',
+export const campinaGrande: MunicipalityValues = {
+  municipality: 'Campina Grande',
   agendas: {
     'igm-cfa-2025': '6,80',
     'idh-m-2021': '0,720',
@@ -31,18 +31,18 @@ export const campinaGrande: ValoresMunicipio = {
     'mpe-compras-publicas': '12%*',
     'linhas-credito': '10*',
   },
-  baseEconomica: {
-    'idsc': { valor: '54,1*', variacao: '+2,2%*' },
-    'idh-m-total': { valor: '0,720', variacao: '+1,1%*' },
-    'cobertura-atencao-basica': { valor: '78%*', variacao: '+2,4%*' },
-    'ideb-anos-iniciais': { valor: '4,1', variacao: '+4,8%*' },
-    'ideb-anos-finais': { valor: '3,9', variacao: '+3,9%*' },
-    'gini': { valor: '0,590', variacao: '-0,9%*' },
-    'remuneracao-media': { valor: 'R$ 2.400', variacao: '+4,2%*' },
-    'empresas-ativas-total': { valor: '12.840*', variacao: '+4,1%*' },
-    'pib-per-capita': { valor: 'R$ 25.066', variacao: '+3,2%*' },
-    'meis': { valor: '28.600*', variacao: '+6,5%*' },
-    'mes': { valor: '3.720*', variacao: '+3,3%*' },
-    'epps': { valor: '520*', variacao: '+1,8%*' },
+  economicBase: {
+    'idsc': { value: '54,1*', variation: '+2,2%*' },
+    'idh-m-total': { value: '0,720', variation: '+1,1%*' },
+    'cobertura-atencao-basica': { value: '78%*', variation: '+2,4%*' },
+    'ideb-anos-iniciais': { value: '4,1', variation: '+4,8%*' },
+    'ideb-anos-finais': { value: '3,9', variation: '+3,9%*' },
+    'gini': { value: '0,590', variation: '-0,9%*' },
+    'remuneracao-media': { value: 'R$ 2.400', variation: '+4,2%*' },
+    'empresas-ativas-total': { value: '12.840*', variation: '+4,1%*' },
+    'pib-per-capita': { value: 'R$ 25.066', variation: '+3,2%*' },
+    'meis': { value: '28.600*', variation: '+6,5%*' },
+    'mes': { value: '3.720*', variation: '+3,3%*' },
+    'epps': { value: '520*', variation: '+1,8%*' },
   },
 }

@@ -51,36 +51,36 @@ export const sectionContent = {
       maior: 'Maior valor do estado',
     },
   },
-  baseEconomica: {
+  economicBase: {
     title: 'Qual o panorâma sócioeconômico do município?',
   },
-  riscos: {
+  risks: {
     title: 'Onde estão os riscos estratégicos?',
     description: 'Veja quais são os riscos para o município com base nas agendas estrtatégicas para um melhor ambiente de negócios'
   },
-  recursos: {
+  resources: {
     title: 'Onde acessar oportunidades de captação de recursos?',
     description: 'Mapeamento de oportunidades abertas para captação de recursos para iniciativas de aprimoramento de Ambiente de Negócios local'
   },
-  capacitacao: {
+  training: {
     title: 'Habilidades para uma gestão pública inovadora',
     description: 'Curadoria de cursos e conteúdos de aprimoramento para uma gestão pública cada vez mais inovadora.'
   },
-  casosSucesso: {
+  caseStudies: {
     title: 'Inspire-se com casos de sucesso',
     description: 'Veja como outros municípios implementaram estratégias eficazes para melhorar seu ambiente de negócios.'
   },
-  formulador: {
+  formulator: {
     title: 'Como escrever projetos de políticas públicas?',
     description:
       'Com base nos riscos estratégicos e pontos de atenção identificados, comece a escrever seu projeto para fortalecer o ambiente de negócios no seu município.',
   },
-  formuladorPagina: {
+  formulatorPage: {
     title: 'Formulador de projetos e politicas publicas',
     description:
       'Com base nos riscos estratégicos e pontos de atenção identificados, comece a escrever seu projeto para fortalecer o ambiente de negócios no seu município.',
   },
-  trilhas: {
+  trails: {
     title: 'Capacitação para gestores públicos municipais',
     description:
       'Cursos organizados por eixo de atuação para apoiar gestores públicos na formulação, execução e financiamento de políticas públicas.',
@@ -90,13 +90,13 @@ export const sectionContent = {
     description:
       'Use inteligência artificial para analisar indicadores, gerar relatórios e encontrar oportunidades de desenvolvimento para o seu município.',
   },
-  oportunidades: {
+  opportunities: {
     title:
       'Encontre <highlight>editais e programas de financiamento</highlight> para o seu município',
     description:
       'Em breve, você encontrará aqui programas federais, estaduais e institucionais com recursos disponíveis para desenvolvimento econômico, inovação e fortalecimento de pequenos negócios.',
   },
-  comunidade: {
+  community: {
     title:
       '<highlight>Comunidade de prática</highlight> em Inovação em Políticas Públicas',
     description:

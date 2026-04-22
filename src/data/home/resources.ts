@@ -14,7 +14,7 @@ export const resourceCards: ResourceCardData[] = [
   { title: 'Pago em 2025', value: 'R$ 1,4 bilhões' },
 ]
 
-export const recursosContent = {
+export const resourcesContent = {
   emendas: {
     title: 'Emendas federais e estaduais mapeadas',
     description: 'Recursos destinados por deputados federais e senadores que podem financiar projetos estruturantes no município.',

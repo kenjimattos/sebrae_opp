@@ -1,10 +1,10 @@
 // Valores marcados com "*" são fictícios (demo). Demais vêm dos CSVs ou
 // fontes públicas (IBGE, PNUD, Sebrae).
 
-import type { ValoresMunicipio } from '@/types/indicadores'
+import type { MunicipalityValues } from '@/types/indicators'
 
-export const pitimbu: ValoresMunicipio = {
-  municipio: 'Pitimbu',
+export const pitimbu: MunicipalityValues = {
+  municipality: 'Pitimbu',
   agendas: {
     'igm-cfa-2025': '5,50',
     'idh-m-2021': '0,570',
@@ -31,18 +31,18 @@ export const pitimbu: ValoresMunicipio = {
     'mpe-compras-publicas': '4%*',
     'linhas-credito': '3*',
   },
-  baseEconomica: {
-    'idsc': { valor: '32,1*', variacao: '+0,9%*' },
-    'idh-m-total': { valor: '0,570', variacao: '+0,4%*' },
-    'cobertura-atencao-basica': { valor: '90%*', variacao: '+1,1%*' },
-    'ideb-anos-iniciais': { valor: '3,7*', variacao: '+3,3%*' },
-    'ideb-anos-finais': { valor: '3,4*', variacao: '+2,6%*' },
-    'gini': { valor: '0,480', variacao: '-0,3%*' },
-    'remuneracao-media': { valor: 'R$ 1.820*', variacao: '+2,1%*' },
-    'empresas-ativas-total': { valor: '880*', variacao: '+1,5%*' },
-    'pib-per-capita': { valor: 'R$ 22.092', variacao: '+2,2%*' },
-    'meis': { valor: '1.120*', variacao: '+3,1%*' },
-    'mes': { valor: '85*', variacao: '+1,2%*' },
-    'epps': { valor: '10*', variacao: '+0,5%*' },
+  economicBase: {
+    'idsc': { value: '32,1*', variation: '+0,9%*' },
+    'idh-m-total': { value: '0,570', variation: '+0,4%*' },
+    'cobertura-atencao-basica': { value: '90%*', variation: '+1,1%*' },
+    'ideb-anos-iniciais': { value: '3,7*', variation: '+3,3%*' },
+    'ideb-anos-finais': { value: '3,4*', variation: '+2,6%*' },
+    'gini': { value: '0,480', variation: '-0,3%*' },
+    'remuneracao-media': { value: 'R$ 1.820*', variation: '+2,1%*' },
+    'empresas-ativas-total': { value: '880*', variation: '+1,5%*' },
+    'pib-per-capita': { value: 'R$ 22.092', variation: '+2,2%*' },
+    'meis': { value: '1.120*', variation: '+3,1%*' },
+    'mes': { value: '85*', variation: '+1,2%*' },
+    'epps': { value: '10*', variation: '+0,5%*' },
   },
 }

@@ -1,10 +1,10 @@
 [
-  { "id": "2507507", "nome": "João Pessoa", "slug": "joao-pessoa" },
-  { "id": "2504009", "nome": "Campina Grande", "slug": "campina-grande" },
-  { "id": "2512507", "nome": "Queimadas", "slug": "queimadas" },
-  { "id": "2504603", "nome": "Conde", "slug": "conde" },
-  { "id": "2503001", "nome": "Caaporã", "slug": "caapora" },
-  { "id": "2511905", "nome": "Pitimbu", "slug": "pitimbu" },
-  { "id": "2509701", "nome": "Monteiro", "slug": "monteiro" },
-  { "id": "2503100", "nome": "Cabaceiras", "slug": "cabaceiras" }
+  { "id": "2507507", "name": "João Pessoa", "slug": "joao-pessoa" },
+  { "id": "2504009", "name": "Campina Grande", "slug": "campina-grande" },
+  { "id": "2512507", "name": "Queimadas", "slug": "queimadas" },
+  { "id": "2504603", "name": "Conde", "slug": "conde" },
+  { "id": "2503001", "name": "Caaporã", "slug": "caapora" },
+  { "id": "2511905", "name": "Pitimbu", "slug": "pitimbu" },
+  { "id": "2509701", "name": "Monteiro", "slug": "monteiro" },
+  { "id": "2503100", "name": "Cabaceiras", "slug": "cabaceiras" }
 ]
