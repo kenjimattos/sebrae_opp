@@ -1,15 +1,11 @@
-// Fonte de verdade da estrutura de agendas e base econômica.
-// Valores por município ficam em src/data/municipios/{slug}.ts e são
-// mesclados com este catálogo pelo MunicipioProvider.
+import type { Catalog } from '@/types/indicators'
 
-import type { Catalogo } from '@/types/indicadores'
-
-export const catalogo: Catalogo = {
+export const catalog: Catalog = {
   agendas: [
     {
       id: 'governanca',
-      nome: 'Governança multissetorial para o Desenvolvimento Local',
-      indicadores: [
+      name: 'Governança multissetorial para o Desenvolvimento Local',
+      indicators: [
         { id: 'igm-cfa-2025', label: 'IGM – Índice CFA de Governança Municipal' },
         { id: 'idh-m-2021', label: 'IDH-M' },
         { id: 'isdel-governanca', label: 'Governança para o Desenvolvimento – ISDEL' },
@@ -18,8 +14,8 @@ export const catalogo: Catalogo = {
     },
     {
       id: 'simplificacao',
-      nome: 'Simplificação e digitalização de serviços públicos para os Pequenos Negócios',
-      indicadores: [
+      name: 'Simplificação e digitalização de serviços públicos para os Pequenos Negócios',
+      indicators: [
         { id: 'tempo-viabilidade', label: 'Tempo médio de viabilidade da empresa' },
         { id: 'tempo-abertura', label: 'Tempo médio de abertura da empresa (h)' },
         { id: 'ranking-redesim', label: 'Ranking municipal Redesim/PB' },
@@ -28,8 +24,8 @@ export const catalogo: Catalogo = {
     },
     {
       id: 'inovacao',
-      nome: 'Ecossistemas de Inovação: Inclusão e digitalização para Pequenos Negócios',
-      indicadores: [
+      name: 'Ecossistemas de Inovação: Inclusão e digitalização para Pequenos Negócios',
+      indicators: [
         { id: 'trabalhadores-ct', label: 'Trabalhadores nas ocupações de C&T' },
         { id: 'trabalhadores-tic', label: 'Trabalhadores nos setores da economia criativa, inovação e TIC' },
         { id: 'mpe-eli-sebrae', label: 'Crescimento de MPE formalizadas nos ELI' },
@@ -38,8 +34,8 @@ export const catalogo: Catalogo = {
     },
     {
       id: 'educacao',
-      nome: 'Educação empreendedora',
-      indicadores: [
+      name: 'Educação empreendedora',
+      indicators: [
         { id: 'educacao-isdel', label: 'Educação Empreendedora – ISDEL' },
         { id: 'ensino-medio', label: 'Trabalhadores formais com Ensino Médio Completo' },
         { id: 'ensino-superior', label: 'Trabalhadores formais Ensino Superior Completo' },
@@ -47,16 +43,16 @@ export const catalogo: Catalogo = {
     },
     {
       id: 'credito',
-      nome: 'Acesso a crédito e viabilização financeira',
-      indicadores: [
+      name: 'Acesso a crédito e viabilização financeira',
+      indicators: [
         { id: 'credito-financiamento', label: 'Crédito concedido no município' },
         { id: 'bndes-operacoes', label: 'Operações não automáticas de crédito' },
       ],
     },
     {
       id: 'inclusao',
-      nome: 'Inclusão produtiva',
-      indicadores: [
+      name: 'Inclusão produtiva',
+      indicators: [
         { id: 'negocios-abertos', label: 'Pequenos negócios abertos' },
         { id: 'empresas-ativas', label: 'Empresas ativas' },
         { id: 'negocios-extintos', label: 'Pequenos negócios extintos' },
@@ -67,18 +63,18 @@ export const catalogo: Catalogo = {
       ],
     },
   ],
-  baseEconomica: [
-    { id: 'idsc', label: 'IDSC - Índice de Desenvolvimento Sustentável das Cidades', icone: 'bar-chart' },
-    { id: 'idh-m-total', label: 'IDH-M (2021)', icone: 'bar-chart' },
-    { id: 'cobertura-atencao-basica', label: 'Cobertura Atenção Básica na Saúde', icone: 'users' },
-    { id: 'ideb-anos-iniciais', label: 'IDEB 2023 - Anos Iniciais', icone: 'bar-chart' },
-    { id: 'ideb-anos-finais', label: 'IDEB 2023 - Anos Finais', icone: 'bar-chart' },
-    { id: 'gini', label: 'GINI (2010)', icone: 'bar-chart' },
-    { id: 'remuneracao-media', label: 'Remuneração média (2024)', icone: 'trending-up' },
-    { id: 'empresas-ativas-total', label: 'Empresas Ativas (2025)', icone: 'briefcase' },
-    { id: 'pib-per-capita', label: 'PIB per capita (2021)', icone: 'trending-up' },
-    { id: 'meis', label: 'MEI (2025)', icone: 'building' },
-    { id: 'mes', label: 'ME (2025)', icone: 'building' },
-    { id: 'epps', label: 'EPP (2025)', icone: 'building' },
+  economicBase: [
+    { id: 'idsc', label: 'IDSC - Índice de Desenvolvimento Sustentável das Cidades', icon: 'bar-chart' },
+    { id: 'idh-m-total', label: 'IDH-M (2021)', icon: 'bar-chart' },
+    { id: 'cobertura-atencao-basica', label: 'Cobertura Atenção Básica na Saúde', icon: 'users' },
+    { id: 'ideb-anos-iniciais', label: 'IDEB 2023 - Anos Iniciais', icon: 'bar-chart' },
+    { id: 'ideb-anos-finais', label: 'IDEB 2023 - Anos Finais', icon: 'bar-chart' },
+    { id: 'gini', label: 'GINI (2010)', icon: 'bar-chart' },
+    { id: 'remuneracao-media', label: 'Remuneração média (2024)', icon: 'trending-up' },
+    { id: 'empresas-ativas-total', label: 'Empresas Ativas (2025)', icon: 'briefcase' },
+    { id: 'pib-per-capita', label: 'PIB per capita (2021)', icon: 'trending-up' },
+    { id: 'meis', label: 'MEI (2025)', icon: 'building' },
+    { id: 'mes', label: 'ME (2025)', icon: 'building' },
+    { id: 'epps', label: 'EPP (2025)', icon: 'building' },
   ],
 }
