@@ -78,25 +78,24 @@ Copie `.env.example` para `.env` e preencha conforme necessario.
 ```
 src/
 ├── components/     # Componentes organizados por grupo do Figma
-│   ├── agenda/     # AgendaCard, AgendaBadge, AgendaIndicator, AgendaStats
-│   ├── economics/  # EconomicsCard, EconomicsAnalysis
-│   ├── risks/      # RisksCard
-│   ├── resources/  # ResourcesCard
-│   ├── courses/    # CoursesCard, CoursesCardRow
-│   ├── case-studies/ # CaseStudiesCard
-│   ├── formulador/ # FormuladorCard + FormCard + 10 steps + sidebar
-│   ├── trilhas/    # TrilhaCard
-│   ├── sections/   # Hero + 8 secoes da pagina principal
-│   ├── layout/     # Header, Footer, CitySelector, User
-│   ├── ui/         # Button, IconButton, PillButton, Card, Dropdown, Carousel, ConsentBanner, etc.
-│   ├── icons/      # Re-exports Lucide + UserAvatar
-│   ├── map/        # ParaibaMap, ValueBadges
-│   ├── panorama/   # PanoramaLegend, PanoramaMediaInfo
+│   ├── agenda/         # AgendaCard, AgendaBadge, AgendaIndicator, AgendaStats
+│   ├── economic-base/  # EconomicBaseCard, EconomicBaseAnalysis
+│   ├── risks/          # RisksCard
+│   ├── resources/      # ResourcesCard
+│   ├── training/       # TrainingCard, TrainingCardRow, TrailCard
+│   ├── case-studies/   # CaseStudiesCard
+│   ├── formulator/     # FormulatorCard + FormCard + 10 steps + sidebar
+│   ├── sections/       # Hero + 8 secoes da pagina principal
+│   ├── layout/         # Header, Footer, CitySelector, User
+│   ├── ui/             # Button, IconButton, PillButton, Card, Dropdown, ConsentBanner, etc.
+│   ├── icons/          # Re-exports Lucide + UserAvatar
+│   ├── map/            # ParaibaMap, ValueBadges
+│   ├── panorama/       # PanoramaLegend, PanoramaMediaInfo
 │   └── AnalyticsTracker.tsx # Bootstrap do Clarity + tracking de rota
-├── data/           # catalogo, municipios/*.ts, thresholds, sections, etc.
-├── hooks/          # useMunicipio, useFormulador, useTypewriter, etc.
+├── data/           # indicators/, home/, formulator/, geo/, layout.ts
+├── hooks/          # useMunicipality, useFormulator, usePanoramaIndicators, etc.
 ├── types/          # Interfaces TypeScript
-├── pages/          # Home, Formulador, FormuladorStep, FormuladorConclusao, Trilhas, Oportunidades, Comunidade
+├── pages/          # Home, Formulator, FormulatorStep, FormulatorConclusion, Trails, Opportunities, Community
 ├── utils/          # Helpers compartilhados (inclui analytics.ts)
 └── index.css       # Design tokens (integrados ao Tailwind config)
 ```
