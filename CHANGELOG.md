@@ -6,6 +6,72 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 Refactor massivo de **padronização de nomenclatura para inglês** em todo o codebase. Identificadores de código (tipos, interfaces, propriedades, nomes de arquivo, variáveis internas) passam a usar inglês consistente. Texto exibido ao usuário (labels, títulos, descrições, botões) permanece em português. URLs de rota e nomes de eventos analytics também permanecem em português.
 
+### Breaking Changes
+
+**Tipos (`src/types/`)**
+| Antes | Depois |
+|---|---|
+| `src/types/indicadores.ts` | `src/types/indicators.ts` |
+| `src/types/formulador.ts` | `src/types/formulator.ts` |
+| `IndicadoresData` | `IndicatorsData` |
+| `BaseEconomicaItem` | `EconomicBaseItem` |
+| `Indicador` | `Indicator` |
+| `Agenda.nome` / `.indicadores` | `Agenda.name` / `.indicators` |
+| `FormuladorState` / `EMPTY_FORMULADOR_STATE` | `FormulatorState` / `EMPTY_FORMULATOR_STATE` |
+| Todas as props de etapa (ex: `titulo`, `atividades`, `rubricas[].valor`) | `title`, `activities`, `items[].value`, etc. |
+
+**Dados (`src/data/`)**
+| Antes | Depois |
+|---|---|
+| `src/data/indicadores/` | `src/data/indicators/` |
+| `indicators/catalogo.ts` → export `catalogo` | `indicators/catalog.ts` → export `catalog` |
+| `indicators/mapa.ts` → `IndicadorKey` | `indicators/map-data.ts` → `IndicatorKey` |
+| `indicators/municipios.json` | `indicators/municipalities.json` |
+| `indicators/valores/` | `indicators/values/` |
+| `indicators/descricoes/` | `indicators/descriptions/` |
+| `src/data/formulador/etapas.ts` → `findEtapaBySlug`, `findEtapaIndex`, step shape `.titulo`/`.nome` | `src/data/formulator/steps.ts` → `findStepBySlug`, `findStepIndex`, step shape `.title`/`.name` |
+| `src/data/home/capacitacao.ts` | `src/data/home/training.ts` |
+| `src/data/home/casos-sucesso.ts` | `src/data/home/case-studies.ts` |
+| `src/data/home/recursos.ts` | `src/data/home/resources.ts` |
+| `src/data/home/formulador.ts` | `src/data/home/formulator.ts` |
+
+**Hooks (`src/hooks/`)**
+| Antes | Depois |
+|---|---|
+| `useMunicipio` / `MunicipioProvider` | `useMunicipality` / `MunicipalityProvider` |
+| `MunicipioState.nome` / `.dados` | `MunicipalityState.name` / `.data` |
+| `setMunicipio(id, nome, origem)` | `setMunicipality(id, name, source)` |
+| `useFormulador` / `FormuladorProvider` | `useFormulator` / `FormulatorProvider` |
+| `usePanoramaIndicadores` | `usePanoramaIndicators` |
+
+**Utils (`src/utils/`)**
+| Antes | Depois |
+|---|---|
+| `formuladorCompleteness.ts` | `formulatorCompleteness.ts` |
+
+**Componentes**
+| Antes | Depois |
+|---|---|
+| `economics/EconomicsCard` — prop `analise` | `economic-base/EconomicBaseCard` — prop `analysis` |
+| `economics/EconomicsAnalysis` | `economic-base/EconomicBaseAnalysis` |
+| `courses/CoursesCard` — props `titulo`/`carga`/`descricao` | `training/TrainingCard` — props `title`/`duration`/`description` |
+| `courses/CoursesCardRow` | `training/TrainingCardRow` |
+| `formulador/FormuladorCard` | `formulator/FormulatorCard` |
+| `formulador/FormuladorProgress` | `formulator/FormulatorProgress` |
+| `RisksCard` props `valor`/`tipo`/`descricao`/`indicadorLabel`/`contexto` | props `value`/`type`/`description`/`indicatorLabel`/`context` |
+| `ValueBadges` prop `indicador` | prop `indicator` |
+| `PanoramaMediaInfo` props `municipioNome`/`municipioFormatted`/`maiorFormatted`/`maiorMunicipioNome` | props `municipalityName`/`municipalityFormatted`/`highestFormatted`/`highestMunicipalityName` |
+| `CaseStudiesCard` prop `caso` (shape `.titulo`/`.imagem`/`.cidade`/`.descricao`) | prop `caseStudy` (shape `.title`/`.image`/`.city`/`.description`) |
+
+**localStorage**
+| Antes | Depois |
+|---|---|
+| Chave `formulador:${id}` | Chave `formulator:${id}` |
+
+> Rascunhos salvos na versão anterior são incompatíveis e serão ignorados (o formulador inicia vazio).
+
+---
+
 ### Changed
 
 - **Componentes, seções e páginas — renomeação para inglês.**
@@ -56,7 +122,6 @@ Versão de **consolidação da camada de dados** (`src/data/`) e **nova affordan
 
 - **`riscos.ts` — contextos dessincronizados do catálogo.** Várias chaves estavam com labels desatualizados (ex: `'IGM – Índice CFA de Governança Municipal (Finanças, Gestão e Desempenho) 2025'` vs catálogo `'IGM – Índice CFA de Governança Municipal'`), caindo silenciosamente no `defaultRiscoContexto`. Migração das chaves para `id` resolve o problema e previne regressão futura.
 - **Tooltip atrás de card vizinho.** Tooltips dentro de cards em grid (ex: AgendaCard, EconomicsCard) podiam ficar parcialmente ocultos pelo card ao lado por causa do stacking context criado pelo `transform` do `card-hoverable`. Resolvido via nova prop `portal` no `Tooltip`, que move o painel para `<body>`.
-### Fixed
 - **`ConsentBanner`** — substituído `useEffect` + `setVisible` por inicializador lazy no `useState`, eliminando o erro `react-hooks/set-state-in-effect`.
 - **`FormulatorStep`** — `stepStartRef` inicializado com `0` em vez de `Date.now()` diretamente na chamada do `useRef`; valor real atribuído dentro do `useEffect`, eliminando o erro `react-hooks/purity`.
 
