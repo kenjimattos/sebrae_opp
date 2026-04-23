@@ -2,7 +2,7 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
-## [0.8.0] — 2026-04-22
+## [0.8.0] — 2026-04-23
 
 Refactor massivo de **padronização de nomenclatura para inglês** em todo o codebase. Identificadores de código (tipos, interfaces, propriedades, nomes de arquivo, variáveis internas) passam a usar inglês consistente. Texto exibido ao usuário (labels, títulos, descrições, botões) permanece em português. URLs de rota e nomes de eventos analytics também permanecem em português.
 
@@ -56,6 +56,9 @@ Versão de **consolidação da camada de dados** (`src/data/`) e **nova affordan
 
 - **`riscos.ts` — contextos dessincronizados do catálogo.** Várias chaves estavam com labels desatualizados (ex: `'IGM – Índice CFA de Governança Municipal (Finanças, Gestão e Desempenho) 2025'` vs catálogo `'IGM – Índice CFA de Governança Municipal'`), caindo silenciosamente no `defaultRiscoContexto`. Migração das chaves para `id` resolve o problema e previne regressão futura.
 - **Tooltip atrás de card vizinho.** Tooltips dentro de cards em grid (ex: AgendaCard, EconomicsCard) podiam ficar parcialmente ocultos pelo card ao lado por causa do stacking context criado pelo `transform` do `card-hoverable`. Resolvido via nova prop `portal` no `Tooltip`, que move o painel para `<body>`.
+### Fixed
+- **`ConsentBanner`** — substituído `useEffect` + `setVisible` por inicializador lazy no `useState`, eliminando o erro `react-hooks/set-state-in-effect`.
+- **`FormulatorStep`** — `stepStartRef` inicializado com `0` em vez de `Date.now()` diretamente na chamada do `useRef`; valor real atribuído dentro do `useEffect`, eliminando o erro `react-hooks/purity`.
 
 ### Removed
 
