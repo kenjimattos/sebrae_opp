@@ -15,7 +15,7 @@ export default function FormulatorStep() {
   const { stepSlug = '' } = useParams()
   const navigate = useNavigate()
   const { state, markVisited } = useFormulator()
-  const stepStartRef = useRef<number>(Date.now())
+  const stepStartRef = useRef<number>(0)
 
   const step = findStepBySlug(stepSlug)
   const index = findStepIndex(stepSlug)

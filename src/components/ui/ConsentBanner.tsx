@@ -4,7 +4,7 @@
 // Só aparece se Clarity estiver habilitado no ambiente — em dev/preview fica
 // oculto pra não poluir a UI durante desenvolvimento.
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Button from '@/components/ui/buttons/Button'
 import Card from '@/components/ui/Card'
 import {
@@ -14,14 +14,12 @@ import {
 } from '@/utils/analytics'
 
 export default function ConsentBanner() {
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    if (!import.meta.env.PROD) return
-    if (!import.meta.env.VITE_CLARITY_ID) return
-    if (getStoredConsent() !== null) return
-    setVisible(true)
-  }, [])
+  const [visible, setVisible] = useState(
+    () =>
+      import.meta.env.PROD &&
+      Boolean(import.meta.env.VITE_CLARITY_ID) &&
+      getStoredConsent() === null,
+  )
 
   if (!visible) return null
 
