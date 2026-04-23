@@ -1,38 +1,38 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import MunicipioProvider from '@/hooks/MunicipioProvider'
-import FormuladorProvider from '@/hooks/FormuladorProvider'
+import MunicipalityProvider from '@/hooks/MunicipalityProvider'
+import FormulatorProvider from '@/hooks/FormulatorProvider'
 import ScrollToTop from '@/components/ScrollToTop'
 import AnalyticsTracker from '@/components/AnalyticsTracker'
 import ConsentBanner from '@/components/ui/ConsentBanner'
 import Home from '@/pages/Home'
-import Formulador from '@/pages/Formulador'
-import FormuladorStep from '@/pages/FormuladorStep'
-import FormuladorConclusao from '@/pages/FormuladorConclusao'
-import Trilhas from '@/pages/Trilhas'
-import Oportunidades from '@/pages/Oportunidades'
-import Comunidade from '@/pages/Comunidade'
+import Formulator from '@/pages/Formulator'
+import FormulatorStep from '@/pages/FormulatorStep'
+import FormulatorConclusion from '@/pages/FormulatorConclusion'
+import Trails from '@/pages/Trails'
+import Opportunities from '@/pages/Opportunities'
+import Community from '@/pages/Community'
 
 function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
       <AnalyticsTracker />
-      <MunicipioProvider>
-        <FormuladorProvider>
+      <MunicipalityProvider>
+        <FormulatorProvider>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/trilhas" element={<Trilhas />} />
-            <Route path="/oportunidades" element={<Oportunidades />} />
-            <Route path="/comunidade" element={<Comunidade />} />
-            <Route path="/formulador" element={<Formulador />}>
+            <Route path="/trilhas" element={<Trails />} />
+            <Route path="/oportunidades" element={<Opportunities />} />
+            <Route path="/comunidade" element={<Community />} />
+            <Route path="/formulador" element={<Formulator />}>
               <Route index element={<Navigate to="identificacao" replace />} />
-              <Route path="conclusao" element={<FormuladorConclusao />} />
-              <Route path=":stepSlug" element={<FormuladorStep />} />
+              <Route path="conclusao" element={<FormulatorConclusion />} />
+              <Route path=":stepSlug" element={<FormulatorStep />} />
             </Route>
           </Routes>
           <ConsentBanner />
-        </FormuladorProvider>
-      </MunicipioProvider>
+        </FormulatorProvider>
+      </MunicipalityProvider>
     </BrowserRouter>
   )
 }

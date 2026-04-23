@@ -3,14 +3,14 @@
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import PillButton from '@/components/ui/buttons/PillButton'
 import Card from '@/components/ui/Card'
-import type { CasoSucesso } from '@/data/home/casos-sucesso'
+import type { CaseStudy } from '@/data/home/case-studies'
 
 interface CaseStudiesCardProps {
-  caso: CasoSucesso
+  caseStudy: CaseStudy
   className?: string
 }
 
-export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCardProps) {
+export default function CaseStudiesCard({ caseStudy, className = '' }: CaseStudiesCardProps) {
   return (
     <Card
       padding="none"
@@ -19,9 +19,9 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
       {/* Image */}
       <div className="h-[180px] w-full relative">
         <img
-          alt={caso.titulo}
+          alt={caseStudy.title}
           className="absolute inset-0 object-cover size-full"
-          src={caso.imagem}
+          src={caseStudy.image}
         />
       </div>
 
@@ -30,12 +30,12 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
         {/* Content */}
         <div className="flex flex-col gap-md items-start overflow-clip w-full flex-1">
           <span className="typo-body-sm text-inactive whitespace-nowrap">
-            {caso.cidade}
+            {caseStudy.city}
           </span>
           <TitleSubtitle
             size="sm"
-            title={caso.titulo}
-            subtitle={caso.descricao}
+            title={caseStudy.title}
+            subtitle={caseStudy.description}
           />
         </div>
 
@@ -44,7 +44,7 @@ export default function CaseStudiesCard({ caso, className = '' }: CaseStudiesCar
           variant="ghost"
           size="sm"
           label="Ver estudo de caso"
-          href={caso.url}
+          href={caseStudy.url}
         />
       </div>
     </Card>

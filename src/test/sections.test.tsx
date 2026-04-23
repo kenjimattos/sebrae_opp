@@ -2,7 +2,7 @@
 
 import { render } from '@testing-library/react'
 import { TestWrapper } from './mocks/wrapper'
-import { mockAgendas, mockBaseEconomica } from './mocks/municipio'
+import { mockAgendas, mockEconomicBase } from './mocks/municipality'
 
 // Mock react-leaflet (jsdom has no canvas)
 vi.mock('react-leaflet', () => ({
@@ -25,12 +25,12 @@ vi.mock('leaflet', () => ({
 import SectionHero from '@/components/sections/SectionHero'
 import SectionAgendas from '@/components/sections/SectionAgendas'
 import SectionPanorama from '@/components/sections/SectionPanorama'
-import SectionBaseEconomica from '@/components/sections/SectionBaseEconomica'
-import SectionRiscos from '@/components/sections/SectionRiscos'
-import SectionRecursos from '@/components/sections/SectionRecursos'
-import SectionCapacitacao from '@/components/sections/SectionCapacitacao'
-import SectionCasosSucesso from '@/components/sections/SectionCasosSucesso'
-import SectionFormulador from '@/components/sections/SectionFormulador'
+import SectionEconomicBase from '@/components/sections/SectionEconomicBase'
+import SectionRisks from '@/components/sections/SectionRisks'
+import SectionResources from '@/components/sections/SectionResources'
+import SectionTraining from '@/components/sections/SectionTraining'
+import SectionCaseStudies from '@/components/sections/SectionCaseStudies'
+import SectionFormulator from '@/components/sections/SectionFormulator'
 import SectionAIAssistant from '@/components/sections/SectionAIAssistant'
 
 describe('Section components — smoke tests', () => {
@@ -53,35 +53,35 @@ describe('Section components — smoke tests', () => {
     expect(container).toBeTruthy()
   })
 
-  it('renders SectionBaseEconomica', () => {
-    const { container } = render(<SectionBaseEconomica dados={mockBaseEconomica} />, {
+  it('renders SectionEconomicBase', () => {
+    const { container } = render(<SectionEconomicBase items={mockEconomicBase} />, {
       wrapper: TestWrapper,
     })
     expect(container).toBeTruthy()
   })
 
-  it('renders SectionRiscos', () => {
-    const { container } = render(<SectionRiscos agendas={mockAgendas} />)
+  it('renders SectionRisks', () => {
+    const { container } = render(<SectionRisks agendas={mockAgendas} />)
     expect(container).toBeTruthy()
   })
 
-  it('renders SectionRecursos', () => {
-    const { container } = render(<SectionRecursos />, { wrapper: TestWrapper })
+  it('renders SectionResources', () => {
+    const { container } = render(<SectionResources />, { wrapper: TestWrapper })
     expect(container).toBeTruthy()
   })
 
-  it('renders SectionCapacitacao', () => {
-    const { container } = render(<SectionCapacitacao />, { wrapper: TestWrapper })
+  it('renders SectionTraining', () => {
+    const { container } = render(<SectionTraining />, { wrapper: TestWrapper })
     expect(container).toBeTruthy()
   })
 
-  it('renders SectionCasosSucesso', () => {
-    const { container } = render(<SectionCasosSucesso />, { wrapper: TestWrapper })
+  it('renders SectionCaseStudies', () => {
+    const { container } = render(<SectionCaseStudies />, { wrapper: TestWrapper })
     expect(container).toBeTruthy()
   })
 
-  it('renders SectionFormulador', () => {
-    const { container } = render(<SectionFormulador />, { wrapper: TestWrapper })
+  it('renders SectionFormulator', () => {
+    const { container } = render(<SectionFormulator />, { wrapper: TestWrapper })
     expect(container).toBeTruthy()
   })
 

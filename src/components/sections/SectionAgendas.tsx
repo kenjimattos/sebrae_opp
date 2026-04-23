@@ -1,6 +1,6 @@
 // Figma: Section/Agendas (390:567)
 
-import type { Agenda, StatusType } from '@/types/indicadores'
+import type { Agenda, StatusType } from '@/types/indicators'
 import SectionContainer from '@/components/ui/SectionContainer'
 import AgendaStats from '@/components/agenda/AgendaStats'
 import AgendaCard from '@/components/agenda/AgendaCard'
@@ -12,7 +12,7 @@ interface SectionAgendasProps {
 
 export default function SectionAgendas({ agendas }: SectionAgendasProps) {
   // Count totals across all agendas
-  const allIndicadores = agendas.flatMap((a) => a.indicadores)
+  const allIndicadores = agendas.flatMap((a) => a.indicators)
   const total = allIndicadores.length
   const counts: Record<StatusType, number> = {
     success: allIndicadores.filter((i) => i.status === 'success').length,
@@ -42,8 +42,8 @@ export default function SectionAgendas({ agendas }: SectionAgendasProps) {
             <AgendaCard
               key={agenda.id}
               id={agenda.id}
-              title={agenda.nome}
-              indicadores={agenda.indicadores}
+              title={agenda.name}
+              indicators={agenda.indicators}
             />
           ))}
         </div>

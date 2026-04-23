@@ -9,9 +9,9 @@ import AgendaBadge from '@/components/agenda/AgendaBadge'
 import AgendaStats from '@/components/agenda/AgendaStats'
 import AgendaIndicator from '@/components/agenda/AgendaIndicator'
 
-// Economics
-import EconomicsCard from '@/components/economics/EconomicsCard'
-import EconomicsAnalysis from '@/components/economics/EconomicsAnalysis'
+// Economic Base
+import EconomicBaseCard from '@/components/economic-base/EconomicBaseCard'
+import EconomicBaseAnalysis from '@/components/economic-base/EconomicBaseAnalysis'
 
 // Risks
 import RisksCard from '@/components/risks/RisksCard'
@@ -19,9 +19,9 @@ import RisksCard from '@/components/risks/RisksCard'
 // Resources
 import ResourcesCard from '@/components/resources/ResourcesCard'
 
-// Courses
-import CoursesCard from '@/components/courses/CoursesCard'
-import CoursesCardRow from '@/components/courses/CoursesCardRow'
+// Training
+import TrainingCard from '@/components/training/TrainingCard'
+import TrainingCardRow from '@/components/training/TrainingCardRow'
 
 // Case Studies
 import CaseStudiesCard from '@/components/case-studies/CaseStudiesCard'
@@ -42,14 +42,14 @@ import TextInput from '@/components/ui/TextInput'
 import ProgressBar from '@/components/ui/ProgressBar'
 import NumberBullet from '@/components/ui/NumberBullet'
 
-// Formulador
-import FormuladorCard from '@/components/formulador/FormuladorCard'
-import StepIndicator from '@/components/formulador/StepIndicator'
-import ProjectSteps from '@/components/formulador/ProjectSteps'
-import FormuladorProgress from '@/components/formulador/FormuladorProgress'
-import AIAssistant from '@/components/formulador/AIAssistant'
-import FormCard from '@/components/formulador/FormCard'
-import { aiAssistantByEtapa } from '@/data/formulador/ai-assistant'
+// Formulator
+import FormulatorCard from '@/components/formulator/FormulatorCard'
+import StepIndicator from '@/components/formulator/StepIndicator'
+import ProjectSteps from '@/components/formulator/ProjectSteps'
+import FormulatorProgress from '@/components/formulator/FormulatorProgress'
+import AIAssistant from '@/components/formulator/AIAssistant'
+import FormCard from '@/components/formulator/FormCard'
+import { aiAssistantByStep } from '@/data/formulator/ai-assistant'
 
 // Layout
 import Header from '@/components/layout/Header'
@@ -61,9 +61,9 @@ describe('Agenda components', () => {
       <AgendaCard
         id="governanca"
         title="Governança"
-        indicadores={[
-          { label: 'CFA', valor: '0,521', status: 'warning' },
-          { label: 'Receita', valor: '42%', status: 'success' },
+        indicators={[
+          { label: 'CFA', value: '0,521', status: 'warning' },
+          { label: 'Receita', value: '42%', status: 'success' },
         ]}
       />,
     )
@@ -84,22 +84,22 @@ describe('Agenda components', () => {
 
   it('renders AgendaIndicator', () => {
     const { container } = render(
-      <AgendaIndicator label="IDHM" valor="0,720" status="success" />,
+      <AgendaIndicator label="IDHM" value="0,720" status="success" />,
     )
     expect(container).toBeTruthy()
   })
 })
 
-describe('Economics components', () => {
-  it('renders EconomicsCard', () => {
+describe('Economic Base components', () => {
+  it('renders EconomicBaseCard', () => {
     const { container } = render(
-      <EconomicsCard id="pib-per-capita" label="PIB per capita" valor="R$ 22.500" variacao="+3,2%" icone="trending-up" />,
+      <EconomicBaseCard id="pib-per-capita" label="PIB per capita" value="R$ 22.500" variation="+3,2%" icon="trending-up" />,
     )
     expect(container).toBeTruthy()
   })
 
-  it('renders EconomicsAnalysis', () => {
-    const { container } = render(<EconomicsAnalysis analise="Teste de análise." />)
+  it('renders EconomicBaseAnalysis', () => {
+    const { container } = render(<EconomicBaseAnalysis analysis="Teste de análise." />)
     expect(container).toBeTruthy()
   })
 })
@@ -109,11 +109,11 @@ describe('Risks components', () => {
     const { container } = render(
       <RisksCard
         label="Investimento per capita"
-        valor="R$ 180"
-        tipo="alert"
-        descricao="Valor abaixo da média estadual"
-        indicadorLabel="Investimento público"
-        contexto="Contexto de risco"
+        value="R$ 180"
+        type="alert"
+        description="Valor abaixo da média estadual"
+        indicatorLabel="Investimento público"
+        context="Contexto de risco"
       />,
     )
     expect(container).toBeTruthy()
@@ -129,23 +129,23 @@ describe('Resources components', () => {
   })
 })
 
-describe('Courses components', () => {
-  it('renders CoursesCard', () => {
+describe('Training components', () => {
+  it('renders TrainingCard', () => {
     const { container } = render(
-      <CoursesCard
+      <TrainingCard
         slug="formulacao-e-avaliacao"
         title="Formulação de Políticas"
         description="Do diagnóstico ao desenho"
-        cursos={[{ titulo: 'Avaliação de Impacto', carga: '36 Horas' }]}
+        courses={[{ title: 'Avaliação de Impacto', duration: '36 Horas' }]}
       />,
       { wrapper: TestWrapper },
     )
     expect(container).toBeTruthy()
   })
 
-  it('renders CoursesCardRow', () => {
+  it('renders TrainingCardRow', () => {
     const { container } = render(
-      <CoursesCardRow title="Avaliação de Impacto" subtitle="36 Horas" />,
+      <TrainingCardRow title="Avaliação de Impacto" subtitle="36 Horas" />,
     )
     expect(container).toBeTruthy()
   })
@@ -155,12 +155,12 @@ describe('Case Studies components', () => {
   it('renders CaseStudiesCard', () => {
     const { container } = render(
       <CaseStudiesCard
-        caso={{
+        caseStudy={{
           id: '1',
-          cidade: 'Campina Grande',
-          titulo: 'Programa de Inovação',
-          descricao: 'Descrição do caso',
-          imagem: '/assets/case-1.jpg',
+          city: 'Campina Grande',
+          title: 'Programa de Inovação',
+          description: 'Descrição do caso',
+          image: '/assets/case-1.jpg',
           url: 'https://example.com/caso-1',
         }}
       />,
@@ -259,12 +259,12 @@ describe('UI primitives', () => {
   })
 })
 
-describe('Formulador components', () => {
-  it('renders FormuladorCard', () => {
+describe('Formulator components', () => {
+  it('renders FormulatorCard', () => {
     const { container } = render(
-      <FormuladorCard
-        titulo="Novo projeto"
-        descricao="Crie um novo projeto"
+      <FormulatorCard
+        title="Novo projeto"
+        description="Crie um novo projeto"
         buttonLabel="Começar"
         buttonHref="#"
       />,
@@ -292,14 +292,14 @@ describe('Formulador components', () => {
     expect(container).toBeTruthy()
   })
 
-  it('renders FormuladorProgress', () => {
-    const { container } = render(<FormuladorProgress currentIndex={0} percent={0} />)
+  it('renders FormulatorProgress', () => {
+    const { container } = render(<FormulatorProgress currentIndex={0} percent={0} />)
     expect(container).toBeTruthy()
   })
 
   it('renders AIAssistant', () => {
     const { container } = render(
-      <AIAssistant content={aiAssistantByEtapa.identificacao} />,
+      <AIAssistant content={aiAssistantByStep.identificacao} />,
     )
     expect(container).toBeTruthy()
   })

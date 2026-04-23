@@ -7,28 +7,28 @@ const { labels: panoramaLabels } = sectionContent.panorama
 interface PanoramaMediaInfoProps {
   count: number
   formatted: string
-  municipioNome: string
-  municipioFormatted: string | null
-  maiorFormatted: string
-  maiorMunicipioNome: string
+  municipalityName: string
+  municipalityFormatted: string | null
+  highestFormatted: string
+  highestMunicipalityName: string
 }
 
 export default function PanoramaMediaInfo({
   formatted,
-  municipioNome,
-  municipioFormatted,
-  maiorFormatted,
-  maiorMunicipioNome
+  municipalityName,
+  municipalityFormatted,
+  highestFormatted,
+  highestMunicipalityName
 }: PanoramaMediaInfoProps) {
   return (
     <div className="flex items-center gap-lg flex-wrap">
-      {municipioFormatted && (
+      {municipalityFormatted && (
         <div className="flex-center gap-xs">
           <span className="typo-body">
-            {municipioNome}:
+            {municipalityName}:
           </span>
           <span className="typo-body-bold">
-            {municipioFormatted}
+            {municipalityFormatted}
           </span>
         </div>
       )}
@@ -45,7 +45,7 @@ export default function PanoramaMediaInfo({
           {panoramaLabels.maior}:
         </span>
         <span className="typo-body-bold">
-          {maiorFormatted} ({maiorMunicipioNome})
+          {highestFormatted} ({highestMunicipalityName})
         </span>
       </div>
     </div>

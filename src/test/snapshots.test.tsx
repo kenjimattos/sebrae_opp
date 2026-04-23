@@ -6,7 +6,7 @@ import { TestWrapper } from './mocks/wrapper'
 
 import AgendaBadge from '@/components/agenda/AgendaBadge'
 import AgendaStats from '@/components/agenda/AgendaStats'
-import EconomicsCard from '@/components/economics/EconomicsCard'
+import EconomicBaseCard from '@/components/economic-base/EconomicBaseCard'
 import RisksCard from '@/components/risks/RisksCard'
 import SectionHeader from '@/components/ui/SectionHeader'
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
@@ -19,10 +19,10 @@ import AgendaIndicator from '@/components/agenda/AgendaIndicator'
 import TextInput from '@/components/ui/TextInput'
 import ProgressBar from '@/components/ui/ProgressBar'
 import NumberBullet from '@/components/ui/NumberBullet'
-import StepIndicator from '@/components/formulador/StepIndicator'
-import FormuladorProgress from '@/components/formulador/FormuladorProgress'
-import AIAssistant from '@/components/formulador/AIAssistant'
-import { aiAssistantByEtapa } from '@/data/formulador/ai-assistant'
+import StepIndicator from '@/components/formulator/StepIndicator'
+import FormulatorProgress from '@/components/formulator/FormulatorProgress'
+import AIAssistant from '@/components/formulator/AIAssistant'
+import { aiAssistantByStep } from '@/data/formulator/ai-assistant'
 
 describe('Snapshot tests — CSS refactor safety', () => {
   it('AgendaBadge', () => {
@@ -39,14 +39,14 @@ describe('Snapshot tests — CSS refactor safety', () => {
 
   it('AgendaIndicator', () => {
     const { container } = render(
-      <AgendaIndicator label="IDHM" valor="0,720" status="success" />,
+      <AgendaIndicator label="IDHM" value="0,720" status="success" />,
     )
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  it('EconomicsCard', () => {
+  it('EconomicBaseCard', () => {
     const { container } = render(
-      <EconomicsCard id="pib-per-capita" label="PIB per capita" valor="R$ 22.500" variacao="+3,2%" icone="trending-up" />,
+      <EconomicBaseCard id="pib-per-capita" label="PIB per capita" value="R$ 22.500" variation="+3,2%" icon="trending-up" />,
     )
     expect(container.firstChild).toMatchSnapshot()
   })
@@ -55,11 +55,11 @@ describe('Snapshot tests — CSS refactor safety', () => {
     const { container } = render(
       <RisksCard
         label="Investimento per capita"
-        valor="R$ 180"
-        tipo="alert"
-        descricao="Valor abaixo da média"
-        indicadorLabel="Investimento público"
-        contexto="Contexto de risco"
+        value="R$ 180"
+        type="alert"
+        description="Valor abaixo da média"
+        indicatorLabel="Investimento público"
+        context="Contexto de risco"
       />,
     )
     expect(container.firstChild).toMatchSnapshot()
@@ -161,14 +161,14 @@ describe('Snapshot tests — CSS refactor safety', () => {
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  it('FormuladorProgress', () => {
-    const { container } = render(<FormuladorProgress currentIndex={0} percent={0} />)
+  it('FormulatorProgress', () => {
+    const { container } = render(<FormulatorProgress currentIndex={0} percent={0} />)
     expect(container.firstChild).toMatchSnapshot()
   })
 
   it('AIAssistant', () => {
     const { container } = render(
-      <AIAssistant content={aiAssistantByEtapa.identificacao} />,
+      <AIAssistant content={aiAssistantByStep.identificacao} />,
     )
     expect(container.firstChild).toMatchSnapshot()
   })

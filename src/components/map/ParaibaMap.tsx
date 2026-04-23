@@ -9,19 +9,19 @@ import type { Feature } from 'geojson'
 import 'leaflet/dist/leaflet.css'
 
 import geoData from '@/data/geo/paraiba.json'
-import municipios from '@/data/indicadores/municipios.json'
-import type { IndicadorKey } from '@/data/indicadores/mapa'
+import municipios from '@/data/indicators/municipalities.json'
+import type { IndicatorKey } from '@/data/indicators/map-data'
 import { getCSSVar, getResolvedStatusFill, getStatus } from '@/utils/mapHelpers'
 import ValueBadges from '@/components/map/ValueBadges'
 import HoverOverlay from '@/components/ui/HoverOverlay'
-import { useMunicipio } from '@/hooks/useMunicipio'
+import { useMunicipality } from '@/hooks/useMunicipality'
 import { trackEvent } from '@/utils/analytics'
 
-const MUNICIPIOS_COM_DADOS = new Map(municipios.map((m) => [m.id, m.nome]))
+const MUNICIPIOS_COM_DADOS = new Map(municipios.map((m) => [m.id, m.name]))
 
 interface ParaibaMapProps {
   selectedId: string
-  indicador: IndicadorKey
+  indicador: IndicatorKey
   className?: string
 }
 
@@ -32,7 +32,7 @@ const PARAIBA_BOUNDS: L.LatLngBoundsExpression = [
 ]
 
 export default function ParaibaMap({ selectedId, indicador, className = '' }: ParaibaMapProps) {
-  const { setMunicipio } = useMunicipio()
+  const { setMunicipality } = useMunicipality()
   const geoJsonRef = useRef<L.GeoJSON | null>(null)
   const mapRef = useRef<L.Map | null>(null)
   const [active, setActive] = useState(false)
@@ -123,11 +123,11 @@ export default function ParaibaMap({ selectedId, indicador, className = '' }: Pa
         },
         click: () => {
           if (!isClickable || !nomePlataforma) return
-          setMunicipio(id, nomePlataforma, 'mapa')
+          setMunicipality(id, nomePlataforma, 'map')
         },
       })
     },
-    [selectedId, indicador, setMunicipio],
+    [selectedId, indicador, setMunicipality],
   )
 
   const geoKey = useMemo(() => `${indicador}-${selectedId}`, [indicador, selectedId])
@@ -163,7 +163,7 @@ export default function ParaibaMap({ selectedId, indicador, className = '' }: Pa
           style={styleFeature}
           onEachFeature={onEachFeature}
         />
-        <ValueBadges indicador={indicador} />
+        <ValueBadges indicator={indicador} />
       </MapContainer>
 
       {/* Overlay — click to interact */}

@@ -5,7 +5,7 @@ import CitySelector from '@/components/layout/CitySelector'
 import User from '@/components/layout/User'
 import { navLinks } from '@/data/layout'
 import { useActiveSection } from '@/hooks/useActiveSection'
-import { useFormulador } from '@/hooks/useFormulador'
+import { useFormulator } from '@/hooks/useFormulator'
 import { useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { trackEvent } from '@/utils/analytics'
@@ -24,7 +24,7 @@ export default function Header({ className = '' }: HeaderProps) {
   const activeSection = useActiveSection(sectionIds)
   const { pathname } = useLocation()
   const navigate = useNavigate()
-  const { reset } = useFormulador()
+  const { reset } = useFormulator()
   const isFormulador = pathname.startsWith('/formulador')
   const isTrilhas = pathname.startsWith('/trilhas')
   const isHome = pathname === '/'

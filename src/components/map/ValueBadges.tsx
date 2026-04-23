@@ -3,12 +3,12 @@
 import { useEffect, useRef } from 'react'
 import { useMap } from 'react-leaflet'
 import L from 'leaflet'
-import type { StatusType } from '@/types/indicadores'
-import type { IndicadorKey } from '@/data/indicadores/mapa'
+import type { StatusType } from '@/types/indicators'
+import type { IndicatorKey } from '@/data/indicators/map-data'
 import geoData from '@/data/geo/paraiba.json'
 import { getCSSVar, getStatus, getDisplayValue, getCentroid } from '@/utils/mapHelpers'
 
-export default function ValueBadges({ indicador }: { indicador: IndicadorKey }) {
+export default function ValueBadges({ indicator }: { indicator: IndicatorKey }) {
   const map = useMap()
   const markersRef = useRef<L.Marker[]>([])
 
@@ -20,10 +20,10 @@ export default function ValueBadges({ indicador }: { indicador: IndicadorKey }) 
     const features = (geoData as GeoJSON.FeatureCollection).features
     for (const feature of features) {
       const id = String(feature.properties?.id)
-      const status = getStatus(id, indicador)
+      const status = getStatus(id, indicator)
       if (!status) continue
 
-      const valor = getDisplayValue(id, indicador)
+      const valor = getDisplayValue(id, indicator)
       if (!valor) continue
 
       const geom = feature.geometry as GeoJSON.Polygon
@@ -69,7 +69,7 @@ export default function ValueBadges({ indicador }: { indicador: IndicadorKey }) 
       markersRef.current.forEach((m) => m.remove())
       markersRef.current = []
     }
-  }, [map, indicador])
+  }, [map, indicator])
 
   return null
 }

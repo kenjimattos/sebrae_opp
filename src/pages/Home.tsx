@@ -5,21 +5,21 @@ import Footer from '@/components/layout/Footer'
 import SectionHero from '@/components/sections/SectionHero'
 import SectionAgendas from '@/components/sections/SectionAgendas'
 import SectionPanorama from '@/components/sections/SectionPanorama'
-import SectionBaseEconomica from '@/components/sections/SectionBaseEconomica'
-import SectionRiscos from '@/components/sections/SectionRiscos'
-import SectionRecursos from '@/components/sections/SectionRecursos'
-import SectionCapacitacao from '@/components/sections/SectionCapacitacao'
-import SectionCasosSucesso from '@/components/sections/SectionCasosSucesso'
-import SectionFormulador from '@/components/sections/SectionFormulador'
+import SectionEconomicBase from '@/components/sections/SectionEconomicBase'
+import SectionRisks from '@/components/sections/SectionRisks'
+import SectionResources from '@/components/sections/SectionResources'
+import SectionTraining from '@/components/sections/SectionTraining'
+import SectionCaseStudies from '@/components/sections/SectionCaseStudies'
+import SectionFormulator from '@/components/sections/SectionFormulator'
 // import SectionAIAssistant from '@/components/sections/SectionAIAssistant'
-import { useMunicipio } from '@/hooks/useMunicipio'
+import { useMunicipality } from '@/hooks/useMunicipality'
 
 const HEADER_OFFSET = 95
 
 export default function Home() {
-  const { municipio } = useMunicipio()
+  const { municipality } = useMunicipality()
   const { hash } = useLocation()
-  const dados = municipio.dados
+  const data = municipality.data
 
   // Suporta navegação por hash (`/#agendas`) — usada quando o usuário sai do
   // Formulador clicando num link do Header. Scroll respeita o offset do
@@ -41,33 +41,33 @@ export default function Home() {
         <div id="hero">
           <SectionHero />
         </div>
-        {dados && (
+        {data && (
           <>
             <div id="agendas">
-              <SectionAgendas agendas={dados.agendas} />
+              <SectionAgendas agendas={data.agendas} />
             </div>
             <div id="panorama">
               <SectionPanorama />
             </div>
             <div id="base-economica">
-              <SectionBaseEconomica dados={dados.baseEconomica} />
+              <SectionEconomicBase items={data.economicBase} />
             </div>
             <div id="riscos">
-              <SectionRiscos agendas={dados.agendas} />
+              <SectionRisks agendas={data.agendas} />
             </div>
           </>
         )}
         <div id="recursos">
-          <SectionRecursos />
+          <SectionResources />
         </div>
         <div id="capacitacao">
-          <SectionCapacitacao />
+          <SectionTraining />
         </div>
         <div id="casos-sucesso">
-          <SectionCasosSucesso />
+          <SectionCaseStudies />
         </div>
         <div id="formulador">
-          <SectionFormulador />
+          <SectionFormulator />
         </div>
         {/* Hidden for now, may be used in the future */}
         {/* <SectionAIAssistant /> */}

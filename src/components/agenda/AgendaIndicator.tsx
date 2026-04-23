@@ -3,27 +3,27 @@
 // <body>, positioned to the right of the cursor) with the indicator
 // description (from `indicador-info.ts`).
 
-import type { StatusType } from '@/types/indicadores'
+import type { StatusType } from '@/types/indicators'
 import AgendaBadge from '@/components/agenda/AgendaBadge'
 import Tooltip from '@/components/ui/Tooltip'
-import { indicadorInfo } from '@/data/indicadores/descricoes/indicadores'
+import { indicatorInfo } from '@/data/indicators/descriptions/indicators'
 
 interface AgendaIndicatorProps {
   id?: string
   label: string
-  valor: string | number
+  value: string | number
   status: StatusType
 }
 
-export default function AgendaIndicator({ id, label, valor, status }: AgendaIndicatorProps) {
-  const info = id ? indicadorInfo[id] : undefined
+export default function AgendaIndicator({ id, label, value, status }: AgendaIndicatorProps) {
+  const info = id ? indicatorInfo[id] : undefined
 
   const row = (
     <div
       className={`flex items-center gap-md px-xs w-full ${info ? 'cursor-help' : ''}`}
     >
       <span className="flex-1 typo-body-sm">{label}</span>
-      <AgendaBadge status={status} value={valor} />
+      <AgendaBadge status={status} value={value} />
     </div>
   )
 

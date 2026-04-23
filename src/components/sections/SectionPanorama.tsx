@@ -10,21 +10,21 @@ import InsetBar from '@/components/ui/InsetBar'
 import ParaibaMap from '@/components/map/ParaibaMap'
 import PanoramaLegend from '@/components/panorama/PanoramaLegend'
 import PanoramaMediaInfo from '@/components/panorama/PanoramaMediaInfo'
-import { useMunicipio } from '@/hooks/useMunicipio'
-import { usePanoramaIndicadores } from '@/hooks/usePanoramaIndicadores'
+import { useMunicipality } from '@/hooks/useMunicipality'
+import { usePanoramaIndicators } from '@/hooks/usePanoramaIndicators'
 import { usePanoramaMedia } from '@/hooks/usePanoramaMedia'
 import { sectionContent } from '@/data/home/sections'
-import type { IndicadorKey } from '@/data/indicadores/mapa'
-import { catalogo } from '@/data/indicadores/catalogo'
+import type { IndicatorKey } from '@/data/indicators/map-data'
+import { catalog } from '@/data/indicators/catalog'
 import { trackEvent } from '@/utils/analytics'
 
-const defaultIndicadorId = catalogo.agendas[0].indicadores[0].id
+const defaultIndicatorId = catalog.agendas[0].indicators[0].id
 
 export default function SectionPanorama() {
-  const { municipio } = useMunicipio()
-  const [indicador, setIndicador] = useState<IndicadorKey>(defaultIndicadorId)
-  const dropdownOptions = usePanoramaIndicadores()
-  const mediaInfo = usePanoramaMedia(indicador, municipio.id)
+  const { municipality } = useMunicipality()
+  const [indicator, setIndicator] = useState<IndicatorKey>(defaultIndicatorId)
+  const dropdownOptions = usePanoramaIndicators()
+  const mediaInfo = usePanoramaMedia(indicator, municipality.id)
 
   return (
     <SectionContainer>
@@ -37,10 +37,10 @@ export default function SectionPanorama() {
         <InsetBar label={sectionContent.panorama.labels.indicadorNoMapa}>
           <Dropdown
             options={dropdownOptions}
-            value={indicador}
+            value={indicator}
             onChange={(v) => {
               trackEvent('indicador_mapa_alterado', { indicador: v })
-              setIndicador(v as IndicadorKey)
+              setIndicator(v as IndicatorKey)
             }}
           />
         </InsetBar>
@@ -49,18 +49,18 @@ export default function SectionPanorama() {
           <PanoramaMediaInfo
             count={mediaInfo.count}
             formatted={mediaInfo.formatted}
-            municipioNome={municipio.nome}
-            municipioFormatted={mediaInfo.municipioFormatted}
-            maiorFormatted={mediaInfo.maiorFormatted}
-            maiorMunicipioNome={mediaInfo.maiorMunicipioNome}
+            municipalityName={municipality.name}
+            municipalityFormatted={mediaInfo.municipalityFormatted}
+            highestFormatted={mediaInfo.highestFormatted}
+            highestMunicipalityName={mediaInfo.highestMunicipalityName}
           />
         )}
 
         <PanoramaLegend />
 
         <ParaibaMap
-          selectedId={municipio.id}
-          indicador={indicador}
+          selectedId={municipality.id}
+          indicador={indicator}
         />
         </section>
       </Card>

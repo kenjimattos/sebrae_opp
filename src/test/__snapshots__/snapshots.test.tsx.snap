@@ -224,7 +224,7 @@ exports[`Snapshot tests — CSS refactor safety > Card 1`] = `
 </div>
 `;
 
-exports[`Snapshot tests — CSS refactor safety > EconomicsCard 1`] = `
+exports[`Snapshot tests — CSS refactor safety > EconomicBaseCard 1`] = `
 <div
   class="card-surface p-md flex-col-start justify-between gap-lg card-hoverable "
 >
@@ -448,7 +448,7 @@ decisões estratégicas.
 </footer>
 `;
 
-exports[`Snapshot tests — CSS refactor safety > FormuladorProgress 1`] = `
+exports[`Snapshot tests — CSS refactor safety > FormulatorProgress 1`] = `
 <div
   class="card-surface p-lg flex flex-col items-start gap-sm w-full "
 >

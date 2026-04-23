@@ -1,21 +1,21 @@
 // Figma: Agenda/Card (set 603:1874)
 // White card with agenda title + list of indicators + objetivo tooltip
 
-import type { Indicador } from '@/types/indicadores'
+import type { Indicator } from '@/types/indicators'
 import AgendaIndicator from '@/components/agenda/AgendaIndicator'
 import Card from '@/components/ui/Card'
 import InfoTooltip from '@/components/ui/InfoTooltip'
-import { agendaObjetivos } from '@/data/indicadores/descricoes/agendas'
+import { agendaObjectives } from '@/data/indicators/descriptions/agendas'
 
 interface AgendaCardProps {
   id: string
   title: string
-  indicadores: Indicador[]
+  indicators: Indicator[]
   className?: string
 }
 
-export default function AgendaCard({ id, title, indicadores, className = '' }: AgendaCardProps) {
-  const objetivo = agendaObjetivos[id]
+export default function AgendaCard({ id, title, indicators, className = '' }: AgendaCardProps) {
+  const objetivo = agendaObjectives[id]
 
   return (
     <Card
@@ -36,12 +36,12 @@ export default function AgendaCard({ id, title, indicadores, className = '' }: A
         )}
       </div>
       <div className="flex flex-col gap-sm flex-1">
-        {indicadores.map((ind) => (
+        {indicators.map((ind) => (
           <AgendaIndicator
             key={ind.id ?? ind.label}
             id={ind.id}
             label={ind.label}
-            valor={ind.valor}
+            value={ind.value}
             status={ind.status}
           />
         ))}

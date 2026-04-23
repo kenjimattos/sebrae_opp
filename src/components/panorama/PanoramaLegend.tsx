@@ -1,7 +1,7 @@
 // Status legend for the Panorama map section
 
-import type { StatusType } from '@/types/indicadores'
-import { statusLabelsPanorama } from '@/data/indicadores/status-labels'
+import type { StatusType } from '@/types/indicators'
+import { statusLabelsPanorama } from '@/data/indicators/status-labels'
 
 const legendItems: { status: StatusType; cssClass: string }[] = [
   { status: 'success', cssClass: 'status-success-dot' },

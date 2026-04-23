@@ -1,9 +1,9 @@
 // Figma: Agenda/Stats (518:3311)
 // Summary bar: total indicators + success/warning/alert counts
 
-import type { StatusType } from '@/types/indicadores'
+import type { StatusType } from '@/types/indicators'
 import { statusStyles } from '@/utils/statusStyles'
-import { statusLabels } from '@/data/indicadores/status-labels'
+import { statusLabels } from '@/data/indicators/status-labels'
 import { sectionContent } from '@/data/home/sections'
 import Card from '@/components/ui/Card'
 

@@ -1,27 +1,27 @@
-// Test wrapper: MemoryRouter + MunicipioProvider + FormuladorProvider.
-// FormuladorProvider é necessário para o Header (que expõe reset() ao clicar
+// Test wrapper: MemoryRouter + MunicipalityProvider + FormulatorProvider.
+// FormulatorProvider é necessário para o Header (que expõe reset() ao clicar
 // em logo/nav enquanto o usuário está em /formulador).
 import type { ReactNode } from 'react'
 import { MemoryRouter } from 'react-router-dom'
-import { MunicipioContext } from '@/hooks/useMunicipio'
-import FormuladorProvider from '@/hooks/FormuladorProvider'
-import { mockIndicadoresData } from './municipio'
+import { MunicipalityContext } from '@/hooks/useMunicipality'
+import FormulatorProvider from '@/hooks/FormulatorProvider'
+import { mockIndicatorsData } from './municipality'
 
-const mockMunicipioValue = {
-  municipio: {
+const mockMunicipalityValue = {
+  municipality: {
     id: '2504009',
-    nome: 'Campina Grande',
-    dados: mockIndicadoresData,
+    name: 'Campina Grande',
+    data: mockIndicatorsData,
   },
-  setMunicipio: () => {},
+  setMunicipality: () => {},
 }
 
 export function TestWrapper({ children }: { children: ReactNode }) {
   return (
     <MemoryRouter>
-      <MunicipioContext.Provider value={mockMunicipioValue}>
-        <FormuladorProvider>{children}</FormuladorProvider>
-      </MunicipioContext.Provider>
+      <MunicipalityContext.Provider value={mockMunicipalityValue}>
+        <FormulatorProvider>{children}</FormulatorProvider>
+      </MunicipalityContext.Provider>
     </MemoryRouter>
   )
 }

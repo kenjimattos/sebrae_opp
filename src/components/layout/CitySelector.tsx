@@ -5,33 +5,33 @@ import { useState, useRef } from 'react'
 import { Search, iconSizes } from '@/components/icons'
 import DropdownMenu from '@/components/ui/DropdownMenu'
 import { useDropdownState } from '@/components/ui/useDropdownState'
-import { useMunicipio } from '@/hooks/useMunicipio'
-import municipios from '@/data/indicadores/municipios.json'
+import { useMunicipality } from '@/hooks/useMunicipality'
+import municipios from '@/data/indicators/municipalities.json'
 
 interface CitySelectorProps {
   className?: string
 }
 
 export default function CitySelector({ className = '' }: CitySelectorProps) {
-  const { municipio, setMunicipio } = useMunicipio()
+  const { municipality, setMunicipality } = useMunicipality()
   const { open, setOpen, ref } = useDropdownState()
   const [draft, setDraft] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
 
   // Input shows the draft while open (user is searching) or the selected name
   // when closed. Deriving avoids a setState-in-effect sync between them.
-  const query = open ? draft : municipio.nome
+  const query = open ? draft : municipality.name
 
   const filtered = municipios.filter((m) =>
-    m.nome.toLowerCase().includes(query.toLowerCase()),
+    m.name.toLowerCase().includes(query.toLowerCase()),
   )
 
-  const menuOptions = filtered.map((m) => ({ label: m.nome, value: m.id }))
+  const menuOptions = filtered.map((m) => ({ label: m.name, value: m.id }))
 
   function handleSelect(id: string) {
     const match = municipios.find((m) => m.id === id)
     if (!match) return
-    setMunicipio(match.id, match.nome, 'seletor')
+    setMunicipality(match.id, match.name, 'selector')
     setOpen(false)
     inputRef.current?.blur()
   }
@@ -61,7 +61,7 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
       {open && menuOptions.length > 0 && (
         <DropdownMenu
           options={menuOptions}
-          value={municipio.id}
+          value={municipality.id}
           onSelect={handleSelect}
         />
       )}

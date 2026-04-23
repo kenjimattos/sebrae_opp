@@ -1,7 +1,7 @@
 // Figma: Agenda/Badge (set 563:3818)
 // Variants: Success, Warning, Alert
 
-import type { StatusType } from '@/types/indicadores'
+import type { StatusType } from '@/types/indicators'
 import { statusStyles } from '@/utils/statusStyles'
 
 interface AgendaBadgeProps {
