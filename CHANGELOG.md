@@ -8,6 +8,14 @@ Refactor massivo de **padronização de nomenclatura para inglês** em todo o co
 
 ### Changed
 
+- **Componentes, seções e páginas — renomeação para inglês.**
+  - Diretórios: `economics/` → `economic-base/`, `courses/` → `training/`, `formulador/` → `formulator/`
+  - Seções: `SectionRiscos` → `SectionRisks`, `SectionBaseEconomica` → `SectionEconomicBase`, `SectionCapacitacao` → `SectionTraining`, `SectionCasosSucesso` → `SectionCaseStudies`, `SectionRecursos` → `SectionResources`, `SectionFormulador` → `SectionFormulator`
+  - Páginas: `Formulador` → `Formulator`, `FormuladorStep` → `FormulatorStep`, `FormuladorConclusao` → `FormulatorConclusion`, `Trilhas` → `Trails`, `Oportunidades` → `Opportunities`, `Comunidade` → `Community`
+  - Steps do formulador: `StepOrcamento` → `StepBudget`, `StepPlanoAcao` → `StepActionPlan`, `StepGovernanca` → `StepGovernance`, `StepJustificativa` → `StepJustification`, `StepObjetivos` → `StepObjectives`, `StepSustentabilidade` → `StepSustainability`, `StepPublicoAlvo` → `StepTargetAudience`, `StepCronograma` → `StepTimeline`
+  - Props e state: `valor→value`, `nome→name`, `indicadores→indicators`, `rubricas→items`, `atividades→activities`, `metodologia→methodology`, etc.
+  - `App.tsx` e `Home.tsx` atualizados com novos imports; testes e mocks atualizados.
+
 - **ESLint — regra `quotes: single`** adicionada para forçar aspas simples em todo o código (`avoidEscape: true` para evitar conflitos em strings com apóstrofos).
 
 ## [0.7.3] — 2026-04-22

@@ -106,22 +106,23 @@ src/
 │   │   ├── AgendaIndicator.tsx       # Figma: Agenda/Indicator (300:32)
 │   │   ├── AgendaBadge.tsx           # Figma: Agenda/Badge (set 563:3818)
 │   │   └── AgendaStats.tsx           # Figma: Agenda/Stats (518:3311)
-│   ├── economics/
-│   │   ├── EconomicsCard.tsx         # Figma: Economics/Card (563:4015) — ícone em círculo + label + valor + variação
-│   │   └── EconomicsAnalysis.tsx     # Figma: Economics/Analysis (368:834) — bloco de análise textual (futuro: LLM)
+│   ├── economic-base/
+│   │   ├── EconomicBaseCard.tsx      # Figma: Economics/Card (563:4015) — ícone em círculo + label + valor + variação
+│   │   └── EconomicBaseAnalysis.tsx  # Figma: Economics/Analysis (368:834) — bloco de análise textual (futuro: LLM)
 │   ├── risks/
 │   │   └── RisksCard.tsx             # Figma: Risks/Card (set 563:4445) — dinâmico, derivado dos indicadores
 │   ├── resources/
 │   │   └── ResourcesCard.tsx         # Figma: Resources/Card (287:12)
-│   ├── courses/
-│   │   ├── CoursesCard.tsx            # Figma: Courses/Card (298:8)
-│   │   └── CoursesCardRow.tsx         # Figma: Courses/CardRow (297:8)
+│   ├── training/
+│   │   ├── TrainingCard.tsx           # Figma: Courses/Card (298:8)
+│   │   ├── TrainingCardRow.tsx        # Figma: Courses/CardRow (297:8)
+│   │   └── TrailCard.tsx              # Card de trilha de aprendizagem (página /trilhas)
 │   ├── case-studies/
 │   │   └── CaseStudiesCard.tsx        # Figma: CaseStudies/Card (288:8)
-│   ├── formulador/
-│   │   ├── FormuladorCard.tsx         # Figma: Formulador/Card (296:8) — card de entrada na home
+│   ├── formulator/
+│   │   ├── FormulatorCard.tsx         # Figma: Formulador/Card (296:8) — card de entrada na home
 │   │   ├── FormCard.tsx               # Figma: Formulador/FormCard (696:2665) — wrapper do form central (título/subtítulo/slot/footer Anterior+Próxima/Finalizar)
-│   │   ├── FormuladorProgress.tsx     # Figma: Formulador/Progress (620:4417) — barra topo "X% concluído"
+│   │   ├── FormulatorProgress.tsx     # Figma: Formulador/Progress (620:4417) — barra topo "X% concluído"
 │   │   ├── ProjectSteps.tsx           # Figma: Formulador/ProjectSteps (603:2135) — sidebar esquerda
 │   │   ├── StepIndicator.tsx          # Figma: Formulador/StepIndicator (603:1560) — 3 variantes (unchecked/current/checked)
 │   │   ├── AIAssistant.tsx            # Figma: Formulador/AIAssistant (603:1803) — sidebar direita
@@ -140,12 +141,12 @@ src/
 │   ├── sections/
 │   │   ├── SectionAgendas.tsx         # Figma: 390:567
 │   │   ├── SectionPanorama.tsx        # Figma: 390:578
-│   │   ├── SectionBaseEconomica.tsx   # Figma: 390:581
-│   │   ├── SectionRiscos.tsx          # Figma: 390:594 — dinâmico: extrai alert/warning das agendas
-│   │   ├── SectionRecursos.tsx        # Figma: 390:600
-│   │   ├── SectionCapacitacao.tsx     # Figma: 390:611
-│   │   ├── SectionCasosSucesso.tsx    # Figma: 390:623
-│   │   ├── SectionFormulador.tsx      # Figma: 390:635
+│   │   ├── SectionEconomicBase.tsx    # Figma: 390:581
+│   │   ├── SectionRisks.tsx           # Figma: 390:594 — dinâmico: extrai alert/warning das agendas
+│   │   ├── SectionResources.tsx       # Figma: 390:600
+│   │   ├── SectionTraining.tsx        # Figma: 390:611
+│   │   ├── SectionCaseStudies.tsx     # Figma: 390:623
+│   │   ├── SectionFormulator.tsx      # Figma: 390:635
 │   │   └── SectionAIAssistant.tsx     # Figma: 390:635
 │   └── ui/
 │       ├── buttons/
@@ -183,24 +184,24 @@ src/
 │   ├── home/                         # Conteúdo das seções da home
 │   │   ├── sections.ts               # Títulos e descrições de todas as seções
 │   │   ├── ai-assistant.ts           # Placeholder + botões (SectionAIAssistant)
-│   │   ├── capacitacao.ts            # Trilhas e cursos (SectionCapacitacao)
-│   │   ├── casos-sucesso.ts          # Casos reais do Geocracia (SectionCasosSucesso)
+│   │   ├── training.ts               # Trilhas e cursos (SectionTraining)
+│   │   ├── case-studies.ts           # Casos reais do Geocracia (SectionCaseStudies)
 │   │   ├── economics.ts              # Texto de análise econômica por município
-│   │   ├── formulador.ts             # Cards do formulador na home (SectionFormulador)
-│   │   └── recursos.ts               # Cards, URLs e textos (SectionRecursos)
-│   ├── formulador/                   # Rota /formulador
-│   │   ├── etapas.ts                 # Fonte de verdade das 10 etapas (slug/label/titulo/subtitle)
+│   │   ├── formulator.ts             # Cards do formulador na home (SectionFormulator)
+│   │   └── resources.ts              # Cards, URLs e textos (SectionResources)
+│   ├── formulator/                   # Rota /formulador
+│   │   ├── steps.ts                  # Fonte de verdade das 10 etapas (slug/label/title/subtitle)
 │   │   └── ai-assistant.ts           # Conteúdo do AIAssistant por etapa
 │   ├── geo/
 │   │   └── paraiba.json              # GeoJSON da Paraíba (IBGE) — 386kb
 │   └── layout.ts                     # navLinks, footerColumns, brandText, copyright
 ├── hooks/
-│   ├── useMunicipio.ts               # Hook + Context type + MunicipioState interface
-│   ├── MunicipioProvider.tsx          # Provider que carrega JSON por município
-│   ├── useFormulador.ts              # Hook + Context type do rascunho de projeto
-│   ├── FormuladorProvider.tsx         # Provider do rascunho — persiste por município em localStorage
-│   ├── usePanoramaIndicadores.ts     # Dropdown options derivadas das agendas
-│   └── usePanoramaMedia.ts           # Cálculo de média estadual do indicador
+│   ├── useMunicipality.ts            # Hook + Context type + MunicipalityState interface
+│   ├── MunicipalityProvider.tsx      # Provider que carrega JSON por município
+│   ├── useFormulator.ts              # Hook + Context type do rascunho de projeto
+│   ├── FormulatorProvider.tsx        # Provider do rascunho — persiste por município em localStorage
+│   ├── usePanoramaIndicators.ts      # Dropdown options derivadas das agendas
+│   └── usePanoramaAverage.ts         # Cálculo de média estadual do indicador
 ├── constants/
 │   └── icons.ts                     # ICON_SIZES { xs:12, sm:16, md:20, lg:24, xl:32 } — paralelo a --icon-size-* CSS vars
 ├── utils/
@@ -212,16 +213,16 @@ src/
 │   ├── sections.test.tsx             # Smoke tests das 9 seções
 │   ├── components.test.tsx           # Smoke tests dos componentes individuais
 │   ├── snapshots.test.tsx            # Snapshot tests para segurança de refactor CSS
-│   └── mocks/                        # Mocks (municipio, leaflet, wrapper)
+│   └── mocks/                        # Mocks (municipality, leaflet, wrapper)
 ├── types/
-│   ├── indicadores.ts                # IndicadoresData, Agenda, Indicador, etc.
-│   └── formulador.ts                 # FormuladorState + tipos de cada etapa + EMPTY_FORMULADOR_STATE
+│   ├── indicators.ts                 # IndicatorsData, Agenda, Indicator, etc.
+│   └── formulator.ts                 # FormulatorState + tipos de cada etapa + EMPTY_FORMULATOR_STATE
 ├── pages/
 │   ├── Home.tsx                      # Página principal com todas as seções
-│   ├── Formulador.tsx                # Layout da rota /formulador (hero + progress + <Outlet>)
-│   ├── FormuladorStep.tsx            # /formulador/:stepSlug — sidebar + FormCard + AIAssistant
-│   └── FormuladorConclusao.tsx       # /formulador/conclusao — revisão + banner + cards por etapa
-├── App.tsx                           # BrowserRouter + MunicipioProvider + FormuladorProvider
+│   ├── Formulator.tsx                # Layout da rota /formulador (hero + progress + <Outlet>)
+│   ├── FormulatorStep.tsx            # /formulador/:stepSlug — sidebar + FormCard + AIAssistant
+│   └── FormulatorConclusion.tsx      # /formulador/conclusao — revisão + banner + cards por etapa
+├── App.tsx                           # BrowserRouter + MunicipalityProvider + FormulatorProvider
 ├── main.tsx
 └── index.css                         # Design tokens (typography, spacing, radius, colors, dark mode)
 ```
@@ -245,19 +246,19 @@ src/
 | Agenda/Indicator | `300:32` | `agenda/AgendaIndicator.tsx` |
 | Agenda/Badge | `563:3818` | `agenda/AgendaBadge.tsx` |
 | Agenda/Stats | `518:3311` | `agenda/AgendaStats.tsx` |
-| Economics/Card | `563:4015` | `economics/EconomicsCard.tsx` |
-| Economics/Analysis | `368:834` | `economics/EconomicsAnalysis.tsx` |
+| Economics/Card | `563:4015` | `economic-base/EconomicBaseCard.tsx` |
+| Economics/Analysis | `368:834` | `economic-base/EconomicBaseAnalysis.tsx` |
 | Risks/Card | `563:4445` | `risks/RisksCard.tsx` |
 | Resources/Card | `287:12` | `resources/ResourcesCard.tsx` |
-| Courses/Card | `298:8` | `courses/CoursesCard.tsx` |
-| Courses/CardRow | `297:8` | `courses/CoursesCardRow.tsx` |
+| Courses/Card | `298:8` | `training/TrainingCard.tsx` |
+| Courses/CardRow | `297:8` | `training/TrainingCardRow.tsx` |
 | CaseStudies/Card | `288:8` | `case-studies/CaseStudiesCard.tsx` |
-| Formulador/Card | `296:8` | `formulador/FormuladorCard.tsx` |
-| Formulador/FormCard | `696:2665` | `formulador/FormCard.tsx` |
-| Formulador/Progress | `620:4417` | `formulador/FormuladorProgress.tsx` |
-| Formulador/ProjectSteps | `603:2135` | `formulador/ProjectSteps.tsx` |
-| Formulador/AIAssistant | `603:1803` | `formulador/AIAssistant.tsx` |
-| Formulador/StepIndicator | `603:1560` | `formulador/StepIndicator.tsx` |
+| Formulador/Card | `296:8` | `formulator/FormulatorCard.tsx` |
+| Formulador/FormCard | `696:2665` | `formulator/FormCard.tsx` |
+| Formulador/Progress | `620:4417` | `formulator/FormulatorProgress.tsx` |
+| Formulador/ProjectSteps | `603:2135` | `formulator/ProjectSteps.tsx` |
+| Formulador/AIAssistant | `603:1803` | `formulator/AIAssistant.tsx` |
+| Formulador/StepIndicator | `603:1560` | `formulator/StepIndicator.tsx` |
 | TextInput | `603:2011` | `ui/TextInput.tsx` |
 
 ### ⬜ Pendentes (existem no Figma, não implementados)
@@ -356,16 +357,16 @@ Rota `/formulador` com fluxo em 10 etapas + conclusão. Layout 3 colunas:
 
 **Rotas:**
 - `/formulador` → redireciona para `/formulador/identificacao` (index route)
-- `/formulador/:stepSlug` → `<FormuladorStep>` dispatcha para um dos 10 forms
-- `/formulador/conclusao` → `<FormuladorConclusao>` (sem AIAssistant; com cards resumo)
+- `/formulador/:stepSlug` → `<FormulatorStep>` dispatcha para um dos 10 forms
+- `/formulador/conclusao` → `<FormulatorConclusion>` (sem AIAssistant; com cards resumo)
 
-**Estado:** `FormuladorContext` via `FormuladorProvider` (envolve o App). Um rascunho por município em `localStorage` (`formulador:${ibgeId}`). Troca de município recarrega o rascunho correspondente via render-phase state update. Forma do estado em `src/types/formulador.ts` (`FormuladorState` + `EMPTY_FORMULADOR_STATE`).
+**Estado:** `FormulatorContext` via `FormulatorProvider` (envolve o App). Um rascunho por município em `localStorage` (`formulator:${municipalityId}`). Troca de município recarrega o rascunho correspondente via render-phase state update. Forma do estado em `src/types/formulator.ts` (`FormulatorState` + `EMPTY_FORMULATOR_STATE`).
 
-**Fonte de verdade das etapas:** `src/data/formulador/etapas.ts` — array de `{ slug, label, nome, titulo, subtitle }` consumido pela sidebar, progress e FormCard. Helpers `findEtapaBySlug`, `findEtapaIndex`.
+**Fonte de verdade das etapas:** `src/data/formulator/steps.ts` — array de `{ slug, label, name, title, subtitle }` consumido pela sidebar, progress e FormCard. Helpers `findStepBySlug`, `findStepIndex`.
 
 **"Etapa concluída" é heurística:** uma etapa é marcada como `checked` quando o usuário clica Próxima/Finalizar (via `markVisited(slug)`). Não há validação de campos preenchidos na v1.
 
-**AIAssistant:** conteúdo em `src/data/formulador/ai-assistant.ts`. Placeholder estático v1 (mesma descrição/exemplos/ações para as 10 etapas) — no futuro gerado por LLM.
+**AIAssistant:** conteúdo em `src/data/formulator/ai-assistant.ts`. Placeholder estático v1 (mesma descrição/exemplos/ações para as 10 etapas) — no futuro gerado por LLM.
 
 ---
 
@@ -399,42 +400,42 @@ Camada de instrumentação client-side para **teste moderado com 10 participante
 
 ## Estado Global
 
-Context API + `useMunicipio` hook. O município default é **Campina Grande** (código IBGE `2504009`).
+Context API + `useMunicipality` hook. O município default é **Campina Grande** (código IBGE `2504009`).
 
 ```ts
-// src/hooks/useMunicipio.ts
-interface MunicipioState {
+// src/hooks/useMunicipality.ts
+interface MunicipalityState {
   id: string      // código IBGE
-  nome: string
-  dados: IndicadoresData | null  // JSON carregado
+  name: string
+  data: IndicatorsData | null  // JSON carregado
 }
 ```
 
-`MunicipioProvider` (em `src/hooks/`) importa os 3 JSONs e seleciona pelo `id`. Todas as seções consomem via `useMunicipio()`.
+`MunicipalityProvider` (em `src/hooks/`) importa os JSONs e seleciona pelo `id`. Todas as seções consomem via `useMunicipality()`.
 
 ---
 
 ## Dados
 
-Toda a estrutura de dados está em `src/data/` e `src/types/indicadores.ts`, organizada por domínio:
+Toda a estrutura de dados está em `src/data/` e `src/types/indicators.ts`, organizada por domínio:
 
 | Caminho | Descrição |
 |---|---|
-| `indicadores/catalogo.ts` | Estrutura/labels/ícones das agendas e base econômica (fonte única) |
-| `indicadores/thresholds.ts` | Régua de classificação por indicador (status derivado do valor) |
-| `indicadores/mapa.ts` | Valores de indicadores por município para coloração do mapa |
-| `indicadores/municipios.json` | Lista dos 8 municípios (id IBGE, nome, slug) |
-| `indicadores/valores/*.ts` | Valores por município (agendas + baseEconomica). Merge com `catalogo` + `thresholds` no provider |
-| `indicadores/descricoes/*.ts` | Conteúdo de InfoTooltip (agendas, base-economica, indicadores, riscos) — futuro: LLM |
-| `indicadores/status-labels.ts` | `StatusType` → texto. `statusLabels` (Bom/Atenção/Alerta) + `statusLabelsPanorama` (usa "Crítico") |
+| `indicators/catalog.ts` | Estrutura/labels/ícones das agendas e base econômica (fonte única) |
+| `indicators/thresholds.ts` | Régua de classificação por indicador (status derivado do valor) |
+| `indicators/map-data.ts` | Valores de indicadores por município para coloração do mapa |
+| `indicators/municipalities.json` | Lista dos 8 municípios (id IBGE, nome, slug) |
+| `indicators/values/*.ts` | Valores por município (agendas + economicBase). Merge com `catalog` + `thresholds` no provider |
+| `indicators/descriptions/*.ts` | Conteúdo de InfoTooltip (agendas, economic-base, indicators, risks) — futuro: LLM |
+| `indicators/status-labels.ts` | `StatusType` → texto. `statusLabels` (Bom/Atenção/Alerta) + `statusLabelsPanorama` (usa "Crítico") |
 | `home/sections.ts` | Títulos, descrições e labels de seção (inclui `agendas.statsLabel`, `panorama.labels.*`) |
-| `home/{capacitacao,casos-sucesso,economics,recursos,formulador,ai-assistant}.ts` | Conteúdo das seções da home |
-| `formulador/etapas.ts` | Fonte de verdade das 10 etapas do formulador |
-| `formulador/ai-assistant.ts` | Conteúdo do AIAssistant por etapa |
+| `home/{training,case-studies,economics,resources,formulator,ai-assistant}.ts` | Conteúdo das seções da home |
+| `formulator/steps.ts` | Fonte de verdade das 10 etapas do formulador |
+| `formulator/ai-assistant.ts` | Conteúdo do AIAssistant por etapa |
 | `geo/paraiba.json` | GeoJSON da Paraíba (IBGE) — 386kb |
 | `layout.ts` | navLinks, footerColumns, brandText, copyright |
 
-**Interfaces:** ver `src/types/indicadores.ts` para `IndicadoresData`, `Agenda`, `Indicador`, `BaseEconomicaItem`, `Panorama`, etc.
+**Interfaces:** ver `src/types/indicators.ts` para `IndicatorsData`, `Agenda`, `Indicator`, `EconomicBaseItem`, `Panorama`, etc.
 
 **Regra:** no protótipo, dados vêm de JSON/TS importados. Nunca fetch de API.
 
