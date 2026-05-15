@@ -1,7 +1,6 @@
 // Figma: Header (405:2044)
 // Sticky header: Sebrae logo (scroll-to-top) | CitySelector + nav links (scroll-spy) | User avatar
 
-import CitySelector from '@/components/layout/CitySelector'
 import User from '@/components/layout/User'
 import { navLinks } from '@/data/layout'
 import { useActiveSection } from '@/hooks/useActiveSection'
@@ -89,7 +88,8 @@ export default function Header({ className = '' }: HeaderProps) {
 
   return (
     <header
-      className={`flex-between mx-auto w-full max-w-[1440px] sticky top-0 z-50 py-md px-lg bg-primary ${className}`}
+      className={`flex-between mx-auto w-full sticky top-0 z-50 py-md bg-surface border-b-2 border-[var(--semantic-surface-secondary)] ${className}`}
+      style={{ paddingLeft: 'var(--spacing-margin)', paddingRight: 'var(--spacing-margin)' }}
     >
       {/* Logo — click scrolls to top */}
       <img
@@ -100,9 +100,7 @@ export default function Header({ className = '' }: HeaderProps) {
       />
 
       {/* Center nav pill */}
-      <div className="flex-between h-[60px] gap-md bg-surface rounded-full px-sm py-2xs">
-        {!isFormulador && !isTrilhas && <CitySelector />}
-
+      <div className="flex-between gap-md px-sm py-2xs">
         <nav className="flex-between gap-md">
           {navLinks.map(({ label, sectionId }) => {
             const isActive = effectiveActive === sectionId
@@ -110,10 +108,10 @@ export default function Header({ className = '' }: HeaderProps) {
               <button
                 key={sectionId}
                 onClick={() => onNavClick(sectionId)}
-                className={`typo-body-sm whitespace-nowrap transition-colors px-sm py-xs rounded-full ${
+                className={`typo-body transition-colors px-sm py-xs ${
                   isActive
-                    ? 'bg-accent text-[var(--semantic-button-label-primary)]'
-                    : 'hover:bg-[var(--semantic-surface-hover)]'
+                    ? 'text-[var(--semantic-accent)]'
+                    : 'hover:text-[var(--semantic-accent)] text-[var(--semantic-text-primary)]'
                 }`}
               >
                 {label}
