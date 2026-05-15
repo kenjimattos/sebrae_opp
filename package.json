@@ -12,6 +12,7 @@
     "test:run": "vitest run"
   },
   "dependencies": {
+    "@fontsource/intel-one-mono": "^5.2.2",
     "@microsoft/clarity": "^1.0.2",
     "autoprefixer": "^10.4.27",
     "leaflet": "^1.9.4",
