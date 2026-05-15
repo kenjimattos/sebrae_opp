@@ -23,7 +23,6 @@ vi.mock('leaflet', () => ({
 }))
 
 import SectionHero from '@/components/sections/SectionHero'
-import SectionAgendas from '@/components/sections/SectionAgendas'
 import SectionPanorama from '@/components/sections/SectionPanorama'
 import SectionEconomicBase from '@/components/sections/SectionEconomicBase'
 import SectionRisks from '@/components/sections/SectionRisks'
@@ -36,11 +35,6 @@ import SectionAIAssistant from '@/components/sections/SectionAIAssistant'
 describe('Section components — smoke tests', () => {
   it('renders SectionHero', () => {
     const { container } = render(<SectionHero />)
-    expect(container).toBeTruthy()
-  })
-
-  it('renders SectionAgendas', () => {
-    const { container } = render(<SectionAgendas agendas={mockAgendas} />)
     expect(container).toBeTruthy()
   })
 

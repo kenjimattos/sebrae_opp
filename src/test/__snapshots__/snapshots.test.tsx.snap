@@ -112,7 +112,7 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
   class="flex flex-col gap-sm w-full"
 >
   <div
-    class="flex items-center gap-md px-xs w-full "
+    class="flex items-start gap-md w-full "
   >
     <span
       class="flex-1 typo-body-sm"
@@ -120,16 +120,45 @@ exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
       IDHM
     </span>
     <div
-      class="flex-center gap-xs px-sm py-2xs rounded-md status-success-bg "
+      class="w-[145px] flex flex-col gap-2xs"
     >
-      <div
-        class="size-[8px] rounded-full status-success-dot"
-      />
       <span
-        class="typo-body-sm-bold text-right whitespace-nowrap"
+        class="typo-body-sm-bold text-right"
       >
         0,720
       </span>
+      <div
+        class="flex flex-col gap-2xs w-full "
+      >
+        <div
+          class="grid grid-cols-3 gap-2xs items-center"
+        >
+          <div
+            class="relative h-[4px]"
+          >
+            <div
+              class="absolute inset-0 rounded-full bg-[var(--semantic-surface-secondary)]"
+            />
+          </div>
+          <div
+            class="relative h-[4px]"
+          >
+            <div
+              class="absolute inset-0 rounded-full bg-[var(--semantic-surface-secondary)]"
+            />
+          </div>
+          <div
+            class="relative h-[4px]"
+          >
+            <div
+              class="absolute inset-0 rounded-full bg-[var(--semantic-surface-secondary)]"
+            />
+            <div
+              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[9px] rounded-full status-success-dot"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div

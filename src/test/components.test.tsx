@@ -59,7 +59,6 @@ describe('Agenda components', () => {
   it('renders AgendaCard', () => {
     const { container } = render(
       <AgendaCard
-        id="governanca"
         title="Governança"
         indicators={[
           { label: 'CFA', value: '0,521', status: 'warning' },
