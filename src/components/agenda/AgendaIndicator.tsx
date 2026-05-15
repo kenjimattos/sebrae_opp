@@ -1,10 +1,9 @@
-// Figma: Agenda/Indicator (300:32)
-// Single indicator row: label + badge. Hover reveals a tooltip (portaled to
-// <body>, positioned to the right of the cursor) with the indicator
-// description (from `indicador-info.ts`).
+// Linha de indicador no AgendaCard refatorado (estilo dark): label à esquerda,
+// valor + IndicatorBar à direita, divider abaixo. Hover na linha mostra
+// tooltip com a descrição do indicador (quando disponível).
 
 import type { StatusType } from '@/types/indicators'
-import AgendaBadge from '@/components/agenda/AgendaBadge'
+import IndicatorBar from '@/components/agenda/IndicatorBar'
 import Tooltip from '@/components/ui/Tooltip'
 import { indicatorInfo } from '@/data/indicators/descriptions/indicators'
 
@@ -13,17 +12,27 @@ interface AgendaIndicatorProps {
   label: string
   value: string | number
   status: StatusType
+  segmentLabels?: [string, string, string]
 }
 
-export default function AgendaIndicator({ id, label, value, status }: AgendaIndicatorProps) {
+export default function AgendaIndicator({
+  id,
+  label,
+  value,
+  status,
+  segmentLabels,
+}: AgendaIndicatorProps) {
   const info = id ? indicatorInfo[id] : undefined
 
   const row = (
     <div
-      className={`flex items-center gap-md px-xs w-full ${info ? 'cursor-help' : ''}`}
+      className={`flex items-start gap-md w-full ${info ? 'cursor-help' : ''}`}
     >
       <span className="flex-1 typo-body-sm">{label}</span>
-      <AgendaBadge status={status} value={value} />
+      <div className="w-[145px] flex flex-col gap-2xs">
+        <span className="typo-body-sm-bold text-right">{value}</span>
+        <IndicatorBar status={status} segmentLabels={segmentLabels} />
+      </div>
     </div>
   )
 
