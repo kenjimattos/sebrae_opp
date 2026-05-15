@@ -1,40 +1,31 @@
-// Figma: Agenda/Card (set 603:1874)
-// White card with agenda title + list of indicators + objetivo tooltip
+// Card flutuante (estilo dark) usado na /new sobre o mapa: título da agenda
+// + lista de indicadores (label + valor + IndicatorBar) + descrição no rodapé.
 
 import type { Indicator } from '@/types/indicators'
 import AgendaIndicator from '@/components/agenda/AgendaIndicator'
 import Card from '@/components/ui/Card'
-import InfoTooltip from '@/components/ui/InfoTooltip'
-import { agendaObjectives } from '@/data/indicators/descriptions/agendas'
 
 interface AgendaCardProps {
-  id: string
   title: string
   indicators: Indicator[]
+  description?: string
   className?: string
 }
 
-export default function AgendaCard({ id, title, indicators, className = '' }: AgendaCardProps) {
-  const objetivo = agendaObjectives[id]
-
+export default function AgendaCard({
+  title,
+  indicators,
+  description,
+  className = '',
+}: AgendaCardProps) {
   return (
     <Card
+      surface="secondary"
       padding="md"
-      className={`flex flex-col gap-lg card-hoverable ${className}`}
+      className={`flex flex-col gap-md ${className}`}
     >
-      <div className="flex items-start justify-between gap-sm">
-        <h3 className="typo-body-bold flex-1">
-          {title}
-        </h3>
-        {objetivo && (
-          <InfoTooltip
-            trackingKey={`agenda_objetivo:${title}`}
-            label={`Ver objetivo da agenda ${title}`}
-            title="Objetivo"
-            subtitle={objetivo}
-          />
-        )}
-      </div>
+      <h3 className="typo-body-bold">{title}</h3>
+
       <div className="flex flex-col gap-sm flex-1">
         {indicators.map((ind) => (
           <AgendaIndicator
@@ -46,6 +37,10 @@ export default function AgendaCard({ id, title, indicators, className = '' }: Ag
           />
         ))}
       </div>
+
+      {description && (
+        <p className="typo-body-sm text-inactive">{description}</p>
+      )}
     </Card>
   )
 }
