@@ -1,7 +1,7 @@
-// /new — protótipo do novo design.
-// Layout: Header + 2 colunas. Esquerda: AgendaList (accordion).
-// Direita: ParaibaOutlineMap com MapModeToggle (overlay top) e AgendaCard
-// (overlay bottom-right) refletindo a agenda selecionada.
+// /new — protótipo do novo design (Figma 1395:2142).
+// Layout: Header + área principal com container esquerdo (rounded-[25px],
+// bg translúcido) contendo heading + lista de agendas, e mapa à direita
+// com MapModeToggle no topo e AgendaCard flutuante no canto inferior.
 
 import { useState } from 'react'
 import Header from '@/components/layout/Header'
@@ -26,44 +26,40 @@ export default function New() {
   return (
     <div className="min-h-screen bg-primary">
       <Header />
-      <main
-        className="mx-auto w-full max-w-[1440px] grid grid-cols-[511px_1fr] gap-lg"
-        style={{
-          paddingLeft: 'var(--spacing-margin)',
-          paddingRight: 'var(--spacing-margin)',
-          paddingTop: 'var(--spacing-xl)',
-        }}
-      >
-        <AgendaList
-          heading="Conjunto de indicadores"
-          agendas={agendas}
-          descriptions={agendaObjectives}
-          selectedId={selectedAgendaId}
-          onSelect={setSelectedAgendaId}
-        />
-
-        <div className="relative">
-          <ParaibaOutlineMap
-            selectedId={municipality.id}
-            onSelect={(id) => {
-              // O nome do município é resolvido pelo provider a partir dos
-              // dados carregados; basta passar o id + um placeholder.
-              setMunicipality(id, '', 'map')
-            }}
-          />
-
-          <div className="absolute top-md left-1/2 -translate-x-1/2 z-10">
-            <MapModeToggle value={mapMode} onChange={setMapMode} />
+      <main className="relative mx-auto w-full max-w-[1440px] px-[35px] pt-[87px] pb-[35px]">
+        <div className="grid grid-cols-[511px_1fr] gap-[35px] items-start">
+          {/* Coluna esquerda: container rounded com heading + agendas */}
+          <div className="bg-[rgba(22,23,38,0.2)] rounded-[25px] p-[18px] min-h-[792px]">
+            <AgendaList
+              agendas={agendas}
+              descriptions={agendaObjectives}
+              selectedId={selectedAgendaId}
+              onSelect={setSelectedAgendaId}
+            />
           </div>
 
-          {selectedAgenda && (
-            <AgendaCard
-              className="absolute bottom-md right-md w-[506px] z-10"
-              title={selectedAgenda.name}
-              indicators={selectedAgenda.indicators}
-              description={agendaObjectives[selectedAgenda.id]}
+          {/* Coluna direita: mapa + overlays */}
+          <div className="relative min-h-[792px]">
+            <div className="absolute top-[22px] left-1/2 -translate-x-1/2 z-20">
+              <MapModeToggle value={mapMode} onChange={setMapMode} />
+            </div>
+
+            <ParaibaOutlineMap
+              className="w-full h-auto"
+              selectedId={municipality.id}
+              onSelect={(id) => setMunicipality(id, '', 'map')}
             />
-          )}
+
+            {selectedAgenda && (
+              <div className="absolute bottom-0 right-0 z-20">
+                <AgendaCard
+                  title={selectedAgenda.name}
+                  indicators={selectedAgenda.indicators.slice(0, 3)}
+                  description={agendaObjectives[selectedAgenda.id]}
+                />
+              </div>
+            )}
+          </div>
         </div>
       </main>
     </div>
