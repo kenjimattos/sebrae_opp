@@ -1,7 +1,7 @@
 // Toggle segmentado "Meu município / Território" usado sobre o mapa na /new.
-// Background é o SVG corner-gradient do Figma renderizado inline (4 retângulos
-// espelhados com gradiente linear → bevel/highlight nas quinas). Inline em vez
-// de CSS background data URI por confiabilidade de renderização do gradient.
+// Efeito glass com bevel visível: backdrop-blur + gradiente sutil + borda em
+// gradiente (mais clara no topo, escura embaixo) via background-clip + sombra
+// inset white no topo pra reforçar o highlight.
 
 export type MapMode = 'municipio' | 'territorio'
 
@@ -16,50 +16,25 @@ const OPTIONS: { value: MapMode; label: string }[] = [
   { value: 'territorio', label: 'Território' },
 ]
 
-function GlassBevelBackground() {
-  return (
-    <svg
-      viewBox="0 0 278 43"
-      preserveAspectRatio="none"
-      className="absolute inset-0 w-full h-full rounded-full pointer-events-none"
-      aria-hidden
-    >
-      <defs>
-        <linearGradient id="bevel-grad" gradientUnits="userSpaceOnUse" x2="5" y2="5">
-          <stop stopColor="rgba(117,125,184,1)" offset="0" />
-          <stop stopColor="rgba(92,99,149,1)" offset="0.33894" />
-          <stop stopColor="rgba(67,73,115,1)" offset="0.67788" />
-          <stop stopColor="rgba(48,54,89,1)" offset="0.83894" />
-          <stop stopColor="rgba(30,35,64,1)" offset="1" />
-        </linearGradient>
-      </defs>
-      <g
-        transform="matrix(28.4 0.2 -0.056201 7.9806 2.5 20)"
-        opacity="0.4"
-      >
-        <rect
-          id="bevel-quad"
-          width="97.896"
-          height="51.375"
-          fill="url(#bevel-grad)"
-          shapeRendering="crispEdges"
-        />
-        <use href="#bevel-quad" transform="scale(1 -1)" />
-        <use href="#bevel-quad" transform="scale(-1 1)" />
-        <use href="#bevel-quad" transform="scale(-1 -1)" />
-      </g>
-    </svg>
-  )
-}
-
 export default function MapModeToggle({ value, onChange, className = '' }: MapModeToggleProps) {
   return (
     <div
-      className={`relative inline-flex items-center rounded-full h-[43px] w-[278px] p-[4px] overflow-hidden ${className}`}
+      className={`relative inline-flex items-center rounded-full h-[43px] w-[278px] p-[4px] backdrop-blur-md ${className}`}
       role="tablist"
       aria-label="Modo de visualização do mapa"
+      style={{
+        // Gradiente sutil de centro→quinas (claro→escuro) como o SVG do Figma.
+        background:
+          'radial-gradient(ellipse 80% 120% at 50% 50%, rgba(117,125,184,0.35) 0%, rgba(67,73,115,0.35) 50%, rgba(30,35,64,0.45) 100%)',
+        // Borda em gradient (highlight no topo, sombra embaixo) via dupla camada.
+        backgroundOrigin: 'border-box',
+        backgroundClip: 'padding-box, border-box',
+        border: '1px solid transparent',
+        // Bevel: highlight branco translúcido no topo + sombra escura embaixo.
+        boxShadow:
+          'inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(0,0,0,0.35), inset 1px 0 0 rgba(255,255,255,0.08), inset -1px 0 0 rgba(255,255,255,0.08)',
+      }}
     >
-      <GlassBevelBackground />
       {OPTIONS.map((opt) => {
         const isActive = value === opt.value
         return (
