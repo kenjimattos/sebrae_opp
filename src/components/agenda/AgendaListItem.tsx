@@ -1,5 +1,6 @@
-// Item da AgendaList (accordion). Controlado: pai decide se está expandido.
-// Expandido: título + descrição + seta →. Recolhido: só título + ícone +.
+// Item da AgendaList (accordion). Expandido: título + descrição + botão →.
+// Recolhido: só título + botão +. Cantos retos, borda branca 1px, fundo
+// translúcido (rgba 22,23,38,0.2). Título em Monoblock Bold 16px uppercase.
 
 interface AgendaListItemProps {
   title: string
@@ -19,19 +20,39 @@ export default function AgendaListItem({
       type="button"
       onClick={onToggle}
       aria-expanded={expanded}
-      className="w-full text-left flex items-start gap-md p-md bg-[rgba(22,23,38,0.2)] border border-white/80 transition-colors hover:bg-[rgba(22,23,38,0.4)]"
+      className="w-full text-left relative bg-[rgba(22,23,38,0.2)] border border-white transition-colors hover:bg-[rgba(22,23,38,0.4)]"
+      style={{ minHeight: 71 }}
     >
-      <div className="flex-1 flex flex-col gap-sm">
-        <span className="typo-h4 uppercase">{title}</span>
+      <div className="px-[16px] pt-[18px] pb-[18px] pr-[60px]">
+        <p
+          className="text-[16px] uppercase leading-normal text-white"
+          style={{ fontFamily: 'var(--font-display)', fontWeight: 700 }}
+        >
+          {title}
+        </p>
         {expanded && description && (
-          <span className="typo-body-sm">{description}</span>
+          <p
+            className="mt-[24px] text-[12px] leading-normal text-white"
+            style={{ fontFamily: 'var(--font-body)' }}
+          >
+            {description}
+          </p>
         )}
       </div>
+
       <span
-        className="shrink-0 size-[22px] flex-center bg-white text-black"
+        className="absolute top-[24px] right-[21px] size-[22px] inline-flex items-center justify-center bg-white text-black"
         aria-hidden
       >
-        {expanded ? '→' : '+'}
+        {expanded ? (
+          <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 5H12M12 5L8 1M12 5L8 9" stroke="black" strokeWidth="1.5" />
+          </svg>
+        ) : (
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.5 0V13M0 6.5H13" stroke="black" strokeWidth="1.5" />
+          </svg>
+        )}
       </span>
     </button>
   )

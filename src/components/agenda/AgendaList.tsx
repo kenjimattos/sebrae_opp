@@ -1,12 +1,11 @@
-// Coluna esquerda da /new: heading "CONJUNTO DE INDICADORES" + lista
-// accordion de agendas. Apenas uma expandida por vez (selectedId controlado
-// pelo pai).
+// Coluna esquerda da /new: heading display + lista accordion de agendas.
+// O container externo (rounded-[25px], bg translúcido) é responsabilidade da
+// página — este componente só monta o conteúdo.
 
 import type { Agenda } from '@/types/indicators'
 import AgendaListItem from '@/components/agenda/AgendaListItem'
 
 interface AgendaListProps {
-  heading: string
   agendas: Agenda[]
   descriptions?: Record<string, string>
   selectedId: string
@@ -15,7 +14,6 @@ interface AgendaListProps {
 }
 
 export default function AgendaList({
-  heading,
   agendas,
   descriptions,
   selectedId,
@@ -23,11 +21,19 @@ export default function AgendaList({
   className = '',
 }: AgendaListProps) {
   return (
-    <div className={`flex flex-col gap-lg ${className}`}>
-      <h2 className="typo-display uppercase">{heading}</h2>
-      <ul className="flex flex-col gap-2xs">
-        {agendas.map((agenda) => (
-          <li key={agenda.id}>
+    <div className={`flex flex-col ${className}`}>
+      <h2
+        className="text-[56px] leading-normal uppercase text-white"
+        style={{ fontFamily: 'var(--font-headings)', fontWeight: 800 }}
+      >
+        Conjunto de
+        <br />
+        indicadores
+      </h2>
+
+      <ul className="flex flex-col mt-[28px]">
+        {agendas.map((agenda, i) => (
+          <li key={agenda.id} className={i > 0 ? '-mt-px' : ''}>
             <AgendaListItem
               title={agenda.name}
               description={descriptions?.[agenda.id]}
