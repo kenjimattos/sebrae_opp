@@ -109,61 +109,59 @@ exports[`Snapshot tests — CSS refactor safety > AgendaBadge 1`] = `
 
 exports[`Snapshot tests — CSS refactor safety > AgendaIndicator 1`] = `
 <div
-  class="flex flex-col gap-sm w-full"
+  class="flex items-center w-full"
 >
-  <div
-    class="flex items-start gap-md w-full "
+  <span
+    class="flex-1 text-[14px] leading-normal text-white"
+    style="font-family: var(--font-body);"
   >
-    <span
-      class="flex-1 typo-body-sm"
-    >
-      IDHM
-    </span>
+    IDHM
+  </span>
+  <span
+    class="text-[18px] font-bold leading-normal text-white w-[71px] text-left ml-auto"
+    style="font-family: var(--font-body);"
+  >
+    0,720
+  </span>
+  <div
+    class="w-[145px] shrink-0"
+  >
     <div
-      class="w-[145px] flex flex-col gap-2xs"
+      class="flex flex-col gap-[6px] w-full "
     >
-      <span
-        class="typo-body-sm-bold text-right"
-      >
-        0,720
-      </span>
       <div
-        class="flex flex-col gap-2xs w-full "
+        class="relative h-[4px] w-full"
+        style="background: linear-gradient(to right, rgb(241, 55, 55) 0%, rgb(246, 238, 31) 53.365%, rgb(64, 230, 41) 100%);"
       >
         <div
-          class="grid grid-cols-3 gap-2xs items-center"
+          class="absolute size-[9px] top-1/2 -translate-x-1/2 -translate-y-1/2"
+          style="left: 83.4%; background: rgb(64, 230, 41);"
+        />
+      </div>
+      <div
+        class="grid grid-cols-3"
+      >
+        <span
+          class="text-[8px] leading-none text-white"
+          style="font-family: var(--font-body);"
         >
-          <div
-            class="relative h-[4px]"
-          >
-            <div
-              class="absolute inset-0 rounded-full bg-[var(--semantic-surface-secondary)]"
-            />
-          </div>
-          <div
-            class="relative h-[4px]"
-          >
-            <div
-              class="absolute inset-0 rounded-full bg-[var(--semantic-surface-secondary)]"
-            />
-          </div>
-          <div
-            class="relative h-[4px]"
-          >
-            <div
-              class="absolute inset-0 rounded-full bg-[var(--semantic-surface-secondary)]"
-            />
-            <div
-              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[9px] rounded-full status-success-dot"
-            />
-          </div>
-        </div>
+          &gt; 4.0
+        </span>
+        <span
+          class="text-[8px] leading-none text-white"
+          style="font-family: var(--font-body);"
+        >
+          &gt; 4.0
+        </span>
+        <span
+          class="text-[8px] leading-none text-white"
+          style="font-family: var(--font-body);"
+        >
+          &gt; 4.0
+        </span>
       </div>
     </div>
   </div>
-  <div
-    class="divider"
-  />
 </div>
 `;
 
