@@ -1,6 +1,7 @@
 // Toggle segmentado "Meu município / Território" usado sobre o mapa na /new.
-// Background usa o SVG corner-gradient (matriz de retângulos refletidos) do
-// Figma, com opção ativa preenchida em accent (#D4FE07).
+// Background é o SVG corner-gradient do Figma renderizado inline (4 retângulos
+// espelhados com gradiente linear → bevel/highlight nas quinas). Inline em vez
+// de CSS background data URI por confiabilidade de renderização do gradient.
 
 export type MapMode = 'municipio' | 'territorio'
 
@@ -15,18 +16,50 @@ const OPTIONS: { value: MapMode; label: string }[] = [
   { value: 'territorio', label: 'Território' },
 ]
 
-// SVG do Figma — gradiente nos 4 cantos formado por retângulos espelhados.
-const GLASS_BG_SVG =
-  "url(\"data:image/svg+xml;utf8,<svg viewBox='0 0 278 43' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><g transform='matrix(28.4 0.2 -0.056201 7.9806 2.5 20)' opacity='0.4'><rect height='51.375' width='97.896' fill='url(%23grad)' id='quad' shape-rendering='crispEdges'/><use href='%23quad' transform='scale(1 -1)'/><use href='%23quad' transform='scale(-1 1)'/><use href='%23quad' transform='scale(-1 -1)'/></g><defs><linearGradient id='grad' gradientUnits='userSpaceOnUse' x2='5' y2='5'><stop stop-color='rgba(117,125,184,1)' offset='0'/><stop stop-color='rgba(92,99,149,1)' offset='0.33894'/><stop stop-color='rgba(67,73,115,1)' offset='0.67788'/><stop stop-color='rgba(48,54,89,1)' offset='0.83894'/><stop stop-color='rgba(30,35,64,1)' offset='1'/></linearGradient></defs></svg>\")"
+function GlassBevelBackground() {
+  return (
+    <svg
+      viewBox="0 0 278 43"
+      preserveAspectRatio="none"
+      className="absolute inset-0 w-full h-full rounded-full pointer-events-none"
+      aria-hidden
+    >
+      <defs>
+        <linearGradient id="bevel-grad" gradientUnits="userSpaceOnUse" x2="5" y2="5">
+          <stop stopColor="rgba(117,125,184,1)" offset="0" />
+          <stop stopColor="rgba(92,99,149,1)" offset="0.33894" />
+          <stop stopColor="rgba(67,73,115,1)" offset="0.67788" />
+          <stop stopColor="rgba(48,54,89,1)" offset="0.83894" />
+          <stop stopColor="rgba(30,35,64,1)" offset="1" />
+        </linearGradient>
+      </defs>
+      <g
+        transform="matrix(28.4 0.2 -0.056201 7.9806 2.5 20)"
+        opacity="0.4"
+      >
+        <rect
+          id="bevel-quad"
+          width="97.896"
+          height="51.375"
+          fill="url(#bevel-grad)"
+          shapeRendering="crispEdges"
+        />
+        <use href="#bevel-quad" transform="scale(1 -1)" />
+        <use href="#bevel-quad" transform="scale(-1 1)" />
+        <use href="#bevel-quad" transform="scale(-1 -1)" />
+      </g>
+    </svg>
+  )
+}
 
 export default function MapModeToggle({ value, onChange, className = '' }: MapModeToggleProps) {
   return (
     <div
-      className={`relative inline-flex items-center rounded-full h-[43px] w-[278px] p-[4px] ${className}`}
-      style={{ backgroundImage: GLASS_BG_SVG, backgroundSize: '100% 100%' }}
+      className={`relative inline-flex items-center rounded-full h-[43px] w-[278px] p-[4px] overflow-hidden ${className}`}
       role="tablist"
       aria-label="Modo de visualização do mapa"
     >
+      <GlassBevelBackground />
       {OPTIONS.map((opt) => {
         const isActive = value === opt.value
         return (
@@ -36,7 +69,7 @@ export default function MapModeToggle({ value, onChange, className = '' }: MapMo
             role="tab"
             aria-selected={isActive}
             onClick={() => onChange(opt.value)}
-            className={`flex-1 h-[35px] rounded-full text-[16px] font-medium leading-normal transition-colors ${
+            className={`relative flex-1 h-[35px] rounded-full text-[16px] font-medium leading-normal transition-colors ${
               isActive
                 ? 'bg-[#D4FE07] text-black'
                 : 'text-white hover:text-[#D4FE07]'
