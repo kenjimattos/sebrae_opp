@@ -11,6 +11,7 @@ import MapModeToggle, { type MapMode } from '@/components/map/MapModeToggle'
 import { ParaibaOutlineMap } from '@/components/map/ParaibaOutlineMap'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { agendaObjectives } from '@/data/indicators/descriptions/agendas'
+import SectionContainer from '@/components/ui/SectionContainer'
 
 export default function New() {
   const { municipality, setMunicipality } = useMunicipality()
@@ -24,12 +25,12 @@ export default function New() {
     agendas.find((a) => a.id === selectedAgendaId) ?? agendas[0]
 
   return (
-    <div className="min-h-screen bg-primary">
-      <Header />
-      <main className="relative mx-auto w-full max-w-[1440px] px-[35px] pt-[87px] pb-[35px]">
-        <div className="grid grid-cols-[511px_1fr] gap-[35px] items-start">
+    <SectionContainer className="flex-col items-center">
+        <MapModeToggle value={mapMode} onChange={setMapMode} />
+
+        <div className="flex">
           {/* Coluna esquerda: container rounded com heading + agendas */}
-          <div className="bg-[rgba(22,23,38,0.2)] rounded-[25px] p-[18px] min-h-[792px]">
+          <div className="glass rounded-[25px] p-[18px] min-h-[792px]">
             <AgendaList
               agendas={agendas}
               descriptions={agendaObjectives}
@@ -39,17 +40,9 @@ export default function New() {
           </div>
 
           {/* Coluna direita: mapa + overlays */}
-          <div className="relative min-h-[792px]">
+          <div>
             <div className="absolute top-[22px] left-1/2 -translate-x-1/2 z-20">
-              <MapModeToggle value={mapMode} onChange={setMapMode} />
             </div>
-
-            <ParaibaOutlineMap
-              className="w-full h-auto"
-              selectedId={municipality.id}
-              onSelect={(id) => setMunicipality(id, '', 'map')}
-            />
-
             {selectedAgenda && (
               <div className="absolute bottom-0 right-0 z-20">
                 <AgendaCard
@@ -61,7 +54,11 @@ export default function New() {
             )}
           </div>
         </div>
-      </main>
-    </div>
+        <ParaibaOutlineMap
+          className="w-full h-auto"
+          selectedId={municipality.id}
+          onSelect={(id) => setMunicipality(id, '', 'map')}
+        />
+      </SectionContainer>
   )
 }

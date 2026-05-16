@@ -172,9 +172,9 @@
   --primitives-green-900: #00401c;
 
   --semantic-main: var(--primitives-white);
-  --semantic-background-primary: var(--primitives-gray-800);
-  --semantic-surface-primary: var(--primitives-gray-900);
-  --semantic-surface-secondary: var(--primitives-black);
+  --semantic-background-primary: #161726;
+  --semantic-surface-primary: #1A1C31;
+  --semantic-surface-secondary: #2C335D;
   --semantic-surface-tertiary: var(--primitives-gray-800);
 
   --semantic-text-primary: var(--primitives-white);
@@ -202,7 +202,7 @@
   --semantic-alert: var(--primitives-red-100);
   --semantic-alert-surface: var(--primitives-red-800);
 
-  --semantic-accent: var(--primitives-blue-200);
+  --semantic-accent: #D4FE07;
   --semantic-accent-hover: var(--primitives-blue-100);
   --semantic-accent-surface: var(--primitives-blue-800);
 }
@@ -210,31 +210,31 @@
 /* ============ TYPOGRAPHY — COMPOSITE CLASSES ============ */
 @layer components {
   /* Display */
-  .typo-display-lg { font-size: var(--font-size-display-large); font-weight: var(--typo-weight-black); color: var(--semantic-text-primary); line-height: normal; }
-  .typo-display    { font-size: var(--font-size-display);       font-weight: var(--typo-weight-black); color: var(--semantic-text-primary); line-height: normal; }
-  .typo-display-sm { font-size: var(--font-size-display-small); font-weight: var(--typo-weight-black); color: var(--semantic-text-primary); line-height: normal; }
+  .typo-display-lg { font-family: var(--font-display); font-size: var(--font-size-display-large); font-weight: var(--typo-weight-black); color: var(--semantic-text-primary); line-height: normal; }
+  .typo-display    { font-family: var(--font-display); font-size: var(--font-size-display);       font-weight: var(--typo-weight-black); color: var(--semantic-text-primary); line-height: normal; }
+  .typo-display-sm { font-family: var(--font-display); font-size: var(--font-size-display-small); font-weight: var(--typo-weight-black); color: var(--semantic-text-primary); line-height: normal; }
 
   /* Headings */
-  .typo-h1 { font-size: var(--font-size-h1); font-weight: var(--typo-weight-bold); color: var(--semantic-text-primary); line-height: 1; }
-  .typo-h2 { font-size: var(--font-size-h2); font-weight: var(--typo-weight-bold); color: var(--semantic-text-primary); line-height: normal; }
-  .typo-h3 { font-size: var(--font-size-h3); font-weight: var(--typo-weight-bold); color: var(--semantic-text-primary); line-height: normal; }
-  .typo-h4 { font-size: var(--font-size-h4); font-weight: var(--typo-weight-bold); color: var(--semantic-text-primary); line-height: normal; }
+  .typo-h1 { font-family: var(--font-headings); font-size: var(--font-size-h1); font-weight: var(--typo-weight-bold); color: var(--semantic-text-primary); line-height: 1; }
+  .typo-h2 { font-family: var(--font-display); font-size: var(--font-size-h2); font-weight: var(--typo-weight-bold); color: var(--semantic-text-primary); line-height: normal; }
+  .typo-h3 { font-family: var(--font-display); font-size: var(--font-size-h3); font-weight: var(--typo-weight-bold); color: var(--semantic-text-primary); line-height: normal; }
+  .typo-h4 { font-family: var(--font-display); font-size: var(--font-size-h4); font-weight: var(--typo-weight-bold); color: var(--semantic-text-primary); line-height: normal; }
 
   /* Body */
-  .typo-body-lg      { font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-regular);  color: var(--semantic-text-primary); line-height: normal; }
-  .typo-body-lg-bold { font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-semibold); color: var(--semantic-text-primary); line-height: normal; }
-  .typo-body         { font-size: var(--font-size-body);    font-weight: var(--typo-weight-regular);  color: var(--semantic-text-primary); line-height: normal; }
-  .typo-body-bold    { font-size: var(--font-size-body);    font-weight: var(--typo-weight-semibold); color: var(--semantic-text-primary); line-height: normal; }
-  .typo-body-sm      { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-regular);  color: var(--semantic-text-primary); line-height: normal; }
-  .typo-body-sm-bold { font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-semibold); color: var(--semantic-text-primary); line-height: normal; }
+  .typo-body-lg      { font-family: var(--font-body); font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-regular);  color: var(--semantic-text-primary); line-height: normal; }
+  .typo-body-lg-bold { font-family: var(--font-body); font-size: var(--font-size-body-lg); font-weight: var(--typo-weight-semibold); color: var(--semantic-text-primary); line-height: normal; }
+  .typo-body         { font-family: var(--font-body); font-size: var(--font-size-body);    font-weight: var(--typo-weight-regular);  color: var(--semantic-text-primary); line-height: normal; }
+  .typo-body-bold    { font-family: var(--font-body); font-size: var(--font-size-body);    font-weight: var(--typo-weight-semibold); color: var(--semantic-text-primary); line-height: normal; }
+  .typo-body-sm      { font-family: var(--font-body); font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-regular);  color: var(--semantic-text-primary); line-height: normal; }
+  .typo-body-sm-bold { font-family: var(--font-body); font-size: var(--font-size-body-sm); font-weight: var(--typo-weight-semibold); color: var(--semantic-text-primary); line-height: normal; }
 
   /* UI / Buttons */
-  .typo-button-lg { font-size: var(--font-size-button-lg); font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-primary); line-height: normal; }
-  .typo-button    { font-size: var(--font-size-button);    font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-primary); line-height: normal; }
-  .typo-button-sm { font-size: var(--font-size-button-sm); font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-primary); line-height: normal; }
-  .typo-button-secondary-lg { font-size: var(--font-size-button-lg); font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-secondary); line-height: normal; }
-  .typo-button-secondary    { font-size: var(--font-size-button);    font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-secondary); line-height: normal; }
-  .typo-button-secondary-sm { font-size: var(--font-size-button-sm); font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-secondary); line-height: normal; }
+  .typo-button-lg { font-family: var(--font-display); font-size: var(--font-size-button-lg); font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-primary); line-height: normal; }
+  .typo-button    { font-family: var(--font-display); font-size: var(--font-size-button);    font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-primary); line-height: normal; }
+  .typo-button-sm { font-family: var(--font-display); font-size: var(--font-size-button-sm); font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-primary); line-height: normal; }
+  .typo-button-secondary-lg { font-family: var(--font-display); font-size: var(--font-size-button-lg); font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-secondary); line-height: normal; }
+  .typo-button-secondary    { font-family: var(--font-display); font-size: var(--font-size-button);    font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-secondary); line-height: normal; }
+  .typo-button-secondary-sm { font-family: var(--font-display); font-size: var(--font-size-button-sm); font-weight: var(--typo-weight-semibold); color: var(--semantic-button-label-secondary); line-height: normal; }
 
   /* ============ STATUS ============ */
   .status-success-bg  { background-color: var(--semantic-success-surface); }
@@ -246,13 +246,32 @@
 
   /* ============ LAYOUT — COMPOSITES ============ */
   .section-container {
-    margin-left: auto; margin-right: auto; width: 100%; max-width: 1440px;
-    padding-left: var(--spacing-margin); padding-right: var(--spacing-margin);
+    margin-left: auto; margin-right: auto; width: 100%;
+    padding-left: var(--spacing-3xl); padding-right: var(--spacing-3xl);
     display: flex; flex-direction: column; gap: var(--spacing-2xl);
     padding-top: var(--spacing-lg); padding-bottom: var(--spacing-lg);
   }
   .card-surface           { background-color: var(--semantic-surface-primary);   border-radius: var(--radius-sm); }
   .card-surface-secondary { background-color: var(--semantic-surface-secondary); border-radius: var(--radius-sm); }
+
+  /* Glass surface — bevel/highlight nas bordas inspirado no efeito do Figma.
+     Combina gradiente radial sutil (centro mais claro, quinas mais escuras),
+     backdrop-blur e inset shadows pra simular bevel "esculpido" no vidro.
+     Funciona melhor sobre fundos escuros. */
+  .glass {
+    background:
+      radial-gradient(ellipse 80% 120% at 50% 50%,
+        rgba(117, 125, 184, 0.35) 0%,
+        rgba(67, 73, 115, 0.35) 50%,
+        rgba(30, 35, 64, 0.45) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+      inset 1px 0 0 rgba(255, 255, 255, 0.08),
+      inset -1px 0 0 rgba(255, 255, 255, 0.08);
+  }
   .card-hoverable {
     cursor: pointer;
     transition: transform 200ms ease, box-shadow 200ms ease;
