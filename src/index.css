@@ -25,25 +25,25 @@
   --font-body: 'Intel One Mono', ui-monospace, monospace;
 
   /* Display */
-  --font-size-display-large: 64px;
-  --font-size-display: 32px;
-  --font-size-display-small: 24px;
+  --font-size-display-large: 4rem; /* 64px */
+  --font-size-display: 3rem; /* 48px */
+  --font-size-display-small: 2rem; /* 32px */
 
   /* Headings */
-  --font-size-h1: 48px;
-  --font-size-h2: 36px;
-  --font-size-h3: 24px;
-  --font-size-h4: 16px;
+  --font-size-h1: 3rem; /* 48px */
+  --font-size-h2: 2.25rem; /* 36px */
+  --font-size-h3: 1.5rem; /* 24px */
+  --font-size-h4: 1rem; /* 16px */
 
   /* Body */
-  --font-size-body-lg: 24px;
-  --font-size-body: 16px;
-  --font-size-body-sm: 12px;
+  --font-size-body-lg: 1.5rem; /* 24px */
+  --font-size-body: 1rem; /* 16px */
+  --font-size-body-sm: 0.75rem; /* 12px */
 
   /* Buttons */
-  --font-size-button-lg: 24px;
-  --font-size-button: 16px;
-  --font-size-button-sm: 14px;
+  --font-size-button-lg: 1.5rem; /* 24px */
+  --font-size-button: 1rem; /* 16px */
+  --font-size-button-sm: 0.875rem; /* 14px */
 
   /* ============ TYPOGRAPHY — WEIGHT & LINE-HEIGHT ============ */
   --typo-weight-regular: 400;
@@ -52,22 +52,25 @@
   --typo-weight-black: 900;
 
   /* ============ SPACING ============ */
-  --spacing-2xs: 4px;
-  --spacing-xs: 8px;
-  --spacing-sm: 12px;
-  --spacing-md: 24px;
-  --spacing-lg: 40px;
-  --spacing-xl: 48px;
-  --spacing-2xl: 64px;
-  --spacing-3xl: 96px;
-  --spacing-margin: 180px;
+  --spacing-2xs: 0.25rem; /* 4px */
+  --spacing-xs: 0.5rem; /* 8px */
+  --spacing-sm: 0.75rem; /* 12px */
+  --spacing-md: 1.5rem; /* 24px */
+  --spacing-lg: 2.5rem; /* 40px */
+  --spacing-xl: 3rem; /* 48px */
+  --spacing-2xl: 4rem; /* 64px */
+  --spacing-3xl: 6rem; /* 96px */
+  --spacing-margin: 11.25rem; /* 180px */
+
+  /* ============ SIZES ============ */
+  --header-height: 5rem; /* 80px */
 
   /* ============ RADIUS ============ */
-  --radius-sm: 12px;
-  --radius-md: 24px;
-  --radius-lg: 32px;
-  --radius-xl: 48px;
-  --radius-full: 96px;
+  --radius-sm: 0.75rem; /* 12px */
+  --radius-md: 1.5rem; /* 24px */
+  --radius-lg: 2rem; /* 32px */
+  --radius-xl: 3rem; /* 48px */
+  --radius-full: 6rem; /* 96px */
 
   /* ============ COLORS — PRIMITIVES ============ */
   --primitives-white: white;
