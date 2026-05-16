@@ -15,6 +15,10 @@ export default {
         '3xl': 'var(--spacing-3xl)',     // 96px
         'margin': 'var(--spacing-margin)', // 180px
       },
+      borderColor: {
+        'surface': 'var(--semantic-surface-primary)',
+        'accent':  'var(--semantic-accent)',
+      },
       borderRadius: {
         'sm':   'var(--radius-sm)',   // 12px
         'md':   'var(--radius-md)',   // 24px
