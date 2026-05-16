@@ -48,7 +48,7 @@ export default function IconButton({
     return (
       <span
         aria-hidden="true"
-        className={`inline-flex items-center justify-center shrink-0 rounded-full ${buttonVariantStyles[variant]} ${s.dimensions} ${className}`}
+        className={`inline-flex items-center justify-center shrink-0 ${buttonVariantStyles[variant]} ${s.dimensions} ${className}`}
       >
         {iconEl}
       </span>
