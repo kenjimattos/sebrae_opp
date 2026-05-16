@@ -88,14 +88,13 @@ export default function Header({ className = '' }: HeaderProps) {
 
   return (
     <header
-      className={`flex-between mx-auto w-full sticky top-0 z-50 py-md bg-surface border-b-2 border-[var(--semantic-surface-secondary)] ${className}`}
-      style={{ paddingLeft: 'var(--spacing-margin)', paddingRight: 'var(--spacing-margin)' }}
+      className={`header-container ${className}`}
     >
       {/* Logo — click scrolls to top */}
       <img
         src="/assets/sebrae-logo.png"
         alt="Sebrae"
-        className="h-[60px] w-[111px] object-cover cursor-pointer"
+        className="h-full p-xs object-cover cursor-pointer"
         onClick={onLogoClick}
       />
 

@@ -248,6 +248,15 @@
   .status-alert-dot   { background-color: var(--semantic-alert); }
 
   /* ============ LAYOUT — COMPOSITES ============ */
+  .header-container {
+    height: var(--header-height);
+    padding-inline: var(--spacing-margin);
+    padding-block: var(--spacing-sm);
+    display: flex; align-items: center; justify-content: space-between;
+    background-color: var(--semantic-surface-primary);
+    border-bottom: 0.125rem solid var(--semantic-surface-secondary);
+  }
+
   .section-container {
     margin-left: auto; margin-right: auto; width: 100%;
     padding-left: var(--spacing-3xl); padding-right: var(--spacing-3xl);
