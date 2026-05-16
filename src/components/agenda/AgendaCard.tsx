@@ -39,7 +39,7 @@ export default function AgendaCard({
               />
             </div>
             {i < indicators.length - 1 && (
-              <div className="h-px bg-white/40" />
+              <hr className="border-accent border-dashed" />
             )}
           </div>
         ))}
