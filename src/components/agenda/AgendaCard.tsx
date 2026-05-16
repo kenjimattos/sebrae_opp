@@ -20,15 +20,14 @@ export default function AgendaCard({
   className = '',
 }: AgendaCardProps) {
   return (
-    <div className={`flex flex-col gap-[6px] w-[506px] ${className}`}>
+    <div className={`flex flex-col gap-sm w-full px-lg ${className}`}>
       <p
-        className="text-[8px] leading-normal text-white"
-        style={{ fontFamily: 'var(--font-display)' }}
+        className="typo-body-sm text-white"
       >
         {title}
       </p>
 
-      <div className="bg-[rgba(22,23,38,0.2)] border border-white px-md py-md flex flex-col">
+      <div className="border border-white px-md py-md flex flex-col">
         {indicators.map((ind, i) => (
           <div key={ind.id ?? ind.label} className="flex flex-col">
             <div className="py-sm">
