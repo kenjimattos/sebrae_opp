@@ -20,20 +20,16 @@ export default function AgendaIndicator({
   segmentLabels = ['> 4.0', '> 4.0', '> 4.0'],
 }: AgendaIndicatorProps) {
   return (
-    <div className="flex items-center w-full">
+    <div className="flex items-center gap-lg w-full">
       <span
-        className="flex-1 text-[14px] leading-normal text-white"
-        style={{ fontFamily: 'var(--font-body)' }}
+        className="flex-1 typo-body text-white"
       >
         {label}
       </span>
-      <span
-        className="text-[18px] font-bold leading-normal text-white w-[71px] text-left ml-auto"
-        style={{ fontFamily: 'var(--font-body)' }}
-      >
-        {value}
-      </span>
-      <div className="w-[145px] shrink-0">
+      <div className="flex items-center gap-sm">
+        <span className="typo-display-sm text-white" >
+          {value}
+        </span>
         <IndicatorBar status={status} segmentLabels={segmentLabels} />
       </div>
     </div>
