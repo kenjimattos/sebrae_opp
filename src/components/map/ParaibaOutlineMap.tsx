@@ -143,7 +143,7 @@ export function ParaibaOutlineMap({
   };
 
   return (
-    <svg viewBox={expandedViewBox} className={className ?? 'w-full h-auto'}>
+    <svg viewBox={expandedViewBox} className={className ?? 'w-full h-full'}>
       <g>
         {[...data.municipalities]
           .sort((a, b) => {
