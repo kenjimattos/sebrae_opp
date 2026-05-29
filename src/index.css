@@ -12,9 +12,9 @@
 
 @font-face {
   font-family: 'Epic Pro';
-  src: url('./assets/fonts/EpicPro.woff2') format('woff2');
+  src: url('./assets/fonts/GCEpicPro-ExtraBold.woff2') format('woff2');
   font-style: normal;
-  font-weight: 700;
+  font-weight: 800;
   font-display: swap;
 }
 
