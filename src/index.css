@@ -268,23 +268,56 @@
   .card-surface           { background-color: var(--semantic-surface-primary);   border-radius: var(--radius-sm); }
   .card-surface-secondary { background-color: var(--semantic-surface-secondary); border-radius: var(--radius-sm); }
 
-  /* Glass surface — bevel/highlight nas bordas inspirado no efeito do Figma.
-     Combina gradiente radial sutil (centro mais claro, quinas mais escuras),
-     backdrop-blur e inset shadows pra simular bevel "esculpido" no vidro.
+  /* Glass surface (Figma node 1668:7) — painel navy chapado translúcido +
+     bevel. backdrop-blur e inset shadows simulam o bevel "esculpido" no vidro;
+     o highlight branco no topo / sombra na base dão o relevo. Usa background-color
+     (não shorthand) pra deixar background-image livre p/ a variante .glass-bevel.
      Funciona melhor sobre fundos escuros. */
   .glass {
-    background:
-      radial-gradient(ellipse 80% 120% at 50% 50%,
-        rgba(117, 125, 184, 0.12) 0%,
-        rgba(67, 73, 115, 0.12) 50%,
-        rgba(30, 35, 64, 0.18) 100%);
+    background-color: rgba(22, 23, 38, 0.2);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    /* Aproximação do efeito Glass nativo do Figma (lightAngle -45°, depth 20):
+       bevel diagonal simétrico — inner shadow escura entrando no topo-esquerda
+       e glow branco refratado saindo no inferior-direita (mesmo blur/spread,
+       sinais opostos). CSS não tem refração real. */
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.25),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.35),
-      inset 1px 0 0 rgba(255, 255, 255, 0.08),
-      inset -1px 0 0 rgba(255, 255, 255, 0.08);
+      inset 7px 7px 14px -10px rgba(0, 0, 0, 0.22),
+      inset -7px -7px 14px -10px rgba(255, 255, 255, 0.20);
+    position: relative;
+  }
+  /* Stroke fino claro só na diagonal (topo-esquerda ↔ inferior-direita): gradiente
+     a 135° claro nas pontas e transparente no meio, recortado em 1px de borda via
+     máscara (respeita o border-radius, diferente de border-image). */
+  .glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(150deg,
+      rgba(255, 255, 255, 0.28) 0%,
+      rgba(255, 255, 255, 0) 38%,
+      rgba(255, 255, 255, 0) 62%,
+      rgba(255, 255, 255, 0.28) 100%);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+  /* Variante "bevel" do glass (Figma node 1668:8) — gradiente diagonal
+     periwinkle → navy, mais "metálico" que o radial da base. Herda blur +
+     bevel de .glass; sobrescreve só o background-image (ambos background-image,
+     então compõem sem brigar com bg-* utilities). Usar junto: "glass glass-bevel". */
+  .glass-bevel {
+    background-image: linear-gradient(135deg,
+      rgba(117, 125, 184, 0.4) 0%,
+      rgba(92, 99, 149, 0.4)  34%,
+      rgba(67, 73, 115, 0.4)  68%,
+      rgba(48, 54, 89, 0.4)   84%,
+      rgba(30, 35, 64, 0.4)   100%);
   }
   .card-hoverable {
     cursor: pointer;
