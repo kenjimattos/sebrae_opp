@@ -3,8 +3,10 @@
 
 export const sectionContent = {
   hero: {
-    title:
-      'Uma plataforma de inteligência que converte <highlight>dados do território em insights</highlight> e <highlight>capacidade da gestão pública em ação</highlight> para transformar o ambiente de negócios local.',
+    title: 'Observatório de Políticas Públicas',
+    description:
+      'Uma plataforma de inteligência que converte dados do território em insights e capacidade da gestão pública em ação para transformar o ambiente de negócios local.',
+    badge: 'Jornada do Município Empreendedor',
     ctas: [
       {
         id: 'agendas',
