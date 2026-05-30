@@ -48,7 +48,7 @@ export default function IconButton({
     return (
       <span
         aria-hidden="true"
-        className={`inline-flex items-center justify-center shrink-0 ${buttonVariantStyles[variant]} ${s.dimensions} ${className}`}
+        className={`inline-flex items-center justify-center shrink-0 ${buttonVariantStyles[variant]} ${s.dimensions} rounded-[2px] ${className}`}
       >
         {iconEl}
       </span>
@@ -61,7 +61,7 @@ export default function IconButton({
       aria-label={ariaLabel}
       onClick={onClick}
       disabled={disabled}
-      className={`${buttonBaseClass} shrink-0 ${buttonVariantStyles[variant]} ${buttonHoverStyles[variant]} ${s.dimensions} ${className}`}
+      className={`${buttonBaseClass} shrink-0 ${buttonVariantStyles[variant]} ${buttonHoverStyles[variant]} ${s.dimensions} rounded-[2px] ${className}`}
     >
       {iconEl}
     </button>
