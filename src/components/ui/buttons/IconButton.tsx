@@ -11,13 +11,10 @@
 // Decorative mode: renderiza <span aria-hidden="true">, sem interatividade.
 
 import { iconSizes, type IconSize, type LucideIcon } from '@/components/icons'
-import { buttonVariantStyles, buttonHoverStyles, buttonBaseClass } from './button-styles'
 
 interface IconButtonProps {
   icon: LucideIcon
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost'
   size?: 'xs' | 'sm' | 'md' | 'lg'
-  className?: string
   decorative?: boolean
   'aria-label'?: string
   onClick?: () => void
@@ -31,11 +28,11 @@ const sizeStyles: Record<string, { dimensions: string; iconSize: IconSize }> = {
   lg: { dimensions: 'w-[48px] h-[48px]', iconSize: 'lg' },
 }
 
+const baseClass: string = 'inline-flex items-center justify-center shrink-0 rounded-[2px] bg-accent text-[color:var(--semantic-button-label-secondary)]'
+
 export default function IconButton({
   icon: Icon,
-  variant = 'secondary',
   size = 'md',
-  className = '',
   decorative = false,
   'aria-label': ariaLabel,
   onClick,
@@ -48,7 +45,7 @@ export default function IconButton({
     return (
       <span
         aria-hidden="true"
-        className={`inline-flex items-center justify-center shrink-0 ${buttonVariantStyles[variant]} ${s.dimensions} rounded-[2px] ${className}`}
+        className={`${s.dimensions} ${baseClass} no-pointer-events`}
       >
         {iconEl}
       </span>
@@ -61,7 +58,7 @@ export default function IconButton({
       aria-label={ariaLabel}
       onClick={onClick}
       disabled={disabled}
-      className={`${buttonBaseClass} shrink-0 ${buttonVariantStyles[variant]} ${buttonHoverStyles[variant]} ${s.dimensions} rounded-[2px] ${className}`}
+      className={`${s.dimensions} ${baseClass}`}
     >
       {iconEl}
     </button>
