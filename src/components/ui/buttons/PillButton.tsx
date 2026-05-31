@@ -12,7 +12,7 @@
 
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, iconSizes, type IconSize } from '@/components/icons'
-import { buttonVariantStyles, buttonHoverStyles } from './button-styles'
+import { buttonVariantStyles } from './button-styles'
 import { trackEvent } from '@/utils/analytics'
 
 interface PillButtonProps {
@@ -114,7 +114,7 @@ export default function PillButton({
       </>
     )
 
-  const sharedClassName = `inline-flex items-center rounded-full no-underline transition-all duration-150 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${buttonVariantStyles[variant]} ${buttonHoverStyles[variant]} ${s.shell} ${padding} ${className}`
+  const sharedClassName = `inline-flex items-center rounded-full no-underline transition-all duration-150 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${buttonVariantStyles[variant]} ${s.shell} ${padding} ${className}`
 
   if (href !== undefined) {
     const isInternal = href.startsWith('/') && !href.startsWith('//')
