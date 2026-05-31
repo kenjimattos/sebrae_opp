@@ -10,7 +10,7 @@ export const sectionContent = {
     ctas: [
       {
         id: 'agendas',
-        label: 'Agenda prioritária',
+        label: 'Ambiente de Negócios',
         description: 'Identifique e priorize causas estratégicas para o seu território, conectando e interpretando dados públicos, de políticas e do ecossistema de negócios.',
         sectionId: 'agendas',
       },
@@ -23,14 +23,14 @@ export const sectionContent = {
       },
       {
         id: 'capacitacao',
-        label: 'Habilidades para uma Gestão Inovadora',
+        label: 'Cursos e Boas Práticas',
         description:
           'Curadoria de cursos e casos de sucesso, além de acesso à comunidade de prática, para aprendizagem significativa de uma gestão pública inovadora.',
         sectionId: 'capacitacao',
       },
       {
         id: 'formulador',
-        label: 'Formulador de iniciativas',
+        label: 'Formulador de projetos',
         description:
           'Acesse ferramentas para te apoiar na formulação de projetos de políticas públicas para transformação do ambiente de negócios local.',
         sectionId: 'formulador',
