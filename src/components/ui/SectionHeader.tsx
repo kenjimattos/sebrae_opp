@@ -9,13 +9,13 @@ interface SectionHeaderProps {
 
 export default function SectionHeader({ title, description, className = '' }: SectionHeaderProps) {
     return (
-    <div className={`flex items-start gap-md ${className}`}>
-      <h1 className={`${description ? 'w-2/3' : 'w-3/4'} typo-h1`}>
+    <div className={`flex items-center gap-xl px-xl ${className}`}>
+      <h1 className={`typo-h1 w-full text-right`}>
         {title}
       </h1>
-      <div className="flex-col flex items-start gap-md w-1/3 pt-2xs">
+      <div className="flex-col flex w-full items-start gap-md pt-2xs">
         { description && 
-        <p className="typo-body">
+        <p className="typo-title-md uppercase">
           {description}
         </p>
         }
