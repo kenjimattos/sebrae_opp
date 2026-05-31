@@ -3,6 +3,8 @@
 // Cada bloco é clicável e faz scroll suave para a seção correspondente.
 
 import SectionContainer from '@/components/ui/SectionContainer'
+import SectionHeader from '../ui/SectionHeader'
+import Button from '../ui/buttons/Button'
 import IconButton from '@/components/ui/buttons/IconButton'
 import {
   Briefcase,
@@ -12,9 +14,7 @@ import {
   type LucideIcon,
 } from '@/components/icons'
 import { sectionContent } from '@/data/home/sections'
-import { trackEvent } from '@/utils/analytics'
 
-const HEADER_HEIGHT = 95
 
 const ctaIcons: Record<string, LucideIcon> = {
   agendas: ChartColumn,
@@ -23,65 +23,58 @@ const ctaIcons: Record<string, LucideIcon> = {
   formulador: Briefcase,
 }
 
-function scrollToSection(sectionId: string) {
-  const el = document.getElementById(sectionId)
-  if (!el) return
-  const top = el.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT
-  window.scrollTo({ top, behavior: 'smooth' })
-}
-
 export default function SectionHero() {
+
   return (
-    <SectionContainer className="items-center gap-2xl">
+    <SectionContainer className="items-center gap-lg">
       {/* Eyebrow */}
-      <div className="flex items-center gap-xs">
-        <span className="typo-body-sm-bold uppercase text-accent tracking-[0.12em]">
+      <div className="flex items-center gap-sm typo-title-sm uppercase">
+        <span className="text-accent">
           Plataforma OPP
         </span>
-        <span className="h-px w-12 bg-accent" aria-hidden="true" />
-        <span className="typo-body-sm text-inactive uppercase tracking-[0.12em]">
+        <hr className="w-[4rem]" aria-hidden="true" />
+        <span className="">
           Inteligencia em políticas públicas
         </span>
       </div>
 
       {/* Macro objetivo */}
-      <h1
-        className="typo-h1 text-center font-regular leading-[1.2]"
-        dangerouslySetInnerHTML={{
-          __html: sectionContent.hero.title.replace(
-            /<highlight>(.*?)<\/highlight>/g,
-            '<span style="color: var(--semantic-accent); font-weight: var(--typo-weight-bold)">$1</span>',
-          ),
-        }}
+      <SectionHeader
+        title={sectionContent.hero.title}
+        description={sectionContent.hero.description}
       />
 
-      {/* 4 blocos em grid 2×2 */}
-      <div className="grid grid-cols-2 gap-sm w-full">
-        {sectionContent.hero.ctas.map((cta) => {
-          const Icon = ctaIcons[cta.id]
+      <div className="flex flex-col items-center gap-md">
+        <Button
+          variant="primary"
+          label={sectionContent.hero.badge}
+          className='pointer-events-none'
+        />
 
-          return (
-            <button
-              key={cta.id}
-              onClick={() => {
-                trackEvent('hero_bloco_clicado', { bloco: cta.id })
-                scrollToSection(cta.sectionId)
-              }}
-              className="card-surface card-hoverable p-lg flex flex-col gap-lg text-left"
-              aria-label={`Ir para ${cta.label}`}
-            >
-              <div className="flex items-center gap-md">
-                <IconButton icon={Icon} size="lg" variant="tertiary" decorative />
-                <h3 className="typo-h3">{cta.label}</h3>
+        {/* 4 blocos em grid 2×2 */}
+        <div className="grid grid-cols-2 gap-x-2xl gap-y-md px-2xl w-full">
+          {sectionContent.hero.ctas.map((cta) => {
+            const Icon = ctaIcons[cta.id]
+
+            return (
+              <div
+                key={cta.id}
+                className="glass rounded-lg p-md flex items-center gap-lg text-left"
+                aria-label={`Ir para ${cta.label}`}
+              >
+                <IconButton icon={Icon} size="lg" decorative/>
+                
+                <div className="flex flex-col gap-sm">
+                  <h4 className="typo-h4 uppercase">{cta.label}</h4>
+                  <p className="typo-body">
+                  {cta.description}
+                  </p>
+                </div>
+
               </div>
-
-              <p className="typo-body">
-                {cta.description}
-              </p>
-
-            </button>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
     </SectionContainer>
   )
