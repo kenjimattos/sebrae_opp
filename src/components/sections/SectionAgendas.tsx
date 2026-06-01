@@ -11,6 +11,7 @@ import { ParaibaOutlineMap } from '@/components/map/ParaibaOutlineMap'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { agendaObjectives } from '@/data/indicators/descriptions/agendas'
 import SectionContainer from '@/components/ui/SectionContainer'
+import municipios from '@/data/indicators/municipalities.json'
 
 export default function New() {
   const { municipality, setMunicipality } = useMunicipality()
@@ -24,7 +25,7 @@ export default function New() {
     agendas.find((a) => a.id === selectedAgendaId) ?? agendas[0]
 
   return (
-    <SectionContainer className="items-center">
+    <SectionContainer className="items-center gap-md">
       <div className="flex flex-1 min-h-0 gap-md">
           {/* Coluna esquerda: container rounded com heading + agendas */}
           <div className="flex flex-[2] min-w-0 flex-col glass p-md rounded-md h-full gap-md">
@@ -45,12 +46,15 @@ export default function New() {
           </div>
 
         {/* Coluna direita: mapa + overlays */}
-        <div className="flex-[3] flex flex-col justify-between">
+        <div className="flex-[3] flex flex-col">
           <div className="flex-col-start h-full gap-sm">
             <MapModeToggle value={mapMode} onChange={setMapMode} />
             <ParaibaOutlineMap
               selectedId={municipality.id}
-              onSelect={(id) => setMunicipality(id, '', 'map')}
+              onSelect={(id) => {
+                const match = municipios.find((m) => m.id === id)
+                if (match) setMunicipality(match.id, match.name, 'map')
+              }}
             />
           </div>
           {selectedAgenda && (
