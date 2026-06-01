@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import SectionHero from '@/components/sections/SectionHero'
 import SectionAgendas from '@/components/sections/SectionAgendas'
 import SectionPanorama from '@/components/sections/SectionPanorama'
 import SectionEconomicBase from '@/components/sections/SectionEconomicBase'
@@ -38,13 +37,10 @@ export default function Home() {
       <Header />
 
       <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-2xl pb-3xl">
-        <div id="hero">
-          <SectionHero />
-        </div>
         {data && (
           <>
-            <div id="agendas">
-              <SectionAgendas agendas={data.agendas} />
+            <div id="agenda">
+              <SectionAgendas />
             </div>
             <div id="panorama">
               <SectionPanorama />
