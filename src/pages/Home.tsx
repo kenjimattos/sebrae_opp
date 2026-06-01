@@ -37,11 +37,11 @@ export default function Home() {
       <Header />
 
       <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-2xl pb-3xl">
+        <div id="agenda">
+          <SectionAgendas />
+        </div>
         {data && (
           <>
-            <div id="agenda">
-              <SectionAgendas />
-            </div>
             <div id="panorama">
               <SectionPanorama />
             </div>

@@ -23,6 +23,31 @@ export default function New() {
   const selectedAgenda =
     agendas.find((a) => a.id === selectedAgendaId) ?? agendas[0]
 
+  const hasSelection = municipality.data != null
+
+  function handleMapSelect(id: string) {
+    const match = municipios.find((m) => m.id === id)
+    if (match) setMunicipality(match.id, match.name, 'map')
+  }
+
+  // Estado inicial: sem município selecionado, exibimos apenas o mapa e o
+  // CitySelector. A lista de agendas e o card só aparecem após a seleção.
+  if (!hasSelection) {
+    return (
+      <SectionContainer className="items-center gap-md">
+        <CitySelector />
+        <div className="flex flex-1 min-h-0 w-[90%] items-center justify-center">
+          <div className="w-full">
+            <ParaibaOutlineMap
+              selectedId={municipality.id}
+              onSelect={handleMapSelect}
+            />
+          </div>
+        </div>
+      </SectionContainer>
+    )
+  }
+
   return (
     <SectionContainer className="items-center gap-md">
       <CitySelector />
@@ -50,10 +75,7 @@ export default function New() {
           <div className="flex-col-start h-full gap-sm">
             <ParaibaOutlineMap
               selectedId={municipality.id}
-              onSelect={(id) => {
-                const match = municipios.find((m) => m.id === id)
-                if (match) setMunicipality(match.id, match.name, 'map')
-              }}
+              onSelect={handleMapSelect}
             />
           </div>
           {selectedAgenda && (

@@ -44,15 +44,16 @@ const dataMap: Record<string, IndicatorsData> = Object.fromEntries(
   Object.entries(valuesMap).map(([id, v]) => [id, buildIndicators(v)]),
 )
 
-const defaultId = '2504009'
-const defaultMunicipality: MunicipalityState = {
-  id: defaultId,
-  name: dataMap[defaultId].municipality,
-  data: dataMap[defaultId],
+// Estado inicial sem município: a Home exibe apenas mapa + seletor até o
+// usuário escolher um município (ver `{data && ...}` em Home / SectionAgendas).
+const emptyMunicipality: MunicipalityState = {
+  id: '',
+  name: '',
+  data: null,
 }
 
 export default function MunicipalityProvider({ children }: { children: ReactNode }) {
-  const [municipality, setMunicipalityState] = useState<MunicipalityState>(defaultMunicipality)
+  const [municipality, setMunicipalityState] = useState<MunicipalityState>(emptyMunicipality)
 
   const setMunicipality = useCallback(
     (id: string, name: string, origin?: MunicipalityChangeOrigin) => {

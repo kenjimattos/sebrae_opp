@@ -39,7 +39,10 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
       className="glass glass-bevel w-fit relative inline-flex items-center rounded-full px-xs py-2xs"
       aria-label="Modo de visualização do mapa"
     >
-      <Button label="Selecione seu município" className="h-fit py-xs"></Button>
+      <Button
+        label={municipality.id ? 'Meu município' : 'Selecione seu município'}
+        className="h-fit py-xs"
+      ></Button>
       <div ref={ref} className={`relative ${className}`}>
         <div className="flex items-center gap-sm px-sm py-xs overflow-hidden">
           <input
