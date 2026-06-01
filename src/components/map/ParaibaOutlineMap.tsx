@@ -123,6 +123,8 @@ export function ParaibaOutlineMap({
   accentStrokeColor = 'var(--semantic-accent)',
 }: ParaibaOutlineMapProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  // Posição do cursor em coordenadas de viewport (pra um tooltip `fixed`).
+  const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
 
   const data = useMemo(
     () => computeMap(paraibaGeo as unknown as { features: GeoFeature[] }),
@@ -141,8 +143,29 @@ export function ParaibaOutlineMap({
     return `oklch(0.6 0.15 ${220 - v * 180})`;
   };
 
+  const hoveredName = hoveredId
+    ? data.municipalities.find((m) => m.id === hoveredId)?.name
+    : null;
+
   return (
-    <svg viewBox={expandedViewBox} className={'w-full h-auto'}>
+    <>
+      {/* Tooltip `fixed`: posicionado pela viewport, sem exigir um wrapper
+          `relative` em volta do SVG — assim o mapa continua sendo conteúdo
+          não-posicionado e não passa por cima de dropdowns vizinhos. */}
+      {hoveredName && cursor && (
+        <div
+          className="typo-body-bold glass glass-bevel pointer-events-none fixed z-50 whitespace-nowrap rounded-full px-sm py-xs"
+          style={{ left: cursor.x, top: cursor.y, transform: 'translate(-50%, calc(-100% - 12px))' }}
+        >
+          {hoveredName}
+        </div>
+      )}
+      <svg
+        viewBox={expandedViewBox}
+        className={'w-full h-auto'}
+        onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
+        onMouseLeave={() => setCursor(null)}
+      >
       <g>
         {[...data.municipalities]
           .sort((a, b) => {
@@ -178,6 +201,7 @@ export function ParaibaOutlineMap({
           );
         })}
       </g>
-    </svg>
+      </svg>
+    </>
   );
 }
