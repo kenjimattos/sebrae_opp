@@ -24,12 +24,12 @@ export default function AgendaListItem({
       aria-expanded={expanded}
       className="flex text-left border border-white justify-between gap-md items-center p-sm"
     >
-      <p className="typo-h4 uppercase text-white">
+      <p className="typo-title-sm uppercase text-white">
         {title}
       </p>
 
       <IconButton
-        variant="primary"
+        variant="tertiary"
         size="sm"
         icon={expanded ? Minus : Plus}
         aria-label={expanded ? "Recolher" : "Expandir"}
@@ -40,7 +40,7 @@ export default function AgendaListItem({
     {expanded && description && (
       <div className="border border-white p-sm">
         <p
-          className="typo-body text-white"
+          className="typo-body-sm"
         >
           {description}
         </p>

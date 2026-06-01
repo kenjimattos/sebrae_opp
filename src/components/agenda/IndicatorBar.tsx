@@ -30,7 +30,7 @@ export default function IndicatorBar({
   const marker = MARKER[status]
 
   return (
-    <div className={`flex flex-col gap-sm w-[var(--header-height)] ${className}`}>
+    <div className={`flex flex-col gap-xs w-[var(--spacing-margin)] ${className}`}>
       <div className="relative h-[var(--spacing-2xs)] w-full" style={{ background: BAR_GRADIENT }}>
         <div
           className="absolute size-[var(--spacing-sm)] top-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -38,12 +38,11 @@ export default function IndicatorBar({
         />
       </div>
       {segmentLabels && (
-        <div className="grid grid-cols-3">
+        <div className="flex items-center justify-between w-full">
           {segmentLabels.map((label, i) => (
             <span
               key={i}
-              className="typo-body-xs text-white"
-              style={{ fontFamily: 'var(--font-body)' }}
+              className="typo-body-xs"
             >
               {label}
             </span>

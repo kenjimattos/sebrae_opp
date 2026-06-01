@@ -13,13 +13,13 @@ interface MapModeToggleProps {
 
 const OPTIONS: { value: MapMode; label: string }[] = [
   { value: 'municipio', label: 'Meu município' },
-  { value: 'territorio', label: 'Território' },
+  { value: 'territorio', label: 'Campina Grande' },
 ]
 
 export default function MapModeToggle({ value, onChange, className = '' }: MapModeToggleProps) {
   return (
     <div
-      className={`glass w-fit relative inline-flex items-center rounded-full ${className}`}
+      className={`glass glass-bevel w-fit relative inline-flex items-center rounded-full ${className}`}
       role="tablist"
       aria-label="Modo de visualização do mapa"
     >
@@ -32,7 +32,7 @@ export default function MapModeToggle({ value, onChange, className = '' }: MapMo
             role="tab"
             aria-selected={isActive}
             onClick={() => onChange(opt.value)}
-            className={`flex-1 rounded-full typo-button transition-colors whitespace-nowrap py-sm px-sm my-2 mx-3 ${
+            className={`rounded-full typo-button transition-colors whitespace-nowrap p-xs m-2xs ${
               isActive
                 ? 'bg-accent text-black'
                 : 'text-white hover:text-accent'

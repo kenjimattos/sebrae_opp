@@ -24,12 +24,13 @@ export default function New() {
     agendas.find((a) => a.id === selectedAgendaId) ?? agendas[0]
 
   return (
-    <SectionContainer className="!flex-row items-center">
+    <SectionContainer className="items-center">
+      <div className="flex flex-1 min-h-0 gap-md">
           {/* Coluna esquerda: container rounded com heading + agendas */}
-          <div className="flex-col-start w-[120dvh] gap-lg p-md glass rounded-md h-full">
+          <div className="flex flex-[2] min-w-0 flex-col glass p-md rounded-md h-full gap-md">
            <div>
               <h1
-                className="typo-h1 text-white"
+                className="typo-h1"
               >
                 Indicadores
               </h1>
@@ -44,20 +45,23 @@ export default function New() {
           </div>
 
         {/* Coluna direita: mapa + overlays */}
-        <div className="flex-col-start items-center gap-lg w-full h-full">
-          <MapModeToggle value={mapMode} onChange={setMapMode} />
-          <ParaibaOutlineMap
-            className="w-full h-auto"
-            selectedId={municipality.id}
-            onSelect={(id) => setMunicipality(id, '', 'map')}
-          />
+        <div className="flex-[3] flex flex-col justify-between">
+          <div className="flex-col-start h-full gap-sm">
+            <MapModeToggle value={mapMode} onChange={setMapMode} />
+            <ParaibaOutlineMap
+              selectedId={municipality.id}
+              onSelect={(id) => setMunicipality(id, '', 'map')}
+            />
+          </div>
           {selectedAgenda && (
               <AgendaCard
                 title={selectedAgenda.name}
                 indicators={selectedAgenda.indicators.slice(0, 3)}
                 description={agendaObjectives[selectedAgenda.id]}
+                className=''
               />
           )}
+        </div>
       </div>
       </SectionContainer>
   )

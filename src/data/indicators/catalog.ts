@@ -4,7 +4,7 @@ export const catalog: Catalog = {
   agendas: [
     {
       id: 'governanca',
-      name: 'Governança multissetorial para o Desenvolvimento Local',
+      name: 'Governança: Parcerias público, privada, social para o desenvolvimento local',
       indicators: [
         { id: 'igm-cfa-2025', label: 'IGM – Índice CFA de Governança Municipal' },
         { id: 'idh-m-2021', label: 'IDH-M' },
@@ -14,7 +14,7 @@ export const catalog: Catalog = {
     },
     {
       id: 'simplificacao',
-      name: 'Simplificação e digitalização de serviços públicos para os Pequenos Negócios',
+      name: 'Serviços públicos mais simples e digitais para os pequenos negócios',
       indicators: [
         { id: 'tempo-viabilidade', label: 'Tempo médio de viabilidade da empresa' },
         { id: 'tempo-abertura', label: 'Tempo médio de abertura da empresa (h)' },
@@ -24,7 +24,7 @@ export const catalog: Catalog = {
     },
     {
       id: 'inovacao',
-      name: 'Ecossistemas de Inovação: Inclusão e digitalização para Pequenos Negócios',
+      name: 'Ecossistemas de Inovação: Ambiente que apoia novas ideias e uso da tecnologia pelos pequenos negócios',
       indicators: [
         { id: 'trabalhadores-ct', label: 'Trabalhadores nas ocupações de C&T' },
         { id: 'trabalhadores-tic', label: 'Trabalhadores nos setores da economia criativa, inovação e TIC' },
@@ -51,7 +51,7 @@ export const catalog: Catalog = {
     },
     {
       id: 'inclusao',
-      name: 'Inclusão produtiva',
+      name: 'Iniciativas para gerar trabalho e renda para os pequenos negócios',
       indicators: [
         { id: 'negocios-abertos', label: 'Pequenos negócios abertos' },
         { id: 'empresas-ativas', label: 'Empresas ativas' },

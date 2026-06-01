@@ -116,7 +116,6 @@ export function ParaibaOutlineMap({
   onSelect,
   selectedId,
   padding = 2,
-  className,
   fillColor = 'var(--semantic-surface-primary)',
   hoverFillColor = 'var(--semantic-accent)',
   selectedFillColor = 'var(--semantic-accent)',
@@ -143,7 +142,7 @@ export function ParaibaOutlineMap({
   };
 
   return (
-    <svg viewBox={expandedViewBox} className={className ?? 'w-full h-full'}>
+    <svg viewBox={expandedViewBox} className={'w-full h-auto'}>
       <g>
         {[...data.municipalities]
           .sort((a, b) => {

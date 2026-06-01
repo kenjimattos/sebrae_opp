@@ -21,8 +21,7 @@ export default function AgendaList({
   className = '',
 }: AgendaListProps) {
   return (
-    <div className={`flex flex-col ${className}`}>
-      <ul className="flex flex-col gap-md">
+      <ul className={`flex flex-col h-full justify-between ${className}`}>
         {agendas.map((agenda, i) => (
           <li key={agenda.id} className={i > 0 ? '-mt-px' : ''}>
             <AgendaListItem
@@ -34,6 +33,5 @@ export default function AgendaList({
           </li>
         ))}
       </ul>
-    </div>
   )
 }

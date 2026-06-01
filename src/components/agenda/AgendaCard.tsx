@@ -20,39 +20,40 @@ export default function AgendaCard({
   className = '',
 }: AgendaCardProps) {
   return (
-    <div className={`flex flex-col gap-sm w-full px-lg ${className}`}>
-      <p
-        className="typo-body-sm text-white"
-      >
-        {title}
-      </p>
+    <div className={`flex-col-start items-center h-auto ${className}`}>
+      <div className="flex-col-start w-4/5 gap-xs">
+        <p
+          className="typo-body-xs"
+        >
+          {title}
+        </p>
 
-      <div className="border border-white px-md py-md flex flex-col">
-        {indicators.map((ind, i) => (
-          <div key={ind.id ?? ind.label} className="flex flex-col">
-            <div className="py-sm">
+        <div className="border border-white flex flex-col p-sm w-full">
+          {indicators.map((ind, i) => (
+            <div key={ind.id ?? ind.label} className="flex flex-col">
               <AgendaIndicator
                 id={ind.id}
                 label={ind.label}
                 value={ind.value}
                 status={ind.status}
+                className={`${i < indicators.length - 1 ? 'pb-xs' : ''}`}
               />
-            </div>
-            {i < indicators.length - 1 && (
-              <hr className="border-accent border-dashed" />
-            )}
-          </div>
-        ))}
-      </div>
 
-      {description && (
-        <p
-          className="text-[8px] leading-normal text-white"
-          style={{ fontFamily: 'var(--font-display)' }}
-        >
-          {description}
-        </p>
-      )}
+              {i < indicators.length - 1 && (
+                <hr className="border-accent border-dashed pb-xs" />
+              )}
+            </div>
+          ))}
+        </div>
+
+        {description && (
+          <p
+            className="typo-body-xs"
+          >
+            {description}
+          </p>
+        )}
+      </div>
     </div>
   )
 }
