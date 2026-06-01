@@ -4,10 +4,12 @@
 import User from '@/components/layout/User'
 import { navLinks } from '@/data/layout'
 import { useActiveSection } from '@/hooks/useActiveSection'
+import { useAuth } from '@/hooks/useAuth'
 import { useFormulator } from '@/hooks/useFormulator'
 import { useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { trackEvent } from '@/utils/analytics'
+import Button from '../ui/buttons/Button'
 
 interface HeaderProps {
   className?: string
@@ -24,6 +26,7 @@ export default function Header({ className = '' }: HeaderProps) {
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const { reset } = useFormulator()
+  const { isLoggedIn, login } = useAuth()
   const isFormulador = pathname.startsWith('/formulador')
   const isTrilhas = pathname.startsWith('/trilhas')
   const isHome = pathname === '/'
@@ -86,6 +89,11 @@ export default function Header({ className = '' }: HeaderProps) {
     scrollToSection(sectionId)
   }
 
+  function handleLogin() {
+    login()
+    navigate('/home')
+  }
+
   return (
     <header
       className={`header-container ${className}`}
@@ -99,7 +107,7 @@ export default function Header({ className = '' }: HeaderProps) {
       />
 
       {/* Center nav pill */}
-      <div className="flex-between gap-md px-sm py-2xs">
+      <div className={`${isLoggedIn ? 'flex-between' : 'hidden'} gap-md px-sm py-2xs`}>
         <nav className="flex-between gap-md">
           {navLinks.map(({ label, sectionId }) => {
             const isActive = effectiveActive === sectionId
@@ -107,7 +115,7 @@ export default function Header({ className = '' }: HeaderProps) {
               <button
                 key={sectionId}
                 onClick={() => onNavClick(sectionId)}
-                className={`typo-body transition-colors px-sm py-xs ${
+                className={`typo-title-sm transition-colors px-sm py-xs ${
                   isActive
                     ? 'text-[var(--semantic-accent)]'
                     : 'hover:text-[var(--semantic-accent)] text-[var(--semantic-text-primary)]'
@@ -120,8 +128,12 @@ export default function Header({ className = '' }: HeaderProps) {
         </nav>
       </div>
 
-      {/* User */}
-      <User />
+      {/* User / Login */}
+      {isLoggedIn ? (
+        <User />
+      ) : (
+        <Button label="Login" variant="primary" size="md" onClick={handleLogin} />
+      )}
     </header>
   )
 }
