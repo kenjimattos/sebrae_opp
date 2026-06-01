@@ -46,7 +46,7 @@ export default function SectionHero() {
 
       <div className="flex flex-col items-center gap-md">
         <Button
-          variant="primary"
+          variant="secondary"
           label={sectionContent.hero.badge}
           className='pointer-events-none'
         />

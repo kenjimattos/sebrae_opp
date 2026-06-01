@@ -2,9 +2,9 @@
 
 export const buttonVariantStyles: Record<string, string> = {
   primary:
-    'glass glass-bevel bg-[var(--semantic-button-primary)] text-[color:var(--semantic-text-primary)]',
+    'bg-[var(--semantic-button-primary)] text-[color:var(--semantic-button-label-primary)]',
   secondary:
-    'bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)]',
+    'glass glass-bevel bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)]',
   tertiary:
     'bg-[var(--semantic-button-tertiary)] text-[color:var(--semantic-button-label-tertiary)]',
   ghost:
@@ -17,4 +17,4 @@ export const buttonVariantStyles: Record<string, string> = {
 export type ButtonVariant = keyof typeof buttonVariantStyles
 
 export const buttonBaseClass =
-  'hover:scale-[1.02] rounded-full shrink-0 inline-flex items-center justify-center cursor-pointer transition-all duration-150 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none'
+  'hover:scale-[1.02] shrink-0 inline-flex items-center justify-center cursor-pointer transition-all duration-150 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] focus-visible:ring-offset-2 outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none'

@@ -41,7 +41,7 @@ export default function Button({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className={`${buttonBaseClass} ${buttonVariantStyles[variant]} ${s.container} ${s.typo} ${className}`}
+      className={`${buttonBaseClass} ${buttonVariantStyles[variant]} ${s.container} ${s.typo} ${className} rounded-full`}
     >
       {Icon && iconPosition === 'left' && iconEl}
       {label}
