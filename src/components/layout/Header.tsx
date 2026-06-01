@@ -102,7 +102,7 @@ export default function Header({ className = '' }: HeaderProps) {
       <img
         src="/assets/sebrae-logo.png"
         alt="Sebrae"
-        className="h-full p-xs object-cover cursor-pointer"
+        className="h-full object-cover cursor-pointer"
         onClick={onLogoClick}
       />
 
