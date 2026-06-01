@@ -6,12 +6,12 @@
 import { useState } from 'react'
 import AgendaList from '@/components/agenda/AgendaList'
 import AgendaCard from '@/components/agenda/AgendaCard'
-import MapModeToggle, { type MapMode } from '@/components/map/MapModeToggle'
 import { ParaibaOutlineMap } from '@/components/map/ParaibaOutlineMap'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { agendaObjectives } from '@/data/indicators/descriptions/agendas'
 import SectionContainer from '@/components/ui/SectionContainer'
 import municipios from '@/data/indicators/municipalities.json'
+import CitySelector from '@/components/layout/CitySelector'
 
 export default function New() {
   const { municipality, setMunicipality } = useMunicipality()
@@ -19,13 +19,13 @@ export default function New() {
   const [selectedAgendaId, setSelectedAgendaId] = useState<string>(
     agendas[0]?.id ?? 'governanca',
   )
-  const [mapMode, setMapMode] = useState<MapMode>('municipio')
 
   const selectedAgenda =
     agendas.find((a) => a.id === selectedAgendaId) ?? agendas[0]
 
   return (
     <SectionContainer className="items-center gap-md">
+      <CitySelector />
       <div className="flex flex-1 min-h-0 gap-md">
           {/* Coluna esquerda: container rounded com heading + agendas */}
           <div className="flex flex-[2] min-w-0 flex-col glass p-md rounded-md h-full gap-md">
@@ -48,7 +48,6 @@ export default function New() {
         {/* Coluna direita: mapa + overlays */}
         <div className="flex-[3] flex flex-col">
           <div className="flex-col-start h-full gap-sm">
-            <MapModeToggle value={mapMode} onChange={setMapMode} />
             <ParaibaOutlineMap
               selectedId={municipality.id}
               onSelect={(id) => {

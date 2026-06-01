@@ -1,12 +1,10 @@
-// Figma: CitySelector (509:3274)
-// Combobox: searchable dropdown to select municipality
-
 import { useState, useRef } from 'react'
-import { Search, iconSizes } from '@/components/icons'
+import { ChevronDown } from '@/components/icons'
 import DropdownMenu from '@/components/ui/DropdownMenu'
 import { useDropdownState } from '@/components/ui/useDropdownState'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import municipios from '@/data/indicators/municipalities.json'
+import Button from '../ui/buttons/Button'
 
 interface CitySelectorProps {
   className?: string
@@ -37,34 +35,43 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
   }
 
   return (
-    <div ref={ref} className={`relative ${className}`}>
-      <div className="flex items-center gap-sm bg-surface-secondary rounded-full px-sm py-xs overflow-hidden">
-        <Search size={iconSizes.md} className="shrink-0 text-inactive" />
-        <input
-          ref={inputRef}
-          type="text"
-          value={query}
-          onChange={(e) => {
-            setDraft(e.target.value)
-            setOpen(true)
-          }}
-          onFocus={() => {
-            // Clear the field on focus so the user starts fresh when searching.
-            setDraft('')
-            setOpen(true)
-          }}
-          className="typo-body-bold bg-transparent outline-none w-full truncate"
-          placeholder="Buscar município..."
-        />
-      </div>
+    <div
+      className="glass glass-bevel w-fit relative inline-flex items-center rounded-full px-xs py-2xs"
+      aria-label="Modo de visualização do mapa"
+    >
+      <Button label="Selecione seu município" className="h-fit py-xs"></Button>
+      <div ref={ref} className={`relative ${className}`}>
+        <div className="flex items-center gap-sm px-sm py-xs overflow-hidden">
+          <input
+            size={16}
+            ref={inputRef}
+            type="text"
+            value={query}
+            onChange={(e) => {
+              setDraft(e.target.value)
+              setOpen(true)
+            }}
+            onFocus={() => {
+              // Clear the field on focus so the user starts fresh when searching.
+              setDraft('')
+              setOpen(true)
+            }}
+            className="typo-body-bold bg-transparent outline-none truncate"
+            placeholder="Buscar município..."
+          />
+          <button className="text-[color:var(--semantic-accent)]" onClick={() => setOpen(!open)}>
+            <ChevronDown />
+          </button>
+        </div>
 
-      {open && menuOptions.length > 0 && (
-        <DropdownMenu
-          options={menuOptions}
-          value={municipality.id}
-          onSelect={handleSelect}
-        />
-      )}
+        {open && menuOptions.length > 0 && (
+          <DropdownMenu
+            options={menuOptions}
+            value={municipality.id}
+            onSelect={handleSelect}
+          />
+        )}
+      </div>
     </div>
   )
 }
