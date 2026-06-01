@@ -4,7 +4,6 @@
 // com MapModeToggle no topo e AgendaCard flutuante no canto inferior.
 
 import { useState } from 'react'
-import Header from '@/components/layout/Header'
 import AgendaList from '@/components/agenda/AgendaList'
 import AgendaCard from '@/components/agenda/AgendaCard'
 import MapModeToggle, { type MapMode } from '@/components/map/MapModeToggle'
@@ -25,12 +24,17 @@ export default function New() {
     agendas.find((a) => a.id === selectedAgendaId) ?? agendas[0]
 
   return (
-    <SectionContainer className="flex-col items-center">
-        <MapModeToggle value={mapMode} onChange={setMapMode} />
-
-        <div className="flex">
+    <SectionContainer className="!flex-row items-center">
           {/* Coluna esquerda: container rounded com heading + agendas */}
-          <div className="glass rounded-[25px] p-[18px] min-h-[792px]">
+          <div className="flex-col-start w-[120dvh] gap-lg p-md glass rounded-md h-full">
+           <div>
+              <h1
+                className="typo-h1 text-white"
+              >
+                Indicadores
+              </h1>
+              <span className='typo-body'>para um município mais empreendedor</span>
+            </div>
             <AgendaList
               agendas={agendas}
               descriptions={agendaObjectives}
@@ -39,26 +43,22 @@ export default function New() {
             />
           </div>
 
-          {/* Coluna direita: mapa + overlays */}
-          <div>
-            <div className="absolute top-[22px] left-1/2 -translate-x-1/2 z-20">
-            </div>
-            {selectedAgenda && (
-              <div className="absolute bottom-0 right-0 z-20">
-                <AgendaCard
-                  title={selectedAgenda.name}
-                  indicators={selectedAgenda.indicators.slice(0, 3)}
-                  description={agendaObjectives[selectedAgenda.id]}
-                />
-              </div>
-            )}
-          </div>
-        </div>
-        <ParaibaOutlineMap
-          className="w-full h-auto"
-          selectedId={municipality.id}
-          onSelect={(id) => setMunicipality(id, '', 'map')}
-        />
+        {/* Coluna direita: mapa + overlays */}
+        <div className="flex-col-start items-center gap-lg w-full h-full">
+          <MapModeToggle value={mapMode} onChange={setMapMode} />
+          <ParaibaOutlineMap
+            className="w-full h-auto"
+            selectedId={municipality.id}
+            onSelect={(id) => setMunicipality(id, '', 'map')}
+          />
+          {selectedAgenda && (
+              <AgendaCard
+                title={selectedAgenda.name}
+                indicators={selectedAgenda.indicators.slice(0, 3)}
+                description={agendaObjectives[selectedAgenda.id]}
+              />
+          )}
+      </div>
       </SectionContainer>
   )
 }
