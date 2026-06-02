@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import SectionAgendas from '@/components/sections/SectionAgendas'
+import SectionJornada from '@/components/sections/SectionJornada'
 import SectionPanorama from '@/components/sections/SectionPanorama'
 import SectionEconomicBase from '@/components/sections/SectionEconomicBase'
 import SectionRisks from '@/components/sections/SectionRisks'
@@ -39,6 +40,9 @@ export default function Home() {
       <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-2xl pb-3xl">
         <div id="agenda">
           <SectionAgendas />
+        </div>
+        <div id="ambiente">
+          <SectionJornada />
         </div>
         {data && (
           <>
