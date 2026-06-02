@@ -1,14 +1,18 @@
+import { sectionContent } from '@/data/home/sections'
+
 export interface NavLink {
   label: string
   sectionId: string
+  description: string
 }
 
-export const navLinks: NavLink[] = [
-  { label: 'Ambiente de negócio', sectionId: 'agendas' },
-  { label: 'Mapeamento de recursos', sectionId: 'recursos' },
-  { label: 'Capacitação', sectionId: 'capacitacao' },
-  { label: 'Formulador', sectionId: 'formulador' },
-]
+// Derivado dos pilares da Jornada (fonte única em sections.ts). `sectionId` = anchor
+// de scroll usado pelo Header/scroll-spy e chave de aba usada pela SideNav.
+export const navLinks: NavLink[] = sectionContent.jornadas.map((j) => ({
+  label: j.label,
+  sectionId: j.id,
+  description: j.description,
+}))
 
 export interface FooterColumn {
   title: string

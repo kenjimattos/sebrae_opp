@@ -17,7 +17,7 @@ import { sectionContent } from '@/data/home/sections'
 
 
 const ctaIcons: Record<string, LucideIcon> = {
-  agendas: ChartColumn,
+  ambiente: ChartColumn,
   recursos: Landmark,
   capacitacao: GraduationCap,
   formulador: Briefcase,
@@ -47,27 +47,27 @@ export default function SectionHero() {
       <div className="flex flex-col items-center gap-md">
         <Button
           variant="secondary"
-          label={sectionContent.hero.badge}
+          label={sectionContent.hero.subtitle}
           className='pointer-events-none'
         />
 
         {/* 4 blocos em grid 2×2 */}
         <div className="grid grid-cols-2 gap-x-2xl gap-y-md px-2xl w-full">
-          {sectionContent.hero.ctas.map((cta) => {
-            const Icon = ctaIcons[cta.id]
+          {sectionContent.jornadas.map((each) => {
+            const Icon = ctaIcons[each.id]
 
             return (
               <div
-                key={cta.id}
+                key={each.id}
                 className="glass rounded-lg p-md flex items-center gap-lg text-left"
-                aria-label={`Ir para ${cta.label}`}
+                aria-label={`Ir para ${each.title}`}
               >
                 <IconButton icon={Icon} size="lg" decorative/>
                 
                 <div className="flex flex-col gap-sm">
-                  <h4 className="typo-h4 uppercase">{cta.label}</h4>
+                  <h4 className="typo-h4 uppercase">{each.title}</h4>
                   <p className="typo-body">
-                  {cta.description}
+                  {each.description}
                   </p>
                 </div>
 
