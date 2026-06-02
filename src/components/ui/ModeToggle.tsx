@@ -45,7 +45,7 @@ export default function ModeToggle({
             role="tab"
             aria-selected={isActive}
             onClick={() => onChange(opt.value)}
-            className={`rounded-full typo-button transition-colors whitespace-nowrap px-md py-sm m-2xs ${
+            className={`rounded-full typo-button transition-colors whitespace-nowrap px-sm py-xs m-2xs ${
               isActive
                 ? 'bg-accent text-black'
                 : 'text-white hover:text-accent'
