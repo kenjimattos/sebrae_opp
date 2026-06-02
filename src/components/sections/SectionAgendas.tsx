@@ -13,7 +13,7 @@ import SectionContainer from '@/components/ui/SectionContainer'
 import municipios from '@/data/indicators/municipalities.json'
 import CitySelector from '@/components/layout/CitySelector'
 
-export default function New() {
+export default function SectionAgendas() {
   const { municipality, setMunicipality } = useMunicipality()
   const agendas = municipality.data?.agendas ?? []
   const [selectedAgendaId, setSelectedAgendaId] = useState<string>(
