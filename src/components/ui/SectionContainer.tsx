@@ -1,5 +1,3 @@
-// Tailwind pure — no Figma equivalent
-// Section wrapper: max-w-[1440px] + padding lateral + flex column + gap + vertical padding
 
 interface SectionContainerProps {
   children: React.ReactNode
