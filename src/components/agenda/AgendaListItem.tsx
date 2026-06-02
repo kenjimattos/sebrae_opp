@@ -4,10 +4,13 @@
 
 import { Minus, Plus } from "lucide-react"
 import IconButton from '@/components/ui/buttons/IconButton'
+import type { StatusType } from '@/types/indicators'
+import { statusStyles } from '@/utils/statusStyles'
 
 interface AgendaListItemProps {
   title: string
   description?: string
+  status: StatusType
   expanded: boolean
   onToggle: () => void
 }
@@ -15,6 +18,7 @@ interface AgendaListItemProps {
 export default function AgendaListItem({
   title,
   description,
+  status,
   expanded,
   onToggle,
 }: AgendaListItemProps) {
@@ -22,7 +26,7 @@ export default function AgendaListItem({
     <>
     <section
       aria-expanded={expanded}
-      className="flex text-left border border-white justify-between gap-md items-center p-sm"
+      className={`flex text-left border border-white justify-between gap-md items-center p-sm ${statusStyles[status].glow}`}
     >
       <p className="typo-title-sm uppercase text-white">
         {title}
@@ -38,7 +42,7 @@ export default function AgendaListItem({
 
     </section>
     {expanded && description && (
-      <div className="border border-white p-sm">
+      <div className={`border border-white p-sm`}>
         <p
           className="typo-body-sm"
         >

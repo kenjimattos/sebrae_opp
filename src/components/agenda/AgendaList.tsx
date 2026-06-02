@@ -4,6 +4,7 @@
 
 import type { Agenda } from '@/types/indicators'
 import AgendaListItem from '@/components/agenda/AgendaListItem'
+import { agendaStatus } from '@/utils/statusStyles'
 
 interface AgendaListProps {
   agendas: Agenda[]
@@ -27,6 +28,7 @@ export default function AgendaList({
             <AgendaListItem
               title={agenda.name}
               description={descriptions?.[agenda.id]}
+              status={agendaStatus(agenda)}
               expanded={selectedId === agenda.id}
               onToggle={() => onSelect(agenda.id)}
             />

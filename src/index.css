@@ -484,3 +484,32 @@ body {
     break-inside: avoid;
   }
 }
+
+/* Glow indicador de status (ex.: agendas). Um box-shadow na caixa vazaria
+   pelos quatro lados; em vez disso, um pseudo-elemento desenha uma barra
+   colorida sobre a borda direita e é ELE que projeta o glow — assim o brilho
+   sai apenas do trecho que recebe a cor. A borda branca de 1px é mantida. */
+@layer utilities {
+  .status-success-glow { --glow-color: var(--semantic-success); }
+  .status-warning-glow { --glow-color: var(--semantic-warning); }
+  .status-alert-glow   { --glow-color: var(--semantic-alert); }
+
+  .status-success-glow,
+  .status-warning-glow,
+  .status-alert-glow {
+    position: relative;
+  }
+  .status-success-glow::after,
+  .status-warning-glow::after,
+  .status-alert-glow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -1px;
+    width: 2px;
+    background: var(--glow-color);
+    box-shadow: 0 0 12px 1px var(--glow-color);
+    pointer-events: none;
+  }
+}
