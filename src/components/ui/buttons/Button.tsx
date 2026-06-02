@@ -19,9 +19,9 @@ interface ButtonProps {
 }
 
 const sizeStyles: Record<string, { container: string; typo: string; iconSize: IconSize }> = {
-  sm: { container: 'h-[24px] px-2xs gap-2xs', typo: 'typo-button-sm', iconSize: 'xs' },
-  md: { container: 'h-[40px] px-md gap-xs',  typo: 'typo-button',    iconSize: 'sm' },
-  lg: { container: 'h-[64px] px-md gap-sm',  typo: 'typo-button-lg',       iconSize: 'md' },
+  sm: { container: 'px-sm py-xs gap-2xs', typo: 'typo-button-sm', iconSize: 'xs' },
+  md: { container: 'px-md py-sm gap-xs',  typo: 'typo-button',    iconSize: 'sm' },
+  lg: { container: 'px-md py-sm gap-sm',  typo: 'typo-button-lg',       iconSize: 'md' },
 }
 
 export default function Button({
