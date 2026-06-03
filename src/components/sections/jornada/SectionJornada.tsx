@@ -8,8 +8,8 @@ import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { sectionContent } from '@/data/home/sections'
 import SideNav from '@/components/layout/SideNav'
-import PanelAmbiente from './jornada/PanelAmbiente'
-import PlaceholderPanel from './jornada/PlaceholderPanel'
+import PanelAmbiente from './PanelAmbiente'
+import PlaceholderPanel from './PlaceholderPanel'
 
 // Registry de abas: id do pilar → painel. Plugar nova aba = criar Panel* + 1 entrada.
 const PANELS: Record<string, ComponentType> = {

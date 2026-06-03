@@ -4,14 +4,14 @@
 
 import { useState } from 'react'
 import ModeToggle, { type ModeOption } from '@/components/ui/ModeToggle'
-import ModeEixos from './modes/ModeEixos'
-import ModePanorama from './modes/ModePanorama'
-import ModeRiscos from './modes/ModeRiscos'
+import ModeEixos from '@/components/agenda/ModeEixos'
+import ModeEconomics from '@/components/economics/ModeEconomics'
+import ModeRiscos from '@/components/risks/ModeRisks'
 
 const MODES = [
-  { value: 'eixos', label: 'Eixos prioritários', Component: ModeEixos },
-  { value: 'panorama', label: 'Panorâma Sócioeconômico', Component: ModePanorama },
-  { value: 'riscos', label: 'Riscos estratégicos', Component: ModeRiscos },
+  { value: 'agenda', label: 'Eixos prioritários', Component: ModeEixos },
+  { value: 'economics', label: 'Panorâma Sócioeconômico', Component: ModeEconomics },
+  { value: 'risks', label: 'Riscos estratégicos', Component: ModeRiscos },
 ]
 
 const OPTIONS: ModeOption[] = MODES.map(({ value, label }) => ({ value, label }))
