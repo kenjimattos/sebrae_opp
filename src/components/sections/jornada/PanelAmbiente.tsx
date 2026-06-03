@@ -21,7 +21,7 @@ export default function PanelAmbiente() {
   const Active = (MODES.find((m) => m.value === mode) ?? MODES[0]).Component
 
   return (
-    <>
+    <div className="flex flex-col items-center gap-md">
       <ModeToggle
         value={mode}
         onChange={setMode}
@@ -29,6 +29,6 @@ export default function PanelAmbiente() {
         ariaLabel="Modo do ambiente de negócio"
       />
       <Active />
-    </>
+    </div>
   )
 }
