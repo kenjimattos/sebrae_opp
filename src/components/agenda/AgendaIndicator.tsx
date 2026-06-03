@@ -22,9 +22,9 @@ export default function AgendaIndicator({
   className = '',
 }: AgendaIndicatorProps) {
   return (
-    <div className={`flex items-center gap-md ${className}`}>
+    <div className={`flex items-center gap-lg ${className}`}>
       <span
-        className="flex-1 typo-body"
+        className="flex-1 typo-body-bold"
       >
         {label}
       </span>

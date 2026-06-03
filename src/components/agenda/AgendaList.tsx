@@ -22,7 +22,7 @@ export default function AgendaList({
   className = '',
 }: AgendaListProps) {
   return (
-      <ul className={`flex flex-col h-full justify-between ${className}`}>
+      <ul className={`flex flex-col h-full gap-md ${className}`}>
         {agendas.map((agenda, i) => (
           <li key={agenda.id} className={i > 0 ? '-mt-px' : ''}>
             <AgendaListItem

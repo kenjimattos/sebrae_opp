@@ -31,6 +31,7 @@ export default function AgendaIndicatorItem({
       expanded={expanded}
       onToggle={onToggle}
       clampTitle
+      fill
     >
       {expanded ? (
         <div className="flex flex-col">
