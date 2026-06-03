@@ -16,7 +16,6 @@ import {
 } from '@/data/home/economic-base'
 import { Sparkles, iconSizes } from '@/components/icons'
 import Button from '@/components/ui/buttons/Button'
-import Card from '@/components/ui/Card'
 import { useTypewriter } from '@/hooks/useTypewriter'
 
 interface EconomicBaseAnalysisProps {
@@ -40,11 +39,8 @@ export default function EconomicBaseAnalysis({ analysis, className = '' }: Econo
   const handleDone = useCallback(() => setPhase('done'), [])
 
   return (
-    <Card
-      as="section"
-      surface="secondary"
-      padding="lg"
-      className={`flex flex-col gap-sm w-full card-hoverable ${className}`}
+    <main
+      className={`flex flex-col glass p-md rounded-sm gap-sm w-full ${className}`}
     >
       {phase === 'idle' ? (
         <IdleState onGerar={handleGerar} />
@@ -57,26 +53,26 @@ export default function EconomicBaseAnalysis({ analysis, className = '' }: Econo
           onRegenerar={handleGerar}
         />
       )}
-    </Card>
+    </main>
   )
 }
 
 function IdleState({ onGerar }: { onGerar: () => void }) {
   return (
-    <div className="flex flex-col items-start gap-sm">
-      <div className="flex items-center gap-xs">
+    <div className="flex flex-col items-end gap-sm">
+      <div className="flex items-center gap-xs w-full">
         <Sparkles
           size={iconSizes.sm}
           className="text-[color:var(--semantic-accent)]"
           aria-hidden
         />
-        <h4 className="typo-body-bold">{emptyAnalysisTitle}</h4>
+        <h4 className="typo-h4 uppercase">{emptyAnalysisTitle}</h4>
       </div>
-      <p className="typo-body text-inactive">{emptyAnalysisSubtitle}</p>
+      <p className="typo-body w-full">{emptyAnalysisSubtitle}</p>
       <Button
         label={generateAnalysisLabel}
         variant="primary"
-        size="md"
+        size="sm"
         icon={Sparkles}
         iconPosition="left"
         onClick={onGerar}
