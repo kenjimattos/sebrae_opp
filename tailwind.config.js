@@ -36,12 +36,6 @@ export default {
         'inactive': 'var(--semantic-text-inactive)',
         'accent':   'var(--semantic-accent)',
       },
-      fontWeight: {
-        'regular':  'var(--typo-weight-regular)',   // 400
-        'semibold': 'var(--typo-weight-semibold)',   // 600
-        'bold':     'var(--typo-weight-bold)',        // 700
-        'black':    'var(--typo-weight-black)',       // 900
-      },
     },
   },
   plugins: [],
