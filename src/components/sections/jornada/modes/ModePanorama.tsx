@@ -12,7 +12,7 @@ export default function ModePanorama() {
   const analysis = getAnalysisForMunicipality(municipality.id)
 
   return (
-    <div className="flex flex-col gap-md w-full">
+    <div className="contents">
       <div className="grid-4 w-full">
         {items.map((item) => (
           <EconomicBaseCard

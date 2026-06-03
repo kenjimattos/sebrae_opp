@@ -23,9 +23,9 @@ export default function SectionJornada() {
   const Panel = PANELS[activeId]
 
   return (
-    <SectionContainer className="!flex-row gap-lg">
+    <SectionContainer className="!flex-row gap-lg !h-[100dvh]">
       <SideNav activeId={activeId} onSelect={setActiveId} className="w-1/5 shrink-0" />
-      <section className="flex flex-col gap-lg flex-1 min-w-0">
+      <section className="flex flex-1 flex-col justify-between">
         <SectionHeader
           title={activeJornada.title}
           description={activeJornada.subtitle}
