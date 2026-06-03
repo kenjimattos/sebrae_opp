@@ -30,6 +30,7 @@ export default function AgendaIndicatorItem({
       status={status}
       expanded={expanded}
       onToggle={onToggle}
+      clampTitle
     >
       {expanded ? (
         <div className="flex flex-col">
@@ -50,7 +51,12 @@ export default function AgendaIndicatorItem({
           ))}
         </div>
       ) : (
-        description && <p className="typo-body-sm">{description}</p>
+        description && (
+          // Reserva 4 linhas para a descrição recolhida → todos os cards fechados
+          // têm a mesma altura e o masonry alinha as colunas. line-clamp evita que
+          // descrições longas estourem a reserva (corta com reticências).
+          <p className="typo-body-sm line-clamp-4 min-h-[4lh]">{description}</p>
+        )
       )}
     </AgendaExpandable>
   )

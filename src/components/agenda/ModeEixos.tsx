@@ -21,14 +21,17 @@ export default function ModeEixos() {
     })
   }
 
-  // Ordem por coluna: a 1ª metade na esquerda, a 2ª na direita (1,2,3 | 4,5,6).
+  // Duas colunas independentes (masonry): abrir um card cresce só a sua coluna,
+  // sem mover a outra. Como os cards fechados têm todos a mesma altura (reservas
+  // de título 2 linhas + descrição 4 linhas), as linhas se alinham no fechado.
+  // Ordem por coluna (1,2,3 | 4,5,6).
   const half = Math.ceil(agendas.length / 2)
   const columns = [agendas.slice(0, half), agendas.slice(half)]
 
   return (
-    <div className="flex w-full h-full gap-sm items-start">
+    <div className="flex w-full gap-lg items-start">
       {columns.map((column, c) => (
-        <div key={c} className="flex flex-1 flex-col gap-sm">
+        <div key={c} className="flex flex-1 flex-col gap-lg">
           {column.map((agenda) => {
             const id = agenda.id ?? agenda.name
             return (

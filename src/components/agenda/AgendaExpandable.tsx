@@ -15,6 +15,10 @@ interface AgendaExpandableProps {
   expanded: boolean
   onToggle: () => void
   children?: React.ReactNode
+  // Reserva 2 linhas para o título (line-clamp-2 + min-h). Use em grades de
+  // altura uniforme (ex.: ModeEixos) para os headers ficarem todos do mesmo
+  // tamanho. Default mantém o título no fluxo natural.
+  clampTitle?: boolean
 }
 
 export default function AgendaExpandable({
@@ -23,6 +27,7 @@ export default function AgendaExpandable({
   expanded,
   onToggle,
   children,
+  clampTitle = false,
 }: AgendaExpandableProps) {
   return (
     <>
@@ -30,7 +35,7 @@ export default function AgendaExpandable({
       aria-expanded={expanded}
       className={`flex text-left border border-white justify-between gap-md items-center p-sm ${statusStyles[status].glow}`}
     >
-      <p className="typo-title-sm uppercase text-white">
+      <p className={`typo-title-sm uppercase text-white${clampTitle ? ' line-clamp-2 min-h-[2lh]' : ''}`}>
         {title}
       </p>
 
