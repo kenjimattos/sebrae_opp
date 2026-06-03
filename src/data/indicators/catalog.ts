@@ -24,7 +24,7 @@ export const catalog: Catalog = {
     },
     {
       id: 'inovacao',
-      name: 'Ecossistemas de Inovação: Ambiente que apoia novas ideias e uso da tecnologia pelos pequenos negócios',
+      name: 'Ecossistemas de Inovação: Inclusão e digitalização para Pequenos Negócios',
       indicators: [
         { id: 'trabalhadores-ct', label: 'Trabalhadores nas ocupações de C&T' },
         { id: 'trabalhadores-tic', label: 'Trabalhadores nos setores da economia criativa, inovação e TIC' },

@@ -38,8 +38,8 @@ export default function SectionJornada() {
   const Active = (modes.find((m) => m.value === value) ?? modes[0]).Component
 
   return (
-    <SectionContainer className="!flex-row gap-lg !h-[100dvh] !py-lg">
-      <SideNav activeId={activeId} onSelect={setActiveId} className="w-1/5 shrink-0" />
+    <SectionContainer className="!flex-row gap-lg !h-auto !py-lg">
+      <SideNav activeId={activeId} onSelect={setActiveId} className="w-1/5 shrink-0 h-[90dvh]" />
       <section className="flex flex-1 flex-col min-h-0 gap-md">
         <header className="flex flex-col gap-sm">
           <SectionHeader
@@ -54,7 +54,7 @@ export default function SectionJornada() {
             className="self-center shrink-0"
           />
         </header>
-        <main className="flex items-center h-full">
+        <main className="flex items-start h-full">
           <Active />
         </main>
       </section>
