@@ -26,7 +26,7 @@ export default function ModeEixos() {
   const columns = [agendas.slice(0, half), agendas.slice(half)]
 
   return (
-    <div className="flex w-full gap-sm items-start">
+    <div className="flex w-full h-full gap-sm items-start">
       {columns.map((column, c) => (
         <div key={c} className="flex flex-1 flex-col gap-sm">
           {column.map((agenda) => {
