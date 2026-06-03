@@ -53,7 +53,7 @@ export default function SectionAgendas() {
       <CitySelector />
       <div className="flex flex-1 min-h-0 gap-md">
           {/* Coluna esquerda: container rounded com heading + agendas */}
-          <div className="flex flex-[2] min-w-0 flex-col glass p-md rounded-md h-full gap-md">
+          <div className="flex flex-[2] min-w-0 flex-col glass p-md rounded-sm h-full gap-md">
            <div>
               <h1
                 className="typo-h1"

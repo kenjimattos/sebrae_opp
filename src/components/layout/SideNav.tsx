@@ -10,7 +10,7 @@ interface SideNavProps {
 
 export default function SideNav({ activeId, onSelect, className = '' }: SideNavProps) {
     return (
-        <main className={`glass rounded-md flex flex-col items-center p-md gap-lg ${className}`}>
+        <main className={`glass rounded-sm flex flex-col items-center p-md gap-lg ${className}`}>
             <header>
                 <h3 className="typo-h3 uppercase">
                     {sectionContent.hero.subtitle}
@@ -25,7 +25,7 @@ export default function SideNav({ activeId, onSelect, className = '' }: SideNavP
                     return (
                         <div
                             key={sectionId}
-                            className={`flex flex-col rounded-md transition-all duration-300 ease-in-out ${isActive ? 'glass p-xs' : 'p-xs'}`}
+                            className={`flex flex-col rounded-sm transition-all duration-300 ease-in-out ${isActive ? 'glass p-xs' : 'p-xs'}`}
                         >
                             <Button
                                 label={label}
