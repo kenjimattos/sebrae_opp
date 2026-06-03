@@ -27,10 +27,10 @@ export default function EconomicBaseCard({ id, label, value, variation, updatedA
             {variation}
           </span>
         </div>
-        <span className="typo-body-sm">
+        <span className="typo-body-xs">
           {description}
         </span>
-        <span className="typo-body-sm text-right align-self-end">
+        <span className="typo-body-xs text-right align-self-end">
           {updatedAt}
         </span>
     </main>

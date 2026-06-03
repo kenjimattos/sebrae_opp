@@ -64,7 +64,7 @@ export const catalog: Catalog = {
     },
   ],
   economicBase: [
-    { id: 'idsc', label: 'IDSC - Índice de Desenvolvimento Sustentável das Cidades', updatedAt: '2023' },
+    { id: 'idsc', label: 'IDSC', updatedAt: '2023' },
     { id: 'idh-m-total', label: 'IDH-M', updatedAt: '2021' },
     { id: 'cobertura-atencao-basica', label: 'Cobertura Atenção Básica na Saúde', updatedAt: '' },
     { id: 'ideb-anos-iniciais', label: 'IDEB - Anos Iniciais', updatedAt: '2023' },
