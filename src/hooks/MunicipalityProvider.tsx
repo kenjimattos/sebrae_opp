@@ -34,7 +34,7 @@ function buildIndicators(values: MunicipalityValues): IndicatorsData {
         label: b.label,
         value: v.value,
         variation: v.variation,
-        icon: b.icon,
+        updatedAt: b.updatedAt,
       }
     }),
   }

@@ -19,7 +19,7 @@ export interface EconomicBaseItem {
   label: string
   value: string
   variation: string
-  icon: string
+  updatedAt: string
 }
 
 export interface IndicatorsData {
@@ -42,7 +42,7 @@ export interface CatalogAgenda {
 export interface CatalogEconomicBase {
   id: string
   label: string
-  icon: string
+  updatedAt: string
 }
 
 export interface Catalog {

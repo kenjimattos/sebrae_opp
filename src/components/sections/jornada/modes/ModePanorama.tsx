@@ -21,7 +21,7 @@ export default function ModePanorama() {
             label={item.label}
             value={item.value}
             variation={item.variation}
-            icon={item.icon}
+            updatedAt={item.updatedAt}
           />
         ))}
       </div>
