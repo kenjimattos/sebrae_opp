@@ -28,6 +28,7 @@ export {
   DollarSign,
   Info,
   Landmark,
+  Minus,
   Plus,
   Search,
   Sparkles,

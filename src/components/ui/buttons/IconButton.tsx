@@ -24,7 +24,7 @@ interface IconButtonProps {
 }
 
 const sizeStyles: Record<string, { dimensions: string; iconSize: IconSize }> = {
-  xs: { dimensions: 'w-[24px] h-[24px]', iconSize: 'xs' },
+  xs: { dimensions: 'w-[16px] h-[16px]', iconSize: 'xs' },
   sm: { dimensions: 'w-[32px] h-[32px]', iconSize: 'sm' },
   md: { dimensions: 'w-[40px] h-[40px]', iconSize: 'sm' },
   lg: { dimensions: 'w-[48px] h-[48px]', iconSize: 'lg' },

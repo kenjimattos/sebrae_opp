@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { Plus, Minus } from '@/components/icons'
+import IconButton from '@/components/ui/buttons/IconButton'
 import { economicBaseDescriptions } from '@/data/indicators/descriptions/economic-base'
 
 interface EconomicBaseCardProps {
@@ -11,15 +14,16 @@ interface EconomicBaseCardProps {
 
 export default function EconomicBaseCard({ id, label, value, variation, updatedAt = '', className = '' }: EconomicBaseCardProps) {
   const description = economicBaseDescriptions[id]
+  const [expanded, setExpanded] = useState(false)
 
   return (
     <main
       className={`flex flex-col border p-sm justify-between gap-sm ${className}`}
     >
-        <span className="typo-body-sm uppercase mt-sm">
+        <span className="typo-body-sm uppercase mt-xs">
           {label}
         </span>
-        <div className="flex justify-between gap-sm">
+        <div className="flex justify-between items-center gap-sm">
           <span className="typo-display-sm">
             {value}
           </span>
@@ -27,10 +31,19 @@ export default function EconomicBaseCard({ id, label, value, variation, updatedA
             {variation}
           </span>
         </div>
-        <span className="typo-body-xs">
-          {description}
-        </span>
-        <span className="typo-body-xs text-right align-self-end">
+        <div className="flex items-end justify-between gap-sm">
+          <p className={`typo-body-sm ${expanded ? '' : 'line-clamp-3'}`}>
+            {description}
+          </p>
+          <IconButton
+            icon={expanded ? Minus : Plus}
+            variant="tertiary"
+            size="xs"
+            aria-label={expanded ? 'Recolher descrição' : 'Expandir descrição'}
+            onClick={() => setExpanded((prev) => !prev)}
+          />
+        </div>
+        <span className="typo-body-sm text-right align-self-end">
           {updatedAt}
         </span>
     </main>
