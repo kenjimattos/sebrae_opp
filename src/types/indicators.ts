@@ -19,6 +19,7 @@ export interface EconomicBaseItem {
   label: string
   value: string
   variation: string
+  tone?: StatusType
   updatedAt: string
 }
 
@@ -53,6 +54,7 @@ export interface Catalog {
 export interface EconomicBaseValue {
   value: string
   variation: string
+  tone?: StatusType
 }
 
 export interface MunicipalityValues {

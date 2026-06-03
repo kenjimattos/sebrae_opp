@@ -66,7 +66,7 @@ export const catalog: Catalog = {
   economicBase: [
     { id: 'idsc', label: 'IDSC', updatedAt: '2023' },
     { id: 'idh-m-total', label: 'IDH-M', updatedAt: '2021' },
-    { id: 'cobertura-atencao-basica', label: 'Cobertura Atenção Básica na Saúde', updatedAt: '' },
+    { id: 'cobertura-atencao-basica', label: 'Cobertura Atenção Básica na Saúde', updatedAt: '2023' },
     { id: 'ideb-anos-iniciais', label: 'IDEB - Anos Iniciais', updatedAt: '2023' },
     { id: 'ideb-anos-finais', label: 'IDEB - Anos Finais', updatedAt: '2023' },
     { id: 'gini', label: 'GINI', updatedAt: '2010' },

@@ -2,17 +2,25 @@ import { useState } from 'react'
 import { Plus, Minus } from '@/components/icons'
 import IconButton from '@/components/ui/buttons/IconButton'
 import { economicBaseDescriptions } from '@/data/indicators/descriptions/economic-base'
+import type { StatusType } from '@/types/indicators'
 
 interface EconomicBaseCardProps {
   id: string
   label: string
   value: string
   variation: string
+  tone?: StatusType
   updatedAt?: string
   className?: string
 }
 
-export default function EconomicBaseCard({ id, label, value, variation, updatedAt = '', className = '' }: EconomicBaseCardProps) {
+const variationColor: Record<StatusType, string> = {
+  success: 'text-[color:var(--semantic-success)]',
+  warning: 'text-[color:var(--semantic-warning)]',
+  alert: 'text-[color:var(--semantic-alert)]',
+}
+
+export default function EconomicBaseCard({ id, label, value, variation, tone, updatedAt = '', className = '' }: EconomicBaseCardProps) {
   const description = economicBaseDescriptions[id]
   const [expanded, setExpanded] = useState(false)
 
@@ -27,7 +35,7 @@ export default function EconomicBaseCard({ id, label, value, variation, updatedA
           <span className="typo-display-sm">
             {value}
           </span>
-          <span className="typo-body-sm-bold">
+          <span className={`typo-body-sm-bold ${tone ? variationColor[tone] : ''}`}>
             {variation}
           </span>
         </div>

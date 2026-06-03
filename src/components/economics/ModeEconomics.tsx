@@ -21,6 +21,7 @@ export default function ModeEconomics() {
             label={item.label}
             value={item.value}
             variation={item.variation}
+            tone={item.tone}
             updatedAt={item.updatedAt}
           />
         ))}

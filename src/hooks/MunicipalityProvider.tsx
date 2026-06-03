@@ -34,6 +34,7 @@ function buildIndicators(values: MunicipalityValues): IndicatorsData {
         label: b.label,
         value: v.value,
         variation: v.variation,
+        tone: v.tone,
         updatedAt: b.updatedAt,
       }
     }),

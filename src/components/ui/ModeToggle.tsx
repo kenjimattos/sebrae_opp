@@ -2,6 +2,12 @@
 // Efeito glass com bevel visível: backdrop-blur + gradiente sutil + borda em
 // gradiente (mais clara no topo, escura embaixo) via background-clip + sombra
 // inset white no topo pra reforçar o highlight.
+//
+// A "pill" de seleção é um único elemento absoluto que desliza entre os botões.
+// Medimos o offset/largura do botão ativo via refs pra animar a posição mesmo
+// com labels de larguras diferentes.
+
+import { useLayoutEffect, useRef, useState } from 'react'
 
 export interface ModeOption {
   value: string
@@ -30,25 +36,46 @@ export default function ModeToggle({
   ariaLabel = 'Modo de visualização',
   className = '',
 }: ModeToggleProps) {
+  const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])
+  const [pill, setPill] = useState<{ left: number; width: number } | null>(null)
+
+  const activeIndex = options.findIndex((opt) => opt.value === value)
+
+  // Mede o botão ativo e reposiciona o pill. useLayoutEffect evita flash de
+  // posição antiga antes do paint. Reage a value/options.
+  useLayoutEffect(() => {
+    const el = buttonRefs.current[activeIndex]
+    if (!el) return
+    setPill({ left: el.offsetLeft, width: el.offsetWidth })
+  }, [activeIndex, options])
+
   return (
     <div
       className={`glass glass-bevel w-fit relative inline-flex items-center rounded-full ${className}`}
       role="tablist"
       aria-label={ariaLabel}
     >
-      {options.map((opt) => {
+      {pill && (
+        <span
+          aria-hidden
+          className="absolute top-1/2 -translate-y-1/2 h-[80%] rounded-full bg-accent transition-[left,width] duration-300 ease-out"
+          style={{ left: pill.left, width: pill.width }}
+        />
+      )}
+      {options.map((opt, i) => {
         const isActive = value === opt.value
         return (
           <button
             key={opt.value}
+            ref={(el) => {
+              buttonRefs.current[i] = el
+            }}
             type="button"
             role="tab"
             aria-selected={isActive}
             onClick={() => onChange(opt.value)}
-            className={`rounded-full typo-button transition-colors whitespace-nowrap px-sm py-xs m-2xs ${
-              isActive
-                ? 'bg-accent text-black'
-                : 'text-white hover:text-accent'
+            className={`relative z-10 rounded-full typo-button transition-colors whitespace-nowrap h-[2.5rem] px-sm m-2xs ${
+              isActive ? 'text-black' : 'text-white hover:text-accent'
             }`}
           >
             {opt.label}
