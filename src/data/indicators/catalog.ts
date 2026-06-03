@@ -6,7 +6,7 @@ export const catalog: Catalog = {
       id: 'governanca',
       name: 'Governança: Parcerias público, privada, social para o desenvolvimento local',
       indicators: [
-        { id: 'igm-cfa-2025', label: 'IGM – Índice CFA de Governança Municipal' },
+        { id: 'igm-cfa-2025', label: 'Índice CFA de Governança Municipal' },
         { id: 'idh-m-2021', label: 'IDH-M' },
         { id: 'isdel-governanca', label: 'Governança para o Desenvolvimento – ISDEL' },
         { id: 'igma', label: 'Índice de Gestão Municipal Áquila (IGMA)' },
