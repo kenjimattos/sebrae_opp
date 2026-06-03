@@ -1,11 +1,8 @@
-// Item da AgendaList (accordion). Expandido: título + descrição + botão →.
-// Recolhido: só título + botão +. Cantos retos, borda branca 1px, fundo
-// translúcido (rgba 22,23,38,0.2). Título em Monoblock Bold 16px uppercase.
+// Item da AgendaList: usa o shell AgendaExpandable e preenche a área expandida
+// com a descrição da agenda (font-body-sm).
 
-import { Minus, Plus } from "lucide-react"
-import IconButton from '@/components/ui/buttons/IconButton'
+import AgendaExpandable from '@/components/agenda/AgendaExpandable'
 import type { StatusType } from '@/types/indicators'
-import { statusStyles } from '@/utils/statusStyles'
 
 interface AgendaListItemProps {
   title: string
@@ -23,33 +20,13 @@ export default function AgendaListItem({
   onToggle,
 }: AgendaListItemProps) {
   return (
-    <>
-    <section
-      aria-expanded={expanded}
-      className={`flex text-left border border-white justify-between gap-md items-center p-sm ${statusStyles[status].glow}`}
+    <AgendaExpandable
+      title={title}
+      status={status}
+      expanded={expanded}
+      onToggle={onToggle}
     >
-      <p className="typo-title-sm uppercase text-white">
-        {title}
-      </p>
-
-      <IconButton
-        variant="tertiary"
-        size="sm"
-        icon={expanded ? Minus : Plus}
-        aria-label={expanded ? "Recolher" : "Expandir"}
-        onClick={onToggle}
-      />
-
-    </section>
-    {expanded && description && (
-      <div className={`border border-white p-sm`}>
-        <p
-          className="typo-body-sm"
-        >
-          {description}
-        </p>
-      </div>
-    )}
-    </>
+      {expanded && description && <p className="typo-body-sm">{description}</p>}
+    </AgendaExpandable>
   )
 }
