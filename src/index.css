@@ -366,53 +366,6 @@
   }
 }
 
-/* ============ MAP ============ */
-.leaflet-container {
-  background: transparent !important;
-  z-index: 0 !important;
-}
-
-/* Badge markers — prevent Leaflet from clipping DivIcon content */
-.leaflet-marker-icon.mapa-badge {
-  overflow: visible !important;
-  background: none !important;
-  border: none !important;
-  width: auto !important;
-  height: auto !important;
-}
-
-.mapa-badge-inner {
-  font-family: var(--font);
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 8px;
-  white-space: nowrap;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
-  pointer-events: auto;
-  cursor: default;
-  transform: translate(-50%, -50%);
-  line-height: 1;
-}
-
-/* Tooltip com nome do município no hover */
-.leaflet-tooltip.paraiba-map-tooltip {
-  font-family: var(--font);
-  font-size: var(--font-size-body-sm);
-  font-weight: var(--typo-weight-semibold);
-  background: var(--semantic-surface-primary);
-  color: var(--semantic-text-primary);
-  border: none;
-  border-radius: var(--radius-sm);
-  padding: 4px 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  white-space: nowrap;
-}
-
-.leaflet-tooltip.paraiba-map-tooltip::before {
-  border-top-color: var(--semantic-surface-primary);
-}
-
 /* ============ TYPEWRITER CARET ============ */
 /* Cursor piscante usado no efeito de digitação da EconomicsAnalysis. */
 .typewriter-caret {

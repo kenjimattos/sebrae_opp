@@ -4,8 +4,6 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import SectionAgendas from '@/components/sections/SectionAgendas'
 import SectionJornada from '@/components/sections/SectionJornada'
-import SectionPanorama from '@/components/sections/SectionPanorama'
-import SectionEconomicBase from '@/components/sections/SectionEconomicBase'
 import SectionRisks from '@/components/sections/SectionRisks'
 import SectionResources from '@/components/sections/SectionResources'
 import SectionTraining from '@/components/sections/SectionTraining'
@@ -46,12 +44,6 @@ export default function Home() {
         </div>
         {data && (
           <>
-            <div id="panorama">
-              <SectionPanorama />
-            </div>
-            <div id="base-economica">
-              <SectionEconomicBase items={data.economicBase} />
-            </div>
             <div id="riscos">
               <SectionRisks agendas={data.agendas} />
             </div>

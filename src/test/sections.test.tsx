@@ -2,29 +2,9 @@
 
 import { render } from '@testing-library/react'
 import { TestWrapper } from './mocks/wrapper'
-import { mockAgendas, mockEconomicBase } from './mocks/municipality'
-
-// Mock react-leaflet (jsdom has no canvas)
-vi.mock('react-leaflet', () => ({
-  MapContainer: ({ children }: { children?: React.ReactNode }) => <div data-testid="map">{children}</div>,
-  TileLayer: () => null,
-  GeoJSON: () => null,
-  useMap: () => ({ getContainer: () => document.createElement('div') }),
-}))
-
-// Mock leaflet
-vi.mock('leaflet', () => ({
-  default: {
-    divIcon: () => ({}),
-    marker: () => ({ addTo: () => ({}), remove: () => {} }),
-  },
-  divIcon: () => ({}),
-  marker: () => ({ addTo: () => ({}), remove: () => {} }),
-}))
+import { mockAgendas } from './mocks/municipality'
 
 import SectionHero from '@/components/sections/SectionHero'
-import SectionPanorama from '@/components/sections/SectionPanorama'
-import SectionEconomicBase from '@/components/sections/SectionEconomicBase'
 import SectionRisks from '@/components/sections/SectionRisks'
 import SectionResources from '@/components/sections/SectionResources'
 import SectionTraining from '@/components/sections/SectionTraining'
@@ -35,22 +15,6 @@ import SectionAIAssistant from '@/components/sections/SectionAIAssistant'
 describe('Section components — smoke tests', () => {
   it('renders SectionHero', () => {
     const { container } = render(<SectionHero />)
-    expect(container).toBeTruthy()
-  })
-
-  it('renders SectionPanorama', () => {
-    const { container } = render(
-      <TestWrapper>
-        <SectionPanorama />
-      </TestWrapper>,
-    )
-    expect(container).toBeTruthy()
-  })
-
-  it('renders SectionEconomicBase', () => {
-    const { container } = render(<SectionEconomicBase items={mockEconomicBase} />, {
-      wrapper: TestWrapper,
-    })
     expect(container).toBeTruthy()
   })
 
