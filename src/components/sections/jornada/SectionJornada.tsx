@@ -23,7 +23,7 @@ export default function SectionJornada() {
   const Panel = PANELS[activeId]
 
   return (
-    <SectionContainer className="!flex-row gap-lg !h-[100dvh]">
+    <SectionContainer className="!flex-row gap-lg !h-[100dvh] !py-lg">
       <SideNav activeId={activeId} onSelect={setActiveId} className="w-1/5 shrink-0" />
       <section className="flex flex-1 flex-col justify-between">
         <SectionHeader
