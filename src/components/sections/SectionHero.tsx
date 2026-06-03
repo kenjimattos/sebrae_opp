@@ -42,9 +42,10 @@ export default function SectionHero() {
       <SectionHeader
         title={sectionContent.hero.title}
         description={sectionContent.hero.description}
+        className="px-lg"
       />
 
-      <div className="flex flex-col items-center gap-md">
+      <div className="flex flex-col items-center gap-lg px-lg">
         <Button
           variant="secondary"
           label={sectionContent.hero.subtitle}
@@ -52,7 +53,7 @@ export default function SectionHero() {
         />
 
         {/* 4 blocos em grid 2×2 */}
-        <div className="grid grid-cols-2 gap-x-2xl gap-y-md px-2xl w-full">
+        <div className="grid grid-cols-2 gap-x-2xl gap-y-md px-3xl w-full">
           {sectionContent.jornadas.map((each) => {
             const Icon = ctaIcons[each.id]
 
