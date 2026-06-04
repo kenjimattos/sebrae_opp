@@ -2,74 +2,75 @@
 // Emendas parlamentares + mapa Datapedia + editais e programas
 
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
-import ResourcesCard from '@/components/resources/ResourcesCard'
-import PillButton from '@/components/ui/buttons/PillButton'
+import Button from '@/components/ui/buttons/Button'
 import HoverOverlay from '@/components/ui/HoverOverlay'
 import { DATAPEDIA_URL, resourceCards, resourcesContent } from '@/data/home/resources'
 import { trackEvent } from '@/utils/analytics'
 
 export default function ModeResources() {
   return (
-    <div>
-      {/* Cards agrupados com gap menor */}
-      <div className="flex flex-col gap-md">
+    <>
       {/* Container principal branco */}
-      <div className="flex flex-col gap-3xl items-center">
-          {/* Bloco 1 — Emendas parlamentares */}
-          <div className="flex flex-col gap-xl items-start w-full">
-            <TitleSubtitle
-              title={resourcesContent.emendas.title}
-              subtitle={resourcesContent.emendas.description}
-            />
+      <div className="flex flex-col glass rounded-sm p-lg h-full items-center gap-md">
+          <TitleSubtitle
+            size='md'
+            title={resourcesContent.emendas.title}
+            subtitle={resourcesContent.emendas.description}
+            className='w-full'
+          />
+          <div className="flex w-full gap-md">
+            {/* Bloco 1 — Emendas parlamentares */}
+            <div className="flex flex-col gap-xs w-1/2">
+              <p className="typo-body-sm">
+                {resourcesContent.emendas.tableTitle}
+              </p>
+              <div className="flex flex-col gap-sm w-full border p-md">
 
-            <div className="flex flex-col gap-md w-full">
-              <div className="grid-5">
-                {resourceCards.map((card) => (
-                  <ResourcesCard key={card.title} title={card.title} value={card.value} />
-                ))}
+                  {resourceCards.map((card, i) => (
+                    <>
+                    <div className="flex justify-between">
+                      <span className="typo-body-sm-bold">{card.title}</span>
+                      <span className="typo-display-sm">{card.value}</span>
+                    </div>
+                    {i < 4 && (<hr className="border-accent border-dashed pb-xs" />
+                    )}
+                    </>
+                  ))}
               </div>
-
-              <p className="typo-body max-w-[800px]">
+              <p className="typo-body-sm">
                 {resourcesContent.emendas.footnote}
               </p>
             </div>
+
+            {/* Bloco 2 — Mapa territorial (Datapedia) */}
+            <div className="flex flex-col gap-xs w-1/2">
+              <p className="typo-body-sm">
+                {resourcesContent.distribuicao.description}
+              </p>
+              <a
+                href={DATAPEDIA_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  trackEvent('cta_externo_clicado', {
+                    destino: DATAPEDIA_URL,
+                    label: 'datapedia_mapa',
+                  })
+                }
+                className="block w-full rounded-sm overflow-hidden bg-[var(--primitives-gray-900)] relative group"
+              >
+                <img
+                  src="/assets/datapedia-mapa.png"
+                  alt={resourcesContent.distribuicao.mapAlt}
+                  className="w-full object-cover rounded-sm"
+                />
+
+                <HoverOverlay label={resourcesContent.distribuicao.overlayLabel} radius="xl" />
+              </a>
+            </div>
           </div>
-
-          {/* Bloco 2 — Mapa territorial (Datapedia) */}
-          <div className="flex flex-col gap-xl items-start w-full">
-            <TitleSubtitle
-              title={resourcesContent.distribuicao.title}
-              subtitle={resourcesContent.distribuicao.description}
-            />
-
-            <a
-              href={DATAPEDIA_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() =>
-                trackEvent('cta_externo_clicado', {
-                  destino: DATAPEDIA_URL,
-                  label: 'datapedia_mapa',
-                })
-              }
-              className="block w-full rounded-md overflow-hidden bg-[var(--primitives-gray-900)] relative group"
-            >
-              <img
-                src="/assets/datapedia-mapa.png"
-                alt={resourcesContent.distribuicao.mapAlt}
-                className="w-full h-auto object-cover rounded-xl"
-              />
-
-              <HoverOverlay label={resourcesContent.distribuicao.overlayLabel} radius="xl" />
-            </a>
-          </div>
-
-          {/* Botão Explorar emendas */}
-          <div className="flex justify-end w-full">
-            <PillButton label={resourcesContent.buttons.explorarEmendas} href={DATAPEDIA_URL} />
-          </div>
-        </div>
+        <Button label={resourcesContent.buttons.explorarEmendas} variant='secondary' size='sm' className='w-fit'/>
       </div>
-    </div>
+    </>
   )
 }
