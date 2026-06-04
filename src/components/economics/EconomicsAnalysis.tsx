@@ -68,7 +68,7 @@ function IdleState({ onGerar }: { onGerar: () => void }) {
         />
         <h4 className="typo-h4 uppercase">{emptyAnalysisTitle}</h4>
       </div>
-      <p className="typo-body w-full">{emptyAnalysisSubtitle}</p>
+      <p className="typo-body-sm w-full">{emptyAnalysisSubtitle}</p>
       <Button
         label={generateAnalysisLabel}
         variant="primary"

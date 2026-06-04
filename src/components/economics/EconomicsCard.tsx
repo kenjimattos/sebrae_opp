@@ -40,7 +40,7 @@ export default function EconomicBaseCard({ id, label, value, variation, tone, up
           </span>
         </div>
         <div className="flex items-end justify-between gap-sm">
-          <p className={`typo-body-sm ${expanded ? '' : 'line-clamp-3'}`}>
+          <p className={`typo-body-sm ${expanded ? '' : 'line-clamp-2'}`}>
             {description}
           </p>
           <IconButton

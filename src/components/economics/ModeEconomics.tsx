@@ -12,7 +12,7 @@ export default function ModeEconomics() {
   const analysis = getAnalysisForMunicipality(municipality.id)
 
   return (
-    <div className="flex flex-1 flex-col h-full justify-between min-h-0">
+    <div className="flex flex-1 flex-col h-full gap-sm justify-between min-h-0">
       <div className="grid-4 w-full">
         {items.map((item) => (
           <EconomicBaseCard
@@ -26,7 +26,7 @@ export default function ModeEconomics() {
           />
         ))}
       </div>
-      <EconomicBaseAnalysis key={municipality.id} analysis={analysis} />
+      <EconomicBaseAnalysis key={municipality.id} analysis={analysis} className="self-end" />
     </div>
   )
 }
