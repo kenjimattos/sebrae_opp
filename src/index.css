@@ -324,6 +324,60 @@
       inset -10px -10px 20px -10px rgba(255, 255, 255, 0.28);
   }
 
+  /* ============ RISK CARD (Ambiente › Riscos estratégicos) ============ */
+  /* Painel glass escuro lido como um "readout" de severidade. A cor do status
+     entra por uma única variável (--risk) e tinge tudo que comunica risco: o
+     glow que vaza do topo, o número-herói, a régua e o rótulo. Combina com .glass. */
+  .risk-card {
+    --risk: var(--semantic-warning);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    transition: transform 220ms ease, box-shadow 220ms ease;
+  }
+  /* Sinal: glow radial ancorado no topo-centro, na cor do risco, esvaindo pra
+     baixo. Fica acima do fundo translúcido do glass, mas atrás do conteúdo
+     (filhos recebem z-index 1 abaixo). */
+  .risk-card::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 48%;
+    background: radial-gradient(125% 100% at 50% 0%,
+      color-mix(in srgb, var(--risk) 42%, transparent) 0%,
+      color-mix(in srgb, var(--risk) 12%, transparent) 42%,
+      transparent 72%);
+    opacity: 0.85;
+    transition: opacity 220ms ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .risk-card > * { position: relative; z-index: 1; }
+
+  /* Régua tingida que esvai nas pontas — separa o número do corpo do card. */
+  .risk-card__rule {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      color-mix(in srgb, var(--risk) 60%, transparent) 50%,
+      transparent 100%);
+  }
+  /* Ponto pulsante = "sinal ao vivo" ao lado do rótulo de severidade. */
+  .risk-card__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: var(--radius-full);
+    background: var(--risk);
+    box-shadow: 0 0 9px 1px color-mix(in srgb, var(--risk) 80%, transparent);
+    animation: risk-pulse 2.2s ease-in-out infinite;
+  }
+  .risk-card__label-accent { color: var(--risk); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .risk-card__dot { animation: none; }
+  }
+
   .card-hoverable {
     cursor: pointer;
     transition: transform 200ms ease, box-shadow 200ms ease;
@@ -378,6 +432,12 @@
 @keyframes typewriter-caret-blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
+}
+
+/* Pulso do ponto de status no RisksCard (sinal "ao vivo"). */
+@keyframes risk-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.82); }
 }
 
 /* ============ BASE STYLES ============ */

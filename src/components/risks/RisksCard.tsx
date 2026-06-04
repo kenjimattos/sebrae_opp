@@ -1,9 +1,10 @@
-// Figma: Risks/Card (set 563:4445)
-// Variants: Alert (red border/bg), Warning (yellow border/bg)
-// Shows: indicator label + value, risk description, alert label, context
+// Figma: Risks/Card (set 563:4445) — redesenhado como "readout" de severidade.
+// A cor do status entra por uma única CSS var (--risk) e tinge glow, número-herói,
+// régua e rótulo. Estilos da classe .risk-card vivem em src/index.css.
+// Mostra: número-herói + indicador, descrição do risco, severidade + contexto.
 
+import type { CSSProperties } from 'react'
 import type { StatusType } from '@/types/indicators'
-import Card from '@/components/ui/Card'
 
 interface RisksCardProps {
   label: string
@@ -15,9 +16,10 @@ interface RisksCardProps {
   className?: string
 }
 
-const valueColorClass: Record<'alert' | 'warning', string> = {
-  alert: 'text-[color:var(--semantic-alert)]',
-  warning: 'text-[color:var(--semantic-warning)]',
+// Cor do status que alimenta toda a peça via a custom property --risk.
+const riskAccent: Record<'alert' | 'warning', string> = {
+  alert: 'var(--semantic-alert)',
+  warning: 'var(--semantic-warning)',
 }
 
 export default function RisksCard({
@@ -29,38 +31,44 @@ export default function RisksCard({
   context,
   className = '',
 }: RisksCardProps) {
-  // 'success' cannot be a risk — coerce to 'warning' defensively
+  // 'success' não pode ser um risco — coage para 'warning' defensivamente.
   const effectiveType = type === 'success' ? 'warning' : type
 
   return (
-    <Card
-      surface={effectiveType}
-      bordered
-      padding="lg"
-      className={`flex flex-col gap-md card-hoverable ${className}`}
+    <article
+      tabIndex={0}
+      style={{ '--risk': riskAccent[effectiveType] } as CSSProperties}
+      className={`risk-card glass rounded-md p-lg flex flex-col gap-md h-full ${className}`}
     >
-      <span className={`shrink-0 typo-display ${valueColorClass[effectiveType]}`}>
+      {/* Número-herói + régua tingida */}
+      <div className="flex flex-col gap-sm">
+        <span className=" typo-display leading-none self-center">
           {value}
-      </span>
+        </span>
+        <hr className="risk-card__rule" />
+      </div>
 
-      <span className="typo-body-bold">
+      <span className="typo-body-bold uppercase tracking-wide">
         {label}
       </span>
 
-      {/* Risk description */}
+      {/* Descrição do risco */}
       <p className="typo-body">
         {description}
       </p>
 
-      <div className="flex flex-col gap-2xs">
-        <p className="typo-body-sm-bold">
-          {indicatorLabel}
-        </p>
+      {/* Severidade (sinal ao vivo) + contexto, ancorados na base, à direita */}
+      <footer className="mt-auto flex flex-col items-end gap-2xs text-right">
+        <span className="flex items-center gap-xs">
+          <span className="risk-card__dot" aria-hidden="true" />
+          <span className="risk-card__label-accent typo-body-sm-bold uppercase tracking-[0.18em]">
+            {indicatorLabel}
+          </span>
+        </span>
         <p className="typo-body-sm">
           {context}
         </p>
-      </div>
-
-    </Card>
+      </footer>
+    </article>
   )
 }
