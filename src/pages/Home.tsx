@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import SectionAgendas from '@/components/sections/SectionAgendas'
-import SectionJornada from '@/components/sections/jornada/SectionJornada'
+import SectionJornada from '@/components/sections/SectionJornada'
 import SectionFormulator from '@/components/sections/SectionFormulator'
 // import SectionAIAssistant from '@/components/sections/SectionAIAssistant'
 import { useMunicipality } from '@/hooks/useMunicipality'
@@ -35,16 +35,17 @@ export default function Home() {
         <div id="agenda">
           <SectionAgendas />
         </div>
+        { data ? 
         <div id="ambiente">
           <SectionJornada />
         </div>
+        : ''}
         <div id="formulador">
           <SectionFormulator />
         </div>
         {/* Hidden for now, may be used in the future */}
         {/* <SectionAIAssistant /> */}
       </main>
-
       <Footer />
     </div>
   )

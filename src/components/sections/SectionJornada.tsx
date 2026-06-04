@@ -64,13 +64,13 @@ export default function SectionJornada() {
             title={activeJornada.title}
             description={activeJornada.subtitle}
           />
-          <ModeToggle
+          { value ? <ModeToggle
             value={value}
             onChange={setValue}
             options={modes}
             ariaLabel="Modo de visualização"
             className="self-center shrink-0"
-          />
+          /> : null }
         </header>
         <main className="flex items-start h-full">
           <Active />
