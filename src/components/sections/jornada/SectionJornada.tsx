@@ -26,6 +26,10 @@ const PANEL_MODES: Record<string, Mode[]> = {
     { value: 'economics', label: 'Panorâma Sócioeconômico', Component: ModeEconomics },
     { value: 'risks', label: 'Riscos estratégicos', Component: ModeRiscos },
   ],
+  recursos: [
+    {value: 'emendas', label: 'Emendas', Component: ModeResources},
+    {value: 'editais', label: 'Editais', Component: ModeEditais}
+  ],
 }
 
 export default function SectionJornada() {
