@@ -4,7 +4,6 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import SectionAgendas from '@/components/sections/SectionAgendas'
 import SectionJornada from '@/components/sections/jornada/SectionJornada'
-import SectionRisks from '@/components/sections/SectionRisks'
 import SectionResources from '@/components/sections/SectionResources'
 import SectionTraining from '@/components/sections/SectionTraining'
 import SectionCaseStudies from '@/components/sections/SectionCaseStudies'
@@ -42,13 +41,6 @@ export default function Home() {
         <div id="ambiente">
           <SectionJornada />
         </div>
-        {data && (
-          <>
-            <div id="riscos">
-              <SectionRisks agendas={data.agendas} />
-            </div>
-          </>
-        )}
         <div id="recursos">
           <SectionResources />
         </div>
