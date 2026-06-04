@@ -15,6 +15,8 @@ import ModeEconomics from '@/components/economics/ModeEconomics'
 import ModeRiscos from '@/components/risks/ModeRisks'
 import ModeResources from '@/components/resources/ModeResources'
 import ModeEditais from '@/components/resources/ModeEditais'
+import ModeTraining from '@/components/training/ModeTraining'
+import ModeCaseStudies from '@/components/case-studies/ModeCaseStudies'
 
 interface Mode extends ModeOption {
   Component: ComponentType
@@ -31,6 +33,10 @@ const PANEL_MODES: Record<string, Mode[]> = {
   recursos: [
     {value: 'emendas', label: 'Emendas', Component: ModeResources},
     {value: 'editais', label: 'Editais', Component: ModeEditais}
+  ],
+  capacitacao: [
+    {value: 'cursos', label: 'Cursos', Component: ModeTraining },
+    {value: 'praticas', label: 'Boas práticas', Component: ModeCaseStudies },
   ],
 }
 

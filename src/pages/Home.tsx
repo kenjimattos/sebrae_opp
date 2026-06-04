@@ -4,8 +4,6 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import SectionAgendas from '@/components/sections/SectionAgendas'
 import SectionJornada from '@/components/sections/jornada/SectionJornada'
-import SectionTraining from '@/components/sections/SectionTraining'
-import SectionCaseStudies from '@/components/sections/SectionCaseStudies'
 import SectionFormulator from '@/components/sections/SectionFormulator'
 // import SectionAIAssistant from '@/components/sections/SectionAIAssistant'
 import { useMunicipality } from '@/hooks/useMunicipality'
@@ -39,12 +37,6 @@ export default function Home() {
         </div>
         <div id="ambiente">
           <SectionJornada />
-        </div>
-        <div id="capacitacao">
-          <SectionTraining />
-        </div>
-        <div id="casos-sucesso">
-          <SectionCaseStudies />
         </div>
         <div id="formulador">
           <SectionFormulator />

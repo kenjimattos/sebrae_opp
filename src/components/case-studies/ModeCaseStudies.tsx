@@ -1,10 +1,6 @@
-// Figma: Section/CasosSucesso (390:623)
 
-import SectionContainer from '@/components/ui/SectionContainer'
-import SectionHeader from '@/components/ui/SectionHeader'
 import Carousel from '@/components/ui/Carousel'
 import CaseStudiesCard from '@/components/case-studies/CaseStudiesCard'
-import { sectionContent } from '@/data/home/sections'
 import { caseStudies } from '@/data/home/case-studies'
 import Card from '../ui/Card'
 import TitleSubtitle from '../ui/TitleSubtitle'
@@ -15,9 +11,7 @@ const SCROLL_AMOUNT = 350 + 12
 
 export default function SectionCaseStudies() {
   return (
-    <SectionContainer>
-      <SectionHeader title={sectionContent.caseStudies.title} description={sectionContent.caseStudies.description} />
-
+    <>
       <section className="flex flex-col gap-md">
         <Carousel scrollAmount={SCROLL_AMOUNT}>
           {caseStudies.map((caseStudy) => (
@@ -34,6 +28,6 @@ export default function SectionCaseStudies() {
           <PillButton label="Entrar na comunidade" href="/comunidade" className="shrink-0" />
         </Card>
       </section>
-    </SectionContainer>
+    </>
   )
 }
