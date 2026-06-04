@@ -38,6 +38,10 @@ export default function ModeToggle({
 }: ModeToggleProps) {
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])
   const [pill, setPill] = useState<{ left: number; width: number } | null>(null)
+  // Anima o deslize do pill ao trocar de modo; desliga quando o conjunto de
+  // opções muda (troca de jornada) pra o pill apenas reposicionar sem deslizar.
+  const [animate, setAnimate] = useState(false)
+  const prevOptionsRef = useRef(options)
 
   const activeIndex = options.findIndex((opt) => opt.value === value)
 
@@ -46,6 +50,8 @@ export default function ModeToggle({
   useLayoutEffect(() => {
     const el = buttonRefs.current[activeIndex]
     if (!el) return
+    setAnimate(prevOptionsRef.current === options)
+    prevOptionsRef.current = options
     setPill({ left: el.offsetLeft, width: el.offsetWidth })
   }, [activeIndex, options])
 
@@ -58,7 +64,9 @@ export default function ModeToggle({
       {pill && (
         <span
           aria-hidden
-          className="absolute top-1/2 -translate-y-1/2 h-[80%] rounded-full bg-accent transition-[left,width] duration-300 ease-out"
+          className={`absolute top-1/2 -translate-y-1/2 h-[80%] rounded-full bg-accent ${
+            animate ? 'transition-[left,width] duration-300 ease-out' : ''
+          }`}
           style={{ left: pill.left, width: pill.width }}
         />
       )}

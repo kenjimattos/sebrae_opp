@@ -4,7 +4,7 @@
 // o ModeToggle fica travado no topo (header + toggle = chrome fixo) e só o modo
 // ativo recebe flex-1 para distribuir seus elementos no espaço restante.
 
-import { act, useState, type ComponentType } from 'react'
+import { useState, type ComponentType } from 'react'
 import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { sectionContent } from '@/data/home/sections'
@@ -13,6 +13,8 @@ import ModeToggle, { type ModeOption } from '@/components/ui/ModeToggle'
 import ModeEixos from '@/components/agenda/ModeEixos'
 import ModeEconomics from '@/components/economics/ModeEconomics'
 import ModeRiscos from '@/components/risks/ModeRisks'
+import ModeResources from '@/components/resources/ModeResources'
+import ModeEditais from '@/components/resources/ModeEditais'
 
 interface Mode extends ModeOption {
   Component: ComponentType
@@ -40,9 +42,16 @@ export default function SectionJornada() {
   const [value, setValue] = useState(modes[0].value)
   const Active = (modes.find((m) => m.value === value) ?? modes[0]).Component
 
+  // Troca de pilar pela SideNav volta o ModeToggle para a primeira opção.
+  const handleSelect = (id: string) => {
+    setActiveId(id)
+    const nextModes = PANEL_MODES[id]
+    if (nextModes) setValue(nextModes[0].value)
+  }
+
   return (
     <SectionContainer className="!flex-row gap-lg !h-auto !py-lg">
-      <SideNav activeId={activeId} onSelect={setActiveId} className="w-1/5 shrink-0 h-[90dvh]" />
+      <SideNav activeId={activeId} onSelect={handleSelect} className="w-1/5 shrink-0 h-[90dvh]" />
       <section className="flex flex-1 flex-col min-h-0 gap-md">
         <header className="flex flex-col gap-sm">
           <SectionHeader
