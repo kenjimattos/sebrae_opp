@@ -97,11 +97,6 @@ export const sectionContent = {
     description:
       'Cursos organizados por eixo de atuação para apoiar gestores públicos na formulação, execução e financiamento de políticas públicas.',
   },
-  aiAssistant: {
-    title: 'Assistente IA',
-    description:
-      'Use inteligência artificial para analisar indicadores, gerar relatórios e encontrar oportunidades de desenvolvimento para o seu município.',
-  },
   opportunities: {
     title:
       'Encontre <highlight>editais e programas de financiamento</highlight> para o seu município',

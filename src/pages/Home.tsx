@@ -5,7 +5,6 @@ import Footer from '@/components/layout/Footer'
 import SectionAgendas from '@/components/sections/SectionAgendas'
 import SectionJornada from '@/components/sections/SectionJornada'
 import SectionFormulator from '@/components/sections/SectionFormulator'
-// import SectionAIAssistant from '@/components/sections/SectionAIAssistant'
 import { useMunicipality } from '@/hooks/useMunicipality'
 
 const HEADER_OFFSET = 95
@@ -43,8 +42,6 @@ export default function Home() {
         <div id="formulador">
           <SectionFormulator />
         </div>
-        {/* Hidden for now, may be used in the future */}
-        {/* <SectionAIAssistant /> */}
       </main>
       <Footer />
     </div>
