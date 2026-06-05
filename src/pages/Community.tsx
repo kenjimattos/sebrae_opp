@@ -8,7 +8,7 @@ import { sectionContent } from '@/data/home/sections'
 
 export default function Community() {
   return (
-    <div className="min-h-screen bg-primary flex flex-col">
+    <main className="min-h-screen bg-primary">
       <Header />
 
       <div className="container">
@@ -29,6 +29,6 @@ export default function Community() {
       </div>
 
       <Footer />
-    </div>
+    </main>
   )
 }

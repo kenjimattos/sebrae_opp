@@ -27,7 +27,7 @@ export default function Home() {
   }, [hash])
 
   return (
-    <div className="min-h-screen bg-primary">
+    <main className="min-h-screen bg-primary">
       <Header />
         <div className="container">
           <div id="agenda">
@@ -43,6 +43,6 @@ export default function Home() {
           </div>
       </div>
       <Footer />
-    </div>
+    </main>
   )
 }

@@ -37,7 +37,7 @@ export default function Trails() {
   }, [activeId])
 
   return (
-    <div className="min-h-screen bg-primary">
+    <main className="min-h-screen bg-primary">
       <Header />
 
       <div className="container">
@@ -88,6 +88,6 @@ export default function Trails() {
       </div>
 
       <Footer />
-    </div>
+    </main>
   )
 }

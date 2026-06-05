@@ -5,7 +5,7 @@ import SectionHero from '@/components/sections/SectionHero'
 export default function Login() {
 
   return (
-    <div className="min-h-screen bg-primary">
+    <main className="min-h-screen bg-primary">
       <Header />
 
         <div className="container">
@@ -13,6 +13,6 @@ export default function Login() {
         </div>
 
       <Footer />
-    </div>
+    </main>
   )
 }
