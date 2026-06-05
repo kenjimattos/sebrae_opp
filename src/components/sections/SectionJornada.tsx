@@ -5,7 +5,6 @@
 // ativo recebe flex-1 para distribuir seus elementos no espaço restante.
 
 import { useState, type ComponentType } from 'react'
-import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { sectionContent } from '@/data/home/sections'
 import SideNav from '@/components/layout/SideNav'
@@ -56,7 +55,7 @@ export default function SectionJornada() {
   }
 
   return (
-    <SectionContainer className="!flex-row gap-lg !h-auto !py-lg">
+    <section className="section-container">
       <SideNav activeId={activeId} onSelect={handleSelect} className="w-1/5 shrink-0 h-[90dvh]" />
       <section className="flex flex-1 flex-col min-h-0 gap-md">
         <header className="flex flex-col gap-sm">
@@ -76,6 +75,6 @@ export default function SectionJornada() {
           <Active />
         </main>
       </section>
-    </SectionContainer>
+    </section>
   )
 }

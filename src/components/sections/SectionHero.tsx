@@ -1,8 +1,6 @@
 // Tailwind pure — no Figma equivalent yet
 // Hero: eyebrow + macro objetivo + 4 blocos 2×2 (Agenda / Recursos / Capacitação / Formulador)
 // Cada bloco é clicável e faz scroll suave para a seção correspondente.
-
-import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '../ui/SectionHeader'
 import Button from '../ui/buttons/Button'
 import IconButton from '@/components/ui/buttons/IconButton'
@@ -26,7 +24,7 @@ const ctaIcons: Record<string, LucideIcon> = {
 export default function SectionHero() {
 
   return (
-    <SectionContainer className="items-center gap-lg">
+    <section className="section-container">
       {/* Eyebrow */}
       <div className="flex items-center gap-sm typo-title-sm uppercase">
         <span className="text-accent">
@@ -77,6 +75,6 @@ export default function SectionHero() {
           })}
         </div>
       </div>
-    </SectionContainer>
+    </section>
   )
 }

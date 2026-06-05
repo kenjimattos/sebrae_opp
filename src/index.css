@@ -255,11 +255,11 @@
   }
 
   .section-container {
-    width: 100%;
-    margin-inline: auto;
-    padding-inline: var(--spacing-md);
-    display: flex; flex-direction: column; justify-content: flex-start;
+    padding-inline: var(--spacing-gutter);
+    display: flex; flex-direction: column;
     padding-block: var(--spacing-md);
+    align-items: center;
+    gap: var(--spacing-lg);
   }
   .card-surface           { background-color: var(--semantic-surface-primary);   border-radius: var(--radius-sm); }
   .card-surface-secondary { background-color: var(--semantic-surface-secondary); border-radius: var(--radius-sm); }

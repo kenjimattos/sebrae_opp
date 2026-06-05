@@ -9,7 +9,6 @@ import AgendaCard from '@/components/agenda/AgendaCard'
 import { ParaibaOutlineMap } from '@/components/map/ParaibaOutlineMap'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { agendaObjectives } from '@/data/indicators/descriptions/agendas'
-import SectionContainer from '@/components/ui/SectionContainer'
 import municipios from '@/data/indicators/municipalities.json'
 import CitySelector from '@/components/layout/CitySelector'
 
@@ -34,22 +33,20 @@ export default function SectionAgendas() {
   // CitySelector. A lista de agendas e o card só aparecem após a seleção.
   if (!hasSelection) {
     return (
-      <SectionContainer className="items-center gap-md">
+      <section className="section-container">
         <CitySelector />
-        <div className="flex flex-1 min-h-0 w-[90%] items-center justify-center">
-          <div className="w-full">
-            <ParaibaOutlineMap
-              selectedId={municipality.id}
-              onSelect={handleMapSelect}
-            />
-          </div>
+        <div className="w-full">
+          <ParaibaOutlineMap
+            selectedId={municipality.id}
+            onSelect={handleMapSelect}
+          />
         </div>
-      </SectionContainer>
+      </section>
     )
   }
 
   return (
-    <SectionContainer className="items-center gap-md">
+    <section className="section-container">
       <CitySelector />
       <div className="flex flex-1 min-h-0 gap-md">
           {/* Coluna esquerda: container rounded com heading + agendas */}
@@ -88,6 +85,6 @@ export default function SectionAgendas() {
           )}
         </div>
       </div>
-      </SectionContainer>
+      </section>
   )
 }

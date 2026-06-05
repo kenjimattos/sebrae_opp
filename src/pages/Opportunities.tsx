@@ -3,7 +3,6 @@
 
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import SectionContainer from '@/components/ui/SectionContainer'
 import { sectionContent } from '@/data/home/sections'
 
 export default function Opportunities() {
@@ -12,7 +11,7 @@ export default function Opportunities() {
       <Header />
 
       <main className="flex-1 mx-auto w-full max-w-[1440px]">
-        <SectionContainer className="items-center gap-lg">
+        <section className="section-container">
           <h1
             className="typo-h1 text-center font-regular leading-[1.2]"
             dangerouslySetInnerHTML={{
@@ -25,7 +24,7 @@ export default function Opportunities() {
           <p className="typo-body-lg text-center max-w-[800px] text-inactive">
             {sectionContent.opportunities.description}
           </p>
-        </SectionContainer>
+        </section>
       </main>
 
       <Footer />

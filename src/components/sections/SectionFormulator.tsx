@@ -1,6 +1,5 @@
 // Figma: Section/Formulador (390:635)
 
-import SectionContainer from '@/components/ui/SectionContainer'
 import SectionHeader from '@/components/ui/SectionHeader'
 import FormulatorCard from '@/components/formulator/FormulatorCard'
 import { sectionContent } from '@/data/home/sections'
@@ -8,7 +7,7 @@ import { formulatorCards } from '@/data/home/formulator'
 
 export default function SectionFormulator() {
   return (
-    <SectionContainer>
+    <section className="section-container">
       <SectionHeader
         title={sectionContent.formulator.title}
         description={sectionContent.formulator.description}
@@ -25,6 +24,6 @@ export default function SectionFormulator() {
           />
         ))}
       </div>
-    </SectionContainer>
+    </section>
   )
 }
