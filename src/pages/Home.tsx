@@ -4,7 +4,6 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import SectionAgendas from '@/components/sections/SectionAgendas'
 import SectionJornada from '@/components/sections/SectionJornada'
-import SectionFormulator from '@/components/sections/SectionFormulator'
 import { useMunicipality } from '@/hooks/useMunicipality'
 
 const HEADER_OFFSET = 95
@@ -29,7 +28,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-primary">
       <Header />
-        <div className="container">
+        <div className="container flex flex-col gap-lg">
           <div id="agenda">
             <SectionAgendas />
           </div>
@@ -38,9 +37,6 @@ export default function Home() {
             <SectionJornada />
           </div>
           : ''}
-          <div id="formulador">
-            <SectionFormulator />
-          </div>
       </div>
       <Footer />
     </main>
