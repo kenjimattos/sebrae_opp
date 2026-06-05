@@ -26,7 +26,7 @@ export default function SectionHero() {
   return (
     <section className="section-container">
       {/* Eyebrow */}
-      <div className="flex items-center gap-sm typo-title-sm uppercase">
+      <header className="flex items-center gap-sm typo-title-sm uppercase">
         <span className="text-accent">
           Plataforma OPP
         </span>
@@ -34,13 +34,13 @@ export default function SectionHero() {
         <span className="">
           Inteligencia em políticas públicas
         </span>
-      </div>
+      </header>
 
       {/* Macro objetivo */}
       <SectionHeader
         title={sectionContent.hero.title}
         description={sectionContent.hero.description}
-        className="px-lg"
+        className="pr-2xl"
       />
 
       <div className="flex flex-col items-center gap-lg px-lg">
@@ -51,14 +51,14 @@ export default function SectionHero() {
         />
 
         {/* 4 blocos em grid 2×2 */}
-        <div className="grid grid-cols-2 gap-x-2xl gap-y-md px-3xl w-full">
+        <div className="grid grid-cols-2 auto-rows-[1fr] gap-x-2xl gap-y-md px-3xl w-full max-w-[70dvw]">
           {sectionContent.jornadas.map((each) => {
             const Icon = ctaIcons[each.id]
 
             return (
               <div
                 key={each.id}
-                className="glass rounded-lg p-md flex items-center gap-lg text-left"
+                className="glass rounded-lg p-md flex items-center gap-md text-left"
                 aria-label={`Ir para ${each.title}`}
               >
                 <IconButton icon={Icon} size="lg" decorative/>
