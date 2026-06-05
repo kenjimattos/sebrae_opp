@@ -10,13 +10,13 @@ interface SideNavProps {
 
 export default function SideNav({ activeId, onSelect, className = '' }: SideNavProps) {
     return (
-        <main className={`glass rounded-sm flex flex-col items-center p-md gap-lg ${className}`}>
-            <header>
+        <div className={`glass rounded-sm flex flex-col items-center p-md gap-lg ${className}`}>
+            <div>
                 <h3 className="typo-h3 uppercase">
                     {sectionContent.hero.subtitle}
                 </h3>
                 <p className="typo-body-sm py-sm">{sectionContent.hero.description}</p>
-            </header>
+            </div>
 
 
             <nav className="flex flex-col w-full">
@@ -46,6 +46,6 @@ export default function SideNav({ activeId, onSelect, className = '' }: SideNavP
                     )
                 })}
             </nav>
-        </main>
+        </div>
     )
 }
