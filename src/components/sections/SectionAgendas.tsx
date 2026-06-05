@@ -50,8 +50,8 @@ export default function SectionAgendas() {
       <CitySelector />
       <div className="flex flex-1 min-h-0 gap-md">
           {/* Coluna esquerda: container rounded com heading + agendas */}
-          <div className="flex flex-[2] min-w-0 flex-col glass p-md rounded-sm h-full gap-md">
-           <div>
+          <div className="flex flex-col w-[44%] glass p-md rounded-sm gap-md">
+          <div>
               <h1
                 className="typo-h1"
               >
@@ -67,24 +67,25 @@ export default function SectionAgendas() {
             />
           </div>
 
-        {/* Coluna direita: mapa + overlays */}
-        <div className="flex-[3] flex flex-col">
-          <div className="flex-col-start h-full gap-sm">
-            <ParaibaOutlineMap
-              selectedId={municipality.id}
-              onSelect={handleMapSelect}
-            />
-          </div>
-          {selectedAgenda && (
+          {/* Coluna direita: mapa + overlays */}
+          <div className="flex flex-col gap-md">
+            <div className="flex-col-start h-full px-md">
+              <ParaibaOutlineMap
+                padding={0}
+                selectedId={municipality.id}
+                onSelect={handleMapSelect}
+              />
+            </div>
+            {selectedAgenda && (
               <AgendaCard
                 title={selectedAgenda.name}
                 indicators={selectedAgenda.indicators.slice(0, 3)}
                 description={agendaObjectives[selectedAgenda.id]}
                 className=''
               />
-          )}
+            )}
+          </div>
         </div>
-      </div>
       </section>
   )
 }
