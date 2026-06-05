@@ -10,7 +10,7 @@ export default function Opportunities() {
     <div className="min-h-screen bg-primary flex flex-col">
       <Header />
 
-      <main className="flex-1 mx-auto w-full max-w-[1440px]">
+      <div className="container">
         <section className="section-container">
           <h1
             className="typo-h1 text-center font-regular leading-[1.2]"
@@ -25,7 +25,7 @@ export default function Opportunities() {
             {sectionContent.opportunities.description}
           </p>
         </section>
-      </main>
+      </div>
 
       <Footer />
     </div>

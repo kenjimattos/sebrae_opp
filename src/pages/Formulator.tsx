@@ -58,13 +58,15 @@ export default function Formulator() {
   return (
     <main className="min-h-screen bg-primary">
       <Header />
-      <section className="mx-auto w-full max-w-[1440px] flex flex-col gap-xl py-2xl px-2xl">
-        <TitleSubtitle title={sectionContent.formulatorPage.title} subtitle={sectionContent.formulatorPage.description} />
-        <section className="flex flex-col items-start gap-sm">
-          <FormulatorProgress currentIndex={currentIndex} percent={percent} />
-          <Outlet />
+      <div className="container">
+        <section className="section-container">
+          <TitleSubtitle title={sectionContent.formulatorPage.title} subtitle={sectionContent.formulatorPage.description} />
+          <section className="flex flex-col items-start gap-sm">
+            <FormulatorProgress currentIndex={currentIndex} percent={percent} />
+            <Outlet />
+          </section>
         </section>
-      </section>
+      </div>
       <Footer />
     </main>
   )

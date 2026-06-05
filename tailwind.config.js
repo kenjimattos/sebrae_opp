@@ -36,6 +36,10 @@ export default {
         'inactive': 'var(--semantic-text-inactive)',
         'accent':   'var(--semantic-accent)',
       },
+      container: {
+        center: true,
+        screens: { '2xl': '1900px' },
+      }
     },
   },
   plugins: [],

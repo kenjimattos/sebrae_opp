@@ -40,50 +40,52 @@ export default function Trails() {
     <div className="min-h-screen bg-primary">
       <Header />
 
-      <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-3xl py-2xl px-gutter">
-        <TitleSubtitle
-          title={sectionContent.trails.title}
-          subtitle={sectionContent.trails.description}
-          size="lg"
-        />
+      <div className="container">
+        <section className="section-container">
+          <TitleSubtitle
+            title={sectionContent.trails.title}
+            subtitle={sectionContent.trails.description}
+            size="lg"
+          />
 
-        {trails.map((trail) => (
-          <section
-            key={trail.slug}
-            id={trailAnchor(trail.slug)}
-            className="flex flex-col gap-lg scroll-mt-[120px]"
-          >
-            <div className="flex flex-col gap-xs">
-              <div className="flex items-start justify-between gap-md">
-                <h3 className="typo-h3">{trail.title}</h3>
-                <span className="typo-body bg-surface rounded-sm px-sm py-2xs shrink-0">
-                  {trail.courses.length} cursos
-                </span>
+          {trails.map((trail) => (
+            <section
+              key={trail.slug}
+              id={trailAnchor(trail.slug)}
+              className="flex flex-col gap-lg scroll-mt-[120px] w-full"
+            >
+              <div className="flex flex-col gap-xs">
+                <div className="flex items-start justify-between gap-md">
+                  <h3 className="typo-h3">{trail.title}</h3>
+                  <span className="typo-body bg-surface rounded-sm px-sm py-2xs shrink-0">
+                    {trail.courses.length} cursos
+                  </span>
+                </div>
+                <p className="typo-body-lg w-2/3">{trail.description}</p>
               </div>
-              <p className="typo-body-lg w-2/3">{trail.description}</p>
-            </div>
 
-            <Carousel scrollAmount={CARD_SCROLL_AMOUNT}>
-              {trail.courses.map((course, idx) => {
-                const id = courseAnchor(trail.slug, idx)
-                return (
-                  <TrailCard
-                    key={id}
-                    id={id}
-                    title={course.title}
-                    duration={course.duration}
-                    description={course.description}
-                    href={course.url}
-                    highlighted={activeId === id}
-                    scrollMarginTop={SCROLL_MARGIN_TOP}
-                    className="snap-start"
-                  />
-                )
-              })}
-            </Carousel>
-          </section>
+              <Carousel scrollAmount={CARD_SCROLL_AMOUNT}>
+                {trail.courses.map((course, idx) => {
+                  const id = courseAnchor(trail.slug, idx)
+                  return (
+                    <TrailCard
+                      key={id}
+                      id={id}
+                      title={course.title}
+                      duration={course.duration}
+                      description={course.description}
+                      href={course.url}
+                      highlighted={activeId === id}
+                      scrollMarginTop={SCROLL_MARGIN_TOP}
+                      className="snap-start"
+                    />
+                  )
+                })}
+              </Carousel>
+            </section>
         ))}
-      </main>
+        </section>
+      </div>
 
       <Footer />
     </div>

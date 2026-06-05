@@ -29,20 +29,19 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-primary">
       <Header />
-
-      <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-2xl pb-3xl">
-        <div id="agenda">
-          <SectionAgendas />
-        </div>
-        { data ? 
-        <div id="ambiente">
-          <SectionJornada />
-        </div>
-        : ''}
-        <div id="formulador">
-          <SectionFormulator />
-        </div>
-      </main>
+        <div className="container">
+          <div id="agenda">
+            <SectionAgendas />
+          </div>
+          { data ? 
+          <div id="ambiente">
+            <SectionJornada />
+          </div>
+          : ''}
+          <div id="formulador">
+            <SectionFormulator />
+          </div>
+      </div>
       <Footer />
     </div>
   )

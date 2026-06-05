@@ -8,11 +8,9 @@ export default function Login() {
     <div className="min-h-screen bg-primary">
       <Header />
 
-      <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-2xl pb-3xl">
-        <div id="hero">
+        <div className="container">
           <SectionHero />
         </div>
-      </main>
 
       <Footer />
     </div>
