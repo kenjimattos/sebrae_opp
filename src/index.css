@@ -256,7 +256,6 @@
 
   .section-container {
     width: 100%;
-    height: calc(100dvh - var(--header-height));
     margin-inline: auto;
     padding-inline: var(--spacing-md);
     display: flex; flex-direction: column; justify-content: flex-start;
