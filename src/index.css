@@ -247,9 +247,7 @@
   /* ============ LAYOUT — COMPOSITES ============ */
   .header-container {
     height: var(--header-height);
-    padding-inline: var(--spacing-gutter);
     padding-block: var(--spacing-sm);
-    display: flex; align-items: center; justify-content: space-between;
     background-color: var(--semantic-surface-primary);
     border-bottom: 0.125rem solid var(--semantic-surface-secondary);
   }

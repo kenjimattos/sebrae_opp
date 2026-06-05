@@ -95,16 +95,15 @@ export default function Header({ className = '' }: HeaderProps) {
   }
 
   return (
-    <header
-      className={`header-container ${className}`}
-    >
-      {/* Logo — click scrolls to top */}
-      <img
-        src="/assets/sebrae-logo.png"
-        alt="Sebrae"
-        className="h-full object-cover cursor-pointer"
-        onClick={onLogoClick}
-      />
+    <header className={`header-container ${className}`}>
+      <div className="container px-gutter flex items-center justify-between h-full">
+        {/* Logo — click scrolls to top */}
+        <img
+          src="/assets/sebrae-logo.png"
+          alt="Sebrae"
+          className="h-full object-cover cursor-pointer"
+          onClick={onLogoClick}
+        />
 
       {/* Center nav pill */}
       <div className={`${isLoggedIn ? 'flex-between' : 'hidden'} gap-md px-sm py-2xs`}>
@@ -128,12 +127,13 @@ export default function Header({ className = '' }: HeaderProps) {
         </nav>
       </div>
 
-      {/* User / Login */}
-      {isLoggedIn ? (
-        <User />
-      ) : (
-        <Button label="Login" variant="primary" size="md" onClick={handleLogin} />
-      )}
+        {/* User / Login */}
+        {isLoggedIn ? (
+          <User />
+        ) : (
+          <Button label="Login" variant="primary" size="md" onClick={handleLogin} />
+        )}
+      </div>
     </header>
   )
 }
