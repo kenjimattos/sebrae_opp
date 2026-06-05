@@ -6,7 +6,7 @@ import { footerColumns, brandText, copyright } from '@/data/layout'
 export default function Footer({ className = '' }: { className?: string }) {
   return (
     <footer
-      className={`bg-surface px-margin py-2xl ${className}`}
+      className={`bg-surface px-gutter py-2xl ${className}`}
     >
       <div className="flex items-start mx-auto w-full max-w-[1440px] justify-between">
         {/* Brand */}

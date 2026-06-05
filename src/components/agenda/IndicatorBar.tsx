@@ -30,7 +30,7 @@ export default function IndicatorBar({
   const marker = MARKER[status]
 
   return (
-    <div className={`flex flex-col gap-xs w-[var(--spacing-margin)] ${className}`}>
+    <div className={`flex flex-col gap-xs w-[var(--spacing-gutter)] ${className}`}>
       <div className="relative h-[var(--spacing-2xs)] w-full" style={{ background: BAR_GRADIENT }}>
         <div
           className="absolute size-[var(--spacing-sm)] top-1/2 -translate-x-1/2 -translate-y-1/2"

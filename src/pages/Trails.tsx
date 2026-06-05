@@ -40,7 +40,7 @@ export default function Trails() {
     <div className="min-h-screen bg-primary">
       <Header />
 
-      <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-3xl py-2xl px-margin">
+      <main className="mx-auto w-full max-w-[1440px] flex flex-col gap-3xl py-2xl px-gutter">
         <TitleSubtitle
           title={sectionContent.trails.title}
           subtitle={sectionContent.trails.description}

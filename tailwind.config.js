@@ -13,7 +13,7 @@ export default {
         'xl':  'var(--spacing-xl)',      // 48px
         '2xl': 'var(--spacing-2xl)',     // 64px
         '3xl': 'var(--spacing-3xl)',     // 96px
-        'margin': 'var(--spacing-margin)', // 180px
+        'gutter': 'var(--spacing-gutter)', // 180px
       },
       borderColor: {
         'surface': 'var(--semantic-surface-primary)',

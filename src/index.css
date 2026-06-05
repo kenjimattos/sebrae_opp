@@ -64,7 +64,7 @@
   --spacing-xl: 3rem; /* 48px */
   --spacing-2xl: 4rem; /* 64px */
   --spacing-3xl: 6rem; /* 96px */
-  --spacing-margin: 11.25rem; /* 180px */
+  --spacing-gutter: 11.25rem; /* 180px */
 
   /* ============ SIZES ============ */
   --header-height: 5rem; /* 80px */
@@ -247,7 +247,7 @@
   /* ============ LAYOUT — COMPOSITES ============ */
   .header-container {
     height: var(--header-height);
-    padding-inline: var(--spacing-margin);
+    padding-inline: var(--spacing-gutter);
     padding-block: var(--spacing-sm);
     display: flex; align-items: center; justify-content: space-between;
     background-color: var(--semantic-surface-primary);
