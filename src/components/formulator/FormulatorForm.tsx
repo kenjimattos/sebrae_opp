@@ -2,9 +2,9 @@
 // Card central do Formulador: título + subtítulo + slot do form + footer paginação.
 // Footer exibe Anterior (quando não é a primeira etapa), "X/10 etapas" ao centro, e Próxima/Finalizar à direita.
 
-import Card from '@/components/ui/Card'
-import PillButton from '@/components/ui/buttons/PillButton'
+import Button from '@/components/ui/buttons/Button'
 import { formulatorSteps } from '@/data/formulator/steps'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 interface FormCardProps {
   titulo: string
@@ -16,7 +16,7 @@ interface FormCardProps {
   className?: string
 }
 
-export default function FormCard({
+export default function Form({
   titulo,
   subtitle,
   currentIndex,
@@ -30,10 +30,8 @@ export default function FormCard({
   const isLast = currentIndex === total - 1
 
   return (
-    <Card
-      padding="lg"
-      radius="sm"
-      className={`flex flex-col items-stretch gap-lg flex-1 ${className}`}
+    <div
+      className={`glass p-md rounded-sm flex flex-col items-stretch gap-lg flex-1 ${className}`}
     >
       <div className="flex flex-col items-start gap-xs">
         <h2 className="typo-body-lg-bold">{titulo}</h2>
@@ -45,10 +43,10 @@ export default function FormCard({
       <div className="flex items-center justify-between">
         <div className="min-w-[120px]">
           {!isFirst && onPrev && (
-            <PillButton
+            <Button
+              icon={ArrowLeft}
               label="Anterior"
               variant="secondary"
-              size="sm"
               iconPosition="left"
               onClick={onPrev}
             />
@@ -58,15 +56,15 @@ export default function FormCard({
           {currentIndex + 1}/{total} etapas
         </p>
         <div className="min-w-[120px] flex justify-end">
-          <PillButton
+          <Button
+            icon={ArrowRight}
             label={isLast ? 'Finalizar' : 'Próxima'}
             variant={isLast ? 'primary' : 'secondary'}
-            size="sm"
             iconPosition="right"
             onClick={onNext}
           />
         </div>
       </div>
-    </Card>
+    </div>
   )
 }

@@ -5,7 +5,7 @@
 import { useEffect, useRef, useState } from 'react'
 import FormulatorProgress from '@/components/formulator/FormulatorProgress'
 import ProjectSteps from '@/components/formulator/FormulatorProjectSteps'
-import FormCard from '@/components/formulator/FormCard'
+import Form from '@/components/formulator/FormulatorForm'
 import FormulatorReview from '@/components/formulator/FormulatorReview'
 import { StepForm } from '@/components/formulator/steps'
 import { formulatorSteps, findStepBySlug, findStepIndex } from '@/data/formulator/steps'
@@ -95,7 +95,7 @@ export default function ModeFormulator() {
             onSelect={goToSlug}
           />
 
-          <FormCard
+          <Form
             titulo={step.title}
             subtitle={step.subtitle}
             currentIndex={index}
@@ -103,7 +103,7 @@ export default function ModeFormulator() {
             onNext={onNext}
           >
             <StepForm slug={currentSlug} />
-          </FormCard>
+          </Form>
         </div>
       )}
     </section>

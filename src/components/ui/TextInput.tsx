@@ -31,11 +31,10 @@ export default function TextInput({
 
   const fieldClasses = [
     'w-full typo-body px-sm py-xs border border-solid',
-    'rounded-[var(--spacing-xs)]',
     disabled
       ? 'bg-[var(--semantic-surface-secondary)] border-[var(--semantic-surface-secondary)] cursor-not-allowed'
-      : 'bg-[var(--semantic-surface-primary)] border-[var(--semantic-surface-secondary)]',
-    'focus:outline-none focus:border-[var(--semantic-text-primary)]',
+      : 'bg-[var(--semantic-background)] border-[var(--semantic-surface-secondary)]',
+    'focus:outline-none focus:border-white',
     'placeholder:text-[color:var(--semantic-text-inactive)]',
   ].join(' ')
 
