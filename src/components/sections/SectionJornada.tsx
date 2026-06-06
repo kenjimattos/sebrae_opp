@@ -57,21 +57,25 @@ export default function SectionJornada() {
   return (
     <section className="section-container min-h-[70dvh]">
       <div className="flex gap-lg flex-1 w-full">
-        <SideNav activeId={activeId} onSelect={handleSelect} className="w-1/5 shrink-0 self-stretch max-h-[888px]" />
-          <div className="flex flex-col gap-lg">
-            <SectionHeader
-              title={activeJornada.title}
-              description={activeJornada.subtitle}
-            />
-            { value ? <ModeToggle
-              value={value}
-              onChange={setValue}
-              options={modes}
-              ariaLabel="Modo de visualização"
-              className="self-center shrink-0"
-            /> : null }
-            <Active />
-          </div>
+        <SideNav
+          activeId={activeId}
+          onSelect={handleSelect}
+          className="w-[21%] shrink-0 self-stretch max-h-[888px]"
+        />
+        <div className="flex flex-col gap-lg">
+          <SectionHeader
+            title={activeJornada.title}
+            description={activeJornada.subtitle}
+          />
+          { value ? <ModeToggle
+            value={value}
+            onChange={setValue}
+            options={modes}
+            ariaLabel="Modo de visualização"
+            className="self-center shrink-0"
+          /> : null }
+          <Active />
+        </div>
       </div>
     </section>
   )
