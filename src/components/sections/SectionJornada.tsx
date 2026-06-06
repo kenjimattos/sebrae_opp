@@ -16,6 +16,7 @@ import ModeResources from '@/components/resources/ModeResources'
 import ModeEditais from '@/components/resources/ModeEditais'
 import ModeTraining from '@/components/training/ModeTraining'
 import ModeCaseStudies from '@/components/case-studies/ModeCaseStudies'
+import ModeFormulator from '@/components/formulator/ModeFormulator'
 
 interface Mode extends ModeOption {
   Component: ComponentType
@@ -36,6 +37,10 @@ const PANEL_MODES: Record<string, Mode[]> = {
   capacitacao: [
     {value: 'cursos', label: 'Cursos', Component: ModeTraining },
     {value: 'praticas', label: 'Boas práticas', Component: ModeCaseStudies },
+  ],
+  // Pilar de painel único: sem modos para alternar, o ModeToggle não aparece.
+  formulador: [
+    { value: 'formulador', label: 'Formulador', Component: ModeFormulator },
   ],
 }
 
@@ -62,12 +67,12 @@ export default function SectionJornada() {
           onSelect={handleSelect}
           className="w-[21%] shrink-0 h-[83dvh]"
         />
-        <div className="flex flex-col gap-md">
+        <div className="flex flex-col gap-md flex-1 min-w-0">
           <SectionHeader
             title={activeJornada.title}
             description={activeJornada.subtitle}
           />
-          { value ? <ModeToggle
+          { modes.length > 1 ? <ModeToggle
             value={value}
             onChange={setValue}
             options={modes}
