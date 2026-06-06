@@ -31,9 +31,9 @@ export default function DropdownMenu({
 
   return (
     <div
-      className={`absolute z-10 top-full left-0 mt-[var(--spacing-2xs)] w-[max-content] min-w-full ${className}`}
+      className={`absolute top-full bg-[var(--semantic-surface-secondary)] rounded-sm p-xs left-0 mt-[var(--spacing-2xs)] w-[max-content] min-w-full ${className}`}
     >
-      <div className="relative card-surface shadow-lg overflow-hidden">
+      <div className="relative shadow-lg overflow-hidden">
         <ul ref={listRef} className="max-h-[40dvh] overflow-y-auto">
           {options.map((option) => {
             const isSelected = option.value === value
@@ -44,7 +44,7 @@ export default function DropdownMenu({
                   onClick={() => onSelect(option.value)}
                   className={`w-full text-left px-sm py-xs cursor-pointer transition-colors whitespace-nowrap ${
                     isSelected
-                      ? 'bg-[var(--semantic-accent-surface)] typo-body-bold text-accent'
+                      ? 'bg-[var(--semantic-surface-primary)] typo-body-bold'
                       : 'typo-body hover:bg-surface-secondary'
                   }`}
                 >
