@@ -13,7 +13,6 @@ import FormulatorStep from '@/pages/FormulatorStep'
 import FormulatorConclusion from '@/pages/FormulatorConclusion'
 import Trails from '@/pages/Trails'
 import Opportunities from '@/pages/Opportunities'
-import Community from '@/pages/Community'
 
 function App() {
   return (
@@ -29,7 +28,6 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/trilhas" element={<Trails />} />
                 <Route path="/oportunidades" element={<Opportunities />} />
-                <Route path="/comunidade" element={<Community />} />
                 <Route path="/formulador" element={<Formulator />}>
                   <Route index element={<Navigate to="identificacao" replace />} />
                   <Route path="conclusao" element={<FormulatorConclusion />} />
