@@ -6,8 +6,7 @@
 //   - etapa em visitedSlugs (mas incompleta) → 'in-progress'
 //   - demais → 'unchecked'
 
-import Card from '@/components/ui/Card'
-import StepIndicator from './StepIndicator'
+import StepIndicator from '@/components/formulator/FormulatorStepIndicator'
 import { formulatorSteps } from '@/data/formulator/steps'
 
 interface ProjectStepsProps {
@@ -26,7 +25,7 @@ export default function ProjectSteps({
   className = '',
 }: ProjectStepsProps) {
   return (
-    <Card padding="lg" className={`flex flex-col items-start gap-sm ${className}`}>
+    <div className={`glass rounded-sm flex flex-col items-start gap-sm p-md ${className}`}>
       <p className="typo-body-bold">Etapas do projeto</p>
       {formulatorSteps.map((step) => {
         const status =
@@ -46,6 +45,6 @@ export default function ProjectSteps({
           />
         )
       })}
-    </Card>
+    </div>
   )
 }

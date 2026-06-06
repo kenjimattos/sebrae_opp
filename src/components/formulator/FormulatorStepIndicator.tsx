@@ -36,9 +36,9 @@ export default function StepIndicator({
 
   const Icon = isChecked ? Check : isCurrent ? CircleDot : Circle
   const iconColor = isChecked
-    ? 'text-[color:var(--semantic-success)]'
+    ? 'text-[color:var(--semantic-accent)]'
     : isCurrent
-      ? 'text-[color:var(--semantic-text-primary)]'
+      ? 'text-[color:var(--semantic-accent)]'
       : 'text-[color:var(--semantic-text-inactive)]'
 
   const labelColor = isActive

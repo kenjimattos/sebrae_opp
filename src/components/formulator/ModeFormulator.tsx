@@ -4,7 +4,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import FormulatorProgress from '@/components/formulator/FormulatorProgress'
-import ProjectSteps from '@/components/formulator/ProjectSteps'
+import ProjectSteps from '@/components/formulator/FormulatorProjectSteps'
 import FormCard from '@/components/formulator/FormCard'
 import FormulatorReview from '@/components/formulator/FormulatorReview'
 import { StepForm } from '@/components/formulator/steps'
