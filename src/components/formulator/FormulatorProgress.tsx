@@ -1,7 +1,6 @@
 // Figma: Formulador/Progress (620:4417)
 // Barra de progresso no topo do Formulador: "X% concluído" + ProgressBar + "Y/10 etapas • Etapa Atual: …".
 
-import Card from '@/components/ui/Card'
 import ProgressBar from '@/components/ui/ProgressBar'
 import { formulatorSteps } from '@/data/formulator/steps'
 
@@ -23,10 +22,8 @@ export default function FormulatorProgress({
   const stepNum = isFinalized ? formulatorSteps.length : currentIndex + 1
 
   return (
-    <Card
-      padding="lg"
-      radius="sm"
-      className={`flex flex-col items-start gap-sm w-full ${className}`}
+    <div
+      className={`glass flex flex-col items-start gap-sm w-full p-md rounded-sm ${className}`}
     >
       <div className="flex items-center justify-between w-full">
         <p className="typo-body-bold">{Math.round(percent)}% concluído</p>
@@ -35,6 +32,6 @@ export default function FormulatorProgress({
         </p>
       </div>
       <ProgressBar value={percent} />
-    </Card>
+    </div>
   )
 }
