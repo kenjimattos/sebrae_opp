@@ -1,7 +1,8 @@
 // Figma: Courses/CardRow (297:8)
 // Row inside a course trail card — title (uppercase) + hours + "Ver curso" link
 
-import PillButton from '@/components/ui/buttons/PillButton'
+import IconButton from '@/components/ui/buttons/IconButton'
+import { ArrowRight } from 'lucide-react'
 
 interface TrainingCardRowProps {
   title: string
@@ -17,16 +18,16 @@ export default function TrainingCardRow({ title, subtitle, href = '#', className
     >
       {/* Info */}
       <div className="flex flex-col gap-xs items-start w-2/3">
-        <p className="typo-body-bold">
+        <p className="typo-body-sm-bold">
           {title}
         </p>
-        <p className="typo-body w-full">
+        <p className="typo-body-sm w-full">
           {subtitle}
         </p>
       </div>
 
       {/* Ver curso button */}
-      <PillButton variant="ghost" size="sm" label="ver curso" href={href} />
+      <IconButton icon={ArrowRight} size="sm" onClick={() => window.location.href = href} />
     </div>
   )
 }
