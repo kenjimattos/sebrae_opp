@@ -11,7 +11,7 @@ export default function ModeResources() {
   return (
     <>
       {/* Container principal branco */}
-      <div className="flex flex-col glass rounded-sm p-lg h-full items-center gap-md">
+      <div className="flex flex-col glass rounded-sm p-lg items-center gap-lg">
           <TitleSubtitle
             size='md'
             title={resourcesContent.emendas.title}
@@ -69,7 +69,7 @@ export default function ModeResources() {
               </a>
             </div>
           </div>
-        <Button label={resourcesContent.buttons.explorarEmendas} variant='secondary' size='sm' className='w-fit'/>
+        <Button label={resourcesContent.buttons.explorarEmendas} variant='secondary' className='w-fit'/>
       </div>
     </>
   )
