@@ -56,20 +56,9 @@ export default function Header({ className = '' }: HeaderProps) {
   }
 
   function onLogoClick() {
-    if (isFormulador) {
-      if (!window.confirm(CONFIRM_SAIR_FORMULADOR)) return
-      trackAbandonoFormulador('logo')
-      reset()
       navigate('/')
       requestAnimationFrame(() => window.scrollTo({ top: 0 }))
-      return
-    }
-    if (!isHome) {
-      navigate('/')
-      requestAnimationFrame(() => window.scrollTo({ top: 0 }))
-      return
-    }
-    scrollToTop()
+      window.location.reload();
   }
 
   function onNavClick(sectionId: string) {
@@ -105,27 +94,27 @@ export default function Header({ className = '' }: HeaderProps) {
           onClick={onLogoClick}
         />
 
-      {/* Center nav pill */}
-      <div className={`${isLoggedIn ? 'flex-between' : 'hidden'} gap-md px-sm py-2xs`}>
-        <nav className="flex-between gap-md">
-          {navLinks.map(({ label, sectionId }) => {
-            const isActive = effectiveActive === sectionId
-            return (
-              <button
-                key={sectionId}
-                onClick={() => onNavClick(sectionId)}
-                className={`typo-title-sm transition-colors px-sm py-xs ${
-                  isActive
-                    ? 'text-[var(--semantic-accent)]'
-                    : 'hover:text-[var(--semantic-accent)] text-[var(--semantic-text-primary)]'
-                }`}
-              >
-                {label}
-              </button>
-            )
-          })}
-        </nav>
-      </div>
+        {/* Center nav link*/}
+        <div className={`${isLoggedIn ? 'flex-between' : 'hidden'} gap-md px-sm py-2xs`}>
+          <nav className="flex-between gap-md">
+            {navLinks.map(({ label, sectionId }) => {
+              const isActive = effectiveActive === sectionId
+              return (
+                <button
+                  key={sectionId}
+                  onClick={() => onNavClick(sectionId)}
+                  className={`typo-title-sm transition-colors px-sm py-xs ${
+                    isActive
+                      ? 'text-[var(--semantic-accent)]'
+                      : 'hover:text-[var(--semantic-accent)] text-[var(--semantic-text-primary)]'
+                  }`}
+                >
+                  {label}
+                </button>
+              )
+            })}
+          </nav>
+        </div>
 
         {/* User / Login */}
         {isLoggedIn ? (
