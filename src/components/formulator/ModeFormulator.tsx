@@ -81,13 +81,13 @@ export default function ModeFormulator() {
   }
 
   return (
-    <section className="flex flex-col items-start gap-sm w-full">
+    <section className="flex flex-col gap-sm w-full flex-1 min-h-0">
       <FormulatorProgress currentIndex={currentIndex} percent={percent} />
 
       {finalized || !step ? (
         <FormulatorReview onEdit={() => setFinalized(false)} onHome={onHome} />
       ) : (
-        <div className="flex items-stretch gap-sm w-full">
+        <div className="flex items-stretch gap-sm w-full flex-1 min-h-0">
           <ProjectSteps
             currentSlug={currentSlug}
             visitedSlugs={state.visitedSteps}

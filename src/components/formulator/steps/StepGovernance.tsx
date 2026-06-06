@@ -15,7 +15,7 @@ export default function StepGovernance() {
         subtitle="💡 Devem estar conectados aos objetivos definidos."
         hint="Quem gerencia o projeto? Comitês, equipes..."
         multiline
-        rows={4}
+        rows={3}
         value={data.management}
         onChange={(v) => update({ management: v })}
       />
@@ -23,7 +23,7 @@ export default function StepGovernance() {
         title="Monitoramento e Avaliação"
         hint="Como será feito o acompanhamento?"
         multiline
-        rows={4}
+        rows={3}
         value={data.monitoring}
         onChange={(v) => update({ monitoring: v })}
       />
@@ -31,7 +31,7 @@ export default function StepGovernance() {
         title="Prestação de Contas"
         hint="Relatórios, frequência, responsáveis..."
         multiline
-        rows={4}
+        rows={3}
         value={data.accountability}
         onChange={(v) => update({ accountability: v })}
       />

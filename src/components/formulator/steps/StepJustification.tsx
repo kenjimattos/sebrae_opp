@@ -15,7 +15,7 @@ export default function StepJustification() {
         subtitle="💡 Use dados do diagnóstico para fundamentar."
         hint="Descreva o problema que quer resolver"
         multiline
-        rows={4}
+        rows={2}
         value={data.problem}
         onChange={(v) => update({ problem: v })}
       />
@@ -23,7 +23,7 @@ export default function StepJustification() {
         title="Evidências e Dados"
         hint="Indicadores, pesquisas e dados que comprovam o problema..."
         multiline
-        rows={4}
+        rows={2}
         value={data.evidence}
         onChange={(v) => update({ evidence: v })}
       />
@@ -31,7 +31,7 @@ export default function StepJustification() {
         title="Impacto da Inação"
         hint="O que acontece se o problema não for resolvido?"
         multiline
-        rows={4}
+        rows={2}
         value={data.impact}
         onChange={(v) => update({ impact: v })}
       />
@@ -39,7 +39,7 @@ export default function StepJustification() {
         title="Política pública associada"
         hint="Qual política pública nova ou existente esse projeto está associado?"
         multiline
-        rows={4}
+        rows={2}
         value={data.policy}
         onChange={(v) => update({ policy: v })}
       />
