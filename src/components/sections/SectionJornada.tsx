@@ -55,12 +55,12 @@ export default function SectionJornada() {
   }
 
   return (
-    <section className="section-container min-h-[70dvh]">
+    <section className="section-container">
       <div className="flex gap-lg flex-1 w-full">
         <SideNav
           activeId={activeId}
           onSelect={handleSelect}
-          className="w-[21%] shrink-0 self-stretch max-h-[888px]"
+          className="w-[21%] shrink-0 h-[80dvh]"
         />
         <div className="flex flex-col gap-lg">
           <SectionHeader
