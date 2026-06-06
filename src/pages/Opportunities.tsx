@@ -1,17 +1,12 @@
 // Página /oportunidades — placeholder de editais e programas de financiamento.
 // Acessada pelo botão "Ver oportunidades" em SectionResources.
 
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 import { sectionContent } from '@/data/home/sections'
 
 export default function Opportunities() {
   return (
-    <main className="min-h-screen bg-primary">
-      <Header />
-
-      <div className="container">
-        <section className="section-container">
+    <div className="container">
+      <section className="section-container">
           <h1
             className="typo-h1 text-center font-regular leading-[1.2]"
             dangerouslySetInnerHTML={{
@@ -24,10 +19,7 @@ export default function Opportunities() {
           <p className="typo-body-lg text-center max-w-[800px] text-inactive">
             {sectionContent.opportunities.description}
           </p>
-        </section>
-      </div>
-
-      <Footer />
-    </main>
+      </section>
+    </div>
   )
 }

@@ -5,8 +5,6 @@
 
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import Carousel from '@/components/ui/Carousel'
 import TrailCard from '@/components/training/TrailCard'
@@ -37,11 +35,8 @@ export default function Trails() {
   }, [activeId])
 
   return (
-    <main className="min-h-screen bg-primary">
-      <Header />
-
-      <div className="container">
-        <section className="section-container">
+    <div className="container">
+      <section className="section-container">
           <TitleSubtitle
             title={sectionContent.trails.title}
             subtitle={sectionContent.trails.description}
@@ -85,9 +80,6 @@ export default function Trails() {
             </section>
         ))}
         </section>
-      </div>
-
-      <Footer />
-    </main>
+    </div>
   )
 }

@@ -3,8 +3,6 @@
 
 import { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 import FormulatorProgress from '@/components/formulator/FormulatorProgress'
 import { sectionContent } from '@/data/home/sections'
 import { useFormulator } from '@/hooks/useFormulator'
@@ -56,18 +54,14 @@ export default function Formulator() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-primary">
-      <Header />
-      <div className="container">
-        <section className="section-container">
-          <TitleSubtitle title={sectionContent.formulatorPage.title} subtitle={sectionContent.formulatorPage.description} />
-          <section className="flex flex-col items-start gap-sm">
-            <FormulatorProgress currentIndex={currentIndex} percent={percent} />
-            <Outlet />
-          </section>
+    <div className="container">
+      <section className="section-container">
+        <TitleSubtitle title={sectionContent.formulatorPage.title} subtitle={sectionContent.formulatorPage.description} />
+        <section className="flex flex-col items-start gap-sm">
+          <FormulatorProgress currentIndex={currentIndex} percent={percent} />
+          <Outlet />
         </section>
-      </div>
-      <Footer />
-    </main>
+      </section>
+    </div>
   )
 }

@@ -1,7 +1,5 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 import SectionAgendas from '@/components/sections/SectionAgendas'
 import SectionJornada from '@/components/sections/SectionJornada'
 import { useMunicipality } from '@/hooks/useMunicipality'
@@ -26,19 +24,15 @@ export default function Home() {
   }, [hash])
 
   return (
-    <main className="min-h-screen bg-primary">
-      <Header />
-        <div className="container flex flex-col gap-lg">
-          <div id="agenda">
-            <SectionAgendas />
-          </div>
-          { data ? 
-          <div id="ambiente">
-            <SectionJornada />
-          </div>
-          : ''}
+    <div className="container flex flex-col gap-lg">
+      <div id="agenda">
+        <SectionAgendas />
       </div>
-      <Footer />
-    </main>
+      {data ? (
+        <div id="ambiente">
+          <SectionJornada />
+        </div>
+      ) : ''}
+    </div>
   )
 }
