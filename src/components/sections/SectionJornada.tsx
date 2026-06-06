@@ -60,9 +60,9 @@ export default function SectionJornada() {
         <SideNav
           activeId={activeId}
           onSelect={handleSelect}
-          className="w-[21%] shrink-0 h-[80dvh]"
+          className="w-[21%] shrink-0 h-[83dvh]"
         />
-        <div className="flex flex-col gap-lg">
+        <div className="flex flex-col gap-md">
           <SectionHeader
             title={activeJornada.title}
             description={activeJornada.subtitle}
