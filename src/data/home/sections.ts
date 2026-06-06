@@ -82,16 +82,6 @@ export const sectionContent = {
     title: 'Inspire-se com casos de sucesso',
     description: 'Veja como outros municípios implementaram estratégias eficazes para melhorar seu ambiente de negócios.'
   },
-  formulator: {
-    title: 'Como escrever projetos de políticas públicas?',
-    description:
-      'Com base nos riscos estratégicos e pontos de atenção identificados, comece a escrever seu projeto para fortalecer o ambiente de negócios no seu município.',
-  },
-  formulatorPage: {
-    title: 'Formulador de projetos e politicas publicas',
-    description:
-      'Com base nos riscos estratégicos e pontos de atenção identificados, comece a escrever seu projeto para fortalecer o ambiente de negócios no seu município.',
-  },
   trails: {
     title: 'Capacitação para gestores públicos municipais',
     description:

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AuthProvider from '@/hooks/AuthProvider'
 import MunicipalityProvider from '@/hooks/MunicipalityProvider'
 import FormulatorProvider from '@/hooks/FormulatorProvider'
@@ -8,9 +8,6 @@ import ConsentBanner from '@/components/ui/ConsentBanner'
 import Layout from '@/components/layout/Layout'
 import Home from '@/pages/Home'
 import Login from '@/pages/Login'
-import Formulator from '@/pages/Formulator'
-import FormulatorStep from '@/pages/FormulatorStep'
-import FormulatorConclusion from '@/pages/FormulatorConclusion'
 import Trails from '@/pages/Trails'
 import Opportunities from '@/pages/Opportunities'
 
@@ -28,11 +25,6 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/trilhas" element={<Trails />} />
                 <Route path="/oportunidades" element={<Opportunities />} />
-                <Route path="/formulador" element={<Formulator />}>
-                  <Route index element={<Navigate to="identificacao" replace />} />
-                  <Route path="conclusao" element={<FormulatorConclusion />} />
-                  <Route path=":stepSlug" element={<FormulatorStep />} />
-                </Route>
               </Route>
             </Routes>
             <ConsentBanner />

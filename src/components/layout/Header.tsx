@@ -5,7 +5,6 @@ import User from '@/components/layout/User'
 import { navLinks } from '@/data/layout'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { useAuth } from '@/hooks/useAuth'
-import { useFormulator } from '@/hooks/useFormulator'
 import { useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { trackEvent } from '@/utils/analytics'
@@ -17,42 +16,23 @@ interface HeaderProps {
 
 const HEADER_HEIGHT = 95
 
-const CONFIRM_SAIR_FORMULADOR =
-  'Você perderá o rascunho do formulário deste município. Deseja continuar?'
-
 export default function Header({ className = '' }: HeaderProps) {
   const sectionIds = useMemo(() => navLinks.map((l) => l.sectionId), [])
   const activeSection = useActiveSection(sectionIds)
   const { pathname } = useLocation()
   const navigate = useNavigate()
-  const { reset } = useFormulator()
   const { isLoggedIn, login } = useAuth()
-  const isFormulador = pathname.startsWith('/formulador')
   const isTrilhas = pathname.startsWith('/trilhas')
   const isHome = pathname === '/'
   // Fora da Home, o scroll-spy não tem o que observar. Fixa o realce de acordo
-  // com a rota: "Formulador" em /formulador, "Capacitação" em /trilhas.
-  const effectiveActive = isFormulador
-    ? 'formulador'
-    : isTrilhas
-      ? 'capacitacao'
-      : activeSection
-
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  // com a rota: "Capacitação" em /trilhas.
+  const effectiveActive = isTrilhas ? 'capacitacao' : activeSection
 
   function scrollToSection(sectionId: string) {
     const el = document.getElementById(sectionId)
     if (!el) return
     const top = el.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT
     window.scrollTo({ top, behavior: 'smooth' })
-  }
-
-  function trackAbandonoFormulador(via: string) {
-    const slug = pathname.split('/')[2] ?? ''
-    if (slug === 'conclusao') return
-    trackEvent('formulador_abandonado', { ultimo_step: slug, via })
   }
 
   function onLogoClick() {
@@ -63,15 +43,8 @@ export default function Header({ className = '' }: HeaderProps) {
 
   function onNavClick(sectionId: string) {
     trackEvent('nav_header_clicado', { secao: sectionId })
-    if (isFormulador) {
-      if (!window.confirm(CONFIRM_SAIR_FORMULADOR)) return
-      trackAbandonoFormulador('nav')
-      reset()
-      // Usa hash — a Home lê e scrolla para a seção com offset do header sticky.
-      navigate(`/#${sectionId}`)
-      return
-    }
     if (!isHome) {
+      // Usa hash — a Home lê e scrolla para a seção com offset do header sticky.
       navigate(`/#${sectionId}`)
       return
     }
