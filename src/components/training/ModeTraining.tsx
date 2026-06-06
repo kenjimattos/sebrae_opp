@@ -7,7 +7,7 @@ import { trails } from '@/data/home/training'
 // TrainingCard w-480 + gap-sm (12px)
 const SCROLL_AMOUNT = 480 + 12
 
-export default function SectionTraining() {
+export default function ModeTraining() {
   return (
     <>
       <Carousel scrollAmount={SCROLL_AMOUNT}>
