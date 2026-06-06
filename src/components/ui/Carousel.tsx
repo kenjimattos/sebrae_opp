@@ -28,38 +28,29 @@ export default function Carousel({ children, scrollAmount, className = '' }: Car
   }
 
   return (
-    <div className={`relative ${className}`}>
-      {/* py-md + -my-md: respiro interno (24px) para o lift + anel + sombra
-          inferior do card-hoverable (box-shadow estende ~23px abaixo), sem
-          alterar o espaçamento externo (overflow-x força overflow-y a clipar).
-          scroll-padding-inline evita que o snap cole o card na borda, o que
-          clipava o anel de 1px do hover à esquerda/direita. */}
+    <div className={`flex flex-col gap-xl h-full ${className}`}>
+
       <div
         ref={scrollRef}
-        className="flex gap-sm overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide py-md px-xs -my-[var(--spacing-md)]"
+        className="flex gap-sm overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide"
         style={{ scrollPaddingInline: 'var(--spacing-xs)' }}
       >
         {children}
       </div>
-
-      {/* Setas no gutter lateral da section (fora do content box, dentro do
-          padding de --spacing-margin). `-translate-y-1/2` centraliza no eixo Y. */}
-      <IconButton
-        icon={ArrowLeft}
-        onClick={() => scroll('left')}
-        aria-label="Anterior"
-        variant="primary"
-        size="lg"
-        className="absolute top-1/2 -translate-y-1/2 left-[calc(-1*var(--spacing-3xl))] z-10"
-      />
-      <IconButton
-        icon={ArrowRight}
-        onClick={() => scroll('right')}
-        aria-label="Próximo"
-        variant="primary"
-        size="lg"
-        className="absolute top-1/2 -translate-y-1/2 right-[calc(-1*var(--spacing-3xl))] z-10"
-      />
+      <div className="flex justify-end gap-lg w-full">
+        <IconButton
+          icon={ArrowLeft}
+          onClick={() => scroll('left')}
+          aria-label="Anterior"
+          variant="tertiary"
+        />
+        <IconButton
+          icon={ArrowRight}
+          onClick={() => scroll('right')}
+          aria-label="Próximo"
+          variant="tertiary"
+        />
+      </div>
     </div>
   )
 }
