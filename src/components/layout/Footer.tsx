@@ -5,7 +5,7 @@ import { footerColumns, brandText, copyright } from '@/data/layout'
 
 export default function Footer({ className = '' }: { className?: string }) {
   return (
-    <footer className={`bg-surface py-2xl ${className}`}>
+    <footer className={`bg-surface py-2xl mt-40 ${className}`}>
       <div className="container px-gutter flex flex-col gap-lg">
         {/* Top: brand + link columns */}
         <div className="flex items-start justify-between w-full">
