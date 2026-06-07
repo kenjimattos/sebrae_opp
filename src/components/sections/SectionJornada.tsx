@@ -72,14 +72,16 @@ export default function SectionJornada() {
             title={activeJornada.title}
             description={activeJornada.subtitle}
           />
-          { modes.length > 1 ? <ModeToggle
-            value={value}
-            onChange={setValue}
-            options={modes}
-            ariaLabel="Modo de visualização"
-            className="self-center shrink-0"
-          /> : null }
-          <Active />
+        <div className="flex flex-col gap-lg flex-1 min-w-0">
+            { modes.length > 1 ? <ModeToggle
+              value={value}
+              onChange={setValue}
+              options={modes}
+              ariaLabel="Modo de visualização"
+              className="self-center shrink-0"
+            /> : null }
+            <Active />
+        </div>
         </div>
       </div>
     </section>
