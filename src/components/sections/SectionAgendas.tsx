@@ -34,8 +34,11 @@ export default function SectionAgendas() {
   if (!hasSelection) {
     return (
       <section className="section-container">
-        <CitySelector />
-        <div className="w-full">
+        <div className="flex flex-col gap-xs items-center">
+          <CitySelector />
+          <p className="typo-body">ou clique no mapa</p>
+        </div>
+        <div className="flex w-full px-xl">
           <ParaibaOutlineMap
             selectedId={municipality.id}
             onSelect={handleMapSelect}
