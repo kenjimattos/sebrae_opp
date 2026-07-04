@@ -53,8 +53,8 @@ export default function SectionAgendas() {
       <CitySelector />
       <div className="flex flex-1 min-h-0 gap-md">
           {/* Coluna esquerda: container rounded com heading + agendas */}
-          <div className="flex flex-col w-[44%] glass p-md rounded-sm gap-md">
-          <div>
+          <div className="flex flex-col w-[40%] min-w-0 shrink-0 glass p-md rounded-sm gap-md">
+            <div>
               <h1
                 className="typo-h1"
               >
@@ -71,7 +71,7 @@ export default function SectionAgendas() {
           </div>
 
           {/* Coluna direita: mapa + overlays */}
-          <div className="flex flex-col gap-md">
+          <div className="flex flex-1 min-w-0 flex-col gap-md">
             <div className="flex-col-start h-full px-md">
               <ParaibaOutlineMap
                 padding={0}
