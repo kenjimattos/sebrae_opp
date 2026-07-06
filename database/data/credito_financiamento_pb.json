@@ -1,0 +1,577 @@
+{
+ "fetchedAt": "2026-06-26",
+ "refYear": 2020,
+ "mesBase": "202011",
+ "fonte": "lake",
+ "verbete": "160",
+ "componentes": [
+  "161",
+  "162",
+  "163",
+  "164",
+  "165",
+  "166",
+  "167",
+  "169",
+  "171",
+  "172",
+  "173",
+  "174"
+ ],
+ "municipios": {
+  "2500304": {
+   "saldo": 25126305.0,
+   "breakdown": {
+    "emprestimos": 21970789.0,
+    "financiamentos": 653062.0,
+    "rurais": 2252033.0,
+    "outros": 250422.0
+   },
+   "nInst": 2,
+   "nLinhas": 2
+  },
+  "2500403": {
+   "saldo": 66456186.0,
+   "breakdown": {
+    "emprestimos": 22402618.0,
+    "financiamentos": 561430.0,
+    "rurais": 2243774.0,
+    "agroindustriais": 34000.0,
+    "imobiliarios": 37849644.0,
+    "outros": 3364720.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2500601": {
+   "saldo": 53271431.0,
+   "breakdown": {
+    "emprestimos": 20136935.0,
+    "financiamentos": 473472.0,
+    "rurais": 9377325.0,
+    "imobiliarios": 19277027.0,
+    "outros": 4006673.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2501005": {
+   "saldo": 256818.0,
+   "breakdown": {
+    "emprestimos": 256266.0,
+    "outros": 552.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2501104": {
+   "saldo": 109843045.0,
+   "breakdown": {
+    "emprestimos": 47067223.0,
+    "financiamentos": 567129.0,
+    "rurais": 494503.0,
+    "imobiliarios": 42331295.0,
+    "outros": 21774617.0
+   },
+   "nInst": 2,
+   "nLinhas": 2
+  },
+  "2501500": {
+   "saldo": 181059351.0,
+   "breakdown": {
+    "emprestimos": 60979905.0,
+    "financiamentos": 630863.0,
+    "rurais": 6640609.0,
+    "imobiliarios": 49704692.0,
+    "outros": 65924651.0
+   },
+   "nInst": 2,
+   "nLinhas": 2
+  },
+  "2501807": {
+   "saldo": 171369124.0,
+   "breakdown": {
+    "emprestimos": 58195390.0,
+    "financiamentos": 5853842.0,
+    "imobiliarios": 108926203.0,
+    "outros": 5202957.0
+   },
+   "nInst": 5,
+   "nLinhas": 5
+  },
+  "2501906": {
+   "saldo": 515018.0,
+   "breakdown": {
+    "emprestimos": 513497.0,
+    "outros": 1521.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2502805": {
+   "saldo": 510770.0,
+   "breakdown": {
+    "emprestimos": 510711.0,
+    "outros": 59.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2503209": {
+   "saldo": 312596454.0,
+   "breakdown": {
+    "emprestimos": 84357386.0,
+    "financiamentos": 5518183.0,
+    "imobiliarios": 221037800.0,
+    "outros": 12970076.0
+   },
+   "nInst": 5,
+   "nLinhas": 5
+  },
+  "2503704": {
+   "saldo": 440504416.0,
+   "breakdown": {
+    "emprestimos": 142538799.0,
+    "financiamentos": 9662301.0,
+    "rurais": 8032680.0,
+    "imobiliarios": 275856737.0,
+    "outros": 18170286.0
+   },
+   "nInst": 6,
+   "nLinhas": 6
+  },
+  "2504009": {
+   "saldo": 3465667399.0,
+   "breakdown": {
+    "emprestimos": 1122363308.0,
+    "financiamentos": 102428469.0,
+    "agroindustriais": 1654228.0,
+    "outros": 328087995.0,
+    "rurais": 55996713.0,
+    "imobiliarios": 1974544235.0
+   },
+   "nInst": 6,
+   "nLinhas": 21
+  },
+  "2504306": {
+   "saldo": 259453023.0,
+   "breakdown": {
+    "emprestimos": 104518722.0,
+    "financiamentos": 4474226.0,
+    "rurais": 2974208.0,
+    "imobiliarios": 145061581.0,
+    "outros": 7110003.0
+   },
+   "nInst": 4,
+   "nLinhas": 4
+  },
+  "2504405": {
+   "saldo": 40053169.0,
+   "breakdown": {
+    "emprestimos": 26030729.0,
+    "financiamentos": 1146934.0,
+    "rurais": 3032130.0,
+    "imobiliarios": 4787135.0,
+    "outros": 5056240.0
+   },
+   "nInst": 2,
+   "nLinhas": 2
+  },
+  "2505105": {
+   "saldo": 55816412.0,
+   "breakdown": {
+    "emprestimos": 18233623.0,
+    "financiamentos": 298914.0,
+    "rurais": 1811155.0,
+    "imobiliarios": 32731030.0,
+    "outros": 2741691.0
+   },
+   "nInst": 2,
+   "nLinhas": 2
+  },
+  "2506004": {
+   "saldo": 200763249.0,
+   "breakdown": {
+    "emprestimos": 82124582.0,
+    "financiamentos": 2013415.0,
+    "rurais": 2876831.0,
+    "imobiliarios": 77502719.0,
+    "outros": 40359827.0
+   },
+   "nInst": 3,
+   "nLinhas": 3
+  },
+  "2506301": {
+   "saldo": 399907089.0,
+   "breakdown": {
+    "emprestimos": 178002691.0,
+    "financiamentos": 13255418.0,
+    "rurais": 43480044.0,
+    "agroindustriais": 120338.0,
+    "imobiliarios": 92757834.0,
+    "outros": 83409358.0
+   },
+   "nInst": 5,
+   "nLinhas": 5
+  },
+  "2506905": {
+   "saldo": 142912798.0,
+   "breakdown": {
+    "emprestimos": 42752412.0,
+    "financiamentos": 752709.0,
+    "rurais": 3489315.0,
+    "imobiliarios": 98062644.0,
+    "outros": 4758063.0
+   },
+   "nInst": 3,
+   "nLinhas": 3
+  },
+  "2507002": {
+   "saldo": 124618080.0,
+   "breakdown": {
+    "emprestimos": 70890168.0,
+    "financiamentos": 2243814.0,
+    "rurais": 9213046.0,
+    "imobiliarios": 35579133.0,
+    "outros": 9532356.0
+   },
+   "nInst": 4,
+   "nLinhas": 4
+  },
+  "2507507": {
+   "saldo": 10699106225.0,
+   "breakdown": {
+    "emprestimos": 2847190017.0,
+    "financiamentos": 300235898.0,
+    "agroindustriais": 1457343.0,
+    "outros": 470629322.0,
+    "rurais": 186199251.0,
+    "imobiliarios": 7233681979.0
+   },
+   "nInst": 9,
+   "nLinhas": 79
+  },
+  "2508901": {
+   "saldo": 246316342.0,
+   "breakdown": {
+    "emprestimos": 89300938.0,
+    "financiamentos": 2638117.0,
+    "rurais": 14036478.0,
+    "imobiliarios": 42298213.0,
+    "outros": 101631262.0
+   },
+   "nInst": 4,
+   "nLinhas": 4
+  },
+  "2509107": {
+   "saldo": 600612.0,
+   "breakdown": {
+    "emprestimos": 600600.0,
+    "outros": 12.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2509701": {
+   "saldo": 671766628.0,
+   "breakdown": {
+    "emprestimos": 117455526.0,
+    "financiamentos": 3035163.0,
+    "rurais": 22163862.0,
+    "imobiliarios": 132159916.0,
+    "outros": 404666295.0
+   },
+   "nInst": 4,
+   "nLinhas": 4
+  },
+  "2510808": {
+   "saldo": 757266779.0,
+   "breakdown": {
+    "emprestimos": 285947498.0,
+    "financiamentos": 22100315.0,
+    "rurais": 2753002.0,
+    "imobiliarios": 357720485.0,
+    "outros": 108523254.0
+   },
+   "nInst": 6,
+   "nLinhas": 7
+  },
+  "2511202": {
+   "saldo": 106550821.0,
+   "breakdown": {
+    "emprestimos": 35111451.0,
+    "financiamentos": 201052.0,
+    "rurais": 2500405.0,
+    "imobiliarios": 67886316.0,
+    "outros": 3073457.0
+   },
+   "nInst": 2,
+   "nLinhas": 2
+  },
+  "2511301": {
+   "saldo": 33545273.0,
+   "breakdown": {
+    "emprestimos": 16523399.0,
+    "financiamentos": 572065.0,
+    "rurais": 13787537.0,
+    "imobiliarios": 877365.0,
+    "outros": 1784907.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2511400": {
+   "saldo": 130990689.0,
+   "breakdown": {
+    "emprestimos": 67619339.0,
+    "financiamentos": 1713052.0,
+    "rurais": 276702.0,
+    "imobiliarios": 60365889.0,
+    "outros": 3504768.0
+   },
+   "nInst": 3,
+   "nLinhas": 3
+  },
+  "2511806": {
+   "saldo": 33054956.0,
+   "breakdown": {
+    "emprestimos": 23000579.0,
+    "financiamentos": 710365.0,
+    "rurais": 3909072.0,
+    "imobiliarios": 2507144.0,
+    "outros": 2927796.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2512002": {
+   "saldo": 54551539.0,
+   "breakdown": {
+    "emprestimos": 25804402.0,
+    "financiamentos": 534007.0,
+    "rurais": 1477694.0,
+    "imobiliarios": 23248186.0,
+    "outros": 3487250.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2512101": {
+   "saldo": 227771044.0,
+   "breakdown": {
+    "emprestimos": 70481095.0,
+    "financiamentos": 942985.0,
+    "rurais": 9994042.0,
+    "imobiliarios": 143017966.0,
+    "outros": 9432887.0
+   },
+   "nInst": 4,
+   "nLinhas": 4
+  },
+  "2512309": {
+   "saldo": 41451717.0,
+   "breakdown": {
+    "emprestimos": 18461765.0,
+    "financiamentos": 726103.0,
+    "rurais": 5120928.0,
+    "imobiliarios": 14620397.0,
+    "outros": 2522525.0
+   },
+   "nInst": 2,
+   "nLinhas": 2
+  },
+  "2512507": {
+   "saldo": 59031187.0,
+   "breakdown": {
+    "emprestimos": 39736829.0,
+    "financiamentos": 637433.0,
+    "rurais": 9660916.0,
+    "agroindustriais": 111504.0,
+    "imobiliarios": 2636528.0,
+    "outros": 6247978.0
+   },
+   "nInst": 2,
+   "nLinhas": 2
+  },
+  "2512903": {
+   "saldo": 19408169.0,
+   "breakdown": {
+    "emprestimos": 15913602.0,
+    "financiamentos": 139891.0,
+    "rurais": 643133.0,
+    "imobiliarios": 949398.0,
+    "outros": 1762145.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2513406": {
+   "saldo": 63006010.0,
+   "breakdown": {
+    "emprestimos": 25947641.0,
+    "financiamentos": 267149.0,
+    "rurais": 538279.0,
+    "imobiliarios": 36021778.0,
+    "outros": 1828147.0
+   },
+   "nInst": 3,
+   "nLinhas": 3
+  },
+  "2513703": {
+   "saldo": 357635128.0,
+   "breakdown": {
+    "emprestimos": 68698818.0,
+    "financiamentos": 2476839.0,
+    "rurais": 9549040.0,
+    "imobiliarios": 287253327.0,
+    "outros": 5586608.0
+   },
+   "nInst": 4,
+   "nLinhas": 5
+  },
+  "2513901": {
+   "saldo": 230584888.0,
+   "breakdown": {
+    "emprestimos": 78776223.0,
+    "financiamentos": 4122304.0,
+    "rurais": 6794737.0,
+    "imobiliarios": 136610279.0,
+    "outros": 7990732.0
+   },
+   "nInst": 3,
+   "nLinhas": 3
+  },
+  "2500700": {
+   "saldo": 39549792.0,
+   "breakdown": {
+    "emprestimos": 20461693.0,
+    "financiamentos": 501902.0,
+    "rurais": 3264121.0,
+    "imobiliarios": 13209766.0,
+    "outros": 2112311.0
+   },
+   "nInst": 2,
+   "nLinhas": 2
+  },
+  "2514503": {
+   "saldo": 66394014.0,
+   "breakdown": {
+    "emprestimos": 30321595.0,
+    "financiamentos": 600109.0,
+    "rurais": 4271574.0,
+    "imobiliarios": 27312703.0,
+    "outros": 3888034.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2515302": {
+   "saldo": 150202780.0,
+   "breakdown": {
+    "emprestimos": 56445078.0,
+    "financiamentos": 1139188.0,
+    "rurais": 3118547.0,
+    "imobiliarios": 69591053.0,
+    "outros": 24622529.0,
+    "agroindustriais": 17149.0
+   },
+   "nInst": 4,
+   "nLinhas": 4
+  },
+  "2515500": {
+   "saldo": 17844044.0,
+   "breakdown": {
+    "emprestimos": 14370859.0,
+    "financiamentos": 240044.0,
+    "rurais": 759561.0,
+    "imobiliarios": 1058866.0,
+    "outros": 1414714.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2516003": {
+   "saldo": 66894952.0,
+   "breakdown": {
+    "emprestimos": 47425572.0,
+    "financiamentos": 2432128.0,
+    "rurais": 3347963.0,
+    "imobiliarios": 8955405.0,
+    "outros": 4733885.0
+   },
+   "nInst": 3,
+   "nLinhas": 3
+  },
+  "2516102": {
+   "saldo": 52001369.0,
+   "breakdown": {
+    "emprestimos": 34888854.0,
+    "financiamentos": 662111.0,
+    "rurais": 1884914.0,
+    "imobiliarios": 10189030.0,
+    "outros": 4376461.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2516201": {
+   "saldo": 432060068.0,
+   "breakdown": {
+    "emprestimos": 192683274.0,
+    "financiamentos": 12456393.0,
+    "rurais": 6942644.0,
+    "imobiliarios": 111413591.0,
+    "outros": 120252173.0
+   },
+   "nInst": 6,
+   "nLinhas": 6
+  },
+  "2516300": {
+   "saldo": 11699621.0,
+   "breakdown": {
+    "emprestimos": 9828139.0,
+    "financiamentos": 85873.0,
+    "rurais": 1743424.0,
+    "outros": 42184.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2516607": {
+   "saldo": 25336499.0,
+   "breakdown": {
+    "emprestimos": 21860854.0,
+    "financiamentos": 388020.0,
+    "rurais": 892968.0,
+    "imobiliarios": 825254.0,
+    "outros": 1369404.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2516706": {
+   "saldo": 30587016.0,
+   "breakdown": {
+    "emprestimos": 23679383.0,
+    "financiamentos": 765029.0,
+    "rurais": 626157.0,
+    "imobiliarios": 3137413.0,
+    "outros": 2379034.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  },
+  "2516904": {
+   "saldo": 41751427.0,
+   "breakdown": {
+    "emprestimos": 27229340.0,
+    "financiamentos": 2969658.0,
+    "rurais": 2382852.0,
+    "imobiliarios": 6283423.0,
+    "outros": 2886154.0
+   },
+   "nInst": 1,
+   "nLinhas": 1
+  }
+ }
+}

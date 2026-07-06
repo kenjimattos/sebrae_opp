@@ -1,0 +1,1355 @@
+{
+  "indicatorId": "tempo-abertura",
+  "uf": "PB",
+  "janela": [
+    "2025-06",
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10",
+    "2025-11",
+    "2025-12",
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05"
+  ],
+  "janelaLabel": "2025-06 a 2026-05",
+  "registrosPorMes": {
+    "2025-06": 662,
+    "2025-07": 854,
+    "2025-08": 722,
+    "2025-09": 720,
+    "2025-10": 592,
+    "2025-11": 580,
+    "2025-12": 103,
+    "2026-01": 73,
+    "2026-02": 66,
+    "2026-03": 93,
+    "2026-04": 91,
+    "2026-05": 762
+  },
+  "totalRegistros": 5318,
+  "naoCasados": {},
+  "crosscheckOficial": {
+    "periodo": "2026-05",
+    "oficialUF": {
+      "percentual1": 95,
+      "percentual2": 3,
+      "percentual3": 1,
+      "percentual4": 1
+    }
+  },
+  "aggregates": {
+    "2504009": {
+      "n": 521,
+      "marco75Horas": 18.84,
+      "mediaHoras": 18.38,
+      "medianaHoras": 15.9,
+      "faixa": 0
+    },
+    "2507507": {
+      "n": 2446,
+      "marco75Horas": 18.63,
+      "mediaHoras": 14.66,
+      "medianaHoras": 14.51,
+      "faixa": 0
+    },
+    "2511202": {
+      "n": 41,
+      "marco75Horas": 5.15,
+      "mediaHoras": 5.18,
+      "medianaHoras": 0.33,
+      "faixa": 0
+    },
+    "2510808": {
+      "n": 241,
+      "marco75Horas": 15.85,
+      "mediaHoras": 8.48,
+      "medianaHoras": 1.0,
+      "faixa": 0
+    },
+    "2500304": {
+      "n": 28,
+      "marco75Horas": 5.02,
+      "mediaHoras": 5.03,
+      "medianaHoras": 0.31,
+      "faixa": 0
+    },
+    "2501807": {
+      "n": 63,
+      "marco75Horas": 26.69,
+      "mediaHoras": 19.02,
+      "medianaHoras": 4.07,
+      "faixa": 0
+    },
+    "2516201": {
+      "n": 126,
+      "marco75Horas": 15.22,
+      "mediaHoras": 6.2,
+      "medianaHoras": 0.36,
+      "faixa": 0
+    },
+    "2506806": {
+      "n": 17,
+      "marco75Horas": 67.13,
+      "mediaHoras": 32.32,
+      "medianaHoras": 1.02,
+      "faixa": 0
+    },
+    "2515500": {
+      "n": 23,
+      "marco75Horas": 31.88,
+      "mediaHoras": 24.35,
+      "medianaHoras": 14.33,
+      "faixa": 0
+    },
+    "2512002": {
+      "n": 20,
+      "marco75Horas": 45.13,
+      "mediaHoras": 44.85,
+      "medianaHoras": 12.82,
+      "faixa": 0
+    },
+    "2515401": {
+      "n": 8,
+      "marco75Horas": 20.92,
+      "mediaHoras": 35.63,
+      "medianaHoras": 9.02,
+      "faixa": 0
+    },
+    "2504801": {
+      "n": 31,
+      "marco75Horas": 3.71,
+      "mediaHoras": 11.61,
+      "medianaHoras": 1.24,
+      "faixa": 0
+    },
+    "2504306": {
+      "n": 64,
+      "marco75Horas": 2.65,
+      "mediaHoras": 4.71,
+      "medianaHoras": 0.27,
+      "faixa": 0
+    },
+    "2505402": {
+      "n": 2,
+      "marco75Horas": 15.81,
+      "mediaHoras": 10.65,
+      "medianaHoras": 10.65,
+      "faixa": 0
+    },
+    "2505709": {
+      "n": 9,
+      "marco75Horas": 0.43,
+      "mediaHoras": 38.37,
+      "medianaHoras": 0.07,
+      "faixa": 0
+    },
+    "2503209": {
+      "n": 126,
+      "marco75Horas": 20.32,
+      "mediaHoras": 17.38,
+      "medianaHoras": 16.83,
+      "faixa": 0
+    },
+    "2507002": {
+      "n": 19,
+      "marco75Horas": 18.58,
+      "mediaHoras": 13.77,
+      "medianaHoras": 14.01,
+      "faixa": 0
+    },
+    "2506905": {
+      "n": 18,
+      "marco75Horas": 61.07,
+      "mediaHoras": 55.87,
+      "medianaHoras": 22.74,
+      "faixa": 0
+    },
+    "2503704": {
+      "n": 141,
+      "marco75Horas": 17.08,
+      "mediaHoras": 10.43,
+      "medianaHoras": 2.88,
+      "faixa": 0
+    },
+    "2509701": {
+      "n": 47,
+      "marco75Horas": 10.93,
+      "mediaHoras": 7.23,
+      "medianaHoras": 0.22,
+      "faixa": 0
+    },
+    "2501104": {
+      "n": 26,
+      "marco75Horas": 18.06,
+      "mediaHoras": 15.31,
+      "medianaHoras": 0.86,
+      "faixa": 0
+    },
+    "2506004": {
+      "n": 42,
+      "marco75Horas": 4.63,
+      "mediaHoras": 4.41,
+      "medianaHoras": 0.18,
+      "faixa": 0
+    },
+    "2500601": {
+      "n": 30,
+      "marco75Horas": 44.78,
+      "mediaHoras": 27.68,
+      "medianaHoras": 20.74,
+      "faixa": 0
+    },
+    "2513000": {
+      "n": 2,
+      "marco75Horas": 40.45,
+      "mediaHoras": 31.99,
+      "medianaHoras": 31.99,
+      "faixa": 0
+    },
+    "2504033": {
+      "n": 5,
+      "marco75Horas": 27.63,
+      "mediaHoras": 27.96,
+      "medianaHoras": 15.61,
+      "faixa": 0
+    },
+    "2513703": {
+      "n": 77,
+      "marco75Horas": 42.85,
+      "mediaHoras": 28.8,
+      "medianaHoras": 20.5,
+      "faixa": 0
+    },
+    "2505105": {
+      "n": 31,
+      "marco75Horas": 8.21,
+      "mediaHoras": 11.09,
+      "medianaHoras": 0.3,
+      "faixa": 0
+    },
+    "2504603": {
+      "n": 43,
+      "marco75Horas": 44.82,
+      "mediaHoras": 34.37,
+      "medianaHoras": 24.11,
+      "faixa": 0
+    },
+    "2512705": {
+      "n": 19,
+      "marco75Horas": 24.19,
+      "mediaHoras": 17.55,
+      "medianaHoras": 0.25,
+      "faixa": 0
+    },
+    "2513208": {
+      "n": 6,
+      "marco75Horas": 20.97,
+      "mediaHoras": 30.38,
+      "medianaHoras": 9.06,
+      "faixa": 0
+    },
+    "2500403": {
+      "n": 14,
+      "marco75Horas": 15.55,
+      "mediaHoras": 11.75,
+      "medianaHoras": 0.68,
+      "faixa": 0
+    },
+    "2512309": {
+      "n": 14,
+      "marco75Horas": 19.87,
+      "mediaHoras": 18.25,
+      "medianaHoras": 17.28,
+      "faixa": 0
+    },
+    "2513109": {
+      "n": 5,
+      "marco75Horas": 24.77,
+      "mediaHoras": 20.4,
+      "medianaHoras": 16.22,
+      "faixa": 0
+    },
+    "2509008": {
+      "n": 10,
+      "marco75Horas": 48.73,
+      "mediaHoras": 43.53,
+      "medianaHoras": 22.24,
+      "faixa": 0
+    },
+    "2501401": {
+      "n": 8,
+      "marco75Horas": 47.26,
+      "mediaHoras": 23.06,
+      "medianaHoras": 11.35,
+      "faixa": 0
+    },
+    "2515104": {
+      "n": 6,
+      "marco75Horas": 62.05,
+      "mediaHoras": 31.71,
+      "medianaHoras": 11.66,
+      "faixa": 0
+    },
+    "2500502": {
+      "n": 7,
+      "marco75Horas": 63.03,
+      "mediaHoras": 28.8,
+      "medianaHoras": 1.31,
+      "faixa": 0
+    },
+    "2500775": {
+      "n": 6,
+      "marco75Horas": 17.72,
+      "mediaHoras": 20.94,
+      "medianaHoras": 8.32,
+      "faixa": 0
+    },
+    "2513406": {
+      "n": 14,
+      "marco75Horas": 66.98,
+      "mediaHoras": 38.57,
+      "medianaHoras": 18.47,
+      "faixa": 0
+    },
+    "2512101": {
+      "n": 37,
+      "marco75Horas": 4.51,
+      "mediaHoras": 4.75,
+      "medianaHoras": 0.22,
+      "faixa": 0
+    },
+    "2506301": {
+      "n": 63,
+      "marco75Horas": 17.24,
+      "mediaHoras": 9.4,
+      "medianaHoras": 4.92,
+      "faixa": 0
+    },
+    "2501500": {
+      "n": 24,
+      "marco75Horas": 45.87,
+      "mediaHoras": 31.81,
+      "medianaHoras": 21.88,
+      "faixa": 0
+    },
+    "2514701": {
+      "n": 4,
+      "marco75Horas": 141.87,
+      "mediaHoras": 124.63,
+      "medianaHoras": 20.53,
+      "faixa": 2
+    },
+    "2508307": {
+      "n": 21,
+      "marco75Horas": 24.42,
+      "mediaHoras": 26.73,
+      "medianaHoras": 6.33,
+      "faixa": 0
+    },
+    "2508901": {
+      "n": 49,
+      "marco75Horas": 24.68,
+      "mediaHoras": 27.41,
+      "medianaHoras": 0.16,
+      "faixa": 0
+    },
+    "2501609": {
+      "n": 16,
+      "marco75Horas": 49.03,
+      "mediaHoras": 41.22,
+      "medianaHoras": 0.72,
+      "faixa": 0
+    },
+    "2509107": {
+      "n": 10,
+      "marco75Horas": 15.51,
+      "mediaHoras": 13.39,
+      "medianaHoras": 0.26,
+      "faixa": 0
+    },
+    "2516003": {
+      "n": 32,
+      "marco75Horas": 2.44,
+      "mediaHoras": 3.63,
+      "medianaHoras": 0.14,
+      "faixa": 0
+    },
+    "2516904": {
+      "n": 21,
+      "marco75Horas": 2.84,
+      "mediaHoras": 3.6,
+      "medianaHoras": 0.66,
+      "faixa": 0
+    },
+    "2509156": {
+      "n": 9,
+      "marco75Horas": 20.56,
+      "mediaHoras": 11.61,
+      "medianaHoras": 2.2,
+      "faixa": 0
+    },
+    "2511806": {
+      "n": 13,
+      "marco75Horas": 70.42,
+      "mediaHoras": 42.12,
+      "medianaHoras": 18.2,
+      "faixa": 0
+    },
+    "2501005": {
+      "n": 10,
+      "marco75Horas": 26.32,
+      "mediaHoras": 38.98,
+      "medianaHoras": 17.31,
+      "faixa": 0
+    },
+    "2511400": {
+      "n": 22,
+      "marco75Horas": 16.29,
+      "mediaHoras": 8.66,
+      "medianaHoras": 3.16,
+      "faixa": 0
+    },
+    "2503001": {
+      "n": 16,
+      "marco75Horas": 27.18,
+      "mediaHoras": 35.1,
+      "medianaHoras": 0.18,
+      "faixa": 0
+    },
+    "2503308": {
+      "n": 6,
+      "marco75Horas": 5.36,
+      "mediaHoras": 28.02,
+      "medianaHoras": 0.96,
+      "faixa": 0
+    },
+    "2516706": {
+      "n": 11,
+      "marco75Horas": 55.43,
+      "mediaHoras": 47.74,
+      "medianaHoras": 0.19,
+      "faixa": 0
+    },
+    "2508000": {
+      "n": 5,
+      "marco75Horas": 41.32,
+      "mediaHoras": 74.59,
+      "medianaHoras": 24.55,
+      "faixa": 0
+    },
+    "2511103": {
+      "n": 7,
+      "marco75Horas": 8.4,
+      "mediaHoras": 8.24,
+      "medianaHoras": 1.92,
+      "faixa": 0
+    },
+    "2513901": {
+      "n": 36,
+      "marco75Horas": 18.12,
+      "mediaHoras": 15.0,
+      "medianaHoras": 12.69,
+      "faixa": 0
+    },
+    "2509800": {
+      "n": 6,
+      "marco75Horas": 1.54,
+      "mediaHoras": 47.02,
+      "medianaHoras": 0.47,
+      "faixa": 0
+    },
+    "2501906": {
+      "n": 22,
+      "marco75Horas": 21.87,
+      "mediaHoras": 12.57,
+      "medianaHoras": 2.41,
+      "faixa": 0
+    },
+    "2513604": {
+      "n": 4,
+      "marco75Horas": 77.64,
+      "mediaHoras": 62.28,
+      "medianaHoras": 65.55,
+      "faixa": 1
+    },
+    "2511608": {
+      "n": 11,
+      "marco75Horas": 6.23,
+      "mediaHoras": 13.33,
+      "medianaHoras": 0.03,
+      "faixa": 0
+    },
+    "2513802": {
+      "n": 1,
+      "marco75Horas": 22.6,
+      "mediaHoras": 22.6,
+      "medianaHoras": 22.6,
+      "faixa": 0
+    },
+    "2516102": {
+      "n": 5,
+      "marco75Horas": 8.68,
+      "mediaHoras": 6.65,
+      "medianaHoras": 0.8,
+      "faixa": 0
+    },
+    "2502805": {
+      "n": 17,
+      "marco75Horas": 5.06,
+      "mediaHoras": 6.59,
+      "medianaHoras": 0.07,
+      "faixa": 0
+    },
+    "2503803": {
+      "n": 4,
+      "marco75Horas": 20.55,
+      "mediaHoras": 18.19,
+      "medianaHoras": 2.43,
+      "faixa": 0
+    },
+    "2500700": {
+      "n": 15,
+      "marco75Horas": 2.49,
+      "mediaHoras": 9.13,
+      "medianaHoras": 0.17,
+      "faixa": 0
+    },
+    "2513927": {
+      "n": 1,
+      "marco75Horas": 15.35,
+      "mediaHoras": 15.35,
+      "medianaHoras": 15.35,
+      "faixa": 0
+    },
+    "2511905": {
+      "n": 9,
+      "marco75Horas": 42.69,
+      "mediaHoras": 28.63,
+      "medianaHoras": 20.6,
+      "faixa": 0
+    },
+    "2512507": {
+      "n": 39,
+      "marco75Horas": 23.89,
+      "mediaHoras": 18.89,
+      "medianaHoras": 2.44,
+      "faixa": 0
+    },
+    "2514404": {
+      "n": 3,
+      "marco75Horas": 81.58,
+      "mediaHoras": 60.89,
+      "medianaHoras": 40.07,
+      "faixa": 1
+    },
+    "2514503": {
+      "n": 5,
+      "marco75Horas": 66.94,
+      "mediaHoras": 44.25,
+      "medianaHoras": 62.08,
+      "faixa": 0
+    },
+    "2507309": {
+      "n": 13,
+      "marco75Horas": 20.85,
+      "mediaHoras": 29.95,
+      "medianaHoras": 2.03,
+      "faixa": 0
+    },
+    "2510907": {
+      "n": 11,
+      "marco75Horas": 33.66,
+      "mediaHoras": 27.39,
+      "medianaHoras": 19.3,
+      "faixa": 0
+    },
+    "2508406": {
+      "n": 1,
+      "marco75Horas": 77.0,
+      "mediaHoras": 77.0,
+      "medianaHoras": 77.0,
+      "faixa": 1
+    },
+    "2509503": {
+      "n": 1,
+      "marco75Horas": 17.17,
+      "mediaHoras": 17.17,
+      "medianaHoras": 17.17,
+      "faixa": 0
+    },
+    "2506400": {
+      "n": 10,
+      "marco75Horas": 42.13,
+      "mediaHoras": 25.22,
+      "medianaHoras": 21.93,
+      "faixa": 0
+    },
+    "2510402": {
+      "n": 2,
+      "marco75Horas": 38.78,
+      "mediaHoras": 26.04,
+      "medianaHoras": 26.04,
+      "faixa": 0
+    },
+    "2505279": {
+      "n": 3,
+      "marco75Horas": 121.79,
+      "mediaHoras": 97.23,
+      "medianaHoras": 101.17,
+      "faixa": 2
+    },
+    "2501534": {
+      "n": 1,
+      "marco75Horas": 0.49,
+      "mediaHoras": 0.49,
+      "medianaHoras": 0.49,
+      "faixa": 0
+    },
+    "2507408": {
+      "n": 2,
+      "marco75Horas": 24.12,
+      "mediaHoras": 23.4,
+      "medianaHoras": 23.4,
+      "faixa": 0
+    },
+    "2515005": {
+      "n": 2,
+      "marco75Horas": 83.92,
+      "mediaHoras": 72.47,
+      "medianaHoras": 72.47,
+      "faixa": 1
+    },
+    "2502508": {
+      "n": 7,
+      "marco75Horas": 44.63,
+      "mediaHoras": 83.67,
+      "medianaHoras": 1.85,
+      "faixa": 0
+    },
+    "2501302": {
+      "n": 9,
+      "marco75Horas": 15.18,
+      "mediaHoras": 11.57,
+      "medianaHoras": 1.28,
+      "faixa": 0
+    },
+    "2512804": {
+      "n": 12,
+      "marco75Horas": 16.58,
+      "mediaHoras": 7.51,
+      "medianaHoras": 0.08,
+      "faixa": 0
+    },
+    "2500908": {
+      "n": 5,
+      "marco75Horas": 4.17,
+      "mediaHoras": 5.28,
+      "medianaHoras": 2.18,
+      "faixa": 0
+    },
+    "2507705": {
+      "n": 13,
+      "marco75Horas": 23.49,
+      "mediaHoras": 26.09,
+      "medianaHoras": 2.99,
+      "faixa": 0
+    },
+    "2513307": {
+      "n": 6,
+      "marco75Horas": 24.45,
+      "mediaHoras": 32.79,
+      "medianaHoras": 2.26,
+      "faixa": 0
+    },
+    "2511707": {
+      "n": 4,
+      "marco75Horas": 31.19,
+      "mediaHoras": 19.29,
+      "medianaHoras": 14.52,
+      "faixa": 0
+    },
+    "2514909": {
+      "n": 7,
+      "marco75Horas": 58.3,
+      "mediaHoras": 54.3,
+      "medianaHoras": 0.15,
+      "faixa": 0
+    },
+    "2510105": {
+      "n": 12,
+      "marco75Horas": 30.02,
+      "mediaHoras": 29.21,
+      "medianaHoras": 8.02,
+      "faixa": 0
+    },
+    "2517001": {
+      "n": 4,
+      "marco75Horas": 31.96,
+      "mediaHoras": 23.11,
+      "medianaHoras": 25.27,
+      "faixa": 0
+    },
+    "2502201": {
+      "n": 2,
+      "marco75Horas": 57.07,
+      "mediaHoras": 44.08,
+      "medianaHoras": 44.08,
+      "faixa": 0
+    },
+    "2500536": {
+      "n": 1,
+      "marco75Horas": 45.72,
+      "mediaHoras": 45.72,
+      "medianaHoras": 45.72,
+      "faixa": 0
+    },
+    "2507101": {
+      "n": 8,
+      "marco75Horas": 0.71,
+      "mediaHoras": 9.22,
+      "medianaHoras": 0.12,
+      "faixa": 0
+    },
+    "2514800": {
+      "n": 1,
+      "marco75Horas": 113.35,
+      "mediaHoras": 113.35,
+      "medianaHoras": 113.35,
+      "faixa": 1
+    },
+    "2516300": {
+      "n": 14,
+      "marco75Horas": 20.39,
+      "mediaHoras": 42.56,
+      "medianaHoras": 14.71,
+      "faixa": 0
+    },
+    "2504405": {
+      "n": 4,
+      "marco75Horas": 62.78,
+      "mediaHoras": 55.06,
+      "medianaHoras": 54.65,
+      "faixa": 0
+    },
+    "2501153": {
+      "n": 2,
+      "marco75Horas": 11.84,
+      "mediaHoras": 8.15,
+      "medianaHoras": 8.15,
+      "faixa": 0
+    },
+    "2503555": {
+      "n": 1,
+      "marco75Horas": 0.28,
+      "mediaHoras": 0.28,
+      "medianaHoras": 0.28,
+      "faixa": 0
+    },
+    "2508604": {
+      "n": 9,
+      "marco75Horas": 79.72,
+      "mediaHoras": 44.8,
+      "medianaHoras": 12.66,
+      "faixa": 1
+    },
+    "2502151": {
+      "n": 11,
+      "marco75Horas": 69.9,
+      "mediaHoras": 40.65,
+      "medianaHoras": 27.38,
+      "faixa": 0
+    },
+    "2509404": {
+      "n": 3,
+      "marco75Horas": 0.36,
+      "mediaHoras": 0.24,
+      "medianaHoras": 0.02,
+      "faixa": 0
+    },
+    "2509206": {
+      "n": 2,
+      "marco75Horas": 153.65,
+      "mediaHoras": 111.9,
+      "medianaHoras": 111.9,
+      "faixa": 2
+    },
+    "2515302": {
+      "n": 36,
+      "marco75Horas": 1.38,
+      "mediaHoras": 4.9,
+      "medianaHoras": 0.14,
+      "faixa": 0
+    },
+    "2511509": {
+      "n": 6,
+      "marco75Horas": 54.55,
+      "mediaHoras": 31.54,
+      "medianaHoras": 20.22,
+      "faixa": 0
+    },
+    "2508208": {
+      "n": 6,
+      "marco75Horas": 29.1,
+      "mediaHoras": 17.69,
+      "medianaHoras": 0.52,
+      "faixa": 0
+    },
+    "2506202": {
+      "n": 3,
+      "marco75Horas": 17.46,
+      "mediaHoras": 11.99,
+      "medianaHoras": 10.8,
+      "faixa": 0
+    },
+    "2512903": {
+      "n": 11,
+      "marco75Horas": 54.93,
+      "mediaHoras": 38.82,
+      "medianaHoras": 40.02,
+      "faixa": 0
+    },
+    "2501351": {
+      "n": 3,
+      "marco75Horas": 61.04,
+      "mediaHoras": 41.16,
+      "medianaHoras": 4.69,
+      "faixa": 0
+    },
+    "2504900": {
+      "n": 8,
+      "marco75Horas": 0.41,
+      "mediaHoras": 6.62,
+      "medianaHoras": 0.14,
+      "faixa": 0
+    },
+    "2503753": {
+      "n": 1,
+      "marco75Horas": 0.05,
+      "mediaHoras": 0.05,
+      "medianaHoras": 0.05,
+      "faixa": 0
+    },
+    "2508703": {
+      "n": 3,
+      "marco75Horas": 8.01,
+      "mediaHoras": 5.57,
+      "medianaHoras": 3.81,
+      "faixa": 0
+    },
+    "2502409": {
+      "n": 3,
+      "marco75Horas": 20.75,
+      "mediaHoras": 19.58,
+      "medianaHoras": 19.54,
+      "faixa": 0
+    },
+    "2503100": {
+      "n": 5,
+      "marco75Horas": 2.94,
+      "mediaHoras": 3.87,
+      "medianaHoras": 0.48,
+      "faixa": 0
+    },
+    "2515971": {
+      "n": 6,
+      "marco75Horas": 54.71,
+      "mediaHoras": 27.1,
+      "medianaHoras": 8.75,
+      "faixa": 0
+    },
+    "2501203": {
+      "n": 3,
+      "marco75Horas": 12.08,
+      "mediaHoras": 8.68,
+      "medianaHoras": 2.81,
+      "faixa": 0
+    },
+    "2503902": {
+      "n": 2,
+      "marco75Horas": 11.58,
+      "mediaHoras": 7.82,
+      "medianaHoras": 7.82,
+      "faixa": 0
+    },
+    "2500809": {
+      "n": 10,
+      "marco75Horas": 0.56,
+      "mediaHoras": 0.69,
+      "medianaHoras": 0.24,
+      "faixa": 0
+    },
+    "2513984": {
+      "n": 3,
+      "marco75Horas": 17.2,
+      "mediaHoras": 11.76,
+      "medianaHoras": 14.77,
+      "faixa": 0
+    },
+    "2509602": {
+      "n": 1,
+      "marco75Horas": 97.05,
+      "mediaHoras": 97.05,
+      "medianaHoras": 97.05,
+      "faixa": 1
+    },
+    "2502706": {
+      "n": 3,
+      "marco75Horas": 45.82,
+      "mediaHoras": 30.64,
+      "medianaHoras": 24.58,
+      "faixa": 0
+    },
+    "2514602": {
+      "n": 3,
+      "marco75Horas": 8.72,
+      "mediaHoras": 5.93,
+      "medianaHoras": 0.42,
+      "faixa": 0
+    },
+    "2507606": {
+      "n": 4,
+      "marco75Horas": 25.95,
+      "mediaHoras": 16.16,
+      "medianaHoras": 10.22,
+      "faixa": 0
+    },
+    "2506103": {
+      "n": 4,
+      "marco75Horas": 50.68,
+      "mediaHoras": 31.59,
+      "medianaHoras": 30.44,
+      "faixa": 0
+    },
+    "2507903": {
+      "n": 3,
+      "marco75Horas": 2.01,
+      "mediaHoras": 1.37,
+      "medianaHoras": 0.56,
+      "faixa": 0
+    },
+    "2514651": {
+      "n": 2,
+      "marco75Horas": 34.31,
+      "mediaHoras": 29.43,
+      "medianaHoras": 29.43,
+      "faixa": 0
+    },
+    "2514107": {
+      "n": 1,
+      "marco75Horas": 46.35,
+      "mediaHoras": 46.35,
+      "medianaHoras": 46.35,
+      "faixa": 0
+    },
+    "2504207": {
+      "n": 3,
+      "marco75Horas": 49.97,
+      "mediaHoras": 40.19,
+      "medianaHoras": 29.77,
+      "faixa": 0
+    },
+    "2508802": {
+      "n": 2,
+      "marco75Horas": 18.08,
+      "mediaHoras": 12.12,
+      "medianaHoras": 12.12,
+      "faixa": 0
+    },
+    "2510709": {
+      "n": 3,
+      "marco75Horas": 111.8,
+      "mediaHoras": 79.59,
+      "medianaHoras": 90.89,
+      "faixa": 1
+    },
+    "2516755": {
+      "n": 1,
+      "marco75Horas": 12.86,
+      "mediaHoras": 12.86,
+      "medianaHoras": 12.86,
+      "faixa": 0
+    },
+    "2509305": {
+      "n": 3,
+      "marco75Horas": 48.31,
+      "mediaHoras": 32.61,
+      "medianaHoras": 28.57,
+      "faixa": 0
+    },
+    "2506608": {
+      "n": 2,
+      "marco75Horas": 31.06,
+      "mediaHoras": 20.77,
+      "medianaHoras": 20.77,
+      "faixa": 0
+    },
+    "2503506": {
+      "n": 3,
+      "marco75Horas": 39.44,
+      "mediaHoras": 31.9,
+      "medianaHoras": 27.02,
+      "faixa": 0
+    },
+    "2509057": {
+      "n": 2,
+      "marco75Horas": 3.32,
+      "mediaHoras": 2.49,
+      "medianaHoras": 2.49,
+      "faixa": 0
+    },
+    "2507804": {
+      "n": 2,
+      "marco75Horas": 51.6,
+      "mediaHoras": 37.51,
+      "medianaHoras": 37.51,
+      "faixa": 0
+    },
+    "2516409": {
+      "n": 2,
+      "marco75Horas": 101.2,
+      "mediaHoras": 82.09,
+      "medianaHoras": 82.09,
+      "faixa": 1
+    },
+    "2505600": {
+      "n": 3,
+      "marco75Horas": 19.56,
+      "mediaHoras": 18.23,
+      "medianaHoras": 17.26,
+      "faixa": 0
+    },
+    "2517407": {
+      "n": 1,
+      "marco75Horas": 425.83,
+      "mediaHoras": 425.83,
+      "medianaHoras": 425.83,
+      "faixa": 3
+    },
+    "2505006": {
+      "n": 3,
+      "marco75Horas": 22.9,
+      "mediaHoras": 15.55,
+      "medianaHoras": 22.7,
+      "faixa": 0
+    },
+    "2504702": {
+      "n": 2,
+      "marco75Horas": 107.2,
+      "mediaHoras": 71.48,
+      "medianaHoras": 71.48,
+      "faixa": 1
+    },
+    "2512606": {
+      "n": 1,
+      "marco75Horas": 15.47,
+      "mediaHoras": 15.47,
+      "medianaHoras": 15.47,
+      "faixa": 0
+    },
+    "2514206": {
+      "n": 2,
+      "marco75Horas": 2.38,
+      "mediaHoras": 1.74,
+      "medianaHoras": 1.74,
+      "faixa": 0
+    },
+    "2515807": {
+      "n": 1,
+      "marco75Horas": 14.08,
+      "mediaHoras": 14.08,
+      "medianaHoras": 14.08,
+      "faixa": 0
+    },
+    "2506509": {
+      "n": 2,
+      "marco75Horas": 260.63,
+      "mediaHoras": 212.44,
+      "medianaHoras": 212.44,
+      "faixa": 3
+    },
+    "2500106": {
+      "n": 4,
+      "marco75Horas": 7.56,
+      "mediaHoras": 7.54,
+      "medianaHoras": 0.02,
+      "faixa": 0
+    },
+    "2504074": {
+      "n": 2,
+      "marco75Horas": 36.04,
+      "mediaHoras": 31.31,
+      "medianaHoras": 31.31,
+      "faixa": 0
+    },
+    "2504850": {
+      "n": 1,
+      "marco75Horas": 5.23,
+      "mediaHoras": 5.23,
+      "medianaHoras": 5.23,
+      "faixa": 0
+    },
+    "2513653": {
+      "n": 1,
+      "marco75Horas": 15.81,
+      "mediaHoras": 15.81,
+      "medianaHoras": 15.81,
+      "faixa": 0
+    },
+    "2502052": {
+      "n": 1,
+      "marco75Horas": 22.49,
+      "mediaHoras": 22.49,
+      "medianaHoras": 22.49,
+      "faixa": 0
+    },
+    "2514008": {
+      "n": 1,
+      "marco75Horas": 0.68,
+      "mediaHoras": 0.68,
+      "medianaHoras": 0.68,
+      "faixa": 0
+    },
+    "2515203": {
+      "n": 1,
+      "marco75Horas": 46.72,
+      "mediaHoras": 46.72,
+      "medianaHoras": 46.72,
+      "faixa": 0
+    },
+    "2508554": {
+      "n": 2,
+      "marco75Horas": 123.97,
+      "mediaHoras": 108.28,
+      "medianaHoras": 108.28,
+      "faixa": 2
+    },
+    "2504504": {
+      "n": 1,
+      "marco75Horas": 119.81,
+      "mediaHoras": 119.81,
+      "medianaHoras": 119.81,
+      "faixa": 1
+    },
+    "2512754": {
+      "n": 1,
+      "marco75Horas": 45.27,
+      "mediaHoras": 45.27,
+      "medianaHoras": 45.27,
+      "faixa": 0
+    },
+    "2513968": {
+      "n": 1,
+      "marco75Horas": 53.84,
+      "mediaHoras": 53.84,
+      "medianaHoras": 53.84,
+      "faixa": 0
+    },
+    "2513851": {
+      "n": 1,
+      "marco75Horas": 0.3,
+      "mediaHoras": 0.3,
+      "medianaHoras": 0.3,
+      "faixa": 0
+    },
+    "2502102": {
+      "n": 2,
+      "marco75Horas": 72.94,
+      "mediaHoras": 59.85,
+      "medianaHoras": 59.85,
+      "faixa": 1
+    },
+    "2509370": {
+      "n": 3,
+      "marco75Horas": 297.71,
+      "mediaHoras": 210.55,
+      "medianaHoras": 44.25,
+      "faixa": 3
+    },
+    "2512788": {
+      "n": 2,
+      "marco75Horas": 17.44,
+      "mediaHoras": 12.01,
+      "medianaHoras": 12.01,
+      "faixa": 0
+    },
+    "2502300": {
+      "n": 3,
+      "marco75Horas": 40.26,
+      "mediaHoras": 32.76,
+      "medianaHoras": 38.43,
+      "faixa": 0
+    },
+    "2512200": {
+      "n": 2,
+      "marco75Horas": 0.01,
+      "mediaHoras": 0.01,
+      "medianaHoras": 0.01,
+      "faixa": 0
+    },
+    "2501575": {
+      "n": 1,
+      "marco75Horas": 2.36,
+      "mediaHoras": 2.36,
+      "medianaHoras": 2.36,
+      "faixa": 0
+    },
+    "2512747": {
+      "n": 1,
+      "marco75Horas": 82.53,
+      "mediaHoras": 82.53,
+      "medianaHoras": 82.53,
+      "faixa": 1
+    },
+    "2510006": {
+      "n": 1,
+      "marco75Horas": 24.12,
+      "mediaHoras": 24.12,
+      "medianaHoras": 24.12,
+      "faixa": 0
+    },
+    "2509339": {
+      "n": 2,
+      "marco75Horas": 59.88,
+      "mediaHoras": 46.16,
+      "medianaHoras": 46.16,
+      "faixa": 0
+    },
+    "2505204": {
+      "n": 1,
+      "marco75Horas": 14.05,
+      "mediaHoras": 14.05,
+      "medianaHoras": 14.05,
+      "faixa": 0
+    },
+    "2505352": {
+      "n": 2,
+      "marco75Horas": 186.21,
+      "mediaHoras": 157.05,
+      "medianaHoras": 157.05,
+      "faixa": 3
+    },
+    "2512721": {
+      "n": 1,
+      "marco75Horas": 1.38,
+      "mediaHoras": 1.38,
+      "medianaHoras": 1.38,
+      "faixa": 0
+    },
+    "2512408": {
+      "n": 1,
+      "marco75Horas": 71.24,
+      "mediaHoras": 71.24,
+      "medianaHoras": 71.24,
+      "faixa": 0
+    },
+    "2512762": {
+      "n": 1,
+      "marco75Horas": 72.16,
+      "mediaHoras": 72.16,
+      "medianaHoras": 72.16,
+      "faixa": 1
+    },
+    "2507200": {
+      "n": 1,
+      "marco75Horas": 69.2,
+      "mediaHoras": 69.2,
+      "medianaHoras": 69.2,
+      "faixa": 0
+    },
+    "2516508": {
+      "n": 2,
+      "marco75Horas": 116.61,
+      "mediaHoras": 92.11,
+      "medianaHoras": 92.11,
+      "faixa": 1
+    },
+    "2510303": {
+      "n": 1,
+      "marco75Horas": 20.59,
+      "mediaHoras": 20.59,
+      "medianaHoras": 20.59,
+      "faixa": 0
+    },
+    "2517209": {
+      "n": 1,
+      "marco75Horas": 4.97,
+      "mediaHoras": 4.97,
+      "medianaHoras": 4.97,
+      "faixa": 0
+    },
+    "2505501": {
+      "n": 1,
+      "marco75Horas": 24.01,
+      "mediaHoras": 24.01,
+      "medianaHoras": 24.01,
+      "faixa": 0
+    },
+    "2510204": {
+      "n": 2,
+      "marco75Horas": 0.98,
+      "mediaHoras": 0.98,
+      "medianaHoras": 0.98,
+      "faixa": 0
+    },
+    "2511004": {
+      "n": 1,
+      "marco75Horas": 2.14,
+      "mediaHoras": 2.14,
+      "medianaHoras": 2.14,
+      "faixa": 0
+    },
+    "2508505": {
+      "n": 2,
+      "marco75Horas": 25.7,
+      "mediaHoras": 17.42,
+      "medianaHoras": 17.42,
+      "faixa": 0
+    },
+    "2502003": {
+      "n": 1,
+      "marco75Horas": 359.03,
+      "mediaHoras": 359.03,
+      "medianaHoras": 359.03,
+      "faixa": 3
+    },
+    "2515930": {
+      "n": 1,
+      "marco75Horas": 22.49,
+      "mediaHoras": 22.49,
+      "medianaHoras": 22.49,
+      "faixa": 0
+    },
+    "2500205": {
+      "n": 1,
+      "marco75Horas": 4.04,
+      "mediaHoras": 4.04,
+      "medianaHoras": 4.04,
+      "faixa": 0
+    },
+    "2512077": {
+      "n": 1,
+      "marco75Horas": 38.86,
+      "mediaHoras": 38.86,
+      "medianaHoras": 38.86,
+      "faixa": 0
+    },
+    "2509396": {
+      "n": 1,
+      "marco75Horas": 19.25,
+      "mediaHoras": 19.25,
+      "medianaHoras": 19.25,
+      "faixa": 0
+    },
+    "2504355": {
+      "n": 1,
+      "marco75Horas": 0.1,
+      "mediaHoras": 0.1,
+      "medianaHoras": 0.1,
+      "faixa": 0
+    }
+  }
+}

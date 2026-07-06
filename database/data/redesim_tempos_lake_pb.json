@@ -1,0 +1,2950 @@
+{
+  "indicatorSource": "lake",
+  "collection": "BRASIL_2025",
+  "uf": "PB",
+  "referenceYear": "2025",
+  "totalRegistros": 8103,
+  "naoCasados": {},
+  "aggregates": {
+    "2504009": {
+      "n": 798,
+      "viab": {
+        "marco75Horas": 17.98,
+        "mediaHoras": 13.45,
+        "medianaHoras": 16.05,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 18.61,
+        "mediaHoras": 15.74,
+        "medianaHoras": 16.43,
+        "faixa": 0
+      }
+    },
+    "2509156": {
+      "n": 9,
+      "viab": {
+        "marco75Horas": 24.56,
+        "mediaHoras": 25.28,
+        "medianaHoras": 16.9,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 24.76,
+        "mediaHoras": 25.36,
+        "medianaHoras": 17.0,
+        "faixa": 0
+      }
+    },
+    "2507507": {
+      "n": 3990,
+      "viab": {
+        "marco75Horas": 18.18,
+        "mediaHoras": 11.8,
+        "medianaHoras": 14.24,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 18.74,
+        "mediaHoras": 13.6,
+        "medianaHoras": 15.17,
+        "faixa": 0
+      }
+    },
+    "2509370": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 38.79,
+        "mediaHoras": 37.44,
+        "medianaHoras": 37.44,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 39.16,
+        "mediaHoras": 38.18,
+        "medianaHoras": 38.18,
+        "faixa": 0
+      }
+    },
+    "2507705": {
+      "n": 22,
+      "viab": {
+        "marco75Horas": 18.62,
+        "mediaHoras": 32.95,
+        "medianaHoras": 0.06,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 22.37,
+        "mediaHoras": 34.33,
+        "medianaHoras": 0.76,
+        "faixa": 0
+      }
+    },
+    "2506301": {
+      "n": 105,
+      "viab": {
+        "marco75Horas": 23.28,
+        "mediaHoras": 22.33,
+        "medianaHoras": 17.15,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 27.64,
+        "mediaHoras": 24.12,
+        "medianaHoras": 17.75,
+        "faixa": 0
+      }
+    },
+    "2504603": {
+      "n": 60,
+      "viab": {
+        "marco75Horas": 40.39,
+        "mediaHoras": 27.55,
+        "medianaHoras": 23.16,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 44.82,
+        "mediaHoras": 30.71,
+        "medianaHoras": 23.6,
+        "faixa": 0
+      }
+    },
+    "2501807": {
+      "n": 89,
+      "viab": {
+        "marco75Horas": 22.6,
+        "mediaHoras": 15.37,
+        "medianaHoras": 15.75,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 25.31,
+        "mediaHoras": 17.93,
+        "medianaHoras": 16.93,
+        "faixa": 0
+      }
+    },
+    "2510808": {
+      "n": 388,
+      "viab": {
+        "marco75Horas": 13.92,
+        "mediaHoras": 5.74,
+        "medianaHoras": 0.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 15.58,
+        "mediaHoras": 8.36,
+        "medianaHoras": 0.92,
+        "faixa": 0
+      }
+    },
+    "2513703": {
+      "n": 105,
+      "viab": {
+        "marco75Horas": 23.77,
+        "mediaHoras": 22.38,
+        "medianaHoras": 18.85,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 24.32,
+        "mediaHoras": 24.14,
+        "medianaHoras": 19.06,
+        "faixa": 0
+      }
+    },
+    "2503308": {
+      "n": 9,
+      "viab": {
+        "marco75Horas": 2.44,
+        "mediaHoras": 5.3,
+        "medianaHoras": 0.98,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 6.72,
+        "mediaHoras": 6.83,
+        "medianaHoras": 1.62,
+        "faixa": 0
+      }
+    },
+    "2503704": {
+      "n": 182,
+      "viab": {
+        "marco75Horas": 16.33,
+        "mediaHoras": 7.92,
+        "medianaHoras": 1.51,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 17.12,
+        "mediaHoras": 9.33,
+        "medianaHoras": 5.35,
+        "faixa": 0
+      }
+    },
+    "2503209": {
+      "n": 170,
+      "viab": {
+        "marco75Horas": 18.8,
+        "mediaHoras": 11.87,
+        "medianaHoras": 15.04,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 19.69,
+        "mediaHoras": 17.94,
+        "medianaHoras": 16.74,
+        "faixa": 0
+      }
+    },
+    "2501005": {
+      "n": 7,
+      "viab": {
+        "marco75Horas": 17.28,
+        "mediaHoras": 9.5,
+        "medianaHoras": 11.23,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 17.31,
+        "mediaHoras": 11.33,
+        "medianaHoras": 13.06,
+        "faixa": 0
+      }
+    },
+    "2503001": {
+      "n": 9,
+      "viab": {
+        "marco75Horas": 20.6,
+        "mediaHoras": 10.85,
+        "medianaHoras": 0.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 23.9,
+        "mediaHoras": 18.84,
+        "medianaHoras": 20.68,
+        "faixa": 0
+      }
+    },
+    "2512101": {
+      "n": 47,
+      "viab": {
+        "marco75Horas": 14.97,
+        "mediaHoras": 8.41,
+        "medianaHoras": 0.73,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 15.65,
+        "mediaHoras": 9.6,
+        "medianaHoras": 2.1,
+        "faixa": 0
+      }
+    },
+    "2508000": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 174.19,
+        "mediaHoras": 124.3,
+        "medianaHoras": 41.3,
+        "faixa": 3
+      },
+      "abertura": {
+        "marco75Horas": 174.2,
+        "mediaHoras": 124.31,
+        "medianaHoras": 41.32,
+        "faixa": 3
+      }
+    },
+    "2508901": {
+      "n": 64,
+      "viab": {
+        "marco75Horas": 23.48,
+        "mediaHoras": 23.69,
+        "medianaHoras": 0.01,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 26.45,
+        "mediaHoras": 24.96,
+        "medianaHoras": 0.66,
+        "faixa": 0
+      }
+    },
+    "2506004": {
+      "n": 83,
+      "viab": {
+        "marco75Horas": 10.34,
+        "mediaHoras": 4.83,
+        "medianaHoras": 0.02,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 15.57,
+        "mediaHoras": 6.34,
+        "medianaHoras": 0.49,
+        "faixa": 0
+      }
+    },
+    "2515104": {
+      "n": 8,
+      "viab": {
+        "marco75Horas": 34.69,
+        "mediaHoras": 23.72,
+        "medianaHoras": 1.93,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 35.84,
+        "mediaHoras": 24.48,
+        "medianaHoras": 2.97,
+        "faixa": 0
+      }
+    },
+    "2501500": {
+      "n": 37,
+      "viab": {
+        "marco75Horas": 29.45,
+        "mediaHoras": 23.22,
+        "medianaHoras": 21.03,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 39.24,
+        "mediaHoras": 25.02,
+        "medianaHoras": 22.79,
+        "faixa": 0
+      }
+    },
+    "2511202": {
+      "n": 60,
+      "viab": {
+        "marco75Horas": 16.64,
+        "mediaHoras": 9.32,
+        "medianaHoras": 0.09,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 16.74,
+        "mediaHoras": 10.08,
+        "medianaHoras": 0.48,
+        "faixa": 0
+      }
+    },
+    "2513851": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 0.3,
+        "mediaHoras": 0.3,
+        "medianaHoras": 0.3,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 0.3,
+        "mediaHoras": 0.3,
+        "medianaHoras": 0.3,
+        "faixa": 0
+      }
+    },
+    "2512788": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 11.9,
+        "mediaHoras": 7.97,
+        "medianaHoras": 1.13,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 12.01,
+        "mediaHoras": 8.05,
+        "medianaHoras": 1.15,
+        "faixa": 0
+      }
+    },
+    "2502300": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 32.74,
+        "mediaHoras": 27.98,
+        "medianaHoras": 23.62,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 40.26,
+        "mediaHoras": 39.21,
+        "medianaHoras": 38.43,
+        "faixa": 0
+      }
+    },
+    "2516706": {
+      "n": 11,
+      "viab": {
+        "marco75Horas": 42.69,
+        "mediaHoras": 35.36,
+        "medianaHoras": 30.37,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 43.18,
+        "mediaHoras": 36.13,
+        "medianaHoras": 30.58,
+        "faixa": 0
+      }
+    },
+    "2516201": {
+      "n": 174,
+      "viab": {
+        "marco75Horas": 17.14,
+        "mediaHoras": 8.72,
+        "medianaHoras": 1.46,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 17.31,
+        "mediaHoras": 9.58,
+        "medianaHoras": 2.98,
+        "faixa": 0
+      }
+    },
+    "2512002": {
+      "n": 19,
+      "viab": {
+        "marco75Horas": 40.97,
+        "mediaHoras": 36.69,
+        "medianaHoras": 3.27,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 47.97,
+        "mediaHoras": 38.16,
+        "medianaHoras": 6.6,
+        "faixa": 0
+      }
+    },
+    "2504801": {
+      "n": 39,
+      "viab": {
+        "marco75Horas": 2.24,
+        "mediaHoras": 9.54,
+        "medianaHoras": 0.58,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 3.22,
+        "mediaHoras": 9.84,
+        "medianaHoras": 0.92,
+        "faixa": 0
+      }
+    },
+    "2506905": {
+      "n": 22,
+      "viab": {
+        "marco75Horas": 46.03,
+        "mediaHoras": 54.06,
+        "medianaHoras": 23.23,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 46.28,
+        "mediaHoras": 55.54,
+        "medianaHoras": 28.9,
+        "faixa": 0
+      }
+    },
+    "2511400": {
+      "n": 28,
+      "viab": {
+        "marco75Horas": 11.28,
+        "mediaHoras": 5.33,
+        "medianaHoras": 0.38,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 14.77,
+        "mediaHoras": 7.44,
+        "medianaHoras": 1.69,
+        "faixa": 0
+      }
+    },
+    "2511707": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 20.04,
+        "mediaHoras": 13.96,
+        "medianaHoras": 13.96,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 20.06,
+        "mediaHoras": 13.98,
+        "medianaHoras": 13.98,
+        "faixa": 0
+      }
+    },
+    "2500304": {
+      "n": 35,
+      "viab": {
+        "marco75Horas": 16.43,
+        "mediaHoras": 9.79,
+        "medianaHoras": 1.97,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 16.82,
+        "mediaHoras": 10.48,
+        "medianaHoras": 2.21,
+        "faixa": 0
+      }
+    },
+    "2513901": {
+      "n": 62,
+      "viab": {
+        "marco75Horas": 18.55,
+        "mediaHoras": 11.34,
+        "medianaHoras": 15.34,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 18.65,
+        "mediaHoras": 14.9,
+        "medianaHoras": 15.5,
+        "faixa": 0
+      }
+    },
+    "2512507": {
+      "n": 56,
+      "viab": {
+        "marco75Horas": 25.19,
+        "mediaHoras": 19.32,
+        "medianaHoras": 17.36,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 33.84,
+        "mediaHoras": 23.18,
+        "medianaHoras": 17.68,
+        "faixa": 0
+      }
+    },
+    "2500106": {
+      "n": 5,
+      "viab": {
+        "marco75Horas": 12.25,
+        "mediaHoras": 25.98,
+        "medianaHoras": 0.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 30.12,
+        "mediaHoras": 29.56,
+        "medianaHoras": 0.04,
+        "faixa": 0
+      }
+    },
+    "2501575": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 2.3,
+        "mediaHoras": 2.3,
+        "medianaHoras": 2.3,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 2.36,
+        "mediaHoras": 2.36,
+        "medianaHoras": 2.36,
+        "faixa": 0
+      }
+    },
+    "2500809": {
+      "n": 13,
+      "viab": {
+        "marco75Horas": 17.35,
+        "mediaHoras": 6.3,
+        "medianaHoras": 0.01,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 17.42,
+        "mediaHoras": 6.87,
+        "medianaHoras": 1.74,
+        "faixa": 0
+      }
+    },
+    "2516904": {
+      "n": 26,
+      "viab": {
+        "marco75Horas": 15.6,
+        "mediaHoras": 9.25,
+        "medianaHoras": 4.48,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 16.82,
+        "mediaHoras": 10.53,
+        "medianaHoras": 4.86,
+        "faixa": 0
+      }
+    },
+    "2515302": {
+      "n": 57,
+      "viab": {
+        "marco75Horas": 6.37,
+        "mediaHoras": 7.55,
+        "medianaHoras": 0.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 15.46,
+        "mediaHoras": 9.5,
+        "medianaHoras": 1.1,
+        "faixa": 0
+      }
+    },
+    "2502805": {
+      "n": 26,
+      "viab": {
+        "marco75Horas": 0.99,
+        "mediaHoras": 4.36,
+        "medianaHoras": 0.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 3.22,
+        "mediaHoras": 4.67,
+        "medianaHoras": 0.06,
+        "faixa": 0
+      }
+    },
+    "2505204": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 13.05,
+        "mediaHoras": 12.09,
+        "medianaHoras": 12.09,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 13.08,
+        "mediaHoras": 12.11,
+        "medianaHoras": 12.11,
+        "faixa": 0
+      }
+    },
+    "2506806": {
+      "n": 21,
+      "viab": {
+        "marco75Horas": 52.45,
+        "mediaHoras": 27.59,
+        "medianaHoras": 1.37,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 53.08,
+        "mediaHoras": 28.09,
+        "medianaHoras": 1.78,
+        "faixa": 0
+      }
+    },
+    "2514651": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 34.25,
+        "mediaHoras": 29.33,
+        "medianaHoras": 29.33,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 34.31,
+        "mediaHoras": 29.43,
+        "medianaHoras": 29.43,
+        "faixa": 0
+      }
+    },
+    "2512903": {
+      "n": 15,
+      "viab": {
+        "marco75Horas": 40.62,
+        "mediaHoras": 25.09,
+        "medianaHoras": 19.2,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 43.19,
+        "mediaHoras": 27.23,
+        "medianaHoras": 19.2,
+        "faixa": 0
+      }
+    },
+    "2516300": {
+      "n": 21,
+      "viab": {
+        "marco75Horas": 17.8,
+        "mediaHoras": 12.09,
+        "medianaHoras": 16.05,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 17.8,
+        "mediaHoras": 12.21,
+        "medianaHoras": 16.09,
+        "faixa": 0
+      }
+    },
+    "2510402": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 38.64,
+        "mediaHoras": 25.79,
+        "medianaHoras": 25.79,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 38.78,
+        "mediaHoras": 26.04,
+        "medianaHoras": 26.04,
+        "faixa": 0
+      }
+    },
+    "2508307": {
+      "n": 35,
+      "viab": {
+        "marco75Horas": 17.76,
+        "mediaHoras": 19.61,
+        "medianaHoras": 5.4,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 21.62,
+        "mediaHoras": 21.17,
+        "medianaHoras": 6.33,
+        "faixa": 0
+      }
+    },
+    "2509107": {
+      "n": 20,
+      "viab": {
+        "marco75Horas": 53.04,
+        "mediaHoras": 23.62,
+        "medianaHoras": 0.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 53.04,
+        "mediaHoras": 25.02,
+        "medianaHoras": 2.72,
+        "faixa": 0
+      }
+    },
+    "2502102": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 85.85,
+        "mediaHoras": 85.85,
+        "medianaHoras": 85.85,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 86.03,
+        "mediaHoras": 86.03,
+        "medianaHoras": 86.03,
+        "faixa": 1
+      }
+    },
+    "2505105": {
+      "n": 35,
+      "viab": {
+        "marco75Horas": 25.49,
+        "mediaHoras": 19.29,
+        "medianaHoras": 5.14,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 25.62,
+        "mediaHoras": 19.48,
+        "medianaHoras": 5.26,
+        "faixa": 0
+      }
+    },
+    "2516003": {
+      "n": 58,
+      "viab": {
+        "marco75Horas": 1.75,
+        "mediaHoras": 4.08,
+        "medianaHoras": 0.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 6.68,
+        "mediaHoras": 4.8,
+        "medianaHoras": 0.19,
+        "faixa": 0
+      }
+    },
+    "2504306": {
+      "n": 70,
+      "viab": {
+        "marco75Horas": 12.69,
+        "mediaHoras": 5.64,
+        "medianaHoras": 0.04,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 13.86,
+        "mediaHoras": 6.56,
+        "medianaHoras": 0.62,
+        "faixa": 0
+      }
+    },
+    "2500700": {
+      "n": 26,
+      "viab": {
+        "marco75Horas": 17.71,
+        "mediaHoras": 16.05,
+        "medianaHoras": 0.88,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 17.73,
+        "mediaHoras": 16.37,
+        "medianaHoras": 1.42,
+        "faixa": 0
+      }
+    },
+    "2515005": {
+      "n": 5,
+      "viab": {
+        "marco75Horas": 94.33,
+        "mediaHoras": 65.77,
+        "medianaHoras": 89.6,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 94.58,
+        "mediaHoras": 65.9,
+        "medianaHoras": 89.6,
+        "faixa": 1
+      }
+    },
+    "2512747": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 73.37,
+        "mediaHoras": 73.37,
+        "medianaHoras": 73.37,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 82.53,
+        "mediaHoras": 82.53,
+        "medianaHoras": 82.53,
+        "faixa": 1
+      }
+    },
+    "2505279": {
+      "n": 5,
+      "viab": {
+        "marco75Horas": 100.92,
+        "mediaHoras": 67.22,
+        "medianaHoras": 48.06,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 101.17,
+        "mediaHoras": 67.5,
+        "medianaHoras": 48.12,
+        "faixa": 1
+      }
+    },
+    "2509701": {
+      "n": 69,
+      "viab": {
+        "marco75Horas": 20.48,
+        "mediaHoras": 16.89,
+        "medianaHoras": 4.95,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 20.5,
+        "mediaHoras": 17.24,
+        "medianaHoras": 5.64,
+        "faixa": 0
+      }
+    },
+    "2507309": {
+      "n": 9,
+      "viab": {
+        "marco75Horas": 17.47,
+        "mediaHoras": 8.43,
+        "medianaHoras": 0.53,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 20.85,
+        "mediaHoras": 14.03,
+        "medianaHoras": 17.03,
+        "faixa": 0
+      }
+    },
+    "2501203": {
+      "n": 6,
+      "viab": {
+        "marco75Horas": 18.83,
+        "mediaHoras": 41.54,
+        "medianaHoras": 7.27,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 19.34,
+        "mediaHoras": 41.93,
+        "medianaHoras": 8.08,
+        "faixa": 0
+      }
+    },
+    "2501104": {
+      "n": 43,
+      "viab": {
+        "marco75Horas": 18.43,
+        "mediaHoras": 13.15,
+        "medianaHoras": 0.02,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 18.51,
+        "mediaHoras": 13.36,
+        "medianaHoras": 0.2,
+        "faixa": 0
+      }
+    },
+    "2509339": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 18.71,
+        "mediaHoras": 18.71,
+        "medianaHoras": 18.71,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 18.73,
+        "mediaHoras": 18.73,
+        "medianaHoras": 18.73,
+        "faixa": 0
+      }
+    },
+    "2515971": {
+      "n": 8,
+      "viab": {
+        "marco75Horas": 63.02,
+        "mediaHoras": 29.86,
+        "medianaHoras": 20.63,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 66.54,
+        "mediaHoras": 31.59,
+        "medianaHoras": 20.64,
+        "faixa": 0
+      }
+    },
+    "2500908": {
+      "n": 7,
+      "viab": {
+        "marco75Horas": 27.13,
+        "mediaHoras": 16.18,
+        "medianaHoras": 17.63,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 27.26,
+        "mediaHoras": 16.44,
+        "medianaHoras": 17.63,
+        "faixa": 0
+      }
+    },
+    "2503902": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 8.66,
+        "mediaHoras": 5.88,
+        "medianaHoras": 1.99,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 8.66,
+        "mediaHoras": 5.88,
+        "medianaHoras": 2.0,
+        "faixa": 0
+      }
+    },
+    "2514404": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 81.18,
+        "mediaHoras": 60.61,
+        "medianaHoras": 39.44,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 81.58,
+        "mediaHoras": 60.89,
+        "medianaHoras": 40.07,
+        "faixa": 1
+      }
+    },
+    "2513968": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 40.2,
+        "mediaHoras": 26.89,
+        "medianaHoras": 26.89,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 40.5,
+        "mediaHoras": 27.17,
+        "medianaHoras": 27.17,
+        "faixa": 0
+      }
+    },
+    "2512804": {
+      "n": 10,
+      "viab": {
+        "marco75Horas": 16.84,
+        "mediaHoras": 8.42,
+        "medianaHoras": 4.37,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 17.13,
+        "mediaHoras": 8.58,
+        "medianaHoras": 4.39,
+        "faixa": 0
+      }
+    },
+    "2510006": {
+      "n": 5,
+      "viab": {
+        "marco75Horas": 76.76,
+        "mediaHoras": 62.24,
+        "medianaHoras": 65.55,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 76.85,
+        "mediaHoras": 62.32,
+        "medianaHoras": 65.56,
+        "faixa": 1
+      }
+    },
+    "2504074": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 31.31,
+        "mediaHoras": 27.5,
+        "medianaHoras": 21.87,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 31.31,
+        "mediaHoras": 27.5,
+        "medianaHoras": 21.87,
+        "faixa": 0
+      }
+    },
+    "2507408": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 24.09,
+        "mediaHoras": 23.38,
+        "medianaHoras": 23.38,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 24.12,
+        "mediaHoras": 23.4,
+        "medianaHoras": 23.4,
+        "faixa": 0
+      }
+    },
+    "2507002": {
+      "n": 29,
+      "viab": {
+        "marco75Horas": 18.52,
+        "mediaHoras": 15.5,
+        "medianaHoras": 11.33,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 22.71,
+        "mediaHoras": 20.72,
+        "medianaHoras": 12.27,
+        "faixa": 0
+      }
+    },
+    "2511905": {
+      "n": 13,
+      "viab": {
+        "marco75Horas": 42.69,
+        "mediaHoras": 29.79,
+        "medianaHoras": 22.76,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 49.22,
+        "mediaHoras": 33.12,
+        "medianaHoras": 22.76,
+        "faixa": 0
+      }
+    },
+    "2509008": {
+      "n": 12,
+      "viab": {
+        "marco75Horas": 22.13,
+        "mediaHoras": 14.6,
+        "medianaHoras": 14.26,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 22.13,
+        "mediaHoras": 14.61,
+        "medianaHoras": 14.26,
+        "faixa": 0
+      }
+    },
+    "2515401": {
+      "n": 9,
+      "viab": {
+        "marco75Horas": 21.12,
+        "mediaHoras": 34.62,
+        "medianaHoras": 11.45,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 21.27,
+        "mediaHoras": 34.89,
+        "medianaHoras": 11.48,
+        "faixa": 0
+      }
+    },
+    "2510105": {
+      "n": 11,
+      "viab": {
+        "marco75Horas": 17.56,
+        "mediaHoras": 27.4,
+        "medianaHoras": 12.61,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 24.59,
+        "mediaHoras": 29.04,
+        "medianaHoras": 15.15,
+        "faixa": 0
+      }
+    },
+    "2501906": {
+      "n": 29,
+      "viab": {
+        "marco75Horas": 16.47,
+        "mediaHoras": 8.5,
+        "medianaHoras": 0.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 18.35,
+        "mediaHoras": 11.83,
+        "medianaHoras": 0.38,
+        "faixa": 0
+      }
+    },
+    "2504207": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 27.35,
+        "mediaHoras": 25.07,
+        "medianaHoras": 25.07,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 27.49,
+        "mediaHoras": 25.2,
+        "medianaHoras": 25.2,
+        "faixa": 0
+      }
+    },
+    "2513406": {
+      "n": 24,
+      "viab": {
+        "marco75Horas": 109.72,
+        "mediaHoras": 73.47,
+        "medianaHoras": 22.05,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 109.72,
+        "mediaHoras": 75.62,
+        "medianaHoras": 22.05,
+        "faixa": 1
+      }
+    },
+    "2512200": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 33.4,
+        "mediaHoras": 22.27,
+        "medianaHoras": 18.12,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 37.0,
+        "mediaHoras": 24.67,
+        "medianaHoras": 25.3,
+        "faixa": 0
+      }
+    },
+    "2501609": {
+      "n": 12,
+      "viab": {
+        "marco75Horas": 37.85,
+        "mediaHoras": 15.24,
+        "medianaHoras": 0.55,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 38.53,
+        "mediaHoras": 17.14,
+        "medianaHoras": 0.72,
+        "faixa": 0
+      }
+    },
+    "2509800": {
+      "n": 6,
+      "viab": {
+        "marco75Horas": 163.01,
+        "mediaHoras": 90.94,
+        "medianaHoras": 36.67,
+        "faixa": 2
+      },
+      "abertura": {
+        "marco75Horas": 163.06,
+        "mediaHoras": 91.27,
+        "medianaHoras": 37.65,
+        "faixa": 2
+      }
+    },
+    "2500601": {
+      "n": 46,
+      "viab": {
+        "marco75Horas": 23.1,
+        "mediaHoras": 15.83,
+        "medianaHoras": 8.58,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 29.26,
+        "mediaHoras": 20.5,
+        "medianaHoras": 17.28,
+        "faixa": 0
+      }
+    },
+    "2513604": {
+      "n": 5,
+      "viab": {
+        "marco75Horas": 95.29,
+        "mediaHoras": 70.95,
+        "medianaHoras": 71.73,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 95.29,
+        "mediaHoras": 71.9,
+        "medianaHoras": 71.75,
+        "faixa": 1
+      }
+    },
+    "2512309": {
+      "n": 21,
+      "viab": {
+        "marco75Horas": 20.03,
+        "mediaHoras": 14.69,
+        "medianaHoras": 16.58,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 20.05,
+        "mediaHoras": 14.71,
+        "medianaHoras": 16.58,
+        "faixa": 0
+      }
+    },
+    "2514503": {
+      "n": 9,
+      "viab": {
+        "marco75Horas": 23.78,
+        "mediaHoras": 22.3,
+        "medianaHoras": 16.55,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 23.85,
+        "mediaHoras": 22.75,
+        "medianaHoras": 16.55,
+        "faixa": 0
+      }
+    },
+    "2500403": {
+      "n": 17,
+      "viab": {
+        "marco75Horas": 18.82,
+        "mediaHoras": 17.07,
+        "medianaHoras": 1.53,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 18.82,
+        "mediaHoras": 17.32,
+        "medianaHoras": 2.63,
+        "faixa": 0
+      }
+    },
+    "2501401": {
+      "n": 10,
+      "viab": {
+        "marco75Horas": 38.16,
+        "mediaHoras": 21.14,
+        "medianaHoras": 0.54,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 43.53,
+        "mediaHoras": 23.41,
+        "medianaHoras": 1.43,
+        "faixa": 0
+      }
+    },
+    "2511806": {
+      "n": 21,
+      "viab": {
+        "marco75Horas": 18.2,
+        "mediaHoras": 24.2,
+        "medianaHoras": 0.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 18.2,
+        "mediaHoras": 25.16,
+        "medianaHoras": 0.19,
+        "faixa": 0
+      }
+    },
+    "2509503": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 17.15,
+        "mediaHoras": 17.15,
+        "medianaHoras": 17.15,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 17.17,
+        "mediaHoras": 17.17,
+        "medianaHoras": 17.17,
+        "faixa": 0
+      }
+    },
+    "2514701": {
+      "n": 5,
+      "viab": {
+        "marco75Horas": 318.34,
+        "mediaHoras": 197.32,
+        "medianaHoras": 170.19,
+        "faixa": 3
+      },
+      "abertura": {
+        "marco75Horas": 318.73,
+        "mediaHoras": 197.5,
+        "medianaHoras": 170.29,
+        "faixa": 3
+      }
+    },
+    "2500502": {
+      "n": 13,
+      "viab": {
+        "marco75Horas": 46.1,
+        "mediaHoras": 22.68,
+        "medianaHoras": 0.68,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 60.21,
+        "mediaHoras": 24.65,
+        "medianaHoras": 10.0,
+        "faixa": 0
+      }
+    },
+    "2513109": {
+      "n": 4,
+      "viab": {
+        "marco75Horas": 18.26,
+        "mediaHoras": 13.26,
+        "medianaHoras": 13.02,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 18.36,
+        "mediaHoras": 13.35,
+        "medianaHoras": 13.02,
+        "faixa": 0
+      }
+    },
+    "2513208": {
+      "n": 5,
+      "viab": {
+        "marco75Horas": 22.5,
+        "mediaHoras": 36.01,
+        "medianaHoras": 16.4,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 22.5,
+        "mediaHoras": 36.44,
+        "medianaHoras": 16.4,
+        "faixa": 0
+      }
+    },
+    "2513927": {
+      "n": 4,
+      "viab": {
+        "marco75Horas": 25.73,
+        "mediaHoras": 22.92,
+        "medianaHoras": 24.1,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 28.09,
+        "mediaHoras": 24.72,
+        "medianaHoras": 24.69,
+        "faixa": 0
+      }
+    },
+    "2511608": {
+      "n": 18,
+      "viab": {
+        "marco75Horas": 0.61,
+        "mediaHoras": 5.33,
+        "medianaHoras": 0.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 1.72,
+        "mediaHoras": 5.57,
+        "medianaHoras": 0.07,
+        "faixa": 0
+      }
+    },
+    "2515500": {
+      "n": 28,
+      "viab": {
+        "marco75Horas": 39.49,
+        "mediaHoras": 25.46,
+        "medianaHoras": 15.32,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 39.57,
+        "mediaHoras": 26.76,
+        "medianaHoras": 15.53,
+        "faixa": 0
+      }
+    },
+    "2512705": {
+      "n": 25,
+      "viab": {
+        "marco75Horas": 24.82,
+        "mediaHoras": 19.85,
+        "medianaHoras": 0.01,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 24.88,
+        "mediaHoras": 20.81,
+        "medianaHoras": 0.6,
+        "faixa": 0
+      }
+    },
+    "2511103": {
+      "n": 8,
+      "viab": {
+        "marco75Horas": 21.59,
+        "mediaHoras": 10.8,
+        "medianaHoras": 1.5,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 21.59,
+        "mediaHoras": 12.36,
+        "medianaHoras": 7.15,
+        "faixa": 0
+      }
+    },
+    "2504033": {
+      "n": 6,
+      "viab": {
+        "marco75Horas": 24.17,
+        "mediaHoras": 16.03,
+        "medianaHoras": 9.7,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 24.63,
+        "mediaHoras": 16.13,
+        "medianaHoras": 9.71,
+        "faixa": 0
+      }
+    },
+    "2505402": {
+      "n": 7,
+      "viab": {
+        "marco75Horas": 21.02,
+        "mediaHoras": 17.01,
+        "medianaHoras": 19.73,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 32.11,
+        "mediaHoras": 23.37,
+        "medianaHoras": 21.57,
+        "faixa": 0
+      }
+    },
+    "2500775": {
+      "n": 6,
+      "viab": {
+        "marco75Horas": 17.3,
+        "mediaHoras": 20.74,
+        "medianaHoras": 8.26,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 17.3,
+        "mediaHoras": 20.79,
+        "medianaHoras": 8.27,
+        "faixa": 0
+      }
+    },
+    "2513802": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 51.15,
+        "mediaHoras": 41.63,
+        "medianaHoras": 41.63,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 51.15,
+        "mediaHoras": 41.63,
+        "medianaHoras": 41.63,
+        "faixa": 0
+      }
+    },
+    "2510907": {
+      "n": 13,
+      "viab": {
+        "marco75Horas": 22.77,
+        "mediaHoras": 25.03,
+        "medianaHoras": 18.01,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 24.91,
+        "mediaHoras": 28.95,
+        "medianaHoras": 18.83,
+        "faixa": 0
+      }
+    },
+    "2503803": {
+      "n": 8,
+      "viab": {
+        "marco75Horas": 67.85,
+        "mediaHoras": 28.75,
+        "medianaHoras": 11.9,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 67.96,
+        "mediaHoras": 29.41,
+        "medianaHoras": 13.01,
+        "faixa": 0
+      }
+    },
+    "2508406": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 106.91,
+        "mediaHoras": 96.84,
+        "medianaHoras": 96.84,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 106.99,
+        "mediaHoras": 96.99,
+        "medianaHoras": 96.99,
+        "faixa": 1
+      }
+    },
+    "2516102": {
+      "n": 8,
+      "viab": {
+        "marco75Horas": 92.4,
+        "mediaHoras": 60.89,
+        "medianaHoras": 30.08,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 92.69,
+        "mediaHoras": 61.07,
+        "medianaHoras": 30.19,
+        "faixa": 1
+      }
+    },
+    "2513000": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 31.9,
+        "mediaHoras": 25.85,
+        "medianaHoras": 14.89,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 33.83,
+        "mediaHoras": 27.58,
+        "medianaHoras": 18.75,
+        "faixa": 0
+      }
+    },
+    "2506400": {
+      "n": 10,
+      "viab": {
+        "marco75Horas": 38.01,
+        "mediaHoras": 27.29,
+        "medianaHoras": 22.81,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 38.03,
+        "mediaHoras": 27.33,
+        "medianaHoras": 22.86,
+        "faixa": 0
+      }
+    },
+    "2505709": {
+      "n": 8,
+      "viab": {
+        "marco75Horas": 5.48,
+        "mediaHoras": 11.54,
+        "medianaHoras": 0.04,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 32.76,
+        "mediaHoras": 20.0,
+        "medianaHoras": 0.19,
+        "faixa": 0
+      }
+    },
+    "2510659": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 171.67,
+        "mediaHoras": 171.67,
+        "medianaHoras": 171.67,
+        "faixa": 3
+      },
+      "abertura": {
+        "marco75Horas": 171.75,
+        "mediaHoras": 171.75,
+        "medianaHoras": 171.75,
+        "faixa": 3
+      }
+    },
+    "2507101": {
+      "n": 13,
+      "viab": {
+        "marco75Horas": 19.95,
+        "mediaHoras": 14.96,
+        "medianaHoras": 0.05,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 19.95,
+        "mediaHoras": 16.35,
+        "medianaHoras": 1.56,
+        "faixa": 0
+      }
+    },
+    "2504405": {
+      "n": 13,
+      "viab": {
+        "marco75Horas": 47.11,
+        "mediaHoras": 28.59,
+        "medianaHoras": 20.12,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 47.11,
+        "mediaHoras": 30.63,
+        "medianaHoras": 25.56,
+        "faixa": 0
+      }
+    },
+    "2502508": {
+      "n": 14,
+      "viab": {
+        "marco75Horas": 44.73,
+        "mediaHoras": 53.47,
+        "medianaHoras": 0.11,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 44.82,
+        "mediaHoras": 54.47,
+        "medianaHoras": 6.25,
+        "faixa": 0
+      }
+    },
+    "2512754": {
+      "n": 4,
+      "viab": {
+        "marco75Horas": 26.52,
+        "mediaHoras": 20.29,
+        "medianaHoras": 18.4,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 38.99,
+        "mediaHoras": 25.94,
+        "medianaHoras": 29.15,
+        "faixa": 0
+      }
+    },
+    "2514602": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 8.87,
+        "mediaHoras": 6.03,
+        "medianaHoras": 0.73,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 8.87,
+        "mediaHoras": 6.03,
+        "medianaHoras": 0.73,
+        "faixa": 0
+      }
+    },
+    "2509206": {
+      "n": 4,
+      "viab": {
+        "marco75Horas": 135.51,
+        "mediaHoras": 117.26,
+        "medianaHoras": 105.06,
+        "faixa": 2
+      },
+      "abertura": {
+        "marco75Horas": 135.96,
+        "mediaHoras": 121.91,
+        "medianaHoras": 113.46,
+        "faixa": 2
+      }
+    },
+    "2501302": {
+      "n": 14,
+      "viab": {
+        "marco75Horas": 0.25,
+        "mediaHoras": 2.49,
+        "medianaHoras": 0.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 3.35,
+        "mediaHoras": 7.88,
+        "medianaHoras": 0.77,
+        "faixa": 0
+      }
+    },
+    "2505303": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 66.57,
+        "mediaHoras": 66.57,
+        "medianaHoras": 66.57,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 66.6,
+        "mediaHoras": 66.6,
+        "medianaHoras": 66.6,
+        "faixa": 0
+      }
+    },
+    "2509396": {
+      "n": 4,
+      "viab": {
+        "marco75Horas": 34.6,
+        "mediaHoras": 24.46,
+        "medianaHoras": 17.67,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 34.87,
+        "mediaHoras": 24.57,
+        "medianaHoras": 17.89,
+        "faixa": 0
+      }
+    },
+    "2504900": {
+      "n": 9,
+      "viab": {
+        "marco75Horas": 26.3,
+        "mediaHoras": 13.1,
+        "medianaHoras": 0.82,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 26.3,
+        "mediaHoras": 13.18,
+        "medianaHoras": 0.82,
+        "faixa": 0
+      }
+    },
+    "2502409": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 8.6,
+        "mediaHoras": 5.74,
+        "medianaHoras": 0.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 8.64,
+        "mediaHoras": 5.77,
+        "medianaHoras": 0.04,
+        "faixa": 0
+      }
+    },
+    "2511509": {
+      "n": 10,
+      "viab": {
+        "marco75Horas": 14.45,
+        "mediaHoras": 6.29,
+        "medianaHoras": 0.66,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 14.47,
+        "mediaHoras": 6.41,
+        "medianaHoras": 0.74,
+        "faixa": 0
+      }
+    },
+    "2516508": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 1.9,
+        "mediaHoras": 1.9,
+        "medianaHoras": 1.9,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 2.22,
+        "mediaHoras": 2.22,
+        "medianaHoras": 2.22,
+        "faixa": 0
+      }
+    },
+    "2505238": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 102.13,
+        "mediaHoras": 68.14,
+        "medianaHoras": 77.13,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 102.19,
+        "mediaHoras": 68.28,
+        "medianaHoras": 77.25,
+        "faixa": 1
+      }
+    },
+    "2510204": {
+      "n": 4,
+      "viab": {
+        "marco75Horas": 37.45,
+        "mediaHoras": 31.84,
+        "medianaHoras": 13.05,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 37.51,
+        "mediaHoras": 31.9,
+        "medianaHoras": 13.08,
+        "faixa": 0
+      }
+    },
+    "2500205": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 16.72,
+        "mediaHoras": 16.72,
+        "medianaHoras": 16.72,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 16.74,
+        "mediaHoras": 16.74,
+        "medianaHoras": 16.74,
+        "faixa": 0
+      }
+    },
+    "2512077": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 19.85,
+        "mediaHoras": 13.35,
+        "medianaHoras": 18.07,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 20.25,
+        "mediaHoras": 13.76,
+        "medianaHoras": 18.62,
+        "faixa": 0
+      }
+    },
+    "2507606": {
+      "n": 8,
+      "viab": {
+        "marco75Horas": 77.0,
+        "mediaHoras": 65.81,
+        "medianaHoras": 42.97,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 77.13,
+        "mediaHoras": 65.97,
+        "medianaHoras": 42.98,
+        "faixa": 1
+      }
+    },
+    "2505006": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 11.78,
+        "mediaHoras": 8.01,
+        "medianaHoras": 0.85,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 11.78,
+        "mediaHoras": 8.02,
+        "medianaHoras": 0.85,
+        "faixa": 0
+      }
+    },
+    "2517001": {
+      "n": 4,
+      "viab": {
+        "marco75Horas": 7.66,
+        "mediaHoras": 6.36,
+        "medianaHoras": 2.03,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 7.67,
+        "mediaHoras": 6.36,
+        "medianaHoras": 2.04,
+        "faixa": 0
+      }
+    },
+    "2504702": {
+      "n": 6,
+      "viab": {
+        "marco75Horas": 3.89,
+        "mediaHoras": 24.76,
+        "medianaHoras": 0.33,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 3.89,
+        "mediaHoras": 24.78,
+        "medianaHoras": 0.34,
+        "faixa": 0
+      }
+    },
+    "2509305": {
+      "n": 6,
+      "viab": {
+        "marco75Horas": 44.12,
+        "mediaHoras": 27.04,
+        "medianaHoras": 22.78,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 44.13,
+        "mediaHoras": 28.26,
+        "medianaHoras": 22.95,
+        "faixa": 0
+      }
+    },
+    "2507903": {
+      "n": 4,
+      "viab": {
+        "marco75Horas": 130.49,
+        "mediaHoras": 107.59,
+        "medianaHoras": 22.9,
+        "faixa": 2
+      },
+      "abertura": {
+        "marco75Horas": 130.61,
+        "mediaHoras": 107.82,
+        "medianaHoras": 23.23,
+        "faixa": 2
+      }
+    },
+    "2500734": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 34.7,
+        "mediaHoras": 34.7,
+        "medianaHoras": 34.7,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 34.7,
+        "mediaHoras": 34.7,
+        "medianaHoras": 34.7,
+        "faixa": 0
+      }
+    },
+    "2515609": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 40.34,
+        "mediaHoras": 32.57,
+        "medianaHoras": 32.57,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 40.35,
+        "mediaHoras": 32.58,
+        "medianaHoras": 32.58,
+        "faixa": 0
+      }
+    },
+    "2508604": {
+      "n": 11,
+      "viab": {
+        "marco75Horas": 57.6,
+        "mediaHoras": 36.99,
+        "medianaHoras": 4.99,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 60.85,
+        "mediaHoras": 40.29,
+        "medianaHoras": 12.66,
+        "faixa": 0
+      }
+    },
+    "2504355": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 265.5,
+        "mediaHoras": 265.5,
+        "medianaHoras": 265.5,
+        "faixa": 3
+      },
+      "abertura": {
+        "marco75Horas": 265.52,
+        "mediaHoras": 265.52,
+        "medianaHoras": 265.52,
+        "faixa": 3
+      }
+    },
+    "2515930": {
+      "n": 5,
+      "viab": {
+        "marco75Horas": 43.65,
+        "mediaHoras": 18.32,
+        "medianaHoras": 1.66,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 43.65,
+        "mediaHoras": 18.33,
+        "medianaHoras": 1.66,
+        "faixa": 0
+      }
+    },
+    "2502151": {
+      "n": 12,
+      "viab": {
+        "marco75Horas": 68.95,
+        "mediaHoras": 41.74,
+        "medianaHoras": 40.39,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 71.4,
+        "mediaHoras": 46.99,
+        "medianaHoras": 43.11,
+        "faixa": 0
+      }
+    },
+    "2513653": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 18.39,
+        "mediaHoras": 17.53,
+        "medianaHoras": 17.53,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 18.39,
+        "mediaHoras": 17.53,
+        "medianaHoras": 17.53,
+        "faixa": 0
+      }
+    },
+    "2514008": {
+      "n": 6,
+      "viab": {
+        "marco75Horas": 70.19,
+        "mediaHoras": 43.04,
+        "medianaHoras": 13.89,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 70.2,
+        "mediaHoras": 43.16,
+        "medianaHoras": 14.06,
+        "faixa": 0
+      }
+    },
+    "2503100": {
+      "n": 5,
+      "viab": {
+        "marco75Horas": 17.75,
+        "mediaHoras": 7.33,
+        "medianaHoras": 0.4,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 18.15,
+        "mediaHoras": 10.51,
+        "medianaHoras": 15.53,
+        "faixa": 0
+      }
+    },
+    "2507804": {
+      "n": 9,
+      "viab": {
+        "marco75Horas": 21.85,
+        "mediaHoras": 14.75,
+        "medianaHoras": 18.82,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 23.24,
+        "mediaHoras": 20.05,
+        "medianaHoras": 19.19,
+        "faixa": 0
+      }
+    },
+    "2507200": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 60.52,
+        "mediaHoras": 53.54,
+        "medianaHoras": 53.54,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 61.82,
+        "mediaHoras": 54.44,
+        "medianaHoras": 54.44,
+        "faixa": 0
+      }
+    },
+    "2508208": {
+      "n": 8,
+      "viab": {
+        "marco75Horas": 31.28,
+        "mediaHoras": 28.46,
+        "medianaHoras": 0.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 45.52,
+        "mediaHoras": 31.21,
+        "medianaHoras": 0.76,
+        "faixa": 0
+      }
+    },
+    "2505352": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 76.55,
+        "mediaHoras": 55.5,
+        "medianaHoras": 55.5,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 77.4,
+        "mediaHoras": 56.08,
+        "medianaHoras": 56.08,
+        "faixa": 1
+      }
+    },
+    "2508802": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 58.54,
+        "mediaHoras": 39.03,
+        "medianaHoras": 24.02,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 143.0,
+        "mediaHoras": 95.4,
+        "medianaHoras": 24.04,
+        "faixa": 2
+      }
+    },
+    "2514909": {
+      "n": 7,
+      "viab": {
+        "marco75Horas": 22.93,
+        "mediaHoras": 21.89,
+        "medianaHoras": 15.3,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 22.93,
+        "mediaHoras": 25.14,
+        "medianaHoras": 15.3,
+        "faixa": 0
+      }
+    },
+    "2512762": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 72.01,
+        "mediaHoras": 72.01,
+        "medianaHoras": 72.01,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 72.16,
+        "mediaHoras": 72.16,
+        "medianaHoras": 72.16,
+        "faixa": 1
+      }
+    },
+    "2506103": {
+      "n": 8,
+      "viab": {
+        "marco75Horas": 27.11,
+        "mediaHoras": 22.34,
+        "medianaHoras": 19.74,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 32.52,
+        "mediaHoras": 25.35,
+        "medianaHoras": 20.82,
+        "faixa": 0
+      }
+    },
+    "2509404": {
+      "n": 4,
+      "viab": {
+        "marco75Horas": 0.0,
+        "mediaHoras": 0.0,
+        "medianaHoras": 0.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 0.19,
+        "mediaHoras": 0.18,
+        "medianaHoras": 0.01,
+        "faixa": 0
+      }
+    },
+    "2512721": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 0.68,
+        "mediaHoras": 0.68,
+        "medianaHoras": 0.68,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 1.38,
+        "mediaHoras": 1.38,
+        "medianaHoras": 1.38,
+        "faixa": 0
+      }
+    },
+    "2516409": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 98.58,
+        "mediaHoras": 80.07,
+        "medianaHoras": 80.07,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 101.2,
+        "mediaHoras": 82.09,
+        "medianaHoras": 82.09,
+        "faixa": 1
+      }
+    },
+    "2503506": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 39.18,
+        "mediaHoras": 31.7,
+        "medianaHoras": 27.02,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 39.44,
+        "mediaHoras": 31.9,
+        "medianaHoras": 27.02,
+        "faixa": 0
+      }
+    },
+    "2512408": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 70.48,
+        "mediaHoras": 70.48,
+        "medianaHoras": 70.48,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 71.24,
+        "mediaHoras": 71.24,
+        "medianaHoras": 71.24,
+        "faixa": 0
+      }
+    },
+    "2509602": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 72.81,
+        "mediaHoras": 48.56,
+        "medianaHoras": 48.56,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 73.35,
+        "mediaHoras": 49.65,
+        "medianaHoras": 49.65,
+        "faixa": 1
+      }
+    },
+    "2514206": {
+      "n": 4,
+      "viab": {
+        "marco75Horas": 42.37,
+        "mediaHoras": 32.42,
+        "medianaHoras": 12.31,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 42.5,
+        "mediaHoras": 32.49,
+        "medianaHoras": 12.4,
+        "faixa": 0
+      }
+    },
+    "2503555": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 0.23,
+        "mediaHoras": 0.23,
+        "medianaHoras": 0.23,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 0.28,
+        "mediaHoras": 0.28,
+        "medianaHoras": 0.28,
+        "faixa": 0
+      }
+    },
+    "2513307": {
+      "n": 6,
+      "viab": {
+        "marco75Horas": 28.97,
+        "mediaHoras": 17.77,
+        "medianaHoras": 13.6,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 29.08,
+        "mediaHoras": 17.83,
+        "medianaHoras": 13.68,
+        "faixa": 0
+      }
+    },
+    "2503753": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 0.03,
+        "mediaHoras": 0.03,
+        "medianaHoras": 0.03,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 0.05,
+        "mediaHoras": 0.05,
+        "medianaHoras": 0.05,
+        "faixa": 0
+      }
+    },
+    "2501153": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 0.32,
+        "mediaHoras": 0.26,
+        "medianaHoras": 0.26,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 0.71,
+        "mediaHoras": 0.64,
+        "medianaHoras": 0.64,
+        "faixa": 0
+      }
+    },
+    "2501534": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 58.82,
+        "mediaHoras": 39.37,
+        "medianaHoras": 18.02,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 58.83,
+        "mediaHoras": 39.38,
+        "medianaHoras": 18.02,
+        "faixa": 0
+      }
+    },
+    "2506202": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 17.11,
+        "mediaHoras": 11.69,
+        "medianaHoras": 10.79,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 17.46,
+        "mediaHoras": 11.99,
+        "medianaHoras": 10.8,
+        "faixa": 0
+      }
+    },
+    "2502201": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 57.04,
+        "mediaHoras": 44.05,
+        "medianaHoras": 44.05,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 57.07,
+        "mediaHoras": 44.08,
+        "medianaHoras": 44.08,
+        "faixa": 0
+      }
+    },
+    "2508703": {
+      "n": 5,
+      "viab": {
+        "marco75Horas": 10.58,
+        "mediaHoras": 6.9,
+        "medianaHoras": 1.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 12.2,
+        "mediaHoras": 8.29,
+        "medianaHoras": 3.81,
+        "faixa": 0
+      }
+    },
+    "2514800": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 113.32,
+        "mediaHoras": 113.32,
+        "medianaHoras": 113.32,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 113.35,
+        "mediaHoras": 113.35,
+        "medianaHoras": 113.35,
+        "faixa": 1
+      }
+    },
+    "2500536": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 152.41,
+        "mediaHoras": 116.85,
+        "medianaHoras": 116.85,
+        "faixa": 2
+      },
+      "abertura": {
+        "marco75Horas": 152.41,
+        "mediaHoras": 116.85,
+        "medianaHoras": 116.85,
+        "faixa": 2
+      }
+    },
+    "2501351": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 88.08,
+        "mediaHoras": 58.78,
+        "medianaHoras": 58.78,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 88.4,
+        "mediaHoras": 59.39,
+        "medianaHoras": 59.39,
+        "faixa": 1
+      }
+    },
+    "2504850": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 0.09,
+        "mediaHoras": 0.09,
+        "medianaHoras": 0.09,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 5.23,
+        "mediaHoras": 5.23,
+        "medianaHoras": 5.23,
+        "faixa": 0
+      }
+    },
+    "2508554": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 76.89,
+        "mediaHoras": 76.89,
+        "medianaHoras": 76.89,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 76.89,
+        "mediaHoras": 76.89,
+        "medianaHoras": 76.89,
+        "faixa": 1
+      }
+    },
+    "2502052": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 16.83,
+        "mediaHoras": 11.24,
+        "medianaHoras": 11.24,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 17.44,
+        "mediaHoras": 12.38,
+        "medianaHoras": 12.38,
+        "faixa": 0
+      }
+    },
+    "2513984": {
+      "n": 4,
+      "viab": {
+        "marco75Horas": 15.98,
+        "mediaHoras": 12.33,
+        "medianaHoras": 14.41,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 15.98,
+        "mediaHoras": 12.34,
+        "medianaHoras": 14.41,
+        "faixa": 0
+      }
+    },
+    "2506509": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 115.88,
+        "mediaHoras": 115.88,
+        "medianaHoras": 115.88,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 116.07,
+        "mediaHoras": 116.07,
+        "medianaHoras": 116.07,
+        "faixa": 1
+      }
+    },
+    "2509057": {
+      "n": 4,
+      "viab": {
+        "marco75Horas": 8.63,
+        "mediaHoras": 7.23,
+        "medianaHoras": 1.49,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 9.74,
+        "mediaHoras": 8.84,
+        "medianaHoras": 4.21,
+        "faixa": 0
+      }
+    },
+    "2504504": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 116.56,
+        "mediaHoras": 116.56,
+        "medianaHoras": 116.56,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 119.81,
+        "mediaHoras": 119.81,
+        "medianaHoras": 119.81,
+        "faixa": 1
+      }
+    },
+    "2515203": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 101.54,
+        "mediaHoras": 83.26,
+        "medianaHoras": 83.26,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 101.7,
+        "mediaHoras": 83.37,
+        "medianaHoras": 83.37,
+        "faixa": 1
+      }
+    },
+    "2505600": {
+      "n": 4,
+      "viab": {
+        "marco75Horas": 17.95,
+        "mediaHoras": 14.33,
+        "medianaHoras": 16.11,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 18.02,
+        "mediaHoras": 14.42,
+        "medianaHoras": 16.16,
+        "faixa": 0
+      }
+    },
+    "2506608": {
+      "n": 6,
+      "viab": {
+        "marco75Horas": 14.79,
+        "mediaHoras": 11.85,
+        "medianaHoras": 7.4,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 14.83,
+        "mediaHoras": 11.91,
+        "medianaHoras": 7.42,
+        "faixa": 0
+      }
+    },
+    "2510709": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 111.78,
+        "mediaHoras": 79.58,
+        "medianaHoras": 90.87,
+        "faixa": 1
+      },
+      "abertura": {
+        "marco75Horas": 111.8,
+        "mediaHoras": 79.59,
+        "medianaHoras": 90.89,
+        "faixa": 1
+      }
+    },
+    "2512606": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 15.47,
+        "mediaHoras": 15.47,
+        "medianaHoras": 15.47,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 15.47,
+        "mediaHoras": 15.47,
+        "medianaHoras": 15.47,
+        "faixa": 0
+      }
+    },
+    "2515807": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 13.01,
+        "mediaHoras": 12.0,
+        "medianaHoras": 12.0,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 13.07,
+        "mediaHoras": 12.06,
+        "medianaHoras": 12.06,
+        "faixa": 0
+      }
+    },
+    "2517407": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 279.41,
+        "mediaHoras": 229.72,
+        "medianaHoras": 229.72,
+        "faixa": 3
+      },
+      "abertura": {
+        "marco75Horas": 351.95,
+        "mediaHoras": 278.08,
+        "medianaHoras": 278.08,
+        "faixa": 3
+      }
+    },
+    "2516755": {
+      "n": 4,
+      "viab": {
+        "marco75Horas": 5.11,
+        "mediaHoras": 3.9,
+        "medianaHoras": 1.44,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 5.2,
+        "mediaHoras": 3.99,
+        "medianaHoras": 1.47,
+        "faixa": 0
+      }
+    },
+    "2504157": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 18.84,
+        "mediaHoras": 18.84,
+        "medianaHoras": 18.84,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 18.84,
+        "mediaHoras": 18.84,
+        "medianaHoras": 18.84,
+        "faixa": 0
+      }
+    },
+    "2502706": {
+      "n": 3,
+      "viab": {
+        "marco75Horas": 45.81,
+        "mediaHoras": 30.63,
+        "medianaHoras": 24.57,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 45.82,
+        "mediaHoras": 30.64,
+        "medianaHoras": 24.58,
+        "faixa": 0
+      }
+    },
+    "2514107": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 134.4,
+        "mediaHoras": 105.05,
+        "medianaHoras": 105.05,
+        "faixa": 2
+      },
+      "abertura": {
+        "marco75Horas": 134.41,
+        "mediaHoras": 105.06,
+        "medianaHoras": 105.06,
+        "faixa": 2
+      }
+    },
+    "2513943": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 0.21,
+        "mediaHoras": 0.21,
+        "medianaHoras": 0.21,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 0.24,
+        "mediaHoras": 0.24,
+        "medianaHoras": 0.24,
+        "faixa": 0
+      }
+    },
+    "2503407": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 0.62,
+        "mediaHoras": 0.62,
+        "medianaHoras": 0.62,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 0.76,
+        "mediaHoras": 0.76,
+        "medianaHoras": 0.76,
+        "faixa": 0
+      }
+    },
+    "2505808": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 12.8,
+        "mediaHoras": 12.8,
+        "medianaHoras": 12.8,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 12.82,
+        "mediaHoras": 12.82,
+        "medianaHoras": 12.82,
+        "faixa": 0
+      }
+    },
+    "2515906": {
+      "n": 2,
+      "viab": {
+        "marco75Horas": 35.66,
+        "mediaHoras": 30.62,
+        "medianaHoras": 30.62,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 35.68,
+        "mediaHoras": 30.63,
+        "medianaHoras": 30.63,
+        "faixa": 0
+      }
+    },
+    "2506707": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 23.3,
+        "mediaHoras": 23.3,
+        "medianaHoras": 23.3,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 23.35,
+        "mediaHoras": 23.35,
+        "medianaHoras": 23.35,
+        "faixa": 0
+      }
+    },
+    "2504108": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 27.05,
+        "mediaHoras": 27.05,
+        "medianaHoras": 27.05,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 27.27,
+        "mediaHoras": 27.27,
+        "medianaHoras": 27.27,
+        "faixa": 0
+      }
+    },
+    "2510600": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 18.33,
+        "mediaHoras": 18.33,
+        "medianaHoras": 18.33,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 18.48,
+        "mediaHoras": 18.48,
+        "medianaHoras": 18.48,
+        "faixa": 0
+      }
+    },
+    "2510303": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 161.9,
+        "mediaHoras": 161.9,
+        "medianaHoras": 161.9,
+        "faixa": 2
+      },
+      "abertura": {
+        "marco75Horas": 161.92,
+        "mediaHoras": 161.92,
+        "medianaHoras": 161.92,
+        "faixa": 2
+      }
+    },
+    "2517209": {
+      "n": 1,
+      "viab": {
+        "marco75Horas": 20.02,
+        "mediaHoras": 20.02,
+        "medianaHoras": 20.02,
+        "faixa": 0
+      },
+      "abertura": {
+        "marco75Horas": 20.1,
+        "mediaHoras": 20.1,
+        "medianaHoras": 20.1,
+        "faixa": 0
+      }
+    }
+  }
+}

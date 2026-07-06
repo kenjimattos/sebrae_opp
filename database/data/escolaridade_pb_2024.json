@@ -1,0 +1,1786 @@
+[
+  {
+    "muni6": "250010",
+    "total": 476,
+    "medio": 203,
+    "superior": 149,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250020",
+    "total": 385,
+    "medio": 129,
+    "superior": 214,
+    "mestrado": 2,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250030",
+    "total": 2246,
+    "medio": 1054,
+    "superior": 825,
+    "mestrado": 4,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250040",
+    "total": 2049,
+    "medio": 1034,
+    "superior": 541,
+    "mestrado": 21,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250050",
+    "total": 1850,
+    "medio": 1220,
+    "superior": 490,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250053",
+    "total": 652,
+    "medio": 236,
+    "superior": 293,
+    "mestrado": 2,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250057",
+    "total": 384,
+    "medio": 194,
+    "superior": 160,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250060",
+    "total": 6297,
+    "medio": 2865,
+    "superior": 1951,
+    "mestrado": 2,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250070",
+    "total": 1403,
+    "medio": 738,
+    "superior": 446,
+    "mestrado": 5,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250073",
+    "total": 274,
+    "medio": 134,
+    "superior": 76,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250077",
+    "total": 647,
+    "medio": 363,
+    "superior": 170,
+    "mestrado": 4,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250080",
+    "total": 1484,
+    "medio": 556,
+    "superior": 666,
+    "mestrado": 3,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250090",
+    "total": 910,
+    "medio": 409,
+    "superior": 287,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250100",
+    "total": 1665,
+    "medio": 695,
+    "superior": 718,
+    "mestrado": 16,
+    "doutorado": 9
+  },
+  {
+    "muni6": "250110",
+    "total": 1811,
+    "medio": 912,
+    "superior": 466,
+    "mestrado": 3,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250115",
+    "total": 305,
+    "medio": 264,
+    "superior": 31,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250120",
+    "total": 623,
+    "medio": 287,
+    "superior": 244,
+    "mestrado": 4,
+    "doutorado": 2
+  },
+  {
+    "muni6": "250130",
+    "total": 261,
+    "medio": 190,
+    "superior": 29,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250135",
+    "total": 305,
+    "medio": 166,
+    "superior": 125,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250140",
+    "total": 317,
+    "medio": 142,
+    "superior": 92,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250150",
+    "total": 1837,
+    "medio": 807,
+    "superior": 474,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250153",
+    "total": 310,
+    "medio": 135,
+    "superior": 93,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250157",
+    "total": 447,
+    "medio": 193,
+    "superior": 173,
+    "mestrado": 6,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250160",
+    "total": 855,
+    "medio": 384,
+    "superior": 327,
+    "mestrado": 2,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250170",
+    "total": 302,
+    "medio": 189,
+    "superior": 86,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250180",
+    "total": 10352,
+    "medio": 5343,
+    "superior": 1801,
+    "mestrado": 14,
+    "doutorado": 4
+  },
+  {
+    "muni6": "250190",
+    "total": 1287,
+    "medio": 706,
+    "superior": 272,
+    "mestrado": 3,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250200",
+    "total": 632,
+    "medio": 152,
+    "superior": 447,
+    "mestrado": 1,
+    "doutorado": 2
+  },
+  {
+    "muni6": "250205",
+    "total": 473,
+    "medio": 211,
+    "superior": 254,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250210",
+    "total": 260,
+    "medio": 153,
+    "superior": 97,
+    "mestrado": 1,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250215",
+    "total": 1349,
+    "medio": 528,
+    "superior": 343,
+    "mestrado": 2,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250220",
+    "total": 230,
+    "medio": 95,
+    "superior": 71,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250230",
+    "total": 458,
+    "medio": 305,
+    "superior": 113,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250240",
+    "total": 426,
+    "medio": 242,
+    "superior": 154,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250250",
+    "total": 2107,
+    "medio": 992,
+    "superior": 741,
+    "mestrado": 6,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250260",
+    "total": 443,
+    "medio": 163,
+    "superior": 176,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250270",
+    "total": 295,
+    "medio": 182,
+    "superior": 105,
+    "mestrado": 1,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250280",
+    "total": 1022,
+    "medio": 398,
+    "superior": 426,
+    "mestrado": 9,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250290",
+    "total": 548,
+    "medio": 206,
+    "superior": 256,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250300",
+    "total": 6355,
+    "medio": 3306,
+    "superior": 913,
+    "mestrado": 2,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250310",
+    "total": 394,
+    "medio": 217,
+    "superior": 108,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250320",
+    "total": 24627,
+    "medio": 12862,
+    "superior": 5964,
+    "mestrado": 244,
+    "doutorado": 88
+  },
+  {
+    "muni6": "250330",
+    "total": 629,
+    "medio": 248,
+    "superior": 260,
+    "mestrado": 0,
+    "doutorado": 3
+  },
+  {
+    "muni6": "250340",
+    "total": 224,
+    "medio": 58,
+    "superior": 26,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250350",
+    "total": 636,
+    "medio": 278,
+    "superior": 224,
+    "mestrado": 3,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250355",
+    "total": 545,
+    "medio": 149,
+    "superior": 273,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250360",
+    "total": 939,
+    "medio": 334,
+    "superior": 371,
+    "mestrado": 4,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250370",
+    "total": 10924,
+    "medio": 5728,
+    "superior": 2282,
+    "mestrado": 132,
+    "doutorado": 96
+  },
+  {
+    "muni6": "250375",
+    "total": 236,
+    "medio": 14,
+    "superior": 33,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250380",
+    "total": 514,
+    "medio": 194,
+    "superior": 178,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250390",
+    "total": 608,
+    "medio": 370,
+    "superior": 218,
+    "mestrado": 0,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250400",
+    "total": 124468,
+    "medio": 70626,
+    "superior": 24296,
+    "mestrado": 2457,
+    "doutorado": 1697
+  },
+  {
+    "muni6": "250403",
+    "total": 517,
+    "medio": 148,
+    "superior": 215,
+    "mestrado": 0,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250407",
+    "total": 287,
+    "medio": 85,
+    "superior": 93,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250410",
+    "total": 254,
+    "medio": 73,
+    "superior": 93,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250415",
+    "total": 506,
+    "medio": 192,
+    "superior": 170,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250420",
+    "total": 239,
+    "medio": 70,
+    "superior": 99,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250430",
+    "total": 4491,
+    "medio": 2464,
+    "superior": 1124,
+    "mestrado": 18,
+    "doutorado": 2
+  },
+  {
+    "muni6": "250435",
+    "total": 418,
+    "medio": 158,
+    "superior": 179,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250440",
+    "total": 1130,
+    "medio": 530,
+    "superior": 511,
+    "mestrado": 3,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250450",
+    "total": 374,
+    "medio": 156,
+    "superior": 113,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250460",
+    "total": 9059,
+    "medio": 5319,
+    "superior": 1904,
+    "mestrado": 22,
+    "doutorado": 4
+  },
+  {
+    "muni6": "250470",
+    "total": 308,
+    "medio": 163,
+    "superior": 85,
+    "mestrado": 5,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250480",
+    "total": 753,
+    "medio": 200,
+    "superior": 393,
+    "mestrado": 3,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250485",
+    "total": 354,
+    "medio": 143,
+    "superior": 126,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250490",
+    "total": 2002,
+    "medio": 976,
+    "superior": 483,
+    "mestrado": 2,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250500",
+    "total": 819,
+    "medio": 286,
+    "superior": 207,
+    "mestrado": 0,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250510",
+    "total": 1511,
+    "medio": 763,
+    "superior": 477,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250520",
+    "total": 945,
+    "medio": 502,
+    "superior": 262,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250523",
+    "total": 380,
+    "medio": 164,
+    "superior": 127,
+    "mestrado": 1,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250527",
+    "total": 735,
+    "medio": 197,
+    "superior": 407,
+    "mestrado": 47,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250530",
+    "total": 268,
+    "medio": 99,
+    "superior": 67,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250535",
+    "total": 335,
+    "medio": 102,
+    "superior": 131,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250540",
+    "total": 346,
+    "medio": 136,
+    "superior": 133,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250550",
+    "total": 351,
+    "medio": 109,
+    "superior": 166,
+    "mestrado": 4,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250560",
+    "total": 311,
+    "medio": 30,
+    "superior": 163,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250570",
+    "total": 590,
+    "medio": 221,
+    "superior": 220,
+    "mestrado": 3,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250580",
+    "total": 222,
+    "medio": 117,
+    "superior": 85,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250590",
+    "total": 507,
+    "medio": 263,
+    "superior": 213,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250600",
+    "total": 4040,
+    "medio": 2166,
+    "superior": 703,
+    "mestrado": 9,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250610",
+    "total": 602,
+    "medio": 281,
+    "superior": 201,
+    "mestrado": 2,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250620",
+    "total": 211,
+    "medio": 101,
+    "superior": 53,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250625",
+    "total": 485,
+    "medio": 214,
+    "superior": 229,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250630",
+    "total": 12968,
+    "medio": 6988,
+    "superior": 2638,
+    "mestrado": 28,
+    "doutorado": 12
+  },
+  {
+    "muni6": "250640",
+    "total": 1363,
+    "medio": 680,
+    "superior": 349,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250650",
+    "total": 489,
+    "medio": 173,
+    "superior": 188,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250660",
+    "total": 297,
+    "medio": 186,
+    "superior": 89,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250670",
+    "total": 527,
+    "medio": 227,
+    "superior": 215,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250680",
+    "total": 3016,
+    "medio": 1295,
+    "superior": 859,
+    "mestrado": 10,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250690",
+    "total": 2061,
+    "medio": 1120,
+    "superior": 552,
+    "mestrado": 7,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250700",
+    "total": 2970,
+    "medio": 1850,
+    "superior": 625,
+    "mestrado": 5,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250710",
+    "total": 1597,
+    "medio": 471,
+    "superior": 467,
+    "mestrado": 2,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250720",
+    "total": 856,
+    "medio": 395,
+    "superior": 149,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250730",
+    "total": 872,
+    "medio": 382,
+    "superior": 294,
+    "mestrado": 26,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250740",
+    "total": 462,
+    "medio": 300,
+    "superior": 142,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250750",
+    "total": 354641,
+    "medio": 177378,
+    "superior": 110083,
+    "mestrado": 6225,
+    "doutorado": 3444
+  },
+  {
+    "muni6": "250760",
+    "total": 555,
+    "medio": 218,
+    "superior": 223,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250770",
+    "total": 1679,
+    "medio": 738,
+    "superior": 543,
+    "mestrado": 2,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250780",
+    "total": 512,
+    "medio": 232,
+    "superior": 148,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250790",
+    "total": 751,
+    "medio": 310,
+    "superior": 147,
+    "mestrado": 2,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250800",
+    "total": 484,
+    "medio": 225,
+    "superior": 139,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250810",
+    "total": 507,
+    "medio": 172,
+    "superior": 242,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250820",
+    "total": 1149,
+    "medio": 241,
+    "superior": 577,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250830",
+    "total": 2316,
+    "medio": 1245,
+    "superior": 593,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250840",
+    "total": 231,
+    "medio": 82,
+    "superior": 76,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250850",
+    "total": 593,
+    "medio": 292,
+    "superior": 297,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250855",
+    "total": 252,
+    "medio": 84,
+    "superior": 101,
+    "mestrado": 2,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250860",
+    "total": 2564,
+    "medio": 986,
+    "superior": 582,
+    "mestrado": 3,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250870",
+    "total": 405,
+    "medio": 147,
+    "superior": 177,
+    "mestrado": 1,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250880",
+    "total": 424,
+    "medio": 174,
+    "superior": 82,
+    "mestrado": 1,
+    "doutorado": 2
+  },
+  {
+    "muni6": "250890",
+    "total": 8596,
+    "medio": 3749,
+    "superior": 1051,
+    "mestrado": 6,
+    "doutorado": 5
+  },
+  {
+    "muni6": "250900",
+    "total": 375,
+    "medio": 222,
+    "superior": 113,
+    "mestrado": 0,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250905",
+    "total": 546,
+    "medio": 209,
+    "superior": 205,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250910",
+    "total": 2372,
+    "medio": 1222,
+    "superior": 889,
+    "mestrado": 6,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250915",
+    "total": 427,
+    "medio": 145,
+    "superior": 158,
+    "mestrado": 2,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250920",
+    "total": 868,
+    "medio": 530,
+    "superior": 269,
+    "mestrado": 0,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250930",
+    "total": 1246,
+    "medio": 371,
+    "superior": 184,
+    "mestrado": 101,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250933",
+    "total": 176,
+    "medio": 63,
+    "superior": 73,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250937",
+    "total": 315,
+    "medio": 97,
+    "superior": 107,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250939",
+    "total": 328,
+    "medio": 112,
+    "superior": 188,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250940",
+    "total": 1221,
+    "medio": 500,
+    "superior": 421,
+    "mestrado": 2,
+    "doutorado": 4
+  },
+  {
+    "muni6": "250950",
+    "total": 553,
+    "medio": 256,
+    "superior": 194,
+    "mestrado": 5,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250960",
+    "total": 219,
+    "medio": 100,
+    "superior": 91,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250970",
+    "total": 3833,
+    "medio": 2008,
+    "superior": 1128,
+    "mestrado": 4,
+    "doutorado": 1
+  },
+  {
+    "muni6": "250980",
+    "total": 813,
+    "medio": 169,
+    "superior": 217,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "250990",
+    "total": 699,
+    "medio": 272,
+    "superior": 337,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251000",
+    "total": 473,
+    "medio": 191,
+    "superior": 226,
+    "mestrado": 1,
+    "doutorado": 4
+  },
+  {
+    "muni6": "251010",
+    "total": 558,
+    "medio": 254,
+    "superior": 172,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251020",
+    "total": 666,
+    "medio": 363,
+    "superior": 147,
+    "mestrado": 41,
+    "doutorado": 3
+  },
+  {
+    "muni6": "251030",
+    "total": 280,
+    "medio": 118,
+    "superior": 88,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251040",
+    "total": 259,
+    "medio": 74,
+    "superior": 103,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251050",
+    "total": 205,
+    "medio": 70,
+    "superior": 83,
+    "mestrado": 4,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251060",
+    "total": 344,
+    "medio": 149,
+    "superior": 124,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251065",
+    "total": 264,
+    "medio": 104,
+    "superior": 84,
+    "mestrado": 2,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251070",
+    "total": 289,
+    "medio": 86,
+    "superior": 79,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251080",
+    "total": 18976,
+    "medio": 10595,
+    "superior": 5026,
+    "mestrado": 214,
+    "doutorado": 87
+  },
+  {
+    "muni6": "251090",
+    "total": 1059,
+    "medio": 399,
+    "superior": 393,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251100",
+    "total": 277,
+    "medio": 143,
+    "superior": 102,
+    "mestrado": 2,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251110",
+    "total": 1639,
+    "medio": 716,
+    "superior": 272,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251120",
+    "total": 5824,
+    "medio": 2155,
+    "superior": 860,
+    "mestrado": 19,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251130",
+    "total": 1080,
+    "medio": 540,
+    "superior": 402,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251140",
+    "total": 1679,
+    "medio": 851,
+    "superior": 532,
+    "mestrado": 57,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251150",
+    "total": 1959,
+    "medio": 659,
+    "superior": 433,
+    "mestrado": 1,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251160",
+    "total": 553,
+    "medio": 219,
+    "superior": 247,
+    "mestrado": 1,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251170",
+    "total": 224,
+    "medio": 112,
+    "superior": 92,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251180",
+    "total": 802,
+    "medio": 344,
+    "superior": 316,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251190",
+    "total": 2061,
+    "medio": 1332,
+    "superior": 515,
+    "mestrado": 3,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251200",
+    "total": 1806,
+    "medio": 885,
+    "superior": 433,
+    "mestrado": 17,
+    "doutorado": 7
+  },
+  {
+    "muni6": "251203",
+    "total": 339,
+    "medio": 122,
+    "superior": 174,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251207",
+    "total": 553,
+    "medio": 253,
+    "superior": 270,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251210",
+    "total": 2787,
+    "medio": 1543,
+    "superior": 838,
+    "mestrado": 7,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251220",
+    "total": 453,
+    "medio": 84,
+    "superior": 254,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251230",
+    "total": 1932,
+    "medio": 1006,
+    "superior": 418,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251240",
+    "total": 1019,
+    "medio": 699,
+    "superior": 222,
+    "mestrado": 4,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251250",
+    "total": 3719,
+    "medio": 2038,
+    "superior": 664,
+    "mestrado": 9,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251260",
+    "total": 260,
+    "medio": 128,
+    "superior": 91,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251270",
+    "total": 2024,
+    "medio": 1040,
+    "superior": 754,
+    "mestrado": 3,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251272",
+    "total": 563,
+    "medio": 154,
+    "superior": 290,
+    "mestrado": 6,
+    "doutorado": 17
+  },
+  {
+    "muni6": "251274",
+    "total": 505,
+    "medio": 215,
+    "superior": 192,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251275",
+    "total": 524,
+    "medio": 157,
+    "superior": 218,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251276",
+    "total": 353,
+    "medio": 211,
+    "superior": 94,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251278",
+    "total": 530,
+    "medio": 204,
+    "superior": 239,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251280",
+    "total": 448,
+    "medio": 171,
+    "superior": 182,
+    "mestrado": 4,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251290",
+    "total": 4041,
+    "medio": 994,
+    "superior": 462,
+    "mestrado": 266,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251300",
+    "total": 206,
+    "medio": 117,
+    "superior": 79,
+    "mestrado": 0,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251310",
+    "total": 1192,
+    "medio": 608,
+    "superior": 389,
+    "mestrado": 3,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251315",
+    "total": 565,
+    "medio": 159,
+    "superior": 270,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251320",
+    "total": 439,
+    "medio": 212,
+    "superior": 146,
+    "mestrado": 2,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251330",
+    "total": 555,
+    "medio": 266,
+    "superior": 257,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251335",
+    "total": 324,
+    "medio": 225,
+    "superior": 82,
+    "mestrado": 1,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251340",
+    "total": 1918,
+    "medio": 959,
+    "superior": 566,
+    "mestrado": 3,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251350",
+    "total": 288,
+    "medio": 124,
+    "superior": 116,
+    "mestrado": 2,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251360",
+    "total": 418,
+    "medio": 245,
+    "superior": 151,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251365",
+    "total": 248,
+    "medio": 66,
+    "superior": 149,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251370",
+    "total": 26113,
+    "medio": 13367,
+    "superior": 3457,
+    "mestrado": 70,
+    "doutorado": 10
+  },
+  {
+    "muni6": "251380",
+    "total": 404,
+    "medio": 190,
+    "superior": 101,
+    "mestrado": 0,
+    "doutorado": 2
+  },
+  {
+    "muni6": "251385",
+    "total": 177,
+    "medio": 82,
+    "superior": 52,
+    "mestrado": 2,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251390",
+    "total": 3598,
+    "medio": 1691,
+    "superior": 877,
+    "mestrado": 11,
+    "doutorado": 3
+  },
+  {
+    "muni6": "251392",
+    "total": 329,
+    "medio": 116,
+    "superior": 112,
+    "mestrado": 4,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251394",
+    "total": 131,
+    "medio": 85,
+    "superior": 45,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251396",
+    "total": 614,
+    "medio": 255,
+    "superior": 163,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251398",
+    "total": 205,
+    "medio": 73,
+    "superior": 75,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251400",
+    "total": 792,
+    "medio": 325,
+    "superior": 332,
+    "mestrado": 4,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251410",
+    "total": 372,
+    "medio": 31,
+    "superior": 257,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251420",
+    "total": 380,
+    "medio": 103,
+    "superior": 164,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251430",
+    "total": 351,
+    "medio": 41,
+    "superior": 301,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251440",
+    "total": 397,
+    "medio": 158,
+    "superior": 179,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251445",
+    "total": 687,
+    "medio": 160,
+    "superior": 351,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251450",
+    "total": 984,
+    "medio": 478,
+    "superior": 338,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251455",
+    "total": 235,
+    "medio": 60,
+    "superior": 111,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251460",
+    "total": 157,
+    "medio": 28,
+    "superior": 97,
+    "mestrado": 0,
+    "doutorado": 2
+  },
+  {
+    "muni6": "251465",
+    "total": 167,
+    "medio": 66,
+    "superior": 52,
+    "mestrado": 4,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251470",
+    "total": 264,
+    "medio": 128,
+    "superior": 92,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251480",
+    "total": 664,
+    "medio": 266,
+    "superior": 277,
+    "mestrado": 1,
+    "doutorado": 2
+  },
+  {
+    "muni6": "251490",
+    "total": 577,
+    "medio": 248,
+    "superior": 295,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251500",
+    "total": 495,
+    "medio": 216,
+    "superior": 197,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251510",
+    "total": 982,
+    "medio": 514,
+    "superior": 420,
+    "mestrado": 4,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251520",
+    "total": 208,
+    "medio": 61,
+    "superior": 100,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251530",
+    "total": 5433,
+    "medio": 2616,
+    "superior": 1318,
+    "mestrado": 51,
+    "doutorado": 6
+  },
+  {
+    "muni6": "251540",
+    "total": 416,
+    "medio": 109,
+    "superior": 222,
+    "mestrado": 2,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251550",
+    "total": 1123,
+    "medio": 580,
+    "superior": 360,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251560",
+    "total": 318,
+    "medio": 203,
+    "superior": 80,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251570",
+    "total": 273,
+    "medio": 137,
+    "superior": 105,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251580",
+    "total": 366,
+    "medio": 99,
+    "superior": 117,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251590",
+    "total": 418,
+    "medio": 169,
+    "superior": 132,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251593",
+    "total": 566,
+    "medio": 209,
+    "superior": 110,
+    "mestrado": 4,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251597",
+    "total": 699,
+    "medio": 283,
+    "superior": 307,
+    "mestrado": 3,
+    "doutorado": 2
+  },
+  {
+    "muni6": "251600",
+    "total": 2478,
+    "medio": 1325,
+    "superior": 734,
+    "mestrado": 5,
+    "doutorado": 2
+  },
+  {
+    "muni6": "251610",
+    "total": 2456,
+    "medio": 1076,
+    "superior": 915,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251615",
+    "total": 258,
+    "medio": 101,
+    "superior": 68,
+    "mestrado": 1,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251620",
+    "total": 11283,
+    "medio": 5855,
+    "superior": 2748,
+    "mestrado": 31,
+    "doutorado": 3
+  },
+  {
+    "muni6": "251630",
+    "total": 1349,
+    "medio": 654,
+    "superior": 453,
+    "mestrado": 12,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251640",
+    "total": 427,
+    "medio": 207,
+    "superior": 146,
+    "mestrado": 0,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251650",
+    "total": 1232,
+    "medio": 725,
+    "superior": 334,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251660",
+    "total": 984,
+    "medio": 498,
+    "superior": 374,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251670",
+    "total": 833,
+    "medio": 443,
+    "superior": 261,
+    "mestrado": 2,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251675",
+    "total": 283,
+    "medio": 130,
+    "superior": 84,
+    "mestrado": 2,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251680",
+    "total": 673,
+    "medio": 261,
+    "superior": 279,
+    "mestrado": 4,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251690",
+    "total": 970,
+    "medio": 529,
+    "superior": 308,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251700",
+    "total": 1067,
+    "medio": 558,
+    "superior": 327,
+    "mestrado": 2,
+    "doutorado": 1
+  },
+  {
+    "muni6": "251710",
+    "total": 356,
+    "medio": 44,
+    "superior": 194,
+    "mestrado": 1,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251720",
+    "total": 314,
+    "medio": 134,
+    "superior": 100,
+    "mestrado": 0,
+    "doutorado": 0
+  },
+  {
+    "muni6": "251740",
+    "total": 115,
+    "medio": 59,
+    "superior": 51,
+    "mestrado": 2,
+    "doutorado": 0
+  }
+]

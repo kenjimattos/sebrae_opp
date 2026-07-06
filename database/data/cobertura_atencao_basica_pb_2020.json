@@ -1,0 +1,2009 @@
+[
+  {
+    "id_municipio": "2500106",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 10234,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2500205",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5640,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2500304",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 28496,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2500403",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 20849,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2500502",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 14489,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2500536",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5492,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2500577",
+    "cobertura_total": 91.67,
+    "cobertura_esf": 91.67,
+    "meses": 12,
+    "populacao": 2567,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2500601",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 19588,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2500700",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 18034,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2500734",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 2238,
+    "cobertura_total_anterior": 91.67,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2500775",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 8347,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2500809",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 16987,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2500908",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 13470,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2501005",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 20312,
+    "cobertura_total_anterior": 92.27,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2501104",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 22819,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2501153",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 2128,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2501203",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6998,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2501302",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 19153,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2501351",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3990,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2501401",
+    "cobertura_total": 98.06,
+    "cobertura_esf": 98.06,
+    "meses": 12,
+    "populacao": 8993,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2501500",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 21318,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2501534",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4892,
+    "cobertura_total_anterior": 97.62,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2501575",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 8359,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2501609",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 15384,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2501708",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6036,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2501807",
+    "cobertura_total": 96.67,
+    "cobertura_esf": 95.33,
+    "meses": 12,
+    "populacao": 96880,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2501906",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 17676,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2502003",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7342,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2502052",
+    "cobertura_total": 99.03,
+    "cobertura_esf": 99.03,
+    "meses": 12,
+    "populacao": 3501,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2502102",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5366,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2502151",
+    "cobertura_total": 99.64,
+    "cobertura_esf": 99.64,
+    "meses": 12,
+    "populacao": 7051,
+    "cobertura_total_anterior": 99.74,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2502201",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 2561,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2502300",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4975,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2502409",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 11917,
+    "cobertura_total_anterior": 97.96,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2502508",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 17804,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2502607",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6117,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2502706",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5263,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2502805",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 14122,
+    "cobertura_total_anterior": 97.83,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2502904",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6449,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2503001",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 21828,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2503100",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5611,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2503209",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 67736,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2503308",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 10244,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2503407",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3682,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2503506",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 17187,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2503555",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7173,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2503605",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7201,
+    "cobertura_total_anterior": 99.55,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2503704",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 61993,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2503753",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3193,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2503803",
+    "cobertura_total": 96.45,
+    "cobertura_esf": 96.45,
+    "meses": 12,
+    "populacao": 6014,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2503902",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6013,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2504009",
+    "cobertura_total": 98.57,
+    "cobertura_esf": 85.89,
+    "meses": 12,
+    "populacao": 409731,
+    "cobertura_total_anterior": 99.56,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2504033",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6523,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2504074",
+    "cobertura_total": 94.3,
+    "cobertura_esf": 94.3,
+    "meses": 12,
+    "populacao": 4162,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2504108",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 2659,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2504157",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7468,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2504207",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4932,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2504306",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 30546,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2504355",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4852,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2504405",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 18982,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2504504",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6654,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2504603",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 24670,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2504702",
+    "cobertura_total": 91.67,
+    "cobertura_esf": 91.67,
+    "meses": 12,
+    "populacao": 4786,
+    "cobertura_total_anterior": 95.35,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2504801",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 15445,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2504850",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 1921,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2504900",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 17319,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2505006",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7797,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2505105",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 20338,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2505204",
+    "cobertura_total": 91.67,
+    "cobertura_esf": 91.67,
+    "meses": 12,
+    "populacao": 6803,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2505238",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6353,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2505279",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5227,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2505303",
+    "cobertura_total": 91.67,
+    "cobertura_esf": 91.67,
+    "meses": 12,
+    "populacao": 2516,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2505352",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5330,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2505402",
+    "cobertura_total": 98.6,
+    "cobertura_esf": 98.6,
+    "meses": 12,
+    "populacao": 8297,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2505501",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3798,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2505600",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6552,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2505709",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 10453,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2505808",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3596,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2505907",
+    "cobertura_total": 81.63,
+    "cobertura_esf": 81.63,
+    "meses": 12,
+    "populacao": 3522,
+    "cobertura_total_anterior": 98.43,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2506004",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 33007,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2506103",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 11253,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2506202",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 2989,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2506251",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 8316,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2506301",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 58833,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2506400",
+    "cobertura_total": 97.77,
+    "cobertura_esf": 97.77,
+    "meses": 12,
+    "populacao": 14129,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2506509",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3428,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2506608",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5929,
+    "cobertura_total_anterior": 96.49,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2506707",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 11819,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2506806",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 18103,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2506905",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 24477,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2507002",
+    "cobertura_total": 98.65,
+    "cobertura_esf": 98.65,
+    "meses": 12,
+    "populacao": 24692,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2507101",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 18664,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2507200",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 10962,
+    "cobertura_total_anterior": 93.63,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2507309",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 14431,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2507408",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7739,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2507507",
+    "cobertura_total": 93.04,
+    "cobertura_esf": 85.61,
+    "meses": 12,
+    "populacao": 809015,
+    "cobertura_total_anterior": 93.51,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2507606",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7936,
+    "cobertura_total_anterior": 98.95,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2507705",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 18171,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2507804",
+    "cobertura_total": 99.42,
+    "cobertura_esf": 99.42,
+    "meses": 12,
+    "populacao": 7150,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2507903",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 10756,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2508000",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 9867,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2508109",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4666,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2508208",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7719,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2508307",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 27503,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2508406",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 2737,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2508505",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7256,
+    "cobertura_total_anterior": 99.47,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2508554",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4332,
+    "cobertura_total_anterior": 98.36,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2508604",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 13080,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2508703",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4009,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2508802",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5759,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2508901",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 44882,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2509008",
+    "cobertura_total": 96.46,
+    "cobertura_esf": 96.46,
+    "meses": 12,
+    "populacao": 10955,
+    "cobertura_total_anterior": 97.21,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2509057",
+    "cobertura_total": 93.54,
+    "cobertura_esf": 93.54,
+    "meses": 12,
+    "populacao": 8558,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2509107",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 21837,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2509156",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6617,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2509206",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 13918,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2509305",
+    "cobertura_total": 98.48,
+    "cobertura_esf": 98.48,
+    "meses": 12,
+    "populacao": 8434,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2509339",
+    "cobertura_total": 98.06,
+    "cobertura_esf": 98.06,
+    "meses": 12,
+    "populacao": 4500,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2509370",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 2908,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2509396",
+    "cobertura_total": 96.04,
+    "cobertura_esf": 96.04,
+    "meses": 12,
+    "populacao": 6569,
+    "cobertura_total_anterior": 96.09,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2509404",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 13284,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2509503",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5669,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2509602",
+    "cobertura_total": 86.94,
+    "cobertura_esf": 86.94,
+    "meses": 12,
+    "populacao": 4816,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2509701",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 33222,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2509800",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 9902,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2509909",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 10454,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2510006",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7301,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2510105",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 10638,
+    "cobertura_total_anterior": 99.76,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2510204",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5949,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2510303",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4906,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2510402",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6526,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2510501",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3932,
+    "cobertura_total_anterior": 99.02,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2510600",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3039,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2510659",
+    "cobertura_total": 91.67,
+    "cobertura_esf": 91.67,
+    "meses": 12,
+    "populacao": 1771,
+    "cobertura_total_anterior": 91.67,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2510709",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 2419,
+    "cobertura_total_anterior": 91.67,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2510808",
+    "cobertura_total": 98.53,
+    "cobertura_esf": 98.53,
+    "meses": 12,
+    "populacao": 107605,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2510907",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 12347,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2511004",
+    "cobertura_total": 97.69,
+    "cobertura_esf": 97.69,
+    "meses": 12,
+    "populacao": 3801,
+    "cobertura_total_anterior": 98.47,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2511103",
+    "cobertura_total": 91.99,
+    "cobertura_esf": 91.99,
+    "meses": 12,
+    "populacao": 7843,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2511202",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 28458,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2511301",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 16075,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2511400",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 18703,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2511509",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 11917,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2511608",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6635,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2511707",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4976,
+    "cobertura_total_anterior": 97.3,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2511806",
+    "cobertura_total": 66.67,
+    "cobertura_esf": 66.67,
+    "meses": 12,
+    "populacao": 10579,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2511905",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 19065,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512002",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 18564,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512036",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3888,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512077",
+    "cobertura_total": 93.37,
+    "cobertura_esf": 93.37,
+    "meses": 12,
+    "populacao": 4307,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512101",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 32801,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512200",
+    "cobertura_total": 98.5,
+    "cobertura_esf": 98.5,
+    "meses": 12,
+    "populacao": 4209,
+    "cobertura_total_anterior": 94.44,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512309",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 23345,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512408",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 13680,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512507",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 43967,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512606",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 1956,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512705",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 19621,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512721",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6089,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512747",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3588,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512754",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4521,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512762",
+    "cobertura_total": 98.04,
+    "cobertura_esf": 98.04,
+    "meses": 12,
+    "populacao": 4509,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512788",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 1948,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512804",
+    "cobertura_total": 98.41,
+    "cobertura_esf": 98.41,
+    "meses": 12,
+    "populacao": 8526,
+    "cobertura_total_anterior": 98.36,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2512903",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 24176,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513000",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3885,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513109",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 12140,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513158",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6558,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513208",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6583,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513307",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5889,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513356",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3595,
+    "cobertura_total_anterior": 97.61,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513406",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 15382,
+    "cobertura_total_anterior": 99.17,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513505",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5162,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513604",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7031,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513653",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 2636,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513703",
+    "cobertura_total": 97.17,
+    "cobertura_esf": 93.88,
+    "meses": 12,
+    "populacao": 136586,
+    "cobertura_total_anterior": 98.43,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513802",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4573,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513851",
+    "cobertura_total": 58.33,
+    "cobertura_esf": 58.33,
+    "meses": 12,
+    "populacao": 2521,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513901",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 34031,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513927",
+    "cobertura_total": 98.02,
+    "cobertura_esf": 98.02,
+    "meses": 12,
+    "populacao": 4529,
+    "cobertura_total_anterior": 96.13,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513943",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 2615,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513968",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3073,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2513984",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3392,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2514008",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4199,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2514107",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4422,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2514206",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7630,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2514305",
+    "cobertura_total": 69.5,
+    "cobertura_esf": 69.5,
+    "meses": 12,
+    "populacao": 6359,
+    "cobertura_total_anterior": 92.53,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2514404",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4682,
+    "cobertura_total_anterior": 97.83,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2514453",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5957,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2514503",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 20251,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2514552",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4003,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2514602",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3557,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2514651",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 1801,
+    "cobertura_total_anterior": 91.67,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2514701",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 4141,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2514800",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3628,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2514909",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7724,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2515005",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7368,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2515104",
+    "cobertura_total": 96.6,
+    "cobertura_esf": 96.6,
+    "meses": 12,
+    "populacao": 11661,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2515203",
+    "cobertura_total": 99.91,
+    "cobertura_esf": 99.91,
+    "meses": 12,
+    "populacao": 3489,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2515302",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 52625,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2515401",
+    "cobertura_total": 99.67,
+    "cobertura_esf": 99.67,
+    "meses": 12,
+    "populacao": 10775,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2515500",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 13699,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2515609",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3148,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2515708",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 2909,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2515807",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7041,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2515906",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 6099,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2515930",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5024,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2515971",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 7783,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2516003",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 26407,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2516102",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 14989,
+    "cobertura_total_anterior": 99.42,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2516151",
+    "cobertura_total": 99.75,
+    "cobertura_esf": 99.75,
+    "meses": 12,
+    "populacao": 3555,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2516201",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 69444,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2516300",
+    "cobertura_total": 96.89,
+    "cobertura_esf": 96.89,
+    "meses": 12,
+    "populacao": 16966,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2516409",
+    "cobertura_total": 99.57,
+    "cobertura_esf": 99.57,
+    "meses": 12,
+    "populacao": 10911,
+    "cobertura_total_anterior": 99.59,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2516508",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 15376,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2516607",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 14726,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2516706",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 15161,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2516755",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 3058,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2516805",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 9455,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2516904",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 15242,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2517001",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 9907,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2517100",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 2810,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2517209",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 5348,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  },
+  {
+    "id_municipio": "2517407",
+    "cobertura_total": 100.0,
+    "cobertura_esf": 100.0,
+    "meses": 12,
+    "populacao": 2240,
+    "cobertura_total_anterior": 100.0,
+    "meses_anterior": 12
+  }
+]

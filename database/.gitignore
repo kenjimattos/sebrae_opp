@@ -1,0 +1,9 @@
+# Credenciais operacionais do pipeline de dados — NUNCA commitar.
+# Use database/.env.example como modelo (esse sim é versionado).
+.env
+.env.*
+!.env.example
+
+# Bytecode dos geradores (Python 3.6 no host do ETL)
+scripts/__pycache__/
+*.pyc

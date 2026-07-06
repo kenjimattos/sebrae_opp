@@ -1,0 +1,2684 @@
+{
+  "ano": "2024",
+  "anoPrev": "2023",
+  "ref": [
+    {
+      "muni6": "250010",
+      "total": 476,
+      "comRemun": 435,
+      "somaRemun": 1224454.93
+    },
+    {
+      "muni6": "250020",
+      "total": 385,
+      "comRemun": 380,
+      "somaRemun": 1207142.15
+    },
+    {
+      "muni6": "250030",
+      "total": 2246,
+      "comRemun": 1847,
+      "somaRemun": 5029396.78
+    },
+    {
+      "muni6": "250040",
+      "total": 2049,
+      "comRemun": 1893,
+      "somaRemun": 4853257.13
+    },
+    {
+      "muni6": "250050",
+      "total": 1850,
+      "comRemun": 1125,
+      "somaRemun": 2897042.99
+    },
+    {
+      "muni6": "250053",
+      "total": 652,
+      "comRemun": 335,
+      "somaRemun": 879383.82
+    },
+    {
+      "muni6": "250057",
+      "total": 384,
+      "comRemun": 226,
+      "somaRemun": 668970.04
+    },
+    {
+      "muni6": "250060",
+      "total": 6297,
+      "comRemun": 5798,
+      "somaRemun": 15875333.32
+    },
+    {
+      "muni6": "250070",
+      "total": 1403,
+      "comRemun": 1262,
+      "somaRemun": 3581321.88
+    },
+    {
+      "muni6": "250073",
+      "total": 274,
+      "comRemun": 264,
+      "somaRemun": 620072.5
+    },
+    {
+      "muni6": "250077",
+      "total": 647,
+      "comRemun": 614,
+      "somaRemun": 1468026.82
+    },
+    {
+      "muni6": "250080",
+      "total": 1484,
+      "comRemun": 1337,
+      "somaRemun": 3666065.7
+    },
+    {
+      "muni6": "250090",
+      "total": 910,
+      "comRemun": 871,
+      "somaRemun": 2380451.87
+    },
+    {
+      "muni6": "250100",
+      "total": 1665,
+      "comRemun": 1499,
+      "somaRemun": 4373241.88
+    },
+    {
+      "muni6": "250110",
+      "total": 1811,
+      "comRemun": 1732,
+      "somaRemun": 4715721.38
+    },
+    {
+      "muni6": "250115",
+      "total": 305,
+      "comRemun": 292,
+      "somaRemun": 691148.85
+    },
+    {
+      "muni6": "250120",
+      "total": 623,
+      "comRemun": 354,
+      "somaRemun": 1171852.3
+    },
+    {
+      "muni6": "250130",
+      "total": 261,
+      "comRemun": 226,
+      "somaRemun": 452236.15
+    },
+    {
+      "muni6": "250135",
+      "total": 305,
+      "comRemun": 239,
+      "somaRemun": 737732.45
+    },
+    {
+      "muni6": "250140",
+      "total": 317,
+      "comRemun": 279,
+      "somaRemun": 793626.87
+    },
+    {
+      "muni6": "250150",
+      "total": 1837,
+      "comRemun": 1727,
+      "somaRemun": 4368443.24
+    },
+    {
+      "muni6": "250153",
+      "total": 310,
+      "comRemun": 290,
+      "somaRemun": 834570.31
+    },
+    {
+      "muni6": "250157",
+      "total": 447,
+      "comRemun": 428,
+      "somaRemun": 1450720.5
+    },
+    {
+      "muni6": "250160",
+      "total": 855,
+      "comRemun": 832,
+      "somaRemun": 2614319.91
+    },
+    {
+      "muni6": "250170",
+      "total": 302,
+      "comRemun": 285,
+      "somaRemun": 774116.73
+    },
+    {
+      "muni6": "250180",
+      "total": 10352,
+      "comRemun": 9575,
+      "somaRemun": 23757031.97
+    },
+    {
+      "muni6": "250190",
+      "total": 1287,
+      "comRemun": 1173,
+      "somaRemun": 2693962.34
+    },
+    {
+      "muni6": "250200",
+      "total": 632,
+      "comRemun": 606,
+      "somaRemun": 1945527.42
+    },
+    {
+      "muni6": "250205",
+      "total": 473,
+      "comRemun": 400,
+      "somaRemun": 1048966.54
+    },
+    {
+      "muni6": "250210",
+      "total": 260,
+      "comRemun": 256,
+      "somaRemun": 683174.5700000001
+    },
+    {
+      "muni6": "250215",
+      "total": 1349,
+      "comRemun": 1275,
+      "somaRemun": 3474005.6
+    },
+    {
+      "muni6": "250220",
+      "total": 230,
+      "comRemun": 197,
+      "somaRemun": 556358.69
+    },
+    {
+      "muni6": "250230",
+      "total": 458,
+      "comRemun": 448,
+      "somaRemun": 1064649.96
+    },
+    {
+      "muni6": "250240",
+      "total": 426,
+      "comRemun": 410,
+      "somaRemun": 1250571.0
+    },
+    {
+      "muni6": "250250",
+      "total": 2107,
+      "comRemun": 1704,
+      "somaRemun": 4567811.96
+    },
+    {
+      "muni6": "250260",
+      "total": 443,
+      "comRemun": 430,
+      "somaRemun": 1206412.76
+    },
+    {
+      "muni6": "250270",
+      "total": 295,
+      "comRemun": 278,
+      "somaRemun": 823071.02
+    },
+    {
+      "muni6": "250280",
+      "total": 1022,
+      "comRemun": 962,
+      "somaRemun": 3190883.93
+    },
+    {
+      "muni6": "250290",
+      "total": 548,
+      "comRemun": 535,
+      "somaRemun": 1478872.57
+    },
+    {
+      "muni6": "250300",
+      "total": 6355,
+      "comRemun": 4936,
+      "somaRemun": 12971419.57
+    },
+    {
+      "muni6": "250310",
+      "total": 394,
+      "comRemun": 367,
+      "somaRemun": 1229804.53
+    },
+    {
+      "muni6": "250320",
+      "total": 24627,
+      "comRemun": 22888,
+      "somaRemun": 68104854.25
+    },
+    {
+      "muni6": "250330",
+      "total": 629,
+      "comRemun": 553,
+      "somaRemun": 1567242.25
+    },
+    {
+      "muni6": "250340",
+      "total": 224,
+      "comRemun": 214,
+      "somaRemun": 632663.24
+    },
+    {
+      "muni6": "250350",
+      "total": 636,
+      "comRemun": 594,
+      "somaRemun": 1906279.76
+    },
+    {
+      "muni6": "250355",
+      "total": 545,
+      "comRemun": 532,
+      "somaRemun": 1622093.69
+    },
+    {
+      "muni6": "250360",
+      "total": 939,
+      "comRemun": 536,
+      "somaRemun": 1434516.55
+    },
+    {
+      "muni6": "250370",
+      "total": 10924,
+      "comRemun": 10325,
+      "somaRemun": 29101598.82
+    },
+    {
+      "muni6": "250375",
+      "total": 236,
+      "comRemun": 222,
+      "somaRemun": 802485.96
+    },
+    {
+      "muni6": "250380",
+      "total": 514,
+      "comRemun": 486,
+      "somaRemun": 1257362.92
+    },
+    {
+      "muni6": "250390",
+      "total": 608,
+      "comRemun": 457,
+      "somaRemun": 1244598.76
+    },
+    {
+      "muni6": "250400",
+      "total": 124468,
+      "comRemun": 117378,
+      "somaRemun": 325209939.21
+    },
+    {
+      "muni6": "250403",
+      "total": 517,
+      "comRemun": 450,
+      "somaRemun": 1373084.65
+    },
+    {
+      "muni6": "250407",
+      "total": 287,
+      "comRemun": 197,
+      "somaRemun": 559703.03
+    },
+    {
+      "muni6": "250410",
+      "total": 254,
+      "comRemun": 245,
+      "somaRemun": 923040.27
+    },
+    {
+      "muni6": "250415",
+      "total": 506,
+      "comRemun": 391,
+      "somaRemun": 1218867.22
+    },
+    {
+      "muni6": "250420",
+      "total": 239,
+      "comRemun": 234,
+      "somaRemun": 738309.81
+    },
+    {
+      "muni6": "250430",
+      "total": 4491,
+      "comRemun": 4315,
+      "somaRemun": 9926049.64
+    },
+    {
+      "muni6": "250435",
+      "total": 418,
+      "comRemun": 403,
+      "somaRemun": 1053165.52
+    },
+    {
+      "muni6": "250440",
+      "total": 1130,
+      "comRemun": 1068,
+      "somaRemun": 2926345.77
+    },
+    {
+      "muni6": "250450",
+      "total": 374,
+      "comRemun": 363,
+      "somaRemun": 1128220.28
+    },
+    {
+      "muni6": "250460",
+      "total": 9059,
+      "comRemun": 7167,
+      "somaRemun": 19458146.17
+    },
+    {
+      "muni6": "250470",
+      "total": 308,
+      "comRemun": 302,
+      "somaRemun": 862856.37
+    },
+    {
+      "muni6": "250480",
+      "total": 753,
+      "comRemun": 723,
+      "somaRemun": 1945209.52
+    },
+    {
+      "muni6": "250485",
+      "total": 354,
+      "comRemun": 231,
+      "somaRemun": 647226.63
+    },
+    {
+      "muni6": "250490",
+      "total": 2002,
+      "comRemun": 1603,
+      "somaRemun": 3894708.34
+    },
+    {
+      "muni6": "250500",
+      "total": 819,
+      "comRemun": 780,
+      "somaRemun": 2052667.07
+    },
+    {
+      "muni6": "250510",
+      "total": 1511,
+      "comRemun": 1458,
+      "somaRemun": 3690949.7
+    },
+    {
+      "muni6": "250520",
+      "total": 945,
+      "comRemun": 558,
+      "somaRemun": 1347127.5
+    },
+    {
+      "muni6": "250523",
+      "total": 380,
+      "comRemun": 348,
+      "somaRemun": 953138.0700000001
+    },
+    {
+      "muni6": "250527",
+      "total": 735,
+      "comRemun": 574,
+      "somaRemun": 1781212.79
+    },
+    {
+      "muni6": "250530",
+      "total": 268,
+      "comRemun": 262,
+      "somaRemun": 618801.37
+    },
+    {
+      "muni6": "250535",
+      "total": 335,
+      "comRemun": 319,
+      "somaRemun": 1001088.36
+    },
+    {
+      "muni6": "250540",
+      "total": 346,
+      "comRemun": 332,
+      "somaRemun": 963333.3
+    },
+    {
+      "muni6": "250550",
+      "total": 351,
+      "comRemun": 339,
+      "somaRemun": 923373.02
+    },
+    {
+      "muni6": "250560",
+      "total": 311,
+      "comRemun": 294,
+      "somaRemun": 749507.28
+    },
+    {
+      "muni6": "250570",
+      "total": 590,
+      "comRemun": 499,
+      "somaRemun": 1643796.48
+    },
+    {
+      "muni6": "250580",
+      "total": 222,
+      "comRemun": 201,
+      "somaRemun": 593614.67
+    },
+    {
+      "muni6": "250590",
+      "total": 507,
+      "comRemun": 319,
+      "somaRemun": 849925.6900000001
+    },
+    {
+      "muni6": "250600",
+      "total": 4040,
+      "comRemun": 3851,
+      "somaRemun": 8274285.9
+    },
+    {
+      "muni6": "250610",
+      "total": 602,
+      "comRemun": 574,
+      "somaRemun": 1808765.32
+    },
+    {
+      "muni6": "250620",
+      "total": 211,
+      "comRemun": 201,
+      "somaRemun": 591755.87
+    },
+    {
+      "muni6": "250625",
+      "total": 485,
+      "comRemun": 473,
+      "somaRemun": 1537074.58
+    },
+    {
+      "muni6": "250630",
+      "total": 12968,
+      "comRemun": 11247,
+      "somaRemun": 25440186.07
+    },
+    {
+      "muni6": "250640",
+      "total": 1363,
+      "comRemun": 1240,
+      "somaRemun": 3198621.89
+    },
+    {
+      "muni6": "250650",
+      "total": 489,
+      "comRemun": 407,
+      "somaRemun": 963284.25
+    },
+    {
+      "muni6": "250660",
+      "total": 297,
+      "comRemun": 265,
+      "somaRemun": 730580.0
+    },
+    {
+      "muni6": "250670",
+      "total": 527,
+      "comRemun": 514,
+      "somaRemun": 1637485.15
+    },
+    {
+      "muni6": "250680",
+      "total": 3016,
+      "comRemun": 2647,
+      "somaRemun": 5425660.5
+    },
+    {
+      "muni6": "250690",
+      "total": 2061,
+      "comRemun": 1867,
+      "somaRemun": 4728041.85
+    },
+    {
+      "muni6": "250700",
+      "total": 2970,
+      "comRemun": 2757,
+      "somaRemun": 6674932.51
+    },
+    {
+      "muni6": "250710",
+      "total": 1597,
+      "comRemun": 1371,
+      "somaRemun": 3563763.64
+    },
+    {
+      "muni6": "250720",
+      "total": 856,
+      "comRemun": 748,
+      "somaRemun": 1854230.6199999999
+    },
+    {
+      "muni6": "250730",
+      "total": 872,
+      "comRemun": 833,
+      "somaRemun": 2568686.2
+    },
+    {
+      "muni6": "250740",
+      "total": 462,
+      "comRemun": 391,
+      "somaRemun": 1197853.03
+    },
+    {
+      "muni6": "250750",
+      "total": 354641,
+      "comRemun": 319446,
+      "somaRemun": 1224340406.06
+    },
+    {
+      "muni6": "250760",
+      "total": 555,
+      "comRemun": 472,
+      "somaRemun": 1331725.89
+    },
+    {
+      "muni6": "250770",
+      "total": 1679,
+      "comRemun": 1609,
+      "somaRemun": 4002603.69
+    },
+    {
+      "muni6": "250780",
+      "total": 512,
+      "comRemun": 496,
+      "somaRemun": 1290146.18
+    },
+    {
+      "muni6": "250790",
+      "total": 751,
+      "comRemun": 666,
+      "somaRemun": 1587226.39
+    },
+    {
+      "muni6": "250800",
+      "total": 484,
+      "comRemun": 456,
+      "somaRemun": 1407907.85
+    },
+    {
+      "muni6": "250810",
+      "total": 507,
+      "comRemun": 493,
+      "somaRemun": 1013854.27
+    },
+    {
+      "muni6": "250820",
+      "total": 1149,
+      "comRemun": 670,
+      "somaRemun": 1926667.98
+    },
+    {
+      "muni6": "250830",
+      "total": 2316,
+      "comRemun": 2117,
+      "somaRemun": 5388978.82
+    },
+    {
+      "muni6": "250840",
+      "total": 231,
+      "comRemun": 163,
+      "somaRemun": 491882.44
+    },
+    {
+      "muni6": "250850",
+      "total": 593,
+      "comRemun": 519,
+      "somaRemun": 1589516.81
+    },
+    {
+      "muni6": "250855",
+      "total": 252,
+      "comRemun": 232,
+      "somaRemun": 683181.99
+    },
+    {
+      "muni6": "250860",
+      "total": 2564,
+      "comRemun": 2301,
+      "somaRemun": 5277574.24
+    },
+    {
+      "muni6": "250870",
+      "total": 405,
+      "comRemun": 291,
+      "somaRemun": 782106.25
+    },
+    {
+      "muni6": "250880",
+      "total": 424,
+      "comRemun": 411,
+      "somaRemun": 1106734.63
+    },
+    {
+      "muni6": "250890",
+      "total": 8596,
+      "comRemun": 8183,
+      "somaRemun": 20154015.09
+    },
+    {
+      "muni6": "250900",
+      "total": 375,
+      "comRemun": 357,
+      "somaRemun": 1134733.14
+    },
+    {
+      "muni6": "250905",
+      "total": 546,
+      "comRemun": 451,
+      "somaRemun": 1248894.86
+    },
+    {
+      "muni6": "250910",
+      "total": 2372,
+      "comRemun": 1933,
+      "somaRemun": 5249406.09
+    },
+    {
+      "muni6": "250915",
+      "total": 427,
+      "comRemun": 413,
+      "somaRemun": 1155162.92
+    },
+    {
+      "muni6": "250920",
+      "total": 868,
+      "comRemun": 684,
+      "somaRemun": 2177899.72
+    },
+    {
+      "muni6": "250930",
+      "total": 1246,
+      "comRemun": 1179,
+      "somaRemun": 2767309.97
+    },
+    {
+      "muni6": "250933",
+      "total": 176,
+      "comRemun": 126,
+      "somaRemun": 405193.06
+    },
+    {
+      "muni6": "250937",
+      "total": 315,
+      "comRemun": 289,
+      "somaRemun": 828726.34
+    },
+    {
+      "muni6": "250939",
+      "total": 328,
+      "comRemun": 307,
+      "somaRemun": 909964.7
+    },
+    {
+      "muni6": "250940",
+      "total": 1221,
+      "comRemun": 787,
+      "somaRemun": 2156084.88
+    },
+    {
+      "muni6": "250950",
+      "total": 553,
+      "comRemun": 521,
+      "somaRemun": 1403776.31
+    },
+    {
+      "muni6": "250960",
+      "total": 219,
+      "comRemun": 213,
+      "somaRemun": 729235.28
+    },
+    {
+      "muni6": "250970",
+      "total": 3833,
+      "comRemun": 3493,
+      "somaRemun": 7364847.63
+    },
+    {
+      "muni6": "250980",
+      "total": 813,
+      "comRemun": 774,
+      "somaRemun": 1857487.3699999999
+    },
+    {
+      "muni6": "250990",
+      "total": 699,
+      "comRemun": 693,
+      "somaRemun": 1828891.57
+    },
+    {
+      "muni6": "251000",
+      "total": 473,
+      "comRemun": 425,
+      "somaRemun": 1262898.39
+    },
+    {
+      "muni6": "251010",
+      "total": 558,
+      "comRemun": 510,
+      "somaRemun": 1355433.98
+    },
+    {
+      "muni6": "251020",
+      "total": 666,
+      "comRemun": 361,
+      "somaRemun": 1207713.47
+    },
+    {
+      "muni6": "251030",
+      "total": 280,
+      "comRemun": 262,
+      "somaRemun": 798266.18
+    },
+    {
+      "muni6": "251040",
+      "total": 259,
+      "comRemun": 252,
+      "somaRemun": 766883.74
+    },
+    {
+      "muni6": "251050",
+      "total": 205,
+      "comRemun": 193,
+      "somaRemun": 660193.38
+    },
+    {
+      "muni6": "251060",
+      "total": 344,
+      "comRemun": 343,
+      "somaRemun": 914952.93
+    },
+    {
+      "muni6": "251065",
+      "total": 264,
+      "comRemun": 175,
+      "somaRemun": 436584.46
+    },
+    {
+      "muni6": "251070",
+      "total": 289,
+      "comRemun": 288,
+      "somaRemun": 693717.54
+    },
+    {
+      "muni6": "251080",
+      "total": 18976,
+      "comRemun": 18151,
+      "somaRemun": 45256023.18
+    },
+    {
+      "muni6": "251090",
+      "total": 1059,
+      "comRemun": 682,
+      "somaRemun": 2202006.21
+    },
+    {
+      "muni6": "251100",
+      "total": 277,
+      "comRemun": 271,
+      "somaRemun": 747083.9400000001
+    },
+    {
+      "muni6": "251110",
+      "total": 1639,
+      "comRemun": 1604,
+      "somaRemun": 4904690.68
+    },
+    {
+      "muni6": "251120",
+      "total": 5824,
+      "comRemun": 5269,
+      "somaRemun": 13772136.86
+    },
+    {
+      "muni6": "251130",
+      "total": 1080,
+      "comRemun": 1038,
+      "somaRemun": 2880572.92
+    },
+    {
+      "muni6": "251140",
+      "total": 1679,
+      "comRemun": 1586,
+      "somaRemun": 4927117.23
+    },
+    {
+      "muni6": "251150",
+      "total": 1959,
+      "comRemun": 1839,
+      "somaRemun": 3698061.69
+    },
+    {
+      "muni6": "251160",
+      "total": 553,
+      "comRemun": 389,
+      "somaRemun": 1072568.92
+    },
+    {
+      "muni6": "251170",
+      "total": 224,
+      "comRemun": 165,
+      "somaRemun": 589057.34
+    },
+    {
+      "muni6": "251180",
+      "total": 802,
+      "comRemun": 771,
+      "somaRemun": 2139556.92
+    },
+    {
+      "muni6": "251190",
+      "total": 2061,
+      "comRemun": 1704,
+      "somaRemun": 5169301.46
+    },
+    {
+      "muni6": "251200",
+      "total": 1806,
+      "comRemun": 1678,
+      "somaRemun": 4831055.94
+    },
+    {
+      "muni6": "251203",
+      "total": 339,
+      "comRemun": 332,
+      "somaRemun": 1132188.87
+    },
+    {
+      "muni6": "251207",
+      "total": 553,
+      "comRemun": 287,
+      "somaRemun": 1033077.81
+    },
+    {
+      "muni6": "251210",
+      "total": 2787,
+      "comRemun": 2540,
+      "somaRemun": 7063883.99
+    },
+    {
+      "muni6": "251220",
+      "total": 453,
+      "comRemun": 430,
+      "somaRemun": 1094999.86
+    },
+    {
+      "muni6": "251230",
+      "total": 1932,
+      "comRemun": 1782,
+      "somaRemun": 4383757.82
+    },
+    {
+      "muni6": "251240",
+      "total": 1019,
+      "comRemun": 958,
+      "somaRemun": 2346170.49
+    },
+    {
+      "muni6": "251250",
+      "total": 3719,
+      "comRemun": 3405,
+      "somaRemun": 7848711.46
+    },
+    {
+      "muni6": "251260",
+      "total": 260,
+      "comRemun": 253,
+      "somaRemun": 664691.99
+    },
+    {
+      "muni6": "251270",
+      "total": 2024,
+      "comRemun": 1065,
+      "somaRemun": 3052978.64
+    },
+    {
+      "muni6": "251272",
+      "total": 563,
+      "comRemun": 477,
+      "somaRemun": 1327484.51
+    },
+    {
+      "muni6": "251274",
+      "total": 505,
+      "comRemun": 240,
+      "somaRemun": 653453.35
+    },
+    {
+      "muni6": "251275",
+      "total": 524,
+      "comRemun": 509,
+      "somaRemun": 1280272.21
+    },
+    {
+      "muni6": "251276",
+      "total": 353,
+      "comRemun": 343,
+      "somaRemun": 1117602.38
+    },
+    {
+      "muni6": "251278",
+      "total": 530,
+      "comRemun": 343,
+      "somaRemun": 989267.61
+    },
+    {
+      "muni6": "251280",
+      "total": 448,
+      "comRemun": 386,
+      "somaRemun": 1273885.95
+    },
+    {
+      "muni6": "251290",
+      "total": 4041,
+      "comRemun": 3631,
+      "somaRemun": 8714602.94
+    },
+    {
+      "muni6": "251300",
+      "total": 206,
+      "comRemun": 204,
+      "somaRemun": 705338.53
+    },
+    {
+      "muni6": "251310",
+      "total": 1192,
+      "comRemun": 746,
+      "somaRemun": 2005427.67
+    },
+    {
+      "muni6": "251315",
+      "total": 565,
+      "comRemun": 483,
+      "somaRemun": 1390233.22
+    },
+    {
+      "muni6": "251320",
+      "total": 439,
+      "comRemun": 414,
+      "somaRemun": 1117210.79
+    },
+    {
+      "muni6": "251330",
+      "total": 555,
+      "comRemun": 383,
+      "somaRemun": 1207452.73
+    },
+    {
+      "muni6": "251335",
+      "total": 324,
+      "comRemun": 315,
+      "somaRemun": 749023.98
+    },
+    {
+      "muni6": "251340",
+      "total": 1918,
+      "comRemun": 1856,
+      "somaRemun": 4671766.36
+    },
+    {
+      "muni6": "251350",
+      "total": 288,
+      "comRemun": 274,
+      "somaRemun": 868868.39
+    },
+    {
+      "muni6": "251360",
+      "total": 418,
+      "comRemun": 409,
+      "somaRemun": 1081745.34
+    },
+    {
+      "muni6": "251365",
+      "total": 248,
+      "comRemun": 241,
+      "somaRemun": 900317.04
+    },
+    {
+      "muni6": "251370",
+      "total": 26113,
+      "comRemun": 24244,
+      "somaRemun": 61033236.6
+    },
+    {
+      "muni6": "251380",
+      "total": 404,
+      "comRemun": 337,
+      "somaRemun": 1124357.36
+    },
+    {
+      "muni6": "251385",
+      "total": 177,
+      "comRemun": 167,
+      "somaRemun": 438796.98
+    },
+    {
+      "muni6": "251390",
+      "total": 3598,
+      "comRemun": 3448,
+      "somaRemun": 9863974.13
+    },
+    {
+      "muni6": "251392",
+      "total": 329,
+      "comRemun": 322,
+      "somaRemun": 974294.8
+    },
+    {
+      "muni6": "251394",
+      "total": 131,
+      "comRemun": 118,
+      "somaRemun": 426050.72
+    },
+    {
+      "muni6": "251396",
+      "total": 614,
+      "comRemun": 380,
+      "somaRemun": 944884.16
+    },
+    {
+      "muni6": "251398",
+      "total": 205,
+      "comRemun": 199,
+      "somaRemun": 575767.53
+    },
+    {
+      "muni6": "251400",
+      "total": 792,
+      "comRemun": 544,
+      "somaRemun": 1177896.11
+    },
+    {
+      "muni6": "251410",
+      "total": 372,
+      "comRemun": 369,
+      "somaRemun": 943310.43
+    },
+    {
+      "muni6": "251420",
+      "total": 380,
+      "comRemun": 370,
+      "somaRemun": 1137540.1
+    },
+    {
+      "muni6": "251430",
+      "total": 351,
+      "comRemun": 346,
+      "somaRemun": 1152860.55
+    },
+    {
+      "muni6": "251440",
+      "total": 397,
+      "comRemun": 387,
+      "somaRemun": 1116904.28
+    },
+    {
+      "muni6": "251445",
+      "total": 687,
+      "comRemun": 637,
+      "somaRemun": 1643863.91
+    },
+    {
+      "muni6": "251450",
+      "total": 984,
+      "comRemun": 907,
+      "somaRemun": 2953407.05
+    },
+    {
+      "muni6": "251455",
+      "total": 235,
+      "comRemun": 230,
+      "somaRemun": 588638.96
+    },
+    {
+      "muni6": "251460",
+      "total": 157,
+      "comRemun": 155,
+      "somaRemun": 598286.88
+    },
+    {
+      "muni6": "251465",
+      "total": 167,
+      "comRemun": 157,
+      "somaRemun": 519723.62
+    },
+    {
+      "muni6": "251470",
+      "total": 264,
+      "comRemun": 262,
+      "somaRemun": 888421.93
+    },
+    {
+      "muni6": "251480",
+      "total": 664,
+      "comRemun": 362,
+      "somaRemun": 900439.92
+    },
+    {
+      "muni6": "251490",
+      "total": 577,
+      "comRemun": 555,
+      "somaRemun": 1620791.01
+    },
+    {
+      "muni6": "251500",
+      "total": 495,
+      "comRemun": 481,
+      "somaRemun": 1100618.47
+    },
+    {
+      "muni6": "251510",
+      "total": 982,
+      "comRemun": 838,
+      "somaRemun": 2258599.72
+    },
+    {
+      "muni6": "251520",
+      "total": 208,
+      "comRemun": 208,
+      "somaRemun": 609107.09
+    },
+    {
+      "muni6": "251530",
+      "total": 5433,
+      "comRemun": 4891,
+      "somaRemun": 12789182.61
+    },
+    {
+      "muni6": "251540",
+      "total": 416,
+      "comRemun": 393,
+      "somaRemun": 1351435.22
+    },
+    {
+      "muni6": "251550",
+      "total": 1123,
+      "comRemun": 1064,
+      "somaRemun": 2504655.82
+    },
+    {
+      "muni6": "251560",
+      "total": 318,
+      "comRemun": 270,
+      "somaRemun": 786634.48
+    },
+    {
+      "muni6": "251570",
+      "total": 273,
+      "comRemun": 269,
+      "somaRemun": 761068.3
+    },
+    {
+      "muni6": "251580",
+      "total": 366,
+      "comRemun": 352,
+      "somaRemun": 874410.49
+    },
+    {
+      "muni6": "251590",
+      "total": 418,
+      "comRemun": 403,
+      "somaRemun": 1165405.47
+    },
+    {
+      "muni6": "251593",
+      "total": 566,
+      "comRemun": 535,
+      "somaRemun": 1435043.24
+    },
+    {
+      "muni6": "251597",
+      "total": 699,
+      "comRemun": 508,
+      "somaRemun": 1374979.44
+    },
+    {
+      "muni6": "251600",
+      "total": 2478,
+      "comRemun": 2277,
+      "somaRemun": 6210149.24
+    },
+    {
+      "muni6": "251610",
+      "total": 2456,
+      "comRemun": 1388,
+      "somaRemun": 3553181.96
+    },
+    {
+      "muni6": "251615",
+      "total": 258,
+      "comRemun": 237,
+      "somaRemun": 667361.28
+    },
+    {
+      "muni6": "251620",
+      "total": 11283,
+      "comRemun": 10499,
+      "somaRemun": 25745517.62
+    },
+    {
+      "muni6": "251630",
+      "total": 1349,
+      "comRemun": 1299,
+      "somaRemun": 3295178.0100000002
+    },
+    {
+      "muni6": "251640",
+      "total": 427,
+      "comRemun": 367,
+      "somaRemun": 1124271.67
+    },
+    {
+      "muni6": "251650",
+      "total": 1232,
+      "comRemun": 733,
+      "somaRemun": 1974349.59
+    },
+    {
+      "muni6": "251660",
+      "total": 984,
+      "comRemun": 869,
+      "somaRemun": 2456699.62
+    },
+    {
+      "muni6": "251670",
+      "total": 833,
+      "comRemun": 817,
+      "somaRemun": 2416394.97
+    },
+    {
+      "muni6": "251675",
+      "total": 283,
+      "comRemun": 274,
+      "somaRemun": 739440.49
+    },
+    {
+      "muni6": "251680",
+      "total": 673,
+      "comRemun": 641,
+      "somaRemun": 1708840.54
+    },
+    {
+      "muni6": "251690",
+      "total": 970,
+      "comRemun": 932,
+      "somaRemun": 2358379.08
+    },
+    {
+      "muni6": "251700",
+      "total": 1067,
+      "comRemun": 617,
+      "somaRemun": 1642601.96
+    },
+    {
+      "muni6": "251710",
+      "total": 356,
+      "comRemun": 336,
+      "somaRemun": 847965.25
+    },
+    {
+      "muni6": "251720",
+      "total": 314,
+      "comRemun": 309,
+      "somaRemun": 835703.68
+    },
+    {
+      "muni6": "251740",
+      "total": 115,
+      "comRemun": 110,
+      "somaRemun": 380998.18
+    }
+  ],
+  "prev": [
+    {
+      "muni6": "250010",
+      "total": 832,
+      "comRemun": 819,
+      "somaRemun": 1959582.6300000001
+    },
+    {
+      "muni6": "250020",
+      "total": 270,
+      "comRemun": 266,
+      "somaRemun": 683665.29
+    },
+    {
+      "muni6": "250030",
+      "total": 2588,
+      "comRemun": 2319,
+      "somaRemun": 5477520.4799999995
+    },
+    {
+      "muni6": "250040",
+      "total": 1538,
+      "comRemun": 1399,
+      "somaRemun": 3288858.92
+    },
+    {
+      "muni6": "250050",
+      "total": 1636,
+      "comRemun": 1019,
+      "somaRemun": 2413277.5
+    },
+    {
+      "muni6": "250053",
+      "total": 640,
+      "comRemun": 479,
+      "somaRemun": 1260040.37
+    },
+    {
+      "muni6": "250057",
+      "total": 426,
+      "comRemun": 353,
+      "somaRemun": 918821.46
+    },
+    {
+      "muni6": "250060",
+      "total": 5875,
+      "comRemun": 5437,
+      "somaRemun": 14342362.31
+    },
+    {
+      "muni6": "250070",
+      "total": 1920,
+      "comRemun": 1783,
+      "somaRemun": 4388347.17
+    },
+    {
+      "muni6": "250073",
+      "total": 296,
+      "comRemun": 290,
+      "somaRemun": 624650.55
+    },
+    {
+      "muni6": "250077",
+      "total": 653,
+      "comRemun": 623,
+      "somaRemun": 1414528.03
+    },
+    {
+      "muni6": "250080",
+      "total": 1362,
+      "comRemun": 1324,
+      "somaRemun": 3248454.93
+    },
+    {
+      "muni6": "250090",
+      "total": 949,
+      "comRemun": 911,
+      "somaRemun": 2343762.44
+    },
+    {
+      "muni6": "250100",
+      "total": 1357,
+      "comRemun": 1198,
+      "somaRemun": 3410189.21
+    },
+    {
+      "muni6": "250110",
+      "total": 1833,
+      "comRemun": 1762,
+      "somaRemun": 4502853.7
+    },
+    {
+      "muni6": "250115",
+      "total": 276,
+      "comRemun": 270,
+      "somaRemun": 621287.09
+    },
+    {
+      "muni6": "250120",
+      "total": 699,
+      "comRemun": 565,
+      "somaRemun": 1527459.78
+    },
+    {
+      "muni6": "250130",
+      "total": 287,
+      "comRemun": 253,
+      "somaRemun": 459262.64
+    },
+    {
+      "muni6": "250135",
+      "total": 447,
+      "comRemun": 410,
+      "somaRemun": 1050727.69
+    },
+    {
+      "muni6": "250140",
+      "total": 401,
+      "comRemun": 382,
+      "somaRemun": 884265.24
+    },
+    {
+      "muni6": "250150",
+      "total": 2181,
+      "comRemun": 2059,
+      "somaRemun": 4969746.07
+    },
+    {
+      "muni6": "250153",
+      "total": 396,
+      "comRemun": 376,
+      "somaRemun": 972575.92
+    },
+    {
+      "muni6": "250157",
+      "total": 532,
+      "comRemun": 516,
+      "somaRemun": 1507718.72
+    },
+    {
+      "muni6": "250160",
+      "total": 722,
+      "comRemun": 698,
+      "somaRemun": 2028425.34
+    },
+    {
+      "muni6": "250170",
+      "total": 479,
+      "comRemun": 465,
+      "somaRemun": 1107916.9
+    },
+    {
+      "muni6": "250180",
+      "total": 10305,
+      "comRemun": 9510,
+      "somaRemun": 22155422.54
+    },
+    {
+      "muni6": "250190",
+      "total": 2232,
+      "comRemun": 1733,
+      "somaRemun": 3609781.65
+    },
+    {
+      "muni6": "250200",
+      "total": 508,
+      "comRemun": 500,
+      "somaRemun": 1504893.39
+    },
+    {
+      "muni6": "250205",
+      "total": 454,
+      "comRemun": 424,
+      "somaRemun": 1047557.34
+    },
+    {
+      "muni6": "250210",
+      "total": 415,
+      "comRemun": 413,
+      "somaRemun": 953255.51
+    },
+    {
+      "muni6": "250215",
+      "total": 1258,
+      "comRemun": 1189,
+      "somaRemun": 2926871.29
+    },
+    {
+      "muni6": "250220",
+      "total": 439,
+      "comRemun": 350,
+      "somaRemun": 836207.16
+    },
+    {
+      "muni6": "250230",
+      "total": 475,
+      "comRemun": 458,
+      "somaRemun": 1059853.12
+    },
+    {
+      "muni6": "250240",
+      "total": 633,
+      "comRemun": 619,
+      "somaRemun": 1650321.83
+    },
+    {
+      "muni6": "250250",
+      "total": 1696,
+      "comRemun": 1638,
+      "somaRemun": 4072827.25
+    },
+    {
+      "muni6": "250260",
+      "total": 430,
+      "comRemun": 423,
+      "somaRemun": 1030154.9
+    },
+    {
+      "muni6": "250270",
+      "total": 321,
+      "comRemun": 309,
+      "somaRemun": 864356.52
+    },
+    {
+      "muni6": "250280",
+      "total": 987,
+      "comRemun": 965,
+      "somaRemun": 2921239.32
+    },
+    {
+      "muni6": "250290",
+      "total": 546,
+      "comRemun": 539,
+      "somaRemun": 1372850.47
+    },
+    {
+      "muni6": "250300",
+      "total": 6297,
+      "comRemun": 5362,
+      "somaRemun": 13303688.84
+    },
+    {
+      "muni6": "250310",
+      "total": 467,
+      "comRemun": 447,
+      "somaRemun": 1093717.73
+    },
+    {
+      "muni6": "250320",
+      "total": 23904,
+      "comRemun": 22338,
+      "somaRemun": 63424688.93
+    },
+    {
+      "muni6": "250330",
+      "total": 819,
+      "comRemun": 733,
+      "somaRemun": 1770045.14
+    },
+    {
+      "muni6": "250340",
+      "total": 287,
+      "comRemun": 277,
+      "somaRemun": 738186.06
+    },
+    {
+      "muni6": "250350",
+      "total": 1119,
+      "comRemun": 1051,
+      "somaRemun": 2796019.59
+    },
+    {
+      "muni6": "250355",
+      "total": 583,
+      "comRemun": 573,
+      "somaRemun": 1543038.44
+    },
+    {
+      "muni6": "250360",
+      "total": 862,
+      "comRemun": 516,
+      "somaRemun": 1296751.13
+    },
+    {
+      "muni6": "250370",
+      "total": 12499,
+      "comRemun": 11672,
+      "somaRemun": 32455068.96
+    },
+    {
+      "muni6": "250375",
+      "total": 273,
+      "comRemun": 263,
+      "somaRemun": 826226.2
+    },
+    {
+      "muni6": "250380",
+      "total": 674,
+      "comRemun": 659,
+      "somaRemun": 1445252.07
+    },
+    {
+      "muni6": "250390",
+      "total": 630,
+      "comRemun": 554,
+      "somaRemun": 1353990.3699999999
+    },
+    {
+      "muni6": "250400",
+      "total": 117691,
+      "comRemun": 111348,
+      "somaRemun": 293387844.99
+    },
+    {
+      "muni6": "250403",
+      "total": 638,
+      "comRemun": 577,
+      "somaRemun": 1536883.53
+    },
+    {
+      "muni6": "250407",
+      "total": 415,
+      "comRemun": 394,
+      "somaRemun": 928762.55
+    },
+    {
+      "muni6": "250410",
+      "total": 282,
+      "comRemun": 270,
+      "somaRemun": 849383.73
+    },
+    {
+      "muni6": "250415",
+      "total": 741,
+      "comRemun": 516,
+      "somaRemun": 1447704.41
+    },
+    {
+      "muni6": "250420",
+      "total": 367,
+      "comRemun": 363,
+      "somaRemun": 901796.75
+    },
+    {
+      "muni6": "250430",
+      "total": 4268,
+      "comRemun": 4126,
+      "somaRemun": 9041071.01
+    },
+    {
+      "muni6": "250435",
+      "total": 485,
+      "comRemun": 469,
+      "somaRemun": 1124948.13
+    },
+    {
+      "muni6": "250440",
+      "total": 1374,
+      "comRemun": 1336,
+      "somaRemun": 3335916.14
+    },
+    {
+      "muni6": "250450",
+      "total": 500,
+      "comRemun": 441,
+      "somaRemun": 1191017.72
+    },
+    {
+      "muni6": "250460",
+      "total": 8384,
+      "comRemun": 6609,
+      "somaRemun": 16629239.82
+    },
+    {
+      "muni6": "250470",
+      "total": 315,
+      "comRemun": 299,
+      "somaRemun": 758033.99
+    },
+    {
+      "muni6": "250480",
+      "total": 675,
+      "comRemun": 649,
+      "somaRemun": 1653297.97
+    },
+    {
+      "muni6": "250485",
+      "total": 348,
+      "comRemun": 226,
+      "somaRemun": 586481.88
+    },
+    {
+      "muni6": "250490",
+      "total": 2084,
+      "comRemun": 1680,
+      "somaRemun": 3696532.79
+    },
+    {
+      "muni6": "250500",
+      "total": 581,
+      "comRemun": 543,
+      "somaRemun": 1345222.24
+    },
+    {
+      "muni6": "250510",
+      "total": 1665,
+      "comRemun": 1607,
+      "somaRemun": 3637772.3
+    },
+    {
+      "muni6": "250520",
+      "total": 919,
+      "comRemun": 615,
+      "somaRemun": 1412154.77
+    },
+    {
+      "muni6": "250523",
+      "total": 564,
+      "comRemun": 537,
+      "somaRemun": 1225873.98
+    },
+    {
+      "muni6": "250527",
+      "total": 535,
+      "comRemun": 505,
+      "somaRemun": 1471267.54
+    },
+    {
+      "muni6": "250530",
+      "total": 270,
+      "comRemun": 265,
+      "somaRemun": 562090.82
+    },
+    {
+      "muni6": "250535",
+      "total": 406,
+      "comRemun": 387,
+      "somaRemun": 1056414.19
+    },
+    {
+      "muni6": "250540",
+      "total": 526,
+      "comRemun": 515,
+      "somaRemun": 1316389.88
+    },
+    {
+      "muni6": "250550",
+      "total": 338,
+      "comRemun": 326,
+      "somaRemun": 825700.31
+    },
+    {
+      "muni6": "250560",
+      "total": 351,
+      "comRemun": 335,
+      "somaRemun": 805410.15
+    },
+    {
+      "muni6": "250570",
+      "total": 791,
+      "comRemun": 658,
+      "somaRemun": 1989446.81
+    },
+    {
+      "muni6": "250580",
+      "total": 348,
+      "comRemun": 334,
+      "somaRemun": 867694.52
+    },
+    {
+      "muni6": "250590",
+      "total": 443,
+      "comRemun": 291,
+      "somaRemun": 740596.53
+    },
+    {
+      "muni6": "250600",
+      "total": 3866,
+      "comRemun": 3709,
+      "somaRemun": 7830498.68
+    },
+    {
+      "muni6": "250610",
+      "total": 608,
+      "comRemun": 581,
+      "somaRemun": 1698581.78
+    },
+    {
+      "muni6": "250620",
+      "total": 284,
+      "comRemun": 275,
+      "somaRemun": 702460.88
+    },
+    {
+      "muni6": "250625",
+      "total": 482,
+      "comRemun": 470,
+      "somaRemun": 1442765.89
+    },
+    {
+      "muni6": "250630",
+      "total": 12100,
+      "comRemun": 10804,
+      "somaRemun": 23931826.55
+    },
+    {
+      "muni6": "250640",
+      "total": 1670,
+      "comRemun": 1588,
+      "somaRemun": 3939548.23
+    },
+    {
+      "muni6": "250650",
+      "total": 361,
+      "comRemun": 344,
+      "somaRemun": 903274.69
+    },
+    {
+      "muni6": "250660",
+      "total": 296,
+      "comRemun": 272,
+      "somaRemun": 728430.71
+    },
+    {
+      "muni6": "250670",
+      "total": 512,
+      "comRemun": 501,
+      "somaRemun": 1535046.04
+    },
+    {
+      "muni6": "250680",
+      "total": 2294,
+      "comRemun": 2223,
+      "somaRemun": 4534775.98
+    },
+    {
+      "muni6": "250690",
+      "total": 2525,
+      "comRemun": 2351,
+      "somaRemun": 5546384.33
+    },
+    {
+      "muni6": "250700",
+      "total": 3027,
+      "comRemun": 2831,
+      "somaRemun": 6475527.66
+    },
+    {
+      "muni6": "250710",
+      "total": 1947,
+      "comRemun": 1712,
+      "somaRemun": 3817476.82
+    },
+    {
+      "muni6": "250720",
+      "total": 1393,
+      "comRemun": 1098,
+      "somaRemun": 2496534.98
+    },
+    {
+      "muni6": "250730",
+      "total": 1055,
+      "comRemun": 1026,
+      "somaRemun": 2940140.25
+    },
+    {
+      "muni6": "250740",
+      "total": 457,
+      "comRemun": 391,
+      "somaRemun": 1109793.03
+    },
+    {
+      "muni6": "250750",
+      "total": 335294,
+      "comRemun": 311475,
+      "somaRemun": 1122515976.51
+    },
+    {
+      "muni6": "250760",
+      "total": 655,
+      "comRemun": 630,
+      "somaRemun": 1505996.34
+    },
+    {
+      "muni6": "250770",
+      "total": 1590,
+      "comRemun": 1514,
+      "somaRemun": 3530855.27
+    },
+    {
+      "muni6": "250780",
+      "total": 643,
+      "comRemun": 625,
+      "somaRemun": 1454509.97
+    },
+    {
+      "muni6": "250790",
+      "total": 856,
+      "comRemun": 763,
+      "somaRemun": 1663785.91
+    },
+    {
+      "muni6": "250800",
+      "total": 432,
+      "comRemun": 404,
+      "somaRemun": 1167114.24
+    },
+    {
+      "muni6": "250810",
+      "total": 523,
+      "comRemun": 508,
+      "somaRemun": 966118.88
+    },
+    {
+      "muni6": "250820",
+      "total": 1089,
+      "comRemun": 663,
+      "somaRemun": 1771358.35
+    },
+    {
+      "muni6": "250830",
+      "total": 2465,
+      "comRemun": 2339,
+      "somaRemun": 5601992.12
+    },
+    {
+      "muni6": "250840",
+      "total": 367,
+      "comRemun": 217,
+      "somaRemun": 526383.72
+    },
+    {
+      "muni6": "250850",
+      "total": 574,
+      "comRemun": 527,
+      "somaRemun": 1418853.19
+    },
+    {
+      "muni6": "250855",
+      "total": 356,
+      "comRemun": 339,
+      "somaRemun": 927568.79
+    },
+    {
+      "muni6": "250860",
+      "total": 2298,
+      "comRemun": 2180,
+      "somaRemun": 4795921.54
+    },
+    {
+      "muni6": "250870",
+      "total": 398,
+      "comRemun": 364,
+      "somaRemun": 950573.97
+    },
+    {
+      "muni6": "250880",
+      "total": 543,
+      "comRemun": 528,
+      "somaRemun": 1281387.34
+    },
+    {
+      "muni6": "250890",
+      "total": 9102,
+      "comRemun": 8768,
+      "somaRemun": 20006995.17
+    },
+    {
+      "muni6": "250900",
+      "total": 443,
+      "comRemun": 425,
+      "somaRemun": 1251998.37
+    },
+    {
+      "muni6": "250905",
+      "total": 927,
+      "comRemun": 769,
+      "somaRemun": 1765625.73
+    },
+    {
+      "muni6": "250910",
+      "total": 1823,
+      "comRemun": 1686,
+      "somaRemun": 4252405.57
+    },
+    {
+      "muni6": "250915",
+      "total": 484,
+      "comRemun": 470,
+      "somaRemun": 1185789.46
+    },
+    {
+      "muni6": "250920",
+      "total": 1099,
+      "comRemun": 1026,
+      "somaRemun": 2711752.29
+    },
+    {
+      "muni6": "250930",
+      "total": 1367,
+      "comRemun": 1310,
+      "somaRemun": 3029042.45
+    },
+    {
+      "muni6": "250933",
+      "total": 235,
+      "comRemun": 218,
+      "somaRemun": 606788.13
+    },
+    {
+      "muni6": "250937",
+      "total": 309,
+      "comRemun": 284,
+      "somaRemun": 756654.77
+    },
+    {
+      "muni6": "250939",
+      "total": 446,
+      "comRemun": 440,
+      "somaRemun": 1162949.59
+    },
+    {
+      "muni6": "250940",
+      "total": 1371,
+      "comRemun": 1257,
+      "somaRemun": 3120288.43
+    },
+    {
+      "muni6": "250950",
+      "total": 484,
+      "comRemun": 472,
+      "somaRemun": 1176913.45
+    },
+    {
+      "muni6": "250960",
+      "total": 344,
+      "comRemun": 333,
+      "somaRemun": 939027.71
+    },
+    {
+      "muni6": "250970",
+      "total": 3749,
+      "comRemun": 3547,
+      "somaRemun": 7131734.47
+    },
+    {
+      "muni6": "250980",
+      "total": 834,
+      "comRemun": 798,
+      "somaRemun": 1754588.58
+    },
+    {
+      "muni6": "250990",
+      "total": 589,
+      "comRemun": 583,
+      "somaRemun": 1477373.09
+    },
+    {
+      "muni6": "251000",
+      "total": 450,
+      "comRemun": 438,
+      "somaRemun": 1220927.97
+    },
+    {
+      "muni6": "251010",
+      "total": 782,
+      "comRemun": 721,
+      "somaRemun": 1748104.88
+    },
+    {
+      "muni6": "251020",
+      "total": 731,
+      "comRemun": 429,
+      "somaRemun": 1193939.91
+    },
+    {
+      "muni6": "251030",
+      "total": 422,
+      "comRemun": 401,
+      "somaRemun": 966592.46
+    },
+    {
+      "muni6": "251040",
+      "total": 435,
+      "comRemun": 429,
+      "somaRemun": 1016343.58
+    },
+    {
+      "muni6": "251050",
+      "total": 224,
+      "comRemun": 212,
+      "somaRemun": 658856.79
+    },
+    {
+      "muni6": "251060",
+      "total": 341,
+      "comRemun": 339,
+      "somaRemun": 800028.75
+    },
+    {
+      "muni6": "251065",
+      "total": 322,
+      "comRemun": 290,
+      "somaRemun": 645880.24
+    },
+    {
+      "muni6": "251070",
+      "total": 331,
+      "comRemun": 328,
+      "somaRemun": 710622.25
+    },
+    {
+      "muni6": "251080",
+      "total": 17538,
+      "comRemun": 16795,
+      "somaRemun": 40228136.18
+    },
+    {
+      "muni6": "251090",
+      "total": 1056,
+      "comRemun": 678,
+      "somaRemun": 1907439.13
+    },
+    {
+      "muni6": "251100",
+      "total": 290,
+      "comRemun": 284,
+      "somaRemun": 752302.67
+    },
+    {
+      "muni6": "251110",
+      "total": 1215,
+      "comRemun": 1193,
+      "somaRemun": 3119874.0
+    },
+    {
+      "muni6": "251120",
+      "total": 5738,
+      "comRemun": 5443,
+      "somaRemun": 13293615.9
+    },
+    {
+      "muni6": "251130",
+      "total": 1418,
+      "comRemun": 1393,
+      "somaRemun": 3476813.06
+    },
+    {
+      "muni6": "251140",
+      "total": 1572,
+      "comRemun": 1486,
+      "somaRemun": 4367413.22
+    },
+    {
+      "muni6": "251150",
+      "total": 1852,
+      "comRemun": 1761,
+      "somaRemun": 3255327.46
+    },
+    {
+      "muni6": "251160",
+      "total": 769,
+      "comRemun": 522,
+      "somaRemun": 1317009.28
+    },
+    {
+      "muni6": "251170",
+      "total": 357,
+      "comRemun": 302,
+      "somaRemun": 797107.1
+    },
+    {
+      "muni6": "251180",
+      "total": 756,
+      "comRemun": 731,
+      "somaRemun": 1842232.07
+    },
+    {
+      "muni6": "251190",
+      "total": 2354,
+      "comRemun": 2098,
+      "somaRemun": 5463198.22
+    },
+    {
+      "muni6": "251200",
+      "total": 1699,
+      "comRemun": 1599,
+      "somaRemun": 4271456.49
+    },
+    {
+      "muni6": "251203",
+      "total": 424,
+      "comRemun": 416,
+      "somaRemun": 1168641.05
+    },
+    {
+      "muni6": "251207",
+      "total": 693,
+      "comRemun": 438,
+      "somaRemun": 1253574.11
+    },
+    {
+      "muni6": "251210",
+      "total": 3524,
+      "comRemun": 3098,
+      "somaRemun": 8447829.5
+    },
+    {
+      "muni6": "251220",
+      "total": 441,
+      "comRemun": 433,
+      "somaRemun": 998947.54
+    },
+    {
+      "muni6": "251230",
+      "total": 1923,
+      "comRemun": 1787,
+      "somaRemun": 4199404.14
+    },
+    {
+      "muni6": "251240",
+      "total": 933,
+      "comRemun": 886,
+      "somaRemun": 2111418.7
+    },
+    {
+      "muni6": "251250",
+      "total": 4200,
+      "comRemun": 3900,
+      "somaRemun": 8493780.04
+    },
+    {
+      "muni6": "251260",
+      "total": 264,
+      "comRemun": 254,
+      "somaRemun": 692915.31
+    },
+    {
+      "muni6": "251270",
+      "total": 1963,
+      "comRemun": 1366,
+      "somaRemun": 3706990.14
+    },
+    {
+      "muni6": "251272",
+      "total": 508,
+      "comRemun": 465,
+      "somaRemun": 1207906.16
+    },
+    {
+      "muni6": "251274",
+      "total": 675,
+      "comRemun": 442,
+      "somaRemun": 998519.38
+    },
+    {
+      "muni6": "251275",
+      "total": 543,
+      "comRemun": 529,
+      "somaRemun": 1189528.59
+    },
+    {
+      "muni6": "251276",
+      "total": 463,
+      "comRemun": 459,
+      "somaRemun": 1215125.93
+    },
+    {
+      "muni6": "251278",
+      "total": 472,
+      "comRemun": 401,
+      "somaRemun": 1010817.75
+    },
+    {
+      "muni6": "251280",
+      "total": 821,
+      "comRemun": 654,
+      "somaRemun": 1685616.58
+    },
+    {
+      "muni6": "251290",
+      "total": 4393,
+      "comRemun": 4196,
+      "somaRemun": 8609985.23
+    },
+    {
+      "muni6": "251300",
+      "total": 295,
+      "comRemun": 293,
+      "somaRemun": 824783.65
+    },
+    {
+      "muni6": "251310",
+      "total": 2240,
+      "comRemun": 1336,
+      "somaRemun": 3152014.46
+    },
+    {
+      "muni6": "251315",
+      "total": 530,
+      "comRemun": 422,
+      "somaRemun": 1153009.35
+    },
+    {
+      "muni6": "251320",
+      "total": 526,
+      "comRemun": 499,
+      "somaRemun": 1275978.35
+    },
+    {
+      "muni6": "251330",
+      "total": 468,
+      "comRemun": 446,
+      "somaRemun": 1101174.67
+    },
+    {
+      "muni6": "251335",
+      "total": 322,
+      "comRemun": 319,
+      "somaRemun": 714198.47
+    },
+    {
+      "muni6": "251340",
+      "total": 1910,
+      "comRemun": 1841,
+      "somaRemun": 4239609.38
+    },
+    {
+      "muni6": "251350",
+      "total": 388,
+      "comRemun": 384,
+      "somaRemun": 1130560.14
+    },
+    {
+      "muni6": "251360",
+      "total": 378,
+      "comRemun": 374,
+      "somaRemun": 909673.33
+    },
+    {
+      "muni6": "251365",
+      "total": 238,
+      "comRemun": 233,
+      "somaRemun": 799930.79
+    },
+    {
+      "muni6": "251370",
+      "total": 24703,
+      "comRemun": 23300,
+      "somaRemun": 54623717.54
+    },
+    {
+      "muni6": "251380",
+      "total": 578,
+      "comRemun": 508,
+      "somaRemun": 1319844.64
+    },
+    {
+      "muni6": "251385",
+      "total": 272,
+      "comRemun": 268,
+      "somaRemun": 598652.74
+    },
+    {
+      "muni6": "251390",
+      "total": 3332,
+      "comRemun": 3197,
+      "somaRemun": 7579447.12
+    },
+    {
+      "muni6": "251392",
+      "total": 223,
+      "comRemun": 218,
+      "somaRemun": 690601.64
+    },
+    {
+      "muni6": "251394",
+      "total": 161,
+      "comRemun": 150,
+      "somaRemun": 480608.71
+    },
+    {
+      "muni6": "251396",
+      "total": 501,
+      "comRemun": 467,
+      "somaRemun": 995453.41
+    },
+    {
+      "muni6": "251398",
+      "total": 281,
+      "comRemun": 272,
+      "somaRemun": 653851.39
+    },
+    {
+      "muni6": "251400",
+      "total": 788,
+      "comRemun": 666,
+      "somaRemun": 1320033.53
+    },
+    {
+      "muni6": "251410",
+      "total": 354,
+      "comRemun": 351,
+      "somaRemun": 923439.55
+    },
+    {
+      "muni6": "251420",
+      "total": 519,
+      "comRemun": 509,
+      "somaRemun": 1286815.23
+    },
+    {
+      "muni6": "251430",
+      "total": 338,
+      "comRemun": 335,
+      "somaRemun": 976283.96
+    },
+    {
+      "muni6": "251440",
+      "total": 424,
+      "comRemun": 417,
+      "somaRemun": 1110374.3800000001
+    },
+    {
+      "muni6": "251445",
+      "total": 423,
+      "comRemun": 411,
+      "somaRemun": 1104289.24
+    },
+    {
+      "muni6": "251450",
+      "total": 972,
+      "comRemun": 941,
+      "somaRemun": 2856758.81
+    },
+    {
+      "muni6": "251455",
+      "total": 228,
+      "comRemun": 225,
+      "somaRemun": 558140.74
+    },
+    {
+      "muni6": "251460",
+      "total": 162,
+      "comRemun": 160,
+      "somaRemun": 567741.3
+    },
+    {
+      "muni6": "251465",
+      "total": 235,
+      "comRemun": 225,
+      "somaRemun": 617096.45
+    },
+    {
+      "muni6": "251470",
+      "total": 402,
+      "comRemun": 401,
+      "somaRemun": 1173232.1199999999
+    },
+    {
+      "muni6": "251480",
+      "total": 486,
+      "comRemun": 349,
+      "somaRemun": 724392.58
+    },
+    {
+      "muni6": "251490",
+      "total": 608,
+      "comRemun": 590,
+      "somaRemun": 1490050.96
+    },
+    {
+      "muni6": "251500",
+      "total": 809,
+      "comRemun": 798,
+      "somaRemun": 1687090.93
+    },
+    {
+      "muni6": "251510",
+      "total": 846,
+      "comRemun": 790,
+      "somaRemun": 2103297.09
+    },
+    {
+      "muni6": "251520",
+      "total": 243,
+      "comRemun": 242,
+      "somaRemun": 607681.65
+    },
+    {
+      "muni6": "251530",
+      "total": 5373,
+      "comRemun": 4972,
+      "somaRemun": 11877462.46
+    },
+    {
+      "muni6": "251540",
+      "total": 621,
+      "comRemun": 610,
+      "somaRemun": 1777395.17
+    },
+    {
+      "muni6": "251550",
+      "total": 1359,
+      "comRemun": 1305,
+      "somaRemun": 2732094.35
+    },
+    {
+      "muni6": "251560",
+      "total": 418,
+      "comRemun": 388,
+      "somaRemun": 876341.81
+    },
+    {
+      "muni6": "251570",
+      "total": 378,
+      "comRemun": 373,
+      "somaRemun": 1000760.27
+    },
+    {
+      "muni6": "251580",
+      "total": 464,
+      "comRemun": 456,
+      "somaRemun": 1068065.4
+    },
+    {
+      "muni6": "251590",
+      "total": 407,
+      "comRemun": 380,
+      "somaRemun": 1002381.8099999999
+    },
+    {
+      "muni6": "251593",
+      "total": 637,
+      "comRemun": 610,
+      "somaRemun": 1459859.92
+    },
+    {
+      "muni6": "251597",
+      "total": 720,
+      "comRemun": 674,
+      "somaRemun": 1686432.41
+    },
+    {
+      "muni6": "251600",
+      "total": 2545,
+      "comRemun": 2378,
+      "somaRemun": 5992592.13
+    },
+    {
+      "muni6": "251610",
+      "total": 2271,
+      "comRemun": 1216,
+      "somaRemun": 3082388.51
+    },
+    {
+      "muni6": "251615",
+      "total": 402,
+      "comRemun": 389,
+      "somaRemun": 970018.51
+    },
+    {
+      "muni6": "251620",
+      "total": 10906,
+      "comRemun": 10487,
+      "somaRemun": 23598128.92
+    },
+    {
+      "muni6": "251630",
+      "total": 1730,
+      "comRemun": 1664,
+      "somaRemun": 3986469.32
+    },
+    {
+      "muni6": "251640",
+      "total": 898,
+      "comRemun": 754,
+      "somaRemun": 1851245.15
+    },
+    {
+      "muni6": "251650",
+      "total": 1262,
+      "comRemun": 1045,
+      "somaRemun": 2451533.6
+    },
+    {
+      "muni6": "251660",
+      "total": 741,
+      "comRemun": 731,
+      "somaRemun": 1912825.37
+    },
+    {
+      "muni6": "251670",
+      "total": 1230,
+      "comRemun": 1213,
+      "somaRemun": 3164988.53
+    },
+    {
+      "muni6": "251675",
+      "total": 310,
+      "comRemun": 306,
+      "somaRemun": 766381.66
+    },
+    {
+      "muni6": "251680",
+      "total": 1227,
+      "comRemun": 1105,
+      "somaRemun": 2186393.44
+    },
+    {
+      "muni6": "251690",
+      "total": 1327,
+      "comRemun": 1293,
+      "somaRemun": 2810641.61
+    },
+    {
+      "muni6": "251700",
+      "total": 1120,
+      "comRemun": 1020,
+      "somaRemun": 2333454.05
+    },
+    {
+      "muni6": "251710",
+      "total": 293,
+      "comRemun": 285,
+      "somaRemun": 666324.58
+    },
+    {
+      "muni6": "251720",
+      "total": 312,
+      "comRemun": 310,
+      "somaRemun": 764994.64
+    },
+    {
+      "muni6": "251740",
+      "total": 130,
+      "comRemun": 125,
+      "somaRemun": 416835.63
+    }
+  ]
+}

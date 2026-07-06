@@ -1,0 +1,1786 @@
+[
+  {
+    "id_municipio": "2500106",
+    "total": 476,
+    "tic": 4,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 4
+  },
+  {
+    "id_municipio": "2500205",
+    "total": 385,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2500304",
+    "total": 2246,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2500403",
+    "total": 2049,
+    "tic": 3,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 3
+  },
+  {
+    "id_municipio": "2500502",
+    "total": 1850,
+    "tic": 29,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 29
+  },
+  {
+    "id_municipio": "2500536",
+    "total": 652,
+    "tic": 7,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 7
+  },
+  {
+    "id_municipio": "2500577",
+    "total": 384,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2500601",
+    "total": 6297,
+    "tic": 797,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 797
+  },
+  {
+    "id_municipio": "2500700",
+    "total": 1403,
+    "tic": 59,
+    "criativa": 1,
+    "pesquisa": 0,
+    "setor": 60
+  },
+  {
+    "id_municipio": "2500734",
+    "total": 274,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2500775",
+    "total": 647,
+    "tic": 9,
+    "criativa": 151,
+    "pesquisa": 0,
+    "setor": 160
+  },
+  {
+    "id_municipio": "2500809",
+    "total": 1484,
+    "tic": 0,
+    "criativa": 1,
+    "pesquisa": 0,
+    "setor": 1
+  },
+  {
+    "id_municipio": "2500908",
+    "total": 910,
+    "tic": 39,
+    "criativa": 15,
+    "pesquisa": 0,
+    "setor": 54
+  },
+  {
+    "id_municipio": "2501005",
+    "total": 1665,
+    "tic": 16,
+    "criativa": 1,
+    "pesquisa": 0,
+    "setor": 17
+  },
+  {
+    "id_municipio": "2501104",
+    "total": 1811,
+    "tic": 2,
+    "criativa": 5,
+    "pesquisa": 0,
+    "setor": 7
+  },
+  {
+    "id_municipio": "2501153",
+    "total": 305,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2501203",
+    "total": 623,
+    "tic": 9,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 9
+  },
+  {
+    "id_municipio": "2501302",
+    "total": 261,
+    "tic": 3,
+    "criativa": 2,
+    "pesquisa": 0,
+    "setor": 5
+  },
+  {
+    "id_municipio": "2501351",
+    "total": 305,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2501401",
+    "total": 317,
+    "tic": 0,
+    "criativa": 2,
+    "pesquisa": 0,
+    "setor": 2
+  },
+  {
+    "id_municipio": "2501500",
+    "total": 1837,
+    "tic": 12,
+    "criativa": 6,
+    "pesquisa": 0,
+    "setor": 18
+  },
+  {
+    "id_municipio": "2501534",
+    "total": 310,
+    "tic": 28,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 28
+  },
+  {
+    "id_municipio": "2501575",
+    "total": 447,
+    "tic": 12,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 12
+  },
+  {
+    "id_municipio": "2501609",
+    "total": 855,
+    "tic": 11,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 11
+  },
+  {
+    "id_municipio": "2501708",
+    "total": 302,
+    "tic": 6,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 6
+  },
+  {
+    "id_municipio": "2501807",
+    "total": 10352,
+    "tic": 47,
+    "criativa": 20,
+    "pesquisa": 0,
+    "setor": 67
+  },
+  {
+    "id_municipio": "2501906",
+    "total": 1287,
+    "tic": 17,
+    "criativa": 1,
+    "pesquisa": 0,
+    "setor": 18
+  },
+  {
+    "id_municipio": "2502003",
+    "total": 632,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2502052",
+    "total": 473,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2502102",
+    "total": 260,
+    "tic": 1,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 1
+  },
+  {
+    "id_municipio": "2502151",
+    "total": 1349,
+    "tic": 14,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 14
+  },
+  {
+    "id_municipio": "2502201",
+    "total": 230,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2502300",
+    "total": 458,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2502409",
+    "total": 426,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2502508",
+    "total": 2107,
+    "tic": 11,
+    "criativa": 1,
+    "pesquisa": 0,
+    "setor": 12
+  },
+  {
+    "id_municipio": "2502607",
+    "total": 443,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2502706",
+    "total": 295,
+    "tic": 0,
+    "criativa": 6,
+    "pesquisa": 0,
+    "setor": 6
+  },
+  {
+    "id_municipio": "2502805",
+    "total": 1022,
+    "tic": 12,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 12
+  },
+  {
+    "id_municipio": "2502904",
+    "total": 548,
+    "tic": 3,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 3
+  },
+  {
+    "id_municipio": "2503001",
+    "total": 6355,
+    "tic": 11,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 11
+  },
+  {
+    "id_municipio": "2503100",
+    "total": 394,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2503209",
+    "total": 24627,
+    "tic": 301,
+    "criativa": 1092,
+    "pesquisa": 0,
+    "setor": 1393
+  },
+  {
+    "id_municipio": "2503308",
+    "total": 629,
+    "tic": 0,
+    "criativa": 1,
+    "pesquisa": 0,
+    "setor": 1
+  },
+  {
+    "id_municipio": "2503407",
+    "total": 224,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2503506",
+    "total": 636,
+    "tic": 19,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 19
+  },
+  {
+    "id_municipio": "2503555",
+    "total": 545,
+    "tic": 3,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 3
+  },
+  {
+    "id_municipio": "2503605",
+    "total": 939,
+    "tic": 4,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 4
+  },
+  {
+    "id_municipio": "2503704",
+    "total": 10924,
+    "tic": 176,
+    "criativa": 135,
+    "pesquisa": 0,
+    "setor": 311
+  },
+  {
+    "id_municipio": "2503753",
+    "total": 236,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2503803",
+    "total": 514,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2503902",
+    "total": 608,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2504009",
+    "total": 124468,
+    "tic": 1318,
+    "criativa": 885,
+    "pesquisa": 212,
+    "setor": 2415
+  },
+  {
+    "id_municipio": "2504033",
+    "total": 517,
+    "tic": 7,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 7
+  },
+  {
+    "id_municipio": "2504074",
+    "total": 287,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2504108",
+    "total": 254,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2504157",
+    "total": 506,
+    "tic": 6,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 6
+  },
+  {
+    "id_municipio": "2504207",
+    "total": 239,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2504306",
+    "total": 4491,
+    "tic": 61,
+    "criativa": 20,
+    "pesquisa": 0,
+    "setor": 81
+  },
+  {
+    "id_municipio": "2504355",
+    "total": 418,
+    "tic": 2,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 2
+  },
+  {
+    "id_municipio": "2504405",
+    "total": 1130,
+    "tic": 1,
+    "criativa": 7,
+    "pesquisa": 0,
+    "setor": 8
+  },
+  {
+    "id_municipio": "2504504",
+    "total": 374,
+    "tic": 6,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 6
+  },
+  {
+    "id_municipio": "2504603",
+    "total": 9059,
+    "tic": 22,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 22
+  },
+  {
+    "id_municipio": "2504702",
+    "total": 308,
+    "tic": 5,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 5
+  },
+  {
+    "id_municipio": "2504801",
+    "total": 753,
+    "tic": 0,
+    "criativa": 1,
+    "pesquisa": 0,
+    "setor": 1
+  },
+  {
+    "id_municipio": "2504850",
+    "total": 354,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2504900",
+    "total": 2002,
+    "tic": 12,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 12
+  },
+  {
+    "id_municipio": "2505006",
+    "total": 819,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2505105",
+    "total": 1511,
+    "tic": 34,
+    "criativa": 10,
+    "pesquisa": 0,
+    "setor": 44
+  },
+  {
+    "id_municipio": "2505204",
+    "total": 945,
+    "tic": 5,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 5
+  },
+  {
+    "id_municipio": "2505238",
+    "total": 380,
+    "tic": 1,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 1
+  },
+  {
+    "id_municipio": "2505279",
+    "total": 735,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2505303",
+    "total": 268,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2505352",
+    "total": 335,
+    "tic": 6,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 6
+  },
+  {
+    "id_municipio": "2505402",
+    "total": 346,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2505501",
+    "total": 351,
+    "tic": 3,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 3
+  },
+  {
+    "id_municipio": "2505600",
+    "total": 311,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2505709",
+    "total": 590,
+    "tic": 3,
+    "criativa": 1,
+    "pesquisa": 0,
+    "setor": 4
+  },
+  {
+    "id_municipio": "2505808",
+    "total": 222,
+    "tic": 1,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 1
+  },
+  {
+    "id_municipio": "2505907",
+    "total": 507,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2506004",
+    "total": 4040,
+    "tic": 52,
+    "criativa": 14,
+    "pesquisa": 0,
+    "setor": 66
+  },
+  {
+    "id_municipio": "2506103",
+    "total": 602,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2506202",
+    "total": 211,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2506251",
+    "total": 485,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2506301",
+    "total": 12968,
+    "tic": 301,
+    "criativa": 84,
+    "pesquisa": 0,
+    "setor": 385
+  },
+  {
+    "id_municipio": "2506400",
+    "total": 1363,
+    "tic": 11,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 11
+  },
+  {
+    "id_municipio": "2506509",
+    "total": 489,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2506608",
+    "total": 297,
+    "tic": 17,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 17
+  },
+  {
+    "id_municipio": "2506707",
+    "total": 527,
+    "tic": 3,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 3
+  },
+  {
+    "id_municipio": "2506806",
+    "total": 3016,
+    "tic": 5,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 5
+  },
+  {
+    "id_municipio": "2506905",
+    "total": 2061,
+    "tic": 89,
+    "criativa": 8,
+    "pesquisa": 0,
+    "setor": 97
+  },
+  {
+    "id_municipio": "2507002",
+    "total": 2970,
+    "tic": 46,
+    "criativa": 4,
+    "pesquisa": 0,
+    "setor": 50
+  },
+  {
+    "id_municipio": "2507101",
+    "total": 1597,
+    "tic": 6,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 6
+  },
+  {
+    "id_municipio": "2507200",
+    "total": 856,
+    "tic": 2,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 2
+  },
+  {
+    "id_municipio": "2507309",
+    "total": 872,
+    "tic": 5,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 5
+  },
+  {
+    "id_municipio": "2507408",
+    "total": 462,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2507507",
+    "total": 354641,
+    "tic": 4606,
+    "criativa": 3090,
+    "pesquisa": 3,
+    "setor": 7699
+  },
+  {
+    "id_municipio": "2507606",
+    "total": 555,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2507705",
+    "total": 1679,
+    "tic": 4,
+    "criativa": 2,
+    "pesquisa": 0,
+    "setor": 6
+  },
+  {
+    "id_municipio": "2507804",
+    "total": 512,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2507903",
+    "total": 751,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2508000",
+    "total": 484,
+    "tic": 9,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 9
+  },
+  {
+    "id_municipio": "2508109",
+    "total": 507,
+    "tic": 37,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 37
+  },
+  {
+    "id_municipio": "2508208",
+    "total": 1149,
+    "tic": 1,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 1
+  },
+  {
+    "id_municipio": "2508307",
+    "total": 2316,
+    "tic": 39,
+    "criativa": 37,
+    "pesquisa": 0,
+    "setor": 76
+  },
+  {
+    "id_municipio": "2508406",
+    "total": 231,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2508505",
+    "total": 593,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2508554",
+    "total": 252,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2508604",
+    "total": 2564,
+    "tic": 13,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 13
+  },
+  {
+    "id_municipio": "2508703",
+    "total": 405,
+    "tic": 3,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 3
+  },
+  {
+    "id_municipio": "2508802",
+    "total": 424,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2508901",
+    "total": 8596,
+    "tic": 22,
+    "criativa": 11,
+    "pesquisa": 0,
+    "setor": 33
+  },
+  {
+    "id_municipio": "2509008",
+    "total": 375,
+    "tic": 2,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 2
+  },
+  {
+    "id_municipio": "2509057",
+    "total": 546,
+    "tic": 13,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 13
+  },
+  {
+    "id_municipio": "2509107",
+    "total": 2372,
+    "tic": 41,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 41
+  },
+  {
+    "id_municipio": "2509156",
+    "total": 427,
+    "tic": 0,
+    "criativa": 2,
+    "pesquisa": 0,
+    "setor": 2
+  },
+  {
+    "id_municipio": "2509206",
+    "total": 868,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2509305",
+    "total": 1246,
+    "tic": 10,
+    "criativa": 1,
+    "pesquisa": 0,
+    "setor": 11
+  },
+  {
+    "id_municipio": "2509339",
+    "total": 176,
+    "tic": 5,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 5
+  },
+  {
+    "id_municipio": "2509370",
+    "total": 315,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2509396",
+    "total": 328,
+    "tic": 3,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 3
+  },
+  {
+    "id_municipio": "2509404",
+    "total": 1221,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2509503",
+    "total": 553,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2509602",
+    "total": 219,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2509701",
+    "total": 3833,
+    "tic": 96,
+    "criativa": 55,
+    "pesquisa": 0,
+    "setor": 151
+  },
+  {
+    "id_municipio": "2509800",
+    "total": 813,
+    "tic": 8,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 8
+  },
+  {
+    "id_municipio": "2509909",
+    "total": 699,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2510006",
+    "total": 473,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2510105",
+    "total": 558,
+    "tic": 2,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 2
+  },
+  {
+    "id_municipio": "2510204",
+    "total": 666,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2510303",
+    "total": 280,
+    "tic": 6,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 6
+  },
+  {
+    "id_municipio": "2510402",
+    "total": 259,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2510501",
+    "total": 205,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2510600",
+    "total": 344,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2510659",
+    "total": 264,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2510709",
+    "total": 289,
+    "tic": 2,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 2
+  },
+  {
+    "id_municipio": "2510808",
+    "total": 18976,
+    "tic": 152,
+    "criativa": 172,
+    "pesquisa": 0,
+    "setor": 324
+  },
+  {
+    "id_municipio": "2510907",
+    "total": 1059,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2511004",
+    "total": 277,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2511103",
+    "total": 1639,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2511202",
+    "total": 5824,
+    "tic": 22,
+    "criativa": 3,
+    "pesquisa": 0,
+    "setor": 25
+  },
+  {
+    "id_municipio": "2511301",
+    "total": 1080,
+    "tic": 67,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 67
+  },
+  {
+    "id_municipio": "2511400",
+    "total": 1679,
+    "tic": 46,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 46
+  },
+  {
+    "id_municipio": "2511509",
+    "total": 1959,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2511608",
+    "total": 553,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2511707",
+    "total": 224,
+    "tic": 1,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 1
+  },
+  {
+    "id_municipio": "2511806",
+    "total": 802,
+    "tic": 13,
+    "criativa": 1,
+    "pesquisa": 0,
+    "setor": 14
+  },
+  {
+    "id_municipio": "2511905",
+    "total": 2061,
+    "tic": 9,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 9
+  },
+  {
+    "id_municipio": "2512002",
+    "total": 1806,
+    "tic": 0,
+    "criativa": 1,
+    "pesquisa": 0,
+    "setor": 1
+  },
+  {
+    "id_municipio": "2512036",
+    "total": 339,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2512077",
+    "total": 553,
+    "tic": 8,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 8
+  },
+  {
+    "id_municipio": "2512101",
+    "total": 2787,
+    "tic": 36,
+    "criativa": 30,
+    "pesquisa": 0,
+    "setor": 66
+  },
+  {
+    "id_municipio": "2512200",
+    "total": 453,
+    "tic": 4,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 4
+  },
+  {
+    "id_municipio": "2512309",
+    "total": 1932,
+    "tic": 26,
+    "criativa": 8,
+    "pesquisa": 0,
+    "setor": 34
+  },
+  {
+    "id_municipio": "2512408",
+    "total": 1019,
+    "tic": 2,
+    "criativa": 1,
+    "pesquisa": 0,
+    "setor": 3
+  },
+  {
+    "id_municipio": "2512507",
+    "total": 3719,
+    "tic": 63,
+    "criativa": 32,
+    "pesquisa": 0,
+    "setor": 95
+  },
+  {
+    "id_municipio": "2512606",
+    "total": 260,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2512705",
+    "total": 2024,
+    "tic": 13,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 13
+  },
+  {
+    "id_municipio": "2512721",
+    "total": 563,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2512747",
+    "total": 505,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2512754",
+    "total": 524,
+    "tic": 5,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 5
+  },
+  {
+    "id_municipio": "2512762",
+    "total": 353,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2512788",
+    "total": 530,
+    "tic": 1,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 1
+  },
+  {
+    "id_municipio": "2512804",
+    "total": 448,
+    "tic": 2,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 2
+  },
+  {
+    "id_municipio": "2512903",
+    "total": 4041,
+    "tic": 58,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 58
+  },
+  {
+    "id_municipio": "2513000",
+    "total": 206,
+    "tic": 3,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 3
+  },
+  {
+    "id_municipio": "2513109",
+    "total": 1192,
+    "tic": 5,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 5
+  },
+  {
+    "id_municipio": "2513158",
+    "total": 565,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2513208",
+    "total": 439,
+    "tic": 2,
+    "criativa": 5,
+    "pesquisa": 0,
+    "setor": 7
+  },
+  {
+    "id_municipio": "2513307",
+    "total": 555,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2513356",
+    "total": 324,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2513406",
+    "total": 1918,
+    "tic": 189,
+    "criativa": 7,
+    "pesquisa": 0,
+    "setor": 196
+  },
+  {
+    "id_municipio": "2513505",
+    "total": 288,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2513604",
+    "total": 418,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2513653",
+    "total": 248,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2513703",
+    "total": 26113,
+    "tic": 108,
+    "criativa": 34,
+    "pesquisa": 0,
+    "setor": 142
+  },
+  {
+    "id_municipio": "2513802",
+    "total": 404,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2513851",
+    "total": 177,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2513901",
+    "total": 3598,
+    "tic": 14,
+    "criativa": 21,
+    "pesquisa": 0,
+    "setor": 35
+  },
+  {
+    "id_municipio": "2513927",
+    "total": 329,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2513943",
+    "total": 131,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2513968",
+    "total": 614,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2513984",
+    "total": 205,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2514008",
+    "total": 792,
+    "tic": 1,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 1
+  },
+  {
+    "id_municipio": "2514107",
+    "total": 372,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2514206",
+    "total": 380,
+    "tic": 3,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 3
+  },
+  {
+    "id_municipio": "2514305",
+    "total": 351,
+    "tic": 0,
+    "criativa": 1,
+    "pesquisa": 0,
+    "setor": 1
+  },
+  {
+    "id_municipio": "2514404",
+    "total": 397,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2514453",
+    "total": 687,
+    "tic": 15,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 15
+  },
+  {
+    "id_municipio": "2514503",
+    "total": 984,
+    "tic": 6,
+    "criativa": 2,
+    "pesquisa": 0,
+    "setor": 8
+  },
+  {
+    "id_municipio": "2514552",
+    "total": 235,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2514602",
+    "total": 157,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2514651",
+    "total": 167,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2514701",
+    "total": 264,
+    "tic": 1,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 1
+  },
+  {
+    "id_municipio": "2514800",
+    "total": 664,
+    "tic": 4,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 4
+  },
+  {
+    "id_municipio": "2514909",
+    "total": 577,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2515005",
+    "total": 495,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2515104",
+    "total": 982,
+    "tic": 13,
+    "criativa": 1,
+    "pesquisa": 0,
+    "setor": 14
+  },
+  {
+    "id_municipio": "2515203",
+    "total": 208,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2515302",
+    "total": 5433,
+    "tic": 21,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 21
+  },
+  {
+    "id_municipio": "2515401",
+    "total": 416,
+    "tic": 8,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 8
+  },
+  {
+    "id_municipio": "2515500",
+    "total": 1123,
+    "tic": 0,
+    "criativa": 81,
+    "pesquisa": 0,
+    "setor": 81
+  },
+  {
+    "id_municipio": "2515609",
+    "total": 318,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2515708",
+    "total": 273,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2515807",
+    "total": 366,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2515906",
+    "total": 418,
+    "tic": 1,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 1
+  },
+  {
+    "id_municipio": "2515930",
+    "total": 566,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2515971",
+    "total": 699,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2516003",
+    "total": 2478,
+    "tic": 48,
+    "criativa": 17,
+    "pesquisa": 0,
+    "setor": 65
+  },
+  {
+    "id_municipio": "2516102",
+    "total": 2456,
+    "tic": 7,
+    "criativa": 5,
+    "pesquisa": 0,
+    "setor": 12
+  },
+  {
+    "id_municipio": "2516151",
+    "total": 258,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2516201",
+    "total": 11283,
+    "tic": 142,
+    "criativa": 33,
+    "pesquisa": 0,
+    "setor": 175
+  },
+  {
+    "id_municipio": "2516300",
+    "total": 1349,
+    "tic": 32,
+    "criativa": 10,
+    "pesquisa": 0,
+    "setor": 42
+  },
+  {
+    "id_municipio": "2516409",
+    "total": 427,
+    "tic": 6,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 6
+  },
+  {
+    "id_municipio": "2516508",
+    "total": 1232,
+    "tic": 3,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 3
+  },
+  {
+    "id_municipio": "2516607",
+    "total": 984,
+    "tic": 22,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 22
+  },
+  {
+    "id_municipio": "2516706",
+    "total": 833,
+    "tic": 17,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 17
+  },
+  {
+    "id_municipio": "2516755",
+    "total": 283,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2516805",
+    "total": 673,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2516904",
+    "total": 970,
+    "tic": 12,
+    "criativa": 12,
+    "pesquisa": 0,
+    "setor": 24
+  },
+  {
+    "id_municipio": "2517001",
+    "total": 1067,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2517100",
+    "total": 356,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  },
+  {
+    "id_municipio": "2517209",
+    "total": 314,
+    "tic": 3,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 3
+  },
+  {
+    "id_municipio": "2517407",
+    "total": 115,
+    "tic": 0,
+    "criativa": 0,
+    "pesquisa": 0,
+    "setor": 0
+  }
+]

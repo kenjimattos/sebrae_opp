@@ -1,0 +1,1563 @@
+[
+  {
+    "id_municipio": "2500106",
+    "idhm": 0.572,
+    "idhm_e": 0.484,
+    "idhm_l": 0.712,
+    "idhm_r": 0.542
+  },
+  {
+    "id_municipio": "2500205",
+    "idhm": 0.597,
+    "idhm_e": 0.447,
+    "idhm_l": 0.753,
+    "idhm_r": 0.632
+  },
+  {
+    "id_municipio": "2500304",
+    "idhm": 0.582,
+    "idhm_e": 0.43,
+    "idhm_l": 0.797,
+    "idhm_r": 0.576
+  },
+  {
+    "id_municipio": "2500403",
+    "idhm": 0.576,
+    "idhm_e": 0.451,
+    "idhm_l": 0.749,
+    "idhm_r": 0.567
+  },
+  {
+    "id_municipio": "2500502",
+    "idhm": 0.595,
+    "idhm_e": 0.462,
+    "idhm_l": 0.795,
+    "idhm_r": 0.574
+  },
+  {
+    "id_municipio": "2500536",
+    "idhm": 0.578,
+    "idhm_e": 0.458,
+    "idhm_l": 0.765,
+    "idhm_r": 0.55
+  },
+  {
+    "id_municipio": "2500577",
+    "idhm": 0.548,
+    "idhm_e": 0.413,
+    "idhm_l": 0.749,
+    "idhm_r": 0.532
+  },
+  {
+    "id_municipio": "2500601",
+    "idhm": 0.582,
+    "idhm_e": 0.465,
+    "idhm_l": 0.778,
+    "idhm_r": 0.544
+  },
+  {
+    "id_municipio": "2500700",
+    "idhm": 0.608,
+    "idhm_e": 0.49,
+    "idhm_l": 0.782,
+    "idhm_r": 0.586
+  },
+  {
+    "id_municipio": "2500734",
+    "idhm": 0.606,
+    "idhm_e": 0.551,
+    "idhm_l": 0.752,
+    "idhm_r": 0.537
+  },
+  {
+    "id_municipio": "2500775",
+    "idhm": 0.578,
+    "idhm_e": 0.456,
+    "idhm_l": 0.747,
+    "idhm_r": 0.567
+  },
+  {
+    "id_municipio": "2500809",
+    "idhm": 0.549,
+    "idhm_e": 0.412,
+    "idhm_l": 0.745,
+    "idhm_r": 0.54
+  },
+  {
+    "id_municipio": "2500908",
+    "idhm": 0.548,
+    "idhm_e": 0.407,
+    "idhm_l": 0.712,
+    "idhm_r": 0.569
+  },
+  {
+    "id_municipio": "2501005",
+    "idhm": 0.567,
+    "idhm_e": 0.439,
+    "idhm_l": 0.758,
+    "idhm_r": 0.549
+  },
+  {
+    "id_municipio": "2501104",
+    "idhm": 0.594,
+    "idhm_e": 0.467,
+    "idhm_l": 0.756,
+    "idhm_r": 0.593
+  },
+  {
+    "id_municipio": "2501153",
+    "idhm": 0.562,
+    "idhm_e": 0.462,
+    "idhm_l": 0.68,
+    "idhm_r": 0.566
+  },
+  {
+    "id_municipio": "2501203",
+    "idhm": 0.608,
+    "idhm_e": 0.503,
+    "idhm_l": 0.779,
+    "idhm_r": 0.573
+  },
+  {
+    "id_municipio": "2501302",
+    "idhm": 0.548,
+    "idhm_e": 0.411,
+    "idhm_l": 0.745,
+    "idhm_r": 0.537
+  },
+  {
+    "id_municipio": "2501351",
+    "idhm": 0.609,
+    "idhm_e": 0.51,
+    "idhm_l": 0.738,
+    "idhm_r": 0.601
+  },
+  {
+    "id_municipio": "2501401",
+    "idhm": 0.581,
+    "idhm_e": 0.495,
+    "idhm_l": 0.731,
+    "idhm_r": 0.541
+  },
+  {
+    "id_municipio": "2501500",
+    "idhm": 0.568,
+    "idhm_e": 0.43,
+    "idhm_l": 0.766,
+    "idhm_r": 0.555
+  },
+  {
+    "id_municipio": "2501534",
+    "idhm": 0.558,
+    "idhm_e": 0.459,
+    "idhm_l": 0.718,
+    "idhm_r": 0.526
+  },
+  {
+    "id_municipio": "2501575",
+    "idhm": 0.567,
+    "idhm_e": 0.465,
+    "idhm_l": 0.747,
+    "idhm_r": 0.526
+  },
+  {
+    "id_municipio": "2501609",
+    "idhm": 0.562,
+    "idhm_e": 0.434,
+    "idhm_l": 0.753,
+    "idhm_r": 0.542
+  },
+  {
+    "id_municipio": "2501708",
+    "idhm": 0.572,
+    "idhm_e": 0.44,
+    "idhm_l": 0.728,
+    "idhm_r": 0.584
+  },
+  {
+    "id_municipio": "2501807",
+    "idhm": 0.649,
+    "idhm_e": 0.566,
+    "idhm_l": 0.779,
+    "idhm_r": 0.619
+  },
+  {
+    "id_municipio": "2501906",
+    "idhm": 0.592,
+    "idhm_e": 0.492,
+    "idhm_l": 0.759,
+    "idhm_r": 0.557
+  },
+  {
+    "id_municipio": "2502003",
+    "idhm": 0.578,
+    "idhm_e": 0.451,
+    "idhm_l": 0.779,
+    "idhm_r": 0.55
+  },
+  {
+    "id_municipio": "2502052",
+    "idhm": 0.558,
+    "idhm_e": 0.462,
+    "idhm_l": 0.716,
+    "idhm_r": 0.526
+  },
+  {
+    "id_municipio": "2502102",
+    "idhm": 0.599,
+    "idhm_e": 0.48,
+    "idhm_l": 0.79,
+    "idhm_r": 0.566
+  },
+  {
+    "id_municipio": "2502151",
+    "idhm": 0.649,
+    "idhm_e": 0.582,
+    "idhm_l": 0.796,
+    "idhm_r": 0.59
+  },
+  {
+    "id_municipio": "2502201",
+    "idhm": 0.597,
+    "idhm_e": 0.477,
+    "idhm_l": 0.762,
+    "idhm_r": 0.584
+  },
+  {
+    "id_municipio": "2502300",
+    "idhm": 0.592,
+    "idhm_e": 0.494,
+    "idhm_l": 0.752,
+    "idhm_r": 0.558
+  },
+  {
+    "id_municipio": "2502409",
+    "idhm": 0.574,
+    "idhm_e": 0.427,
+    "idhm_l": 0.786,
+    "idhm_r": 0.564
+  },
+  {
+    "id_municipio": "2502508",
+    "idhm": 0.607,
+    "idhm_e": 0.496,
+    "idhm_l": 0.763,
+    "idhm_r": 0.592
+  },
+  {
+    "id_municipio": "2502607",
+    "idhm": 0.61,
+    "idhm_e": 0.496,
+    "idhm_l": 0.794,
+    "idhm_r": 0.575
+  },
+  {
+    "id_municipio": "2502706",
+    "idhm": 0.558,
+    "idhm_e": 0.426,
+    "idhm_l": 0.75,
+    "idhm_r": 0.544
+  },
+  {
+    "id_municipio": "2502805",
+    "idhm": 0.597,
+    "idhm_e": 0.463,
+    "idhm_l": 0.798,
+    "idhm_r": 0.575
+  },
+  {
+    "id_municipio": "2502904",
+    "idhm": 0.619,
+    "idhm_e": 0.541,
+    "idhm_l": 0.776,
+    "idhm_r": 0.564
+  },
+  {
+    "id_municipio": "2503001",
+    "idhm": 0.602,
+    "idhm_e": 0.509,
+    "idhm_l": 0.757,
+    "idhm_r": 0.565
+  },
+  {
+    "id_municipio": "2503100",
+    "idhm": 0.611,
+    "idhm_e": 0.523,
+    "idhm_l": 0.759,
+    "idhm_r": 0.574
+  },
+  {
+    "id_municipio": "2503209",
+    "idhm": 0.748,
+    "idhm_e": 0.651,
+    "idhm_l": 0.822,
+    "idhm_r": 0.782
+  },
+  {
+    "id_municipio": "2503308",
+    "idhm": 0.587,
+    "idhm_e": 0.453,
+    "idhm_l": 0.766,
+    "idhm_r": 0.583
+  },
+  {
+    "id_municipio": "2503407",
+    "idhm": 0.596,
+    "idhm_e": 0.497,
+    "idhm_l": 0.771,
+    "idhm_r": 0.553
+  },
+  {
+    "id_municipio": "2503506",
+    "idhm": 0.564,
+    "idhm_e": 0.419,
+    "idhm_l": 0.777,
+    "idhm_r": 0.551
+  },
+  {
+    "id_municipio": "2503555",
+    "idhm": 0.523,
+    "idhm_e": 0.425,
+    "idhm_l": 0.672,
+    "idhm_r": 0.501
+  },
+  {
+    "id_municipio": "2503605",
+    "idhm": 0.592,
+    "idhm_e": 0.488,
+    "idhm_l": 0.733,
+    "idhm_r": 0.58
+  },
+  {
+    "id_municipio": "2503704",
+    "idhm": 0.679,
+    "idhm_e": 0.574,
+    "idhm_l": 0.815,
+    "idhm_r": 0.668
+  },
+  {
+    "id_municipio": "2503753",
+    "idhm": 0.55,
+    "idhm_e": 0.413,
+    "idhm_l": 0.773,
+    "idhm_r": 0.521
+  },
+  {
+    "id_municipio": "2503803",
+    "idhm": 0.568,
+    "idhm_e": 0.451,
+    "idhm_l": 0.723,
+    "idhm_r": 0.562
+  },
+  {
+    "id_municipio": "2503902",
+    "idhm": 0.567,
+    "idhm_e": 0.431,
+    "idhm_l": 0.77,
+    "idhm_r": 0.549
+  },
+  {
+    "id_municipio": "2504009",
+    "idhm": 0.72,
+    "idhm_e": 0.654,
+    "idhm_l": 0.812,
+    "idhm_r": 0.702
+  },
+  {
+    "id_municipio": "2504033",
+    "idhm": 0.533,
+    "idhm_e": 0.4,
+    "idhm_l": 0.728,
+    "idhm_r": 0.52
+  },
+  {
+    "id_municipio": "2504074",
+    "idhm": 0.585,
+    "idhm_e": 0.485,
+    "idhm_l": 0.71,
+    "idhm_r": 0.58
+  },
+  {
+    "id_municipio": "2504108",
+    "idhm": 0.603,
+    "idhm_e": 0.543,
+    "idhm_l": 0.765,
+    "idhm_r": 0.529
+  },
+  {
+    "id_municipio": "2504157",
+    "idhm": 0.514,
+    "idhm_e": 0.379,
+    "idhm_l": 0.73,
+    "idhm_r": 0.492
+  },
+  {
+    "id_municipio": "2504207",
+    "idhm": 0.574,
+    "idhm_e": 0.455,
+    "idhm_l": 0.753,
+    "idhm_r": 0.553
+  },
+  {
+    "id_municipio": "2504306",
+    "idhm": 0.64,
+    "idhm_e": 0.539,
+    "idhm_l": 0.787,
+    "idhm_r": 0.617
+  },
+  {
+    "id_municipio": "2504355",
+    "idhm": 0.623,
+    "idhm_e": 0.502,
+    "idhm_l": 0.782,
+    "idhm_r": 0.617
+  },
+  {
+    "id_municipio": "2504405",
+    "idhm": 0.592,
+    "idhm_e": 0.476,
+    "idhm_l": 0.754,
+    "idhm_r": 0.577
+  },
+  {
+    "id_municipio": "2504504",
+    "idhm": 0.594,
+    "idhm_e": 0.476,
+    "idhm_l": 0.769,
+    "idhm_r": 0.573
+  },
+  {
+    "id_municipio": "2504603",
+    "idhm": 0.618,
+    "idhm_e": 0.5,
+    "idhm_l": 0.797,
+    "idhm_r": 0.591
+  },
+  {
+    "id_municipio": "2504702",
+    "idhm": 0.581,
+    "idhm_e": 0.477,
+    "idhm_l": 0.731,
+    "idhm_r": 0.562
+  },
+  {
+    "id_municipio": "2504801",
+    "idhm": 0.592,
+    "idhm_e": 0.452,
+    "idhm_l": 0.794,
+    "idhm_r": 0.578
+  },
+  {
+    "id_municipio": "2504850",
+    "idhm": 0.641,
+    "idhm_e": 0.567,
+    "idhm_l": 0.794,
+    "idhm_r": 0.586
+  },
+  {
+    "id_municipio": "2504900",
+    "idhm": 0.552,
+    "idhm_e": 0.408,
+    "idhm_l": 0.778,
+    "idhm_r": 0.531
+  },
+  {
+    "id_municipio": "2505006",
+    "idhm": 0.566,
+    "idhm_e": 0.448,
+    "idhm_l": 0.742,
+    "idhm_r": 0.545
+  },
+  {
+    "id_municipio": "2505105",
+    "idhm": 0.591,
+    "idhm_e": 0.47,
+    "idhm_l": 0.766,
+    "idhm_r": 0.574
+  },
+  {
+    "id_municipio": "2505204",
+    "idhm": 0.57,
+    "idhm_e": 0.45,
+    "idhm_l": 0.732,
+    "idhm_r": 0.563
+  },
+  {
+    "id_municipio": "2505238",
+    "idhm": 0.524,
+    "idhm_e": 0.398,
+    "idhm_l": 0.683,
+    "idhm_r": 0.529
+  },
+  {
+    "id_municipio": "2505279",
+    "idhm": 0.529,
+    "idhm_e": 0.392,
+    "idhm_l": 0.715,
+    "idhm_r": 0.528
+  },
+  {
+    "id_municipio": "2505303",
+    "idhm": 0.606,
+    "idhm_e": 0.491,
+    "idhm_l": 0.739,
+    "idhm_r": 0.613
+  },
+  {
+    "id_municipio": "2505352",
+    "idhm": 0.521,
+    "idhm_e": 0.391,
+    "idhm_l": 0.72,
+    "idhm_r": 0.503
+  },
+  {
+    "id_municipio": "2505402",
+    "idhm": 0.58,
+    "idhm_e": 0.49,
+    "idhm_l": 0.724,
+    "idhm_r": 0.551
+  },
+  {
+    "id_municipio": "2505501",
+    "idhm": 0.566,
+    "idhm_e": 0.424,
+    "idhm_l": 0.773,
+    "idhm_r": 0.554
+  },
+  {
+    "id_municipio": "2505600",
+    "idhm": 0.593,
+    "idhm_e": 0.496,
+    "idhm_l": 0.748,
+    "idhm_r": 0.562
+  },
+  {
+    "id_municipio": "2505709",
+    "idhm": 0.545,
+    "idhm_e": 0.447,
+    "idhm_l": 0.69,
+    "idhm_r": 0.524
+  },
+  {
+    "id_municipio": "2505808",
+    "idhm": 0.603,
+    "idhm_e": 0.488,
+    "idhm_l": 0.795,
+    "idhm_r": 0.565
+  },
+  {
+    "id_municipio": "2505907",
+    "idhm": 0.595,
+    "idhm_e": 0.492,
+    "idhm_l": 0.773,
+    "idhm_r": 0.554
+  },
+  {
+    "id_municipio": "2506004",
+    "idhm": 0.623,
+    "idhm_e": 0.526,
+    "idhm_l": 0.767,
+    "idhm_r": 0.598
+  },
+  {
+    "id_municipio": "2506103",
+    "idhm": 0.56,
+    "idhm_e": 0.432,
+    "idhm_l": 0.749,
+    "idhm_r": 0.543
+  },
+  {
+    "id_municipio": "2506202",
+    "idhm": 0.641,
+    "idhm_e": 0.542,
+    "idhm_l": 0.77,
+    "idhm_r": 0.631
+  },
+  {
+    "id_municipio": "2506251",
+    "idhm": 0.513,
+    "idhm_e": 0.373,
+    "idhm_l": 0.737,
+    "idhm_r": 0.491
+  },
+  {
+    "id_municipio": "2506301",
+    "idhm": 0.673,
+    "idhm_e": 0.586,
+    "idhm_l": 0.812,
+    "idhm_r": 0.641
+  },
+  {
+    "id_municipio": "2506400",
+    "idhm": 0.556,
+    "idhm_e": 0.435,
+    "idhm_l": 0.728,
+    "idhm_r": 0.544
+  },
+  {
+    "id_municipio": "2506509",
+    "idhm": 0.625,
+    "idhm_e": 0.581,
+    "idhm_l": 0.729,
+    "idhm_r": 0.576
+  },
+  {
+    "id_municipio": "2506608",
+    "idhm": 0.586,
+    "idhm_e": 0.479,
+    "idhm_l": 0.768,
+    "idhm_r": 0.548
+  },
+  {
+    "id_municipio": "2506707",
+    "idhm": 0.557,
+    "idhm_e": 0.461,
+    "idhm_l": 0.715,
+    "idhm_r": 0.524
+  },
+  {
+    "id_municipio": "2506806",
+    "idhm": 0.592,
+    "idhm_e": 0.471,
+    "idhm_l": 0.768,
+    "idhm_r": 0.573
+  },
+  {
+    "id_municipio": "2506905",
+    "idhm": 0.613,
+    "idhm_e": 0.536,
+    "idhm_l": 0.727,
+    "idhm_r": 0.592
+  },
+  {
+    "id_municipio": "2507002",
+    "idhm": 0.615,
+    "idhm_e": 0.517,
+    "idhm_l": 0.742,
+    "idhm_r": 0.607
+  },
+  {
+    "id_municipio": "2507101",
+    "idhm": 0.564,
+    "idhm_e": 0.437,
+    "idhm_l": 0.757,
+    "idhm_r": 0.543
+  },
+  {
+    "id_municipio": "2507200",
+    "idhm": 0.562,
+    "idhm_e": 0.436,
+    "idhm_l": 0.742,
+    "idhm_r": 0.549
+  },
+  {
+    "id_municipio": "2507309",
+    "idhm": 0.558,
+    "idhm_e": 0.435,
+    "idhm_l": 0.72,
+    "idhm_r": 0.554
+  },
+  {
+    "id_municipio": "2507408",
+    "idhm": 0.603,
+    "idhm_e": 0.476,
+    "idhm_l": 0.798,
+    "idhm_r": 0.577
+  },
+  {
+    "id_municipio": "2507507",
+    "idhm": 0.763,
+    "idhm_e": 0.693,
+    "idhm_l": 0.832,
+    "idhm_r": 0.77
+  },
+  {
+    "id_municipio": "2507606",
+    "idhm": 0.579,
+    "idhm_e": 0.465,
+    "idhm_l": 0.768,
+    "idhm_r": 0.544
+  },
+  {
+    "id_municipio": "2507705",
+    "idhm": 0.567,
+    "idhm_e": 0.435,
+    "idhm_l": 0.753,
+    "idhm_r": 0.557
+  },
+  {
+    "id_municipio": "2507804",
+    "idhm": 0.617,
+    "idhm_e": 0.576,
+    "idhm_l": 0.715,
+    "idhm_r": 0.571
+  },
+  {
+    "id_municipio": "2507903",
+    "idhm": 0.548,
+    "idhm_e": 0.448,
+    "idhm_l": 0.677,
+    "idhm_r": 0.544
+  },
+  {
+    "id_municipio": "2508000",
+    "idhm": 0.57,
+    "idhm_e": 0.443,
+    "idhm_l": 0.758,
+    "idhm_r": 0.552
+  },
+  {
+    "id_municipio": "2508109",
+    "idhm": 0.563,
+    "idhm_e": 0.448,
+    "idhm_l": 0.747,
+    "idhm_r": 0.533
+  },
+  {
+    "id_municipio": "2508208",
+    "idhm": 0.57,
+    "idhm_e": 0.444,
+    "idhm_l": 0.772,
+    "idhm_r": 0.539
+  },
+  {
+    "id_municipio": "2508307",
+    "idhm": 0.627,
+    "idhm_e": 0.516,
+    "idhm_l": 0.769,
+    "idhm_r": 0.621
+  },
+  {
+    "id_municipio": "2508406",
+    "idhm": 0.533,
+    "idhm_e": 0.38,
+    "idhm_l": 0.747,
+    "idhm_r": 0.532
+  },
+  {
+    "id_municipio": "2508505",
+    "idhm": 0.566,
+    "idhm_e": 0.473,
+    "idhm_l": 0.732,
+    "idhm_r": 0.523
+  },
+  {
+    "id_municipio": "2508554",
+    "idhm": 0.583,
+    "idhm_e": 0.47,
+    "idhm_l": 0.776,
+    "idhm_r": 0.544
+  },
+  {
+    "id_municipio": "2508604",
+    "idhm": 0.583,
+    "idhm_e": 0.469,
+    "idhm_l": 0.734,
+    "idhm_r": 0.577
+  },
+  {
+    "id_municipio": "2508703",
+    "idhm": 0.542,
+    "idhm_e": 0.429,
+    "idhm_l": 0.712,
+    "idhm_r": 0.52
+  },
+  {
+    "id_municipio": "2508802",
+    "idhm": 0.642,
+    "idhm_e": 0.533,
+    "idhm_l": 0.8,
+    "idhm_r": 0.62
+  },
+  {
+    "id_municipio": "2508901",
+    "idhm": 0.585,
+    "idhm_e": 0.453,
+    "idhm_l": 0.756,
+    "idhm_r": 0.585
+  },
+  {
+    "id_municipio": "2509008",
+    "idhm": 0.543,
+    "idhm_e": 0.426,
+    "idhm_l": 0.698,
+    "idhm_r": 0.537
+  },
+  {
+    "id_municipio": "2509057",
+    "idhm": 0.529,
+    "idhm_e": 0.408,
+    "idhm_l": 0.691,
+    "idhm_r": 0.525
+  },
+  {
+    "id_municipio": "2509107",
+    "idhm": 0.548,
+    "idhm_e": 0.429,
+    "idhm_l": 0.692,
+    "idhm_r": 0.553
+  },
+  {
+    "id_municipio": "2509156",
+    "idhm": 0.608,
+    "idhm_e": 0.512,
+    "idhm_l": 0.753,
+    "idhm_r": 0.582
+  },
+  {
+    "id_municipio": "2509206",
+    "idhm": 0.567,
+    "idhm_e": 0.441,
+    "idhm_l": 0.747,
+    "idhm_r": 0.552
+  },
+  {
+    "id_municipio": "2509305",
+    "idhm": 0.536,
+    "idhm_e": 0.427,
+    "idhm_l": 0.675,
+    "idhm_r": 0.533
+  },
+  {
+    "id_municipio": "2509339",
+    "idhm": 0.541,
+    "idhm_e": 0.4,
+    "idhm_l": 0.747,
+    "idhm_r": 0.531
+  },
+  {
+    "id_municipio": "2509370",
+    "idhm": 0.565,
+    "idhm_e": 0.419,
+    "idhm_l": 0.76,
+    "idhm_r": 0.566
+  },
+  {
+    "id_municipio": "2509396",
+    "idhm": 0.572,
+    "idhm_e": 0.474,
+    "idhm_l": 0.73,
+    "idhm_r": 0.54
+  },
+  {
+    "id_municipio": "2509404",
+    "idhm": 0.574,
+    "idhm_e": 0.481,
+    "idhm_l": 0.732,
+    "idhm_r": 0.538
+  },
+  {
+    "id_municipio": "2509503",
+    "idhm": 0.59,
+    "idhm_e": 0.505,
+    "idhm_l": 0.748,
+    "idhm_r": 0.545
+  },
+  {
+    "id_municipio": "2509602",
+    "idhm": 0.587,
+    "idhm_e": 0.463,
+    "idhm_l": 0.755,
+    "idhm_r": 0.579
+  },
+  {
+    "id_municipio": "2509701",
+    "idhm": 0.628,
+    "idhm_e": 0.558,
+    "idhm_l": 0.709,
+    "idhm_r": 0.625
+  },
+  {
+    "id_municipio": "2509800",
+    "idhm": 0.565,
+    "idhm_e": 0.423,
+    "idhm_l": 0.778,
+    "idhm_r": 0.548
+  },
+  {
+    "id_municipio": "2509909",
+    "idhm": 0.541,
+    "idhm_e": 0.432,
+    "idhm_l": 0.71,
+    "idhm_r": 0.516
+  },
+  {
+    "id_municipio": "2510006",
+    "idhm": 0.562,
+    "idhm_e": 0.449,
+    "idhm_l": 0.747,
+    "idhm_r": 0.528
+  },
+  {
+    "id_municipio": "2510105",
+    "idhm": 0.601,
+    "idhm_e": 0.498,
+    "idhm_l": 0.758,
+    "idhm_r": 0.576
+  },
+  {
+    "id_municipio": "2510204",
+    "idhm": 0.573,
+    "idhm_e": 0.453,
+    "idhm_l": 0.744,
+    "idhm_r": 0.557
+  },
+  {
+    "id_municipio": "2510303",
+    "idhm": 0.595,
+    "idhm_e": 0.488,
+    "idhm_l": 0.762,
+    "idhm_r": 0.567
+  },
+  {
+    "id_municipio": "2510402",
+    "idhm": 0.572,
+    "idhm_e": 0.452,
+    "idhm_l": 0.776,
+    "idhm_r": 0.533
+  },
+  {
+    "id_municipio": "2510501",
+    "idhm": 0.603,
+    "idhm_e": 0.54,
+    "idhm_l": 0.766,
+    "idhm_r": 0.531
+  },
+  {
+    "id_municipio": "2510600",
+    "idhm": 0.614,
+    "idhm_e": 0.518,
+    "idhm_l": 0.764,
+    "idhm_r": 0.585
+  },
+  {
+    "id_municipio": "2510659",
+    "idhm": 0.584,
+    "idhm_e": 0.467,
+    "idhm_l": 0.733,
+    "idhm_r": 0.583
+  },
+  {
+    "id_municipio": "2510709",
+    "idhm": 0.62,
+    "idhm_e": 0.534,
+    "idhm_l": 0.79,
+    "idhm_r": 0.566
+  },
+  {
+    "id_municipio": "2510808",
+    "idhm": 0.701,
+    "idhm_e": 0.628,
+    "idhm_l": 0.821,
+    "idhm_r": 0.667
+  },
+  {
+    "id_municipio": "2510907",
+    "idhm": 0.587,
+    "idhm_e": 0.461,
+    "idhm_l": 0.747,
+    "idhm_r": 0.587
+  },
+  {
+    "id_municipio": "2511004",
+    "idhm": 0.599,
+    "idhm_e": 0.532,
+    "idhm_l": 0.761,
+    "idhm_r": 0.532
+  },
+  {
+    "id_municipio": "2511103",
+    "idhm": 0.574,
+    "idhm_e": 0.458,
+    "idhm_l": 0.733,
+    "idhm_r": 0.564
+  },
+  {
+    "id_municipio": "2511202",
+    "idhm": 0.59,
+    "idhm_e": 0.468,
+    "idhm_l": 0.771,
+    "idhm_r": 0.568
+  },
+  {
+    "id_municipio": "2511301",
+    "idhm": 0.621,
+    "idhm_e": 0.55,
+    "idhm_l": 0.736,
+    "idhm_r": 0.593
+  },
+  {
+    "id_municipio": "2511400",
+    "idhm": 0.608,
+    "idhm_e": 0.506,
+    "idhm_l": 0.745,
+    "idhm_r": 0.596
+  },
+  {
+    "id_municipio": "2511509",
+    "idhm": 0.579,
+    "idhm_e": 0.461,
+    "idhm_l": 0.775,
+    "idhm_r": 0.544
+  },
+  {
+    "id_municipio": "2511608",
+    "idhm": 0.56,
+    "idhm_e": 0.409,
+    "idhm_l": 0.767,
+    "idhm_r": 0.559
+  },
+  {
+    "id_municipio": "2511707",
+    "idhm": 0.564,
+    "idhm_e": 0.421,
+    "idhm_l": 0.802,
+    "idhm_r": 0.532
+  },
+  {
+    "id_municipio": "2511806",
+    "idhm": 0.595,
+    "idhm_e": 0.499,
+    "idhm_l": 0.745,
+    "idhm_r": 0.566
+  },
+  {
+    "id_municipio": "2511905",
+    "idhm": 0.57,
+    "idhm_e": 0.456,
+    "idhm_l": 0.753,
+    "idhm_r": 0.538
+  },
+  {
+    "id_municipio": "2512002",
+    "idhm": 0.591,
+    "idhm_e": 0.477,
+    "idhm_l": 0.779,
+    "idhm_r": 0.556
+  },
+  {
+    "id_municipio": "2512036",
+    "idhm": 0.525,
+    "idhm_e": 0.408,
+    "idhm_l": 0.702,
+    "idhm_r": 0.506
+  },
+  {
+    "id_municipio": "2512077",
+    "idhm": 0.612,
+    "idhm_e": 0.497,
+    "idhm_l": 0.797,
+    "idhm_r": 0.578
+  },
+  {
+    "id_municipio": "2512101",
+    "idhm": 0.634,
+    "idhm_e": 0.515,
+    "idhm_l": 0.787,
+    "idhm_r": 0.629
+  },
+  {
+    "id_municipio": "2512200",
+    "idhm": 0.608,
+    "idhm_e": 0.514,
+    "idhm_l": 0.772,
+    "idhm_r": 0.566
+  },
+  {
+    "id_municipio": "2512309",
+    "idhm": 0.606,
+    "idhm_e": 0.514,
+    "idhm_l": 0.72,
+    "idhm_r": 0.6
+  },
+  {
+    "id_municipio": "2512408",
+    "idhm": 0.617,
+    "idhm_e": 0.542,
+    "idhm_l": 0.754,
+    "idhm_r": 0.574
+  },
+  {
+    "id_municipio": "2512507",
+    "idhm": 0.608,
+    "idhm_e": 0.489,
+    "idhm_l": 0.796,
+    "idhm_r": 0.578
+  },
+  {
+    "id_municipio": "2512606",
+    "idhm": 0.622,
+    "idhm_e": 0.579,
+    "idhm_l": 0.737,
+    "idhm_r": 0.564
+  },
+  {
+    "id_municipio": "2512705",
+    "idhm": 0.607,
+    "idhm_e": 0.474,
+    "idhm_l": 0.797,
+    "idhm_r": 0.592
+  },
+  {
+    "id_municipio": "2512721",
+    "idhm": 0.542,
+    "idhm_e": 0.399,
+    "idhm_l": 0.754,
+    "idhm_r": 0.529
+  },
+  {
+    "id_municipio": "2512747",
+    "idhm": 0.574,
+    "idhm_e": 0.481,
+    "idhm_l": 0.763,
+    "idhm_r": 0.515
+  },
+  {
+    "id_municipio": "2512754",
+    "idhm": 0.553,
+    "idhm_e": 0.417,
+    "idhm_l": 0.721,
+    "idhm_r": 0.561
+  },
+  {
+    "id_municipio": "2512762",
+    "idhm": 0.555,
+    "idhm_e": 0.426,
+    "idhm_l": 0.748,
+    "idhm_r": 0.537
+  },
+  {
+    "id_municipio": "2512788",
+    "idhm": 0.594,
+    "idhm_e": 0.502,
+    "idhm_l": 0.735,
+    "idhm_r": 0.569
+  },
+  {
+    "id_municipio": "2512804",
+    "idhm": 0.568,
+    "idhm_e": 0.447,
+    "idhm_l": 0.752,
+    "idhm_r": 0.546
+  },
+  {
+    "id_municipio": "2512903",
+    "idhm": 0.585,
+    "idhm_e": 0.48,
+    "idhm_l": 0.742,
+    "idhm_r": 0.562
+  },
+  {
+    "id_municipio": "2513000",
+    "idhm": 0.563,
+    "idhm_e": 0.454,
+    "idhm_l": 0.739,
+    "idhm_r": 0.531
+  },
+  {
+    "id_municipio": "2513109",
+    "idhm": 0.568,
+    "idhm_e": 0.448,
+    "idhm_l": 0.77,
+    "idhm_r": 0.531
+  },
+  {
+    "id_municipio": "2513158",
+    "idhm": 0.525,
+    "idhm_e": 0.402,
+    "idhm_l": 0.699,
+    "idhm_r": 0.515
+  },
+  {
+    "id_municipio": "2513208",
+    "idhm": 0.618,
+    "idhm_e": 0.523,
+    "idhm_l": 0.779,
+    "idhm_r": 0.578
+  },
+  {
+    "id_municipio": "2513307",
+    "idhm": 0.609,
+    "idhm_e": 0.504,
+    "idhm_l": 0.786,
+    "idhm_r": 0.57
+  },
+  {
+    "id_municipio": "2513356",
+    "idhm": 0.572,
+    "idhm_e": 0.492,
+    "idhm_l": 0.706,
+    "idhm_r": 0.54
+  },
+  {
+    "id_municipio": "2513406",
+    "idhm": 0.682,
+    "idhm_e": 0.635,
+    "idhm_l": 0.804,
+    "idhm_r": 0.62
+  },
+  {
+    "id_municipio": "2513505",
+    "idhm": 0.535,
+    "idhm_e": 0.414,
+    "idhm_l": 0.756,
+    "idhm_r": 0.488
+  },
+  {
+    "id_municipio": "2513604",
+    "idhm": 0.594,
+    "idhm_e": 0.479,
+    "idhm_l": 0.772,
+    "idhm_r": 0.568
+  },
+  {
+    "id_municipio": "2513653",
+    "idhm": 0.622,
+    "idhm_e": 0.568,
+    "idhm_l": 0.765,
+    "idhm_r": 0.553
+  },
+  {
+    "id_municipio": "2513703",
+    "idhm": 0.627,
+    "idhm_e": 0.534,
+    "idhm_l": 0.774,
+    "idhm_r": 0.597
+  },
+  {
+    "id_municipio": "2513802",
+    "idhm": 0.627,
+    "idhm_e": 0.513,
+    "idhm_l": 0.82,
+    "idhm_r": 0.586
+  },
+  {
+    "id_municipio": "2513851",
+    "idhm": 0.6,
+    "idhm_e": 0.476,
+    "idhm_l": 0.797,
+    "idhm_r": 0.568
+  },
+  {
+    "id_municipio": "2513901",
+    "idhm": 0.58,
+    "idhm_e": 0.424,
+    "idhm_l": 0.769,
+    "idhm_r": 0.597
+  },
+  {
+    "id_municipio": "2513927",
+    "idhm": 0.606,
+    "idhm_e": 0.491,
+    "idhm_l": 0.787,
+    "idhm_r": 0.575
+  },
+  {
+    "id_municipio": "2513943",
+    "idhm": 0.589,
+    "idhm_e": 0.438,
+    "idhm_l": 0.773,
+    "idhm_r": 0.603
+  },
+  {
+    "id_municipio": "2513968",
+    "idhm": 0.548,
+    "idhm_e": 0.394,
+    "idhm_l": 0.754,
+    "idhm_r": 0.555
+  },
+  {
+    "id_municipio": "2513984",
+    "idhm": 0.58,
+    "idhm_e": 0.481,
+    "idhm_l": 0.726,
+    "idhm_r": 0.56
+  },
+  {
+    "id_municipio": "2514008",
+    "idhm": 0.622,
+    "idhm_e": 0.488,
+    "idhm_l": 0.797,
+    "idhm_r": 0.618
+  },
+  {
+    "id_municipio": "2514107",
+    "idhm": 0.552,
+    "idhm_e": 0.424,
+    "idhm_l": 0.758,
+    "idhm_r": 0.523
+  },
+  {
+    "id_municipio": "2514206",
+    "idhm": 0.53,
+    "idhm_e": 0.389,
+    "idhm_l": 0.722,
+    "idhm_r": 0.53
+  },
+  {
+    "id_municipio": "2514305",
+    "idhm": 0.565,
+    "idhm_e": 0.434,
+    "idhm_l": 0.762,
+    "idhm_r": 0.545
+  },
+  {
+    "id_municipio": "2514404",
+    "idhm": 0.577,
+    "idhm_e": 0.448,
+    "idhm_l": 0.79,
+    "idhm_r": 0.543
+  },
+  {
+    "id_municipio": "2514453",
+    "idhm": 0.541,
+    "idhm_e": 0.406,
+    "idhm_l": 0.738,
+    "idhm_r": 0.527
+  },
+  {
+    "id_municipio": "2514503",
+    "idhm": 0.591,
+    "idhm_e": 0.461,
+    "idhm_l": 0.755,
+    "idhm_r": 0.594
+  },
+  {
+    "id_municipio": "2514552",
+    "idhm": 0.565,
+    "idhm_e": 0.443,
+    "idhm_l": 0.765,
+    "idhm_r": 0.533
+  },
+  {
+    "id_municipio": "2514602",
+    "idhm": 0.578,
+    "idhm_e": 0.493,
+    "idhm_l": 0.713,
+    "idhm_r": 0.549
+  },
+  {
+    "id_municipio": "2514651",
+    "idhm": 0.581,
+    "idhm_e": 0.473,
+    "idhm_l": 0.776,
+    "idhm_r": 0.535
+  },
+  {
+    "id_municipio": "2514701",
+    "idhm": 0.617,
+    "idhm_e": 0.514,
+    "idhm_l": 0.781,
+    "idhm_r": 0.584
+  },
+  {
+    "id_municipio": "2514800",
+    "idhm": 0.556,
+    "idhm_e": 0.407,
+    "idhm_l": 0.778,
+    "idhm_r": 0.542
+  },
+  {
+    "id_municipio": "2514909",
+    "idhm": 0.641,
+    "idhm_e": 0.558,
+    "idhm_l": 0.765,
+    "idhm_r": 0.617
+  },
+  {
+    "id_municipio": "2515005",
+    "idhm": 0.548,
+    "idhm_e": 0.443,
+    "idhm_l": 0.721,
+    "idhm_r": 0.516
+  },
+  {
+    "id_municipio": "2515104",
+    "idhm": 0.594,
+    "idhm_e": 0.471,
+    "idhm_l": 0.795,
+    "idhm_r": 0.561
+  },
+  {
+    "id_municipio": "2515203",
+    "idhm": 0.581,
+    "idhm_e": 0.459,
+    "idhm_l": 0.763,
+    "idhm_r": 0.561
+  },
+  {
+    "id_municipio": "2515302",
+    "idhm": 0.569,
+    "idhm_e": 0.461,
+    "idhm_l": 0.711,
+    "idhm_r": 0.563
+  },
+  {
+    "id_municipio": "2515401",
+    "idhm": 0.555,
+    "idhm_e": 0.453,
+    "idhm_l": 0.714,
+    "idhm_r": 0.528
+  },
+  {
+    "id_municipio": "2515500",
+    "idhm": 0.628,
+    "idhm_e": 0.537,
+    "idhm_l": 0.77,
+    "idhm_r": 0.598
+  },
+  {
+    "id_municipio": "2515609",
+    "idhm": 0.626,
+    "idhm_e": 0.544,
+    "idhm_l": 0.792,
+    "idhm_r": 0.57
+  },
+  {
+    "id_municipio": "2515708",
+    "idhm": 0.586,
+    "idhm_e": 0.491,
+    "idhm_l": 0.745,
+    "idhm_r": 0.549
+  },
+  {
+    "id_municipio": "2515807",
+    "idhm": 0.57,
+    "idhm_e": 0.424,
+    "idhm_l": 0.772,
+    "idhm_r": 0.565
+  },
+  {
+    "id_municipio": "2515906",
+    "idhm": 0.547,
+    "idhm_e": 0.392,
+    "idhm_l": 0.779,
+    "idhm_r": 0.536
+  },
+  {
+    "id_municipio": "2515930",
+    "idhm": 0.621,
+    "idhm_e": 0.561,
+    "idhm_l": 0.769,
+    "idhm_r": 0.554
+  },
+  {
+    "id_municipio": "2515971",
+    "idhm": 0.573,
+    "idhm_e": 0.477,
+    "idhm_l": 0.753,
+    "idhm_r": 0.525
+  },
+  {
+    "id_municipio": "2516003",
+    "idhm": 0.595,
+    "idhm_e": 0.468,
+    "idhm_l": 0.762,
+    "idhm_r": 0.592
+  },
+  {
+    "id_municipio": "2516102",
+    "idhm": 0.616,
+    "idhm_e": 0.506,
+    "idhm_l": 0.772,
+    "idhm_r": 0.598
+  },
+  {
+    "id_municipio": "2516151",
+    "idhm": 0.573,
+    "idhm_e": 0.46,
+    "idhm_l": 0.769,
+    "idhm_r": 0.531
+  },
+  {
+    "id_municipio": "2516201",
+    "idhm": 0.668,
+    "idhm_e": 0.567,
+    "idhm_l": 0.814,
+    "idhm_r": 0.645
+  },
+  {
+    "id_municipio": "2516300",
+    "idhm": 0.627,
+    "idhm_e": 0.534,
+    "idhm_l": 0.765,
+    "idhm_r": 0.602
+  },
+  {
+    "id_municipio": "2516409",
+    "idhm": 0.551,
+    "idhm_e": 0.45,
+    "idhm_l": 0.726,
+    "idhm_r": 0.513
+  },
+  {
+    "id_municipio": "2516508",
+    "idhm": 0.578,
+    "idhm_e": 0.456,
+    "idhm_l": 0.749,
+    "idhm_r": 0.564
+  },
+  {
+    "id_municipio": "2516607",
+    "idhm": 0.586,
+    "idhm_e": 0.462,
+    "idhm_l": 0.777,
+    "idhm_r": 0.56
+  },
+  {
+    "id_municipio": "2516706",
+    "idhm": 0.605,
+    "idhm_e": 0.527,
+    "idhm_l": 0.741,
+    "idhm_r": 0.566
+  },
+  {
+    "id_municipio": "2516755",
+    "idhm": 0.581,
+    "idhm_e": 0.49,
+    "idhm_l": 0.707,
+    "idhm_r": 0.565
+  },
+  {
+    "id_municipio": "2516805",
+    "idhm": 0.609,
+    "idhm_e": 0.501,
+    "idhm_l": 0.78,
+    "idhm_r": 0.578
+  },
+  {
+    "id_municipio": "2516904",
+    "idhm": 0.636,
+    "idhm_e": 0.528,
+    "idhm_l": 0.797,
+    "idhm_r": 0.612
+  },
+  {
+    "id_municipio": "2517001",
+    "idhm": 0.584,
+    "idhm_e": 0.514,
+    "idhm_l": 0.712,
+    "idhm_r": 0.545
+  },
+  {
+    "id_municipio": "2517100",
+    "idhm": 0.707,
+    "idhm_e": 0.714,
+    "idhm_l": 0.8,
+    "idhm_r": 0.619
+  },
+  {
+    "id_municipio": "2517209",
+    "idhm": 0.571,
+    "idhm_e": 0.455,
+    "idhm_l": 0.762,
+    "idhm_r": 0.537
+  },
+  {
+    "id_municipio": "2517407",
+    "idhm": 0.623,
+    "idhm_e": 0.587,
+    "idhm_l": 0.725,
+    "idhm_r": 0.567
+  }
+]
