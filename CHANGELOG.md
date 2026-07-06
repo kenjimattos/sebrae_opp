@@ -31,6 +31,11 @@ Ponto de convergência entre a camada de dados/ETL (`database/`) e o redesign (`
 - **Labels de indicadores limpos** (sincronizado de `database`): removido o sufixo de escala/metodologia de 6 labels que agora aparecem na UI via API ("— marco 75% (h)", "— pontuação (0–600)", "(var. % a.a.)" etc.) — a escala vive em `unit`, a metodologia na `description`. Requer reaplicar os 6 seeds no banco.
 - **Id renomeado `mpe-eli-sebrae` → `crescimento-mpe`** (sincronizado de `database`): o id agora reflete o dado real (proxy de crescimento de MPE formalizadas; o recorte "nos ELI" é interno do Sebrae). Atualizado no `catalog.ts` (id + label "no município") e nas `descriptions/{indicators,risks}.ts`. Requer rodar `scripts/migrar_id_crescimento_mpe.mongodb.js` no banco.
 
+### UI — IndicatorBar (semáforo)
+
+- **Barra oculta sem perder espaço** (status `'none'`): indicadores sem faixa oficial não colapsavam mais o `AgendaIndicator`. A barra fica `invisible` mantendo largura (gutter) + altura, então o valor segue centralizado e o layout equilibrado. Componente convergido com a branch `new-design` (idêntico).
+- **Valores de threshold nos rótulos da barra** (no lugar de MIN/MED/MAX): as 3 zonas da barra passam a mostrar os cortes reais da faixa oficial (ex.: IGM-CFA `< 5,01 · 5,01–7,51 · ≥ 7,51`; tempos `> 168 · 72–168 · ≤ 72`). A API devolve `threshold` por indicador (`server`), e o frontend deriva os rótulos em `utils/segmentLabels.ts` (`AgendaIndicator`/`AgendaCard`/`AgendaIndicatorItem`). Só os 6 indicadores com faixa oficial têm rótulos. **Reiniciar a API** para o `threshold` entrar na resposta.
+
 ## [0.8.0] — 2026-04-23
 
 Refactor massivo de **padronização de nomenclatura para inglês** em todo o codebase. Identificadores de código (tipos, interfaces, propriedades, nomes de arquivo, variáveis internas) passam a usar inglês consistente. Texto exibido ao usuário (labels, títulos, descrições, botões) permanece em português. URLs de rota e nomes de eventos analytics também permanecem em português.

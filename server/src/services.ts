@@ -63,6 +63,9 @@ export function buildIndicatorsData(
         value: v?.rawValue ?? '—',
         variation: v?.variation,
         status: computeStatus(ind.threshold, v?.rawValue),
+        // threshold vai pro frontend derivar os rótulos das zonas da barra
+        // (só existe nos indicadores com faixa oficial).
+        threshold: ind.threshold,
       }
     }),
   }))

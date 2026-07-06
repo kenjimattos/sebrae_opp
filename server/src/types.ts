@@ -65,6 +65,9 @@ export interface Indicator {
   value: string
   variation?: string
   status: StatusType
+  // Faixa oficial (só nos 6 indicadores classificados). O frontend deriva os
+  // rótulos das zonas da barra a partir daqui.
+  threshold?: Threshold
 }
 
 export interface Agenda {

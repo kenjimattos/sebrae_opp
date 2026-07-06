@@ -4,12 +4,22 @@
 // neutralizada (agregado não tem faixa oficial). Ver database/MAPEAMENTO_BASE_DOS_DADOS.md.
 export type StatusType = 'success' | 'warning' | 'alert' | 'none'
 
+// Faixa oficial de classificação de um indicador (só os 6 com fonte publicando
+// classificação). Vem da API (indicators.threshold no banco). O frontend a usa
+// para rotular as zonas do IndicatorBar. Ausente = sem semáforo ('none').
+export interface IndicatorThreshold {
+  kind: 'higher-better' | 'lower-better' | 'enum'
+  success?: number
+  warning?: number
+}
+
 export interface Indicator {
   id?: string
   label: string
   value: string | number
   variation?: string
   status: StatusType
+  threshold?: IndicatorThreshold
 }
 
 export interface Agenda {

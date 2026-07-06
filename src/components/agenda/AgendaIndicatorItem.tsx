@@ -42,6 +42,7 @@ export default function AgendaIndicatorItem({
                 label={ind.label}
                 value={ind.value}
                 status={ind.status}
+                threshold={ind.threshold}
                 className={i < indicators.length - 1 ? 'pb-xs' : ''}
               />
 
