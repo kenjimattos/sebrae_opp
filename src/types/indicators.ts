@@ -1,4 +1,8 @@
-export type StatusType = 'success' | 'warning' | 'alert'
+// 'none' = indicador sem faixa de classificação oficial (sem semáforo). Só os
+// 6 indicadores de agenda cuja fonte publica faixa recebem success/warning/alert;
+// os demais ficam 'none' → não mostram IndicatorBar. A cor de agenda também é
+// neutralizada (agregado não tem faixa oficial). Ver database/MAPEAMENTO_BASE_DOS_DADOS.md.
+export type StatusType = 'success' | 'warning' | 'alert' | 'none'
 
 export interface Indicator {
   id?: string

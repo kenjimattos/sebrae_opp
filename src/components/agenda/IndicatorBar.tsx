@@ -11,7 +11,7 @@ interface IndicatorBarProps {
 }
 
 const MARKER: Record<
-  StatusType,
+  Exclude<StatusType, 'none'>,
   { color: string; leftPct: number }
 > = {
   alert:   { color: 'var(--semantic-alert)', leftPct: 16.6 },
@@ -27,6 +27,9 @@ export default function IndicatorBar({
   segmentLabels,
   className = '',
 }: IndicatorBarProps) {
+  // Sem faixa oficial → não há barra de classificação para mostrar.
+  if (status === 'none') return null
+
   const marker = MARKER[status]
 
   return (

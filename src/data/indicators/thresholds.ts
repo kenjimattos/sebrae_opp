@@ -42,65 +42,42 @@ export function parseNumeric(raw: string | number): number | null {
 }
 
 // Chave = id do indicador no catálogo.
+//
+// REGRA DE FONTE PRIMÁRIA: só existe threshold quando a fonte publica faixa de
+// classificação oficial — nunca inventamos cortes (ver database/MAPEAMENTO_BASE_DOS_DADOS.md,
+// seção "Semáforo"). São apenas 6 indicadores de agenda. Os demais retornam 'none'
+// (sem semáforo → não mostram IndicatorBar).
 const thresholds: Record<string, Threshold> = {
-  // IGM-CFA: escala 0-10 (sem faixas oficiais — convenção interna)
-  'igm-cfa': { kind: 'higher-better', success: 7, warning: 5 },
+  // IGM-CFA (CFA): ≥7,51 Bom · 5,01–7,50 Atenção · <5,01 Alerta
+  'igm-cfa': { kind: 'higher-better', success: 7.51, warning: 5.01 },
 
-  // IDH-M/PNUD: <0,6 muito baixo/baixo; 0,6-0,699 médio; ≥0,7 alto/muito alto
+  // IDH-M (PNUD/Atlas): ≥0,700 · 0,600–0,699 · <0,600
   'idh-m': { kind: 'higher-better', success: 0.7, warning: 0.6 },
 
-  // ISDEL/Sebrae: muito baixo 0-0,15; baixo 0,151-0,31; médio 0,311-0,47; alto/mt alto ≥0,471
+  // ISDEL – Governança (Sebrae, ISDEL 2.0): ≥0,471 · 0,311–0,470 · <0,311
+  // (a subdimensão Educação Empreendedora NÃO tem faixa própria → sem threshold)
   'isdel-governanca': { kind: 'higher-better', success: 0.471, warning: 0.311 },
-  'isdel-educacao-emp': { kind: 'higher-better', success: 0.471, warning: 0.311 },
 
-  // IGMA/Áquila: escala 0-100 (convenção do projeto)
+  // IGMA (Áquila): Desenvolvido ≥65 · Em desenvolvimento 50–64 · Crítico <50
   'igma': { kind: 'higher-better', success: 65, warning: 50 },
 
-  // Tempos em relação à média PB (≈12h viabilidade, ≈14h abertura — CAGED/Redesim)
-  'tempo-viabilidade': { kind: 'lower-better', success: 12, warning: 24 },
-  'tempo-abertura': { kind: 'lower-better', success: 14, warning: 24 },
-
-  // Ranking Redesim/PB: escala observada no CSV (maior = melhor)
-  'ranking-redesim': { kind: 'higher-better', success: 900, warning: 600 },
-
-  // Tempo de licenciamento (dias)
-  'tempo-licenciamento': { kind: 'lower-better', success: 15, warning: 25 },
-
-  // Taxas (%)
-  'trabalhadores-superior-completo': { kind: 'higher-better', success: 25, warning: 15 },
-  'trabalhadores-medio-completo': { kind: 'higher-better', success: 70, warning: 60 },
-  'trabalhadores-tic': { kind: 'higher-better', success: 4, warning: 2 },
-
-  // Taxas de crescimento (%)
-  'mpe-eli-sebrae': { kind: 'higher-better', success: 8, warning: 3 },
-  'compras-publicas-inovacao': { kind: 'higher-better', success: 10, warning: 3 },
-  'bolsa-familia': { kind: 'lower-better', success: 2, warning: 5 },
-  'mpe-compras-publicas': { kind: 'higher-better', success: 20, warning: 10 },
-
-  // Contagens (valores absolutos — heurística por porte médio PB)
-  'trabalhadores-ct': { kind: 'higher-better', success: 1000, warning: 300 },
-  'negocios-abertos': { kind: 'higher-better', success: 1000, warning: 400 },
-  'empresas-ativas': { kind: 'higher-better', success: 10000, warning: 3000 },
-  'negocios-extintos': { kind: 'lower-better', success: 500, warning: 1500 },
-  'apoiados-sebrae': { kind: 'higher-better', success: 1000, warning: 300 },
-  'linhas-credito': { kind: 'higher-better', success: 15, warning: 7 },
-
-  // Crédito/financiamento (R$ milhões)
-  'credito-financiamento': { kind: 'higher-better', success: 300, warning: 100 },
-  'bndes-operacoes': { kind: 'higher-better', success: 50, warning: 20 },
+  // Tempo de abertura/viabilidade (Redesim, marco P75, horas úteis):
+  // ≤72h Bom · 72–168h Atenção · >168h Alerta
+  'tempo-abertura': { kind: 'lower-better', success: 72, warning: 168 },
+  'tempo-viabilidade': { kind: 'lower-better', success: 72, warning: 168 },
 }
 
 export function deriveStatus(indicadorId: string, rawValor: string | number): StatusType {
   const rule = thresholds[indicadorId]
-  if (!rule) return 'warning'
+  if (!rule) return 'none'
 
   if (rule.kind === 'enum') {
     const v = String(rawValor).trim()
-    return rule.map[v] ?? 'warning'
+    return rule.map[v] ?? 'none'
   }
 
   const n = parseNumeric(rawValor)
-  if (n === null) return 'warning'
+  if (n === null) return 'none'
 
   if (rule.kind === 'higher-better') {
     if (n >= rule.success) return 'success'

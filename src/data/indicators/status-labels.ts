@@ -5,6 +5,7 @@ export const statusLabels: Record<StatusType, string> = {
   success: 'Bom',
   warning: 'Atenção',
   alert: 'Alerta',
+  none: 'Sem classificação',
 } as const
 
 // Variante da legenda do ParaibaMap. "Crítico" comunica impacto melhor

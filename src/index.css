@@ -224,6 +224,9 @@
   .status-success-dot { background-color: var(--semantic-success); }
   .status-warning-dot { background-color: var(--semantic-warning); }
   .status-alert-dot   { background-color: var(--semantic-alert); }
+  /* Neutro: indicador sem faixa oficial (sem semáforo) */
+  .status-neutral-bg  { background-color: var(--semantic-surface-secondary); }
+  .status-neutral-dot { background-color: var(--semantic-text-inactive); }
 
   /* ============ LAYOUT — COMPOSITES ============ */
   .header-container {

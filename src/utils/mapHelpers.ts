@@ -16,6 +16,8 @@ export function getResolvedStatusFill(status: StatusType): string {
     success: getCSSVar('--semantic-success-surface'),
     warning: getCSSVar('--semantic-warning-surface'),
     alert: getCSSVar('--semantic-alert-surface'),
+    // Sem faixa oficial: preenchimento neutro (cinza)
+    none: getCSSVar('--semantic-surface-secondary'),
   }
   return map[status]
 }

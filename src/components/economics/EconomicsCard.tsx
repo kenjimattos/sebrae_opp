@@ -18,6 +18,7 @@ const variationColor: Record<StatusType, string> = {
   success: 'text-[color:var(--semantic-success)]',
   warning: 'text-[color:var(--semantic-warning)]',
   alert: 'text-[color:var(--semantic-alert)]',
+  none: '',
 }
 
 export default function EconomicBaseCard({ id, label, value, variation, tone, updatedAt = '', className = '' }: EconomicBaseCardProps) {

@@ -32,7 +32,7 @@ export default function RisksCard({
   className = '',
 }: RisksCardProps) {
   // 'success' não pode ser um risco — coage para 'warning' defensivamente.
-  const effectiveType = type === 'success' ? 'warning' : type
+  const effectiveType: 'alert' | 'warning' = type === 'alert' ? 'alert' : 'warning'
 
   return (
     <article

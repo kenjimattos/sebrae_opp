@@ -2,6 +2,17 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Unreleased] — branch `backend` (integração database ↔ new-design)
+
+Ponto de convergência entre a camada de dados/ETL (`database/`) e o redesign (`new-design`).
+
+### Dados / Indicadores
+
+- **Pasta `database/`** (ETL lake→OPP, seeds MongoDB, snapshots, `MAPEAMENTO_BASE_DOS_DADOS.md`) trazida da branch `database` — autocontida, sem conflito com o design.
+- **IDs de indicadores alinhados ao banco** (`indicators._id`, contrato da futura API): `igm-cfa-2025`→`igm-cfa`, `idh-m-2021`→`idh-m`, `educacao-isdel`→`isdel-educacao-emp`, `ensino-medio`→`trabalhadores-medio-completo`, `ensino-superior`→`trabalhadores-superior-completo`, `idh-m-total`→`idh-m`. Labels/`updatedAt`/`tone` do new-design preservados.
+- **Campo `unit`** no catálogo — unidade/escala canônica de cada indicador.
+- **Semáforo só nos indicadores com faixa oficial.** `thresholds.ts` reduzido aos **6** indicadores de agenda cuja fonte publica classificação (IGM-CFA, IDH-M, ISDEL-Governança, IGMA, Tempo de abertura, Tempo de viabilidade), com cortes exatos (IGM-CFA 7,51/5,01; tempos ≤72h/≤168h). `StatusType` ganha **`'none'`**: indicadores sem faixa **não renderizam o `IndicatorBar`**. A **cor de agenda foi removida** (`agendaStatus` → `'none'`): o agregado por agenda não tem faixa oficial, então o header fica neutro. Único semáforo visível = os 6 `IndicatorBar` oficiais. Base econômica segue com `tone?` manual.
+
 ## [0.8.0] — 2026-04-23
 
 Refactor massivo de **padronização de nomenclatura para inglês** em todo o codebase. Identificadores de código (tipos, interfaces, propriedades, nomes de arquivo, variáveis internas) passam a usar inglês consistente. Texto exibido ao usuário (labels, títulos, descrições, botões) permanece em português. URLs de rota e nomes de eventos analytics também permanecem em português.
