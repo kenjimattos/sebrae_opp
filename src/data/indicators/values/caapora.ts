@@ -6,8 +6,8 @@ import type { MunicipalityValues } from '@/types/indicators'
 export const caapora: MunicipalityValues = {
   municipality: 'Caaporã',
   agendas: {
-    'igm-cfa-2025': '4,92',
-    'idh-m-2021': '0,602',
+    'igm-cfa': '4,92',
+    'idh-m': '0,602',
     'isdel-governanca': '0,241',
     'igma': '44,58',
     'tempo-viabilidade': '35h',
@@ -18,9 +18,9 @@ export const caapora: MunicipalityValues = {
     'trabalhadores-tic': '1,0%*',
     'mpe-eli-sebrae': '0%*',
     'compras-publicas-inovacao': '-1%*',
-    'educacao-isdel': '0',
-    'ensino-medio': '59%*',
-    'ensino-superior': '14,60%',
+    'isdel-educacao-emp': '0',
+    'trabalhadores-medio-completo': '59%*',
+    'trabalhadores-superior-completo': '14,60%',
     'credito-financiamento': 'R$ 7M*',
     'bndes-operacoes': 'R$ 1M*',
     'negocios-abertos': '90*',
@@ -33,7 +33,7 @@ export const caapora: MunicipalityValues = {
   },
   economicBase: {
     'idsc': { value: '35,8*', variation: '+1,1%*', tone: 'alert' },
-    'idh-m-total': { value: '0,602', variation: '+0,6%*', tone: 'warning' },
+    'idh-m': { value: '0,602', variation: '+0,6%*', tone: 'warning' },
     'cobertura-atencao-basica': { value: '95%*', variation: '+1,3%*', tone: 'success' },
     'ideb-anos-iniciais': { value: '3,9*', variation: '+3,8%*', tone: 'alert' },
     'ideb-anos-finais': { value: '3,6*', variation: '+2,9%*', tone: 'warning' },

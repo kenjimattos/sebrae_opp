@@ -6,8 +6,8 @@ import type { MunicipalityValues } from '@/types/indicators'
 export const pitimbu: MunicipalityValues = {
   municipality: 'Pitimbu',
   agendas: {
-    'igm-cfa-2025': '5,50',
-    'idh-m-2021': '0,570',
+    'igm-cfa': '5,50',
+    'idh-m': '0,570',
     'isdel-governanca': '0,228',
     'igma': '37,35',
     'tempo-viabilidade': '36h',
@@ -18,9 +18,9 @@ export const pitimbu: MunicipalityValues = {
     'trabalhadores-tic': '0,9%*',
     'mpe-eli-sebrae': '-1%*',
     'compras-publicas-inovacao': '-2%*',
-    'educacao-isdel': '0',
-    'ensino-medio': '58%*',
-    'ensino-superior': '25,20%',
+    'isdel-educacao-emp': '0',
+    'trabalhadores-medio-completo': '58%*',
+    'trabalhadores-superior-completo': '25,20%',
     'credito-financiamento': 'R$ 5M*',
     'bndes-operacoes': 'R$ 0,9M*',
     'negocios-abertos': '70*',
@@ -33,7 +33,7 @@ export const pitimbu: MunicipalityValues = {
   },
   economicBase: {
     'idsc': { value: '32,1*', variation: '+0,9%*', tone: 'alert' },
-    'idh-m-total': { value: '0,570', variation: '+0,4%*', tone: 'alert' },
+    'idh-m': { value: '0,570', variation: '+0,4%*', tone: 'alert' },
     'cobertura-atencao-basica': { value: '90%*', variation: '+1,1%*', tone: 'success' },
     'ideb-anos-iniciais': { value: '3,7*', variation: '+3,3%*', tone: 'alert' },
     'ideb-anos-finais': { value: '3,4*', variation: '+2,6%*', tone: 'alert' },

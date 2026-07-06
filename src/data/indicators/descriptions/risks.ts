@@ -11,7 +11,7 @@ interface RiskContext {
 
 export const risksContext: Record<string, RiskContext> = {
   // Governança
-  'igm-cfa-2025': {
+  'igm-cfa': {
     description: 'Governança municipal com lacunas em transparência e participação social',
     indicatorLabel: 'Atenção',
     context: 'Score abaixo de 7,0 indica necessidade de fortalecimento institucional',
@@ -59,12 +59,12 @@ export const risksContext: Record<string, RiskContext> = {
     context: 'Lei Complementar 123 prevê tratamento diferenciado para MPE em licitações',
   },
   // Educação empreendedora
-  'educacao-isdel': {
+  'isdel-educacao-emp': {
     description: 'Cobertura limitada de educação empreendedora na rede escolar',
     indicatorLabel: 'Atenção',
     context: 'Meta estadual é atingir subdimensão ISDEL acima de 0,6 até 2027',
   },
-  'ensino-superior': {
+  'trabalhadores-superior-completo': {
     description: 'Baixa qualificação da força de trabalho formal no município',
     indicatorLabel: 'Alerta',
     context: 'Municípios com menos de 20% tendem a ter menor inserção em cadeias de valor',

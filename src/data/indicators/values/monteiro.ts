@@ -6,8 +6,8 @@ import type { MunicipalityValues } from '@/types/indicators'
 export const monteiro: MunicipalityValues = {
   municipality: 'Monteiro',
   agendas: {
-    'igm-cfa-2025': '6,77',
-    'idh-m-2021': '0,628',
+    'igm-cfa': '6,77',
+    'idh-m': '0,628',
     'isdel-governanca': '0,301',
     'igma': '50,84',
     'tempo-viabilidade': '19h',
@@ -18,9 +18,9 @@ export const monteiro: MunicipalityValues = {
     'trabalhadores-tic': '1,7%*',
     'mpe-eli-sebrae': '+4%*',
     'compras-publicas-inovacao': '+2%*',
-    'educacao-isdel': '0,007',
-    'ensino-medio': '67%*',
-    'ensino-superior': '29,60%',
+    'isdel-educacao-emp': '0,007',
+    'trabalhadores-medio-completo': '67%*',
+    'trabalhadores-superior-completo': '29,60%',
     'credito-financiamento': 'R$ 22M*',
     'bndes-operacoes': 'R$ 4M*',
     'negocios-abertos': '180*',
@@ -33,7 +33,7 @@ export const monteiro: MunicipalityValues = {
   },
   economicBase: {
     'idsc': { value: '40,2*', variation: '+1,6%*', tone: 'warning' },
-    'idh-m-total': { value: '0,628', variation: '+1,0%*', tone: 'warning' },
+    'idh-m': { value: '0,628', variation: '+1,0%*', tone: 'warning' },
     'cobertura-atencao-basica': { value: '96%*', variation: '+1,8%*', tone: 'success' },
     'ideb-anos-iniciais': { value: '4,3*', variation: '+4,9%*', tone: 'warning' },
     'ideb-anos-finais': { value: '3,9*', variation: '+3,7%*', tone: 'warning' },

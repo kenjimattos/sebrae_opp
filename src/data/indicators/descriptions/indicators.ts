@@ -5,9 +5,9 @@
 
 export const indicatorInfo: Record<string, string> = {
   // Governança
-  'igm-cfa-2025':
+  'igm-cfa':
     'Índice do Conselho Federal de Administração que avalia a qualidade da gestão pública municipal em três dimensões: Finanças, Gestão e Desempenho.',
-  'idh-m-2021':
+  'idh-m':
     'Índice de Desenvolvimento Humano Municipal — combina longevidade, educação e renda. Quanto mais próximo de 1, maior o desenvolvimento humano.',
   'isdel-governanca':
     'Dimensão do Índice Sebrae de Desenvolvimento Econômico Local (ISDEL) que avalia a capacidade institucional do município para promover desenvolvimento econômico.',
@@ -35,11 +35,11 @@ export const indicatorInfo: Record<string, string> = {
     'Variação anual do volume que o município adquire em bens e serviços inovadores ofertados por micro e pequenas empresas.',
 
   // Educação empreendedora
-  'educacao-isdel':
+  'isdel-educacao-emp':
     'Subdimensão do ISDEL que mede o nível de oferta de educação empreendedora na rede de ensino do município.',
-  'ensino-medio':
+  'trabalhadores-medio-completo':
     'Percentual de trabalhadores com carteira assinada com escolaridade igual ou superior ao Ensino Médio completo (RAIS).',
-  'ensino-superior':
+  'trabalhadores-superior-completo':
     'Percentual de trabalhadores com carteira assinada com escolaridade igual ou superior ao Ensino Superior completo (RAIS).',
 
   // Financiamento e crédito

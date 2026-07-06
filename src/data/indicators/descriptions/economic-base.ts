@@ -6,7 +6,7 @@
 export const economicBaseDescriptions: Record<string, string> = {
   idsc:
     'Índice de Desenvolvimento Sustentável das Cidades.Mede o desempenho do município em relação aos 17 Objetivos de Desenvolvimento Sustentável da ONU. Escala de 0 a 100 — quanto maior, melhor.',
-  'idh-m-total':
+  'idh-m':
     'Índice de Desenvolvimento Humano Municipal — combina renda, longevidade e educação numa escala de 0 a 1. Quanto mais próximo de 1, melhor o nível de desenvolvimento humano.',
   'cobertura-atencao-basica':
     'Percentual da população coberta por equipes de Atenção Primária (UBS, Estratégia Saúde da Família). Indica o acesso aos serviços de saúde no município.',

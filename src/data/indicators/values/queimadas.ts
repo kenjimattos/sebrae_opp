@@ -6,8 +6,8 @@ import type { MunicipalityValues } from '@/types/indicators'
 export const queimadas: MunicipalityValues = {
   municipality: 'Queimadas',
   agendas: {
-    'igm-cfa-2025': '7,18',
-    'idh-m-2021': '0,608',
+    'igm-cfa': '7,18',
+    'idh-m': '0,608',
     'isdel-governanca': '0,358',
     'igma': '48,30',
     'tempo-viabilidade': '20h',
@@ -18,9 +18,9 @@ export const queimadas: MunicipalityValues = {
     'trabalhadores-tic': '1,8%*',
     'mpe-eli-sebrae': '+3%*',
     'compras-publicas-inovacao': '+2%*',
-    'educacao-isdel': '0',
-    'ensino-medio': '64%*',
-    'ensino-superior': '18,20%',
+    'isdel-educacao-emp': '0',
+    'trabalhadores-medio-completo': '64%*',
+    'trabalhadores-superior-completo': '18,20%',
     'credito-financiamento': 'R$ 18M*',
     'bndes-operacoes': 'R$ 3M*',
     'negocios-abertos': '230*',
@@ -33,7 +33,7 @@ export const queimadas: MunicipalityValues = {
   },
   economicBase: {
     'idsc': { value: '38,6*', variation: '+1,4%*', tone: 'alert' },
-    'idh-m-total': { value: '0,608', variation: '+0,8%*', tone: 'warning' },
+    'idh-m': { value: '0,608', variation: '+0,8%*', tone: 'warning' },
     'cobertura-atencao-basica': { value: '92%*', variation: '+1,6%*', tone: 'success' },
     'ideb-anos-iniciais': { value: '7,9', variation: '+9,8%*', tone: 'success' },
     'ideb-anos-finais': { value: '5,8', variation: '+6,2%*', tone: 'success' },

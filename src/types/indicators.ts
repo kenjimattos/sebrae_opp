@@ -32,6 +32,10 @@ export interface IndicatorsData {
 export interface CatalogIndicator {
   id: string
   label: string
+  // Unidade/escala canônica para exibição (ex: "h", "%", "R$", "índice (0–10)").
+  // Alinhada às definições em database/MAPEAMENTO_BASE_DOS_DADOS.md e ao contrato
+  // da futura API. Ano de referência não vive aqui.
+  unit?: string
 }
 
 export interface CatalogAgenda {
@@ -44,6 +48,7 @@ export interface CatalogEconomicBase {
   id: string
   label: string
   updatedAt: string
+  unit?: string
 }
 
 export interface Catalog {

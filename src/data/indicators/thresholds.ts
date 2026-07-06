@@ -44,14 +44,14 @@ export function parseNumeric(raw: string | number): number | null {
 // Chave = id do indicador no catálogo.
 const thresholds: Record<string, Threshold> = {
   // IGM-CFA: escala 0-10 (sem faixas oficiais — convenção interna)
-  'igm-cfa-2025': { kind: 'higher-better', success: 7, warning: 5 },
+  'igm-cfa': { kind: 'higher-better', success: 7, warning: 5 },
 
   // IDH-M/PNUD: <0,6 muito baixo/baixo; 0,6-0,699 médio; ≥0,7 alto/muito alto
-  'idh-m-2021': { kind: 'higher-better', success: 0.7, warning: 0.6 },
+  'idh-m': { kind: 'higher-better', success: 0.7, warning: 0.6 },
 
   // ISDEL/Sebrae: muito baixo 0-0,15; baixo 0,151-0,31; médio 0,311-0,47; alto/mt alto ≥0,471
   'isdel-governanca': { kind: 'higher-better', success: 0.471, warning: 0.311 },
-  'educacao-isdel': { kind: 'higher-better', success: 0.471, warning: 0.311 },
+  'isdel-educacao-emp': { kind: 'higher-better', success: 0.471, warning: 0.311 },
 
   // IGMA/Áquila: escala 0-100 (convenção do projeto)
   'igma': { kind: 'higher-better', success: 65, warning: 50 },
@@ -67,8 +67,8 @@ const thresholds: Record<string, Threshold> = {
   'tempo-licenciamento': { kind: 'lower-better', success: 15, warning: 25 },
 
   // Taxas (%)
-  'ensino-superior': { kind: 'higher-better', success: 25, warning: 15 },
-  'ensino-medio': { kind: 'higher-better', success: 70, warning: 60 },
+  'trabalhadores-superior-completo': { kind: 'higher-better', success: 25, warning: 15 },
+  'trabalhadores-medio-completo': { kind: 'higher-better', success: 70, warning: 60 },
   'trabalhadores-tic': { kind: 'higher-better', success: 4, warning: 2 },
 
   // Taxas de crescimento (%)

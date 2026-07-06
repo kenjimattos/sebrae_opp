@@ -6,8 +6,8 @@ import type { MunicipalityValues } from '@/types/indicators'
 export const campinaGrande: MunicipalityValues = {
   municipality: 'Campina Grande',
   agendas: {
-    'igm-cfa-2025': '6,80',
-    'idh-m-2021': '0,720',
+    'igm-cfa': '6,80',
+    'idh-m': '0,720',
     'isdel-governanca': '0,438',
     'igma': '57,52',
     'tempo-viabilidade': '12h',
@@ -18,9 +18,9 @@ export const campinaGrande: MunicipalityValues = {
     'trabalhadores-tic': '3,2%*',
     'mpe-eli-sebrae': '+5%*',
     'compras-publicas-inovacao': '+4%*',
-    'educacao-isdel': '0',
-    'ensino-medio': '72%*',
-    'ensino-superior': '22,90%',
+    'isdel-educacao-emp': '0',
+    'trabalhadores-medio-completo': '72%*',
+    'trabalhadores-superior-completo': '22,90%',
     'credito-financiamento': 'R$ 185M*',
     'bndes-operacoes': 'R$ 32M*',
     'negocios-abertos': '1.240*',
@@ -33,7 +33,7 @@ export const campinaGrande: MunicipalityValues = {
   },
   economicBase: {
     'idsc': { value: '54,1*', variation: '+2,2%*', tone: 'warning' },
-    'idh-m-total': { value: '0,720', variation: '+1,1%*', tone: 'success' },
+    'idh-m': { value: '0,720', variation: '+1,1%*', tone: 'success' },
     'cobertura-atencao-basica': { value: '78%*', variation: '+2,4%*', tone: 'warning' },
     'ideb-anos-iniciais': { value: '4,1', variation: '+4,8%*', tone: 'warning' },
     'ideb-anos-finais': { value: '3,9', variation: '+3,9%*', tone: 'warning' },

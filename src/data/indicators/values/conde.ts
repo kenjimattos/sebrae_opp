@@ -6,8 +6,8 @@ import type { MunicipalityValues } from '@/types/indicators'
 export const conde: MunicipalityValues = {
   municipality: 'Conde',
   agendas: {
-    'igm-cfa-2025': '4,34',
-    'idh-m-2021': '0,618',
+    'igm-cfa': '4,34',
+    'idh-m': '0,618',
     'isdel-governanca': '0,351',
     'igma': '45,62',
     'tempo-viabilidade': '27h',
@@ -18,9 +18,9 @@ export const conde: MunicipalityValues = {
     'trabalhadores-tic': '1,5%*',
     'mpe-eli-sebrae': '+2%*',
     'compras-publicas-inovacao': '+1%*',
-    'educacao-isdel': '0',
-    'ensino-medio': '62%*',
-    'ensino-superior': '21,50%',
+    'isdel-educacao-emp': '0',
+    'trabalhadores-medio-completo': '62%*',
+    'trabalhadores-superior-completo': '21,50%',
     'credito-financiamento': 'R$ 12M*',
     'bndes-operacoes': 'R$ 2M*',
     'negocios-abertos': '150*',
@@ -33,7 +33,7 @@ export const conde: MunicipalityValues = {
   },
   economicBase: {
     'idsc': { value: '42,3*', variation: '+1,9%*', tone: 'warning' },
-    'idh-m-total': { value: '0,618', variation: '+1,3%*', tone: 'warning' },
+    'idh-m': { value: '0,618', variation: '+1,3%*', tone: 'warning' },
     'cobertura-atencao-basica': { value: '88%*', variation: '+2,1%*', tone: 'warning' },
     'ideb-anos-iniciais': { value: '4,2*', variation: '+4,6%*', tone: 'warning' },
     'ideb-anos-finais': { value: '3,8*', variation: '+3,5%*', tone: 'warning' },

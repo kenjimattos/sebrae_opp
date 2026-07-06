@@ -6,8 +6,8 @@ import type { MunicipalityValues } from '@/types/indicators'
 export const joaoPessoa: MunicipalityValues = {
   municipality: 'João Pessoa',
   agendas: {
-    'igm-cfa-2025': '6,54',
-    'idh-m-2021': '0,763',
+    'igm-cfa': '6,54',
+    'idh-m': '0,763',
     'isdel-governanca': '0,436',
     'igma': '58,24',
     'tempo-viabilidade': '9h',
@@ -18,9 +18,9 @@ export const joaoPessoa: MunicipalityValues = {
     'trabalhadores-tic': '5,1%*',
     'mpe-eli-sebrae': '+12%*',
     'compras-publicas-inovacao': '+18%*',
-    'educacao-isdel': '0,012',
-    'ensino-medio': '78%*',
-    'ensino-superior': '34%',
+    'isdel-educacao-emp': '0,012',
+    'trabalhadores-medio-completo': '78%*',
+    'trabalhadores-superior-completo': '34%',
     'credito-financiamento': 'R$ 420M*',
     'bndes-operacoes': 'R$ 85M*',
     'negocios-abertos': '3.820*',
@@ -33,7 +33,7 @@ export const joaoPessoa: MunicipalityValues = {
   },
   economicBase: {
     'idsc': { value: '58,4*', variation: '+2,8%*', tone: 'success' },
-    'idh-m-total': { value: '0,763', variation: '+1,6%*', tone: 'success' },
+    'idh-m': { value: '0,763', variation: '+1,6%*', tone: 'success' },
     'cobertura-atencao-basica': { value: '82%*', variation: '+3,1%*', tone: 'warning' },
     'ideb-anos-iniciais': { value: '4,0', variation: '+5,3%*', tone: 'warning' },
     'ideb-anos-finais': { value: '3,7', variation: '+4,2%*', tone: 'warning' },
