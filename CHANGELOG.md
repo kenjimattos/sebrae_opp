@@ -14,6 +14,13 @@ Ponto de convergência entre a camada de dados/ETL (`database/`) e o redesign (`
 - **Semáforo só nos indicadores com faixa oficial.** `thresholds.ts` reduzido aos **6** indicadores de agenda cuja fonte publica classificação (IGM-CFA, IDH-M, ISDEL-Governança, IGMA, Tempo de abertura, Tempo de viabilidade), com cortes exatos (IGM-CFA 7,51/5,01; tempos ≤72h/≤168h). `StatusType` ganha **`'none'`**: indicadores sem faixa **não renderizam o `IndicatorBar`**. A **cor de agenda foi removida** (`agendaStatus` → `'none'`): o agregado por agenda não tem faixa oficial, então o header fica neutro. Único semáforo visível = os 6 `IndicatorBar` oficiais. Base econômica segue com `tone?` manual.
 - **Indicadores não implementados ocultos.** Novo campo `implemented?: boolean` no catálogo — `false` esconde o indicador da plataforma. Marcados `apoiados-sebrae` e `linhas-credito` (sem seed/fonte no banco), que deixam de aparecer nos cards de agenda, no total do `AgendaStats`, no dropdown/coloração do mapa e na seção Riscos. Filtro central no provider (`implemented !== false`) e em `map-data`. Mecanismo à prova da API: quando o banco alimentar o frontend, indicador sem dado simplesmente não é retornado. Os dados demo estáticos permanecem até a integração via API.
 
+### Backend (API)
+
+- **Scaffold da API de leitura** (`server/`) — processo Node/Fastify isolado que lê o MongoDB `DadosOPP` e devolve o mesmo shape (`IndicatorsData`) que o frontend consumia dos TS estáticos. Roda na máquina da app (`10.1.100.99`), lê o banco (`10.1.141.23`), Nginx faz proxy de `/api/*`.
+  - Rotas: `GET /api/health`, `/api/municipalities`, `/api/municipalities/:id`, `/api/map`.
+  - **DB-driven de ponta a ponta:** agendas/base econômica montadas de `agendas` + `indicators.placements`; status derivado do `threshold` de cada indicador no banco (sem tabela hardcoded — `thresholds.ts` do frontend fica obsoleto). Indicador sem documento no banco não é retornado, tornando o flag `implemented?` desnecessário na integração.
+  - `mongodb` 6 (só leitura) + `dotenv`; conexão única com pool; shutdown limpo (SIGTERM). Ver `server/README.md`.
+
 ## [0.8.0] — 2026-04-23
 
 Refactor massivo de **padronização de nomenclatura para inglês** em todo o codebase. Identificadores de código (tipos, interfaces, propriedades, nomes de arquivo, variáveis internas) passam a usar inglês consistente. Texto exibido ao usuário (labels, títulos, descrições, botões) permanece em português. URLs de rota e nomes de eventos analytics também permanecem em português.
