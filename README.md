@@ -104,6 +104,58 @@ src/
 
 Tokens extraidos das Figma Variables (Colors, Typography, Spacing). Componentes seguem fielmente o layout do Figma com referencia ao Node ID de cada elemento.
 
+## Deploy (producao)
+
+A plataforma roda no servidor Sebrae **10.1.100.99** (`NASRVOPPDL01`) e le o MongoDB
+`DadosOPP` em **10.1.141.23**. Dois artefatos, um so deploy:
+
+- **Frontend** — build estatico (`vite build` -> `dist/`) copiado para `/var/www/sebrae_opp/dist`, servido pelo Nginx.
+- **API de leitura** (`server/`) — processo Node/Fastify na porta `3000`, gerenciado pelo systemd (`opp-api.service`). Le o banco; o Nginx faz proxy de `/api/*` para ela. Ver [`server/README.md`](server/README.md).
+
+```
+Navegador -> Nginx (:80) --+-- /            -> /var/www/sebrae_opp/dist  (SPA)
+                           +-- /api/*        -> 127.0.0.1:3000 (opp-api)  -> MongoDB DadosOPP
+```
+
+### Primeiro deploy (uma vez)
+
+1. **Nginx** — `server` block em `/etc/nginx/sites-enabled/sebrae_opp`: `root /var/www/sebrae_opp/dist`, SPA fallback (`try_files $uri $uri/ /index.html`), proxy `location /api/ { proxy_pass http://127.0.0.1:3000; }` (**sem barra no final** — preserva o `/api` no path) e `location /assets/` com `Access-Control-Allow-Origin "*"` (replay do Clarity).
+2. **API via systemd** — unit `/etc/systemd/system/opp-api.service` executando `node dist/index.js` com `WorkingDirectory` = `server/` (o `dotenv` le o `server/.env`, que precisa do `MONGO_URI`). Depois: `sudo systemctl enable --now opp-api`.
+
+### Atualizar (a cada release)
+
+```bash
+# no servidor, dentro de ~/sebrae_opp
+git pull
+
+# frontend
+npm install --legacy-peer-deps && npm run build
+sudo rsync -a --delete ~/sebrae_opp/dist/ /var/www/sebrae_opp/dist/
+
+# API
+cd server && npm install && npm run build
+sudo systemctl restart opp-api
+```
+
+### Quando reconstruir o que
+
+| Mudou... | Frontend (build + rsync) | API (build + restart) |
+|---|---|---|
+| Codigo React/CSS (`src/`) | sim | -- |
+| Codigo da API (`server/src/`) | -- | sim |
+| **So dados no banco** (seeds/migracao do ETL) | -- | **so restart** (o catalogo e cacheado em memoria) |
+
+> **Importante:** a API cacheia o catalogo em memoria no boot. Qualquer alteracao no banco
+> (novos seeds, migracao de id, ajuste de `threshold`/labels) so aparece no frontend **apos
+> `sudo systemctl restart opp-api`**.
+
+### Verificacao pos-deploy
+
+```bash
+curl -s http://localhost/api/health          # {"ok":true,"db":"up"}
+curl -s http://localhost/api/municipalities  # array dos 223 municipios da PB
+```
+
 ## Licenca
 
 Uso interno Sebrae Paraiba.
