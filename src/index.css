@@ -36,7 +36,7 @@
   --font-size-h1: 3rem; /* 48px */
   --font-size-h2: 2.25rem; /* 36px */
   --font-size-h3: 1.5rem; /* 24px */
-  --font-size-h4: 1.25rem; /* 20px */
+  --font-size-h4: 1rem; /* 16px */
 
   /* Titles */
   --font-size-title-lg: 1.5rem; /* 24px */
@@ -67,7 +67,7 @@
   --spacing-gutter: 11.25rem; /* 180px */
 
   /* ============ SIZES ============ */
-  --header-height: 5rem; /* 80px */
+  --header-height: 4.5rem; /* 72px */
 
   /* ============ RADIUS ============ */
   --radius-sm: 0.75rem; /* 12px */
@@ -117,15 +117,15 @@
   --primitives-lime-100: theme('colors.lime.100');
   --primitives-lime-200: theme('colors.lime.200');
   --primitives-lime-300: theme('colors.lime.300');
-  --primitives-lime-800: theme('colors.lime.800');
-  --primitives-lime-900: theme('colors.lime.900');
+  --primitives-lime-500: theme('colors.lime.500');
+  --primitives-lime-600: theme('colors.lime.600');
 
   /* ============ COLORS — SEMANTIC (LIGHT MODE) ============ */
   --semantic-main: var(--primitives-blue-500);
   --semantic-secondary: var(--primitives-gray-200);
   --semantic-tertiary: var(--primitives-lime-300);
 
-  --semantic-background-primary: var(--primitives-gray-100);
+  --semantic-background: var(--primitives-gray-100);
   --semantic-surface-primary: var(--primitives-white);
   --semantic-surface-secondary: var(--primitives-blue-100);
   --semantic-surface-tertiary: var(--primitives-gray-500);
@@ -159,46 +159,27 @@
 
 /* ============ DARK MODE ============ */
 .dark {
-  --primitives-gray-100: #e5e5e5;
-  --primitives-gray-200: #cccccc;
-  --primitives-gray-300: #b3b3b3;
-  --primitives-gray-400: #a3a3a3;
-  --primitives-gray-500: #808080;
-
-  --primitives-green-100: #e8fce4;
-  --primitives-green-200: #a5e1bf;
-  --primitives-green-500: #419e6a;
-  --primitives-green-800: #00632b;
-  --primitives-green-900: #00401c;
-
-  --semantic-main: var(--primitives-white);
-  --semantic-background-primary: #161726;
+  --semantic-background: #161726;
   --semantic-surface-primary: #1A1C31;
   --semantic-surface-secondary: #2C335D;
-  --semantic-surface-tertiary: var(--primitives-gray-800);
+  --semantic-surface-tertiary: theme(colors.slate.800);
 
   --semantic-text-primary: var(--primitives-white);
-  --semantic-text-inactive: var(--primitives-gray-400);
+  --semantic-text-inactive: theme(colors.slate.500);
 
-  --semantic-button-primary: var(--primitives-white);
+  --semantic-button-primary:  #D4FE07;
   --semantic-button-label-primary: var(--primitives-black);
-  --semantic-button-secondary: var(--primitives-black);
+  --semantic-button-secondary: var(--semantic-background);
   --semantic-button-label-secondary: var(--primitives-white);
   --semantic-button-tertiary: var(--primitives-gray-600);
   --semantic-button-label-tertiary: var(--primitives-white);
 
-  --semantic-success: var(--primitives-green-200);
-  --semantic-success-surface: var(--primitives-green-800);
-  --semantic-warning: var(--primitives-yellow-200);
-  --semantic-warning-surface: var(--primitives-yellow-900);
-  --semantic-info-text-info: var(--primitives-blue-200);
-
-  --semantic-alert: var(--primitives-red-100);
-  --semantic-alert-surface: var(--primitives-red-800);
+  --semantic-success: #40E629;
+  --semantic-warning: #F5E421;
+  --semantic-alert: #F14635;
 
   --semantic-accent: #D4FE07;
-  --semantic-accent-hover: var(--primitives-blue-100);
-  --semantic-accent-surface: var(--primitives-blue-800);
+  --semantic-accent-surface: var(--primitives-blue-100);
 }
 
 /* ============ TYPOGRAPHY — COMPOSITE CLASSES ============ */
@@ -450,7 +431,7 @@ body {
   font-family: var(--font);
   font-size: var(--font-size-body);
   color: var(--semantic-text-primary);
-  background-color: var(--semantic-background-primary);
+  background-color: var(--semantic-background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
