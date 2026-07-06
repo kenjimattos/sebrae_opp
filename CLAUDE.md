@@ -30,7 +30,7 @@ Leia este arquivo inteiro antes de começar qualquer tarefa.
 
 ### Sobre o build
 
-O projeto gera um **build estático** (`vite build` → pasta `dist/`). Não há servidor Node.js em produção. Toda lógica de dados no protótipo usa arquivos JSON e TS em `/src/data/`.
+O frontend gera um **build estático** (`vite build` → pasta `dist/`). A partir da fase de backend existe também uma **API de leitura** (`server/`, Node/Fastify) que lê o MongoDB `DadosOPP` e alimenta o frontend via `fetch('/api/...')`. Em produção o Nginx serve o `dist/` **e** faz proxy de `/api/*` para o processo Node (ver [Backend / API](#backend--api)). Os TS/JSON estáticos de dados de indicadores foram removidos — os dados vêm do banco.
 
 > **Nota:** `react-simple-maps@3` + `prop-types` requerem `npm install --legacy-peer-deps` com React 19.
 
@@ -161,7 +161,7 @@ interface MunicipalityState {
 }
 ```
 
-`MunicipalityProvider` (em `src/hooks/`) importa os JSONs e seleciona pelo `id`. Todas as seções consomem via `useMunicipality()`.
+`MunicipalityProvider` (em `src/hooks/`) busca a **lista de municípios** da API no boot e os **dados do município selecionado** sob demanda (`fetch('/api/municipalities/:id')`), com estado `loading`/`error`. Expõe `municipality`, `municipalities` (lista) e `setMunicipality`. Todas as seções consomem via `useMunicipality()`. O client fica em `src/data/api.ts`.
 
 ---
 
@@ -171,11 +171,7 @@ Toda a estrutura de dados está em `src/data/` e `src/types/indicators.ts`, orga
 
 | Caminho | Descrição |
 |---|---|
-| `indicators/catalog.ts` | Estrutura/labels/ícones das agendas e base econômica (fonte única) |
-| `indicators/thresholds.ts` | Régua de classificação por indicador (status derivado do valor) |
-| `indicators/map-data.ts` | Valores de indicadores por município para coloração do mapa |
-| `indicators/municipalities.json` | Lista dos 8 municípios (id IBGE, nome, slug) |
-| `indicators/values/*.ts` | Valores por município (agendas + economicBase). Merge com `catalog` + `thresholds` no provider |
+| `indicators/catalog.ts` | Labels/ícones/unidades usados pelos `descriptions/*` (o banco é a fonte de verdade da estrutura e dos valores — via API) |
 | `indicators/descriptions/*.ts` | Conteúdo de InfoTooltip (agendas, economic-base, indicators, risks) — futuro: LLM |
 | `indicators/status-labels.ts` | `StatusType` → texto. `statusLabels` (Bom/Atenção/Alerta) + `statusLabelsPanorama` (usa "Crítico") |
 | `home/sections.ts` | Títulos, descrições e labels de seção (inclui `agendas.statsLabel`, `panorama.labels.*`) |
@@ -187,7 +183,26 @@ Toda a estrutura de dados está em `src/data/` e `src/types/indicators.ts`, orga
 
 **Interfaces:** ver `src/types/indicators.ts` para `IndicatorsData`, `Agenda`, `Indicator`, `EconomicBaseItem`, `Panorama`, etc.
 
-**Regra:** no protótipo, dados vêm de JSON/TS importados. Nunca fetch de API.
+**Regra:** os dados de indicadores (agendas, valores, base econômica, lista de municípios) vêm da **API** (`src/data/api.ts` → `server/`), não de arquivos estáticos. Conteúdo editorial (descrições, textos de seção, etapas do formulador) continua em `src/data/`.
+
+---
+
+## Backend / API
+
+API de **leitura** sobre o MongoDB `DadosOPP`, em `server/` (Node ≥20 + **Fastify** + driver `mongodb`, TypeScript). Roda como processo na máquina da app (**10.1.100.99**) e lê o banco (**10.1.141.23**); o Nginx serve o `dist/` e faz proxy de `/api/*`. **Só leitura** — quem escreve no banco é o ETL (`database/`).
+
+**Rotas:**
+
+| Rota | Devolve |
+|---|---|
+| `GET /api/health` | `{ ok, db }` |
+| `GET /api/municipalities` | `[{ id, name, slug }]` — seletor |
+| `GET /api/municipalities/:id` | `IndicatorsData` (agendas + base econômica, **status já calculado**) |
+| `GET /api/map` | `{ options, municipalities }` — valores por município (mapa) |
+
+**DB-driven:** o servidor monta agendas/base econômica de `agendas` + `indicators.placements` e deriva o status do campo `threshold` de cada indicador no banco (sem tabela hardcoded). Indicador sem documento no banco (ex.: ainda não implementado) simplesmente não é retornado. O shape espelha `src/types/indicators.ts`. Detalhes de deploy (systemd + Nginx) em `server/README.md`.
+
+**Regra ao mexer na API:** manter o contrato alinhado a `src/types/indicators.ts`; a lógica de classificação vive no banco (`threshold`) e em `server/src/status.ts` — nunca inventar cortes (ver `database/MAPEAMENTO_BASE_DOS_DADOS.md`).
 
 ---
 
@@ -238,13 +253,25 @@ A partir da 0.7.0, tokens do design system (spacing, borderRadius, backgroundCol
 
 ## Comandos
 
+Frontend (raiz):
+
 ```bash
 npm install --legacy-peer-deps  # Necessário por react-simple-maps + React 19
-npm run dev                     # Desenvolvimento local (http://localhost:5173)
+npm run dev                     # Desenvolvimento local (http://localhost:5173; /api → :3000 via proxy)
 npm run build                   # Build de produção (gera /dist)
 npm run preview                 # Preview do build local
 npm run lint                    # ESLint
 npm run test                    # Vitest em modo watch
 npm run test:run                # Vitest single run (CI)
 npx vitest run -u               # Atualizar snapshots após mudanças CSS intencionais
+```
+
+API (`server/`) — precisa da API rodando para o frontend carregar dados em dev:
+
+```bash
+cd server
+npm install
+cp .env.example .env            # preencher MONGO_URI (DadosOPP em 10.1.141.23)
+npm run dev                     # tsx watch, porta 3000
+npm run build && npm start      # produção: tsc → dist/, node dist/index.js
 ```
