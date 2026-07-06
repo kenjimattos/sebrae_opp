@@ -257,7 +257,7 @@ def emit(values, ref_year):
         "_id": INDICATOR_ID,
         "label": LABEL,
         # sem `threshold`: não há faixa oficial p/ taxa de crescimento do PBF (não inventamos cortes).
-        "updatedAt": str(ref_year),
+        "referenceYear": str(ref_year),
         "description": DESCRIPTION,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,

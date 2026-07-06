@@ -392,7 +392,7 @@ def build_indicator(indicador, ref_year):
         "_id": indicador["id"],
         "label": indicador["label"],
         "threshold": {"kind": "lower-better", "success": BANDA_VERDE, "warning": BANDA_LARANJA},
-        "updatedAt": ref_year,
+        "referenceYear": ref_year,
         "description": indicador["description"],
         "source": SOURCE_BASE,
         "sourceDataset": SOURCE_DATASET,

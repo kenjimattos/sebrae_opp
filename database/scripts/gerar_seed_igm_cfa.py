@@ -16,7 +16,7 @@ dashboard pela API pública do Power BI (endpoint `querydata`), filtrando UF=PB.
     a `.../public/reports/{RESOURCE_KEY}/modelsAndExploration`.
 
 Cobertura: os 223 municípios da Paraíba, painel histórico 2017–2026 (10 anos).
-Por padrão a UI exibe o ano em indicators.updatedAt; aqui é o mais recente.
+Por padrão a UI exibe o ano em indicators.referenceYear; aqui é o mais recente.
 
 Saídas (idempotentes, próprias para o NoSQLBooster):
   - database/seed/indicador-igm-cfa.mongodb.js
@@ -232,7 +232,7 @@ def emit(recs: list[dict]) -> None:
         "_id": INDICATOR_ID,
         "label": LABEL,
         "threshold": THRESHOLD,
-        "updatedAt": ano_default,  # ano exibido por padrão (mais recente disponível)
+        "referenceYear": ano_default,  # ano exibido por padrão (mais recente disponível)
         "description": DESCRIPTION,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,

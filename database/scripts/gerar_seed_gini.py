@@ -55,7 +55,7 @@ INDICATORS = [
     {
         "_id": "gini",
         "label": "GINI (2010)",
-        "updatedAt": ANO_REF,
+        "referenceYear": ANO_REF,
         "description": DESC_GINI,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,

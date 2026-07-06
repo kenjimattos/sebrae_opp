@@ -69,7 +69,7 @@ INDICATORS = [
     {
         "_id": "cobertura-atencao-basica",
         "label": "Cobertura Atenção Básica na Saúde",
-        "updatedAt": ANO,
+        "referenceYear": ANO,
         "description": DESC,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,

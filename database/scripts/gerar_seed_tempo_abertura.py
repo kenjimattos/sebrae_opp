@@ -308,7 +308,7 @@ def emit(values: list[dict], ref_year: str, janela_label: str) -> Path:
         "_id": INDICATOR_ID,
         "label": LABEL,
         "threshold": {"kind": "lower-better", "success": BANDA_VERDE, "warning": BANDA_LARANJA},
-        "updatedAt": ref_year,
+        "referenceYear": ref_year,
         "description": DESCRIPTION,
         "source": SOURCE_BASE,
         "sourceDataset": SOURCE_DATASET,

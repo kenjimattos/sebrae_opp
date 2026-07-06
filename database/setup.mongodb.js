@@ -62,7 +62,8 @@ ensureCollection('indicators', {
         map: { bsonType: 'object' },
       },
     },
-    updatedAt: { bsonType: 'string', description: 'ano de referência do dado' },
+    referenceYear: { bsonType: 'string', description: 'ano de referência exibido por padrão (vintage); o autoritativo por município está em indicatorValues.referenceYear' },
+    unit: { bsonType: 'string', description: 'unidade/escala de exibição (ex: "h", "%", "R$", "índice (0–10)")' },
     description: { bsonType: 'string' },
     source: { bsonType: 'string' },
     sourceDataset: { bsonType: 'string' },
@@ -93,11 +94,11 @@ ensureCollection('indicatorValues', {
     numericValue: { bsonType: ['double', 'int', 'null'], description: 'valor numérico parseado' },
     variation: { bsonType: 'string', description: 'variação (cards socialeconomic); opcional' },
     tone: { enum: ['success', 'warning', 'alert', null], description: 'cor do card (opcional; em geral derivada do threshold)' },
-    referenceYear: { bsonType: 'string', description: 'ano do dado; faz parte da chave (histórico)' },
+    referenceYear: { bsonType: 'string', description: 'ano a que o dado se refere (vintage); faz parte da chave (histórico)' },
     source: { bsonType: ['string', 'null'] },
     isFictional: { bsonType: 'bool', description: 'true = dado de demonstração' },
     breakdown: { bsonType: 'object', description: 'sub-índices opcionais (ex: IDH-M e/l/r)' },
-    updatedAt: { bsonType: 'date' },
+    updatedAt: { bsonType: 'date', description: 'timestamp de carga/atualização do registro no banco (NÃO é o ano do dado — esse é referenceYear)' },
   },
 })
 

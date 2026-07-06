@@ -942,7 +942,7 @@ def build_indicator(indicador, ano):
         "_id": indicador["id"],
         "label": indicador["label"].replace("{ano}", str(ano)),
         # sem `threshold`: contagem bruta / variação sem faixa oficial -> sem semáforo.
-        "updatedAt": str(ano),
+        "referenceYear": str(ano),
         "description": indicador["description"],
         "source": indicador.get("source", SOURCE),
         "sourceDataset": indicador.get("sourceDataset", SOURCE_DATASET),

@@ -247,7 +247,7 @@ def emit(values: list[dict], ref_year: int) -> Path:
         "_id": INDICATOR_ID,
         "label": LABEL,
         # sem `threshold`: não há faixa oficial p/ taxa de crescimento de MPE (não inventamos cortes).
-        "updatedAt": str(ref_year),
+        "referenceYear": str(ref_year),
         "description": DESCRIPTION,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,

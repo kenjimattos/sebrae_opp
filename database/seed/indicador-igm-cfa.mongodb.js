@@ -8,7 +8,7 @@ const database = db
 
 // --- 1) Catálogo: o indicador IGM-CFA (agenda governanca) ---
 const indicators = [
-  {"_id": "igm-cfa", "label": "IGM – Índice CFA de Governança Municipal", "threshold": {"kind": "higher-better", "success": 7.51, "warning": 5.01}, "updatedAt": "2026", "description": "Índice do Conselho Federal de Administração que avalia a qualidade da gestão pública municipal em três dimensões: Finanças, Gestão e Desempenho.", "source": "Índice CFA de Governança Municipal (IGM-CFA) — Conselho Federal de Administração (CFA)", "sourceDataset": "cfa_igm_powerbi", "placements": [{"section": "agenda", "agendaId": "governanca", "order": 1}]},
+  {"_id": "igm-cfa", "label": "IGM – Índice CFA de Governança Municipal", "threshold": {"kind": "higher-better", "success": 7.51, "warning": 5.01}, "referenceYear": "2026", "description": "Índice do Conselho Federal de Administração que avalia a qualidade da gestão pública municipal em três dimensões: Finanças, Gestão e Desempenho.", "source": "Índice CFA de Governança Municipal (IGM-CFA) — Conselho Federal de Administração (CFA)", "sourceDataset": "cfa_igm_powerbi", "placements": [{"section": "agenda", "agendaId": "governanca", "order": 1}]},
 ]
 database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
   filter: { _id: i._id }, update: { $set: i }, upsert: true,

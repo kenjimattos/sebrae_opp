@@ -141,7 +141,8 @@ via `placements` — não há duplicação de documento.
 | `_id` | string | id do indicador no catálogo (ex: `idh-m`) |
 | `label` | string | rótulo exibido |
 | `threshold` | obj\|ausente | régua de classificação (semáforo) — `{ kind, success, warning }`, **das faixas oficiais da fonte**; status deriva dela. **Ausente = indicador sem classificação** (só exibe o valor) — usado quando a fonte não publica faixa oficial (ver [Classificação](#classificação-semáforo)) |
-| `updatedAt` | string | ano de referência **exibido por padrão** (ex: `"2010"`); o histórico mora nos valores |
+| `referenceYear` | string | ano de referência **exibido por padrão** (vintage, ex: `"2010"`); o autoritativo por município mora nos valores |
+| `unit` | string | unidade/escala de exibição (ex: `"h"`, `"%"`, `"R$"`, `"índice (0–10)"`) |
 | `description` | string | texto do tooltip |
 | `source` / `sourceDataset` | string | fonte legível / chave técnica |
 | `placements` | array | seções onde aparece: `[{ section, agendaId?, order }]` |
@@ -162,11 +163,11 @@ referencia `agendas._id`. `order` define a posição dentro da seção.
 | `source` | string | fonte do dado |
 | `isFictional` | bool | `true` = dado de demonstração |
 | `breakdown` | obj | sub-índices opcionais (IDH-M: `{ educacao, longevidade, renda }`) |
-| `updatedAt` | date | timestamp do último upsert |
+| `updatedAt` | date | timestamp de carga/atualização do registro (não é o ano do dado — esse é `referenceYear`) |
 
 **Série histórica:** a chave inclui o ano, então o mesmo indicador convive em vários
 anos (ex: IDH-M `2010` e `2022`) sem sobrescrever. Qual ano exibir: por padrão o
-`indicators.updatedAt`, ou o ano que a UI escolher (ex: o mais recente disponível). O
+`indicators.referenceYear`, ou o ano que a UI escolher (ex: o mais recente disponível). O
 "de quando é o dado" mostrado no card vem do `referenceYear` do valor exibido.
 
 **Índices:** `municipalities.slug` (único); `indicators {placements.section}`;
@@ -178,7 +179,7 @@ O IDH-M aparece em dois lugares do produto (agenda `governanca` e cards socialec
 do Panorama), mas é **um único** documento `idh-m` com dois `placements` — e **um único**
 valor por município. Onde for exibido, o status/tone é derivado do `threshold`.
 
-> O **dado é do Censo 2010** (ver nota abaixo); fica em `referenceYear`/`updatedAt` = `2010`.
+> O **dado é do Censo 2010** (ver nota abaixo); fica em `referenceYear` = `2010`.
 
 ### Classificação (semáforo)
 
@@ -235,7 +236,7 @@ python3 database/scripts/gerar_seed_idh_m.py --offline
 > Quando sair o **IDH-M do Censo 2022** no Atlas/basedosdados, ajuste o `ano` (e o id do
 > dataset, se mudar) em `database/scripts/gerar_seed_idh_m.py` e rode de novo: como o ano
 > faz parte da chave, o 2022 **entra ao lado** do 2010 (não sobrescreve). Para passar a
-> exibir 2022 por padrão, atualize `indicators.updatedAt`. Hoje o basedosdados só tem o
+> exibir 2022 por padrão, atualize `indicators.referenceYear`. Hoje o basedosdados só tem o
 > ADH até **2010**.
 
 ### Atualizar o IGM-CFA
@@ -291,7 +292,7 @@ python3 database/scripts/gerar_seed_igma.py --offline
 > próprios, organizados em blocos alfabéticos por estado. O gerador valida a cobertura
 > contra os 223 códigos IBGE do seed de municípios (aborta se faltar/sobrar algum).
 > Quando sair uma nova versão anual, ela **entra ao lado** de 2026 (o ano faz parte da
-> chave); para exibi-la por padrão, atualize `indicators.updatedAt`. Detalhes do
+> chave); para exibi-la por padrão, atualize `indicators.referenceYear`. Detalhes do
 > protocolo em [MAPEAMENTO_BASE_DOS_DADOS.md](MAPEAMENTO_BASE_DOS_DADOS.md) §7.
 
 ### Atualizar o IDSC
@@ -382,10 +383,10 @@ PB **2015–2023** com as duas colunas do ISDEL que estão no catálogo da OPP. 
 gerador** lê o CSV e emite os **dois** seeds (config-driven, uma entrada por coluna):
 
 - **`isdel-governanca`** — dimensão Governança para o Desenvolvimento (1 das 5 dimensões
-  DEL). **Com** threshold (faixa oficial). `updatedAt = "2023"`.
+  DEL). **Com** threshold (faixa oficial). `referenceYear = "2023"`.
 - **`isdel-educacao-emp`** — **subdimensão** Educação Empreendedora (de Capital
   Empreendedor; mede penetração de programas Sebrae — Sebraetec + Empreendedor do Futuro).
-  **Sem** threshold. `updatedAt = "2021"` (2022–2023 estão ~100% zerados).
+  **Sem** threshold. `referenceYear = "2021"` (2022–2023 estão ~100% zerados).
 
 ```bash
 # lê database/data/isdel_pb.csv e gera os DOIS seeds (idempotente, sem rede)
@@ -606,7 +607,7 @@ python3 database/scripts/gerar_seed_remuneracao_media_lake.py --collection 2024_
    warning }`. Não achou → **omitir `threshold`** (não inventar). Anotar na tabela da
    seção [Classificação](#classificação-semáforo).
 2. Inserir o doc em `indicators` (`label`, `placements` com a(s) seção(ões) e `order`,
-   `threshold` **se a fonte tiver faixa oficial**, `updatedAt`, `description`, `source`).
+   `threshold` **se a fonte tiver faixa oficial**, `referenceYear`, `unit`, `description`, `source`).
 3. Inserir/atualizar `indicatorValues` por município (chave única `municipalityId +
    indicatorId + referenceYear`), com `rawValue`, `numericValue`, `referenceYear`,
    `source`, `isFictional` (e, se preciso, `variation`/`tone` para cards socialeconomic sem threshold).

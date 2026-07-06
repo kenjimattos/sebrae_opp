@@ -194,7 +194,7 @@ def emit(recs: list[dict]) -> None:
         "_id": INDICATOR_ID,
         "label": LABEL,
         "threshold": THRESHOLD,
-        "updatedAt": REFERENCE_YEAR,  # ano exibido por padrão (única versão da API)
+        "referenceYear": REFERENCE_YEAR,  # ano exibido por padrão (única versão da API)
         "description": DESCRIPTION,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,

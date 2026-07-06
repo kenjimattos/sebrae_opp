@@ -9,7 +9,7 @@ const database = db
 // --- 1) Catálogo: o indicador IDSC (card do Panorama / base econômica) ---
 // Sem threshold: índice composto 0-100 não tem faixa oficial de semáforo.
 const indicators = [
-  {"_id": "idsc", "label": "IDSC", "updatedAt": "2025", "description": "Índice de Desenvolvimento Sustentável das Cidades — mede, numa escala de 0 a 100, o avanço do município rumo aos 17 Objetivos de Desenvolvimento Sustentável (Agenda 2030). Quanto mais próximo de 100, menor a distância para o desempenho ótimo nos ODS.", "source": "Índice de Desenvolvimento Sustentável das Cidades – Brasil (IDSC-BR 2025), Instituto Cidades Sustentáveis — API cidadessustentaveis.org.br", "sourceDataset": "idsc-br", "placements": [{"section": "socialeconomic", "order": 0}]},
+  {"_id": "idsc", "label": "IDSC", "referenceYear": "2025", "description": "Índice de Desenvolvimento Sustentável das Cidades — mede, numa escala de 0 a 100, o avanço do município rumo aos 17 Objetivos de Desenvolvimento Sustentável (Agenda 2030). Quanto mais próximo de 100, menor a distância para o desempenho ótimo nos ODS.", "source": "Índice de Desenvolvimento Sustentável das Cidades – Brasil (IDSC-BR 2025), Instituto Cidades Sustentáveis — API cidadessustentaveis.org.br", "sourceDataset": "idsc-br", "placements": [{"section": "socialeconomic", "order": 0}]},
 ]
 database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
   filter: { _id: i._id }, update: { $set: i }, upsert: true,

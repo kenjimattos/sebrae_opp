@@ -9,7 +9,7 @@ const database = db
 // --- 1) Catálogo: EPP (2025) (base econômica / socialeconomic) ---
 // Receita Federal (Estabelecimentos) via data lake do Sebrae. SEM threshold.
 const indicators = [
-  {"_id": "epps", "label": "EPP (2025)", "updatedAt": "2025", "description": "Número de estabelecimentos ativos de Empresas de Pequeno Porte (EPP) no município (Receita Federal — estoque ativo, porte '03' no CNPJ).", "source": "Receita Federal — base de Estabelecimentos do CNPJ (situação cadastral, porte), via data lake do Sebrae — estoque de estabelecimentos ativos (situação '02'); porte de RF_EMPRESAS/RF_SIMPLES", "sourceDataset": "sebrae_rfb_estabelecimentos", "placements": [{"section": "socialeconomic", "order": 11}]},
+  {"_id": "epps", "label": "EPP (2025)", "referenceYear": "2025", "description": "Número de estabelecimentos ativos de Empresas de Pequeno Porte (EPP) no município (Receita Federal — estoque ativo, porte '03' no CNPJ).", "source": "Receita Federal — base de Estabelecimentos do CNPJ (situação cadastral, porte), via data lake do Sebrae — estoque de estabelecimentos ativos (situação '02'); porte de RF_EMPRESAS/RF_SIMPLES", "sourceDataset": "sebrae_rfb_estabelecimentos", "placements": [{"section": "socialeconomic", "order": 11}]},
 ]
 database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
   filter: { _id: i._id }, update: { $set: i }, upsert: true,

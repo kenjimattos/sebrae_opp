@@ -9,7 +9,7 @@ const database = db
 // --- 1) Catálogo: Remuneração média (2024) (base econômica) ---
 // Sem threshold: valor absoluto (R$/mês) não tem faixa oficial de semáforo.
 const indicators = [
-  {"_id": "remuneracao-media", "label": "Remuneração média (2024)", "updatedAt": "2024", "description": "Remuneração média mensal dos vínculos formais ativos em 31/12 — média nominal em reais (VL_REMUN_MEDIA_NOM da RAIS), sobre os vínculos com remuneração positiva. Fonte: RAIS (data lake do Sebrae).", "source": "RAIS — remuneração média mensal dos vínculos formais ativos em 31/12/2024 (VL_REMUN_MEDIA_NOM, R$) — base RAIS do Sebrae (acesso direto ao data lake)", "sourceDataset": "sebrae_rais", "placements": [{"section": "socialeconomic", "order": 6}]},
+  {"_id": "remuneracao-media", "label": "Remuneração média (2024)", "referenceYear": "2024", "description": "Remuneração média mensal dos vínculos formais ativos em 31/12 — média nominal em reais (VL_REMUN_MEDIA_NOM da RAIS), sobre os vínculos com remuneração positiva. Fonte: RAIS (data lake do Sebrae).", "source": "RAIS — remuneração média mensal dos vínculos formais ativos em 31/12/2024 (VL_REMUN_MEDIA_NOM, R$) — base RAIS do Sebrae (acesso direto ao data lake)", "sourceDataset": "sebrae_rais", "placements": [{"section": "socialeconomic", "order": 6}]},
 ]
 database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
   filter: { _id: i._id }, update: { $set: i }, upsert: true,

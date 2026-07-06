@@ -394,7 +394,7 @@ def build_indicator(ref):
         "_id": INDICATOR_ID,
         "label": LABEL,
         # sem `threshold`: valor absoluto (R$), sem faixa oficial do BNDES.
-        "updatedAt": str(ref),
+        "referenceYear": str(ref),
         "description": DESCRIPTION,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,

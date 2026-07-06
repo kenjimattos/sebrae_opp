@@ -61,7 +61,7 @@ INDICATORS = [
         "_id": "idh-m",
         "label": "IDH-M",
         "threshold": {"kind": "higher-better", "success": 0.7, "warning": 0.6},
-        "updatedAt": ANO_IDHM,
+        "referenceYear": ANO_IDHM,
         "description": DESC_IDHM,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,

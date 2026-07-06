@@ -162,7 +162,7 @@ def emit(values: list[dict]) -> None:
         "_id": INDICATOR_ID,
         "label": LABEL,
         # sem `threshold`: dado bruto sem faixa oficial -> sem classificação (semáforo).
-        "updatedAt": ANO,  # ano exibido por padrão
+        "referenceYear": ANO,  # ano exibido por padrão
         "description": DESCRIPTION,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,

@@ -54,7 +54,7 @@ INDICATORS = [
     {
         "_id": "pib-per-capita",
         "label": "PIB per capita (2023)",
-        "updatedAt": ANO_REF,
+        "referenceYear": ANO_REF,
         "description": DESC_PIB_PC,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,

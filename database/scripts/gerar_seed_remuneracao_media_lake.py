@@ -385,7 +385,7 @@ def build_indicator():
         "_id": INDICATOR_ID,
         "label": INDICATOR_LABEL,
         # sem `threshold`: valor absoluto (R$/mês) não tem faixa oficial de semáforo.
-        "updatedAt": ANO,
+        "referenceYear": ANO,
         "description": INDICATOR_DESC,
         "source": SOURCE.format(ano=ANO),
         "sourceDataset": SOURCE_DATASET,

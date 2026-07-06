@@ -187,7 +187,7 @@ def emit(values: list[dict], ref_year: str, janela_label: str) -> Path:
         "_id": INDICATOR_ID,
         "label": LABEL,
         # sem `threshold`: a fonte não publica faixa oficial p/ a pontuação combinada de alvará.
-        "updatedAt": ref_year,
+        "referenceYear": ref_year,
         "description": DESCRIPTION,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,

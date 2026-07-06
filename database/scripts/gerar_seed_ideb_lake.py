@@ -388,7 +388,7 @@ def build_indicator(serie_cfg):
         "_id": serie_cfg["indicatorId"],
         "label": serie_cfg["label"],
         # sem `threshold`: o INEP não publica faixa universal bom/ruim p/ o IDEB observado.
-        "updatedAt": str(REF_YEAR),
+        "referenceYear": str(REF_YEAR),
         "description": DESC(serie_cfg["etapa"]),
         "source": SOURCE.format(ano=REF_YEAR, rede=REDE, etapa=serie_cfg["etapa"]),
         "sourceDataset": SOURCE_DATASET,

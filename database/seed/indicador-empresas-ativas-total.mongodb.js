@@ -9,7 +9,7 @@ const database = db
 // --- 1) Catálogo: Empresas Ativas (2025) (base econômica / socialeconomic) ---
 // Receita Federal (Estabelecimentos) via data lake do Sebrae. SEM threshold.
 const indicators = [
-  {"_id": "empresas-ativas-total", "label": "Empresas Ativas (2025)", "updatedAt": "2025", "description": "Número de estabelecimentos com situação cadastral ativa no município (Receita Federal), todos os portes — card da base econômica. Mesmo estoque do indicador `empresas-ativas` da agenda Inclusão produtiva.", "source": "Receita Federal — base de Estabelecimentos do CNPJ (situação cadastral, porte), via data lake do Sebrae — estoque de estabelecimentos ativos (situação '02'); porte de RF_EMPRESAS/RF_SIMPLES", "sourceDataset": "sebrae_rfb_estabelecimentos", "placements": [{"section": "socialeconomic", "order": 7}]},
+  {"_id": "empresas-ativas-total", "label": "Empresas Ativas (2025)", "referenceYear": "2025", "description": "Número de estabelecimentos com situação cadastral ativa no município (Receita Federal), todos os portes — card da base econômica. Mesmo estoque do indicador `empresas-ativas` da agenda Inclusão produtiva.", "source": "Receita Federal — base de Estabelecimentos do CNPJ (situação cadastral, porte), via data lake do Sebrae — estoque de estabelecimentos ativos (situação '02'); porte de RF_EMPRESAS/RF_SIMPLES", "sourceDataset": "sebrae_rfb_estabelecimentos", "placements": [{"section": "socialeconomic", "order": 7}]},
 ]
 database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
   filter: { _id: i._id }, update: { $set: i }, upsert: true,

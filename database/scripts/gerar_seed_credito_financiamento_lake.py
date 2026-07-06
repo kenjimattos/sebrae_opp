@@ -397,7 +397,7 @@ def build_indicator(ref):
         "_id": INDICATOR_ID,
         "label": LABEL,
         # sem `threshold`: saldo absoluto (R$), sem faixa oficial do BCB.
-        "updatedAt": str(ref),
+        "referenceYear": str(ref),
         "description": DESCRIPTION,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,

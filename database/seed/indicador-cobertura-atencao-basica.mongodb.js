@@ -9,7 +9,7 @@ const database = db
 // --- 1) Catálogo: Cobertura da Atenção Básica (card do Panorama / base econômica) ---
 // Sem threshold: o MS não publica faixa oficial de semáforo para a cobertura.
 const indicators = [
-  {"_id": "cobertura-atencao-basica", "label": "Cobertura Atenção Básica na Saúde", "updatedAt": "2020", "description": "Proporção da população do município coberta por equipes de Atenção Básica (Atenção Primária à Saúde), numa escala de 0 a 100%. Mede o alcance da porta de entrada do SUS — quanto mais próximo de 100%, maior a parcela da população com acompanhamento de saúde da família/atenção básica.", "source": "Cobertura da Atenção Básica 2020 (média das 12 competências mensais), Ministério da Saúde — e-Gestor AB/SISAB — basedosdados br_ms_atencao_basica", "sourceDataset": "br_ms_atencao_basica", "placements": [{"section": "socialeconomic", "order": 2}]},
+  {"_id": "cobertura-atencao-basica", "label": "Cobertura Atenção Básica na Saúde", "referenceYear": "2020", "description": "Proporção da população do município coberta por equipes de Atenção Básica (Atenção Primária à Saúde), numa escala de 0 a 100%. Mede o alcance da porta de entrada do SUS — quanto mais próximo de 100%, maior a parcela da população com acompanhamento de saúde da família/atenção básica.", "source": "Cobertura da Atenção Básica 2020 (média das 12 competências mensais), Ministério da Saúde — e-Gestor AB/SISAB — basedosdados br_ms_atencao_basica", "sourceDataset": "br_ms_atencao_basica", "placements": [{"section": "socialeconomic", "order": 2}]},
 ]
 database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
   filter: { _id: i._id }, update: { $set: i }, upsert: true,

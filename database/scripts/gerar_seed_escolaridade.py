@@ -366,7 +366,7 @@ def build_indicator(indicador: dict) -> dict:
         "_id": indicador["id"],
         "label": indicador["label"],
         # sem `threshold`: dado bruto sem faixa oficial -> sem classificação.
-        "updatedAt": ANO,
+        "referenceYear": ANO,
         "description": indicador["description"],
         "source": SOURCE.format(ano=ANO),
         "sourceDataset": SOURCE_DATASET,

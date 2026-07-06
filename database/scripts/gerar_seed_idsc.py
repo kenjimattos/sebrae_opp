@@ -77,7 +77,7 @@ INDICATORS = [
     {
         "_id": "idsc",
         "label": "IDSC",
-        "updatedAt": ANO_IDSC,
+        "referenceYear": ANO_IDSC,
         "description": DESC_IDSC,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,

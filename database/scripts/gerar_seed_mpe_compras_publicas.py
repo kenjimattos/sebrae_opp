@@ -380,7 +380,7 @@ def emit(values: list[dict], ano: int) -> Path:
         "_id": INDICATOR_ID,
         "label": LABEL,
         # sem `threshold`: não há faixa oficial p/ participação MPE em compras (não inventamos cortes).
-        "updatedAt": str(ano),
+        "referenceYear": str(ano),
         "description": DESCRIPTION,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,
