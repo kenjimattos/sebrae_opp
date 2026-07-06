@@ -2,9 +2,9 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
-## [Unreleased] — branch `backend` (integração database ↔ new-design)
+## [1.0.0] — 2026-07-06
 
-Ponto de convergência entre a camada de dados/ETL (`database/`) e o redesign (`new-design`).
+**Primeiro release de produção da Plataforma OPP.** Ponto de convergência entre a camada de dados/ETL (`database/`) e o redesign (`new-design`), agora servido de ponta a ponta pela API de leitura sobre o MongoDB `DadosOPP`. Frontend e API (`server/`) versionados juntos em **1.0.0** — deploy único (Nginx serve o `dist/` e faz proxy de `/api/*` para o processo Node).
 
 ### Dados / Indicadores
 

@@ -1,6 +1,6 @@
 {
   "name": "opp-api",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "API de leitura da Plataforma OPP sobre o MongoDB DadosOPP",
   "type": "module",
