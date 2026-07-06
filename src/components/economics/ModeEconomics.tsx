@@ -22,7 +22,7 @@ export default function ModeEconomics() {
             value={item.value}
             variation={item.variation}
             tone={item.tone}
-            updatedAt={item.updatedAt}
+            referenceYear={item.referenceYear}
           />
         ))}
       </div>

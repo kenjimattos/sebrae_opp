@@ -10,7 +10,7 @@ interface EconomicBaseCardProps {
   value: string
   variation: string
   tone?: StatusType
-  updatedAt?: string
+  referenceYear?: string
   className?: string
 }
 
@@ -21,7 +21,7 @@ const variationColor: Record<StatusType, string> = {
   none: '',
 }
 
-export default function EconomicBaseCard({ id, label, value, variation, tone, updatedAt = '', className = '' }: EconomicBaseCardProps) {
+export default function EconomicBaseCard({ id, label, value, variation, tone, referenceYear = '', className = '' }: EconomicBaseCardProps) {
   const description = economicBaseDescriptions[id]
   const [expanded, setExpanded] = useState(false)
 
@@ -53,7 +53,7 @@ export default function EconomicBaseCard({ id, label, value, variation, tone, up
           />
         </div>
         <span className="typo-body-sm text-right align-self-end">
-          {updatedAt}
+          {referenceYear}
         </span>
     </main>
   )

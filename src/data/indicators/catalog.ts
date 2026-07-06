@@ -3,7 +3,10 @@ import type { Catalog } from '@/types/indicators'
 // `unit` = unidade/escala canônica de cada indicador, conforme
 // database/MAPEAMENTO_BASE_DOS_DADOS.md. Serve para exibição e para espelhar o
 // contrato da futura API. Os `id` estão alinhados a indicators._id do banco.
-// Ano de referência não vive aqui (no banco é indicatorValues.referenceYear).
+// `referenceYear` = ano a que o dado se refere (vintage), exibido no card. É
+// provisório aqui no catálogo: no banco vive por-valor (indicatorValues.referenceYear,
+// parte da chave/histórico) e virá de lá quando a API conectar. NÃO confundir com
+// updatedAt do banco (data de coleta/refresh — um timestamp, não o ano do dado).
 export const catalog: Catalog = {
   agendas: [
     {
@@ -68,17 +71,17 @@ export const catalog: Catalog = {
     },
   ],
   economicBase: [
-    { id: 'idsc', label: 'IDSC', updatedAt: '2023', unit: 'índice (0–100)' },
-    { id: 'idh-m', label: 'IDH-M', updatedAt: '2021', unit: 'índice (0–1)' },
-    { id: 'cobertura-atencao-basica', label: 'Cobertura Atenção Básica na Saúde', updatedAt: '2023', unit: '%' },
-    { id: 'ideb-anos-iniciais', label: 'IDEB - Anos Iniciais', updatedAt: '2023', unit: 'índice (0–10)' },
-    { id: 'ideb-anos-finais', label: 'IDEB - Anos Finais', updatedAt: '2023', unit: 'índice (0–10)' },
-    { id: 'gini', label: 'GINI', updatedAt: '2010', unit: 'índice (0–1)' },
-    { id: 'remuneracao-media', label: 'Remuneração média', updatedAt: '2024', unit: 'R$/mês' },
-    { id: 'empresas-ativas-total', label: 'Empresas Ativas', updatedAt: '2025', unit: 'empresas' },
-    { id: 'pib-per-capita', label: 'PIB per capita', updatedAt: '2021', unit: 'R$' },
-    { id: 'meis', label: 'MEI', updatedAt: '2025', unit: 'empresas' },
-    { id: 'mes', label: 'ME', updatedAt: '2025', unit: 'empresas' },
-    { id: 'epps', label: 'EPP', updatedAt: '2025', unit: 'empresas' },
+    { id: 'idsc', label: 'IDSC', referenceYear: '2023', unit: 'índice (0–100)' },
+    { id: 'idh-m', label: 'IDH-M', referenceYear: '2021', unit: 'índice (0–1)' },
+    { id: 'cobertura-atencao-basica', label: 'Cobertura Atenção Básica na Saúde', referenceYear: '2023', unit: '%' },
+    { id: 'ideb-anos-iniciais', label: 'IDEB - Anos Iniciais', referenceYear: '2023', unit: 'índice (0–10)' },
+    { id: 'ideb-anos-finais', label: 'IDEB - Anos Finais', referenceYear: '2023', unit: 'índice (0–10)' },
+    { id: 'gini', label: 'GINI', referenceYear: '2010', unit: 'índice (0–1)' },
+    { id: 'remuneracao-media', label: 'Remuneração média', referenceYear: '2024', unit: 'R$/mês' },
+    { id: 'empresas-ativas-total', label: 'Empresas Ativas', referenceYear: '2025', unit: 'empresas' },
+    { id: 'pib-per-capita', label: 'PIB per capita', referenceYear: '2021', unit: 'R$' },
+    { id: 'meis', label: 'MEI', referenceYear: '2025', unit: 'empresas' },
+    { id: 'mes', label: 'ME', referenceYear: '2025', unit: 'empresas' },
+    { id: 'epps', label: 'EPP', referenceYear: '2025', unit: 'empresas' },
   ],
 }

@@ -24,7 +24,7 @@ export interface EconomicBaseItem {
   value: string
   variation: string
   tone?: StatusType
-  updatedAt: string
+  referenceYear: string
 }
 
 export interface IndicatorsData {
@@ -51,7 +51,7 @@ export interface CatalogAgenda {
 export interface CatalogEconomicBase {
   id: string
   label: string
-  updatedAt: string
+  referenceYear: string
   unit?: string
 }
 
