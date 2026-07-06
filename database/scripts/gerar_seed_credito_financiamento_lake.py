@@ -401,6 +401,7 @@ def build_indicator(ref):
         "description": DESCRIPTION,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,
+        "unit": "R$",
         "placements": [{"section": "agenda", "agendaId": AGENDA, "order": ORDER}],
     }
 

@@ -65,6 +65,7 @@ INDICATORS = [
         "description": DESC_IDHM,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,
+        "unit": "índice (0–1)",
         "placements": [
             # order 2 na governanca: o IGM-CFA ocupa a posição 1 (espelha catalog.ts)
             {"section": "agenda", "agendaId": "governanca", "order": 2},

@@ -169,6 +169,7 @@ ANO_MIN_SERIE = 2016  # série anual de aberturas guardada no breakdown do cresc
 # `agendaId`/`source`/`sourceDataset` opcionais por indicador (default = AGENDA/SOURCE/SOURCE_DATASET).
 IND_ABERTOS = {
     "id": "negocios-abertos", "order": 1, "agendaId": "inclusao",
+    "unit": "empresas",
     "label": "Pequenos negócios abertos",
     "description": (
         "Número de estabelecimentos de pequeno porte (ME e EPP, incluindo MEI) abertos no "
@@ -178,6 +179,7 @@ IND_ABERTOS = {
 }
 IND_ATIVAS = {
     "id": "empresas-ativas", "order": 2, "agendaId": "inclusao",
+    "unit": "empresas",
     "label": "Empresas ativas",
     "description": (
         "Número de estabelecimentos com situação cadastral ativa no município (Receita Federal). "
@@ -186,6 +188,7 @@ IND_ATIVAS = {
 }
 IND_EXTINTOS = {
     "id": "negocios-extintos", "order": 3, "agendaId": "inclusao",
+    "unit": "empresas",
     "label": "Pequenos negócios extintos",
     "description": (
         "Número de estabelecimentos de pequeno porte (ME e EPP, incluindo MEI) baixados no "
@@ -195,6 +198,7 @@ IND_EXTINTOS = {
 }
 IND_CRESCIMENTO = {
     "id": "mpe-eli-sebrae", "order": 3, "agendaId": "inovacao",
+    "unit": "% a.a.",
     "label": "Crescimento de MPE formalizadas no município (var. % a.a.)",
     "description": (
         "Variação percentual anual no número de micro e pequenas empresas (MEI+ME+EPP) "
@@ -220,6 +224,7 @@ SOURCE_ESTOQUE = (
 )
 IND_ATIVAS_TOTAL = {
     "id": "empresas-ativas-total", "label": "Empresas Ativas ({ano})",
+    "unit": "empresas",
     "placement": {"section": "socialeconomic", "order": 7},
     "description": (
         "Número de estabelecimentos com situação cadastral ativa no município (Receita Federal), "
@@ -230,6 +235,7 @@ IND_ATIVAS_TOTAL = {
 }
 IND_MEI = {
     "id": "meis", "label": "MEI ({ano})", "porteKey": "mei", "porteLabel": "MEI",
+    "unit": "empresas",
     "placement": {"section": "socialeconomic", "order": 9},
     "description": (
         "Número de estabelecimentos ativos de Microempreendedores Individuais (MEI) no município "
@@ -239,6 +245,7 @@ IND_MEI = {
 }
 IND_ME = {
     "id": "mes", "label": "ME ({ano})", "porteKey": "me", "porteLabel": "ME",
+    "unit": "empresas",
     "placement": {"section": "socialeconomic", "order": 10},
     "description": (
         "Número de estabelecimentos ativos de Microempresas (ME, exclui MEI) no município "
@@ -248,6 +255,7 @@ IND_ME = {
 }
 IND_EPP = {
     "id": "epps", "label": "EPP ({ano})", "porteKey": "epp", "porteLabel": "EPP",
+    "unit": "empresas",
     "placement": {"section": "socialeconomic", "order": 11},
     "description": (
         "Número de estabelecimentos ativos de Empresas de Pequeno Porte (EPP) no município "
@@ -943,6 +951,7 @@ def build_indicator(indicador, ano):
         "label": indicador["label"].replace("{ano}", str(ano)),
         # sem `threshold`: contagem bruta / variação sem faixa oficial -> sem semáforo.
         "referenceYear": str(ano),
+        "unit": indicador["unit"],
         "description": indicador["description"],
         "source": indicador.get("source", SOURCE),
         "sourceDataset": indicador.get("sourceDataset", SOURCE_DATASET),

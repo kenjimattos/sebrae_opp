@@ -396,6 +396,7 @@ def build_indicator(indicador, ref_year):
         "description": indicador["description"],
         "source": SOURCE_BASE,
         "sourceDataset": SOURCE_DATASET,
+        "unit": "h",
         "placements": [{"section": "agenda", "agendaId": AGENDA_ID, "order": indicador["order"]}],
     }
 

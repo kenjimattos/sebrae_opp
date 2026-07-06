@@ -654,6 +654,7 @@ def build_indicator(ano: int) -> dict:
         "description": DESCRIPTION,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,
+        "unit": "%",
         "placements": [{"section": "agenda", "agendaId": AGENDA, "order": ORDER}],
     }
 

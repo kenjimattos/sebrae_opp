@@ -312,6 +312,7 @@ def emit(values: list[dict], ref_year: str, janela_label: str) -> Path:
         "description": DESCRIPTION,
         "source": SOURCE_BASE,
         "sourceDataset": SOURCE_DATASET,
+        "unit": "h",
         "placements": [{"section": "agenda", "agendaId": "simplificacao", "order": ORDER}],
     }
     lines = [HEADER, ""]

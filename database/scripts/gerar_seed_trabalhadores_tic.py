@@ -181,6 +181,7 @@ def emit(values: list[dict]) -> None:
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,
         # segundo indicador da agenda Inovação (espelha catalog.ts).
+        "unit": "%",
         "placements": [{"section": "agenda", "agendaId": "inovacao", "order": 2}],
     }
     lines = [HEADER, "", "// --- 1) Catálogo: o indicador Trabalhadores em economia criativa/inovação/TIC (agenda inovacao) ---"]

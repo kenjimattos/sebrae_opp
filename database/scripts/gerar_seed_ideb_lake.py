@@ -392,6 +392,7 @@ def build_indicator(serie_cfg):
         "description": DESC(serie_cfg["etapa"]),
         "source": SOURCE.format(ano=REF_YEAR, rede=REDE, etapa=serie_cfg["etapa"]),
         "sourceDataset": SOURCE_DATASET,
+        "unit": "índice (0–10)",
         "placements": [{"section": "socialeconomic", "order": serie_cfg["order"]}],
     }
 

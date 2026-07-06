@@ -8,7 +8,7 @@ const database = db
 // threshold = faixas OFICIAIS da Redesim (🟢≤72h · 🟡🟠 72–168h · 🔴>168h)
 // no semáforo de 3 níveis da OPP. numericValue = marco de 75% (horas úteis).
 const indicators = [
-  {"_id": "tempo-viabilidade", "label": "Tempo de viabilidade da empresa — marco 75% (h)", "threshold": {"kind": "lower-better", "success": 72, "warning": 168}, "referenceYear": "2025", "description": "Tempo da etapa de viabilidade (pesquisa prévia de nome e endereço), em horas úteis, no marco de 75% dos processos (metodologia oficial da Redesim).", "source": "Redesim — microdados de solicitações de abertura (data lake do Sebrae, base REDESIM)", "sourceDataset": "sebrae_redesim", "placements": [{"section": "agenda", "agendaId": "simplificacao", "order": 1}]},
+  {"_id": "tempo-viabilidade", "label": "Tempo de viabilidade da empresa — marco 75% (h)", "threshold": {"kind": "lower-better", "success": 72, "warning": 168}, "referenceYear": "2025", "unit": "h", "description": "Tempo da etapa de viabilidade (pesquisa prévia de nome e endereço), em horas úteis, no marco de 75% dos processos (metodologia oficial da Redesim).", "source": "Redesim — microdados de solicitações de abertura (data lake do Sebrae, base REDESIM)", "sourceDataset": "sebrae_redesim", "placements": [{"section": "agenda", "agendaId": "simplificacao", "order": 1}]},
 ]
 database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
   filter: { _id: i._id }, update: { $set: i }, upsert: true,

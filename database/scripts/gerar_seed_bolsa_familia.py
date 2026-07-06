@@ -261,6 +261,7 @@ def emit(values, ref_year):
         "description": DESCRIPTION,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,
+        "unit": "% a.a.",
         "placements": [{"section": "agenda", "agendaId": "inclusao", "order": ORDER}],
     }
     lines = [HEADER, ""]

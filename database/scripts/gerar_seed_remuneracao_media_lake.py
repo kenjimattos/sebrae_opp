@@ -389,6 +389,7 @@ def build_indicator():
         "description": INDICATOR_DESC,
         "source": SOURCE.format(ano=ANO),
         "sourceDataset": SOURCE_DATASET,
+        "unit": "R$/mês",
         "placements": PLACEMENT,
     }
 

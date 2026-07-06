@@ -9,7 +9,7 @@ const database = db
 // --- 1) Catálogo: o indicador PIB per capita (base econômica) ---
 // Sem threshold: valor absoluto (R$/hab) não tem faixa oficial de semáforo.
 const indicators = [
-  {"_id": "pib-per-capita", "label": "PIB per capita (2023)", "referenceYear": "2023", "description": "Produto Interno Bruto per capita — razão entre o PIB municipal a preços correntes e a população residente estimada, em reais por habitante. Fonte: IBGE, Contas Regionais.", "source": "IBGE, Produto Interno Bruto dos Municípios (Contas Regionais) — basedosdados br_ibge_pib × br_ibge_populacao", "sourceDataset": "br_ibge_pib", "placements": [{"section": "socialeconomic", "order": 8}]},
+  {"_id": "pib-per-capita", "label": "PIB per capita (2023)", "referenceYear": "2023", "unit": "R$", "description": "Produto Interno Bruto per capita — razão entre o PIB municipal a preços correntes e a população residente estimada, em reais por habitante. Fonte: IBGE, Contas Regionais.", "source": "IBGE, Produto Interno Bruto dos Municípios (Contas Regionais) — basedosdados br_ibge_pib × br_ibge_populacao", "sourceDataset": "br_ibge_pib", "placements": [{"section": "socialeconomic", "order": 8}]},
 ]
 database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
   filter: { _id: i._id }, update: { $set: i }, upsert: true,

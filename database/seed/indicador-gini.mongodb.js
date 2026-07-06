@@ -9,7 +9,7 @@ const database = db
 // --- 1) Catálogo: o indicador GINI (base econômica) ---
 // Sem threshold: o Gini não tem faixa oficial de semáforo.
 const indicators = [
-  {"_id": "gini", "label": "GINI (2010)", "referenceYear": "2010", "description": "Índice de Gini da renda domiciliar per capita — mede a desigualdade na distribuição de renda numa escala de 0 (igualdade perfeita) a 1 (desigualdade máxima). Fonte: Atlas do Desenvolvimento Humano (Censo 2010).", "source": "Atlas do Desenvolvimento Humano (PNUD/Ipea/FJP), Censo 2010 — basedosdados mundo_onu_adh", "sourceDataset": "mundo_onu_adh", "placements": [{"section": "socialeconomic", "order": 5}]},
+  {"_id": "gini", "label": "GINI (2010)", "referenceYear": "2010", "unit": "índice (0–1)", "description": "Índice de Gini da renda domiciliar per capita — mede a desigualdade na distribuição de renda numa escala de 0 (igualdade perfeita) a 1 (desigualdade máxima). Fonte: Atlas do Desenvolvimento Humano (Censo 2010).", "source": "Atlas do Desenvolvimento Humano (PNUD/Ipea/FJP), Censo 2010 — basedosdados mundo_onu_adh", "sourceDataset": "mundo_onu_adh", "placements": [{"section": "socialeconomic", "order": 5}]},
 ]
 database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
   filter: { _id: i._id }, update: { $set: i }, upsert: true,

@@ -370,6 +370,7 @@ def build_indicator(indicador: dict) -> dict:
         "description": indicador["description"],
         "source": SOURCE.format(ano=ANO),
         "sourceDataset": SOURCE_DATASET,
+        "unit": "vínculos",
         "placements": [{"section": "agenda", "agendaId": AGENDA_ID, "order": indicador["agenda_order"]}],
     }
 

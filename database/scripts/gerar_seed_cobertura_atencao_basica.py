@@ -74,6 +74,7 @@ INDICATORS = [
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,
         # sem threshold: o MS não publica faixa oficial de semáforo para a cobertura.
+        "unit": "%",
         "placements": [
             {"section": "socialeconomic", "order": 2},
         ],

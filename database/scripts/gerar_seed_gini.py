@@ -59,6 +59,7 @@ INDICATORS = [
         "description": DESC_GINI,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,
+        "unit": "índice (0–1)",
         "placements": [{"section": "socialeconomic", "order": 5}],
     },
 ]

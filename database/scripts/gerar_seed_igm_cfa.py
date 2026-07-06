@@ -236,6 +236,7 @@ def emit(recs: list[dict]) -> None:
         "description": DESCRIPTION,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,
+        "unit": "índice (0–10)",
         "placements": [{"section": "agenda", "agendaId": "governanca", "order": 1}],
     }
     lines = [HEADER, "", "// --- 1) Catálogo: o indicador IGM-CFA (agenda governanca) ---"]

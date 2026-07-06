@@ -82,6 +82,7 @@ INDICATORS = [
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,
         # sem threshold: índice composto não tem faixa oficial de semáforo.
+        "unit": "índice (0–100)",
         "placements": [
             {"section": "socialeconomic", "order": 0},
         ],

@@ -58,6 +58,7 @@ INDICATORS = [
         "description": DESC_PIB_PC,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,
+        "unit": "R$",
         "placements": [{"section": "socialeconomic", "order": 8}],
     },
 ]

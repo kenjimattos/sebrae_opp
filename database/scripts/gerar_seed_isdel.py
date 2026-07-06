@@ -181,6 +181,7 @@ def emit(spec: dict, values: list[dict], anos: list[str]) -> Path:
     if spec["threshold"] is not None:
         indicator["threshold"] = spec["threshold"]
     indicator["referenceYear"] = spec["default_year"]
+    indicator["unit"] = "índice (0–1)"
     indicator["description"] = spec["description"]
     indicator["source"] = spec["source"]
     indicator["sourceDataset"] = SOURCE_DATASET

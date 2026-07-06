@@ -251,6 +251,7 @@ def emit(values: list[dict], ref_year: int) -> Path:
         "description": DESCRIPTION,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,
+        "unit": "% a.a.",
         "placements": [{"section": "agenda", "agendaId": "inovacao", "order": ORDER}],
     }
     lines = [HEADER, ""]

@@ -8,7 +8,7 @@ const database = db
 
 // --- 1) Catálogo: Trabalhadores formais com Ensino Superior Completo (agenda educacao) ---
 const indicators = [
-  {"_id": "trabalhadores-superior-completo", "label": "Trabalhadores formais com Ensino Superior Completo", "referenceYear": "2024", "description": "Número de trabalhadores com vínculo formal ativo em 31/12 cujo grau de instrução é Ensino Superior Completo (RAIS). Mestrado e doutorado ficam no breakdown, fora da contagem estrita de 'superior completo'.", "source": "RAIS — vínculos formais ativos em 31/12/2024, por grau de instrução (layout 'Escolaridade após 2005') — base RAIS do Sebrae (acesso direto)", "sourceDataset": "sebrae_rais", "placements": [{"section": "agenda", "agendaId": "educacao", "order": 3}]},
+  {"_id": "trabalhadores-superior-completo", "label": "Trabalhadores formais com Ensino Superior Completo", "referenceYear": "2024", "unit": "vínculos", "description": "Número de trabalhadores com vínculo formal ativo em 31/12 cujo grau de instrução é Ensino Superior Completo (RAIS). Mestrado e doutorado ficam no breakdown, fora da contagem estrita de 'superior completo'.", "source": "RAIS — vínculos formais ativos em 31/12/2024, por grau de instrução (layout 'Escolaridade após 2005') — base RAIS do Sebrae (acesso direto)", "sourceDataset": "sebrae_rais", "placements": [{"section": "agenda", "agendaId": "educacao", "order": 3}]},
 ]
 database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
   filter: { _id: i._id }, update: { $set: i }, upsert: true,

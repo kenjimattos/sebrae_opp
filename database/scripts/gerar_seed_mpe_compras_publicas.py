@@ -384,6 +384,7 @@ def emit(values: list[dict], ano: int) -> Path:
         "description": DESCRIPTION,
         "source": SOURCE,
         "sourceDataset": SOURCE_DATASET,
+        "unit": "%",
         "placements": [{"section": "agenda", "agendaId": AGENDA, "order": ORDER}],
     }
     lines = [HEADER, ""]
