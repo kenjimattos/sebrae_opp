@@ -11,6 +11,13 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // Em dev, encaminha /api/* para a API Node (server/, porta 3000). Em produção
+  // o Nginx faz esse proxy.
+  server: {
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',
