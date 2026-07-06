@@ -77,6 +77,14 @@ nesta ordem (cada um imprime um resumo ao final):
 
 Todos são **idempotentes** (usam `upsert`): rodar de novo atualiza, não duplica.
 
+> **Atualizando um banco já povoado** (ex: após o fechamento do schema
+> `updatedAt` → `referenceYear` + `unit`): re-rode `setup.mongodb.js` (atualiza os
+> validators) e os seeds (re-aplicam os docs de indicador com `referenceYear` +
+> `unit`). Depois rode **`scripts/migrar_indicators_updatedAt.mongodb.js`** uma vez
+> para remover o `updatedAt` string-ano legado que sobra nos docs de indicador (o
+> `$set` do upsert não apaga campos). A migração mexe **só** em `indicators` e
+> preserva o `updatedAt` (Date) dos valores. Nenhum dado de valor é alterado.
+
 > Por padrão os scripts operam no banco atualmente selecionado (`const database = db`).
 > Para mirar um banco com nome fixo, troque essa linha por `const database = db.getSiblingDB('opp')`.
 
