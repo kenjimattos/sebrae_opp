@@ -3,7 +3,7 @@
 Guia de desenvolvimento para a Plataforma OPP (Observatório de Políticas Públicas).
 Leia este arquivo inteiro antes de começar qualquer tarefa.
 
-> **Status atual:** Protótipo funcional com Hero + 8 seções implementadas, mapa interativo da Paraíba, estado global por município, e dados para 8 municípios (João Pessoa, Campina Grande, Queimadas, Conde, Caaporã, Pitimbu, Monteiro, Cabaceiras). Viewport desktop 1440px. Dark mode configurado via tokens mas sem toggle na UI. **Rota `/formulador` implementada** — fluxo em 10 etapas + tela de conclusão com exportação PDF, persistência por município em `localStorage`. **Páginas `/trilhas`, `/oportunidades` e `/comunidade` implementadas.** **Microsoft Clarity** integrado (opt-in LGPD, apenas build de produção) com 13 eventos customizados para o teste moderado com usuários.
+> **Status atual (1.0.0 em produção):** Redesign "Jornada do Município Empreendedor" no ar no servidor Sebrae (`10.1.100.99`), servido pelo Nginx com a API de leitura (`server/`) sobre o MongoDB `DadosOPP`. A Home tem uma `SideNav` com **4 pilares** (Ambiente de negócio, Mapeamento de recursos, Cursos e boas práticas, Formulador de projetos); cada pilar alterna **modos de visualização** via `ModeToggle`. Todos os dados de indicadores vêm da **API** (`/api/*`) — **223 municípios da PB**, default Campina Grande. O **Formulador** virou um modo (`ModeFormulator`), não mais uma rota. Rotas: `/` (Login), `/home`, `/trilhas`, `/oportunidades`. Viewport desktop 1440px. Dark mode via tokens, sem toggle na UI. **Microsoft Clarity** integrado (opt-in LGPD, apenas build de produção).
 
 ---
 
@@ -14,12 +14,11 @@ Leia este arquivo inteiro antes de começar qualquer tarefa.
 | Framework | React 19 + Vite 8 |
 | Linguagem | TypeScript 6 |
 | Estilização | Tailwind CSS v3 + CSS Variables (design tokens) |
-| Mapa | Leaflet + React Leaflet + GeoJSON da Paraíba (IBGE) |
 | Roteamento | React Router v7 |
-| Testes | Vitest + React Testing Library + jsdom |
+| Mapa | SVG custom gerado do GeoJSON da Paraíba (IBGE) — `ParaibaOutlineMap`, sem lib de mapa |
+| Backend | API de leitura Node/Fastify (`server/`) sobre MongoDB `DadosOPP` |
 | Analytics | Microsoft Clarity (`@microsoft/clarity`) — opt-in LGPD, só em produção |
-| Deploy (protótipo) | Vercel |
-| Deploy (produção) | Servidor Sebrae — build estático servido via Nginx/Apache |
+| Deploy (produção) | Servidor Sebrae `10.1.100.99` — Nginx serve o `dist/` + proxy `/api/*` para o processo Node |
 
 **Não usamos Shadcn/ui.** Componentes vêm do Figma; o que faltar é feito com Tailwind puro.
 
@@ -32,7 +31,7 @@ Leia este arquivo inteiro antes de começar qualquer tarefa.
 
 O frontend gera um **build estático** (`vite build` → pasta `dist/`). A partir da fase de backend existe também uma **API de leitura** (`server/`, Node/Fastify) que lê o MongoDB `DadosOPP` e alimenta o frontend via `fetch('/api/...')`. Em produção o Nginx serve o `dist/` **e** faz proxy de `/api/*` para o processo Node (ver [Backend / API](#backend--api)). Os TS/JSON estáticos de dados de indicadores foram removidos — os dados vêm do banco.
 
-> **Nota:** `react-simple-maps@3` + `prop-types` requerem `npm install --legacy-peer-deps` com React 19.
+> **Nota:** instalar o frontend com `npm install --legacy-peer-deps` (conflitos de peer deps com React 19). O mapa **não** usa mais `react-simple-maps`/Leaflet — é SVG puro a partir do GeoJSON.
 
 ---
 
@@ -67,52 +66,47 @@ UI:       .typo-button-lg | .typo-button | .typo-button-sm
 
 ---
 
-## Mapa Interativo da Paraíba
+## Mapa da Paraíba (`ParaibaOutlineMap`)
 
-O mapa fica dentro de `SectionPanorama`. Implementado com React Simple Maps + `ZoomableGroup`.
+SVG desenhado **na mão** a partir do GeoJSON — sem lib de mapa. O componente
+(`src/components/map/ParaibaOutlineMap.tsx`) projeta lon/lat num viewBox e emite um `<path>`
+por município. Usado dentro de `SectionAgendas`.
 
-**Comportamento atual:**
-- Mapa é somente visualização — **não altera** o município global ao clicar
-- Dropdown seleciona o indicador exibido (IDHM, PIB per capita, urbanização, Gini)
-- Municípios coloridos por gradiente **vermelho → amarelo → verde** baseado no desempenho
-- Município selecionado (global) destacado em **azul** com borda mais grossa
-- **Hover** mostra tooltip com nome + valor do indicador
-- **Scroll** para zoom in/out, arrastar para pan
-- Dados em `src/data/indicadores/mapa.ts` (12 municípios com dados, demais ficam cinza)
+**Comportamento:**
+- **Clicar num município troca a seleção global** (`onSelect` → `setMunicipality(id, name, 'map')`). É a porta de entrada quando ainda não há município selecionado ("ou clique no mapa").
+- **Hover** destaca o município (fill/stroke de acento) e mostra tooltip com o nome, posicionado pelo cursor.
+- Município selecionado fica com `selectedFillColor`/stroke de acento.
+- Props opcionais: `values?` (`Record<IBGE, número 0–1>`) para colorir por indicador, `onHover`, cores customizáveis (`fillColor`, `hoverFillColor`, etc.).
 
-**GeoJSON fonte:** `https://raw.githubusercontent.com/tbrugz/geodata-br/master/geojson/geojs-25-mun.json`
+**GeoJSON fonte:** `src/data/geo/paraiba.json` (IBGE) — carregado estático (não é dado de indicador; geometria é editorial).
 
 ---
 
 ## Riscos Estratégicos (dinâmico)
 
-A seção de riscos **não usa dados estáticos**. Ela extrai automaticamente os indicadores com status `alert` e `warning` das agendas do município selecionado:
+O modo Riscos (`ModeRisks`) **não usa dados estáticos**. Ele extrai automaticamente os indicadores com status `alert` e `warning` das agendas do município selecionado (lógica em `src/utils/risks.ts`):
 
 1. Filtra indicadores com `status === 'alert'` ou `'warning'`
 2. Prioriza alertas sobre atenções
-3. Exibe os top 3 como cards (grid 3 colunas)
+3. Exibe os top como cards (`RisksCard`)
 4. Cada card mostra: label + valor, descrição do risco, contexto
 
-As descrições e contextos de risco estão em `src/data/indicadores/descricoes/riscos.ts` (chave = label do indicador). No futuro, esses textos serão gerados por LLM.
+As descrições e contextos de risco estão em `src/data/indicators/descriptions/risks.ts` (chave = label do indicador). No futuro, esses textos serão gerados por LLM.
 
 ---
 
 ## Formulador de Projetos
 
-Rota `/formulador` com fluxo em 10 etapas + conclusão. Layout 3 colunas:
+É o **modo `ModeFormulator`** do pilar "Formulador de projetos" da Jornada (não é mais uma rota). Fluxo em 10 etapas + revisão, num layout de colunas:
 
-- **Esquerda:** `<ProjectSteps>` — sidebar com as 10 etapas. Cada `<StepIndicator>` deriva status (`unchecked`/`current`/`checked`) de `currentSlug` + `etapasVisitadas`.
-- **Centro:** `<FormCard>` — título + subtítulo da etapa + form (`<StepForm slug={…} />`) + footer (Anterior/Próxima/Finalizar).
-- **Direita:** `<AIAssistant>` — painel cinza com descrição, exemplos, 4 botões pílula (no-op v1).
+- **Esquerda:** `<FormulatorProjectSteps>` — sidebar com as 10 etapas. Cada `<FormulatorStepIndicator>` deriva status (`unchecked`/`current`/`checked`) de `currentSlug` + etapas visitadas.
+- **Centro:** `<FormulatorForm>` — título + subtítulo da etapa + form (`<StepForm slug={…} />`) + footer (Anterior/Próxima/Finalizar). `<FormulatorProgress>` mostra o avanço.
+- **Direita:** `<AIAssistant>` — painel com descrição, exemplos e botões pílula (no-op v1).
+- **Revisão:** `<FormulatorReview>` — tela final com cards resumo (sem AIAssistant).
 
-**Rotas:**
-- `/formulador` → redireciona para `/formulador/identificacao` (index route)
-- `/formulador/:stepSlug` → `<FormulatorStep>` dispatcha para um dos 10 forms
-- `/formulador/conclusao` → `<FormulatorConclusion>` (sem AIAssistant; com cards resumo)
+**Estado:** `FormulatorContext` via `FormulatorProvider` (envolve o App). Um rascunho por município em `localStorage` (`formulator:${municipalityId}`). Troca de município recarrega o rascunho correspondente. Forma do estado em `src/types/formulator.ts` (`FormulatorState` + `EMPTY_FORMULATOR_STATE`).
 
-**Estado:** `FormulatorContext` via `FormulatorProvider` (envolve o App). Um rascunho por município em `localStorage` (`formulator:${municipalityId}`). Troca de município recarrega o rascunho correspondente via render-phase state update. Forma do estado em `src/types/formulator.ts` (`FormulatorState` + `EMPTY_FORMULATOR_STATE`).
-
-**Fonte de verdade das etapas:** `src/data/formulator/steps.ts` — array de `{ slug, label, name, title, subtitle }` consumido pela sidebar, progress e FormCard. Helpers `findStepBySlug`, `findStepIndex`.
+**Fonte de verdade das etapas:** `src/data/formulator/steps.ts` — array de `{ slug, label, name, title, subtitle }` consumido pela sidebar, progress e form. Helpers `findStepBySlug`, `findStepIndex`.
 
 **"Etapa concluída" é heurística:** uma etapa é marcada como `checked` quando o usuário clica Próxima/Finalizar (via `markVisited(slug)`). Não há validação de campos preenchidos na v1.
 
@@ -131,12 +125,13 @@ Camada de instrumentação client-side para **teste moderado com 10 participante
 
 **Variável de ambiente:** `VITE_CLARITY_ID` (ver `.env.example`). Deixada em branco em dev/preview. `.env` está no `.gitignore`.
 
-**Eventos customizados (13):**
-- Navegação: `pagina_visitada`, `hero_bloco_clicado`, `nav_header_clicado`
+**Eventos customizados (9 disparando hoje):**
+- Navegação: `pagina_visitada`, `nav_header_clicado`
 - Município: `municipio_alterado` (+ `setTag('municipio')` pra filtrar gravações)
-- Mapa: `mapa_ativado`, `indicador_mapa_alterado`
-- Formulador: `formulador_iniciado`, `formulador_step_visitado`, `formulador_step_concluido` (com `tempo_ms`), `formulador_abandonado`, `formulador_concluido`
+- Formulador: `formulador_iniciado`, `formulador_step_visitado`, `formulador_step_concluido` (com `tempo_ms`), `formulador_concluido`
 - Descoberta: `tooltip_aberto` (dedupe por instância), `cta_externo_clicado`
+
+> O wrapper `analytics.ts` ainda aceita qualquer nome de evento; os do design antigo (`hero_bloco_clicado`, `mapa_ativado`, `indicador_mapa_alterado`, `formulador_abandonado`) saíram no redesign e podem ser religados se as telas voltarem a precisar.
 
 **Regras ao instrumentar novo evento:**
 - Nome sempre em `snake_case`, em português. Props em `snake_case` também.
@@ -144,7 +139,7 @@ Camada de instrumentação client-side para **teste moderado com 10 participante
 - Se o evento puder disparar em hover/scroll, **dedupe por instância** (ver padrão em tooltip).
 - Não logar PII. `?participante=XX` é pseudonimizado (número sorteado para o teste).
 
-**Replay na Vercel:** o replay do Clarity carrega CSS/JS do site num iframe em `clarity.microsoft.com`. `vercel.json` precisa servir `/assets/*` com `Access-Control-Allow-Origin: *`, senão as gravações renderizam sem estilo.
+**Replay (CORS dos assets):** o replay do Clarity carrega CSS/JS do site num iframe em `clarity.microsoft.com`. Em produção o Nginx precisa servir `location /assets/` com `Access-Control-Allow-Origin: *` (já configurado no server block — ver README), senão as gravações renderizam sem estilo.
 
 ---
 
@@ -173,15 +168,15 @@ Toda a estrutura de dados está em `src/data/` e `src/types/indicators.ts`, orga
 |---|---|
 | `indicators/catalog.ts` | Labels/ícones/unidades usados pelos `descriptions/*` (o banco é a fonte de verdade da estrutura e dos valores — via API) |
 | `indicators/descriptions/*.ts` | Conteúdo de InfoTooltip (agendas, economic-base, indicators, risks) — futuro: LLM |
-| `indicators/status-labels.ts` | `StatusType` → texto. `statusLabels` (Bom/Atenção/Alerta) + `statusLabelsPanorama` (usa "Crítico") |
-| `home/sections.ts` | Títulos, descrições e labels de seção (inclui `agendas.statsLabel`, `panorama.labels.*`) |
-| `home/{training,case-studies,economics,resources,formulator,ai-assistant}.ts` | Conteúdo das seções da home |
+| `indicators/status-labels.ts` | `StatusType` → texto (`statusLabels`: Bom/Atenção/Alerta + `none` "Sem classificação") |
+| `home/sections.ts` | Títulos e subtítulos: os **4 pilares da Jornada** (`jornadas`), Hero e headers de cada modo |
+| `home/{training,case-studies,economics,resources,economic-base}.ts` | Conteúdo dos modos da home |
 | `formulator/steps.ts` | Fonte de verdade das 10 etapas do formulador |
 | `formulator/ai-assistant.ts` | Conteúdo do AIAssistant por etapa |
-| `geo/paraiba.json` | GeoJSON da Paraíba (IBGE) — 386kb |
+| `geo/paraiba.json` | GeoJSON da Paraíba (IBGE) |
 | `layout.ts` | navLinks, footerColumns, brandText, copyright |
 
-**Interfaces:** ver `src/types/indicators.ts` para `IndicatorsData`, `Agenda`, `Indicator`, `EconomicBaseItem`, `Panorama`, etc.
+**Interfaces:** ver `src/types/indicators.ts` para `IndicatorsData`, `Agenda`, `Indicator`, `IndicatorThreshold`, `EconomicBaseItem`, etc.
 
 **Regra:** os dados de indicadores (agendas, valores, base econômica, lista de municípios) vêm da **API** (`src/data/api.ts` → `server/`), não de arquivos estáticos. Conteúdo editorial (descrições, textos de seção, etapas do formulador) continua em `src/data/`.
 
@@ -209,10 +204,8 @@ API de **leitura** sobre o MongoDB `DadosOPP`, em `server/` (Node ≥20 + **Fast
 ## Regras de Desenvolvimento
 
 ### Testes
-- **62 testes** cobrindo smoke tests (9 seções + 27 componentes) e snapshot tests (19 componentes)
-- Rodar `npm run test:run` antes de commitar
-- Se mudanças CSS intencionais quebrarem snapshots: revisar diff → `npx vitest run -u` → commitar snapshots atualizados
-- Mocks em `src/test/mocks/` (Leaflet, MunicipioProvider)
+- A infra (Vitest + Testing Library + jsdom) segue nos scripts (`npm run test`, `npm run test:run`), mas a **suíte foi retirada no redesign** (`src/test/` não existe) e ainda será reescrita para a arquitetura da Jornada.
+- Ao reintroduzir testes: `MunicipalityProvider` faz `fetch('/api/...')` — mockar a camada `src/data/api.ts` (ou o `fetch`) em vez de dados estáticos.
 
 ### CSS — Design System Classes
 
@@ -256,14 +249,12 @@ A partir da 0.7.0, tokens do design system (spacing, borderRadius, backgroundCol
 Frontend (raiz):
 
 ```bash
-npm install --legacy-peer-deps  # Necessário por react-simple-maps + React 19
+npm install --legacy-peer-deps  # Conflitos de peer deps com React 19
 npm run dev                     # Desenvolvimento local (http://localhost:5173; /api → :3000 via proxy)
 npm run build                   # Build de produção (gera /dist)
 npm run preview                 # Preview do build local
 npm run lint                    # ESLint
-npm run test                    # Vitest em modo watch
-npm run test:run                # Vitest single run (CI)
-npx vitest run -u               # Atualizar snapshots após mudanças CSS intencionais
+npm run test / test:run         # Vitest (watch / single run) — suíte a reescrever
 ```
 
 API (`server/`) — precisa da API rodando para o frontend carregar dados em dev:
