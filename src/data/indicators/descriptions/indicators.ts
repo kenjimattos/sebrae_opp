@@ -29,7 +29,7 @@ export const indicatorInfo: Record<string, string> = {
     'Número de trabalhadores formais em ocupações de Ciência e Tecnologia, conforme RAIS/CAGED.',
   'trabalhadores-tic':
     'Participação percentual dos trabalhadores formais em setores intensivos em conhecimento, criatividade e tecnologia.',
-  'mpe-eli-sebrae':
+  'crescimento-mpe':
     'Variação anual no número de micro e pequenas empresas formalizadas dentro de Ecossistemas Locais de Inovação (ELI) apoiados pelo Sebrae.',
   'compras-publicas-inovacao':
     'Variação anual do volume que o município adquire em bens e serviços inovadores ofertados por micro e pequenas empresas.',

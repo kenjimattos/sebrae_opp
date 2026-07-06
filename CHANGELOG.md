@@ -29,6 +29,7 @@ Ponto de convergência entre a camada de dados/ETL (`database/`) e o redesign (`
 - `CitySelector`, `SectionAgendas` e `StepIdentification` passam a ler a lista de `useMunicipality().municipalities` em vez de `municipalities.json`. `SectionAgendas` mostra "Carregando indicadores…" durante o fetch.
 - **Órfãos:** `map-data.ts`, `mapHelpers.ts`, `usePanoramaMedia`, `usePanoramaIndicators` e os `values/*.ts` estáticos deixam de ter consumidor vivo (o mapa interativo saiu no redesign) — removidos em seguida.
 - **Labels de indicadores limpos** (sincronizado de `database`): removido o sufixo de escala/metodologia de 6 labels que agora aparecem na UI via API ("— marco 75% (h)", "— pontuação (0–600)", "(var. % a.a.)" etc.) — a escala vive em `unit`, a metodologia na `description`. Requer reaplicar os 6 seeds no banco.
+- **Id renomeado `mpe-eli-sebrae` → `crescimento-mpe`** (sincronizado de `database`): o id agora reflete o dado real (proxy de crescimento de MPE formalizadas; o recorte "nos ELI" é interno do Sebrae). Atualizado no `catalog.ts` (id + label "no município") e nas `descriptions/{indicators,risks}.ts`. Requer rodar `scripts/migrar_id_crescimento_mpe.mongodb.js` no banco.
 
 ## [0.8.0] — 2026-04-23
 

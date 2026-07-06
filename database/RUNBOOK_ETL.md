@@ -228,7 +228,7 @@ faixa oficial). `referenceYear` = `--ano`. Flags: `--sem-esfera` (dump sem `ESFE
 Federal no lake** (`RF_ESTABELECIMENTOS_<ano>`, ~37,6M docs). Gerador:
 `database/scripts/gerar_seed_negocios_rfb_lake.py` (molde do `gerar_seed_escolaridade.py`; 1 script
 → **8 seeds**). **4 de agenda:** três da **Inclusão produtiva** (contagem de estabelecimentos no
-ano-ref: abertos/extintos = pequeno porte; ativas = todos os portes) + `mpe-eli-sebrae` (agenda
+ano-ref: abertos/extintos = pequeno porte; ativas = todos os portes) + `crescimento-mpe` (agenda
 *Ecossistemas de Inovação*, **var. % a.a.** do mesmo fluxo de aberturas, consolidado em jul/2026). **4
 da base econômica** (`socialeconomic`): `empresas-ativas-total` (estoque total) + `meis`/`mes`/`epps`
 (estoque ativo por porte). **Todos sem threshold.** Agregação no lake — sem BigQuery, sem API. O porte

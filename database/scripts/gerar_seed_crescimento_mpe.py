@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-⚠️ FALLBACK/REFERÊNCIA (jul/2026): a coleta oficial do `mpe-eli-sebrae` foi CONSOLIDADA em
+⚠️ FALLBACK/REFERÊNCIA (jul/2026): a coleta oficial do `crescimento-mpe` foi CONSOLIDADA em
 `gerar_seed_negocios_rfb_lake.py` (mesma rodada do `negocios-abertos`, fonte = RF Estabelecimentos
 do data lake — ver MAPEAMENTO §14). Este gerador (fonte = API Tesseract do Observatório Sebrae, online)
 fica no repo como referência e fallback, mas NÃO é mais a fonte do seed em produção. Rodá-lo
-sobrescreve `seed/indicador-mpe-eli-sebrae.mongodb.js` com os valores do Observatório — que podem
+sobrescreve `seed/indicador-crescimento-mpe.mongodb.js` com os valores do Observatório — que podem
 DISCORDAR do `negocios-abertos` (ex.: João Pessoa 2025 = +23,2% Observatório vs +19,1% lake).
 
-Gera o seed (mongosh) do indicador **Crescimento de MPE formalizadas** (`mpe-eli-sebrae`)
+Gera o seed (mongosh) do indicador **Crescimento de MPE formalizadas** (`crescimento-mpe`)
 da agenda "Ecossistemas de Inovação" da OPP.
 
 Fonte: **Observatório Setorial Territorial do Sebrae** (observatorio.sebrae.com.br,
@@ -29,7 +29,7 @@ O catálogo da OPP chama este indicador de "Crescimento de MPE formalizadas **no
 existe em fonte aberta**: o cubo RF tem flags de jornadas/territórios Sebrae (Cidade
 Empreendedora, Sala do Empreendedor, Território Empreendedor…), mas **nenhum "ELI"**.
 Por decisão do projeto (jun/2026) adota-se o **proxy municipal**: crescimento das MPE
-formalizadas no município (RFB). O `_id` permanece `mpe-eli-sebrae` para casar com o slot
+formalizadas no município (RFB). O `_id` foi renomeado de `mpe-eli-sebrae` para `crescimento-mpe`, no slot
 do catálogo; label/description/source deixam claro que é o proxy municipal RFB, não o
 recorte ELI interno do Sebrae.
 
@@ -55,7 +55,7 @@ Cobertura: os 223 municípios da PB. Municípios sem fluxo no ano-base entram co
 `numericValue: null` (não há como calcular variação).
 
 Saídas (idempotentes, próprias para o NoSQLBooster):
-  - database/seed/indicador-mpe-eli-sebrae.mongodb.js   (catálogo + valores)
+  - database/seed/indicador-crescimento-mpe.mongodb.js   (catálogo + valores)
   - database/data/crescimento_mpe_pb.json              (snapshot versionado da resposta)
 
 Uso:
@@ -80,7 +80,7 @@ DATA_DIR = REPO_ROOT / "database" / "data"
 SEED_DIR = REPO_ROOT / "database" / "seed"
 MUNICIPIOS_SEED = SEED_DIR / "municipios.mongodb.js"
 SNAPSHOT = DATA_DIR / "crescimento_mpe_pb.json"
-SEED_FILE = SEED_DIR / "indicador-mpe-eli-sebrae.mongodb.js"
+SEED_FILE = SEED_DIR / "indicador-crescimento-mpe.mongodb.js"
 
 API_BASE = "https://apiv2-observatorio.sebrae.com.br/tesseract"
 CUBE = "RF"
@@ -89,7 +89,7 @@ SIZE_KEYS = {5: "MEI", 4: "ME", 3: "EPP"}  # Company Size Sebrae: MPE = MEI+ME+E
 ANO_MIN_SERIE = 2016                 # série guardada no breakdown a partir daqui
 CONF_BAIXA = 30                      # fluxo-base < 30 → confiabilidade baixa
 
-INDICATOR_ID = "mpe-eli-sebrae"      # mantém o slot do catálogo (agenda inovacao)
+INDICATOR_ID = "crescimento-mpe"      # mantém o slot do catálogo (agenda inovacao)
 ORDER = 3
 LABEL = "Crescimento de MPE formalizadas no município"
 DESCRIPTION = (

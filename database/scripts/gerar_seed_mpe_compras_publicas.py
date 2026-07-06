@@ -34,7 +34,7 @@ município — sweep caro e ruidoso; o homologado já dá o volume).
 == SEM threshold (semáforo) ==
 Não há faixa oficial de "bom/atenção/alerta" para participação de MPE em compras públicas.
 Seguindo a regra do projeto (não inventar cortes — ver MAPEAMENTO §12 e o precedente
-`ranking-redesim`/`mpe-eli-sebrae`), o indicador entra **sem `threshold`**. O corte
+`ranking-redesim`/`crescimento-mpe`), o indicador entra **sem `threshold`**. O corte
 `higher-better 20/10` em src/data/indicators/thresholds.ts era inventado.
 
 Cobertura: os 223 municípios da PB. Municípios sem contratos municipais (PJ) no ano entram

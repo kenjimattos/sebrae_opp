@@ -35,7 +35,7 @@ export const catalog: Catalog = {
       indicators: [
         { id: 'trabalhadores-ct', label: 'Trabalhadores nas ocupações de C&T', unit: 'vínculos' },
         { id: 'trabalhadores-tic', label: 'Trabalhadores nos setores da economia criativa, inovação e TIC', unit: '%' },
-        { id: 'mpe-eli-sebrae', label: 'Crescimento de MPE formalizadas nos ELI', unit: '% a.a.' },
+        { id: 'crescimento-mpe', label: 'Crescimento de MPE formalizadas no município', unit: '% a.a.' },
         { id: 'compras-publicas-inovacao', label: 'Crescimento do valor das compras públicas de inovação nos pequenos negócios', unit: 'R$/ano' },
       ],
     },

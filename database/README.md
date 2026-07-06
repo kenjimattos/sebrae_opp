@@ -68,7 +68,7 @@ nesta ordem (cada um imprime um resumo ao final):
 11. `seed/indicador-tempo-viabilidade.mongodb.js` — catálogo `tempo-viabilidade` + 223 valores, Redesim (janela de 12 meses).
 12. `seed/indicador-ranking-redesim.mongodb.js` — catálogo `ranking-redesim` + 223 valores, Ranking Municipal Redesim/PB (janela de 6 meses).
 13. `seed/indicador-tempo-licenciamento.mongodb.js` — catálogo `tempo-licenciamento` + 223 valores, Índice de Tempo de alvará Redesim/PB (janela de 6 meses).
-14. `seed/indicador-mpe-eli-sebrae.mongodb.js` — catálogo `mpe-eli-sebrae` + 223 valores, Crescimento de MPE formalizadas nos ELI (Observatório Sebrae).
+14. `seed/indicador-crescimento-mpe.mongodb.js` — catálogo `crescimento-mpe` + 223 valores, Crescimento de MPE formalizadas nos ELI (Observatório Sebrae).
 15. `seed/indicador-isdel-educacao-emp.mongodb.js` — catálogo `isdel-educacao-emp` + 2.007 valores, Educação Empreendedora – ISDEL (223 × 2015–2023, **sem semáforo**).
 16. `seed/indicador-trabalhadores-medio-completo.mongodb.js` — catálogo `trabalhadores-medio-completo` + 223 valores, Trabalhadores formais com Ensino Médio Completo (RAIS 2024, **data lake do Sebrae**, **sem semáforo**).
 17. `seed/indicador-trabalhadores-superior-completo.mongodb.js` — catálogo `trabalhadores-superior-completo` + 223 valores, Trabalhadores formais com Ensino Superior Completo (RAIS 2024, **data lake do Sebrae**, **sem semáforo**).
@@ -647,7 +647,7 @@ database/
     indicador-tempo-viabilidade.mongodb.js # catálogo tempo-viabilidade + 223 valores (GERADO)
     indicador-ranking-redesim.mongodb.js   # catálogo ranking-redesim + 223 valores (GERADO)
     indicador-tempo-licenciamento.mongodb.js # catálogo tempo-licenciamento + 223 valores (GERADO)
-    indicador-mpe-eli-sebrae.mongodb.js    # catálogo mpe-eli-sebrae + 223 valores (GERADO)
+    indicador-crescimento-mpe.mongodb.js    # catálogo crescimento-mpe + 223 valores (GERADO)
     indicador-trabalhadores-medio-completo.mongodb.js    # catálogo + valores Médio Completo, 223 × 2024 (GERADO)
     indicador-trabalhadores-superior-completo.mongodb.js # catálogo + valores Superior Completo, 223 × 2024 (GERADO)
   scripts/
@@ -661,7 +661,7 @@ database/
     gerar_seed_tempo_viabilidade.py  # gerador: API pública da Redesim (microdados) -> seed tempo-viabilidade
     gerar_seed_ranking_redesim.py    # gerador: API pública do Ranking Municipal Redesim/PB -> seed ranking-redesim
     gerar_seed_tempo_licenciamento.py # gerador: Índice de Tempo de alvará (Ranking Redesim/PB) -> seed tempo-licenciamento
-    gerar_seed_crescimento_mpe.py    # gerador: API Tesseract do Observatório Sebrae -> seed mpe-eli-sebrae
+    gerar_seed_crescimento_mpe.py    # gerador: API Tesseract do Observatório Sebrae -> seed crescimento-mpe
     gerar_seed_escolaridade.py       # gerador: data lake Sebrae (RAIS direto, Mongo) -> 2 seeds (médio + superior completo)
   data/
     idhm_pb_2010.json             # snapshot versionado da consulta ao basedosdados

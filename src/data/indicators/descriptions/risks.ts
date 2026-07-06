@@ -48,7 +48,7 @@ export const risksContext: Record<string, RiskContext> = {
     indicatorLabel: 'Atenção',
     context: 'Média nacional é de 5,8% dos trabalhadores formais',
   },
-  'mpe-eli-sebrae': {
+  'crescimento-mpe': {
     description: 'Baixo crescimento de formalização nos Ecossistemas Locais de Inovação',
     indicatorLabel: 'Atenção',
     context: 'Meta estadual é atingir crescimento de +10% a.a. até 2027',

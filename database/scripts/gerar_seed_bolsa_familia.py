@@ -14,7 +14,7 @@ Cubo: **MDS_PBF** (Programa Bolsa Família, MDS). Medida `Beneficiary Families`
 (famílias beneficiárias, **estoque mensal**) + `Transferred Value`. Geografia até
 Município (chave = código IBGE 7 díg.); recorte State=25 (PB). Dimensão Time = Year/Month.
 
-== Ressalva semântica (importante — proxy, igual ao mpe-eli-sebrae) ==
+== Ressalva semântica (importante — proxy, igual ao crescimento-mpe) ==
 O catálogo da OPP chama este indicador de "Crescimento de beneficiários Bolsa Família
 **(18 a 50 anos)**". Esse **recorte etário não existe em fonte municipal aberta e atual**:
   - A tabela agregada da Base dos Dados (`bolsa_familia`) é por município × mês, conta
@@ -27,7 +27,7 @@ O catálogo da OPP chama este indicador de "Crescimento de beneficiários Bolsa 
 Por decisão do projeto (jun/2026) adota-se o **proxy municipal**: crescimento das **famílias
 beneficiárias** do Bolsa Família no município. O `_id` permanece `bolsa-familia` para casar
 com o slot do catálogo; label/description/source deixam claro que é famílias (sem o recorte
-18–50, indisponível em fonte aberta atual). Mesmo patamar de confiança do `mpe-eli-sebrae`.
+18–50, indisponível em fonte aberta atual). Mesmo patamar de confiança do `crescimento-mpe`.
 
 == Métrica ==
 Para cada município e ano Y, calcula-se a **média mensal de famílias beneficiárias** (média
@@ -41,7 +41,7 @@ começa em mar/2023 com o relançamento do programa; o último ano pode vir parc
 == SEM threshold (semáforo) ==
 Não há faixa oficial de "bom/atenção/alerta" para taxa de crescimento de beneficiários do
 PBF. Seguindo a regra do projeto (não inventar cortes — ver memory feedback_verify_primary_
-sources e o precedente `ranking-redesim`/`mpe-eli-sebrae`), o indicador entra **sem `threshold`**.
+sources e o precedente `ranking-redesim`/`crescimento-mpe`), o indicador entra **sem `threshold`**.
 
 Cobertura: os 223 municípios da PB. Municípios sem famílias no ano-base entram com
 `numericValue: null` (não há como calcular variação).

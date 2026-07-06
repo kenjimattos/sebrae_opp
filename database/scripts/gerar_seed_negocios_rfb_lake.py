@@ -8,7 +8,7 @@ gerar_seed_escolaridade.py / _mpe_compras_publicas_lake.py):
     - negocios-abertos    "Pequenos negócios abertos"      (fluxo de aberturas no ano-ref)      [agenda inclusao]
     - empresas-ativas     "Empresas ativas"                (estoque de estab. ativos — TODOS os portes)  [agenda inclusao]
     - negocios-extintos   "Pequenos negócios extintos"     (fluxo de baixas no ano-ref)         [agenda inclusao]
-    - mpe-eli-sebrae      "Crescimento de MPE formalizadas" (var. % a.a. do MESMO fluxo de aberturas) [agenda inovacao]
+    - crescimento-mpe      "Crescimento de MPE formalizadas" (var. % a.a. do MESMO fluxo de aberturas) [agenda inovacao]
 
   + 4 cards da BASE ECONÔMICA (Panorama, section "socialeconomic"), do MESMO estoque ativo:
     - empresas-ativas-total  "Empresas Ativas (ano)"  (estoque ativo — todos os portes)
@@ -16,7 +16,7 @@ gerar_seed_escolaridade.py / _mpe_compras_publicas_lake.py):
   ⚠️ os 3 por porte (meis/mes/epps) só saem no run ONLINE — o join de porte do estoque (~todos os
   CNPJs ativos da PB) não cabe no --offline; o snapshot guarda o split em `ativasPorPorte`.
 
-O crescimento-mpe (`mpe-eli-sebrae`) foi CONSOLIDADO aqui (jul/2026): media exatamente o mesmo
+O crescimento-mpe (`crescimento-mpe`) foi CONSOLIDADO aqui (jul/2026): media exatamente o mesmo
 fluxo de aberturas de MPE que o `negocios-abertos` — sua `numericValue` é a variação % a.a. que o
 abertos já guarda no breakdown. Antes vinha da API Tesseract do Observatório Sebrae (online);
 agora sai do lake, sem dependência de rede, e não pode discordar do `negocios-abertos`. O gerador
@@ -49,7 +49,7 @@ MÉTRICAS (decisões do projeto, jun/2026):
                         — TODOS os portes (decisão: este indicador não é só pequeno negócio).
   * negocios-extintos = nº de ESTABELECIMENTOS de pequeno porte BAIXADOS (SITUACAO_CADASTRAL='08')
                         cuja DATA_SITUACAO_CADASTRAL cai no ano-ref. Contagem absoluta + var.%.
-  * mpe-eli-sebrae    = variação % a.a. do fluxo de aberturas de MPE = (fluxo[ref] − fluxo[prev]) /
+  * crescimento-mpe    = variação % a.a. do fluxo de aberturas de MPE = (fluxo[ref] − fluxo[prev]) /
                         fluxo[prev] × 100 — o MESMO fluxo do negocios-abertos. breakdown traz a série
                         anual (ANO_MIN_SERIE..ref), o split MEI/ME/EPP do ref e a confiabilidade.
                         Proxy municipal do "MPE nos ELI" (recorte ELI é interno do Sebrae, sem fonte aberta).
@@ -197,7 +197,7 @@ IND_EXTINTOS = {
     ),
 }
 IND_CRESCIMENTO = {
-    "id": "mpe-eli-sebrae", "order": 3, "agendaId": "inovacao",
+    "id": "crescimento-mpe", "order": 3, "agendaId": "inovacao",
     "unit": "% a.a.",
     "label": "Crescimento de MPE formalizadas no município",
     "description": (
@@ -840,7 +840,7 @@ def _valores_porte(indicador, agg, ano, codes):
 
 
 def _valores_crescimento(agg, ano, prev, codes):
-    """Crescimento de MPE (`mpe-eli-sebrae`): variação % a.a. do MESMO fluxo de aberturas de
+    """Crescimento de MPE (`crescimento-mpe`): variação % a.a. do MESMO fluxo de aberturas de
     pequeno porte que o negocios-abertos usa. `numericValue` = (fluxo[ref]−fluxo[prev]) /
     fluxo[prev] × 100. breakdown traz a série anual (ANO_MIN_SERIE..ref) e o split MEI/ME/EPP do
     ref. Município sem base no ano anterior entra com `numericValue: null` (não há variação)."""

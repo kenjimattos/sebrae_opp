@@ -54,8 +54,8 @@ e das demais fontes disponíveis. A coluna **Fonte** da §1 usa as etiquetas aba
 |---|---|---|
 | Trabalhadores nas ocupações de C&T | ✅ BD (implementado) | `rais` (`br_me_rais.microdados_vinculos`) — vínculos ativos em 31/12, CBO 2002 subgrupos **20/21/31** (núcleo C&T: pesquisadores + ciências exatas/engenharia/TIC + técnicos). Seed `trabalhadores-ct` no banco: 223 municípios PB, RAIS 2024, `breakdown` com os 3 subgrupos. Definição estreita (não o HRST amplo da OCDE) p/ casar com o threshold |
 | Trabalhadores nos setores de economia criativa, inovação e TIC | ✅ BD (implementado) | `rais` (`br_me_rais.microdados_vinculos`) — **% dos vínculos** em setores intensivos em conhecimento: CNAE 2.0 divisões **TIC** 26/61/62/63 + **criativa** 58/59/60/73/74/90/91 + **P&D** 72. Seed `trabalhadores-tic`: 223 municípios PB, RAIS 2024, `breakdown` com numerador/denominador + split TIC/criativa/pesquisa. Não inclui div 71 (engenharia/arquitetura) |
-| Crescimento de MPE formalizadas nos ELI | 🟡 Observatório Sebrae (implementado) | **API Tesseract pública** do Observatório Setorial Territorial do Sebrae (cubo `RF` — RFB/Estabelecimentos). Seed `mpe-eli-sebrae` (id mantido): 223 municípios PB, **var. % a.a.** das MPE (MEI+ME+EPP) formalizadas por ano de abertura (2025 vs 2024), todas as situações cadastrais (sem viés de sobrevivência). **Proxy municipal** — o recorte "nos ELI" não existe em fonte aberta (dado interno do Sebrae). Sem threshold. Ver §11 |
-| Compras públicas de inovação nos pequenos negócios | 🟡 SL (proxy, implementado) | **Valor (R$/ano)** de contratos municipais a pequenos negócios em compras de inovação (NÍVEL, não crescimento — a var. a.a. mede adesão ao PNCP). 🟡 (não ✅) porque **não há definição oficial de "compra de inovação"**: as fontes são primárias (PNCP + RF), mas a operacionalização é um **proxy nosso** — (A) CNAE ∈ {TIC/criativa/P&D} via `RF_ESTABELECIMENTOS` ∪ (B) `OBJETO_CONTRATO` classificado por semente calibrada — que **não** capta CPSI/encomenda tecnológica. Mesmo status de `mpe-eli-sebrae` (proxy). Coletado jun/2026 (2025): **R$144,5M PB**, 98 municípios. Sem threshold. Ver §12 |
+| Crescimento de MPE formalizadas nos ELI | 🟡 Observatório Sebrae (implementado) | **API Tesseract pública** do Observatório Setorial Territorial do Sebrae (cubo `RF` — RFB/Estabelecimentos). Seed `crescimento-mpe` (renomeado de `mpe-eli-sebrae` em jul/2026, pois o recorte "nos ELI" é só proxy): 223 municípios PB, **var. % a.a.** das MPE (MEI+ME+EPP) formalizadas por ano de abertura (2025 vs 2024), todas as situações cadastrais (sem viés de sobrevivência). **Proxy municipal** — o recorte "nos ELI" não existe em fonte aberta (dado interno do Sebrae). Sem threshold. Ver §11 |
+| Compras públicas de inovação nos pequenos negócios | 🟡 SL (proxy, implementado) | **Valor (R$/ano)** de contratos municipais a pequenos negócios em compras de inovação (NÍVEL, não crescimento — a var. a.a. mede adesão ao PNCP). 🟡 (não ✅) porque **não há definição oficial de "compra de inovação"**: as fontes são primárias (PNCP + RF), mas a operacionalização é um **proxy nosso** — (A) CNAE ∈ {TIC/criativa/P&D} via `RF_ESTABELECIMENTOS` ∪ (B) `OBJETO_CONTRATO` classificado por semente calibrada — que **não** capta CPSI/encomenda tecnológica. Mesmo status de `crescimento-mpe` (proxy). Coletado jun/2026 (2025): **R$144,5M PB**, 98 municípios. Sem threshold. Ver §12 |
 
 ### Agenda: Educação empreendedora
 
@@ -80,7 +80,7 @@ e das demais fontes disponíveis. A coluna **Fonte** da §1 usa as etiquetas aba
 | Pequenos negócios abertos | ✅ SL (implementado) | **ETL do data lake** (RF Estabelecimentos): nº de estabelecimentos de pequeno porte (ME/EPP, MEI incluso) abertos no ano-ref, por `DATA_DE_INICIO_ATIVIDADE`. Porte resolvido na `RF_EMPRESAS` (`$in` por CNPJ). Gerador `gerar_seed_negocios_rfb_lake.py` (1 script → 3 seeds). **Coletado (PB 2025): 36.904** pequenos negócios abertos, 223/223 munis. Ver §14 |
 | Empresas ativas | ✅ SL (implementado) | Idem — estoque de estabelecimentos com `SITUACAO_CADASTRAL='02'` (ativa), **todos os portes**. Mesmo gerador/rodada. **Coletado (PB 2025): 192.461** estabelecimentos ativos. Ver §14 |
 | Pequenos negócios extintos | ✅ SL (implementado) | Idem — estabelecimentos de pequeno porte baixados (`SITUACAO_CADASTRAL='08'`) no ano-ref, por `DATA_SITUACAO_CADASTRAL`. Mesmo gerador/rodada. **Coletado (PB 2025): 20.184** baixados. Ver §14 |
-| Crescimento de beneficiários Bolsa Família (18–50) | 🟡 Observatório Sebrae (implementado) | **API Tesseract pública** do Observatório (cubo `MDS_PBF` — Programa Bolsa Família/MDS). Seed `bolsa-familia`: 223 municípios PB, **var. % a.a. da média mensal de famílias beneficiárias** (ano-ref vs anterior). 🟡 **proxy municipal** (mesmo status do `mpe-eli-sebrae`): o **recorte etário 18–50 não existe em fonte municipal aberta atual** — a tabela `bolsa_familia` da BD conta **famílias** (sem idade) e está **congelada em 2004–2020**; o recorte por idade só está no **CadÚnico amostral (2012–2018)**, defasado e ruim p/ municípios pequenos. Mede-se **famílias** (Novo BF), não pessoas por faixa. **Sem threshold.** Rodado jun/2026: **PB −2,7% (2024→2025)**, pente-fino do Novo BF. Ver §11 |
+| Crescimento de beneficiários Bolsa Família (18–50) | 🟡 Observatório Sebrae (implementado) | **API Tesseract pública** do Observatório (cubo `MDS_PBF` — Programa Bolsa Família/MDS). Seed `bolsa-familia`: 223 municípios PB, **var. % a.a. da média mensal de famílias beneficiárias** (ano-ref vs anterior). 🟡 **proxy municipal** (mesmo status do `crescimento-mpe`): o **recorte etário 18–50 não existe em fonte municipal aberta atual** — a tabela `bolsa_familia` da BD conta **famílias** (sem idade) e está **congelada em 2004–2020**; o recorte por idade só está no **CadÚnico amostral (2012–2018)**, defasado e ruim p/ municípios pequenos. Mede-se **famílias** (Novo BF), não pessoas por faixa. **Sem threshold.** Rodado jun/2026: **PB −2,7% (2024→2025)**, pente-fino do Novo BF. Ver §11 |
 | Pequenos negócios apoiados pelo Sebrae | ❌ | Sebrae interno |
 | Participação MPE em compras públicas | 🟡 SL (implementado) | **Cross-source PNCP × RF, ambos do data lake — COLETADO (PB 2025).** Contratos do PNCP (CNPJ + valor + IBGE do órgão) ⨝ porte do CNPJ na Receita Federal (`RF_EMPRESAS_<ano>`, pequenos = `PORTE_EMPRESA` '01'/'03'). O PNCP **não traz porte do fornecedor** → vem da RF. Como a **API pública do PNCP está instável** (500/422/timeout em jun/2026), o caminho é o **ETL do data lake** do Sebrae (que ingere PNCP **e** RF — mesmo fluxo da RAIS, **uma rodada, sem BigQuery**), via `gerar_seed_mpe_compras_publicas_lake.py`. **Rodado em jun/2026 (CONTRATOS_2025): 150/223 municípios com participação calculável; 74,5% do valor de compras municipais da PB a pequenos negócios** (R$ 3,77bi de R$ 5,06bi). Os 73 sem contrato municipal PJ entram `null`. O 🟡 é **permanente** (proxy derivado, esfera municipal), não um estágio rumo a ✅. Ver §12 |
 | Linhas de Crédito Disponíveis | ❌ (levantado jul/2026 — sem seed) | **Levantamento feito; indicador segue pendente** porque nenhuma fonte entrega *linhas* + *grão municipal*, nem *R$ a MPE* + *grão municipal*, ao mesmo tempo. "Quantidade de linhas de crédito disponíveis" é um **catálogo de produtos**, que **nem ESTBAN nem BCB publicam** — a autoridade monetária mede *dinheiro contratado*, não *produtos ofertados* (daí o ❌ "Bancos/Bacen" original). **Quem cataloga linhas:** a **Plataforma/Coletânea Sebrae de Linhas de Crédito** (`sebrae.com.br/linhasdecredito`) — **+250 linhas de 35 instituições** públicas e privadas, avalizadas pelo **FAMPE**. Limitações: é **nacional** (filtra por modalidade/taxa/prazo/valor, **não por UF**), e o "+250" é número **institucional** (SPA sem endpoint aberto → não é count auditável máquina-a-máquina). Camadas nomeadas acessíveis a uma MPE da PB: **Federais** — Pronampe, ProCred 360 (prog. Acredita), FGI PEAC (garantia BNDES), Cartão BNDES, BNDES Crédito Pequenas Empresas/Finame; **Nordeste (BNB)** — FNE (Nordeste Empresarial, Industrial, Inovação, Verde, MPE), Crediamigo (microcrédito urbano), Agroamigo (rural); **Estadual** — **Empreender PB** (12 linhas, ~5 PJ: Pessoa Jurídica, Cooperativas, Inovação Tecnológica, Energia Solar, Rural — R$ 5–100 mil, 0,64% a.m., carência 6 m, até 30 parcelas); **Municipal** (esparso) — ex. *Eu Posso* (microcrédito social de João Pessoa). **Alternativa em R$ (volume, não contagem):** o **saldo de crédito às MPE** É auditável no BCB, mas com o mesmo trade-off porte×grão — **SCR por UF × porte** (micro/pequena, presente no lake, porém **só PB, sem grão municipal** — ver [[project_bcb_lake]]) ou **SGS "Saldo das operações por porte MPMe"** (nacional). O **ESTBAN** dá saldo **municipal** mas **sem porte** (não isola MPE) — é o que já alimenta `credito-financiamento`; dele só se extrai, de forma municipal e auditável, o **nº de instituições com agência no município** (proxy de oferta, não de linhas). **Decisão jul/2026: manter ❌/pendente, sem seed.** |
@@ -539,9 +539,9 @@ Year`, `Registration Status` (1 Nula · 2 Ativa · 3 Suspensa · 4 Inapta · 8 B
 formalização sem viés de sobrevivência), `MEI Indicator`, `Simples Indicator`, e flags de
 jornadas/territórios Sebrae (`Journeys`: Cidade Empreendedora, Sala do Empreendedor,
 Território Empreendedor, Agente Territorial…). **Não há nível "ELI"** — por isso o indicador
-`mpe-eli-sebrae` usa **proxy municipal**.
+`crescimento-mpe` usa **proxy municipal**.
 
-**✅ Implementado — e CONSOLIDADO no lake (jul/2026).** O indicador `mpe-eli-sebrae` (var. % a.a.
+**✅ Implementado — e CONSOLIDADO no lake (jul/2026).** O indicador `crescimento-mpe` (var. % a.a.
 das MPE formalizadas por ano de abertura — fluxo, todas as situações; ano-ref = último ano civil
 completo) passou a ser gerado por **`scripts/gerar_seed_negocios_rfb_lake.py`** (§14), a partir do
 **MESMO fluxo de aberturas** do `RF_ESTABELECIMENTOS` do lake que alimenta o `negocios-abertos` — não
@@ -688,7 +688,7 @@ RF do lake** — sem BigQuery, sem internet, **uma rodada só** na 10.1.141.23.
 > **Por que 🟡 e não ✅:** as fontes são primárias (PNCP + Receita Federal), mas **não existe
 > definição oficial de "compra pública de inovação" por município** — a operacionalização (cesta
 > CNAE ∪ classificador de objeto) é um **proxy construído pelo projeto**, e não capta a inovação
-> "jurídica" (CPSI/encomenda tecnológica). Mesmo patamar de confiança do `mpe-eli-sebrae` (🟡).
+> "jurídica" (CPSI/encomenda tecnológica). Mesmo patamar de confiança do `crescimento-mpe` (🟡).
 
 **Métrica:** *Valor (R$/ano) das compras públicas de inovação nos pequenos negócios* —
 `numericValue` = `valorInovPeq[refYear]` (valor de contratos municipais a ME/EPP/MEI que são de
@@ -772,7 +772,7 @@ Receita Federal no data lake** (`RF_ESTABELECIMENTOS_<ano>`, ~37,6M docs, confir
 caminho do lake (§13), não a API/BigQuery. Gerador:
 `database/scripts/gerar_seed_negocios_rfb_lake.py` (molde do `gerar_seed_escolaridade.py`,
 3.6-safe; 1 script → **8 seeds**). São **4 de agenda** — três da **Inclusão produtiva**
-(`negocios-abertos`, `empresas-ativas`, `negocios-extintos`) e o `mpe-eli-sebrae` (Crescimento de MPE,
+(`negocios-abertos`, `empresas-ativas`, `negocios-extintos`) e o `crescimento-mpe` (Crescimento de MPE,
 agenda **Ecossistemas de Inovação**, consolidado aqui em jul/2026; antes vinha da API Tesseract do
 Observatório) — **+ 4 cards da base econômica** (section `socialeconomic`): **`empresas-ativas-total`**
 (estoque, todos os portes) e **`meis`/`mes`/`epps`** (estoque ativo quebrado por porte). Todos do mesmo
@@ -794,7 +794,7 @@ estoque ativo, sem alias no frontend.
 | `negocios-abertos` | Inclusão produtiva | `DATA_INICIO_ATIVIDADE` no ano-ref | pequeno (ME/EPP, MEI incluso) | contagem absoluta |
 | `empresas-ativas` | Inclusão produtiva | `SITUACAO_CADASTRAL = '02'` (estoque) | **todos** os portes | contagem absoluta |
 | `negocios-extintos` | Inclusão produtiva | `SITUACAO_CADASTRAL = '08'` + `DATA_SITUACAO_CADASTRAL` no ano-ref | pequeno (ME/EPP, MEI incluso) | contagem absoluta |
-| `mpe-eli-sebrae` | Ecossistemas de Inovação | **mesmo fluxo do `negocios-abertos`** (aberturas por ano) | pequeno (MPE = MEI+ME+EPP) | **var. % a.a.** = (fluxo[ref]−fluxo[prev])/fluxo[prev]×100 |
+| `crescimento-mpe` | Ecossistemas de Inovação | **mesmo fluxo do `negocios-abertos`** (aberturas por ano) | pequeno (MPE = MEI+ME+EPP) | **var. % a.a.** = (fluxo[ref]−fluxo[prev])/fluxo[prev]×100 |
 | `empresas-ativas-total` | Base econômica (`socialeconomic`) | `SITUACAO_CADASTRAL='02'` (estoque) | **todos** os portes | contagem absoluta |
 | `meis` | Base econômica (`socialeconomic`) | `SITUACAO_CADASTRAL='02'` + opção MEI (`RF_SIMPLES`) | MEI | contagem absoluta (estoque ativo) |
 | `mes` | Base econômica (`socialeconomic`) | `SITUACAO_CADASTRAL='02'` + porte `01` | ME (exclui MEI) | contagem absoluta (estoque ativo) |
@@ -802,7 +802,7 @@ estoque ativo, sem alias no frontend.
 
 **Métrica:** contagem absoluta de **estabelecimentos** no ano-ref (último ano civil completo).
 O breakdown de abertos/extintos traz o split MEI/ME/EPP, o ano anterior e a variação % a.a.
-`empresas-ativas` é estoque (todos os portes) no snapshot da base. O **`mpe-eli-sebrae`** é a
+`empresas-ativas` é estoque (todos os portes) no snapshot da base. O **`crescimento-mpe`** é a
 variação % a.a. desse mesmo fluxo de aberturas — seu `numericValue` é idêntico à variação que o
 `negocios-abertos` já guarda no breakdown; a `serieAnual` do breakdown roda `2016..ano-ref`
 (`ANO_MIN_SERIE=2016`), sem ano corrente parcial (o vintage da coleção = ano-ref). **Todos sem
@@ -820,7 +820,7 @@ larga o bastante para a série do crescimento-mpe; baixas por município×CNPJ×
 resolve porte dos CNPJs envolvidos na RF (aberturas + baixas + **estoque ativo**) → agrega aos 223 →
 emite os **8 seeds** + snapshot (`database/data/negocios_rfb_lake_pb.json`, só os agregados por
 município; guarda `ativas`, `ativasPorPorte`, `abertos`, `extintos`). O `negocios-abertos` e o
-`mpe-eli-sebrae` leem o **mesmo agregado de aberturas**; os cards da base econômica leem `ativas`
+`crescimento-mpe` leem o **mesmo agregado de aberturas**; os cards da base econômica leem `ativas`
 (total) e `ativasPorPorte` (MEI/ME/EPP). `--offline` regenera os seeds (menos `meis`/`mes`/`epps`, que
 precisam do `ativasPorPorte`); `--write-mongo` faz upsert no `DadosOPP`. Calibração: `--inspect`
 (estabelecimentos) e `--inspect-rfb` (porte/MEI). Ver `RUNBOOK_ETL.md §9`.
@@ -838,14 +838,14 @@ precisam do `ativasPorPorte`); `--write-mongo` faz upsert no `DadosOPP`. Calibra
 > Campina Grande (26.911 · 5.461 · 3.083). Coleção `RF_ESTABELECIMENTOS_2025` = ~37,6M docs; campo
 > `rfCode` em `municipalities` fez a tradução código RFB → IBGE. Snapshot + 3 seeds versionados.
 >
-> ✅ **Consolidação do `mpe-eli-sebrae` (jul/2026) — rerun online feito.** Rodada na 10.1.141.23
+> ✅ **Consolidação do `crescimento-mpe` (jul/2026) — rerun online feito.** Rodada na 10.1.141.23
 > em 03/jul/2026 regenerou o snapshot com a **série anual completa 2016..2025** (PB: 13.111 aberturas
-> de MPE em 2016 → 36.904 em 2025) e o 4º seed (`indicador-mpe-eli-sebrae.mongodb.js`) com a
+> de MPE em 2016 → 36.904 em 2025) e o 4º seed (`indicador-crescimento-mpe.mongodb.js`) com a
 > `serieAnual` cheia no breakdown. Crescimento MPE PB 2025 vs 2024 = **+19,9%**; JP +19,1% (idêntico à
 > variação do `negocios-abertos`, `aberturasRef=15184`). Os 3 seeds de contagem
 > (abertos/ativas/extintos) saíram **idênticos** aos de jun/2026 — números de 2025 estáveis/reproduzíveis.
 > ✅ A rodada **incluiu `--write-mongo`**: o `DadosOPP` tem os **892 valores** (223 × 4), com o
-> `mpe-eli-sebrae` do lake substituindo o valor antigo do Observatório.
+> `crescimento-mpe` do lake substituindo o valor antigo do Observatório.
 >
 > ✅ **Base econômica por porte (jul/2026) — coletado.** Run online na 10.1.141.23 (03/jul/2026,
 > `--write-mongo`) gerou os 4 cards da base econômica (`empresas-ativas-total` + `meis`/`mes`/`epps`) do
