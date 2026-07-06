@@ -66,7 +66,7 @@ MUNICIPIOS_SEED = SEED_DIR / "municipios.mongodb.js"
 # ---- identidade deste indicador (o que muda entre os geradores irmãos) ----
 INDICATOR_ID = "tempo-viabilidade"
 ORDER = 1  # posição na agenda simplificacao (espelha catalog.ts)
-LABEL = "Tempo de viabilidade da empresa — marco 75% (h)"
+LABEL = "Tempo de viabilidade da empresa"
 DESCRIPTION = (
     "Tempo da etapa de viabilidade (pesquisa prévia de nome e endereço), em horas úteis, "
     "no marco de 75% dos processos (metodologia oficial da Redesim)."

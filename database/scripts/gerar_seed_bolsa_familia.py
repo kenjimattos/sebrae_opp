@@ -82,7 +82,7 @@ CONF_BAIXA = 100                     # média mensal de famílias-base < 100 →
 
 INDICATOR_ID = "bolsa-familia"       # mantém o slot do catálogo (agenda inclusao)
 ORDER = 4
-LABEL = "Crescimento de famílias beneficiárias do Bolsa Família (var. % a.a.)"
+LABEL = "Crescimento de famílias beneficiárias do Bolsa Família"
 DESCRIPTION = (
     "Variação percentual anual na média mensal de famílias beneficiárias do Programa Bolsa "
     "Família no município. Proxy municipal aberto: o recorte por idade (18 a 50 anos) do "

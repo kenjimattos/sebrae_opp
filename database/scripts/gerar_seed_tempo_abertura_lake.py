@@ -147,7 +147,7 @@ N_CONFIAVEL = 30
 IND_VIAB = {
     "id": "tempo-viabilidade",
     "order": 1,
-    "label": "Tempo de viabilidade da empresa — marco 75% (h)",
+    "label": "Tempo de viabilidade da empresa",
     "metric": "viab",
     "description": (
         "Tempo da etapa de viabilidade (pesquisa prévia de nome e endereço), em horas úteis, "
@@ -157,7 +157,7 @@ IND_VIAB = {
 IND_ABERTURA = {
     "id": "tempo-abertura",
     "order": 2,
-    "label": "Tempo de abertura da empresa — marco 75% (h)",
+    "label": "Tempo de abertura da empresa",
     "metric": "abertura",
     "description": (
         "Tempo total de abertura da empresa (viabilidade + validação cadastral + "

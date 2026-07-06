@@ -61,7 +61,7 @@ TOTAL_MAX = 600   # 100 pts/mês × 6 meses
 
 INDICATOR_ID = "ranking-redesim"
 ORDER = 3  # posição na agenda simplificacao (espelha catalog.ts)
-LABEL = "Ranking municipal Redesim/PB — pontuação (0–600)"
+LABEL = "Ranking municipal Redesim/PB"
 DESCRIPTION = (
     "Pontuação do município no Ranking Municipal do Ambiente de Negócios da Redesim/PB, "
     "somando os 6 meses da janela (Documentos Habilitados + Índice de Atendimento + "

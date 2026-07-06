@@ -66,7 +66,7 @@ SCORE_MAX = 120           # 60 (Localização) + 60 (Sanitário), teórico
 
 INDICATOR_ID = "tempo-licenciamento"
 ORDER = 4  # posição na agenda simplificacao (espelha catalog.ts)
-LABEL = "Tempo de licenciamento — Índice de Tempo de alvará (0–120)"
+LABEL = "Tempo de licenciamento"
 DESCRIPTION = (
     "Pontuação do Índice de Tempo de licenciamento do município (Alvará de Localização + "
     "Alvará Sanitário) no Ranking da Redesim/PB, na janela de 6 meses. Escala 0–120; "

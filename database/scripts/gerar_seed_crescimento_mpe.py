@@ -91,7 +91,7 @@ CONF_BAIXA = 30                      # fluxo-base < 30 → confiabilidade baixa
 
 INDICATOR_ID = "mpe-eli-sebrae"      # mantém o slot do catálogo (agenda inovacao)
 ORDER = 3
-LABEL = "Crescimento de MPE formalizadas no município (var. % a.a.)"
+LABEL = "Crescimento de MPE formalizadas no município"
 DESCRIPTION = (
     "Variação percentual anual no número de micro e pequenas empresas (MEI+ME+EPP) "
     "formalizadas no município, por ano de abertura na Receita Federal. Proxy municipal "

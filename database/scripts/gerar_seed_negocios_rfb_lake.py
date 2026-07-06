@@ -199,7 +199,7 @@ IND_EXTINTOS = {
 IND_CRESCIMENTO = {
     "id": "mpe-eli-sebrae", "order": 3, "agendaId": "inovacao",
     "unit": "% a.a.",
-    "label": "Crescimento de MPE formalizadas no município (var. % a.a.)",
+    "label": "Crescimento de MPE formalizadas no município",
     "description": (
         "Variação percentual anual no número de micro e pequenas empresas (MEI+ME+EPP) "
         "formalizadas no município, por ano de abertura na Receita Federal. Proxy municipal "

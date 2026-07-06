@@ -67,7 +67,7 @@ MUNICIPIOS_SEED = SEED_DIR / "municipios.mongodb.js"
 # ---- identidade deste indicador (o que muda entre os geradores irmãos) ----
 INDICATOR_ID = "tempo-abertura"
 ORDER = 2  # posição na agenda simplificacao (espelha catalog.ts)
-LABEL = "Tempo de abertura da empresa — marco 75% (h)"
+LABEL = "Tempo de abertura da empresa"
 DESCRIPTION = (
     "Tempo total de abertura da empresa (viabilidade + validação cadastral + "
     "registro/inscrição no CNPJ), em horas úteis, no marco de 75% dos processos "
