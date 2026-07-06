@@ -1,17 +1,19 @@
 # Banco de Dados — Plataforma OPP
 
 Modelagem e povoamento do banco **MongoDB** da OPP (servidor do Sebrae Nacional).
-O banco é a **fonte de verdade** dos dados de indicadores. Hoje cobre **15 indicadores**
+O banco é a **fonte de verdade** dos dados de indicadores, servidos ao frontend pela
+**API de leitura** (`server/` — ver `../server/README.md`). Hoje cobre **33 indicadores**
 para os **223 municípios da Paraíba** — **IDH-M** (Censo 2010), **IGM-CFA** (série
 histórica 2017–2026), **IGMA** (2026), **IDSC** (Instituto Cidades Sustentáveis, 2025),
 **Trabalhadores nas ocupações de C&T**
 (RAIS 2024), **Trabalhadores em economia criativa/inovação/TIC** (RAIS 2024),
 **as duas dimensões ISDEL** — Governança para o Desenvolvimento e Educação
-Empreendedora (Sebrae, série 2015–2023), **Crescimento de MPE nos ELI** (Observatório
+Empreendedora (Sebrae, série 2015–2023), **Crescimento de MPE** (Observatório
 Sebrae) e a agenda **Simplificação e digitalização** completa (Tempo de abertura /
-viabilidade, Ranking municipal e Tempo de licenciamento, Redesim/PB) e
+viabilidade, Ranking municipal e Tempo de licenciamento, Redesim/PB),
 **Trabalhadores formais com Ensino Médio e Superior Completo** (RAIS 2024, via
-acesso direto ao data lake do Sebrae); os
+acesso direto ao data lake do Sebrae), além de base econômica (MEIs/MEs/EPPs, negócios
+abertos/extintos, IDEB, Gini, PIB per capita, remuneração média, crédito) e outros; os
 demais entram pelo mesmo padrão (ver
 [Adicionar um novo indicador](#adicionar-um-novo-indicador)).
 
@@ -27,9 +29,13 @@ demais entram pelo mesmo padrão (ver
 > - Chave de `indicatorValues` **preparada para histórico** (`{município, indicador, ano}`);
 >   o IGM-CFA já exercita isso com **10 anos por município** (2.230 valores) e cada
 >   dimensão ISDEL com **9 anos** (2.007 valores).
-> - O frontend ainda usa os estáticos de `src/data/`; a integração via **API/backend está
->   adiada** (plano guardado fora do repo) — o schema já suporta sem remodelar.
-> - **Próximo passo:** adicionar mais indicadores (mesmo padrão) e/ou a API.
+> - **Integração via API concluída (1.0.0 em produção).** O frontend consome a **API de
+>   leitura** (`server/`, Node/Fastify) que lê o `DadosOPP` e devolve agendas + base
+>   econômica com o **status já calculado** a partir do `threshold` de cada indicador no
+>   banco. Os dados estáticos de `src/data/` foram removidos. Deploy no servidor Sebrae
+>   (`10.1.100.99`): Nginx serve o `dist/` e faz proxy de `/api/*` para o processo Node.
+> - **Próximo passo:** adicionar mais indicadores (mesmo padrão) — a API os expõe
+>   automaticamente (indicador sem documento no banco simplesmente não é retornado).
 
 ---
 
