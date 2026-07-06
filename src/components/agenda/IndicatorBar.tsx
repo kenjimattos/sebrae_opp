@@ -1,5 +1,10 @@
 // Barra de classificação contínua (red → yellow → green) com marcador
 // quadrado posicionado pela zona do status. Usada no AgendaCard floating.
+//
+// Indicador sem faixa oficial (status 'none'): a barra NÃO some — fica
+// invisível (`invisible`) mantendo o mesmo espaço (largura do gutter + altura
+// da barra + rótulos). Assim o valor continua centralizado e o layout do
+// AgendaIndicator segue equilibrado. Ver decisão em CHANGELOG.
 
 import type { StatusType } from '@/types/indicators'
 
@@ -27,18 +32,22 @@ export default function IndicatorBar({
   segmentLabels,
   className = '',
 }: IndicatorBarProps) {
-  // Sem faixa oficial → não há barra de classificação para mostrar.
-  if (status === 'none') return null
-
-  const marker = MARKER[status]
+  // Sem faixa oficial: mantém o espaço (invisível), sem marcador.
+  const empty = status === 'none'
+  const marker = empty ? undefined : MARKER[status]
 
   return (
-    <div className={`flex flex-col gap-xs w-[var(--spacing-gutter)] ${className}`}>
+    <div
+      className={`flex flex-col gap-xs w-[var(--spacing-gutter)] ${empty ? 'invisible' : ''} ${className}`}
+      aria-hidden={empty || undefined}
+    >
       <div className="relative h-[var(--spacing-2xs)] w-full" style={{ background: BAR_GRADIENT }}>
-        <div
-          className="absolute size-[var(--spacing-sm)] top-1/2 -translate-x-1/2 -translate-y-1/2"
-          style={{ left: `${marker.leftPct}%`, background: marker.color }}
-        />
+        {marker && (
+          <div
+            className="absolute size-[var(--spacing-sm)] top-1/2 -translate-x-1/2 -translate-y-1/2"
+            style={{ left: `${marker.leftPct}%`, background: marker.color }}
+          />
+        )}
       </div>
       {segmentLabels && (
         <div className="flex items-center justify-between w-full">
