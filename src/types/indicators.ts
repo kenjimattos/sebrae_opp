@@ -40,6 +40,10 @@ export interface CatalogIndicator {
   // Alinhada às definições em database/MAPEAMENTO_BASE_DOS_DADOS.md e ao contrato
   // da futura API. Ano de referência não vive aqui.
   unit?: string
+  // `false` = indicador ainda NÃO implementado (sem seed/fonte no banco) → não
+  // aparece na plataforma. Default (ausente) = implementado. Quando a API existir,
+  // isso vem do próprio banco (indicador sem dado simplesmente não é retornado).
+  implemented?: boolean
 }
 
 export interface CatalogAgenda {
@@ -53,6 +57,8 @@ export interface CatalogEconomicBase {
   label: string
   referenceYear: string
   unit?: string
+  // idem CatalogIndicator: `false` oculta o card até ser implementado.
+  implemented?: boolean
 }
 
 export interface Catalog {

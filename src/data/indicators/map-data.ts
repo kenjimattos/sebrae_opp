@@ -9,11 +9,13 @@ import { valuesMap } from '@/data/indicators/values/index'
 import { parseNumeric, deriveStatus } from '@/data/indicators/thresholds'
 
 export const indicatorOptions = catalog.agendas.flatMap((a) =>
-  a.indicators.map((i) => ({
-    label: i.label,
-    shortLabel: i.label,
-    value: i.id,
-  })),
+  a.indicators
+    .filter((i) => i.implemented !== false)
+    .map((i) => ({
+      label: i.label,
+      shortLabel: i.label,
+      value: i.id,
+    })),
 )
 
 export type IndicatorKey = string
@@ -35,6 +37,7 @@ function buildMunicipalityMapData(): Record<string, MunicipalityMapData> {
     const indicators: Record<string, MapIndicatorEntry> = {}
     for (const agenda of catalog.agendas) {
       for (const ind of agenda.indicators) {
+        if (ind.implemented === false) continue
         const raw = values.agendas[ind.id]
         if (raw === undefined) continue
         const n = parseNumeric(raw)

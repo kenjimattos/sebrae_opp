@@ -17,17 +17,20 @@ function buildIndicators(values: MunicipalityValues): IndicatorsData {
     agendas: catalog.agendas.map((a) => ({
       id: a.id,
       name: a.name,
-      indicators: a.indicators.map((i) => {
-        const value = values.agendas[i.id] ?? '—'
-        return {
-          id: i.id,
-          label: i.label,
-          value,
-          status: deriveStatus(i.id, value),
-        }
-      }),
+      // Indicadores ainda não implementados (implemented: false) não aparecem.
+      indicators: a.indicators
+        .filter((i) => i.implemented !== false)
+        .map((i) => {
+          const value = values.agendas[i.id] ?? '—'
+          return {
+            id: i.id,
+            label: i.label,
+            value,
+            status: deriveStatus(i.id, value),
+          }
+        }),
     })),
-    economicBase: catalog.economicBase.map((b) => {
+    economicBase: catalog.economicBase.filter((b) => b.implemented !== false).map((b) => {
       const v = values.economicBase[b.id] ?? { value: '—', variation: '' }
       return {
         id: b.id,
