@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback, useEffect, type ReactNode } from 'react'
+import { useMemo, useState, useCallback, useEffect, useRef, type ReactNode } from 'react'
 import {
   MunicipalityContext,
   type MunicipalityChangeOrigin,
@@ -25,6 +25,15 @@ export default function MunicipalityProvider({ children }: { children: ReactNode
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
+  // Município exibido no momento (para o compare do analytics sem depender de
+  // fechar sobre o state) e id do último fetch pedido (para descartar respostas
+  // obsoletas quando o usuário troca de município no meio do carregamento).
+  const displayedRef = useRef(municipality)
+  const requestIdRef = useRef('')
+  useEffect(() => {
+    displayedRef.current = municipality
+  }, [municipality])
+
   // Carrega a lista de municípios uma vez no boot.
   useEffect(() => {
     let cancelled = false
@@ -42,31 +51,37 @@ export default function MunicipalityProvider({ children }: { children: ReactNode
 
   const setMunicipality = useCallback(
     (id: string, name: string, origin?: MunicipalityChangeOrigin) => {
-      setMunicipalityState((prev) => {
-        if (prev.id !== id) {
-          trackEvent('municipio_alterado', {
-            de: prev.name,
-            para: name,
-            origem: origin ?? 'desconhecida',
-          })
-          setTag('municipio', name)
-        }
-        // Limpa os dados até o fetch resolver (evita mostrar dados do município
-        // anterior sob o novo nome).
-        return { id, name, data: null }
-      })
+      const prev = displayedRef.current
+      if (prev.id !== id) {
+        trackEvent('municipio_alterado', {
+          de: prev.name,
+          para: name,
+          origem: origin ?? 'desconhecida',
+        })
+        setTag('municipio', name)
+      }
+
+      // Stale-while-revalidate: NÃO troca o município exibido ainda. Mantém o
+      // atual renderizado (evita voltar pro mapa expandido durante o fetch) e só
+      // faz a troca atômica quando os dados novos chegam.
+      requestIdRef.current = id
       setLoading(true)
       setError(null)
       fetchMunicipalityData(id)
         .then((data) => {
-          // Ignora respostas obsoletas caso o usuário troque de município antes
-          // deste fetch terminar.
-          setMunicipalityState((cur) => (cur.id === id ? { ...cur, data } : cur))
+          // Descarta respostas obsoletas: só comita se este ainda é o último
+          // município pedido.
+          if (requestIdRef.current !== id) return
+          setMunicipalityState({ id, name, data })
         })
         .catch((e: unknown) => {
-          setError(e instanceof Error ? e.message : String(e))
+          if (requestIdRef.current === id) {
+            setError(e instanceof Error ? e.message : String(e))
+          }
         })
-        .finally(() => setLoading(false))
+        .finally(() => {
+          if (requestIdRef.current === id) setLoading(false)
+        })
     },
     [],
   )
