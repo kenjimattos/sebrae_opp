@@ -20,6 +20,14 @@ Ponto de convergência entre a camada de dados/ETL (`database/`) e o redesign (`
   - Rotas: `GET /api/health`, `/api/municipalities`, `/api/municipalities/:id`, `/api/map`.
   - **DB-driven de ponta a ponta:** agendas/base econômica montadas de `agendas` + `indicators.placements`; status derivado do `threshold` de cada indicador no banco (sem tabela hardcoded — `thresholds.ts` do frontend fica obsoleto). Indicador sem documento no banco não é retornado, tornando o flag `implemented?` desnecessário na integração.
   - `mongodb` 6 (só leitura) + `dotenv`; conexão única com pool; shutdown limpo (SIGTERM). Ver `server/README.md`.
+  - Validado ao vivo contra o `DadosOPP` (10.1.141.23): 223 municípios, semáforo calculado no servidor (IGM-CFA 7,06→warning etc.), mapa com 22 opções (os 2 não-implementados não têm doc no banco, então não são retornados).
+
+### Frontend ↔ API
+
+- **Frontend passa a consumir a API** em vez dos TS estáticos. Novo client `src/data/api.ts` (`fetchMunicipalities`, `fetchMunicipalityData`). Proxy `/api → :3000` no Vite dev; Nginx em produção.
+- **`MunicipalityProvider` agora é assíncrono:** busca a lista de municípios no boot e os dados do município selecionado sob demanda (`fetch('/api/municipalities/:id')`), com estado `loading`/`error` e guarda contra respostas obsoletas. A lista (223 municípios) e o status vêm do banco.
+- `CitySelector`, `SectionAgendas` e `StepIdentification` passam a ler a lista de `useMunicipality().municipalities` em vez de `municipalities.json`. `SectionAgendas` mostra "Carregando indicadores…" durante o fetch.
+- **Órfãos:** `map-data.ts`, `mapHelpers.ts`, `usePanoramaMedia`, `usePanoramaIndicators` e os `values/*.ts` estáticos deixam de ter consumidor vivo (o mapa interativo saiu no redesign) — removidos em seguida.
 
 ## [0.8.0] — 2026-04-23
 

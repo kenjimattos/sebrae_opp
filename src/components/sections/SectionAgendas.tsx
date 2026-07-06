@@ -9,11 +9,10 @@ import AgendaCard from '@/components/agenda/AgendaCard'
 import { ParaibaOutlineMap } from '@/components/map/ParaibaOutlineMap'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { agendaObjectives } from '@/data/indicators/descriptions/agendas'
-import municipios from '@/data/indicators/municipalities.json'
 import CitySelector from '@/components/layout/CitySelector'
 
 export default function SectionAgendas() {
-  const { municipality, setMunicipality } = useMunicipality()
+  const { municipality, municipalities, setMunicipality, loading } = useMunicipality()
   const agendas = municipality.data?.agendas ?? []
   const [selectedAgendaId, setSelectedAgendaId] = useState<string>(
     agendas[0]?.id ?? 'governanca',
@@ -25,18 +24,19 @@ export default function SectionAgendas() {
   const hasSelection = municipality.data != null
 
   function handleMapSelect(id: string) {
-    const match = municipios.find((m) => m.id === id)
+    const match = municipalities.find((m) => m.id === id)
     if (match) setMunicipality(match.id, match.name, 'map')
   }
 
   // Estado inicial: sem município selecionado, exibimos apenas o mapa e o
-  // CitySelector. A lista de agendas e o card só aparecem após a seleção.
+  // CitySelector. A lista de agendas e o card só aparecem após a seleção
+  // (ou enquanto os dados do município recém-selecionado carregam).
   if (!hasSelection) {
     return (
       <section className="section-container">
         <div className="flex flex-col gap-xs items-center">
           <CitySelector />
-          <p className="typo-body">ou clique no mapa</p>
+          <p className="typo-body">{loading ? 'Carregando indicadores…' : 'ou clique no mapa'}</p>
         </div>
         <div className="flex w-full px-xl">
           <ParaibaOutlineMap

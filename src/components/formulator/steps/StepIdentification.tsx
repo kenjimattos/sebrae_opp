@@ -2,11 +2,10 @@ import TextInput from '@/components/ui/TextInput'
 import Dropdown from '@/components/ui/Dropdown'
 import { useFormulator } from '@/hooks/useFormulator'
 import { useMunicipality } from '@/hooks/useMunicipality'
-import municipalities from '@/data/indicators/municipalities.json'
 
 export default function StepIdentification() {
   const { state, setSlice } = useFormulator()
-  const { municipality, setMunicipality } = useMunicipality()
+  const { municipality, municipalities, setMunicipality } = useMunicipality()
   const data = state.identification
 
   const update = (patch: Partial<typeof data>) =>

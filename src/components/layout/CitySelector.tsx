@@ -3,7 +3,6 @@ import { ChevronDown } from '@/components/icons'
 import DropdownMenu from '@/components/ui/DropdownMenu'
 import { useDropdownState } from '@/components/ui/useDropdownState'
 import { useMunicipality } from '@/hooks/useMunicipality'
-import municipios from '@/data/indicators/municipalities.json'
 import Button from '../ui/buttons/Button'
 
 interface CitySelectorProps {
@@ -11,7 +10,7 @@ interface CitySelectorProps {
 }
 
 export default function CitySelector({ className = '' }: CitySelectorProps) {
-  const { municipality, setMunicipality } = useMunicipality()
+  const { municipality, municipalities, setMunicipality } = useMunicipality()
   const { open, setOpen, ref } = useDropdownState()
   const [draft, setDraft] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
@@ -20,14 +19,14 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
   // when closed. Deriving avoids a setState-in-effect sync between them.
   const query = open ? draft : municipality.name
 
-  const filtered = municipios.filter((m) =>
+  const filtered = municipalities.filter((m) =>
     m.name.toLowerCase().includes(query.toLowerCase()),
   )
 
   const menuOptions = filtered.map((m) => ({ label: m.name, value: m.id }))
 
   function handleSelect(id: string) {
-    const match = municipios.find((m) => m.id === id)
+    const match = municipalities.find((m) => m.id === id)
     if (!match) return
     setMunicipality(match.id, match.name, 'selector')
     setOpen(false)

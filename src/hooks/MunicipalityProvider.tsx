@@ -1,52 +1,15 @@
-import { useMemo, useState, useCallback, type ReactNode } from 'react'
+import { useMemo, useState, useCallback, useEffect, type ReactNode } from 'react'
 import {
   MunicipalityContext,
   type MunicipalityChangeOrigin,
   type MunicipalityState,
 } from '@/hooks/useMunicipality'
-import type { IndicatorsData, MunicipalityValues } from '@/types/indicators'
-import { catalog } from '@/data/indicators/catalog'
-import { deriveStatus } from '@/data/indicators/thresholds'
-import { valuesMap } from '@/data/indicators/values/index'
+import {
+  fetchMunicipalities,
+  fetchMunicipalityData,
+  type MunicipalitySummary,
+} from '@/data/api'
 import { setTag, trackEvent } from '@/utils/analytics'
-
-// Merges catalog (structure) with municipality values and applies thresholds.
-function buildIndicators(values: MunicipalityValues): IndicatorsData {
-  return {
-    municipality: values.municipality,
-    agendas: catalog.agendas.map((a) => ({
-      id: a.id,
-      name: a.name,
-      // Indicadores ainda não implementados (implemented: false) não aparecem.
-      indicators: a.indicators
-        .filter((i) => i.implemented !== false)
-        .map((i) => {
-          const value = values.agendas[i.id] ?? '—'
-          return {
-            id: i.id,
-            label: i.label,
-            value,
-            status: deriveStatus(i.id, value),
-          }
-        }),
-    })),
-    economicBase: catalog.economicBase.filter((b) => b.implemented !== false).map((b) => {
-      const v = values.economicBase[b.id] ?? { value: '—', variation: '' }
-      return {
-        id: b.id,
-        label: b.label,
-        value: v.value,
-        variation: v.variation,
-        tone: v.tone,
-        referenceYear: b.referenceYear,
-      }
-    }),
-  }
-}
-
-const dataMap: Record<string, IndicatorsData> = Object.fromEntries(
-  Object.entries(valuesMap).map(([id, v]) => [id, buildIndicators(v)]),
-)
 
 // Estado inicial sem município: a Home exibe apenas mapa + seletor até o
 // usuário escolher um município (ver `{data && ...}` em Home / SectionAgendas).
@@ -58,6 +21,24 @@ const emptyMunicipality: MunicipalityState = {
 
 export default function MunicipalityProvider({ children }: { children: ReactNode }) {
   const [municipality, setMunicipalityState] = useState<MunicipalityState>(emptyMunicipality)
+  const [municipalities, setMunicipalities] = useState<MunicipalitySummary[]>([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  // Carrega a lista de municípios uma vez no boot.
+  useEffect(() => {
+    let cancelled = false
+    fetchMunicipalities()
+      .then((list) => {
+        if (!cancelled) setMunicipalities(list)
+      })
+      .catch((e: unknown) => {
+        if (!cancelled) setError(e instanceof Error ? e.message : String(e))
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   const setMunicipality = useCallback(
     (id: string, name: string, origin?: MunicipalityChangeOrigin) => {
@@ -70,13 +51,30 @@ export default function MunicipalityProvider({ children }: { children: ReactNode
           })
           setTag('municipio', name)
         }
-        return { id, name, data: dataMap[id] ?? null }
+        // Limpa os dados até o fetch resolver (evita mostrar dados do município
+        // anterior sob o novo nome).
+        return { id, name, data: null }
       })
+      setLoading(true)
+      setError(null)
+      fetchMunicipalityData(id)
+        .then((data) => {
+          // Ignora respostas obsoletas caso o usuário troque de município antes
+          // deste fetch terminar.
+          setMunicipalityState((cur) => (cur.id === id ? { ...cur, data } : cur))
+        })
+        .catch((e: unknown) => {
+          setError(e instanceof Error ? e.message : String(e))
+        })
+        .finally(() => setLoading(false))
     },
     [],
   )
 
-  const value = useMemo(() => ({ municipality, setMunicipality }), [municipality, setMunicipality])
+  const value = useMemo(
+    () => ({ municipality, municipalities, loading, error, setMunicipality }),
+    [municipality, municipalities, loading, error, setMunicipality],
+  )
 
   return <MunicipalityContext.Provider value={value}>{children}</MunicipalityContext.Provider>
 }
