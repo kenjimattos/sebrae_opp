@@ -34,6 +34,7 @@ export {
   Sparkles,
   Trash2,
   TrendingUp,
+  TriangleAlert,
   Users,
 } from 'lucide-react'
 

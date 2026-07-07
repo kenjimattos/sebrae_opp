@@ -9,6 +9,7 @@ import SectionHeader from '@/components/ui/SectionHeader'
 import { sectionContent } from '@/data/home/sections'
 import SideNav from '@/components/layout/SideNav'
 import ModeToggle, { type ModeOption } from '@/components/ui/ModeToggle'
+import SectionErrorBoundary from '@/components/ui/SectionErrorBoundary'
 import ModeEixos from '@/components/agenda/ModeEixos'
 import ModeEconomics from '@/components/economics/ModeEconomics'
 import ModeRiscos from '@/components/risks/ModeRisks'
@@ -80,7 +81,11 @@ export default function SectionJornada() {
               ariaLabel="Modo de visualização"
               className="self-center shrink-0"
             /> : null }
-            <Active />
+            {/* key={value}: remonta o boundary ao trocar de modo, resetando o
+                estado de erro. No caminho feliz o boundary não adiciona wrapper. */}
+            <SectionErrorBoundary key={value} name={`jornada:${value}`} className="flex-1">
+              <Active />
+            </SectionErrorBoundary>
         </div>
         </div>
       </div>

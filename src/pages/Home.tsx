@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import SectionAgendas from '@/components/sections/SectionAgendas'
 import SectionJornada from '@/components/sections/SectionJornada'
+import SectionErrorBoundary from '@/components/ui/SectionErrorBoundary'
 import { useMunicipality } from '@/hooks/useMunicipality'
 
 const HEADER_OFFSET = 95
@@ -26,11 +27,15 @@ export default function Home() {
   return (
     <div className="container flex flex-col gap-lg">
       <div id="agenda">
-        <SectionAgendas />
+        <SectionErrorBoundary name="agendas">
+          <SectionAgendas />
+        </SectionErrorBoundary>
       </div>
       {data ? (
         <div id="ambiente">
-          <SectionJornada />
+          <SectionErrorBoundary name="jornada">
+            <SectionJornada />
+          </SectionErrorBoundary>
         </div>
       ) : ''}
     </div>

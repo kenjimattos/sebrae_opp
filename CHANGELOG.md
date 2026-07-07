@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Não lançado]
 
+### Robustez
+
+- **Error boundary por seção (`SectionErrorBoundary`).** Antes, um erro de render em qualquer seção derrubava a app inteira (tela branca — como no crash do Panorâma). Novo boundary isola a falha: exibe um fallback no design system (ícone de alerta + mensagem) e registra o evento `secao_com_erro` no analytics, mantendo o resto da página utilizável. Aplicado às seções da Home (`agendas`, `jornada`) e ao **modo ativo** dentro do `SectionJornada` (`key={modo}` reseta o boundary ao trocar de modo, e o SideNav/ModeToggle seguem vivos quando um modo quebra). Novo ícone `TriangleAlert` no index centralizado.
+
 ### Backend (API)
 
 - **Tipos do servidor alinhados ao shape real de `variation`.** `server/src/types.ts` dizia `variation?: string`, mas o banco/ETL grava um objeto estruturado — desalinhamento que deixou o crash do frontend passar batido. Novo tipo `EconomicVariation` + alias `RawVariation` (`EconomicVariation | string | null`) aplicado a `IndicatorValueDoc`, `Indicator` e `EconomicBaseItem`, espelhando o contrato do frontend.
