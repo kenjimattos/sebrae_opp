@@ -1,5 +1,10 @@
 {
+  "framework": "vite",
+  "outputDirectory": "dist",
+  "installCommand": "npm install --legacy-peer-deps",
   "rewrites": [
+    { "source": "/api/municipalities", "destination": "/api-snapshot/municipalities.json" },
+    { "source": "/api/municipalities/:id", "destination": "/api-snapshot/municipalities/:id.json" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
