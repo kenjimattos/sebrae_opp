@@ -11,6 +11,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ### Backend (API)
 
 - **Tipos do servidor alinhados ao shape real de `variation`.** `server/src/types.ts` dizia `variation?: string`, mas o banco/ETL grava um objeto estruturado — desalinhamento que deixou o crash do frontend passar batido. Novo tipo `EconomicVariation` + alias `RawVariation` (`EconomicVariation | string | null`) aplicado a `IndicatorValueDoc`, `Indicator` e `EconomicBaseItem`, espelhando o contrato do frontend.
+- **Validador Mongo de `indicatorValues.variation` corrigido.** `database/setup.mongodb.js` ainda exigia `bsonType: 'string'` enquanto o ETL grava objeto — inconsistência que rejeitaria inserts se a validação estivesse estrita. Passou a aceitar `object | string | null`, com sub-schema do objeto (`deltaPct`, `previousValue`, `previousYear`, `basis` ∈ edicao-anterior|yoy|yoy-media-anual).
 
 ### Correções
 
