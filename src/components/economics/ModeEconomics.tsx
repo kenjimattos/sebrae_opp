@@ -5,6 +5,7 @@ import EconomicBaseCard from '@/components/economics/EconomicsCard'
 import EconomicBaseAnalysis from '@/components/economics/EconomicsAnalysis'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { getAnalysisForMunicipality } from '@/data/home/economic-base'
+import { toEconomicVariation } from '@/utils/economics'
 
 export default function ModeEconomics() {
   const { municipality } = useMunicipality()
@@ -20,7 +21,7 @@ export default function ModeEconomics() {
             id={item.id}
             label={item.label}
             value={item.value}
-            variation={item.variation}
+            variation={toEconomicVariation(item.variation)}
             tone={item.tone}
             referenceYear={item.referenceYear}
           />

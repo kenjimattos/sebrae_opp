@@ -2,6 +2,12 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Não lançado]
+
+### Correções
+
+- **Crash do modo "Panorâma Sócioeconômico" (React error #31).** A API passou a devolver `variation` da base econômica como **objeto estruturado** (`{ deltaPct, previousValue, previousYear, basis }`) em vez de string formatada, e o `EconomicsCard` renderizava o objeto direto como filho JSX — o que derrubava a árvore inteira (tela branca no modo, tanto no preview quanto em produção). Frontend passou a tipar e tratar o objeto: novo tipo `EconomicVariation`, helpers `toEconomicVariation`/`formatVariationPct` (`src/utils/economics.ts`) e formatação do delta em pt-BR com sinal (ex.: `+12,2%`) + ano de comparação no `title`. Indicadores sem variação (contrato legado `''`) não mostram badge. `tone` deixou de vir da API (null) — a cor da variação não é mais inventada no cliente.
+
 ## [1.0.0] — 2026-07-06
 
 **Primeiro release de produção da Plataforma OPP.** Ponto de convergência entre a camada de dados/ETL (`database/`) e o redesign (`new-design`), agora servido de ponta a ponta pela API de leitura sobre o MongoDB `DadosOPP`. Frontend e API (`server/`) versionados juntos em **1.0.0** — deploy único (Nginx serve o `dist/` e faz proxy de `/api/*` para o processo Node).
