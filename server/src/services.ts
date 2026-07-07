@@ -77,7 +77,6 @@ export function buildIndicatorsData(
       label: ind.label,
       value: v?.rawValue ?? '—',
       variation: v?.variation ?? '',
-      tone: v?.tone ?? undefined,
       referenceYear: v?.referenceYear ?? ind.referenceYear ?? '',
     }
   })

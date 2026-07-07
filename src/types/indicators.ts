@@ -45,7 +45,6 @@ export interface EconomicBaseItem {
   value: string
   // Objeto estruturado (ou '' quando não há variação). Ver `EconomicVariation`.
   variation?: EconomicVariation | string | null
-  tone?: StatusType
   referenceYear: string
 }
 
@@ -91,7 +90,6 @@ export interface Catalog {
 export interface EconomicBaseValue {
   value: string
   variation?: EconomicVariation | string | null
-  tone?: StatusType
 }
 
 export interface MunicipalityValues {

@@ -22,7 +22,6 @@ export default function ModeEconomics() {
             label={item.label}
             value={item.value}
             variation={toEconomicVariation(item.variation)}
-            tone={item.tone}
             referenceYear={item.referenceYear}
           />
         ))}

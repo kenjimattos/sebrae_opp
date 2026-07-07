@@ -54,7 +54,7 @@ ensureCollection('indicators', {
     label: { bsonType: 'string' },
     threshold: {
       bsonType: 'object',
-      description: 'régua de classificação; status/tone derivam dela',
+      description: 'régua de classificação; o status do indicador deriva dela',
       properties: {
         kind: { enum: ['higher-better', 'lower-better', 'enum'] },
         success: { bsonType: ['double', 'int'] },
@@ -108,7 +108,6 @@ ensureCollection('indicatorValues', {
         },
       },
     },
-    tone: { enum: ['success', 'warning', 'alert', null], description: 'cor do card (opcional; em geral derivada do threshold)' },
     referenceYear: { bsonType: 'string', description: 'ano a que o dado se refere (vintage); faz parte da chave (histórico)' },
     source: { bsonType: ['string', 'null'] },
     isFictional: { bsonType: 'bool', description: 'true = dado de demonstração' },

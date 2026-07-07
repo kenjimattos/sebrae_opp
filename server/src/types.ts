@@ -54,7 +54,6 @@ export interface IndicatorValueDoc {
   rawValue: string
   numericValue?: number | null
   variation?: RawVariation
-  tone?: StatusType | null
   referenceYear: string
   isFictional: boolean
 }
@@ -95,7 +94,6 @@ export interface EconomicBaseItem {
   label: string
   value: string
   variation?: RawVariation
-  tone?: StatusType
   referenceYear: string
 }
 

@@ -15,7 +15,11 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Correções
 
-- **Crash do modo "Panorâma Sócioeconômico" (React error #31).** A API passou a devolver `variation` da base econômica como **objeto estruturado** (`{ deltaPct, previousValue, previousYear, basis }`) em vez de string formatada, e o `EconomicsCard` renderizava o objeto direto como filho JSX — o que derrubava a árvore inteira (tela branca no modo, tanto no preview quanto em produção). Frontend passou a tipar e tratar o objeto: novo tipo `EconomicVariation`, helpers `toEconomicVariation`/`formatVariationPct` (`src/utils/economics.ts`) e formatação do delta em pt-BR com sinal (ex.: `+12,2%`) + ano de comparação no `title`. Indicadores sem variação (contrato legado `''`) não mostram badge. `tone` deixou de vir da API (null) — a cor da variação não é mais inventada no cliente.
+- **Crash do modo "Panorâma Sócioeconômico" (React error #31).** A API passou a devolver `variation` da base econômica como **objeto estruturado** (`{ deltaPct, previousValue, previousYear, basis }`) em vez de string formatada, e o `EconomicsCard` renderizava o objeto direto como filho JSX — o que derrubava a árvore inteira (tela branca no modo, tanto no preview quanto em produção). Frontend passou a tipar e tratar o objeto: novo tipo `EconomicVariation`, helpers `toEconomicVariation`/`formatVariationPct` (`src/utils/economics.ts`) e formatação do delta em pt-BR com sinal (ex.: `+12,2%`) + ano de comparação no `title`. Indicadores sem variação (contrato legado `''`) não mostram badge.
+
+### Design / Contrato
+
+- **`tone` removido do contrato da base econômica.** A cor do badge de variação vinha de um `tone` que era dado de demo escrito à mão e arbitrário (deletado na migração pra API; o ETL nunca o recomputou). Como o `MAPEAMENTO_BASE_DOS_DADOS.md` define que os cards da base econômica **não têm semáforo por design** e não existe metadado de direção (maior/menor-é-melhor) para classificar melhora/piora de forma reproduzível, decidiu-se manter a **variação em cor neutra**. Campo `tone` removido de `EconomicBaseItem`/`EconomicBaseValue`/`IndicatorValueDoc` (frontend + server), do build do servidor e do validador Mongo (`indicatorValues`).
 
 ## [1.0.0] — 2026-07-06
 
