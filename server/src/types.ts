@@ -4,6 +4,20 @@
 
 export type StatusType = 'success' | 'warning' | 'alert' | 'none'
 
+// Variação de um indicador como o ETL grava no banco: objeto estruturado com o
+// delta percentual e o ponto de comparação. Indicadores sem variação chegam como
+// string vazia (contrato legado). Espelha `EconomicVariation` do frontend
+// (src/types/indicators.ts).
+export interface EconomicVariation {
+  deltaPct: number
+  previousValue: number
+  previousYear: string
+  basis: string
+}
+
+// Valor cru de `variation` como sai do banco / vai pra API.
+export type RawVariation = EconomicVariation | string | null
+
 // --- Documentos como vivem no MongoDB (coleções do DadosOPP) ---
 
 export type Threshold =
@@ -39,7 +53,7 @@ export interface IndicatorValueDoc {
   indicatorId: string
   rawValue: string
   numericValue?: number | null
-  variation?: string
+  variation?: RawVariation
   tone?: StatusType | null
   referenceYear: string
   isFictional: boolean
@@ -63,7 +77,7 @@ export interface Indicator {
   id: string
   label: string
   value: string
-  variation?: string
+  variation?: RawVariation
   status: StatusType
   // Faixa oficial (só nos 6 indicadores classificados). O frontend deriva os
   // rótulos das zonas da barra a partir daqui.
@@ -80,7 +94,7 @@ export interface EconomicBaseItem {
   id: string
   label: string
   value: string
-  variation: string
+  variation?: RawVariation
   tone?: StatusType
   referenceYear: string
 }
