@@ -2,7 +2,7 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
-## [Não lançado]
+## [1.0.1] — 2026-07-07
 
 ### Robustez
 
