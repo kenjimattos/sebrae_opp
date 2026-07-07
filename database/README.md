@@ -102,7 +102,7 @@ db.agendas.countDocuments()             // 6
 db.indicators.countDocuments()          // 12
 db.indicatorValues.countDocuments()     // 8251
 db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'idh-m' })
-// João Pessoa -> rawValue "0,763"  (status/tone derivam do threshold do indicador)
+// João Pessoa -> rawValue "0,763"  (status deriva do threshold do indicador)
 db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'igm-cfa', referenceYear: '2026' })
 // João Pessoa -> rawValue "6,38"  + breakdown { financas, gestao, desempenho }
 db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'igma', referenceYear: '2026' })
@@ -112,7 +112,7 @@ db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'trabalhado
 db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'trabalhadores-tic', referenceYear: '2024' })
 // João Pessoa -> rawValue "2,17%"  + breakdown { vinculosSetor, vinculosTotal, tic, criativa, pesquisa }
 db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'isdel-governanca', referenceYear: '2023' })
-// João Pessoa -> rawValue "0,431"  (status/tone derivam do threshold; escala ISDEL 0–1)
+// João Pessoa -> rawValue "0,431"  (status deriva do threshold; escala ISDEL 0–1)
 db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'isdel-educacao-emp', referenceYear: '2021' })
 // João Pessoa -> rawValue "0,620"  (sem threshold/semáforo; escala ISDEL 0–1; exibe 2021)
 db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'tempo-abertura', referenceYear: '2026' })
@@ -172,8 +172,7 @@ referencia `agendas._id`. `order` define a posição dentro da seção.
 | `referenceYear` | string | ano do dado (ex: `"2010"`) — **parte da chave** (histórico) |
 | `rawValue` | string | valor de exibição em padrão BR (`"0,763"`) |
 | `numericValue` | double\|null | valor numérico parseado |
-| `variation` | string | variação (cards socialeconomic); opcional |
-| `tone` | enum\|null | cor do card; opcional (em geral derivada do threshold) |
+| `variation` | obj\|string | variação dos cards socialeconomic; opcional. Objeto `{ deltaPct, previousValue, previousYear, basis }` quando há variação, `""`/ausente quando não |
 | `source` | string | fonte do dado |
 | `isFictional` | bool | `true` = dado de demonstração |
 | `breakdown` | obj | sub-índices opcionais (IDH-M: `{ educacao, longevidade, renda }`) |
@@ -191,7 +190,7 @@ upsert) e `indicatorValues {indicatorId, referenceYear}` (mapa: um indicador num
 ### O caso IDH-M (um indicador, duas seções)
 O IDH-M aparece em dois lugares do produto (agenda `governanca` e cards socialeconomic
 do Panorama), mas é **um único** documento `idh-m` com dois `placements` — e **um único**
-valor por município. Onde for exibido, o status/tone é derivado do `threshold`.
+valor por município. Onde for exibido, o status é derivado do `threshold`.
 
 > O **dado é do Censo 2010** (ver nota abaixo); fica em `referenceYear` = `2010`.
 
@@ -624,7 +623,7 @@ python3 database/scripts/gerar_seed_remuneracao_media_lake.py --collection 2024_
    `threshold` **se a fonte tiver faixa oficial**, `referenceYear`, `unit`, `description`, `source`).
 3. Inserir/atualizar `indicatorValues` por município (chave única `municipalityId +
    indicatorId + referenceYear`), com `rawValue`, `numericValue`, `referenceYear`,
-   `source`, `isFictional` (e, se preciso, `variation`/`tone` para cards socialeconomic sem threshold).
+   `source`, `isFictional` (e, se preciso, `variation` para cards socialeconomic sem threshold).
 4. Recomendado: criar um gerador análogo a `gerar_seed_idh_m.py` (uma fonte → um
    script `seed/indicador-<id>.mongodb.js`), para o povoamento ser reproduzível. O
    threshold (ou sua ausência justificada) fica como constante comentada no gerador.

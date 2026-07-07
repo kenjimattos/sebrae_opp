@@ -54,7 +54,7 @@ ensureCollection('indicators', {
     label: { bsonType: 'string' },
     threshold: {
       bsonType: 'object',
-      description: 'régua de classificação; status/tone derivam dela',
+      description: 'régua de classificação; o status do indicador deriva dela',
       properties: {
         kind: { enum: ['higher-better', 'lower-better', 'enum'] },
         success: { bsonType: ['double', 'int'] },
@@ -92,8 +92,22 @@ ensureCollection('indicatorValues', {
     indicatorId: { bsonType: 'string', description: 'ref indicators._id' },
     rawValue: { bsonType: 'string', description: 'valor de exibição em padrão BR (ex: "0,763")' },
     numericValue: { bsonType: ['double', 'int', 'null'], description: 'valor numérico parseado' },
-    variation: { bsonType: 'string', description: 'variação (cards socialeconomic); opcional' },
-    tone: { enum: ['success', 'warning', 'alert', null], description: 'cor do card (opcional; em geral derivada do threshold)' },
+    variation: {
+      bsonType: ['object', 'string', 'null'],
+      description:
+        'variação vs. observação anterior da série (cards socialeconomic); opcional. ' +
+        'Objeto estruturado { deltaPct, previousValue, previousYear, basis } quando há ' +
+        'variação; string vazia/ausente quando não há (ex.: séries decenais idh-m/gini).',
+      properties: {
+        deltaPct: { bsonType: ['double', 'int'], description: 'delta percentual vs. período anterior' },
+        previousValue: { bsonType: ['double', 'int'], description: 'valor da observação anterior' },
+        previousYear: { bsonType: 'string', description: 'ano da observação anterior' },
+        basis: {
+          enum: ['edicao-anterior', 'yoy', 'yoy-media-anual'],
+          description: 'cadência da comparação (varia por indicador)',
+        },
+      },
+    },
     referenceYear: { bsonType: 'string', description: 'ano a que o dado se refere (vintage); faz parte da chave (histórico)' },
     source: { bsonType: ['string', 'null'] },
     isFictional: { bsonType: 'bool', description: 'true = dado de demonstração' },

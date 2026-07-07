@@ -13,11 +13,22 @@ export interface IndicatorThreshold {
   warning?: number
 }
 
+// Variação de um indicador vinda do ETL/banco: objeto estruturado com o delta
+// percentual e o ponto de comparação. Indicadores sem variação chegam como
+// string vazia (contrato legado do servidor) — normalizar com `toEconomicVariation`.
+export interface EconomicVariation {
+  deltaPct: number
+  previousValue: number
+  previousYear: string
+  // Base de comparação usada pelo ETL: 'edicao-anterior' | 'yoy' | 'yoy-media-anual' | ...
+  basis: string
+}
+
 export interface Indicator {
   id?: string
   label: string
   value: string | number
-  variation?: string
+  variation?: EconomicVariation | string | null
   status: StatusType
   threshold?: IndicatorThreshold
 }
@@ -32,8 +43,8 @@ export interface EconomicBaseItem {
   id: string
   label: string
   value: string
-  variation: string
-  tone?: StatusType
+  // Objeto estruturado (ou '' quando não há variação). Ver `EconomicVariation`.
+  variation?: EconomicVariation | string | null
   referenceYear: string
 }
 
@@ -78,8 +89,7 @@ export interface Catalog {
 
 export interface EconomicBaseValue {
   value: string
-  variation: string
-  tone?: StatusType
+  variation?: EconomicVariation | string | null
 }
 
 export interface MunicipalityValues {

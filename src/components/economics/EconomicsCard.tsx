@@ -2,28 +2,29 @@ import { useState } from 'react'
 import { Plus, Minus } from '@/components/icons'
 import IconButton from '@/components/ui/buttons/IconButton'
 import { economicBaseDescriptions } from '@/data/indicators/descriptions/economic-base'
-import type { StatusType } from '@/types/indicators'
+import { formatVariationPct } from '@/utils/economics'
+import type { EconomicVariation } from '@/types/indicators'
 
 interface EconomicBaseCardProps {
   id: string
   label: string
   value: string
-  variation: string
-  tone?: StatusType
+  // Objeto estruturado já normalizado (ou null quando não há variação).
+  variation?: EconomicVariation | null
   referenceYear?: string
   className?: string
 }
 
-const variationColor: Record<StatusType, string> = {
-  success: 'text-[color:var(--semantic-success)]',
-  warning: 'text-[color:var(--semantic-warning)]',
-  alert: 'text-[color:var(--semantic-alert)]',
-  none: '',
-}
-
-export default function EconomicBaseCard({ id, label, value, variation, tone, referenceYear = '', className = '' }: EconomicBaseCardProps) {
+// A variação é exibida em cor neutra: os cards da base econômica não têm
+// semáforo por design (ver database/MAPEAMENTO_BASE_DOS_DADOS.md) e não há
+// metadado de direção para classificar melhora/piora de forma reproduzível.
+export default function EconomicBaseCard({ id, label, value, variation, referenceYear = '', className = '' }: EconomicBaseCardProps) {
   const description = economicBaseDescriptions[id]
   const [expanded, setExpanded] = useState(false)
+  const variationText = variation ? formatVariationPct(variation) : ''
+  const variationTitle = variation
+    ? `vs ${variation.previousYear}: ${variation.previousValue}`
+    : undefined
 
   return (
     <main
@@ -36,8 +37,8 @@ export default function EconomicBaseCard({ id, label, value, variation, tone, re
           <span className="typo-display-sm">
             {value}
           </span>
-          <span className={`typo-body-sm-bold ${tone ? variationColor[tone] : ''}`}>
-            {variation}
+          <span className="typo-body-sm-bold" title={variationTitle}>
+            {variationText}
           </span>
         </div>
         <div className="flex items-end justify-between gap-sm">

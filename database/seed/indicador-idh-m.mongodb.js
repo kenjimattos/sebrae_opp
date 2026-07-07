@@ -16,7 +16,7 @@ database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
 print(`indicators(idh-m) -> ok (${indicators.length} docs)`)
 
 // --- 2) Valores por município (223 docs), IDH-M 2010 ---
-// Um doc por município. status/tone derivam do threshold do indicador onde for exibido.
+// Um doc por município. o status deriva do threshold do indicador onde for exibido.
 const values = [
   {"municipalityId": "2500106", "indicatorId": "idh-m", "rawValue": "0,572", "numericValue": 0.572, "referenceYear": "2010", "source": "Atlas do Desenvolvimento Humano (PNUD/Ipea/FJP), Censo 2010 — basedosdados mundo_onu_adh", "isFictional": false, "breakdown": {"educacao": 0.484, "longevidade": 0.712, "renda": 0.542}},
   {"municipalityId": "2500205", "indicatorId": "idh-m", "rawValue": "0,597", "numericValue": 0.597, "referenceYear": "2010", "source": "Atlas do Desenvolvimento Humano (PNUD/Ipea/FJP), Censo 2010 — basedosdados mundo_onu_adh", "isFictional": false, "breakdown": {"educacao": 0.447, "longevidade": 0.753, "renda": 0.632}},

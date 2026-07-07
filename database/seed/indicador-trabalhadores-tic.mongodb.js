@@ -17,8 +17,8 @@ print(`indicators(trabalhadores-tic) -> ok (${indicators.length} docs)`)
 
 // --- 2) Valores por município (223 docs), RAIS 2024 ---
 // % dos vínculos formais ativos em setores de economia criativa/inovação/TIC
-// (CNAE divisões 26/58/59/60/61/62/63/72/73/74/90/91). status/tone derivam do
-// Sem threshold no catálogo -> sem classificação. breakdown = numerador/denominador + split TIC/criativa/pesquisa.
+// (CNAE divisões 26/58/59/60/61/62/63/72/73/74/90/91). o status deriva do
+// threshold do indicador. Sem threshold no catálogo -> sem classificação. breakdown = numerador/denominador + split TIC/criativa/pesquisa.
 const values = [
   {"municipalityId": "2500106", "indicatorId": "trabalhadores-tic", "rawValue": "0,84%", "numericValue": 0.84, "referenceYear": "2024", "source": "RAIS — % dos vínculos formais ativos em 31/12/2024 em setores de economia criativa, inovação e TIC (CNAE 2.0 divisões 26/58/59/60/61/62/63/72/73/74/90/91) — basedosdados br_me_rais", "isFictional": false, "breakdown": {"vinculosSetor": 4, "vinculosTotal": 476, "tic": 4, "criativa": 0, "pesquisa": 0}},
   {"municipalityId": "2500205", "indicatorId": "trabalhadores-tic", "rawValue": "0,00%", "numericValue": 0.0, "referenceYear": "2024", "source": "RAIS — % dos vínculos formais ativos em 31/12/2024 em setores de economia criativa, inovação e TIC (CNAE 2.0 divisões 26/58/59/60/61/62/63/72/73/74/90/91) — basedosdados br_me_rais", "isFictional": false, "breakdown": {"vinculosSetor": 0, "vinculosTotal": 385, "tic": 0, "criativa": 0, "pesquisa": 0}},

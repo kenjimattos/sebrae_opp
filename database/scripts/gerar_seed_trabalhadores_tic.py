@@ -193,8 +193,8 @@ def emit(values: list[dict]) -> None:
     lines.append("")
     lines.append(f"// --- 2) Valores por município ({len(values)} docs), RAIS {ANO} ---")
     lines.append("// % dos vínculos formais ativos em setores de economia criativa/inovação/TIC")
-    lines.append("// (CNAE divisões 26/58/59/60/61/62/63/72/73/74/90/91). status/tone derivam do")
-    lines.append("// Sem threshold no catálogo -> sem classificação. breakdown = numerador/denominador + split TIC/criativa/pesquisa.")
+    lines.append("// (CNAE divisões 26/58/59/60/61/62/63/72/73/74/90/91). o status deriva do")
+    lines.append("// threshold do indicador. Sem threshold no catálogo -> sem classificação. breakdown = numerador/denominador + split TIC/criativa/pesquisa.")
     lines.append("const values = [")
     for v in values:
         lines.append(f"  {js(v)},")

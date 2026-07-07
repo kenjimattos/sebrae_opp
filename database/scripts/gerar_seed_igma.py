@@ -209,7 +209,7 @@ def emit(recs: list[dict]) -> None:
     lines.append("print(`indicators(igma) -> ok (${indicators.length} docs)`)")
     lines.append("")
     lines.append(f"// --- 2) Valores por município ({len(recs)} docs), IGMA {REFERENCE_YEAR} ---")
-    lines.append("// status/tone derivam do threshold do indicador. breakdown = 6 pilares")
+    lines.append("// o status deriva do threshold do indicador. breakdown = 6 pilares")
     lines.append("// do IGMA + posição no ranking nacional + classificação (faixa Áquila).")
     lines.append("const values = [")
     for r in sorted(recs, key=lambda x: x["ibge"]):

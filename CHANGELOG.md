@@ -2,6 +2,25 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Não lançado]
+
+### Robustez
+
+- **Error boundary por seção (`SectionErrorBoundary`).** Antes, um erro de render em qualquer seção derrubava a app inteira (tela branca — como no crash do Panorâma). Novo boundary isola a falha: exibe um fallback no design system (ícone de alerta + mensagem) e registra o evento `secao_com_erro` no analytics, mantendo o resto da página utilizável. Aplicado às seções da Home (`agendas`, `jornada`) e ao **modo ativo** dentro do `SectionJornada` (`key={modo}` reseta o boundary ao trocar de modo, e o SideNav/ModeToggle seguem vivos quando um modo quebra). Novo ícone `TriangleAlert` no index centralizado.
+
+### Backend (API)
+
+- **Tipos do servidor alinhados ao shape real de `variation`.** `server/src/types.ts` dizia `variation?: string`, mas o banco/ETL grava um objeto estruturado — desalinhamento que deixou o crash do frontend passar batido. Novo tipo `EconomicVariation` + alias `RawVariation` (`EconomicVariation | string | null`) aplicado a `IndicatorValueDoc`, `Indicator` e `EconomicBaseItem`, espelhando o contrato do frontend.
+- **Validador Mongo de `indicatorValues.variation` corrigido.** `database/setup.mongodb.js` ainda exigia `bsonType: 'string'` enquanto o ETL grava objeto — inconsistência que rejeitaria inserts se a validação estivesse estrita. Passou a aceitar `object | string | null`, com sub-schema do objeto (`deltaPct`, `previousValue`, `previousYear`, `basis` ∈ edicao-anterior|yoy|yoy-media-anual).
+
+### Correções
+
+- **Crash do modo "Panorâma Sócioeconômico" (React error #31).** A API passou a devolver `variation` da base econômica como **objeto estruturado** (`{ deltaPct, previousValue, previousYear, basis }`) em vez de string formatada, e o `EconomicsCard` renderizava o objeto direto como filho JSX — o que derrubava a árvore inteira (tela branca no modo, tanto no preview quanto em produção). Frontend passou a tipar e tratar o objeto: novo tipo `EconomicVariation`, helpers `toEconomicVariation`/`formatVariationPct` (`src/utils/economics.ts`) e formatação do delta em pt-BR com sinal (ex.: `+12,2%`) + ano de comparação no `title`. Indicadores sem variação (contrato legado `''`) não mostram badge.
+
+### Design / Contrato
+
+- **`tone` removido do contrato da base econômica.** A cor do badge de variação vinha de um `tone` que era dado de demo escrito à mão e arbitrário (deletado na migração pra API; o ETL nunca o recomputou). Como o `MAPEAMENTO_BASE_DOS_DADOS.md` define que os cards da base econômica **não têm semáforo por design** e não existe metadado de direção (maior/menor-é-melhor) para classificar melhora/piora de forma reproduzível, decidiu-se manter a **variação em cor neutra**. Campo `tone` removido de `EconomicBaseItem`/`EconomicBaseValue`/`IndicatorValueDoc` (frontend + server), do build do servidor e do validador Mongo (`indicatorValues`).
+
 ## [1.0.0] — 2026-07-06
 
 **Primeiro release de produção da Plataforma OPP.** Ponto de convergência entre a camada de dados/ETL (`database/`) e o redesign (`new-design`), agora servido de ponta a ponta pela API de leitura sobre o MongoDB `DadosOPP`. Frontend e API (`server/`) versionados juntos em **1.0.0** — deploy único (Nginx serve o `dist/` e faz proxy de `/api/*` para o processo Node).

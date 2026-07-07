@@ -17,7 +17,7 @@ print(`indicators(igm-cfa) -> ok (${indicators.length} docs)`)
 
 // --- 2) Valores por município × ano (2230 docs), IGM-CFA 2017–2026 ---
 // Série histórica: a chave inclui referenceYear, então todos os anos convivem.
-// status/tone derivam do threshold do indicador. breakdown = 3 dimensões do IGM.
+// o status deriva do threshold do indicador. breakdown = 3 dimensões do IGM.
 const values = [
   {"municipalityId": "2500106", "indicatorId": "igm-cfa", "rawValue": "6,11", "numericValue": 6.11, "referenceYear": "2017", "source": "Índice CFA de Governança Municipal (IGM-CFA) — Conselho Federal de Administração (CFA)", "isFictional": false, "breakdown": {"financas": 5.656, "gestao": 7.854, "desempenho": 4.819}},
   {"municipalityId": "2500106", "indicatorId": "igm-cfa", "rawValue": "6,60", "numericValue": 6.603, "referenceYear": "2018", "source": "Índice CFA de Governança Municipal (IGM-CFA) — Conselho Federal de Administração (CFA)", "isFictional": false, "breakdown": {"financas": 6.17, "gestao": 7.579, "desempenho": 6.061}},
