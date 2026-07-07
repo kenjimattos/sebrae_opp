@@ -248,7 +248,7 @@ def emit(recs: list[dict]) -> None:
     lines.append("")
     lines.append(f"// --- 2) Valores por município × ano ({len(recs)} docs), IGM-CFA {anos[0]}–{anos[-1]} ---")
     lines.append("// Série histórica: a chave inclui referenceYear, então todos os anos convivem.")
-    lines.append("// status/tone derivam do threshold do indicador. breakdown = 3 dimensões do IGM.")
+    lines.append("// o status deriva do threshold do indicador. breakdown = 3 dimensões do IGM.")
     lines.append("const values = [")
     for r in sorted(recs, key=lambda x: (x["ibge"], int(x["ano"]))):
         value = {

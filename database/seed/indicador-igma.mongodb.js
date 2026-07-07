@@ -16,7 +16,7 @@ database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
 print(`indicators(igma) -> ok (${indicators.length} docs)`)
 
 // --- 2) Valores por município (223 docs), IGMA 2026 ---
-// status/tone derivam do threshold do indicador. breakdown = 6 pilares
+// o status deriva do threshold do indicador. breakdown = 6 pilares
 // do IGMA + posição no ranking nacional + classificação (faixa Áquila).
 const values = [
   {"municipalityId": "2500106", "indicatorId": "igma", "rawValue": "44,73", "numericValue": 44.733, "referenceYear": "2026", "source": "Índice de Gestão Municipal Áquila (IGMA) — Áquila (data-igma-api.aquila.com.br)", "isFictional": false, "breakdown": {"governanca": 40.555, "educacao": 53.048, "saude": 67.828, "infraestrutura": 35.265, "seguranca": 48.444, "socioeconomico": 23.256, "posicao": 3432, "classificacao": "Crítico"}},

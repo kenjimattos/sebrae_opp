@@ -142,7 +142,7 @@ def emit_indicador_idhm(rows: list[dict]) -> None:
     lines.append("print(`indicators(idh-m) -> ok (${indicators.length} docs)`)")
     lines.append("")
     lines.append(f"// --- 2) Valores por município ({len(rows)} docs), IDH-M {ANO_IDHM} ---")
-    lines.append("// Um doc por município. status/tone derivam do threshold do indicador onde for exibido.")
+    lines.append("// Um doc por município. o status deriva do threshold do indicador onde for exibido.")
     lines.append("const values = [")
     for r in rows:
         idhm = float(r["idhm"])
