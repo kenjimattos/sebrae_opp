@@ -6,7 +6,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import Card from '@/components/ui/Card'
-import { trackEvent } from '@/utils/analytics'
 
 type TooltipPlacement = 'top' | 'bottom'
 type TooltipAlign = 'start' | 'end'
@@ -24,9 +23,6 @@ interface TooltipProps {
   portal?: boolean
   children: React.ReactNode
   className?: string
-  // Quando fornecido, dispara `tooltip_aberto` na primeira abertura do
-  // componente (evita flood em tooltips hover ao reposicionar o cursor).
-  trackingKey?: string
 }
 
 const placementClass: Record<TooltipPlacement, string> = {
@@ -52,22 +48,16 @@ export default function Tooltip({
   portal = false,
   children,
   className = '',
-  trackingKey,
 }: TooltipProps) {
   const [open, setOpen] = useState(false)
   const [cursorPos, setCursorPos] = useState<{ x: number; y: number } | null>(null)
   const [anchorRect, setAnchorRect] = useState<DOMRect | null>(null)
   const ref = useRef<HTMLDivElement>(null)
-  const trackedRef = useRef(false)
 
   function registerOpen() {
     setOpen(true)
     if (portal && ref.current) {
       setAnchorRect(ref.current.getBoundingClientRect())
-    }
-    if (trackingKey && !trackedRef.current) {
-      trackedRef.current = true
-      trackEvent('tooltip_aberto', { chave: trackingKey })
     }
   }
 

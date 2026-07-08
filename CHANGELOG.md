@@ -2,6 +2,12 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Não lançado]
+
+### Remoções
+
+- **Integração com Microsoft Clarity removida por completo.** Saíram o wrapper `src/utils/analytics.ts`, os componentes `AnalyticsTracker` e `ConsentBanner`, a dependência `@microsoft/clarity` (`package.json`/lockfile), o `.env.example` (variável `VITE_CLARITY_ID`) e o header CORS `Access-Control-Allow-Origin: *` em `/assets/*` do `vercel.json` (existia só para o replay do Clarity). Removidas também todas as chamadas de instrumentação (`trackEvent`/`setTag`) dos componentes (`Header`, `Tooltip`/`InfoTooltip`, `PillButton`, `ModeResources`, `SectionErrorBoundary`, `ModeFormulator`, `FormulatorReview`, `MunicipalityProvider`). Docs (`CLAUDE.md`, `README.md`) atualizados. O header CORS servia ao replay do Clarity no deploy estático da Vercel — removido do `vercel.json`. Caso exista um bloco equivalente (`location /assets/` com `Access-Control-Allow-Origin`) no Nginx do servidor Sebrae, pode ser removido manualmente, mas ele não é versionado no repo.
+
 ## [1.0.1] — 2026-07-07
 
 ### Robustez

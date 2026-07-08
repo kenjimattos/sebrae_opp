@@ -13,7 +13,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, iconSizes, type IconSize } from '@/components/icons'
 import { buttonVariantStyles } from './button-styles'
-import { trackEvent } from '@/utils/analytics'
 
 interface PillButtonProps {
   label: string
@@ -131,7 +130,6 @@ export default function PillButton({
         target="_blank"
         rel="noopener noreferrer"
         className={sharedClassName}
-        onClick={() => trackEvent('cta_externo_clicado', { destino: href, label })}
       >
         {content}
       </a>

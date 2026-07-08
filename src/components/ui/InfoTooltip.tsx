@@ -11,7 +11,6 @@ interface InfoTooltipProps {
   label: string
   title: string
   subtitle: string
-  trackingKey?: string
   className?: string
 }
 
@@ -19,7 +18,6 @@ export default function InfoTooltip({
   title,
   subtitle,
   label,
-  trackingKey,
 }: InfoTooltipProps) {
   function content() {
     return (
@@ -27,7 +25,7 @@ export default function InfoTooltip({
     )
   }
   return (
-    <Tooltip trackingKey={trackingKey} portal content={content()}>
+    <Tooltip portal content={content()}>
         <IconButton
           icon={Info}
           size="sm"

@@ -17,7 +17,6 @@ Plataforma de dados municipais para o Sebrae Paraiba. Consolida indicadores soci
 | Mapa | SVG custom gerado do GeoJSON da Paraiba (IBGE) — sem lib de mapa |
 | Backend | API de leitura Node/Fastify (`server/`) sobre MongoDB `DadosOPP` |
 | Dados / ETL | MongoDB `DadosOPP` alimentado pelo ETL em `database/` (lake -> seeds) |
-| Analytics | Microsoft Clarity (opt-in LGPD, somente producao) |
 | Deploy | Nginx serve `dist/` + proxy `/api/*` para o processo Node |
 
 O frontend gera um **build estatico** (`vite build` -> `dist/`) e consome uma **API de
@@ -43,7 +42,6 @@ indicadores vem da API (`/api/*`), com o municipio ativo em estado global.
 - **Mapa da Paraiba** — SVG gerado do GeoJSON do IBGE (`ParaibaOutlineMap`), sem lib de mapa.
 - **Seletor de municipio** — lista os 223 municipios da PB vinda da API; troca sem "piscar" de volta ao mapa (stale-while-revalidate no provider).
 - **Paginas** — `/home`, `/trilhas`, `/oportunidades` (Login em `/`).
-- **Analytics opt-in (Microsoft Clarity)** — banner de consentimento LGPD (Aceitar / Recusar), ativo apenas em build de producao com `VITE_CLARITY_ID` preenchido. Heatmaps, gravacoes de sessao e 13 eventos customizados (navegacao, troca de municipio, mapa, funil do Formulador, tooltips, CTAs externos). Identificacao de sessao via `?participante=XX` para etiquetar maquinas em testes moderados.
 
 ## Municipios
 
@@ -80,11 +78,7 @@ npm run lint
 
 ### Variaveis de ambiente
 
-**Frontend** — copie `.env.example` para `.env`:
-
-| Variavel | Descricao |
-|---|---|
-| `VITE_CLARITY_ID` | ID do projeto Microsoft Clarity (obtido em https://clarity.microsoft.com). Deixe em branco para desabilitar Clarity em dev/preview — so e lido em build de producao (`import.meta.env.PROD`) |
+O frontend nao precisa de variaveis de ambiente.
 
 **API** (`server/.env`) — ver [`server/README.md`](server/README.md):
 
@@ -113,15 +107,14 @@ src/                          # Frontend React
 │   ├── sections/             # SectionHero, SectionAgendas, SectionJornada
 │   ├── layout/               # Header, Footer, SideNav, CitySelector, Layout
 │   ├── map/                  # ParaibaOutlineMap (SVG do GeoJSON)
-│   ├── ui/                   # Button, ModeToggle, DropdownMenu, ConsentBanner, etc.
-│   ├── icons/                # Re-exports Lucide
-│   └── AnalyticsTracker.tsx  # Bootstrap do Clarity + tracking de rota
+│   ├── ui/                   # Button, ModeToggle, DropdownMenu, Tooltip, etc.
+│   └── icons/                # Re-exports Lucide
 ├── data/                     # api.ts (client) + indicators/, home/, formulator/, geo/, layout.ts
 │                             #   (conteudo editorial; valores de indicador vem da API)
 ├── hooks/                    # MunicipalityProvider, FormulatorProvider, AuthProvider + hooks
 ├── types/                    # Interfaces TypeScript (indicators.ts, formulator.ts)
 ├── pages/                    # Login, Home, Trails, Opportunities, Community
-├── utils/                    # analytics, segmentLabels, statusStyles, risks, etc.
+├── utils/                    # segmentLabels, statusStyles, risks, etc.
 └── index.css                 # Design tokens (integrados ao Tailwind config)
 
 server/                       # API de leitura (Node/Fastify) — ver server/README.md
@@ -150,7 +143,7 @@ Navegador -> Nginx (:80) --+-- /            -> /var/www/sebrae_opp/dist  (SPA)
 
 ### Primeiro deploy (uma vez)
 
-1. **Nginx** — `server` block em `/etc/nginx/sites-enabled/sebrae_opp`: `root /var/www/sebrae_opp/dist`, SPA fallback (`try_files $uri $uri/ /index.html`), proxy `location /api/ { proxy_pass http://127.0.0.1:3000; }` (**sem barra no final** — preserva o `/api` no path) e `location /assets/` com `Access-Control-Allow-Origin "*"` (replay do Clarity).
+1. **Nginx** — `server` block em `/etc/nginx/sites-enabled/sebrae_opp`: `root /var/www/sebrae_opp/dist`, SPA fallback (`try_files $uri $uri/ /index.html`) e proxy `location /api/ { proxy_pass http://127.0.0.1:3000; }` (**sem barra no final** — preserva o `/api` no path).
 2. **API via systemd** — unit `/etc/systemd/system/opp-api.service` executando `node dist/index.js` com `WorkingDirectory` = `server/` (o `dotenv` le o `server/.env`, que precisa do `MONGO_URI`). Depois: `sudo systemctl enable --now opp-api`.
 
 ### Atualizar (a cada release)

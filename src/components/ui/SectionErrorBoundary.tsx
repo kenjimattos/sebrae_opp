@@ -7,11 +7,10 @@
 
 import { Component, type ErrorInfo, type ReactNode } from 'react'
 import { TriangleAlert, iconSizes } from '@/components/icons'
-import { trackEvent } from '@/utils/analytics'
 
 interface SectionErrorBoundaryProps {
   children: ReactNode
-  // Nome da seção/modo — usado no log e no evento de analytics (snake_case pt).
+  // Nome da seção/modo — usado no log de erro.
   name: string
   className?: string
 }
@@ -32,7 +31,6 @@ export default class SectionErrorBoundary extends Component<
 
   componentDidCatch(error: Error, info: ErrorInfo) {
     console.error(`[SectionErrorBoundary] ${this.props.name}:`, error, info.componentStack)
-    trackEvent('secao_com_erro', { secao: this.props.name, mensagem: error.message })
   }
 
   render() {

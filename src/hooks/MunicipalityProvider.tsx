@@ -1,7 +1,6 @@
 import { useMemo, useState, useCallback, useEffect, useRef, type ReactNode } from 'react'
 import {
   MunicipalityContext,
-  type MunicipalityChangeOrigin,
   type MunicipalityState,
 } from '@/hooks/useMunicipality'
 import {
@@ -9,7 +8,6 @@ import {
   fetchMunicipalityData,
   type MunicipalitySummary,
 } from '@/data/api'
-import { setTag, trackEvent } from '@/utils/analytics'
 
 // Estado inicial sem município: a Home exibe apenas mapa + seletor até o
 // usuário escolher um município (ver `{data && ...}` em Home / SectionAgendas).
@@ -25,14 +23,9 @@ export default function MunicipalityProvider({ children }: { children: ReactNode
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // Município exibido no momento (para o compare do analytics sem depender de
-  // fechar sobre o state) e id do último fetch pedido (para descartar respostas
-  // obsoletas quando o usuário troca de município no meio do carregamento).
-  const displayedRef = useRef(municipality)
+  // Id do último fetch pedido — para descartar respostas obsoletas quando o
+  // usuário troca de município no meio do carregamento.
   const requestIdRef = useRef('')
-  useEffect(() => {
-    displayedRef.current = municipality
-  }, [municipality])
 
   // Carrega a lista de municípios uma vez no boot.
   useEffect(() => {
@@ -50,17 +43,7 @@ export default function MunicipalityProvider({ children }: { children: ReactNode
   }, [])
 
   const setMunicipality = useCallback(
-    (id: string, name: string, origin?: MunicipalityChangeOrigin) => {
-      const prev = displayedRef.current
-      if (prev.id !== id) {
-        trackEvent('municipio_alterado', {
-          de: prev.name,
-          para: name,
-          origem: origin ?? 'desconhecida',
-        })
-        setTag('municipio', name)
-      }
-
+    (id: string, name: string) => {
       // Stale-while-revalidate: NÃO troca o município exibido ainda. Mantém o
       // atual renderizado (evita voltar pro mapa expandido durante o fetch) e só
       // faz a troca atômica quando os dados novos chegam.

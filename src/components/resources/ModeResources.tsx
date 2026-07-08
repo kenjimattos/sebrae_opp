@@ -5,7 +5,6 @@ import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import Button from '@/components/ui/buttons/Button'
 import HoverOverlay from '@/components/ui/HoverOverlay'
 import { DATAPEDIA_URL, resourceCards, resourcesContent } from '@/data/home/resources'
-import { trackEvent } from '@/utils/analytics'
 
 export default function ModeResources() {
   return (
@@ -51,12 +50,6 @@ export default function ModeResources() {
                 href={DATAPEDIA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() =>
-                  trackEvent('cta_externo_clicado', {
-                    destino: DATAPEDIA_URL,
-                    label: 'datapedia_mapa',
-                  })
-                }
                 className="block w-full rounded-sm overflow-hidden bg-[var(--primitives-gray-900)] relative group"
               >
                 <img

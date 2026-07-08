@@ -2,7 +2,7 @@
 // (sem React Router). Renderizado como painel do pilar "Formulador" dentro da
 // SectionJornada: barra de progresso + (etapas | conclusão).
 
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import FormulatorProgress from '@/components/formulator/FormulatorProgress'
 import ProjectSteps from '@/components/formulator/FormulatorProjectSteps'
 import Form from '@/components/formulator/FormulatorForm'
@@ -11,13 +11,11 @@ import { StepForm } from '@/components/formulator/steps'
 import { formulatorSteps, findStepBySlug, findStepIndex } from '@/data/formulator/steps'
 import { useFormulator } from '@/hooks/useFormulator'
 import { countCompletedSteps, isStepComplete } from '@/utils/formulatorCompleteness'
-import { trackEvent } from '@/utils/analytics'
 
 export default function ModeFormulator() {
   const { state, markVisited } = useFormulator()
   const [currentSlug, setCurrentSlug] = useState(formulatorSteps[0].slug)
   const [finalized, setFinalized] = useState(false)
-  const stepStartRef = useRef<number>(0)
 
   const index = findStepIndex(currentSlug)
   const step = findStepBySlug(currentSlug)
@@ -34,22 +32,6 @@ export default function ModeFormulator() {
     (countCompletedSteps(state) / formulatorSteps.length) * 100,
   )
 
-  // Evento único por sessão de Formulador (dispara no primeiro mount).
-  useEffect(() => {
-    trackEvent('formulador_iniciado')
-  }, [])
-
-  // Dispara `formulador_step_visitado` a cada step e reseta o cronômetro para
-  // medir o tempo gasto até o próximo avanço.
-  useEffect(() => {
-    if (finalized || !step) return
-    stepStartRef.current = Date.now()
-    trackEvent('formulador_step_visitado', {
-      step: currentSlug,
-      numero: index + 1,
-    })
-  }, [currentSlug, finalized, step, index])
-
   function goToSlug(slug: string) {
     setFinalized(false)
     setCurrentSlug(slug)
@@ -61,11 +43,6 @@ export default function ModeFormulator() {
 
   function onNext() {
     markVisited(currentSlug)
-    trackEvent('formulador_step_concluido', {
-      step: currentSlug,
-      numero: index + 1,
-      tempo_ms: Date.now() - stepStartRef.current,
-    })
     if (isLast) {
       setFinalized(true)
     } else {

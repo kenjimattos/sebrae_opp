@@ -3,7 +3,6 @@
 // + coluna central com 3 botões de ação e resumo das 10 etapas.
 // onEdit volta para a edição; onHome é o callback do botão "Voltar para home".
 
-import { useEffect } from 'react'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/buttons/Button'
 import NumberBullet from '@/components/ui/NumberBullet'
@@ -13,7 +12,6 @@ import { useFormulator } from '@/hooks/useFormulator'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import type { FormulatorState } from '@/types/formulator'
 import { isStepComplete } from '@/utils/formulatorCompleteness'
-import { trackEvent } from '@/utils/analytics'
 
 interface FormulatorReviewProps {
   onEdit: () => void
@@ -184,13 +182,6 @@ export default function FormulatorReview({ onEdit, onHome }: FormulatorReviewPro
     .map((e) => e.slug)
 
   const projectTitle = state.identification.title.trim()
-
-  useEffect(() => {
-    trackEvent('formulador_concluido', {
-      steps_completos: completedSlugs.length,
-      total_steps: formulatorSteps.length,
-    })
-  }, [completedSlugs.length])
 
   return (
     <div className="flex items-start gap-sm w-full">

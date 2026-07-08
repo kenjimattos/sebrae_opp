@@ -3,8 +3,6 @@ import AuthProvider from '@/hooks/AuthProvider'
 import MunicipalityProvider from '@/hooks/MunicipalityProvider'
 import FormulatorProvider from '@/hooks/FormulatorProvider'
 import ScrollToTop from '@/components/ScrollToTop'
-import AnalyticsTracker from '@/components/AnalyticsTracker'
-import ConsentBanner from '@/components/ui/ConsentBanner'
 import Layout from '@/components/layout/Layout'
 import Home from '@/pages/Home'
 import Login from '@/pages/Login'
@@ -15,7 +13,6 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <AnalyticsTracker />
       <AuthProvider>
         <MunicipalityProvider>
           <FormulatorProvider>
@@ -27,7 +24,6 @@ function App() {
                 <Route path="/oportunidades" element={<Opportunities />} />
               </Route>
             </Routes>
-            <ConsentBanner />
           </FormulatorProvider>
         </MunicipalityProvider>
       </AuthProvider>

@@ -3,7 +3,7 @@
 Guia de desenvolvimento para a Plataforma OPP (Observatório de Políticas Públicas).
 Leia este arquivo inteiro antes de começar qualquer tarefa.
 
-> **Status atual (1.0.0 em produção):** Redesign "Jornada do Município Empreendedor" no ar no servidor Sebrae (`10.1.100.99`), servido pelo Nginx com a API de leitura (`server/`) sobre o MongoDB `DadosOPP`. A Home tem uma `SideNav` com **4 pilares** (Ambiente de negócio, Mapeamento de recursos, Cursos e boas práticas, Formulador de projetos); cada pilar alterna **modos de visualização** via `ModeToggle`. Todos os dados de indicadores vêm da **API** (`/api/*`) — **223 municípios da PB**, default Campina Grande. O **Formulador** virou um modo (`ModeFormulator`), não mais uma rota. Rotas: `/` (Login), `/home`, `/trilhas`, `/oportunidades`. Viewport desktop 1440px. Dark mode via tokens, sem toggle na UI. **Microsoft Clarity** integrado (opt-in LGPD, apenas build de produção).
+> **Status atual (1.0.0 em produção):** Redesign "Jornada do Município Empreendedor" no ar no servidor Sebrae (`10.1.100.99`), servido pelo Nginx com a API de leitura (`server/`) sobre o MongoDB `DadosOPP`. A Home tem uma `SideNav` com **4 pilares** (Ambiente de negócio, Mapeamento de recursos, Cursos e boas práticas, Formulador de projetos); cada pilar alterna **modos de visualização** via `ModeToggle`. Todos os dados de indicadores vêm da **API** (`/api/*`) — **223 municípios da PB**, default Campina Grande. O **Formulador** virou um modo (`ModeFormulator`), não mais uma rota. Rotas: `/` (Login), `/home`, `/trilhas`, `/oportunidades`. Viewport desktop 1440px. Dark mode via tokens, sem toggle na UI.
 
 ---
 
@@ -17,7 +17,6 @@ Leia este arquivo inteiro antes de começar qualquer tarefa.
 | Roteamento | React Router v7 |
 | Mapa | SVG custom gerado do GeoJSON da Paraíba (IBGE) — `ParaibaOutlineMap`, sem lib de mapa |
 | Backend | API de leitura Node/Fastify (`server/`) sobre MongoDB `DadosOPP` |
-| Analytics | Microsoft Clarity (`@microsoft/clarity`) — opt-in LGPD, só em produção |
 | Deploy (produção) | Servidor Sebrae `10.1.100.99` — Nginx serve o `dist/` + proxy `/api/*` para o processo Node |
 
 **Não usamos Shadcn/ui.** Componentes vêm do Figma; o que faltar é feito com Tailwind puro.
@@ -111,35 +110,6 @@ As descrições e contextos de risco estão em `src/data/indicators/descriptions
 **"Etapa concluída" é heurística:** uma etapa é marcada como `checked` quando o usuário clica Próxima/Finalizar (via `markVisited(slug)`). Não há validação de campos preenchidos na v1.
 
 **AIAssistant:** conteúdo em `src/data/formulator/ai-assistant.ts`. Placeholder estático v1 (mesma descrição/exemplos/ações para as 10 etapas) — no futuro gerado por LLM.
-
----
-
-## Analytics (Microsoft Clarity)
-
-Camada de instrumentação client-side para **teste moderado com 10 participantes em 7 máquinas**. Coleta heatmaps, gravações de sessão e eventos customizados.
-
-**Arquitetura:**
-- `src/utils/analytics.ts` — wrapper único. API: `initAnalytics`, `grantConsent`/`denyConsent`, `trackEvent(name, props?)`, `setTag(key, value)`, `identifySession(customId)`. Só efetiva quando `import.meta.env.PROD === true` **e** `VITE_CLARITY_ID` está preenchido **e** o usuário aceitou o consentimento. Em dev/preview é no-op silencioso.
-- `src/components/AnalyticsTracker.tsx` — montado dentro do `<BrowserRouter>`. Inicializa Clarity se já houver consentimento, identifica a sessão via `?participante=XX` na URL (etiqueta pra cruzar gravações com as máquinas do teste), e dispara `pagina_visitada` a cada `useLocation()`.
-- `src/components/ui/ConsentBanner.tsx` — banner LGPD fixado na base. Só aparece na primeira visita; decisão persiste em `localStorage` (`opp-clarity-consent` = `granted` | `denied`).
-
-**Variável de ambiente:** `VITE_CLARITY_ID` (ver `.env.example`). Deixada em branco em dev/preview. `.env` está no `.gitignore`.
-
-**Eventos customizados (9 disparando hoje):**
-- Navegação: `pagina_visitada`, `nav_header_clicado`
-- Município: `municipio_alterado` (+ `setTag('municipio')` pra filtrar gravações)
-- Formulador: `formulador_iniciado`, `formulador_step_visitado`, `formulador_step_concluido` (com `tempo_ms`), `formulador_concluido`
-- Descoberta: `tooltip_aberto` (dedupe por instância), `cta_externo_clicado`
-
-> O wrapper `analytics.ts` ainda aceita qualquer nome de evento; os do design antigo (`hero_bloco_clicado`, `mapa_ativado`, `indicador_mapa_alterado`, `formulador_abandonado`) saíram no redesign e podem ser religados se as telas voltarem a precisar.
-
-**Regras ao instrumentar novo evento:**
-- Nome sempre em `snake_case`, em português. Props em `snake_case` também.
-- Chamar via `trackEvent('nome', { ... })` — nunca importar `clarity` direto em componentes.
-- Se o evento puder disparar em hover/scroll, **dedupe por instância** (ver padrão em tooltip).
-- Não logar PII. `?participante=XX` é pseudonimizado (número sorteado para o teste).
-
-**Replay (CORS dos assets):** o replay do Clarity carrega CSS/JS do site num iframe em `clarity.microsoft.com`. Em produção o Nginx precisa servir `location /assets/` com `Access-Control-Allow-Origin: *` (já configurado no server block — ver README), senão as gravações renderizam sem estilo.
 
 ---
 

@@ -7,7 +7,6 @@ import { useActiveSection } from '@/hooks/useActiveSection'
 import { useAuth } from '@/hooks/useAuth'
 import { useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { trackEvent } from '@/utils/analytics'
 import Button from '../ui/buttons/Button'
 
 interface HeaderProps {
@@ -42,7 +41,6 @@ export default function Header({ className = '' }: HeaderProps) {
   }
 
   function onNavClick(sectionId: string) {
-    trackEvent('nav_header_clicado', { secao: sectionId })
     if (!isHome) {
       // Usa hash — a Home lê e scrolla para a seção com offset do header sticky.
       navigate(`/#${sectionId}`)
