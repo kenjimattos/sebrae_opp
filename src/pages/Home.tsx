@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import SectionAgendas from '@/components/sections/SectionAgendas'
 import SectionJornada from '@/components/sections/SectionJornada'
 import SectionErrorBoundary from '@/components/ui/SectionErrorBoundary'
+import JourneyDivider from '@/components/ui/JourneyDivider'
 import { useMunicipality } from '@/hooks/useMunicipality'
 
 const HEADER_OFFSET = 95
@@ -32,11 +33,14 @@ export default function Home() {
         </SectionErrorBoundary>
       </div>
       {data ? (
-        <div id="ambiente">
-          <SectionErrorBoundary name="jornada">
-            <SectionJornada />
-          </SectionErrorBoundary>
-        </div>
+        <>
+          <JourneyDivider targetId="ambiente" />
+          <div id="ambiente">
+            <SectionErrorBoundary name="jornada">
+              <SectionJornada />
+            </SectionErrorBoundary>
+          </div>
+        </>
       ) : ''}
     </div>
   )

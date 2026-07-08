@@ -411,6 +411,17 @@
   50%      { opacity: 0.4; transform: scale(0.82); }
 }
 
+/* Chevron do JourneyDivider — "escorre" pra baixo, sinalizando mais conteúdo
+   abaixo. Sutil (3px) pra não competir com o conteúdo das seções. */
+@keyframes journey-cue {
+  0%, 100% { transform: translateY(-1px); opacity: 0.75; }
+  50%      { transform: translateY(3px);  opacity: 1; }
+}
+.journey-cue-chevron { animation: journey-cue 1.8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .journey-cue-chevron { animation: none; }
+}
+
 /* ============ BASE STYLES ============ */
 *,
 *::before,

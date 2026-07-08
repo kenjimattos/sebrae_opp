@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Não lançado]
 
+### Novidades
+
+- **`JourneyDivider` entre a `SectionAgendas` e a `SectionJornada`.** Marco de transição do diagnóstico (indicadores + mapa) para a Jornada (os 4 pilares), sinalizando que há mais conteúdo abaixo. Hairline em gradiente (transparente nas pontas → acento no centro) que puxa o olhar para uma pílula `.glass` central com o rótulo "Continue a jornada" e um chevron que "escorre" para baixo (animação `journey-cue`, respeitando `prefers-reduced-motion`). A pílula é um `<button>` que rola suave até a seção `#ambiente` (`scrollIntoView`), com foco de teclado visível. Só aparece quando há município selecionado (renderizado dentro do ramo `data ?` do `Home`, junto da própria `SectionJornada`). Novo `src/components/ui/JourneyDivider.tsx` + keyframe `journey-cue` em `index.css`.
+
 ### Remoções
 
 - **Header removido por completo.** Era disfuncional — logo com `window.location.reload()` no clique, links de nav redundantes com a `SideNav` da Home e avatar de usuário decorativo (sem logout ligado). A única peça funcional era o botão de login, **preservado e movido para o `SectionHero`** (página de login, rota `/`) com label **"Entrar"**, logo abaixo do "Jornada do Município Empreendedor", mantendo a lógica `login()` + `navigate('/home')`. Saíram `src/components/layout/Header.tsx`, `src/components/layout/User.tsx` (só o Header usava) e o hook `src/hooks/useActiveSection.ts` (idem), além do `<Header />`/import no `Layout`, da classe `.header-container` e do token `--header-height` em `index.css`. Navegação entre páginas segue por links in-page (cards de trilhas → `/trilhas`, botão "Ver oportunidades" → `/oportunidades`) e a nav de pilares na Home pela `SideNav`.
