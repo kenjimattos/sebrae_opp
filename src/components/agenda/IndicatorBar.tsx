@@ -1,21 +1,31 @@
-// Barra de classificação contínua (red → yellow → green) com marcador
-// quadrado posicionado pela zona do status. Usada no AgendaCard floating.
+// Barra de classificação contínua (red → yellow → green) com marcador quadrado.
 //
-// Indicador sem faixa oficial (status 'none'): a barra NÃO some — fica
-// invisível (`invisible`) mantendo o mesmo espaço (largura do gutter + altura
-// da barra + rótulos). Assim o valor continua centralizado e o layout do
-// AgendaIndicator segue equilibrado. Ver decisão em CHANGELOG.
+// O marcador é GRADUAL: sua posição reflete o valor real dentro da faixa oficial
+// (via `markerFraction`) e sua cor é a cor da própria barra naquele ponto — o
+// cubo recebe o mesmo gradiente da barra, dimensionado à largura dela e deslocado
+// para "amostrar" a fatia sob o marcador. Sem valor numérico/faixa (mas com
+// status), cai no fallback antigo: centro da zona do status, cor sólida.
+//
+// Indicador sem faixa oficial (status 'none'): a barra NÃO some — fica invisível
+// (`invisible`) mantendo o mesmo espaço, para o valor seguir centralizado.
 
-import type { StatusType } from '@/types/indicators'
+import type { StatusType, IndicatorThreshold } from '@/types/indicators'
+import { markerFraction } from '@/utils/indicatorBar'
 
 interface IndicatorBarProps {
   status: StatusType
+  /** Valor exibido — posiciona o marcador de forma contínua na barra. */
+  value?: string | number
+  /** Faixa oficial — define a escala contínua do marcador. */
+  threshold?: IndicatorThreshold
   /** Rótulos opcionais por segmento (ex.: ["< 4.0", "4.0–7.0", "> 7.0"]). */
   segmentLabels?: [string, string, string]
   className?: string
 }
 
-const MARKER: Record<
+// Fallback por zona (quando não dá para calcular a posição contínua): centro de
+// cada terço + cor sólida do status.
+const ZONE_FALLBACK: Record<
   Exclude<StatusType, 'none'>,
   { color: string; leftPct: number }
 > = {
@@ -29,12 +39,33 @@ const BAR_GRADIENT =
 
 export default function IndicatorBar({
   status,
+  value,
+  threshold,
   segmentLabels,
   className = '',
 }: IndicatorBarProps) {
-  // Sem faixa oficial: mantém o espaço (invisível), sem marcador.
   const empty = status === 'none'
-  const marker = empty ? undefined : MARKER[status]
+
+  // Posição contínua a partir do valor; na falta, centro da zona do status.
+  const fraction = empty ? null : markerFraction(value, threshold)
+  const fallback = status === 'none' ? undefined : ZONE_FALLBACK[status]
+  const leftPct = fraction !== null ? fraction * 100 : fallback?.leftPct
+
+  // Cor do marcador: gradual (amostra a barra no ponto) quando há posição
+  // contínua; sólida (cor do status) no fallback.
+  const markerStyle =
+    fraction !== null
+      ? {
+          left: `${leftPct}%`,
+          background: BAR_GRADIENT,
+          backgroundSize: 'var(--spacing-gutter) 100%',
+          backgroundRepeat: 'no-repeat',
+          backgroundPositionX: `calc(var(--spacing-sm) / 2 - var(--spacing-gutter) * ${fraction})`,
+          backgroundPositionY: 'center',
+        }
+      : fallback
+        ? { left: `${leftPct}%`, background: fallback.color }
+        : undefined
 
   return (
     <div
@@ -42,20 +73,20 @@ export default function IndicatorBar({
       aria-hidden={empty || undefined}
     >
       <div className="relative h-[var(--spacing-2xs)] w-full" style={{ background: BAR_GRADIENT }}>
-        {marker && (
+        {markerStyle && (
           <div
-            className="absolute size-[var(--spacing-sm)] top-1/2 -translate-x-1/2 -translate-y-1/2"
-            style={{ left: `${marker.leftPct}%`, background: marker.color }}
+            className="absolute size-[var(--spacing-sm)] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[2px]"
+            style={{
+              ...markerStyle,
+              boxShadow: '0 0 0 1.5px rgba(255,255,255,0.9), 0 1px 2px rgba(0,0,0,0.35)',
+            }}
           />
         )}
       </div>
       {segmentLabels && (
         <div className="flex items-center justify-between w-full">
           {segmentLabels.map((label, i) => (
-            <span
-              key={i}
-              className="typo-body-xs"
-            >
+            <span key={i} className="typo-body-xs">
               {label}
             </span>
           ))}

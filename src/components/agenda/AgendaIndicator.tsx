@@ -41,7 +41,7 @@ export default function AgendaIndicator({
         <span className="typo-body-lg-bold text-white" >
           {value}
         </span>
-        <IndicatorBar status={status} segmentLabels={labels} />
+        <IndicatorBar status={status} value={value} threshold={threshold} segmentLabels={labels} />
       </div>
     </div>
   )
