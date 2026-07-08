@@ -66,9 +66,6 @@
   --spacing-3xl: 6rem; /* 96px */
   --spacing-gutter: 11.25rem; /* 180px */
 
-  /* ============ SIZES ============ */
-  --header-height: 4.5rem; /* 72px */
-
   /* ============ RADIUS ============ */
   --radius-sm: 0.75rem; /* 12px */
   --radius-md: 1.5rem; /* 24px */
@@ -229,13 +226,6 @@
   .status-neutral-dot { background-color: var(--semantic-text-inactive); }
 
   /* ============ LAYOUT — COMPOSITES ============ */
-  .header-container {
-    height: var(--header-height);
-    padding-block: var(--spacing-sm);
-    background-color: var(--semantic-surface-primary);
-    border-bottom: 0.125rem solid var(--semantic-surface-secondary);
-  }
-
   .section-container {
     padding-inline: var(--spacing-gutter);
     display: flex; flex-direction: column;

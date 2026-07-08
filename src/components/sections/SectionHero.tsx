@@ -12,6 +12,8 @@ import {
   type LucideIcon,
 } from '@/components/icons'
 import { sectionContent } from '@/data/home/sections'
+import { useAuth } from '@/hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
 
 
 const ctaIcons: Record<string, LucideIcon> = {
@@ -22,6 +24,13 @@ const ctaIcons: Record<string, LucideIcon> = {
 }
 
 export default function SectionHero() {
+  const { login } = useAuth()
+  const navigate = useNavigate()
+
+  function handleLogin() {
+    login()
+    navigate('/home')
+  }
 
   return (
     <section className="section-container">
@@ -49,6 +58,8 @@ export default function SectionHero() {
           label={sectionContent.hero.subtitle}
           className='pointer-events-none'
         />
+
+        <Button label="Entrar" variant="primary" size="md" onClick={handleLogin} />
 
         {/* 4 blocos em grid 2×2 */}
         <div className="grid grid-cols-2 auto-rows-[1fr] gap-x-2xl gap-y-md px-3xl w-full max-w-[70dvw]">
