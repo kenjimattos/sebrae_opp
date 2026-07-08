@@ -12,6 +12,24 @@ import type {
 // Monta as respostas da API a partir do catálogo (estrutura) + valores por
 // município. Espelha buildIndicators()/buildMunicipalityMapData() do frontend.
 
+// Amostra insuficiente nos tempos da Redesim: são médias/percentis por município;
+// com poucos processos (n<30 → confiabilidade 'baixa'; n=0 → 'sem-dados') o valor
+// não é representativo — municípios pequenos com 1–2 aberturas geram tempos
+// quase-zero enganosos, que o semáforo lower-better ainda pintaria de verde. Por
+// decisão do projeto (jun/2026, revisada) esses valores são OCULTADOS: viram '—' /
+// status 'none', como os 'sem-dados'.
+//
+// Escopo restrito a estes indicadores de propósito: outros indicadores também
+// marcam confiabilidade 'baixa' (crescimento-mpe, negócios abertos/extintos…), mas
+// lá é contagem real de município pequeno, não artefato de média — não se oculta.
+const LOW_SAMPLE_HIDDEN = new Set(['tempo-abertura', 'tempo-viabilidade'])
+
+function isLowConfidence(v: IndicatorValueDoc | undefined): boolean {
+  if (!v || !LOW_SAMPLE_HIDDEN.has(v.indicatorId)) return false
+  const c = v.breakdown?.confiabilidade
+  return c === 'baixa' || c === 'sem-dados'
+}
+
 // De vários docs do mesmo indicador (série histórica por ano), escolhe o do ano
 // de referência default do indicador; na falta, o ano mais recente.
 function pickValue(
@@ -57,12 +75,13 @@ export function buildIndicatorsData(
     name: a.name,
     indicators: (catalog.indicatorsByAgenda.get(a._id) ?? []).map((ind) => {
       const v = byIndicator.get(ind._id)
+      const suppressed = isLowConfidence(v)
       return {
         id: ind._id,
         label: ind.label,
-        value: v?.rawValue ?? '—',
-        variation: v?.variation,
-        status: computeStatus(ind.threshold, v?.rawValue),
+        value: suppressed ? '—' : v?.rawValue ?? '—',
+        variation: suppressed ? undefined : v?.variation,
+        status: suppressed ? 'none' : computeStatus(ind.threshold, v?.rawValue),
         // threshold vai pro frontend derivar os rótulos das zonas da barra
         // (só existe nos indicadores com faixa oficial).
         threshold: ind.threshold,
@@ -115,6 +134,7 @@ export function buildMapData(
     const indicators: MapMunicipality['indicators'] = {}
     for (const [indicatorId, v] of byIndicator) {
       if (!agendaIndicatorIds.has(indicatorId)) continue
+      if (isLowConfidence(v)) continue
       const n = parseNumeric(v.rawValue)
       if (n === null) continue
       indicators[indicatorId] = {

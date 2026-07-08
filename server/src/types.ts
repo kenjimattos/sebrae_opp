@@ -56,6 +56,14 @@ export interface IndicatorValueDoc {
   variation?: RawVariation
   referenceYear: string
   isFictional: boolean
+  // Metadados por indicador (ETL). `confiabilidade` marca a robustez da
+  // amostra (ex.: tempos Redesim: 'alta' n≥30, 'baixa' n<30, 'sem-dados' n=0).
+  // Quando != 'alta' o valor é suprimido na API (ver isLowConfidence).
+  breakdown?: {
+    confiabilidade?: 'alta' | 'baixa' | 'sem-dados'
+    n?: number
+    [key: string]: unknown
+  }
 }
 
 export interface MunicipalityDoc {
