@@ -1,10 +1,9 @@
 // Casca compartilhada por todas as páginas top-level: faixa Header + <main>
-// (landmark ÚNICO do documento, envolvendo o <Outlet/>) + faixa Footer.
+// (landmark ÚNICO do documento, envolvendo o <Outlet/>).
 // Registrada como layout route em App.tsx; as páginas retornam só o conteúdo.
 
 import { Outlet } from 'react-router-dom'
 import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 
 export default function Layout() {
   return (
@@ -13,7 +12,6 @@ export default function Layout() {
       <main className="flex-1">
         <Outlet />
       </main>
-      <Footer />
     </div>
   )
 }
