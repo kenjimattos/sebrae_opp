@@ -2,7 +2,7 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
-## [Não lançado]
+## [1.1.0] — 2026-07-08
 
 ### Novidades
 
