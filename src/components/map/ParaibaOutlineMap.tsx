@@ -164,7 +164,14 @@ export function ParaibaOutlineMap({
         viewBox={expandedViewBox}
         className={'w-full h-auto'}
         onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
-        onMouseLeave={() => setCursor(null)}
+        onMouseLeave={() => {
+          // Garantia no nível do SVG: o mouseleave do <path> pode não disparar
+          // (movimento rápido, reordenação do DOM pelo sort do hover), deixando
+          // o último município preso no estado de hover.
+          setCursor(null);
+          setHoveredId(null);
+          onHover?.(null);
+        }}
       >
       <g>
         {[...data.municipalities]
