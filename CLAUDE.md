@@ -171,6 +171,22 @@ API de **leitura** sobre o MongoDB `DadosOPP`, em `server/` (Node ≥20 + **Fast
 
 ---
 
+## Integração de IA (OpenRouter)
+
+Três superfícies de IA, todas via `POST /api/ai` (modelo **gratuito** do OpenRouter, fetch puro — sem SDK):
+
+1. **Modal do indicador** (`IndicatorModal`, aberto pelo label no `AgendaCard`): explicação + perguntas sugeridas **pré-gravadas** em `src/data/indicators/descriptions/indicator-ai.ts` (tokens `{municipio}/{valor}/{status}`), exibidas com typewriter; só a **pergunta livre** chama o LLM.
+2. **Formulador**: `AiField` ("Aprimorar com IA" por campo), "Gerar objetivos específicos" e painel `AIAssistant` (ações reais nas 3 primeiras etapas via `useFormulatorAi`).
+3. **Chat global** (`ChatButton`/`ChatPanel` na Home): FAB no gutter direito (180px) → painel lateral multi-turno com resumo dos indicadores do município no system prompt.
+
+**Arquitetura:** contrato em `src/types/ai.ts` (união `AiTaskRequest`: `indicator-question` | `improve-field` | `generate-specific-objectives` | `chat`); lógica server em `api/_lib/` (`openrouter.ts` cliente, `prompts.ts` templates pt-BR, `handler.ts` validação/erros). Dois transportes com a **mesma fonte**: function Vercel (`api/ai.ts`) e middleware de dev no `vite.config.ts` (registrado antes do proxy `/api → :3000`). Client: `src/data/ai.ts` + `useAiTask` (mensagens de erro amigáveis; 429 do free tier → aviso de limite).
+
+**Env:** `OPENROUTER_API_KEY` (obrigatória; `.env.local` na raiz em dev, env vars do projeto na Vercel — **nunca** prefixo `VITE_`) e `OPENROUTER_MODEL` (opcional; default em `api/_lib/openrouter.ts`). Catálogo `:free` rotaciona — conferir em `https://openrouter.ai/api/v1/models` antes de trocar o default. Free tier: ~50 req/dia.
+
+**Regras:** novas capacidades de IA = novo literal na união + prompt em `prompts.ts` (não criar endpoints paralelos). Prompts não inventam cortes de classificação — status/threshold continuam vindo do banco. O servidor Fastify (`server/`) **não** tem rota de IA: em produção Sebrae (fase futura) a function precisa ser portada ou o Nginx apontado para outro processo.
+
+---
+
 ## Regras de Desenvolvimento
 
 ### Testes
@@ -220,7 +236,8 @@ Frontend (raiz):
 
 ```bash
 npm install --legacy-peer-deps  # Conflitos de peer deps com React 19
-npm run dev                     # Desenvolvimento local (http://localhost:5173; /api → :3000 via proxy)
+cp .env.example .env.local      # IA em dev: preencher OPENROUTER_API_KEY (sem ela, /api/ai devolve missing_key)
+npm run dev                     # Desenvolvimento local (http://localhost:5173; /api → :3000 via proxy; /api/ai atendido pelo próprio Vite)
 npm run build                   # Build de produção (gera /dist)
 npm run preview                 # Preview do build local
 npm run lint                    # ESLint
