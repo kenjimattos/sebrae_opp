@@ -4,6 +4,7 @@ import SectionAgendas from '@/components/sections/SectionAgendas'
 import SectionJornada from '@/components/sections/SectionJornada'
 import SectionErrorBoundary from '@/components/ui/SectionErrorBoundary'
 import JourneyDivider from '@/components/ui/JourneyDivider'
+import ChatButton from '@/components/chat/ChatButton'
 import { useMunicipality } from '@/hooks/useMunicipality'
 
 const HEADER_OFFSET = 95
@@ -42,6 +43,8 @@ export default function Home() {
           </div>
         </>
       ) : ''}
+      {/* Chat global de IA — só faz sentido com município selecionado. */}
+      {data && <ChatButton />}
     </div>
   )
 }
