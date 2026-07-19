@@ -28,6 +28,7 @@ export {
   DollarSign,
   Info,
   Landmark,
+  MessageCircle,
   Minus,
   Plus,
   Search,
