@@ -1,5 +1,6 @@
 import TextInput from '@/components/ui/TextInput'
 import Dropdown from '@/components/ui/Dropdown'
+import AiField from '@/components/formulator/AiField'
 import { useFormulator } from '@/hooks/useFormulator'
 import { useMunicipality } from '@/hooks/useMunicipality'
 
@@ -20,11 +21,17 @@ export default function StepIdentification() {
 
   return (
     <div className="flex flex-col gap-md">
-      <TextInput
+      <AiField
         title="Título do Projeto"
         hint="Ex: Programa Municipal de Digitalização de MPEs"
         value={data.title}
         onChange={(v) => update({ title: v })}
+        buildRequest={(text) => ({
+          task: 'improve-field',
+          field: 'identification.title',
+          text,
+          municipality: { id: municipality.id, name: municipality.name },
+        })}
       />
 
       <div className="flex flex-col gap-xs">

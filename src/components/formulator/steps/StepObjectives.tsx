@@ -1,11 +1,14 @@
 import TextInput from '@/components/ui/TextInput'
 import Button from '@/components/ui/buttons/Button'
 import IconButton from '@/components/ui/buttons/IconButton'
+import AiField from '@/components/formulator/AiField'
 import { Plus, Trash2 } from '@/components/icons'
 import { useFormulator } from '@/hooks/useFormulator'
+import { useMunicipality } from '@/hooks/useMunicipality'
 
 export default function StepObjectives() {
   const { state, setSlice } = useFormulator()
+  const { municipality } = useMunicipality()
   const data = state.objectives
 
   const setGeneral = (general: string) => setSlice('objectives', { ...data, general })
@@ -29,7 +32,7 @@ export default function StepObjectives() {
 
   return (
     <div className="flex flex-col gap-md">
-      <TextInput
+      <AiField
         title="Objetivo Geral"
         subtitle="💡 Deve estar diretamente conectado ao problema da justificativa."
         hint="O que o projeto pretende alcançar de forma ampla"
@@ -37,6 +40,13 @@ export default function StepObjectives() {
         rows={3}
         value={data.general}
         onChange={setGeneral}
+        buildRequest={(text) => ({
+          task: 'improve-field',
+          field: 'objectives.general',
+          text,
+          municipality: { id: municipality.id, name: municipality.name },
+          context: { problema: state.justification.problem },
+        })}
       />
 
       <div className="flex flex-col gap-xs">
