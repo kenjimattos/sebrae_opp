@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Não lançado]
 
+### Novidades
+
+- **Fundação da integração de IA (OpenRouter).** Novo contrato compartilhado `src/types/ai.ts` (união discriminada `AiTaskRequest` com as tasks `indicator-question`, `improve-field`, `generate-specific-objectives` e `chat`) e módulos server em `api/_lib/`: `openrouter.ts` (cliente fetch puro da API OpenAI-compatível do OpenRouter, timeout 30s, modelo default `nvidia/nemotron-3-super-120b-a12b:free` com override por `OPENROUTER_MODEL`), `prompts.ts` (templates pt-BR por task, system prompt ancorado no contexto Sebrae PB) e `handler.ts` (núcleo transport-agnóstico: valida body com type guards, mapeia 429 → `rate_limited`, parseia listas de objetivos em `items[]`). `tsconfig.node.json` passa a checar `api/**`; novo `.env.example` documenta `OPENROUTER_API_KEY`/`OPENROUTER_MODEL` (chave só no lado servidor — sem prefixo `VITE_`).
+
 ### Correções
 
 - **Hover do mapa não fica mais "preso" quando o mouse sai do SVG.** O `mouseleave` do `<path>` do município nem sempre dispara (movimento rápido do mouse, ou reordenação do DOM causada pelo sort que traz o município em hover para frente), então o último município ficava destacado e com `onHover` ativo mesmo com o cursor em outra parte da plataforma. O `onMouseLeave` do `<svg>` — que já limpava o tooltip (`cursor`) — agora também zera `hoveredId` e propaga `onHover(null)`, garantindo que nenhum hover sobrevive fora do mapa (`ParaibaOutlineMap`).
