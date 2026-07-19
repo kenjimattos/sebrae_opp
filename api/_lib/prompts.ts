@@ -1,6 +1,6 @@
 // Templates de prompt (pt-BR) por task. Toda a "personalidade" da IA vive aqui.
-import type { AiFieldId, AiTaskRequest } from '../../src/types/ai'
-import type { OpenRouterMessage } from './openrouter'
+import type { AiFieldId, AiTaskRequest } from '../../src/types/ai.js'
+import type { OpenRouterMessage } from './openrouter.js'
 
 export const SYSTEM_PROMPT =
   'Você é o assistente de IA da Plataforma OPP (Observatório de Políticas Públicas) do Sebrae Paraíba. ' +

@@ -3,7 +3,7 @@
 // do Vite). A Vercel casa functions do filesystem antes dos rewrites do
 // vercel.json, então /api/ai convive com o snapshot estático do preview.
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { handleAiTask } from './_lib/handler'
+import { handleAiTask } from './_lib/handler.js'
 
 export default async function handler(req: VercelRequest, res: VercelResponse): Promise<void> {
   if (req.method !== 'POST') {

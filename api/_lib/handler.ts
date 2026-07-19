@@ -6,9 +6,9 @@ import type {
   AiFieldId,
   AiSuccessResponse,
   AiTaskRequest,
-} from '../../src/types/ai'
-import { buildMessages } from './prompts'
-import { callOpenRouter, DEFAULT_FREE_MODEL, OpenRouterError } from './openrouter'
+} from '../../src/types/ai.js'
+import { buildMessages } from './prompts.js'
+import { callOpenRouter, DEFAULT_FREE_MODEL, OpenRouterError } from './openrouter.js'
 
 export interface AiHandlerResult {
   status: number
