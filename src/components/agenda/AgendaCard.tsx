@@ -10,6 +10,8 @@ interface AgendaCardProps {
   title: string
   indicators: Indicator[]
   description?: string
+  /** Clique no label de um indicador (abre o modal "IA" do indicador). */
+  onIndicatorClick?: (indicator: Indicator) => void
   className?: string
 }
 
@@ -17,6 +19,7 @@ export default function AgendaCard({
   title,
   indicators,
   description,
+  onIndicatorClick,
   className = '',
 }: AgendaCardProps) {
   return (
@@ -37,6 +40,7 @@ export default function AgendaCard({
                 value={ind.value}
                 status={ind.status}
                 threshold={ind.threshold}
+                onLabelClick={onIndicatorClick && (() => onIndicatorClick(ind))}
                 className={`${i < indicators.length - 1 ? 'pb-xs' : ''}`}
               />
 
