@@ -36,6 +36,7 @@ export {
   TrendingUp,
   TriangleAlert,
   Users,
+  X,
 } from 'lucide-react'
 
 // Type for icon components (accepts size, className, etc.)
