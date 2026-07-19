@@ -7,8 +7,11 @@ import FormulatorProgress from '@/components/formulator/FormulatorProgress'
 import ProjectSteps from '@/components/formulator/FormulatorProjectSteps'
 import Form from '@/components/formulator/FormulatorForm'
 import FormulatorReview from '@/components/formulator/FormulatorReview'
+import AIAssistant from '@/components/formulator/AIAssistant'
 import { StepForm } from '@/components/formulator/steps'
+import { useFormulatorAi } from '@/components/formulator/useFormulatorAi'
 import { formulatorSteps, findStepBySlug, findStepIndex } from '@/data/formulator/steps'
+import { aiAssistantByStep } from '@/data/formulator/ai-assistant'
 import { useFormulator } from '@/hooks/useFormulator'
 import { countCompletedSteps, isStepComplete } from '@/utils/formulatorCompleteness'
 
@@ -16,6 +19,8 @@ export default function ModeFormulator() {
   const { state, markVisited } = useFormulator()
   const [currentSlug, setCurrentSlug] = useState(formulatorSteps[0].slug)
   const [finalized, setFinalized] = useState(false)
+  const { runAction, busyActionId, errorMessage } = useFormulatorAi()
+  const assistantContent = aiAssistantByStep[currentSlug]
 
   const index = findStepIndex(currentSlug)
   const step = findStepBySlug(currentSlug)
@@ -81,6 +86,16 @@ export default function ModeFormulator() {
           >
             <StepForm slug={currentSlug} />
           </Form>
+
+          {assistantContent && (
+            <AIAssistant
+              content={assistantContent}
+              onAction={(id) => void runAction(id)}
+              busyActionId={busyActionId}
+              errorMessage={errorMessage}
+              className="shrink-0"
+            />
+          )}
         </div>
       )}
     </section>
