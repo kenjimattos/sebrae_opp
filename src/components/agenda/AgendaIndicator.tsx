@@ -15,6 +15,8 @@ interface AgendaIndicatorProps {
   threshold?: IndicatorThreshold
   /** Sobrepõe os rótulos derivados do threshold (opcional). */
   segmentLabels?: [string, string, string]
+  /** Quando presente, o label vira botão (abre o modal "IA" do indicador). */
+  onLabelClick?: () => void
   className?: string
 }
 
@@ -24,6 +26,7 @@ export default function AgendaIndicator({
   status,
   threshold,
   segmentLabels,
+  onLabelClick,
   className = '',
 }: AgendaIndicatorProps) {
   // Rótulos das zonas = cortes da faixa oficial (ex.: "< 5,01 · 5,01–7,51 · ≥ 7,51").
@@ -32,11 +35,17 @@ export default function AgendaIndicator({
 
   return (
     <div className={`flex items-center gap-lg ${className}`}>
-      <span
-        className="flex-1 typo-body-bold"
-      >
-        {label}
-      </span>
+      {onLabelClick ? (
+        <button
+          type="button"
+          onClick={onLabelClick}
+          className="flex-1 text-left typo-body-bold cursor-pointer transition-colors hover:text-accent hover:underline underline-offset-2"
+        >
+          {label}
+        </button>
+      ) : (
+        <span className="flex-1 typo-body-bold">{label}</span>
+      )}
       <div className="flex-col-start items-center gap-xs">
         <span className="typo-body-lg-bold text-white" >
           {value}

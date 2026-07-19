@@ -4,8 +4,10 @@
 // com MapModeToggle no topo e AgendaCard flutuante no canto inferior.
 
 import { useState } from 'react'
+import type { Indicator } from '@/types/indicators'
 import AgendaList from '@/components/agenda/AgendaList'
 import AgendaCard from '@/components/agenda/AgendaCard'
+import IndicatorModal from '@/components/agenda/IndicatorModal'
 import { ParaibaOutlineMap } from '@/components/map/ParaibaOutlineMap'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { agendaObjectives } from '@/data/indicators/descriptions/agendas'
@@ -17,6 +19,8 @@ export default function SectionAgendas() {
   const [selectedAgendaId, setSelectedAgendaId] = useState<string>(
     agendas[0]?.id ?? 'governanca',
   )
+  // Indicador com modal "IA" aberto (clique no label dentro do AgendaCard).
+  const [selectedIndicator, setSelectedIndicator] = useState<Indicator | null>(null)
 
   const selectedAgenda =
     agendas.find((a) => a.id === selectedAgendaId) ?? agendas[0]
@@ -84,11 +88,21 @@ export default function SectionAgendas() {
                 title={selectedAgenda.name}
                 indicators={selectedAgenda.indicators.slice(0, 3)}
                 description={agendaObjectives[selectedAgenda.id]}
+                onIndicatorClick={setSelectedIndicator}
                 className=''
               />
             )}
           </div>
         </div>
+        {selectedIndicator && (
+          <IndicatorModal
+            // Remount por indicador+município: reinicia o thread e o typewriter.
+            key={`${selectedIndicator.id ?? selectedIndicator.label}:${municipality.id}`}
+            indicator={selectedIndicator}
+            open
+            onClose={() => setSelectedIndicator(null)}
+          />
+        )}
       </section>
   )
 }
