@@ -83,14 +83,14 @@ export default function ModeFormulator() {
             onNext={onNext}
           >
             <StepForm slug={currentSlug} />
-          </Form>
 
-          {assistantContent && (
+            {assistantContent && (
             <AIAssistant
               content={assistantContent}
               className="shrink-0"
             />
           )}
+          </Form>
         </div>
       )}
     </section>

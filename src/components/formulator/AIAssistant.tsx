@@ -24,21 +24,23 @@ export default function AIAssistant({
     <Card
       surface="secondary"
       padding="md"
-      radius="md"
-      className={`flex flex-col items-start gap-md w-[248px] ${className}`}
+      radius="sm"
+      className={`flex flex-col items-start gap-md ${className}`}
     >
       <div className="flex flex-col items-start gap-md w-full">
-        <p className="typo-body-bold">Assistente IA</p>
+        <div className="flex items-center gap-sm">
+          <Sparkles />
+          <p className="typo-body-bold">Assistente IA</p>
+        </div>
         <p className="typo-body-sm">{content.description}</p>
       </div>
 
-      <div className="flex flex-col items-start gap-md w-full">
-        <p className="typo-body-bold">Exemplo</p>
+      <div className="flex flex-col items-start gap-sm w-full">
+        <p className="typo-body-bold">Exemplos:</p>
         <div className="flex flex-col items-start gap-sm w-full">
           {content.examples.map((example, i) => (
-            <div key={i} className="w-full flex flex-col gap-sm">
+            <div key={i} className="w-full flex flex-col gap-xs">
               <p className="typo-body-sm">{example}</p>
-              {i < content.examples.length - 1 && <div className="divider" />}
             </div>
           ))}
         </div>

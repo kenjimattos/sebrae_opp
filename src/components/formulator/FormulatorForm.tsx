@@ -38,7 +38,7 @@ export default function Form({
         <p className="typo-body">{subtitle}</p>
       </div>
 
-      <div className="flex-1">{children}</div>
+      {children}
 
       <div className="flex items-center justify-between">
         <div className="min-w-[120px]">
