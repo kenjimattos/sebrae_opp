@@ -20,6 +20,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Correções
 
+- **Ícone do FAB do chat centralizado (`ChatButton`).** O ícone `MessageCircle` ficava encostado à esquerda do botão: a classe utilitária `.flex-center` do projeto só aplica `display: flex; align-items: center` (sem `justify-content`), então o botão ganhou `justify-center` explícito para centralizar também na horizontal. Aproveitado o ajuste de cor do ícone: preto no estado normal e branco no hover (antes branco fixo).
 - **Hover do mapa não fica mais "preso" quando o mouse sai do SVG.** O `mouseleave` do `<path>` do município nem sempre dispara (movimento rápido do mouse, ou reordenação do DOM causada pelo sort que traz o município em hover para frente), então o último município ficava destacado e com `onHover` ativo mesmo com o cursor em outra parte da plataforma. O `onMouseLeave` do `<svg>` — que já limpava o tooltip (`cursor`) — agora também zera `hoveredId` e propaga `onHover(null)`, garantindo que nenhum hover sobrevive fora do mapa (`ParaibaOutlineMap`).
 
 ## [1.1.0] — 2026-07-08
