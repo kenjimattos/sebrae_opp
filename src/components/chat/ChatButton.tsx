@@ -17,7 +17,7 @@ export default function ChatButton() {
           type="button"
           aria-label="Abrir assistente de IA"
           onClick={() => setOpen(true)}
-          className="fixed bottom-[40px] right-[62px] z-40 w-[56px] h-[56px] rounded-full bg-accent text-white shadow-lg flex-center cursor-pointer transition-colors hover:bg-[var(--semantic-accent-hover)]"
+          className="fixed bottom-[40px] right-[62px] z-40 flex-center justify-center w-[56px] h-[56px] rounded-full bg-accent text-black hover:text-white shadow-lg cursor-pointer transition-colors hover:bg-[var(--semantic-accent-hover)]"
         >
           <MessageCircle size={iconSizes.lg} aria-hidden />
         </button>
