@@ -7,6 +7,7 @@ import type {
   AiSuccessResponse,
   AiTaskRequest,
 } from '../../src/types/ai.js'
+import { AI_FIELD_IDS } from '../../src/types/ai.js'
 import { buildMessages } from './prompts.js'
 import { callOpenRouter, DEFAULT_FREE_MODEL, OpenRouterError } from './openrouter.js'
 
@@ -15,14 +16,9 @@ export interface AiHandlerResult {
   body: AiSuccessResponse | AiErrorResponse
 }
 
-const FIELD_IDS: AiFieldId[] = [
-  'identification.title',
-  'justification.problem',
-  'justification.evidence',
-  'justification.impact',
-  'justification.policy',
-  'objectives.general',
-]
+function isAiFieldId(v: unknown): v is AiFieldId {
+  return typeof v === 'string' && (AI_FIELD_IDS as readonly string[]).includes(v)
+}
 
 function isRecord(v: unknown): v is Record<string, unknown> {
   return typeof v === 'object' && v !== null
@@ -73,10 +69,7 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
     }
 
     case 'improve-field': {
-      if (
-        typeof raw.text !== 'string' ||
-        !FIELD_IDS.includes(raw.field as AiFieldId)
-      ) {
+      if (typeof raw.text !== 'string' || !isAiFieldId(raw.field)) {
         return null
       }
       let context: Record<string, string> | undefined
@@ -90,7 +83,7 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
       }
       return {
         task: 'improve-field',
-        field: raw.field as AiFieldId,
+        field: raw.field,
         text: raw.text,
         municipality: raw.municipality,
         context,

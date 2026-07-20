@@ -4,14 +4,20 @@
 // api/_lib/prompts.ts.
 
 // Campos do Formulador com ação "Aprimorar com IA". O id espelha
-// FormulatorState (slice.campo) — ver src/types/formulator.ts.
-export type AiFieldId =
-  | 'identification.title'
-  | 'justification.problem'
-  | 'justification.evidence'
-  | 'justification.impact'
-  | 'justification.policy'
-  | 'objectives.general'
+// FormulatorState (slice.campo) — ver src/types/formulator.ts. Fonte única do
+// allowlist: o handler valida contra este array e FIELD_INSTRUCTIONS
+// (api/_lib/prompts.ts) é um Record<AiFieldId, …> — esquecer uma entrada nova
+// vira erro de compilação.
+export const AI_FIELD_IDS = [
+  'identification.title',
+  'justification.problem',
+  'justification.evidence',
+  'justification.impact',
+  'justification.policy',
+  'objectives.general',
+] as const
+
+export type AiFieldId = (typeof AI_FIELD_IDS)[number]
 
 export interface AiMunicipalityContext {
   id: string
