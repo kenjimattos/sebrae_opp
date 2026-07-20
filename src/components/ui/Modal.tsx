@@ -45,7 +45,7 @@ export default function Modal({
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 flex-center bg-black/60 p-md"
+      className="fixed inset-0 z-50 flex-center justify-center bg-black/60 p-md"
       onMouseDown={(e) => {
         // Só o click direto no backdrop fecha — não cliques dentro do painel.
         if (e.target === e.currentTarget) onClose()
