@@ -11,8 +11,7 @@ export const aiAssistantByStep: Record<string, AIAssistantContent> = {
     examples: [
       '"Programa de Digitalização de Microempresas de Campina Grande"',
       '"Projeto de Capacitação Empreendedora Jovem - PB"',
-    ],
-    actions: [{ id: 'improve-title', label: 'Melhorar título' }],
+    ]
   },
   justificativa: {
     description:
@@ -20,11 +19,7 @@ export const aiAssistantByStep: Record<string, AIAssistantContent> = {
     examples: [
       '"O município apresenta tempo de abertura de empresas acima da média estadual..."',
       '"Segundo o diagnóstico, 3 indicadores estão em situação de alerta..."',
-    ],
-    actions: [
-      { id: 'improve-problem', label: 'Melhorar problema central' },
-      { id: 'draft-evidence', label: 'Sugerir evidências' },
-    ],
+    ]
   },
   objetivos: {
     description:
@@ -32,11 +27,7 @@ export const aiAssistantByStep: Record<string, AIAssistantContent> = {
     examples: [
       '"Reduzir o tempo médio de abertura de empresas no município"',
       '"Capacitar 200 empreendedores em gestão financeira até 2027"',
-    ],
-    actions: [
-      { id: 'improve-general', label: 'Melhorar objetivo geral' },
-      { id: 'generate-specific', label: 'Gerar objetivos específicos' },
-    ],
+    ]
   },
   'publico-alvo': {
     description:
@@ -44,8 +35,7 @@ export const aiAssistantByStep: Record<string, AIAssistantContent> = {
     examples: [
       '"150 MEIs do setor de comércio e serviços"',
       '"Jovens de 18 a 29 anos em situação de vulnerabilidade"',
-    ],
-    actions: [],
+    ]
   },
   'plano-acao': {
     description:
@@ -53,8 +43,7 @@ export const aiAssistantByStep: Record<string, AIAssistantContent> = {
     examples: [
       '"Mutirão de formalização na sala do empreendedor"',
       '"Oficinas quinzenais de gestão financeira com o Sebrae"',
-    ],
-    actions: [],
+    ]
   },
   cronograma: {
     description:
@@ -62,8 +51,7 @@ export const aiAssistantByStep: Record<string, AIAssistantContent> = {
     examples: [
       '"Mês 1–2: mobilização e inscrições"',
       '"Mês 6: primeira turma capacitada (marco intermediário)"',
-    ],
-    actions: [],
+    ]
   },
   indicadores: {
     description:
@@ -71,8 +59,7 @@ export const aiAssistantByStep: Record<string, AIAssistantContent> = {
     examples: [
       '"Tempo médio de abertura de empresas: de 48h para 24h"',
       '"Número de MEIs formalizados: +15% em 12 meses"',
-    ],
-    actions: [],
+    ]
   },
   orcamento: {
     description:
@@ -80,8 +67,7 @@ export const aiAssistantByStep: Record<string, AIAssistantContent> = {
     examples: [
       '"Consultoria de capacitação: R$ 30.000"',
       '"Material didático e divulgação: R$ 8.000"',
-    ],
-    actions: [],
+    ]
   },
   sustentabilidade: {
     description:
@@ -89,8 +75,7 @@ export const aiAssistantByStep: Record<string, AIAssistantContent> = {
     examples: [
       '"Sala do empreendedor incorporada à estrutura da secretaria"',
       '"Convênio permanente com o Sebrae para capacitações"',
-    ],
-    actions: [],
+    ]
   },
   governanca: {
     description:
@@ -98,7 +83,6 @@ export const aiAssistantByStep: Record<string, AIAssistantContent> = {
     examples: [
       '"Comitê gestor com secretaria, Sebrae e associação comercial"',
       '"Relatório trimestral de acompanhamento dos indicadores"',
-    ],
-    actions: [],
+    ]
   },
 }
