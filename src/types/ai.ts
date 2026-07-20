@@ -73,6 +73,16 @@ export type AiTaskRequest =
       count?: number
     }
   | {
+      task: 'generate-indicators'
+      // Grupo da etapa 7 — espelha as chaves de IndicatorsFormData.
+      group: 'results' | 'impact' | 'quantitative'
+      // Objetivos específicos preenchidos; o modelo devolve um item por
+      // objetivo, na mesma ordem.
+      objectives: string[]
+      municipality: AiMunicipalityContext
+      context?: Record<string, string>
+    }
+  | {
       task: 'chat'
       // Histórico completo da conversa (client limita às últimas mensagens).
       messages: AiChatMessage[]
@@ -84,7 +94,8 @@ export type AiTaskRequest =
 
 export interface AiSuccessResponse {
   text: string
-  // Presente apenas em generate-specific-objectives (lista já parseada).
+  // Presente apenas nas tasks de lista (generate-specific-objectives,
+  // generate-indicators): resultado já parseado, uma entrada por linha.
   items?: string[]
 }
 

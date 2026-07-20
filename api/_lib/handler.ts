@@ -36,6 +36,19 @@ function isChatMessage(v: unknown): v is AiChatMessage {
   )
 }
 
+// Context opcional das tasks: Record<string,string> válido, undefined se
+// ausente, null se malformado (→ 400).
+function parseContext(v: unknown): Record<string, string> | undefined | null {
+  if (v === undefined) return undefined
+  if (!isRecord(v)) return null
+  const context: Record<string, string> = {}
+  for (const [k, val] of Object.entries(v)) {
+    if (typeof val !== 'string') return null
+    context[k] = val
+  }
+  return context
+}
+
 // Valida o body cru (unknown) e o estreita para AiTaskRequest.
 function parseRequest(raw: unknown): AiTaskRequest | null {
   if (!isRecord(raw) || !isMunicipality(raw.municipality)) return null
@@ -72,15 +85,8 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
       if (typeof raw.text !== 'string' || !isAiFieldId(raw.field)) {
         return null
       }
-      let context: Record<string, string> | undefined
-      if (raw.context !== undefined) {
-        if (!isRecord(raw.context)) return null
-        context = {}
-        for (const [k, v] of Object.entries(raw.context)) {
-          if (typeof v !== 'string') return null
-          context[k] = v
-        }
-      }
+      const context = parseContext(raw.context)
+      if (context === null) return null
       return {
         task: 'improve-field',
         field: raw.field,
@@ -101,6 +107,30 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
         general: raw.general,
         municipality: raw.municipality,
         count,
+      }
+    }
+
+    case 'generate-indicators': {
+      if (
+        raw.group !== 'results' &&
+        raw.group !== 'impact' &&
+        raw.group !== 'quantitative'
+      ) {
+        return null
+      }
+      if (!Array.isArray(raw.objectives)) return null
+      const objectives = raw.objectives
+        .filter((o): o is string => typeof o === 'string' && o.trim() !== '')
+        .slice(0, 10)
+      if (objectives.length === 0) return null
+      const context = parseContext(raw.context)
+      if (context === null) return null
+      return {
+        task: 'generate-indicators',
+        group: raw.group,
+        objectives,
+        municipality: raw.municipality,
+        context,
       }
     }
 
@@ -125,12 +155,12 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
 }
 
 // Respostas de lista → string[]: uma entrada por linha, sem marcadores/numeração.
-function parseItems(text: string): string[] {
+function parseItems(text: string, max = 6): string[] {
   return text
     .split('\n')
     .map((line) => line.replace(/^\s*(?:[-*•]|\d+[.)])\s*/, '').trim())
     .filter((line) => line !== '')
-    .slice(0, 6)
+    .slice(0, max)
 }
 
 export async function handleAiTask(
@@ -154,7 +184,11 @@ export async function handleAiTask(
       model: env.model || DEFAULT_FREE_MODEL,
     })
     const body: AiSuccessResponse =
-      req.task === 'generate-specific-objectives' ? { text, items: parseItems(text) } : { text }
+      req.task === 'generate-specific-objectives'
+        ? { text, items: parseItems(text) }
+        : req.task === 'generate-indicators'
+          ? { text, items: parseItems(text, req.objectives.length) }
+          : { text }
     return { status: 200, body }
   } catch (err) {
     if (err instanceof OpenRouterError && err.status === 429) {
