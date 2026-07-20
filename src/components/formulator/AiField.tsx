@@ -110,7 +110,6 @@ export default function AiField({
         )}
         <Button
           label={ai.status === 'loading' ? 'Aprimorando…' : buttonLabel}
-          variant="ghost"
           size="sm"
           icon={Sparkles}
           iconPosition="left"
