@@ -6,8 +6,20 @@ export const SYSTEM_PROMPT =
   'Você é o assistente de IA da Plataforma OPP (Observatório de Políticas Públicas) do Sebrae Paraíba. ' +
   'Você ajuda gestores públicos municipais da Paraíba a entender indicadores socioeconômicos e a formular ' +
   'projetos de desenvolvimento do ambiente de pequenos negócios. Responda sempre em português do Brasil, ' +
-  'em tom claro, objetivo e profissional, sem formatação markdown (sem asteriscos, sem títulos), ' +
-  'em no máximo 150 palavras, salvo instrução contrária.'
+  'em tom claro, objetivo e profissional. Seja conciso (até ~150 palavras) e sempre termine a resposta ' +
+  'com uma frase completa.'
+
+// Superfícies conversacionais (chat, modal do indicador) renderizam markdown
+// leve via MarkdownLite no frontend.
+const RICH_TEXT_NOTE =
+  ' Você pode usar formatação leve em markdown: **negrito**, itálico e listas numeradas ou com hífen ' +
+  '(máximo 3 itens). Não use títulos (#), tabelas nem blocos de código.'
+
+// Tasks cujo resultado entra em campos de formulário (input/textarea) — lá
+// markdown apareceria literal.
+const PLAIN_TEXT_NOTE =
+  ' Responda em texto puro, sem nenhuma formatação markdown — o texto vai direto para dentro de um ' +
+  'campo de formulário.'
 
 // Mesmo vocabulário de src/data/indicators/status-labels.ts (Bom/Atenção/
 // Alerta). Duplicado aqui de propósito: api/_lib não importa código do
@@ -72,7 +84,7 @@ export function buildMessages(req: AiTaskRequest): OpenRouterMessage[] {
         `Contexto: no município de ${municipality.name} (PB), o indicador "${indicator.label}" ` +
         `tem valor ${indicator.value}${unit} e classificação "${statusPt(indicator.status)}".`
       return [
-        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'system', content: SYSTEM_PROMPT + RICH_TEXT_NOTE },
         {
           role: 'user',
           content: `${context}\n\nPergunta do gestor sobre esse indicador: ${question}`,
@@ -95,7 +107,7 @@ export function buildMessages(req: AiTaskRequest): OpenRouterMessage[] {
           ? `O campo "${spec.label}" ainda está vazio. Redija uma sugestão inicial para ele. ${spec.instruction}`
           : `Texto atual do campo "${spec.label}":\n"""${text}"""\n\n${spec.instruction}`
       return [
-        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'system', content: SYSTEM_PROMPT + PLAIN_TEXT_NOTE },
         {
           role: 'user',
           content:
@@ -109,7 +121,7 @@ export function buildMessages(req: AiTaskRequest): OpenRouterMessage[] {
       const { general, municipality, count } = req
       const n = count ?? 4
       return [
-        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'system', content: SYSTEM_PROMPT + PLAIN_TEXT_NOTE },
         {
           role: 'user',
           content:
@@ -128,7 +140,7 @@ export function buildMessages(req: AiTaskRequest): OpenRouterMessage[] {
         ? `\n\nIndicadores atuais de ${municipality.name}: ${indicatorsSummary}`
         : ''
       const system =
-        `${SYSTEM_PROMPT}\n\nO gestor está analisando o município de ${municipality.name} (PB).${summary}`
+        `${SYSTEM_PROMPT}${RICH_TEXT_NOTE}\n\nO gestor está analisando o município de ${municipality.name} (PB).${summary}`
       return [
         { role: 'system', content: system },
         ...messages.map((m) => ({ role: m.role, content: m.content })),

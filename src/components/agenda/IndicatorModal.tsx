@@ -11,6 +11,7 @@ import { useTypewriter } from '@/hooks/useTypewriter'
 import Modal from '@/components/ui/Modal'
 import TextInput from '@/components/ui/TextInput'
 import Button from '@/components/ui/buttons/Button'
+import MarkdownLite from '@/components/ui/MarkdownLite'
 import { Sparkles, iconSizes } from '@/components/icons'
 import { statusLabels } from '@/data/indicators/status-labels'
 import { indicatorInfo } from '@/data/indicators/descriptions/indicators'
@@ -247,13 +248,13 @@ function ThreadBlock({
           className="text-[color:var(--semantic-accent)] shrink-0 mt-[2px]"
           aria-hidden
         />
-        <p
+        <div
           className={`typo-body ${entry.source === 'error' ? 'text-inactive' : ''}`}
           aria-live={isTyping ? 'polite' : undefined}
         >
-          {shown}
+          <MarkdownLite text={shown} />
           {isTyping && <span className="typewriter-caret" aria-hidden />}
-        </p>
+        </div>
       </div>
     </div>
   )
