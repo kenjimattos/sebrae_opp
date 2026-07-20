@@ -51,6 +51,9 @@ export async function callOpenRouter(
         messages,
         max_tokens: 500,
         temperature: 0.7,
+        // Modelos reasoning (ex.: Nemotron 3) vazam a cadeia de raciocínio no
+        // content e estouram o max_tokens antes da resposta — desliga.
+        reasoning: { enabled: false },
       }),
       signal: controller.signal,
     })
@@ -73,5 +76,7 @@ export async function callOpenRouter(
   if (!content) {
     throw new OpenRouterError(0, 'resposta do OpenRouter sem conteúdo')
   }
-  return content.trim()
+  // Defesa extra caso o modelo configurado ignore reasoning.enabled=false e
+  // emita a cadeia de raciocínio inline entre tags <think>.
+  return content.replace(/<think>[\s\S]*?<\/think>/g, '').trim()
 }
