@@ -12,6 +12,7 @@ import { useTypewriter } from '@/hooks/useTypewriter'
 import TextInput from '@/components/ui/TextInput'
 import Button from '@/components/ui/buttons/Button'
 import IconButton from '@/components/ui/buttons/IconButton'
+import MarkdownLite from '@/components/ui/MarkdownLite'
 import { Sparkles, X, iconSizes } from '@/components/icons'
 import { statusLabels } from '@/data/indicators/status-labels'
 import {
@@ -212,13 +213,13 @@ function ChatBubble({
         className="text-[color:var(--semantic-accent)] shrink-0 mt-[2px]"
         aria-hidden
       />
-      <p
+      <div
         className={`typo-body ${entry.isError ? 'text-inactive' : ''}`}
         aria-live={isTyping ? 'polite' : undefined}
       >
-        {shown}
+        <MarkdownLite text={shown} />
         {isTyping && <span className="typewriter-caret" aria-hidden />}
-      </p>
+      </div>
     </div>
   )
 }

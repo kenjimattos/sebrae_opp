@@ -7,6 +7,9 @@ export const DEFAULT_FREE_MODEL = 'nvidia/nemotron-3-super-120b-a12b:free'
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 const TIMEOUT_MS = 30_000
+// Folga para respostas em lista (chat) — o prompt pede ~150 palavras, mas
+// modelos estouram; truncamento é tratado via finish_reason abaixo.
+const MAX_TOKENS = 800
 
 export interface OpenRouterMessage {
   role: 'system' | 'user' | 'assistant'
@@ -49,7 +52,7 @@ export async function callOpenRouter(
       body: JSON.stringify({
         model: env.model,
         messages,
-        max_tokens: 500,
+        max_tokens: MAX_TOKENS,
         temperature: 0.7,
         // Modelos reasoning (ex.: Nemotron 3) vazam a cadeia de raciocínio no
         // content e estouram o max_tokens antes da resposta — desliga.
@@ -70,13 +73,25 @@ export async function callOpenRouter(
   }
 
   const data = (await res.json()) as {
-    choices?: { message?: { content?: string } }[]
+    choices?: { message?: { content?: string }; finish_reason?: string }[]
   }
-  const content = data.choices?.[0]?.message?.content
+  const choice = data.choices?.[0]
+  const content = choice?.message?.content
   if (!content) {
     throw new OpenRouterError(0, 'resposta do OpenRouter sem conteúdo')
   }
   // Defesa extra caso o modelo configurado ignore reasoning.enabled=false e
-  // emita a cadeia de raciocínio inline entre tags <think>.
-  return content.replace(/<think>[\s\S]*?<\/think>/g, '').trim()
+  // emita a cadeia de raciocínio inline entre tags <think>. Markdown é
+  // preservado — o frontend renderiza (MarkdownLite).
+  let text = content.replace(/<think>[\s\S]*?<\/think>/g, '').trim()
+  // Estourou o max_tokens → descarta a frase incompleta do final.
+  if (choice?.finish_reason === 'length') {
+    const lastSentenceEnd = Math.max(
+      text.lastIndexOf('.'),
+      text.lastIndexOf('!'),
+      text.lastIndexOf('?'),
+    )
+    if (lastSentenceEnd > 0) text = text.slice(0, lastSentenceEnd + 1)
+  }
+  return text
 }
