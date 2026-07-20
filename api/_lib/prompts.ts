@@ -69,6 +69,74 @@ const FIELD_INSTRUCTIONS: Record<AiFieldId, { label: string; instruction: string
       'Reescreva como um objetivo geral de projeto: um único período iniciado por verbo no infinitivo, ' +
       'expressando a transformação pretendida. Responda apenas com o objetivo.',
   },
+  'targetAudience.primary': {
+    label: 'Público-alvo Principal',
+    instruction:
+      'Reescreva descrevendo os beneficiários diretos do projeto: perfil, setor de atuação e porte ' +
+      '(ex.: MEIs, micro e pequenas empresas). Um parágrafo único. Não invente quantidades ou números ' +
+      'que não estejam no contexto.',
+  },
+  'targetAudience.secondary': {
+    label: 'Público Secundário',
+    instruction:
+      'Reescreva descrevendo os beneficiários indiretos e demais atores envolvidos ou impactados pelo ' +
+      'projeto. Um parágrafo único.',
+  },
+  'actionPlan.activities': {
+    label: 'Atividades Previstas',
+    instruction:
+      'Reescreva como uma lista de atividades, uma por linha, cada uma iniciando com verbo no infinitivo ' +
+      'e conectada aos objetivos do projeto. Sem numeração e sem marcadores.',
+  },
+  'actionPlan.methodology': {
+    label: 'Metodologia',
+    instruction:
+      'Reescreva descrevendo como as atividades serão executadas: abordagem, etapas de trabalho e ' +
+      'responsabilidades em termos genéricos. Um parágrafo único.',
+  },
+  'timeline.phases': {
+    label: 'Fases do projeto',
+    instruction:
+      'Reescreva dividindo o projeto em fases com períodos relativos (ex.: Mês 1–3), uma fase por linha, ' +
+      'coerentes com a duração informada no contexto. Não invente datas absolutas.',
+  },
+  'timeline.milestones': {
+    label: 'Marcos e Entregas',
+    instruction:
+      'Reescreva listando marcos verificáveis e entregas concretas do projeto, um por linha, coerentes ' +
+      'com as fases e atividades do contexto. Sem numeração e sem marcadores.',
+  },
+  'sustainability.continuity': {
+    label: 'Estratégia de Continuidade',
+    instruction:
+      'Reescreva descrevendo como os resultados se manterão após o fim do projeto: institucionalização, ' +
+      'fontes de recursos e rotinas permanentes. Um parágrafo único.',
+  },
+  'sustainability.partnerships': {
+    label: 'Parcerias Institucionais',
+    instruction:
+      'Reescreva descrevendo parcerias institucionais plausíveis para municípios da Paraíba ' +
+      '(ex.: Sebrae, associações comerciais, governo estadual) e o papel de cada uma na continuidade ' +
+      'do projeto. Um parágrafo único.',
+  },
+  'governance.management': {
+    label: 'Estrutura de Gestão',
+    instruction:
+      'Reescreva descrevendo a estrutura de gestão do projeto: instância gestora (ex.: comitê gestor), ' +
+      'papéis e responsabilidades. Um parágrafo único.',
+  },
+  'governance.monitoring': {
+    label: 'Monitoramento e Avaliação',
+    instruction:
+      'Reescreva descrevendo a rotina de acompanhamento do projeto: frequência, responsáveis e uso dos ' +
+      'indicadores do projeto na avaliação. Um parágrafo único.',
+  },
+  'governance.accountability': {
+    label: 'Prestação de Contas',
+    instruction:
+      'Reescreva descrevendo a prestação de contas do projeto: tipos de relatório, frequência e ' +
+      'destinatários (ex.: câmara municipal, sociedade civil). Um parágrafo único.',
+  },
 }
 
 function statusPt(status: string): string {
