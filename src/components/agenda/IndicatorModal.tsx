@@ -150,7 +150,7 @@ export default function IndicatorModal({ indicator, open, onClose }: IndicatorMo
       .filter(({ index }) => !usedQuestions.includes(index)) ?? []
 
   return (
-    <Modal open={open} onClose={onClose} title={indicator.label} maxWidth="max-w-[640px]">
+    <Modal open={open} onClose={onClose} title={indicator.label} >
       {/* Valor + status atuais */}
       <div className="flex items-center gap-xs mb-md">
         <span className={`w-[8px] h-[8px] rounded-full status-${statusDot(indicator.status)}-dot`} aria-hidden />
