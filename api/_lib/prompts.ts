@@ -139,8 +139,43 @@ const FIELD_INSTRUCTIONS: Record<AiFieldId, { label: string; instruction: string
   },
 }
 
+// Instrução por grupo de indicadores da etapa 7 do Formulador.
+const INDICATOR_GROUP_INSTRUCTIONS: Record<
+  'results' | 'impact' | 'quantitative',
+  { what: string; instruction: string }
+> = {
+  results: {
+    what: 'indicadores de resultado',
+    instruction:
+      'Cada indicador deve permitir verificar se o objetivo correspondente foi alcançado ' +
+      '(o que medir e como).',
+  },
+  impact: {
+    what: 'indicadores de impacto',
+    instruction:
+      'Cada indicador deve capturar a mudança de longo prazo esperada no município a partir ' +
+      'do objetivo correspondente.',
+  },
+  quantitative: {
+    what: 'metas quantitativas',
+    instruction:
+      'Cada meta deve ser mensurável; quando não houver valor de linha de base no contexto, ' +
+      'use placeholders como "de X para Y" — não invente números.',
+  },
+}
+
 function statusPt(status: string): string {
   return STATUS_PT[status] ?? status
+}
+
+// "Contexto adicional do projeto" a partir dos campos vizinhos não vazios.
+function contextBlock(context: Record<string, string> | undefined): string {
+  if (!context) return ''
+  const entries = Object.entries(context).filter(([, v]) => v.trim() !== '')
+  if (entries.length === 0) return ''
+  return (
+    '\n\nContexto adicional do projeto:\n' + entries.map(([k, v]) => `- ${k}: ${v}`).join('\n')
+  )
 }
 
 export function buildMessages(req: AiTaskRequest): OpenRouterMessage[] {
@@ -163,13 +198,7 @@ export function buildMessages(req: AiTaskRequest): OpenRouterMessage[] {
     case 'improve-field': {
       const { field, text, municipality, context } = req
       const spec = FIELD_INSTRUCTIONS[field]
-      const extra = context
-        ? '\n\nContexto adicional do projeto:\n' +
-          Object.entries(context)
-            .filter(([, v]) => v.trim() !== '')
-            .map(([k, v]) => `- ${k}: ${v}`)
-            .join('\n')
-        : ''
+      const extra = contextBlock(context)
       const body =
         text.trim() === ''
           ? `O campo "${spec.label}" ainda está vazio. Redija uma sugestão inicial para ele. ${spec.instruction}`
@@ -198,6 +227,26 @@ export function buildMessages(req: AiTaskRequest): OpenRouterMessage[] {
             `Gere ${n} objetivos específicos derivados desse objetivo geral. ` +
             'Cada um em uma linha própria, sem numeração e sem marcadores, começando com verbo no infinitivo. ' +
             'Responda apenas com as linhas dos objetivos.',
+        },
+      ]
+    }
+
+    case 'generate-indicators': {
+      const { group, objectives, municipality, context } = req
+      const spec = INDICATOR_GROUP_INSTRUCTIONS[group]
+      return [
+        { role: 'system', content: SYSTEM_PROMPT + PLAIN_TEXT_NOTE },
+        {
+          role: 'user',
+          content:
+            `Projeto de política pública para o município de ${municipality.name} (PB).` +
+            `${contextBlock(context)}\n\n` +
+            `Objetivos específicos do projeto:\n` +
+            objectives.map((o, i) => `${i + 1}. ${o}`).join('\n') +
+            `\n\nGere exatamente ${objectives.length} ${spec.what}, um para cada objetivo ` +
+            `específico, na mesma ordem. ${spec.instruction} ` +
+            'Cada um em uma linha própria, sem numeração e sem marcadores. ' +
+            'Responda apenas com as linhas.',
         },
       ]
     }
