@@ -9,7 +9,6 @@ import Form from '@/components/formulator/FormulatorForm'
 import FormulatorReview from '@/components/formulator/FormulatorReview'
 import AIAssistant from '@/components/formulator/AIAssistant'
 import { StepForm } from '@/components/formulator/steps'
-import { useFormulatorAi } from '@/components/formulator/useFormulatorAi'
 import { formulatorSteps, findStepBySlug, findStepIndex } from '@/data/formulator/steps'
 import { aiAssistantByStep } from '@/data/formulator/ai-assistant'
 import { useFormulator } from '@/hooks/useFormulator'
@@ -19,7 +18,6 @@ export default function ModeFormulator() {
   const { state, markVisited } = useFormulator()
   const [currentSlug, setCurrentSlug] = useState(formulatorSteps[0].slug)
   const [finalized, setFinalized] = useState(false)
-  const { runAction, busyActionId, errorMessage } = useFormulatorAi()
   const assistantContent = aiAssistantByStep[currentSlug]
 
   const index = findStepIndex(currentSlug)
@@ -90,9 +88,6 @@ export default function ModeFormulator() {
           {assistantContent && (
             <AIAssistant
               content={assistantContent}
-              onAction={(id) => void runAction(id)}
-              busyActionId={busyActionId}
-              errorMessage={errorMessage}
               className="shrink-0"
             />
           )}

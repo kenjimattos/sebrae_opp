@@ -4,34 +4,20 @@
 // disparam gerações reais via useFormulatorAi (etapas sem ação: actions []).
 
 import Card from '@/components/ui/Card'
-import Button from '@/components/ui/buttons/Button'
 import { Sparkles } from '@/components/icons'
-
-export interface AIAssistantAction {
-  id: string
-  label: string
-}
 
 export interface AIAssistantContent {
   description: string
   examples: string[]
-  actions: AIAssistantAction[]
 }
 
 interface AIAssistantProps {
   content: AIAssistantContent
-  onAction?: (actionId: string) => void
-  /** Ação em andamento — desabilita os botões e troca o label da ativa. */
-  busyActionId?: string | null
-  errorMessage?: string | null
   className?: string
 }
 
 export default function AIAssistant({
   content,
-  onAction,
-  busyActionId = null,
-  errorMessage = null,
   className = '',
 }: AIAssistantProps) {
   return (
@@ -57,28 +43,6 @@ export default function AIAssistant({
           ))}
         </div>
       </div>
-
-      {content.actions.length > 0 && (
-        <div className="flex flex-col items-start gap-md w-full">
-          <p className="typo-body-bold">Ações da IA</p>
-          <div className="flex flex-col items-center gap-xs w-full">
-            {content.actions.map((action) => (
-              <Button
-                key={action.id}
-                label={busyActionId === action.id ? 'Gerando…' : action.label}
-                variant="secondary"
-                size="md"
-                icon={Sparkles}
-                iconPosition="left"
-                disabled={busyActionId !== null}
-                onClick={() => onAction?.(action.id)}
-                className="w-[200px]"
-              />
-            ))}
-          </div>
-          {errorMessage && <p className="typo-body-sm text-inactive">{errorMessage}</p>}
-        </div>
-      )}
     </Card>
   )
 }
