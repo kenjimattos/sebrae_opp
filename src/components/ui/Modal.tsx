@@ -23,7 +23,7 @@ export default function Modal({
   open,
   onClose,
   title,
-  maxWidth = 'max-w-[560px]',
+  maxWidth = 'max-w-[35dvw]',
   children,
   className = '',
 }: ModalProps) {
