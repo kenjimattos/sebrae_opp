@@ -56,11 +56,25 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, './src'),
       },
     },
-    // Em dev, encaminha /api/* para a API Node (server/, porta 3000). Em produção
-    // o Nginx faz esse proxy.
+    // Em dev, /api/municipalities* é atendido pelo snapshot estático em
+    // public/api-snapshot (mesmos rewrites do vercel.json) — funciona sem a API
+    // Node e sem acesso ao Mongo do Sebrae. O restante de /api/* segue no proxy
+    // para a API Node (server/, porta 3000), como o Nginx faz em produção.
     server: {
       proxy: {
-        '/api': 'http://localhost:3000',
+        '/api': {
+          target: 'http://localhost:3000',
+          bypass(req) {
+            const url = req.url?.split('?')[0] ?? ''
+            if (url === '/api/municipalities') {
+              return '/api-snapshot/municipalities.json'
+            }
+            const match = url.match(/^\/api\/municipalities\/([^/]+)$/)
+            if (match) {
+              return `/api-snapshot/municipalities/${match[1]}.json`
+            }
+          },
+        },
       },
     },
     test: {

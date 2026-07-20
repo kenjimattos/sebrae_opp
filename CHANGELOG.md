@@ -20,6 +20,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Correções
 
+- **Dev local funciona sem a API Node / rede Sebrae (branch snapshot).** O `npm run dev` proxyava todo `/api/*` para `localhost:3000` (Fastify + Mongo da rede Sebrae), então os dados de municípios não carregavam localmente — mesmo com o snapshot estático (`public/api-snapshot/`) já no repo. O proxy do Vite agora tem um `bypass` que espelha os rewrites do `vercel.json`: `/api/municipalities` e `/api/municipalities/:id` são servidos direto do snapshot; o restante de `/api/*` (ex.: `/api/ai`, que continua no middleware de dev) segue o fluxo de antes.
 - **Hover do mapa não fica mais "preso" quando o mouse sai do SVG.** O `mouseleave` do `<path>` do município nem sempre dispara (movimento rápido do mouse, ou reordenação do DOM causada pelo sort que traz o município em hover para frente), então o último município ficava destacado e com `onHover` ativo mesmo com o cursor em outra parte da plataforma. O `onMouseLeave` do `<svg>` — que já limpava o tooltip (`cursor`) — agora também zera `hoveredId` e propaga `onHover(null)`, garantindo que nenhum hover sobrevive fora do mapa (`ParaibaOutlineMap`).
 
 ## [1.1.0] — 2026-07-08
