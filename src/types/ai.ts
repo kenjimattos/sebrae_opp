@@ -15,6 +15,17 @@ export const AI_FIELD_IDS = [
   'justification.impact',
   'justification.policy',
   'objectives.general',
+  'targetAudience.primary',
+  'targetAudience.secondary',
+  'actionPlan.activities',
+  'actionPlan.methodology',
+  'timeline.phases',
+  'timeline.milestones',
+  'sustainability.continuity',
+  'sustainability.partnerships',
+  'governance.management',
+  'governance.monitoring',
+  'governance.accountability',
 ] as const
 
 export type AiFieldId = (typeof AI_FIELD_IDS)[number]
