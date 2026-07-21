@@ -241,7 +241,7 @@ export function buildMessages(req: AiTaskRequest): OpenRouterMessage[] {
           content:
             `Projeto de política pública para o município de ${municipality.name} (PB).` +
             `${contextBlock(context)}\n\n` +
-            `Objetivos específicos do projeto:\n` +
+            'Objetivos específicos do projeto:\n' +
             objectives.map((o, i) => `${i + 1}. ${o}`).join('\n') +
             `\n\nGere exatamente ${objectives.length} ${spec.what}, um para cada objetivo ` +
             `específico, na mesma ordem. ${spec.instruction} ` +
