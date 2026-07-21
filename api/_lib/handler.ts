@@ -134,6 +134,18 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
       }
     }
 
+    case 'suggest-budget-items': {
+      if (typeof raw.activities !== 'string' || raw.activities.trim() === '') return null
+      const context = parseContext(raw.context)
+      if (context === null) return null
+      return {
+        task: 'suggest-budget-items',
+        activities: raw.activities,
+        municipality: raw.municipality,
+        context,
+      }
+    }
+
     case 'chat': {
       if (!Array.isArray(raw.messages) || raw.messages.length === 0) return null
       if (!raw.messages.every(isChatMessage)) return null
@@ -188,7 +200,9 @@ export async function handleAiTask(
         ? { text, items: parseItems(text) }
         : req.task === 'generate-indicators'
           ? { text, items: parseItems(text, req.objectives.length) }
-          : { text }
+          : req.task === 'suggest-budget-items'
+            ? { text, items: parseItems(text, 8) }
+            : { text }
     return { status: 200, body }
   } catch (err) {
     if (err instanceof OpenRouterError && err.status === 429) {
