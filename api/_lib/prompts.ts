@@ -251,6 +251,25 @@ export function buildMessages(req: AiTaskRequest): OpenRouterMessage[] {
       ]
     }
 
+    case 'suggest-budget-items': {
+      const { activities, municipality, context } = req
+      return [
+        { role: 'system', content: SYSTEM_PROMPT + PLAIN_TEXT_NOTE },
+        {
+          role: 'user',
+          content:
+            `Projeto de política pública para o município de ${municipality.name} (PB).` +
+            `${contextBlock(context)}\n\n` +
+            `Atividades previstas do projeto:\n"""${activities}"""\n\n` +
+            'Sugira de 4 a 8 rubricas orçamentárias derivadas dessas atividades ' +
+            '(ex.: Pessoal, Material de consumo, Serviços de terceiros). ' +
+            'Responda apenas com os nomes das rubricas, uma por linha, sem numeração, ' +
+            'sem marcadores e sem nenhum valor em reais — os valores serão preenchidos ' +
+            'pelo gestor.',
+        },
+      ]
+    }
+
     case 'chat': {
       const { messages, municipality, indicatorsSummary } = req
       const summary = indicatorsSummary
