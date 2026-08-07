@@ -1,4 +1,4 @@
-// Setup do banco da OPP: cria as 4 coleções (com validadores de schema) e os
+// Setup do banco da OPP: cria as 5 coleções (com validadores de schema) e os
 // índices. Idempotente — pode rodar quantas vezes quiser.
 //
 // No NoSQLBooster: selecione o banco da OPP na conexão e execute este script
@@ -116,6 +116,55 @@ ensureCollection('indicatorValues', {
   },
 })
 
+// --- emendas: emendas parlamentares por município × esfera (federal/estadual). ---
+// Fica FORA de indicatorValues de propósito: não é indicador de agenda (não tem
+// threshold nem semáforo) e o shape é outro — empenhado/pago com quebra por ano.
+// Alimenta o modo "Mapeamento de recursos". Federal e estadual são docs separados
+// porque a qualidade da atribuição municipal é diferente (ver `atribuicao`).
+ensureCollection('emendas', {
+  bsonType: 'object',
+  required: ['_id', 'escopo', 'esfera', 'empenhado', 'pago', 'referenceYear', 'isFictional'],
+  properties: {
+    _id: { bsonType: 'string', description: "'<IBGE>:<esfera>' ou 'PB:<esfera>' para o estado" },
+    escopo: { enum: ['municipio', 'estado'] },
+    municipalityId: {
+      bsonType: ['string', 'null'],
+      description: "ref municipalities._id (IBGE); null quando escopo='estado'",
+    },
+    esfera: { enum: ['federal', 'estadual'] },
+    empenhado: { bsonType: ['double', 'int'], description: 'R$ empenhado acumulado na janela' },
+    pago: { bsonType: ['double', 'int'], description: 'R$ pago acumulado na janela' },
+    rawEmpenhado: { bsonType: 'string', description: 'valor de exibição (ex: "R$ 195,14 mi")' },
+    rawPago: { bsonType: 'string' },
+    porAno: {
+      bsonType: 'object',
+      description:
+        'quebra anual { "2024": { empenhado, pago } } pelo ano do DOCUMENTO de despesa ' +
+        '(quando o dinheiro se moveu) — não pela safra da emenda',
+    },
+    naoMunicipalizado: {
+      bsonType: 'object',
+      description:
+        "só em escopo='estado': parcela de aplicação estadual/nacional que não entra em " +
+        'nenhum dos 223 municípios',
+    },
+    nEmendas: { bsonType: ['int', 'long', 'double'] },
+    nAutores: { bsonType: ['int', 'long', 'double'] },
+    janela: { bsonType: 'object', description: '{ de, ate } — safra das emendas consideradas' },
+    atribuicao: {
+      enum: ['ibge', 'texto-beneficiario'],
+      description:
+        "como o município foi determinado. 'ibge' = campo estruturado na origem (federal, " +
+        "exato). 'texto-beneficiario' = inferido do texto livre do objeto da emenda " +
+        '(estadual, aproximado) — a UI deve rotular como estimativa',
+    },
+    referenceYear: { bsonType: 'string' },
+    source: { bsonType: ['string', 'null'] },
+    isFictional: { bsonType: 'bool', description: 'true = dado de demonstração' },
+    updatedAt: { bsonType: 'date' },
+  },
+})
+
 // --- Índices (createIndex é idempotente) ---
 database.municipalities.createIndex({ slug: 1 }, { unique: true, name: 'uniq_slug' })
 
@@ -135,4 +184,8 @@ database.indicatorValues.createIndex(
 // consultas "todos os municípios de um indicador num ano" (ex: colorir o mapa)
 database.indicatorValues.createIndex({ indicatorId: 1, referenceYear: 1 }, { name: 'by_indicador_ano' })
 
-print('setup concluído: 4 coleções + índices prontos.')
+// emendas: "todos os municípios de uma esfera" (colorir o mapa) e lookup por município.
+database.emendas.createIndex({ esfera: 1, escopo: 1 }, { name: 'by_esfera_escopo' })
+database.emendas.createIndex({ municipalityId: 1, esfera: 1 }, { name: 'by_municipio_esfera' })
+
+print('setup concluído: 5 coleções + índices prontos.')
