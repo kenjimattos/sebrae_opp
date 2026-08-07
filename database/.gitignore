@@ -7,3 +7,8 @@
 # Bytecode dos geradores (Python 3.6 no host do ETL)
 scripts/__pycache__/
 *.pyc
+
+# Downloads brutos de trabalho dos geradores (ZIP/CSV das fontes públicas, centenas
+# de Mb). O que é versionado é o SNAPSHOT agregado que sai deles — data/<fonte>.json.
+# Convenção: arquivo bruto baixado começa com "_".
+data/_*
