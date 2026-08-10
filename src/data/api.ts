@@ -1,6 +1,7 @@
 // Client da API de leitura (server/). Em dev o Vite faz proxy de /api → :3000;
 // em produção o Nginx faz o mesmo. Substitui os imports estáticos de
 // municipalities.json e values/*.ts.
+import type { EmendasData } from '@/types/emendas'
 import type { IndicatorsData } from '@/types/indicators'
 
 export interface MunicipalitySummary {
@@ -28,4 +29,11 @@ export function fetchMunicipalities(): Promise<MunicipalitySummary[]> {
 // calculado no servidor). GET /api/municipalities/:id
 export function fetchMunicipalityData(id: string): Promise<IndicatorsData> {
   return getJSON<IndicatorsData>(`/municipalities/${encodeURIComponent(id)}`)
+}
+
+// Emendas parlamentares (federais + estaduais) dos 223 municípios, num payload
+// só — o modo "Mapeamento de recursos" precisa de todos de uma vez para colorir
+// o mapa, e o conjunto é pequeno. GET /api/emendas
+export function fetchEmendas(): Promise<EmendasData> {
+  return getJSON<EmendasData>('/emendas')
 }
