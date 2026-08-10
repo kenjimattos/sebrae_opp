@@ -24,7 +24,8 @@ export default function EmendasEsferaCard({
   const estimativa = meta.atribuicao === 'texto-beneficiario'
 
   return (
-    <div className={`card-surface flex flex-col gap-sm p-md ${className}`}>
+    // `.glass` não traz border-radius — vem do `rounded-sm`.
+    <div className={`glass rounded-sm flex flex-col gap-xs p-md ${className}`}>
       <div className="flex-between gap-sm">
         <div className="flex flex-col">
           <span className="typo-body-bold">{copy.titulo}</span>

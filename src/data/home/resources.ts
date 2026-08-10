@@ -42,10 +42,10 @@ export const resourcesContent = {
   },
   estado: {
     titulo: 'Paraíba',
-    naoMunicipalizadoFederal:
-      'de aplicação estadual ou nacional, fora do total dos municípios',
-    naoMunicipalizadoEstadual:
-      'para entidades e órgãos estaduais, sem município de destino',
+    // Frase curta: o resumo divide a linha com o botão do Datapedia, então
+    // precisa caber em uma ou duas linhas estreitas.
+    naoMunicipalizadoFederal: 'em aplicação estadual ou nacional',
+    naoMunicipalizadoEstadual: 'para entidades e órgãos estaduais',
   },
   distribuicao: {
     description: 'Veja como os recursos federais estão distribuídos entre os municípios do estado.',
