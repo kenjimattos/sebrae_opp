@@ -54,8 +54,7 @@ export default function ModeResources() {
   }
 
   return (
-    <div className="flex flex-col glass rounded-sm p-lg gap-lg">
-      <div className="flex-between gap-md w-full">
+    <div className="flex flex-col items-center w-full glass rounded-sm p-lg gap-lg">
         <TitleSubtitle
           size="md"
           title={resourcesContent.emendas.title}
@@ -68,7 +67,6 @@ export default function ModeResources() {
           ariaLabel="Esfera das emendas"
           className="shrink-0"
         />
-      </div>
 
       {error && (
         <p className="typo-body text-inactive">
@@ -77,7 +75,7 @@ export default function ModeResources() {
       )}
 
       {/* Mapa em largura total, com os cards das duas esferas embaixo. */}
-      <div className="flex flex-col w-full gap-sm">
+      <div className="flex flex-col items-center w-full gap-md">
         <ParaibaOutlineMap
           values={intensidades}
           tooltipDetail={tooltipDetail}
