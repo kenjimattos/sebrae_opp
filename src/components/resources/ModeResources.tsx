@@ -54,7 +54,13 @@ export default function ModeResources() {
   }
 
   return (
-    <div className="flex flex-col items-center w-full glass rounded-sm p-lg gap-lg">
+    // gap-md (não gap-lg) e p-md: o painel precisa fechar perto da altura da
+    // SideNav (83dvh) — com gap-lg os 5 blocos sozinhos custavam 160px de respiro.
+    <div className="flex flex-col w-full glass rounded-sm p-md gap-md">
+      {/* Título à esquerda e controle à direita, na mesma faixa: empilhados, o
+          título alinhado à esquerda brigava com o toggle e o mapa centrados, e
+          a linha extra custava ~70px de altura. */}
+      <div className="flex-between w-full gap-md">
         <TitleSubtitle
           size="md"
           title={resourcesContent.emendas.title}
@@ -67,6 +73,7 @@ export default function ModeResources() {
           ariaLabel="Esfera das emendas"
           className="shrink-0"
         />
+      </div>
 
       {error && (
         <p className="typo-body text-inactive">
@@ -74,14 +81,16 @@ export default function ModeResources() {
         </p>
       )}
 
-      {/* Mapa em largura total, com os cards das duas esferas embaixo. */}
-      <div className="flex flex-col items-center w-full gap-md">
+      {/* Mapa centrado e limitado em largura — é o bloco mais alto da seção, e a
+          altura dele acompanha a largura (viewBox ~1000×460). */}
+      <div className="flex flex-col items-center w-full gap-xs">
         <ParaibaOutlineMap
           values={intensidades}
           tooltipDetail={tooltipDetail}
           selectedId={municipality.id}
           onSelect={handleMapSelect}
           padding={2}
+          className="max-w-[520px]"
         />
         <div className="flex items-center gap-sm">
           <span className="typo-body-sm text-inactive">
@@ -136,28 +145,37 @@ export default function ModeResources() {
               </p>
             )}
 
-            {estado && meta && (
-              <div className="flex flex-col gap-2xs border-t pt-sm">
-                <span className="typo-body-sm-bold">
-                  {resourcesContent.estado.titulo} · {resourcesContent.esferas[esfera].label}
-                </span>
-                <span className="typo-body-sm text-inactive">
-                  {formatReaisCurto(estado.pago)} pagos no total do estado, dos quais{' '}
-                  {formatReaisCurto(estado.naoMunicipalizado.pago)}{' '}
-                  {esfera === 'federal'
-                    ? resourcesContent.estado.naoMunicipalizadoFederal
-                    : resourcesContent.estado.naoMunicipalizadoEstadual}
-                  .
-                </span>
-              </div>
-            )}
           </>
         )}
       </div>
 
-      <a href={DATAPEDIA_URL} target="_blank" rel="noopener noreferrer" className="w-fit">
-        <Button label={resourcesContent.buttons.explorarEmendas} variant="secondary" />
-      </a>
+      {/* Rodapé: contexto do estado à esquerda, CTA à direita. Em linhas
+          separadas custavam ~150px de altura; juntos, cabem em uma faixa. */}
+      <div className="flex-between w-full gap-md border-t pt-sm">
+        {estado && meta ? (
+          <p className="typo-body-sm text-inactive">
+            <span className="typo-body-sm-bold">
+              {resourcesContent.estado.titulo} · {resourcesContent.esferas[esfera].label}
+            </span>{' '}
+            — {formatReaisCurto(estado.pago)} pagos, dos quais{' '}
+            {formatReaisCurto(estado.naoMunicipalizado.pago)}{' '}
+            {esfera === 'federal'
+              ? resourcesContent.estado.naoMunicipalizadoFederal
+              : resourcesContent.estado.naoMunicipalizadoEstadual}
+            .
+          </p>
+        ) : (
+          <span />
+        )}
+        <a
+          href={DATAPEDIA_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="shrink-0"
+        >
+          <Button label={resourcesContent.buttons.explorarEmendas} variant="secondary" />
+        </a>
+      </div>
     </div>
   )
 }

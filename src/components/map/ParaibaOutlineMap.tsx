@@ -123,6 +123,7 @@ export function ParaibaOutlineMap({
   onSelect,
   selectedId,
   padding = 2,
+  className = '',
   fillColor = 'var(--semantic-surface-primary)',
   hoverFillColor = 'var(--semantic-accent)',
   selectedFillColor = 'var(--semantic-accent)',
@@ -183,7 +184,9 @@ export function ParaibaOutlineMap({
       )}
       <svg
         viewBox={expandedViewBox}
-        className={'w-full h-auto'}
+        // `className` era declarado na interface mas nunca aplicado — é por ele
+        // que o consumidor limita a largura (e, com isso, a altura) do mapa.
+        className={`w-full h-auto ${className}`}
         onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
         onMouseLeave={() => {
           // Garantia no nível do SVG: o mouseleave do <path> pode não disparar
