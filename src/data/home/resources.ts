@@ -1,25 +1,51 @@
 export const DATAPEDIA_URL =
   'https://datapedia.info/sebrae/conexao/po5aavozprm7z6+-ppswzktavzqb1p3k/ta6dedoanvp1a5d96p6hv9dq77dp64ia'
 
-export interface ResourceCardData {
-  title: string
-  value: string
-}
-
-export const resourceCards: ResourceCardData[] = [
-  { title: 'Total empenhado até o momento', value: 'R$ 4,1 bi' },
-  { title: 'Total pago até o momento', value: 'R$ 3,3 bi' },
-  { title: 'Pago em 2023', value: 'R$ 649,2 mi' },
-  { title: 'Pago em 2024', value: 'R$ 1,2 bi' },
-  { title: 'Pago em 2025', value: 'R$ 1,4 bi' },
-]
+// Rótulos e textos do modo "Mapeamento de recursos". Os NÚMEROS não moram mais
+// aqui: vêm de GET /api/emendas (ETLs em database/scripts/gerar_seed_emendas_*.py).
+// Antes desta versão havia cinco valores estáticos do estado inteiro que já
+// estavam defasados — o total pago, por exemplo, tinha saltado de 3,3 para 4,3 bi.
 
 export const resourcesContent = {
   emendas: {
     title: 'Emendas federais e estaduais mapeadas',
-    description: 'Recursos destinados por deputados federais e senadores que podem financiar projetos estruturantes no município.',
-    tableTitle: 'Histórico de Valores pagos e empenhados até o momento',
-    footnote: 'Recursos federais representam uma das principais fontes de financiamento para projetos estruturantes nos municípios.',
+    description:
+      'Recursos destinados por parlamentares que podem financiar projetos estruturantes no município. Clique num município do mapa para ver os valores; passe o mouse para comparar.',
+  },
+  esferas: {
+    federal: {
+      label: 'Federais',
+      titulo: 'Emendas federais',
+      autores: 'deputados federais e senadores',
+      // completa a frase "Pago …" acima da série anual
+      notaAno: 'por ano do desembolso',
+      qualidade: null as string | null,
+    },
+    estadual: {
+      label: 'Estaduais',
+      titulo: 'Emendas estaduais (ALPB)',
+      autores: 'deputados estaduais',
+      notaAno: 'por safra da emenda',
+      qualidade:
+        'Estimativa: a origem estadual não informa o município de destino em campo próprio — ele é inferido do texto da emenda. Cobre {cobertura} do valor; o restante vai para entidades e órgãos estaduais.',
+    },
+  },
+  metricas: {
+    empenhado: 'Empenhado',
+    pago: 'Pago',
+  },
+  mapa: {
+    legendaTitulo: 'Valor pago por município',
+    legendaMenor: 'menor',
+    legendaMaior: 'maior',
+    semSelecao: 'Selecione um município no mapa ou no seletor acima',
+  },
+  estado: {
+    titulo: 'Paraíba',
+    naoMunicipalizadoFederal:
+      'de aplicação estadual ou nacional, fora do total dos municípios',
+    naoMunicipalizadoEstadual:
+      'para entidades e órgãos estaduais, sem município de destino',
   },
   distribuicao: {
     description: 'Veja como os recursos federais estão distribuídos entre os municípios do estado.',
@@ -28,10 +54,11 @@ export const resourcesContent = {
   },
   editais: {
     title: 'Editais e programas de financiamento',
-    description: 'Programas federais, estaduais e institucionais com recursos disponíveis para desenvolvimento econômico, inovação e fortalecimento de pequenos negócios.',
+    description:
+      'Programas federais, estaduais e institucionais com recursos disponíveis para desenvolvimento econômico, inovação e fortalecimento de pequenos negócios.',
   },
   buttons: {
-    explorarEmendas: 'Explorar emendas',
+    explorarEmendas: 'Explorar emendas no Datapedia',
     verOportunidades: 'Ver oportunidades',
   },
 } as const

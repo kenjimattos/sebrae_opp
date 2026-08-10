@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import paraibaGeo from '@/data/geo/paraiba.json';
 
 type Ring = [number, number][];
@@ -24,6 +25,11 @@ interface ComputedMap {
 interface ParaibaOutlineMapProps {
   /** Map opcional de código IBGE → valor do indicador (0-1) pra colorir os municípios */
   values?: Record<string, number>;
+  /**
+   * Linha extra no tooltip do hover (ex.: o valor do município). Recebe o
+   * código IBGE; devolver null/'' mostra só o nome, como antes.
+   */
+  tooltipDetail?: (id: string) => string | null;
   onHover?: (id: string | null) => void;
   onSelect?: (id: string) => void;
   selectedId?: string;
@@ -112,6 +118,7 @@ function computeMap(geojson: { features: GeoFeature[] }): ComputedMap {
 
 export function ParaibaOutlineMap({
   values,
+  tooltipDetail,
   onHover,
   onSelect,
   selectedId,
@@ -140,25 +147,39 @@ export function ParaibaOutlineMap({
     if (v === undefined) {
       return isHover ? hoverFillColor : fillColor;
     }
-    return `oklch(0.6 0.15 ${220 - v * 180})`;
+    // Rampa sequencial de matiz única: mistura o acento na superfície conforme a
+    // intensidade. Varrer o matiz (azul→vermelho) leria como categorias, não como
+    // "mais ou menos recurso". O piso de 8% mantém o município visível no mapa.
+    const pct = Math.round((0.08 + Math.min(Math.max(v, 0), 1) * 0.92) * 100);
+    return `color-mix(in oklab, ${hoverFillColor} ${pct}%, ${fillColor})`;
   };
 
-  const hoveredName = hoveredId
-    ? data.municipalities.find((m) => m.id === hoveredId)?.name
+  const hovered = hoveredId
+    ? data.municipalities.find((m) => m.id === hoveredId)
     : null;
+  const hoveredName = hovered?.name ?? null;
+  const hoveredDetail = hovered && tooltipDetail ? tooltipDetail(hovered.id) : null;
 
   return (
     <>
       {/* Tooltip `fixed`: posicionado pela viewport, sem exigir um wrapper
           `relative` em volta do SVG — assim o mapa continua sendo conteúdo
-          não-posicionado e não passa por cima de dropdowns vizinhos. */}
-      {hoveredName && cursor && (
+          não-posicionado e não passa por cima de dropdowns vizinhos.
+          Vai por PORTAL no body porque `backdrop-filter` (a classe `.glass`)
+          cria containing block para `position: fixed`: dentro de um container
+          glass, as coordenadas da viewport passariam a valer a partir da caixa
+          do container e o tooltip aparecia deslocado — ou fora da tela. */}
+      {hoveredName && cursor && createPortal(
         <div
-          className="typo-body-bold glass glass-bevel pointer-events-none fixed z-50 whitespace-nowrap rounded-full px-sm py-xs"
+          className={`glass glass-bevel pointer-events-none fixed z-50 whitespace-nowrap px-sm py-xs ${
+            hoveredDetail ? 'flex flex-col items-center rounded-sm' : 'rounded-full'
+          }`}
           style={{ left: cursor.x, top: cursor.y, transform: 'translate(-50%, calc(-100% - 12px))' }}
         >
-          {hoveredName}
-        </div>
+          <span className="typo-body-bold">{hoveredName}</span>
+          {hoveredDetail && <span className="typo-body-sm">{hoveredDetail}</span>}
+        </div>,
+        document.body,
       )}
       <svg
         viewBox={expandedViewBox}

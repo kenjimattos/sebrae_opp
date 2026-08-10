@@ -1,69 +1,165 @@
-// Figma: Section/Resources (390:600)
-// Emendas parlamentares + mapa Datapedia + editais e programas
+// Modo "Emendas" do pilar Mapeamento de recursos.
+//
+// Mapa coroplético da Paraíba com o valor pago por município, alternando entre
+// as esferas federal e estadual. As duas NÃO são somadas num número único: a
+// federal vem de código IBGE estruturado (exata) e a estadual é inferida do
+// texto da emenda (estimativa) — ver `atribuicao` em src/types/emendas.ts.
+// O detalhamento por emenda continua sendo encaminhado para o Datapedia.
 
-import TitleSubtitle from '@/components/ui/TitleSubtitle'
+import { useMemo, useState } from 'react'
+import { ParaibaOutlineMap } from '@/components/map/ParaibaOutlineMap'
 import Button from '@/components/ui/buttons/Button'
-import HoverOverlay from '@/components/ui/HoverOverlay'
-import { DATAPEDIA_URL, resourceCards, resourcesContent } from '@/data/home/resources'
+import ModeToggle from '@/components/ui/ModeToggle'
+import TitleSubtitle from '@/components/ui/TitleSubtitle'
+import { DATAPEDIA_URL, resourcesContent } from '@/data/home/resources'
+import { findEmendaMunicipio, intensidadePorMunicipio, useEmendas } from '@/hooks/useEmendas'
+import { useMunicipality } from '@/hooks/useMunicipality'
+import type { EmendaEsfera } from '@/types/emendas'
+import { formatReaisCurto } from '@/utils/emendas'
+import EmendasEsferaCard from './EmendasEsferaCard'
+
+const ESFERA_OPTIONS = [
+  { value: 'federal', label: resourcesContent.esferas.federal.label },
+  { value: 'estadual', label: resourcesContent.esferas.estadual.label },
+]
 
 export default function ModeResources() {
+  const { municipality, municipalities, setMunicipality } = useMunicipality()
+  const { data, loading, error } = useEmendas()
+  const [esfera, setEsfera] = useState<EmendaEsfera>('federal')
+
+  // Colore pelo pago: é o recurso que de fato chegou, e a métrica que o painel
+  // destaca. O empenhado aparece no card, mas não pinta o mapa.
+  const intensidades = useMemo(
+    () => intensidadePorMunicipio(data, esfera, 'pago'),
+    [data, esfera],
+  )
+
+  const selecionado = findEmendaMunicipio(data, municipality.id)
+  const meta = data?.esferas[esfera] ?? null
+  const estado = meta?.estado ?? null
+
+  function handleMapSelect(id: string) {
+    const match = municipalities.find((m) => m.id === id)
+    if (match) setMunicipality(match.id, match.name, 'map')
+  }
+
+  // Tooltip do hover: o valor daquele município na esfera ativa, para comparar
+  // sem precisar clicar.
+  function tooltipDetail(id: string) {
+    const m = findEmendaMunicipio(data, id)
+    const v = m?.[esfera]
+    if (!v) return 'sem emendas no período'
+    return `${formatReaisCurto(v.pago)} pagos`
+  }
+
   return (
-    <>
-      {/* Container principal branco */}
-      <div className="flex flex-col glass rounded-sm p-lg items-center gap-lg">
-          <TitleSubtitle
-            size='md'
-            title={resourcesContent.emendas.title}
-            subtitle={resourcesContent.emendas.description}
-            className='w-full'
-          />
-          <div className="flex w-full gap-md">
-            {/* Bloco 1 — Emendas parlamentares */}
-            <div className="flex flex-col gap-xs w-1/2">
-              <p className="typo-body-sm">
-                {resourcesContent.emendas.tableTitle}
-              </p>
-              <div className="flex flex-col gap-sm w-full border p-md">
-
-                  {resourceCards.map((card, i) => (
-                    <>
-                    <div className="flex justify-between">
-                      <span className="typo-body-sm-bold">{card.title}</span>
-                      <span className="typo-display-sm">{card.value}</span>
-                    </div>
-                    {i < 4 && (<hr className="border-accent border-dashed pb-xs" />
-                    )}
-                    </>
-                  ))}
-              </div>
-              <p className="typo-body-sm">
-                {resourcesContent.emendas.footnote}
-              </p>
-            </div>
-
-            {/* Bloco 2 — Mapa territorial (Datapedia) */}
-            <div className="flex flex-col gap-xs w-1/2">
-              <p className="typo-body-sm">
-                {resourcesContent.distribuicao.description}
-              </p>
-              <a
-                href={DATAPEDIA_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full rounded-sm overflow-hidden bg-[var(--primitives-gray-900)] relative group"
-              >
-                <img
-                  src="/assets/datapedia-mapa.png"
-                  alt={resourcesContent.distribuicao.mapAlt}
-                  className="w-full object-cover rounded-sm"
-                />
-
-                <HoverOverlay label={resourcesContent.distribuicao.overlayLabel} radius="xl" />
-              </a>
-            </div>
-          </div>
-        <Button label={resourcesContent.buttons.explorarEmendas} variant='secondary' className='w-fit'/>
+    <div className="flex flex-col glass rounded-sm p-lg gap-lg">
+      <div className="flex-between gap-md w-full">
+        <TitleSubtitle
+          size="md"
+          title={resourcesContent.emendas.title}
+          subtitle={resourcesContent.emendas.description}
+        />
+        <ModeToggle
+          value={esfera}
+          onChange={(v) => setEsfera(v as EmendaEsfera)}
+          options={ESFERA_OPTIONS}
+          ariaLabel="Esfera das emendas"
+          className="shrink-0"
+        />
       </div>
-    </>
+
+      {error && (
+        <p className="typo-body text-inactive">
+          Não foi possível carregar os dados de emendas. {error}
+        </p>
+      )}
+
+      <div className="flex w-full gap-lg">
+        {/* Mapa */}
+        <div className="flex flex-col w-[55%] gap-sm">
+          <ParaibaOutlineMap
+            values={intensidades}
+            tooltipDetail={tooltipDetail}
+            selectedId={municipality.id}
+            onSelect={handleMapSelect}
+            padding={2}
+          />
+          <div className="flex items-center gap-sm">
+            <span className="typo-body-sm text-inactive">
+              {resourcesContent.mapa.legendaTitulo}
+            </span>
+            <span className="typo-body-sm text-inactive">
+              {resourcesContent.mapa.legendaMenor}
+            </span>
+            <div
+              aria-hidden
+              className="h-2 w-32 rounded-full"
+              style={{
+                background:
+                  'linear-gradient(to right, color-mix(in oklab, var(--semantic-accent) 8%, var(--semantic-surface-primary)), var(--semantic-accent))',
+              }}
+            />
+            <span className="typo-body-sm text-inactive">
+              {resourcesContent.mapa.legendaMaior}
+            </span>
+          </div>
+        </div>
+
+        {/* Painel do município selecionado + totais do estado */}
+        <div className="flex flex-col w-[45%] gap-md">
+          {loading && !data ? (
+            <p className="typo-body text-inactive">Carregando emendas…</p>
+          ) : (
+            <>
+              {municipality.id && selecionado ? (
+                <>
+                  <h3 className="typo-h3">{selecionado.name}</h3>
+                  {/* As duas esferas ficam visíveis para comparação, mas a ativa no
+                      toggle vem primeiro — senão alternar para "Estaduais" deixaria
+                      o painel ainda liderando com o card federal. */}
+                  {(esfera === 'federal'
+                    ? (['federal', 'estadual'] as const)
+                    : (['estadual', 'federal'] as const)
+                  ).map((e) => (
+                    <EmendasEsferaCard
+                      key={e}
+                      esfera={e}
+                      meta={data!.esferas[e]}
+                      valores={selecionado[e]}
+                    />
+                  ))}
+                </>
+              ) : (
+                <p className="typo-body text-inactive">
+                  {resourcesContent.mapa.semSelecao}
+                </p>
+              )}
+
+              {estado && meta && (
+                <div className="flex flex-col gap-2xs border-t pt-sm">
+                  <span className="typo-body-sm-bold">
+                    {resourcesContent.estado.titulo} · {resourcesContent.esferas[esfera].label}
+                  </span>
+                  <span className="typo-body-sm text-inactive">
+                    {formatReaisCurto(estado.pago)} pagos no total do estado, dos quais{' '}
+                    {formatReaisCurto(estado.naoMunicipalizado.pago)}{' '}
+                    {esfera === 'federal'
+                      ? resourcesContent.estado.naoMunicipalizadoFederal
+                      : resourcesContent.estado.naoMunicipalizadoEstadual}
+                    .
+                  </span>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </div>
+
+      <a href={DATAPEDIA_URL} target="_blank" rel="noopener noreferrer" className="w-fit">
+        <Button label={resourcesContent.buttons.explorarEmendas} variant="secondary" />
+      </a>
+    </div>
   )
 }

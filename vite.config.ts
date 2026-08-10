@@ -56,7 +56,7 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, './src'),
       },
     },
-    // Em dev, /api/municipalities* é atendido pelo snapshot estático em
+    // Em dev, /api/municipalities* e /api/emendas são atendidos pelo snapshot em
     // public/api-snapshot (mesmos rewrites do vercel.json) — funciona sem a API
     // Node e sem acesso ao Mongo do Sebrae. O restante de /api/* segue no proxy
     // para a API Node (server/, porta 3000), como o Nginx faz em produção.
@@ -72,6 +72,9 @@ export default defineConfig(({ mode }) => {
             const match = url.match(/^\/api\/municipalities\/([^/]+)$/)
             if (match) {
               return `/api-snapshot/municipalities/${match[1]}.json`
+            }
+            if (url === '/api/emendas') {
+              return '/api-snapshot/emendas.json'
             }
           },
         },
