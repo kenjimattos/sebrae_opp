@@ -76,85 +76,85 @@ export default function ModeResources() {
         </p>
       )}
 
-      <div className="flex w-full gap-lg">
-        {/* Mapa */}
-        <div className="flex flex-col w-[55%] gap-sm">
-          <ParaibaOutlineMap
-            values={intensidades}
-            tooltipDetail={tooltipDetail}
-            selectedId={municipality.id}
-            onSelect={handleMapSelect}
-            padding={2}
+      {/* Mapa em largura total, com os cards das duas esferas embaixo. */}
+      <div className="flex flex-col w-full gap-sm">
+        <ParaibaOutlineMap
+          values={intensidades}
+          tooltipDetail={tooltipDetail}
+          selectedId={municipality.id}
+          onSelect={handleMapSelect}
+          padding={2}
+        />
+        <div className="flex items-center gap-sm">
+          <span className="typo-body-sm text-inactive">
+            {resourcesContent.mapa.legendaTitulo}
+          </span>
+          <span className="typo-body-sm text-inactive">
+            {resourcesContent.mapa.legendaMenor}
+          </span>
+          <div
+            aria-hidden
+            className="h-2 w-32 rounded-full"
+            style={{
+              background:
+                'linear-gradient(to right, color-mix(in oklab, var(--semantic-accent) 8%, var(--semantic-surface-primary)), var(--semantic-accent))',
+            }}
           />
-          <div className="flex items-center gap-sm">
-            <span className="typo-body-sm text-inactive">
-              {resourcesContent.mapa.legendaTitulo}
-            </span>
-            <span className="typo-body-sm text-inactive">
-              {resourcesContent.mapa.legendaMenor}
-            </span>
-            <div
-              aria-hidden
-              className="h-2 w-32 rounded-full"
-              style={{
-                background:
-                  'linear-gradient(to right, color-mix(in oklab, var(--semantic-accent) 8%, var(--semantic-surface-primary)), var(--semantic-accent))',
-              }}
-            />
-            <span className="typo-body-sm text-inactive">
-              {resourcesContent.mapa.legendaMaior}
-            </span>
-          </div>
+          <span className="typo-body-sm text-inactive">
+            {resourcesContent.mapa.legendaMaior}
+          </span>
         </div>
+      </div>
 
-        {/* Painel do município selecionado + totais do estado */}
-        <div className="flex flex-col w-[45%] gap-md">
-          {loading && !data ? (
-            <p className="typo-body text-inactive">Carregando emendas…</p>
-          ) : (
-            <>
-              {municipality.id && selecionado ? (
-                <>
-                  <h3 className="typo-h3">{selecionado.name}</h3>
-                  {/* As duas esferas ficam visíveis para comparação, mas a ativa no
-                      toggle vem primeiro — senão alternar para "Estaduais" deixaria
-                      o painel ainda liderando com o card federal. */}
-                  {(esfera === 'federal'
-                    ? (['federal', 'estadual'] as const)
-                    : (['estadual', 'federal'] as const)
-                  ).map((e) => (
+      {/* Município selecionado: as duas esferas lado a lado */}
+      <div className="flex flex-col w-full gap-md">
+        {loading && !data ? (
+          <p className="typo-body text-inactive">Carregando emendas…</p>
+        ) : (
+          <>
+            {municipality.id && selecionado ? (
+              <>
+                <h3 className="typo-h3">{selecionado.name}</h3>
+                {/* Ordem FIXA (federal, estadual): lado a lado, reordenar pela
+                    esfera ativa faria os cards trocarem de lugar a cada toggle.
+                    A ativa é marcada por um anel de acento. */}
+                <div className="grid-2 gap-md items-start">
+                  {(['federal', 'estadual'] as const).map((e) => (
                     <EmendasEsferaCard
                       key={e}
                       esfera={e}
                       meta={data!.esferas[e]}
                       valores={selecionado[e]}
+                      className={
+                        esfera === e ? 'ring-1 ring-[var(--semantic-accent)]' : ''
+                      }
                     />
                   ))}
-                </>
-              ) : (
-                <p className="typo-body text-inactive">
-                  {resourcesContent.mapa.semSelecao}
-                </p>
-              )}
-
-              {estado && meta && (
-                <div className="flex flex-col gap-2xs border-t pt-sm">
-                  <span className="typo-body-sm-bold">
-                    {resourcesContent.estado.titulo} · {resourcesContent.esferas[esfera].label}
-                  </span>
-                  <span className="typo-body-sm text-inactive">
-                    {formatReaisCurto(estado.pago)} pagos no total do estado, dos quais{' '}
-                    {formatReaisCurto(estado.naoMunicipalizado.pago)}{' '}
-                    {esfera === 'federal'
-                      ? resourcesContent.estado.naoMunicipalizadoFederal
-                      : resourcesContent.estado.naoMunicipalizadoEstadual}
-                    .
-                  </span>
                 </div>
-              )}
-            </>
-          )}
-        </div>
+              </>
+            ) : (
+              <p className="typo-body text-inactive">
+                {resourcesContent.mapa.semSelecao}
+              </p>
+            )}
+
+            {estado && meta && (
+              <div className="flex flex-col gap-2xs border-t pt-sm">
+                <span className="typo-body-sm-bold">
+                  {resourcesContent.estado.titulo} · {resourcesContent.esferas[esfera].label}
+                </span>
+                <span className="typo-body-sm text-inactive">
+                  {formatReaisCurto(estado.pago)} pagos no total do estado, dos quais{' '}
+                  {formatReaisCurto(estado.naoMunicipalizado.pago)}{' '}
+                  {esfera === 'federal'
+                    ? resourcesContent.estado.naoMunicipalizadoFederal
+                    : resourcesContent.estado.naoMunicipalizadoEstadual}
+                  .
+                </span>
+              </div>
+            )}
+          </>
+        )}
       </div>
 
       <a href={DATAPEDIA_URL} target="_blank" rel="noopener noreferrer" className="w-fit">

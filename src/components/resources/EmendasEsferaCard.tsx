@@ -29,7 +29,11 @@ export default function EmendasEsferaCard({
         <div className="flex flex-col">
           <span className="typo-body-bold">{copy.titulo}</span>
           <span className="typo-body-sm text-inactive">
-            {copy.autores} · {meta.janela.de}–{meta.janela.ate}
+            {copy.autores} ·{' '}
+            {/* nowrap: senão o intervalo quebra no meio ("2023-" / "2026") */}
+            <span className="whitespace-nowrap">
+              {meta.janela.de}–{meta.janela.ate}
+            </span>
           </span>
         </div>
         {estimativa && copy.qualidade && (
@@ -79,7 +83,9 @@ export default function EmendasEsferaCard({
           {anos.length > 0 && (
             <div className="flex flex-col gap-2xs">
               <span className="typo-body-sm text-inactive">Pago {copy.notaAno}</span>
-              <div className="flex flex-wrap gap-x-md gap-y-xs">
+              {/* 2 colunas: com os valores em `nowrap`, 4 colunas ficam mais estreitas
+                  que "R$ 68,61 mi" e o texto transborda a célula, colando num vizinho. */}
+              <div className="grid grid-cols-2 gap-x-md gap-y-xs">
                 {anos.map((ano) => (
                   <div key={ano} className="flex flex-col">
                     <span className="typo-body-sm-bold">{ano}</span>
