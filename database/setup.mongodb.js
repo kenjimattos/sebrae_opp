@@ -132,6 +132,12 @@ ensureCollection('emendas', {
       description: "ref municipalities._id (IBGE); null quando escopo='estado'",
     },
     esfera: { enum: ['federal', 'estadual'] },
+    valor: {
+      bsonType: ['double', 'int'],
+      description:
+        'R$ destinado pela emenda (valor aprovado) — só no estadual, onde a origem publica ' +
+        'esse número à parte da execução. No federal não existe: lá só há empenhado/pago',
+    },
     empenhado: { bsonType: ['double', 'int'], description: 'R$ empenhado acumulado na janela' },
     pago: { bsonType: ['double', 'int'], description: 'R$ pago acumulado na janela' },
     rawEmpenhado: { bsonType: 'string', description: 'valor de exibição (ex: "R$ 195,14 mi")' },
@@ -139,8 +145,10 @@ ensureCollection('emendas', {
     porAno: {
       bsonType: 'object',
       description:
-        'quebra anual { "2024": { empenhado, pago } } pelo ano do DOCUMENTO de despesa ' +
-        '(quando o dinheiro se moveu) — não pela safra da emenda',
+        'quebra anual { "2024": { empenhado, pago } }. ATENÇÃO: o eixo muda por esfera — no ' +
+        'FEDERAL é o ano do DOCUMENTO de despesa (quando o dinheiro se moveu), no ESTADUAL é ' +
+        'a safra da emenda (a origem publica a execução agregada, sem data de documento). ' +
+        'Não comparar as duas séries como se fossem a mesma coisa',
     },
     naoMunicipalizado: {
       bsonType: 'object',
