@@ -14,7 +14,9 @@ import ModeEixos from '@/components/agenda/ModeEixos'
 import ModeEconomics from '@/components/economics/ModeEconomics'
 import ModeRiscos from '@/components/risks/ModeRisks'
 import ModeResources from '@/components/resources/ModeResources'
-import ModeEditais from '@/components/resources/ModeEditais'
+// ModeEditais está fora do registry por ora (ver PANEL_MODES.recursos) — o
+// componente segue no repo; reative o import junto com a entrada do modo.
+// import ModeEditais from '@/components/resources/ModeEditais'
 import ModeTraining from '@/components/training/ModeTraining'
 import ModeCaseStudies from '@/components/case-studies/ModeCaseStudies'
 import ModeFormulator from '@/components/formulator/ModeFormulator'
@@ -32,8 +34,8 @@ const PANEL_MODES: Record<string, Mode[]> = {
     { value: 'risks', label: 'Riscos estratégicos', Component: ModeRiscos },
   ],
   recursos: [
-    {value: 'emendas', label: 'Emendas', Component: ModeResources},
-    {value: 'editais', label: 'Editais', Component: ModeEditais}
+    {value: 'emendas', label: 'Emendas', Component: ModeResources}
+    // {value: 'editais', label: 'Editais', Component: ModeEditais}
   ],
   capacitacao: [
     {value: 'cursos', label: 'Cursos', Component: ModeTraining },
