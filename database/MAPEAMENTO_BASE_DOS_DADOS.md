@@ -23,6 +23,8 @@ e das demais fontes disponíveis. A coluna **Fonte** da §1 usa as etiquetas aba
 
 - **Sebrae** — Acervo ISDEL do Sebrae Minas (`inteligencia.sebraemg.com.br/isdel`), snapshot CSV.
 - **BNDES** — Portal de Dados Abertos do BNDES (`dadosabertos.bndes.gov.br`), conjunto "Operações de Financiamento" → recurso "Operações não automáticas", snapshot CSV.
+- **CGU** — Portal da Transparência (`portaldatransparencia.gov.br`), conjunto **"Emendas parlamentares por Documentos de Despesa"**, ZIPs anuais públicos sem chave. Fonte das **emendas federais**. Ver §17.
+- **CODATA/PB** — API de dados abertos da **CODATA/CGE-PB** (`api.dadosabertos.codata.pb.gov.br`), que alimenta o Portal da Transparência do Estado. Fonte das **emendas estaduais (ALPB)**. Ver §17.
 
 **Status:** ✅ fonte definida e implementada · 🟡 proxy / cobertura parcial · ❌ sem fonte aberta (dado interno Sebrae).
 
@@ -184,7 +186,7 @@ Coisas que **mcp-brasil** entrega e que podem virar features novas no Panorama, 
 
 | Dado | Fonte | Feature mcp-brasil | Possível uso na OPP |
 |---|---|---|---|
-| Emendas parlamentares pix por município | MB | `/transferegov` | Card "Recursos federais recebidos" |
+| ~~Emendas parlamentares por município~~ | ~~MB~~ | ~~`/transferegov`~~ | ✅ **Implementado — virou feature própria (§17)**, mas por **CGU/CODATA-PB**, não pelo `/transferegov` (que cobre transferências/convênios, não a destinação municipal das emendas) |
 | Atos administrativos municipais | MB | `/diario_oficial` (Querido Diário, 5.000+ cidades) | Trilhas: monitorar publicações dos 8 municípios da PB |
 | Acórdãos TCU + inidôneos + débitos | MB | `/tcu` | Riscos: alertas de gestão fiscal |
 | Jurisprudência STF/STJ/TST | MB | `/jurisprudencia` | Trilhas / referências |
@@ -297,7 +299,7 @@ mcp-brasil tem TCE de **CE, ES, PA, PE, PI, RJ, RN, RS, SC, SP, TO**. ⚠️ **N
 
 - `/diario_oficial` (Querido Diário) — atos administrativos
 - `/compras` (PNCP) — licitações e contratos
-- `/transferegov` — emendas federais
+- `/transferegov` — transferências e convênios federais (as **emendas por município** vêm da CGU, ver §17)
 
 ---
 
@@ -942,9 +944,95 @@ candidatos da base econômica:
 
 ---
 
+## 17. Emendas parlamentares por município (federais CGU + estaduais CODATA/PB)
+
+**Não é indicador de agenda** — é a fonte do modo **"Mapeamento de recursos"** da Home (mapa
+coroplético do valor pago por município + painel do município selecionado). Por isso mora numa
+**coleção própria** (`emendas`, a 5ª do `DadosOPP`, ver `setup.mongodb.js`), fora de
+`indicatorValues`: o shape é outro (empenhado/pago com quebra anual), não tem `threshold` nem
+semáforo, e não entra em nenhuma agenda nem na base econômica.
+
+Duas esferas, **duas fontes públicas sem chave de API**, e — o ponto crítico — **duas
+qualidades diferentes de atribuição municipal**, registradas no campo `atribuicao` de cada doc:
+
+| | **Federal** | **Estadual (ALPB)** |
+|---|---|---|
+| Fonte | **CGU** — Portal da Transparência, conjunto **"Emendas parlamentares por Documentos de Despesa"** (`portaldatransparencia.gov.br/download-de-dados/emendas-parlamentares-documentos/<ano>`) | **CODATA/CGE-PB** — API de dados abertos (`api.dadosabertos.codata.pb.gov.br/api/v1/orcamento`), endpoints `listagem_emendas` + `execucao_emendas` |
+| Formato | ZIP anual (~15 Mb) → 1 CSV (~320 Mb), ISO-8859-1, `;`, decimal `,`, 48 colunas | JSON; join pela chave (ano, emenda) — casa **96–99%** das emendas |
+| `atribuicao` | **`ibge`** — a origem traz o **código IBGE do município de aplicação do recurso** estruturado. **Exato** | **`texto-beneficiario`** — a origem **não tem campo de município**; ele é inferido do texto livre do `objeto`. **Estimativa** |
+| Janela (safra) | 2023–2026 | 2021–2025 |
+| Eixo de `porAno` | **ano do documento** de despesa (o dinheiro se moveu) — restos a pagar caem no ano certo | **safra da emenda** (a execução vem agregada, sem data de documento) |
+| Totais PB | empenhado **R$ 5,37 bi** · pago **R$ 4,27 bi** (744 emendas, 38 autores) | destinado **R$ 508,23 mi** · empenhado R$ 453,47 mi · pago R$ 403,01 mi (2.877 emendas, 65 autores) |
+| Não municipalizado | ~13% do empenhado e ~18% do pago ("Nacional"/"Sem informação" = aplicação estadual/nacional) | **38,1% do valor** (ONGs, APAEs, associações, fundos e órgãos estaduais) |
+| Coleta | 06/ago/2026 | 10/ago/2026 |
+| Gerador | `scripts/gerar_seed_emendas_federais.py` | `scripts/gerar_seed_emendas_estaduais.py` |
+| Snapshot | `data/emendas_federais_pb.json` | `data/emendas_estaduais_pb.json` |
+
+> ⚠️ **As duas esferas não se somam num número único.** A federal é exata; a estadual é
+> inferida de texto. Somá-las sem ressalva daria um total falsamente preciso — a UI mostra os
+> dois cards lado a lado, com a estadual rotulada como estimativa (`InfoTooltip` explicando a
+> cobertura). Também **não compare as séries `porAno` lado a lado**: os eixos de tempo são
+> diferentes (documento × safra), e cada doc carrega `criterioQuebraAnual` dizendo qual é o seu.
+
+**Por que "por documento" no federal.** A lista de emendas traz um campo de localidade que
+vem "MÚLTIPLA"/"Nacional" na maior parte dos casos (uma emenda agregadora distribui para várias
+cidades) — atribuir município por ali perderia a maior parte da destinação real. São os
+**documentos de despesa** (empenho/liquidação/pagamento) que carregam o destino de cada parcela,
+com o IBGE já estruturado. As colunas de valor são **exclusivas por fase** (Empenho preenche só
+"Valor Empenhado", Pagamento só "Valor Pago", Liquidação nenhuma), então `empenhado = Σ Valor
+Empenhado` e `pago = Σ Valor Pago` **não duplicam**. O CSV é lido **em streaming de dentro do
+ZIP** (nada é extraído em disco).
+
+**A regra de atribuição do estadual** (conservadora por desenho): só conta quando o
+**beneficiário declarado é o próprio município** — `(para|ao|aos|destinar|repassar)` + `(Município
+| Prefeitura [Municipal] | Fundo Municipal …)` + `de <NOME>` — e **rejeita** quando há uma entidade
+nomeada antes do município no mesmo trecho (aí o município é o endereço dela, não o destino):
+*"Transferir para o Município de João Pessoa"* conta; *"para o Hospital de Trauma, localizado no
+município de João Pessoa"* não. Sem essa distinção **João Pessoa aparece com 2,5× o valor real**
+(as entidades estaduais são sediadas lá). O campo `beneficiarioFinal` existe no schema da origem
+mas vem preenchido em só **~5%** dos registros — não serve como fonte.
+
+**Validação contra o painel da Datapedia** (conta SEBRAE-PB, que parte das **mesmas** fontes
+públicas e declara na nota técnica o mesmo caminho):
+
+- **Federal — bate ao centavo.** Pago por ano: 2023 R$ 649.150.784,80 · 2024 R$ 1.187.072.618,28 ·
+  2025 R$ 1.405.615.073,98 (delta **0,00%** nos três). Agregados: empenhado +0,04%, pago +0,10%.
+  **220 dos 223 municípios dentro de 1%** — o resíduo são pagamentos novos (nosso extrato é
+  posterior à atualização deles, 29/jul/2026).
+- **Estadual — agregado próximo, município a município diverge.** Municipalizado nosso
+  R$ 314,78 mi (**61,9%**) vs Datapedia R$ 331,14 mi (**65,2%**) → delta agregado **−4,94%**;
+  124/223 municípios dentro de 1%, 134 dentro de 5%, 177 dentro de 15%. **Esse é o teto do
+  método** — nem a referência municipaliza tudo, e a regra exata deles não é publicada. Não
+  perseguir convergência total: o honesto é exibir como estimativa.
+
+Os dois geradores têm `--conferir <map.json>` para refazer essa comparação contra uma captura do
+painel; o estadual tem ainda `--amostra-nao-atribuidas N` para auditar o resíduo.
+
+**Modelagem no banco** (`setup.mongodb.js`, índices `by_esfera_escopo` e `by_municipio_esfera`):
+`_id = <IBGE>:<esfera>` para município e `PB:<esfera>` para o rollup do estado — **224 docs por
+esfera** (223 municípios + 1 de `escopo: "estado"`). O que **não se municipaliza não é rateado**:
+vai no campo `naoMunicipalizado` do doc de estado, para o total do estado fechar sem inflar
+município nenhum. Município sem emenda sairia **R$ 0** (zero real, não lacuna) no federal, que é
+censo de documentos.
+
+**Como chega no frontend.** Contrato em `src/types/emendas.ts` (`EmendasData`), servido por
+`GET /api/emendas`. Hoje a rota é atendida pelo **snapshot estático**
+`public/api-snapshot/emendas.json` (~145 KB, 223 municípios × 2 esferas), gerado por
+`scripts/gerar_api_snapshot_emendas.py` a partir dos dois snapshots de ETL — mesmo padrão de
+`municipalities.json`, com rewrite no `vercel.json` e bypass do proxy no `vite.config.ts`.
+⚠️ **A rota Fastify em `server/` ainda não existe**; quando existir, deve ler a coleção `emendas`
+e devolver **exatamente** esse shape. Município sem dado numa esfera vem `null` (não `0`), para a
+UI distinguir "não recebeu" de "não medimos". *Se mexer no contrato, mexa nos três: tipo,
+gerador do snapshot e (futura) rota.*
+
+**Sem `threshold`** nas duas esferas — valor absoluto em R$, sem faixa oficial; nem a CGU nem a
+CGE-PB classificam.
+
+---
+
 ## Legenda
 
 - ✅ — Cobertura direta por uma das fontes
 - 🟡 — Cobertura parcial (precisa derivar / complementar)
 - ❌ — Sem fonte aberta nos MCPs/APIs avaliados
-- **BD** = `basedosdados` · **MB** = `mcp-brasil` · **AQ** = API IGMA Áquila · **SL** = data lake do Sebrae (acesso direto, §13) · **ICS** = API pública do Instituto Cidades Sustentáveis (IDSC, §15)
+- **BD** = `basedosdados` · **MB** = `mcp-brasil` · **AQ** = API IGMA Áquila · **SL** = data lake do Sebrae (acesso direto, §13) · **ICS** = API pública do Instituto Cidades Sustentáveis (IDSC, §15) · **CGU** = Portal da Transparência (emendas federais, §17) · **CODATA/PB** = API de dados abertos da CODATA/CGE-PB (emendas estaduais, §17)
