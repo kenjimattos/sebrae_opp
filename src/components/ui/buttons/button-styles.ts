@@ -5,16 +5,11 @@
 import type { IconSize } from '@/components/icons'
 
 export const buttonVariantStyles: Record<string, string> = {
-  primary:
-    'bg-[var(--semantic-button-primary)] text-[color:var(--semantic-button-label-primary)]',
-  secondary:
-    'glass glass-bevel bg-[var(--semantic-button-secondary)] text-[color:var(--semantic-button-label-secondary)]',
-  tertiary:
-    'bg-[var(--semantic-button-tertiary)] text-[color:var(--semantic-button-label-tertiary)]',
-  ghost:
-    'bg-transparent text-[color:var(--semantic-text-primary)]',
-  success:
-    'bg-[var(--semantic-success)] text-[color:var(--primitives-white)]',
+  primary:   'bg-button-primary text-button-label-primary',
+  secondary: 'glass glass-bevel bg-button-secondary text-button-label-secondary',
+  tertiary:  'bg-button-tertiary text-button-label-tertiary',
+  ghost:     'bg-transparent text-primary',
+  success:   'bg-success text-button-label-success',
 }
 
 
