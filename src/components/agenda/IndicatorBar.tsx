@@ -78,7 +78,13 @@ export default function IndicatorBar({
             className="absolute size-[var(--spacing-sm)] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[2px]"
             style={{
               ...markerStyle,
-              boxShadow: '0 0 0 1.5px rgba(255,255,255,0.9), 0 1px 2px rgba(0,0,0,0.35)',
+              // O anel destaca o marcador da barra colorida e do fundo da página
+              // (o marcador é mais alto que a barra, então sobra dos dois lados).
+              // Por isso acompanha o texto — branco no escuro, quase preto no
+              // claro — em vez de ser branco fixo. A sombra é sombra: preta nos
+              // dois temas.
+              boxShadow:
+                '0 0 0 1.5px color-mix(in srgb, var(--semantic-text-primary) 90%, transparent), 0 1px 2px rgb(0 0 0 / 0.35)',
             }}
           />
         )}

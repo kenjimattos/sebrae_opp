@@ -87,6 +87,8 @@
 
   --primitives-gray-100: theme('colors.slate.100');
   --primitives-gray-200: theme('colors.slate.200');
+  --primitives-gray-300: theme('colors.slate.300');
+  --primitives-gray-400: theme('colors.slate.400');
   --primitives-gray-500: theme('colors.slate.500');
   --primitives-gray-600: theme('colors.slate.600');
   --primitives-gray-800: theme('colors.slate.800');
@@ -153,14 +155,25 @@
   --semantic-accent-hover: var(--primitives-blue-800);
   --semantic-accent-surface: var(--primitives-blue-100);
 
-  --semantic-divider: var(--primitives-gray-200);
+  /* gray-200 sobre o gray-100 do background dá 1,13:1 — a linha simplesmente
+     não aparecia. gray-300 iguala o contraste que o divisor tem no escuro. */
+  --semantic-divider: var(--primitives-gray-300);
 
   /* Glass (.glass / .glass-bevel). O tinte é cor completa com alpha; o brilho
      e a sombra do bevel são canais RGB soltos, porque cada uso aplica o seu
      próprio alpha — rgb(var(--semantic-glass-edge) / 0.28). */
-  --semantic-glass-tint: rgba(255, 255, 255, 0.45);
+  --semantic-glass-tint: rgba(255, 255, 255, 0.55);
   --semantic-glass-edge: 255 255 255;
   --semantic-glass-shade: 15 23 42;
+  /* O gradiente do bevel é um valor composto guardado inteiro no token: são
+     cinco paradas, e espalhá-las em cinco variáveis não deixaria nada mais
+     legível. No claro desce de branco para um azul-acinzentado. */
+  --semantic-glass-bevel: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.75) 0%,
+    rgba(241, 245, 249, 0.6)  34%,
+    rgba(226, 232, 240, 0.5)  68%,
+    rgba(203, 213, 225, 0.45) 84%,
+    rgba(186, 199, 216, 0.45) 100%);
 }
 
 /* ============ DARK MODE ============ */
@@ -176,7 +189,9 @@
 
   --semantic-text-primary: var(--primitives-white);
   --semantic-text-on-accent: var(--primitives-black);
-  --semantic-text-inactive: var(--primitives-gray-500);
+  /* gray-500 sobre o navy fica em 3,5:1 — abaixo do mínimo de texto. gray-400
+     passa nas três superfícies do escuro. */
+  --semantic-text-inactive: var(--primitives-gray-400);
 
   --semantic-button-primary: var(--primitives-lime-400);
   --semantic-button-label-primary: var(--primitives-black);
@@ -204,6 +219,12 @@
   --semantic-glass-tint: rgba(22, 23, 38, 0.2);
   --semantic-glass-edge: 255 255 255;
   --semantic-glass-shade: 0 0 0;
+  --semantic-glass-bevel: linear-gradient(135deg,
+    rgba(117, 125, 184, 0.4) 0%,
+    rgba(92, 99, 149, 0.4)  34%,
+    rgba(67, 73, 115, 0.4)  68%,
+    rgba(48, 54, 89, 0.4)   84%,
+    rgba(30, 35, 64, 0.4)   100%);
 }
 
 /* ============ TYPOGRAPHY — COMPOSITE CLASSES ============ */
@@ -311,17 +332,14 @@
             mask-composite: exclude;
     pointer-events: none;
   }
-  /* Variante "bevel" do glass (Figma node 1668:8) — gradiente diagonal
-     periwinkle → navy, mais "metálico" que o radial da base. Herda blur +
-     bevel de .glass; sobrescreve só o background-image (ambos background-image,
-     então compõem sem brigar com bg-* utilities). Usar junto: "glass glass-bevel". */
+  /* Variante "bevel" do glass (Figma node 1668:8) — gradiente diagonal mais
+     "metálico" que o radial da base (periwinkle → navy no escuro; branco →
+     azul-acinzentado no claro, senão o texto escuro cairia sobre navy). Herda
+     blur + bevel de .glass; sobrescreve só o background-image (ambos
+     background-image, então compõem sem brigar com bg-* utilities).
+     Usar junto: "glass glass-bevel". */
   .glass-bevel {
-    background-image: linear-gradient(135deg,
-      rgba(117, 125, 184, 0.4) 0%,
-      rgba(92, 99, 149, 0.4)  34%,
-      rgba(67, 73, 115, 0.4)  68%,
-      rgba(48, 54, 89, 0.4)   84%,
-      rgba(30, 35, 64, 0.4)   100%);
+    background-image: var(--semantic-glass-bevel);
   }
 
   .glass-bevel:hover {
