@@ -1,8 +1,11 @@
 // Tailwind pure — no Figma equivalent yet
-// SideNav à esquerda (w-1/5) + área comutável à direita.
+// SideNav à esquerda (w-1/5, sticky — flutua e acompanha o scroll da seção)
+// + área comutável à direita.
 // A SideNav troca o pilar ativo. Cada pilar declara seus modos no registry abaixo;
 // o ModeToggle fica travado no topo (header + toggle = chrome fixo) e só o modo
 // ativo recebe flex-1 para distribuir seus elementos no espaço restante.
+// A linha usa items-start (em vez do stretch default) para o sticky da SideNav
+// valer: com stretch o item cresce até a altura da linha e nunca "descola".
 
 import { useState, type ComponentType } from 'react'
 import SectionHeader from '@/components/ui/SectionHeader'
@@ -64,11 +67,11 @@ export default function SectionJornada() {
 
   return (
     <section className="section-container">
-      <div className="flex gap-lg flex-1 w-full">
+      <div className="flex gap-lg flex-1 w-full items-start">
         <SideNav
           activeId={activeId}
           onSelect={handleSelect}
-          className="w-[21%] shrink-0 h-[83dvh]"
+          className="w-[21%] shrink-0 h-[83dvh] sticky top-md z-10"
         />
         <div className="flex flex-col gap-md flex-1 min-w-0">
           <SectionHeader
