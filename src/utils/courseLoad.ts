@@ -34,8 +34,6 @@ export interface CatalogLoad {
   trailCount: number
   courseCount: number
   totalHours: number
-  /** Todas as cargas do catálogo, em ordem — matéria-prima da parede de horas do billboard. */
-  allHours: number[]
 }
 
 export function catalogLoad(trails: Trail[]): CatalogLoad {
@@ -46,7 +44,6 @@ export function catalogLoad(trails: Trail[]): CatalogLoad {
     trailCount: trails.length,
     courseCount: trails.reduce((sum, t) => sum + t.courses.length, 0),
     totalHours: allHours.reduce((sum, h) => sum + h, 0),
-    allHours,
   }
 }
 
