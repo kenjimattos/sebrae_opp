@@ -16,10 +16,12 @@ interface RisksCardProps {
   className?: string
 }
 
-// Cor do status que alimenta toda a peça via a custom property --risk.
-const riskAccent: Record<'alert' | 'warning', string> = {
-  alert: 'var(--semantic-alert)',
-  warning: 'var(--semantic-warning)',
+// Cor do status que alimenta a peça via custom properties: --risk tinge número,
+// régua e rótulo; --risk-glow tinge o halo e o brilho do ponto (no claro o halo
+// é o pastel do matiz — glow do status escuro sobre branco vira mancha).
+const riskAccent: Record<'alert' | 'warning', { risk: string; glow: string }> = {
+  alert: { risk: 'var(--semantic-alert)', glow: 'var(--semantic-alert-glow)' },
+  warning: { risk: 'var(--semantic-warning)', glow: 'var(--semantic-warning-glow)' },
 }
 
 export default function RisksCard({
@@ -37,7 +39,10 @@ export default function RisksCard({
   return (
     <article
       tabIndex={0}
-      style={{ '--risk': riskAccent[effectiveType] } as CSSProperties}
+      style={{
+        '--risk': riskAccent[effectiveType].risk,
+        '--risk-glow': riskAccent[effectiveType].glow,
+      } as CSSProperties}
       className={`risk-card glass rounded-md p-lg flex flex-col gap-md h-full ${className}`}
     >
       {/* Número-herói + régua tingida */}
