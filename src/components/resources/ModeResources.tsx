@@ -133,7 +133,7 @@ export default function ModeResources() {
                       meta={data!.esferas[e]}
                       valores={selecionado[e]}
                       className={
-                        esfera === e ? 'ring-1 ring-[var(--semantic-accent)]' : ''
+                        esfera === e ? 'outline outline-1 outline-accent' : ''
                       }
                     />
                   ))}

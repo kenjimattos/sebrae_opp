@@ -242,7 +242,7 @@ function ThreadBlock({
       <div className="flex items-start gap-xs">
         <Sparkles
           size={iconSizes.sm}
-          className="text-[color:var(--semantic-accent)] shrink-0 mt-[2px]"
+          className="text-accent shrink-0 mt-[2px]"
           aria-hidden
         />
         <div

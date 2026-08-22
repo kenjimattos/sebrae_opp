@@ -61,7 +61,7 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
             className="typo-body-bold bg-transparent outline-none truncate"
             placeholder="Buscar município..."
           />
-          <button className="text-[color:var(--semantic-accent)]" onClick={() => setOpen(!open)}>
+          <button className="text-accent" onClick={() => setOpen(!open)}>
             <ChevronDown />
           </button>
         </div>

@@ -96,7 +96,7 @@ export default function EconomicBaseAnalysis({ className = '' }: EconomicBaseAna
       <main className={`flex flex-col glass p-md rounded-sm gap-sm w-full ${className}`}>
         <div className="flex flex-col items-end gap-sm">
           <div className="flex items-center gap-xs w-full">
-            <Sparkles size={iconSizes.sm} className="text-[color:var(--semantic-accent)]" aria-hidden />
+            <Sparkles size={iconSizes.sm} className="text-accent" aria-hidden />
             <h4 className="typo-h4 uppercase">{emptyAnalysisTitle}</h4>
           </div>
           <p className="typo-body-sm w-full">{emptyAnalysisSubtitle}</p>
@@ -162,7 +162,7 @@ function GeneratedState({
     <>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-xs">
-          <Sparkles size={iconSizes.sm} className="text-[color:var(--semantic-accent)]" aria-hidden />
+          <Sparkles size={iconSizes.sm} className="text-accent" aria-hidden />
           <h4 className="typo-body-bold">{analysisLabel}</h4>
           {busy && (
             <span className="typo-body-sm text-inactive" aria-live="polite">
