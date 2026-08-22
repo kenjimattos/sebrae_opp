@@ -464,32 +464,6 @@
   .poster--inert { cursor: default; opacity: 0.55; }
   .poster--inert:hover { transform: none; background-color: var(--semantic-surface-primary); }
 
-  /* ============ PAREDE DE HORAS (billboard) ============ */
-  /* A "arte" do billboard é o próprio catálogo: cada carga horária de cada curso,
-     repetida como textura. Máscara diagonal apaga a parede sob o texto à esquerda. */
-  .hours-wall {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    gap: var(--spacing-xs) var(--spacing-md);
-    padding: var(--spacing-md);
-    font-family: var(--font-body);
-    font-size: var(--font-size-body-lg);
-    font-weight: 300;
-    line-height: 1.15;
-    color: var(--semantic-text-inactive);
-    overflow: hidden;
-    pointer-events: none;
-    user-select: none;
-    -webkit-mask-image: linear-gradient(105deg, transparent 52%, rgba(0,0,0,0.45) 76%, #000 100%);
-            mask-image: linear-gradient(105deg, transparent 52%, rgba(0,0,0,0.45) 76%, #000 100%);
-  }
-  .hours-wall > span { opacity: 0.34; }
-  /* Cargas mais pesadas acesas no lime — a textura vira leitura ao se aproximar. */
-  .hours-wall > span[data-heavy="true"] { color: var(--semantic-accent); opacity: 0.6; }
-
   @media (prefers-reduced-motion: reduce) {
     .poster, .poster__cta, .poster__meter::after { transition: none; }
     .poster:hover { transform: none; }

@@ -1,21 +1,12 @@
 // Tailwind pure — no Figma equivalent
-// Billboard do catálogo /trilhas.
-//
-// O catálogo não tem imagem de curso — então a "arte" do billboard é o próprio
-// acervo: a parede de horas repete a carga horária de cada um dos cursos como
-// textura de fundo, com as cargas mais pesadas acesas no accent. É decorativa
-// à distância e verdadeira de perto: nenhum número ali é inventado.
+// Billboard do catálogo /trilhas: abre a página com o acervo inteiro em uma
+// ficha (trilhas, cursos, carga total) derivada de `catalogLoad` — os números
+// não são digitados, então não têm como divergir das fileiras abaixo.
 
 import { catalogLoad, formatHours } from '@/utils/courseLoad'
 import { trails } from '@/data/home/training'
 import { sectionContent } from '@/data/home/sections'
 import PillButton from '@/components/ui/buttons/PillButton'
-
-// Repetições da lista de cargas necessárias para preencher a parede em 1440px.
-const WALL_REPEATS = 16
-// A partir daqui a carga acende no accent — recorte que separa cursos longos
-// (programas) dos de tomada rápida.
-const HEAVY_HOURS = 40
 
 interface CatalogBillboardProps {
   /** Id da primeira fileira — alvo do CTA. */
@@ -23,8 +14,7 @@ interface CatalogBillboardProps {
 }
 
 export default function CatalogBillboard({ firstRowId }: CatalogBillboardProps) {
-  const { trailCount, courseCount, totalHours, allHours } = catalogLoad(trails)
-  const wall = Array.from({ length: WALL_REPEATS }, () => allHours).flat()
+  const { trailCount, courseCount, totalHours } = catalogLoad(trails)
 
   // Scroll manual em vez de href="#id": o PillButton só trata `/` como rota
   // interna — um href de hash viraria link externo (target="_blank").
@@ -33,16 +23,10 @@ export default function CatalogBillboard({ firstRowId }: CatalogBillboardProps) 
   }
 
   return (
-    <section className="catalog-inset relative overflow-hidden pt-2xl pb-lg">
-      <div className="hours-wall" aria-hidden="true">
-        {wall.map((hours, i) => (
-          <span key={i} data-heavy={hours >= HEAVY_HOURS}>
-            {hours}h
-          </span>
-        ))}
-      </div>
-
-      <div className="relative flex flex-col items-start gap-md max-w-3xl min-w-0">
+    <section className="catalog-inset pt-2xl pb-lg">
+      {/* min-w-0 impede que o título em Epic Pro (que não quebra palavra) estique
+          a coluna além da viewport no mobile. */}
+      <div className="flex flex-col items-start gap-md max-w-3xl min-w-0">
         <p className="typo-body-sm text-accent uppercase tracking-widest">
           Catálogo de capacitação
         </p>
@@ -51,7 +35,7 @@ export default function CatalogBillboard({ firstRowId }: CatalogBillboardProps) 
 
         <p className="typo-body-lg">{sectionContent.trails.description}</p>
 
-        {/* Ficha do acervo — os mesmos números que desenham a parede atrás. */}
+        {/* Ficha do acervo, derivada dos mesmos dados que alimentam as fileiras. */}
         <dl className="flex flex-wrap items-baseline gap-md typo-body-sm">
           <div className="flex items-baseline gap-2xs">
             <dt className="text-inactive">Trilhas</dt>
