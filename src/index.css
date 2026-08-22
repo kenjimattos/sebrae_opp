@@ -101,9 +101,13 @@
   --primitives-green-700: theme('colors.green.700');
 
   --primitives-yellow-100: theme('colors.yellow.100');
-  --primitives-yellow-700: theme('colors.yellow.700');
+  --primitives-yellow-300: theme('colors.yellow.300');
+  /* amber, não yellow: escurecido a AA sobre branco, o yellow do Tailwind vira
+     oliva — o amber continua lendo como "amarelo de atenção". */
+  --primitives-amber-700: theme('colors.amber.700');
 
   --primitives-red-100: theme('colors.red.100');
+  --primitives-red-300: theme('colors.red.300');
   --primitives-red-700: theme('colors.red.700');
 
   --primitives-lime-300: theme('colors.lime.300');
@@ -148,10 +152,15 @@
   /* Status */
   --semantic-success: var(--primitives-green-700);
   --semantic-success-surface: var(--primitives-green-100);
-  --semantic-warning: var(--primitives-yellow-700);
+  --semantic-warning: var(--primitives-amber-700);
   --semantic-warning-surface: var(--primitives-yellow-100);
   --semantic-alert: var(--primitives-red-700);
   --semantic-alert-surface: var(--primitives-red-100);
+  /* Cor do halo dos cards de risco. Não é a mesma do status de propósito:
+     glow é dispositivo de fundo escuro (luz emitida); sobre branco, misturar o
+     amber escuro dá bege sujo — no claro o halo usa o pastel 300 do matiz. */
+  --semantic-warning-glow: var(--primitives-yellow-300);
+  --semantic-alert-glow: var(--primitives-red-300);
 
   /* Accent — interactive states */
   --semantic-accent: var(--primitives-blue-600);
@@ -166,7 +175,9 @@
      e a sombra do bevel são canais RGB soltos, porque cada uso aplica o seu
      próprio alpha — rgb(var(--semantic-glass-edge) / 0.28). */
   --semantic-glass-tint: rgba(255, 255, 255, 0.55);
-  --semantic-glass-edge: 255 255 255;
+  /* No escuro a borda do vidro é um brilho branco; sobre fundo claro o branco
+     some — a definição vem de linhas mais escuras (canais do slate-500). */
+  --semantic-glass-edge: 100 116 139;
   --semantic-glass-shade: 15 23 42;
   /* O gradiente do bevel é um valor composto guardado inteiro no token: são
      cinco paradas, e espalhá-las em cinco variáveis não deixaria nada mais
@@ -213,6 +224,8 @@
   --semantic-warning-surface: color-mix(in srgb, var(--primitives-yellow-400) 16%, var(--primitives-navy-800));
   --semantic-alert: var(--primitives-red-400);
   --semantic-alert-surface: color-mix(in srgb, var(--primitives-red-400) 16%, var(--primitives-navy-800));
+  --semantic-warning-glow: var(--primitives-yellow-400);
+  --semantic-alert-glow: var(--primitives-red-400);
 
   --semantic-accent: var(--primitives-lime-400);
   --semantic-accent-hover: var(--primitives-lime-500);
@@ -359,6 +372,7 @@
      glow que vaza do topo, o número-herói, a régua e o rótulo. Combina com .glass. */
   .risk-card {
     --risk: var(--semantic-warning);
+    --risk-glow: var(--semantic-warning-glow);
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -373,8 +387,8 @@
     inset: 0 0 auto 0;
     height: 48%;
     background: radial-gradient(125% 100% at 50% 0%,
-      color-mix(in srgb, var(--risk) 42%, transparent) 0%,
-      color-mix(in srgb, var(--risk) 12%, transparent) 42%,
+      color-mix(in srgb, var(--risk-glow) 42%, transparent) 0%,
+      color-mix(in srgb, var(--risk-glow) 12%, transparent) 42%,
       transparent 72%);
     opacity: 0.85;
     transition: opacity 220ms ease;
@@ -398,7 +412,7 @@
     height: var(--size-status-dot);
     border-radius: var(--radius-full);
     background: var(--risk);
-    box-shadow: 0 0 9px 1px color-mix(in srgb, var(--risk) 80%, transparent);
+    box-shadow: 0 0 9px 1px color-mix(in srgb, var(--risk-glow) 80%, transparent);
     animation: risk-pulse 2.2s ease-in-out infinite;
   }
   .risk-card__label-accent { color: var(--risk); }
