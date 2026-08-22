@@ -88,17 +88,20 @@ export default function Trails() {
                 })}
               </CatalogRow>
 
-              {/* A última fileira reserva uma viewport de rolagem para poder
-                  chegar ao topo; `mt-auto` ancora o fecho na base dessa folga,
-                  em vez de deixá-la ler como página quebrada. */}
+              {/* A última fileira reserva uma viewport de rolagem para poder chegar
+                  ao topo. `flex-1` faz o fecho ocupar essa folga inteira em vez de
+                  decantar no fundo dela: a soma das cargas fecha o catálogo na mesma
+                  voz tipográfica que cada pôster abre. */}
               {trailIndex === trails.length - 1 && (
-                <div className="catalog-inset mt-auto flex flex-wrap items-center justify-between gap-md pt-2xl">
-                  <p className="typo-body-sm text-inactive">
-                    Fim do catálogo
-                    <span className="text-accent px-xs">·</span>
-                    {catalog.courseCount} cursos
-                    <span className="text-accent px-xs">·</span>
-                    {formatHours(catalog.totalHours)} horas na Escola Virtual do Governo
+                <div className="catalog-inset flex flex-1 flex-col items-center justify-center gap-lg py-2xl text-center">
+                  <p className="flex flex-col items-center gap-2xs">
+                    <span className="typo-display text-accent">
+                      {formatHours(catalog.totalHours)}
+                    </span>
+                    <span className="typo-body-sm text-inactive">
+                      horas de capacitação em {catalog.courseCount} cursos,
+                      na Escola Virtual do Governo
+                    </span>
                   </p>
                   <PillButton
                     label="Voltar ao topo"
