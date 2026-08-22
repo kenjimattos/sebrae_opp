@@ -4,7 +4,7 @@
 // Filtrar esconderia acervo; num catálogo a abundância é parte da mensagem.
 
 import { useEffect, useState } from 'react'
-import Chip from '@/components/ui/Chip'
+import Chip from '@/components/ui/buttons/Chip'
 import { trails, trailAnchor } from '@/data/home/training'
 
 export default function TrailNav() {
