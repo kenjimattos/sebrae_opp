@@ -403,8 +403,8 @@
     max-width: 100%;
   }
 
-  /* Barra de eixos fixa. bg via CSS porque `bg-primary` do tailwind.config
-     aponta pra --semantic-background-primary, token que não existe. */
+  /* Barra de eixos fixa. bg via CSS porque o color-mix com transparência não
+     tem classe nativa (bg-background é o mesmo token, mas opaco). */
   .catalog-nav {
     background-color: color-mix(in srgb, var(--semantic-background) 88%, transparent);
     backdrop-filter: blur(10px);
