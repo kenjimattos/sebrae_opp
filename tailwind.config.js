@@ -35,6 +35,15 @@ export default {
       outlineColor: {
         'accent': 'var(--semantic-accent)',
       },
+      ringColor: {
+        'accent': 'var(--semantic-accent)',
+      },
+      // O offset do ring precisa da cor do fundo, senão o Tailwind usa branco
+      // por default e desenha um halo claro em volta do controle no dark.
+      ringOffsetColor: {
+        'background': 'var(--semantic-background)',
+        'surface': 'var(--semantic-surface-primary)',
+      },
       textColor: {
         'inactive': 'var(--semantic-text-inactive)',
         'accent':   'var(--semantic-accent)',

@@ -4,6 +4,7 @@
 // Filtrar esconderia acervo; num catálogo a abundância é parte da mensagem.
 
 import { useEffect, useState } from 'react'
+import Chip from '@/components/ui/Chip'
 import { trails, trailAnchor } from '@/data/home/training'
 
 export default function TrailNav() {
@@ -51,24 +52,15 @@ export default function TrailNav() {
       aria-label="Trilhas do catálogo"
       className="catalog-inset catalog-nav sticky top-0 z-20 flex gap-xs overflow-x-auto scrollbar-hide py-sm"
     >
-      {trails.map((trail) => {
-        const isActive = trail.slug === activeSlug
-        return (
-          <button
-            key={trail.slug}
-            type="button"
-            onClick={() => jumpTo(trail.slug)}
-            aria-current={isActive ? 'true' : undefined}
-            className={`shrink-0 rounded-full px-md py-xs typo-body-sm whitespace-nowrap cursor-pointer transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 ${
-              isActive
-                ? 'bg-accent text-[color:var(--semantic-button-label-primary)]'
-                : 'bg-surface text-inactive hover:text-[color:var(--semantic-text-primary)]'
-            }`}
-          >
-            {trail.title}
-          </button>
-        )
-      })}
+      {trails.map((trail) => (
+        <Chip
+          key={trail.slug}
+          label={trail.title}
+          selected={trail.slug === activeSlug}
+          onClick={() => jumpTo(trail.slug)}
+          semantics="nav"
+        />
+      ))}
     </nav>
   )
 }
