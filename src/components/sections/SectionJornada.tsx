@@ -7,7 +7,7 @@
 // A SideNav vive numa coluna que estica até o fim da linha e é sticky dentro
 // dela: flutua durante o scroll e para com a base no fim da seção.
 
-import { useState, type ComponentType } from 'react'
+import { useState, type ComponentType, type CSSProperties } from 'react'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { sectionContent } from '@/data/home/sections'
 import SideNav from '@/components/layout/SideNav'
@@ -66,22 +66,28 @@ export default function SectionJornada() {
   }
 
   return (
-    <section className="section-container">
+    // --nav-h é a única fonte da altura da SideNav: o pb da seção deriva dela
+    // (ver comentário abaixo), então os dois não têm como sair de sincronia.
+    <section
+      className="section-container pb-[calc(100dvh_-_var(--nav-h)_-_var(--spacing-md))]"
+      style={{ '--nav-h': '83dvh' } as CSSProperties}
+    >
       <div className="flex gap-lg flex-1 w-full items-start">
         {/* Coluna fantasma: estica (self-stretch) até o fim da linha — ou seja,
             até o fim da seção. É ela que dá o limite do sticky, então a base da
             SideNav encosta exatamente no fim da seção quando o scroll chega lá.
-            A altura é a viewport menos a MESMA calha de spacing-md em cima
-            (top-md) e embaixo (o padding-block da .section-container): no fim do
-            scroll a base da coluna da direita cai justamente onde a base da
-            SideNav está pinada, e as duas se encontram sem folga.
+            O painel não ocupa a viewport toda (barra alta demais lê mal): fica
+            em --nav-h e a sobra vira padding-bottom da seção — pb = 100dvh -
+            --nav-h - top-md. Assim, no fim do scroll o documento termina
+            exatamente na linha em que a base da SideNav está pinada, e as duas
+            bases se encontram sem que a barra se solte e suba.
             max-h-full cobre o caso oposto — pilar mais curto que a viewport,
             em que o painel encolhe até a altura da seção. */}
         <div className="w-[21%] shrink-0 self-stretch flex">
           <SideNav
             activeId={activeId}
             onSelect={handleSelect}
-            className="sticky top-md z-10 w-full h-[calc(100dvh_-_var(--spacing-md)_*_2)] max-h-full"
+            className="sticky top-md z-10 w-full h-[var(--nav-h)] max-h-full"
           />
         </div>
         <div className="flex flex-col gap-md flex-1 min-w-0">
