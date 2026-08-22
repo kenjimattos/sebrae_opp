@@ -7,7 +7,6 @@ import Layout from '@/components/layout/Layout'
 import Home from '@/pages/Home'
 import Login from '@/pages/Login'
 import Trails from '@/pages/Trails'
-import Opportunities from '@/pages/Opportunities'
 
 function App() {
   return (
@@ -21,7 +20,6 @@ function App() {
                 <Route path="/" element={<Login />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/trilhas" element={<Trails />} />
-                <Route path="/oportunidades" element={<Opportunities />} />
               </Route>
             </Routes>
           </FormulatorProvider>

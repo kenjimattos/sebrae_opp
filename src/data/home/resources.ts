@@ -47,18 +47,7 @@ export const resourcesContent = {
     naoMunicipalizadoFederal: 'em aplicação estadual ou nacional',
     naoMunicipalizadoEstadual: 'para entidades e órgãos estaduais',
   },
-  distribuicao: {
-    description: 'Veja como os recursos federais estão distribuídos entre os municípios do estado.',
-    mapAlt: 'Mapa de distribuição territorial das emendas — Datapedia',
-    overlayLabel: 'Explorar emendas',
-  },
-  editais: {
-    title: 'Editais e programas de financiamento',
-    description:
-      'Programas federais, estaduais e institucionais com recursos disponíveis para desenvolvimento econômico, inovação e fortalecimento de pequenos negócios.',
-  },
   buttons: {
     explorarEmendas: 'Explorar emendas no Datapedia',
-    verOportunidades: 'Ver oportunidades',
   },
 } as const

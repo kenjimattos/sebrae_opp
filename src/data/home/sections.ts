@@ -87,16 +87,4 @@ export const sectionContent = {
     description:
       'Cursos organizados por eixo de atuação para apoiar gestores públicos na formulação, execução e financiamento de políticas públicas.',
   },
-  opportunities: {
-    title:
-      'Encontre <highlight>editais e programas de financiamento</highlight> para o seu município',
-    description:
-      'Em breve, você encontrará aqui programas federais, estaduais e institucionais com recursos disponíveis para desenvolvimento econômico, inovação e fortalecimento de pequenos negócios.',
-  },
-  community: {
-    title:
-      '<highlight>Comunidade de prática</highlight> em Inovação em Políticas Públicas',
-    description:
-      'Em breve, um espaço de troca e aprendizado para servidores públicos interessados em inovação, com eventos, conteúdos exclusivos e networking.',
-  },
 } as const
