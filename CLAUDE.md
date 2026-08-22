@@ -177,13 +177,14 @@ API de **leitura** sobre o MongoDB `DadosOPP`, em `server/` (Node ≥20 + **Fast
 
 ## Integração de IA (OpenRouter)
 
-Três superfícies de IA, todas via `POST /api/ai` (modelo **gratuito** do OpenRouter, fetch puro — sem SDK):
+Quatro superfícies de IA, todas via `POST /api/ai` (modelo **gratuito** do OpenRouter, fetch puro — sem SDK):
 
 1. **Modal do indicador** (`IndicatorModal`, aberto pelo label no `AgendaCard`): explicação + perguntas sugeridas **pré-gravadas** em `src/data/indicators/descriptions/indicator-ai.ts` (tokens `{municipio}/{valor}/{status}`), exibidas com typewriter; só a **pergunta livre** chama o LLM.
 2. **Formulador**: `AiField` ("Aprimorar com IA") em 17 campos de texto das etapas 1–10 (allowlist `AI_FIELD_IDS` em `src/types/ai.ts`), "Gerar objetivos específicos" (etapa 3), "Gerar com IA" por grupo de indicadores (etapa 7, `generate-indicators`), "Sugerir rubricas com IA" (etapa 8, `suggest-budget-items` — só nomes, sem valores) e painel `AIAssistant` (ações reais nas 3 primeiras etapas via `useFormulatorAi`).
-3. **Chat global** (`ChatButton`/`ChatPanel` na Home): FAB no gutter direito (180px) → painel lateral multi-turno com resumo dos indicadores do município no system prompt.
+3. **Análise do Panorâma** (`EconomicsAnalysis`, modo "Panorâma Sócioeconômico"): botão "Gerar análise com IA" chama a task `economic-analysis` com os cards da base econômica (estruturados) e o resumo dos indicadores de agenda; o prompt proíbe citar qualquer número fora desse contexto. Era um texto fixo por município — 8 dos 223 tinham texto próprio e os valores citados estavam defasados em relação aos cards.
+4. **Chat global** (`ChatButton`/`ChatPanel` na Home): FAB no gutter direito (180px) → painel lateral multi-turno com resumo dos indicadores do município no system prompt.
 
-**Arquitetura:** contrato em `src/types/ai.ts` (união `AiTaskRequest`: `indicator-question` | `improve-field` | `generate-specific-objectives` | `generate-indicators` | `suggest-budget-items` | `chat`); lógica server em `api/_lib/` (`openrouter.ts` cliente, `prompts.ts` templates pt-BR, `handler.ts` validação/erros). Três transportes com a **mesma fonte**: function Vercel (`api/ai.ts`), middleware de dev no `vite.config.ts` (registrado antes do proxy `/api → :3000`) e `POST /api/ai` no Fastify (`server/src/routes.ts`, produção Sebrae). Client: `src/data/ai.ts` + `useAiTask` (mensagens de erro amigáveis; 429 do free tier → aviso de limite).
+**Arquitetura:** contrato em `src/types/ai.ts` (união `AiTaskRequest`: `indicator-question` | `improve-field` | `generate-specific-objectives` | `generate-indicators` | `suggest-budget-items` | `economic-analysis` | `chat`); lógica server em `api/_lib/` (`openrouter.ts` cliente, `prompts.ts` templates pt-BR, `handler.ts` validação/erros). Três transportes com a **mesma fonte**: function Vercel (`api/ai.ts`), middleware de dev no `vite.config.ts` (registrado antes do proxy `/api → :3000`) e `POST /api/ai` no Fastify (`server/src/routes.ts`, produção Sebrae). Client: `src/data/ai.ts` + `useAiTask` (mensagens de erro amigáveis; 429 do free tier → aviso de limite).
 
 **Env:** `OPENROUTER_API_KEY` (obrigatória; `.env.local` na raiz em dev, env vars do projeto na Vercel — **nunca** prefixo `VITE_`) e `OPENROUTER_MODEL` (opcional; default em `api/_lib/openrouter.ts`). Catálogo `:free` rotaciona — conferir em `https://openrouter.ai/api/v1/models` antes de trocar o default. Free tier: ~50 req/dia.
 

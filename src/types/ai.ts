@@ -48,6 +48,16 @@ export interface AiChatMessage {
   content: string
 }
 
+// Um card da base econômica, como exibido no modo "Panorâma Sócioeconômico".
+// Estruturado (e não um resumo em texto) de propósito: o prompt proíbe o modelo
+// de citar qualquer número fora desta lista, e a lista vem da API — foi assim que
+// a análise antiga, com valores fixos no código, passou a contradizer os cards.
+export interface AiEconomicBaseItem {
+  label: string
+  value: string
+  referenceYear?: string
+}
+
 export type AiTaskRequest =
   | {
       task: 'indicator-question'
@@ -89,6 +99,16 @@ export type AiTaskRequest =
       activities: string
       municipality: AiMunicipalityContext
       context?: Record<string, string>
+    }
+  | {
+      task: 'economic-analysis'
+      municipality: AiMunicipalityContext
+      // Os cards exibidos logo acima da análise. Única fonte de números que o
+      // modelo pode citar.
+      economicBase: AiEconomicBaseItem[]
+      // Indicadores de agenda (label: valor (status)) para a leitura apontar
+      // riscos e oportunidades, como promete o subtítulo do bloco.
+      indicatorsSummary?: string
     }
   | {
       task: 'chat'

@@ -1,16 +1,15 @@
 // Modo "Panorâma Sócioeconômico" da aba Ambiente — indicadores de base econômica
-// (cards) + análise de desempenho por IA.
+// (cards) + análise de desempenho gerada por IA (EconomicsAnalysis busca o próprio
+// contexto no município selecionado).
 
 import EconomicBaseCard from '@/components/economics/EconomicsCard'
 import EconomicBaseAnalysis from '@/components/economics/EconomicsAnalysis'
 import { useMunicipality } from '@/hooks/useMunicipality'
-import { getAnalysisForMunicipality } from '@/data/home/economic-base'
 import { toEconomicVariation } from '@/utils/economics'
 
 export default function ModeEconomics() {
   const { municipality } = useMunicipality()
   const items = municipality.data?.economicBase ?? []
-  const analysis = getAnalysisForMunicipality(municipality.id)
 
   return (
     <div className="flex flex-1 flex-col gap-sm min-h-0">
@@ -26,7 +25,7 @@ export default function ModeEconomics() {
           />
         ))}
       </div>
-      <EconomicBaseAnalysis key={municipality.id} analysis={analysis} className="self-end" />
+      <EconomicBaseAnalysis key={municipality.id} className="self-end" />
     </div>
   )
 }
