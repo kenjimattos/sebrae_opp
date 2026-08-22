@@ -152,6 +152,15 @@
   --semantic-accent: var(--primitives-blue-600);
   --semantic-accent-hover: var(--primitives-blue-800);
   --semantic-accent-surface: var(--primitives-blue-100);
+
+  --semantic-divider: var(--primitives-gray-200);
+
+  /* Glass (.glass / .glass-bevel). O tinte é cor completa com alpha; o brilho
+     e a sombra do bevel são canais RGB soltos, porque cada uso aplica o seu
+     próprio alpha — rgb(var(--semantic-glass-edge) / 0.28). */
+  --semantic-glass-tint: rgba(255, 255, 255, 0.45);
+  --semantic-glass-edge: 255 255 255;
+  --semantic-glass-shade: 15 23 42;
 }
 
 /* ============ DARK MODE ============ */
@@ -189,6 +198,12 @@
   --semantic-accent: var(--primitives-lime-400);
   --semantic-accent-hover: var(--primitives-lime-500);
   --semantic-accent-surface: color-mix(in srgb, var(--primitives-lime-400) 18%, var(--primitives-navy-800));
+
+  --semantic-divider: var(--primitives-navy-600);
+
+  --semantic-glass-tint: rgba(22, 23, 38, 0.2);
+  --semantic-glass-edge: 255 255 255;
+  --semantic-glass-shade: 0 0 0;
 }
 
 /* ============ TYPOGRAPHY — COMPOSITE CLASSES ============ */
@@ -263,7 +278,7 @@
      (não shorthand) pra deixar background-image livre p/ a variante .glass-bevel.
      Funciona melhor sobre fundos escuros. */
   .glass {
-    background-color: rgba(22, 23, 38, 0.2);
+    background-color: var(--semantic-glass-tint);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     /* Aproximação do efeito Glass nativo do Figma (lightAngle -45°, depth 20):
@@ -271,8 +286,8 @@
        e glow branco refratado saindo no inferior-direita (mesmo blur/spread,
        sinais opostos). CSS não tem refração real. */
     box-shadow:
-      inset 7px 7px 14px -10px rgba(0, 0, 0, 0.22),
-      inset -7px -7px 14px -10px rgba(255, 255, 255, 0.20);
+      inset 7px 7px 14px -10px rgb(var(--semantic-glass-shade) / 0.22),
+      inset -7px -7px 14px -10px rgb(var(--semantic-glass-edge) / 0.20);
     position: relative;
   }
   /* Stroke fino claro só na diagonal (topo-esquerda ↔ inferior-direita): gradiente
@@ -285,10 +300,10 @@
     border-radius: inherit;
     padding: 1px;
     background: linear-gradient(150deg,
-      rgba(255, 255, 255, 0.28) 0%,
-      rgba(255, 255, 255, 0) 38%,
-      rgba(255, 255, 255, 0) 62%,
-      rgba(255, 255, 255, 0.28) 100%);
+      rgb(var(--semantic-glass-edge) / 0.28) 0%,
+      rgb(var(--semantic-glass-edge) / 0) 38%,
+      rgb(var(--semantic-glass-edge) / 0) 62%,
+      rgb(var(--semantic-glass-edge) / 0.28) 100%);
     -webkit-mask:
       linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
@@ -312,8 +327,8 @@
   .glass-bevel:hover {
     /* Intensifica o bevel no hover, simulando o efeito de luz passando mais forte. */
     box-shadow:
-      inset 10px 10px 20px -10px rgba(0, 0, 0, 0.3),
-      inset -10px -10px 20px -10px rgba(255, 255, 255, 0.28);
+      inset 10px 10px 20px -10px rgb(var(--semantic-glass-shade) / 0.3),
+      inset -10px -10px 20px -10px rgb(var(--semantic-glass-edge) / 0.28);
   }
 
   /* ============ RISK CARD (Ambiente › Riscos estratégicos) ============ */
@@ -525,7 +540,7 @@
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-sm); }
   .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-xs); }
   .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--spacing-xs); }
-  .divider         { height: 1px; width: 100%; background-color: var(--primitives-gray-200); }
+  .divider         { height: 1px; width: 100%; background-color: var(--semantic-divider); }
 
   /* ============ LAYOUT — FLEX ============ */
   .flex-center    { display: flex; align-items: center; }
@@ -541,18 +556,25 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;             /* Chrome/Safari/Opera */
   }
-}
 
-/* ============ TYPEWRITER CARET ============ */
-/* Cursor piscante usado no efeito de digitação da EconomicsAnalysis. */
-.typewriter-caret {
-  display: inline-block;
-  width: 2px;
-  height: 1em;
-  margin-left: 2px;
-  vertical-align: text-bottom;
-  background: var(--semantic-accent);
-  animation: typewriter-caret-blink 0.9s step-end infinite;
+  /* ============ ANIMATED BITS ============ */
+  /* Cursor piscante usado no efeito de digitação da EconomicsAnalysis. */
+  .typewriter-caret {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    background: var(--semantic-accent);
+    animation: typewriter-caret-blink 0.9s step-end infinite;
+  }
+
+  /* Chevron do JourneyDivider — "escorre" pra baixo, sinalizando mais conteúdo
+     abaixo. Sutil (3px) pra não competir com o conteúdo das seções. */
+  .journey-cue-chevron { animation: journey-cue 1.8s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    .journey-cue-chevron { animation: none; }
+  }
 }
 
 @keyframes typewriter-caret-blink {
@@ -566,15 +588,9 @@
   50%      { opacity: 0.4; transform: scale(0.82); }
 }
 
-/* Chevron do JourneyDivider — "escorre" pra baixo, sinalizando mais conteúdo
-   abaixo. Sutil (3px) pra não competir com o conteúdo das seções. */
 @keyframes journey-cue {
   0%, 100% { transform: translateY(-1px); opacity: 0.75; }
   50%      { transform: translateY(3px);  opacity: 1; }
-}
-.journey-cue-chevron { animation: journey-cue 1.8s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce) {
-  .journey-cue-chevron { animation: none; }
 }
 
 /* ============ BASE STYLES ============ */
