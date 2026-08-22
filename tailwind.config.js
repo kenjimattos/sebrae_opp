@@ -30,7 +30,7 @@ export default {
         'surface':           'var(--semantic-surface-primary)',
         'surface-secondary': 'var(--semantic-surface-secondary)',
         'accent':            'var(--semantic-accent)',
-        'primary':           'var(--semantic-background-primary)',
+        'background':        'var(--semantic-background)',
       },
       outlineColor: {
         'accent': 'var(--semantic-accent)',
