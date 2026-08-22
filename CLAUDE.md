@@ -165,6 +165,7 @@ API de **leitura** sobre o MongoDB `DadosOPP`, em `server/` (Node ≥20 + **Fast
 | `GET /api/municipalities/:id` | `IndicatorsData` (agendas + base econômica, **status já calculado**) |
 | `GET /api/map` | `{ options, municipalities }` — valores por município (mapa) |
 | `GET /api/emendas` | `EmendasData` — emendas parlamentares por município × esfera (modo Mapeamento de recursos) |
+| `POST /api/ai` | resposta do LLM para uma task de IA (mesmo núcleo `api/_lib/`) |
 
 **Emendas:** `/api/emendas` lê a coleção `emendas` (224 docs por esfera — 223 municípios + o rollup `PB:<esfera>`, que carrega os metadados da esfera) e devolve as duas esferas de uma vez, porque o toggle federal/estadual não deve disparar nova requisição. `coberturaMunicipal` é derivada na rota; zero no **estadual** vira `null` (lá o município é inferido do texto, então zero é "não atribuímos", não "não recebeu") e no **federal** continua `0` (censo de documentos com código IBGE). Coleção vazia → **503**, nunca um payload zerado. Precisa dos seeds `database/seed/emendas-*.mongodb.js` rodados.
 
@@ -182,11 +183,11 @@ Três superfícies de IA, todas via `POST /api/ai` (modelo **gratuito** do OpenR
 2. **Formulador**: `AiField` ("Aprimorar com IA") em 17 campos de texto das etapas 1–10 (allowlist `AI_FIELD_IDS` em `src/types/ai.ts`), "Gerar objetivos específicos" (etapa 3), "Gerar com IA" por grupo de indicadores (etapa 7, `generate-indicators`), "Sugerir rubricas com IA" (etapa 8, `suggest-budget-items` — só nomes, sem valores) e painel `AIAssistant` (ações reais nas 3 primeiras etapas via `useFormulatorAi`).
 3. **Chat global** (`ChatButton`/`ChatPanel` na Home): FAB no gutter direito (180px) → painel lateral multi-turno com resumo dos indicadores do município no system prompt.
 
-**Arquitetura:** contrato em `src/types/ai.ts` (união `AiTaskRequest`: `indicator-question` | `improve-field` | `generate-specific-objectives` | `generate-indicators` | `suggest-budget-items` | `chat`); lógica server em `api/_lib/` (`openrouter.ts` cliente, `prompts.ts` templates pt-BR, `handler.ts` validação/erros). Dois transportes com a **mesma fonte**: function Vercel (`api/ai.ts`) e middleware de dev no `vite.config.ts` (registrado antes do proxy `/api → :3000`). Client: `src/data/ai.ts` + `useAiTask` (mensagens de erro amigáveis; 429 do free tier → aviso de limite).
+**Arquitetura:** contrato em `src/types/ai.ts` (união `AiTaskRequest`: `indicator-question` | `improve-field` | `generate-specific-objectives` | `generate-indicators` | `suggest-budget-items` | `chat`); lógica server em `api/_lib/` (`openrouter.ts` cliente, `prompts.ts` templates pt-BR, `handler.ts` validação/erros). Três transportes com a **mesma fonte**: function Vercel (`api/ai.ts`), middleware de dev no `vite.config.ts` (registrado antes do proxy `/api → :3000`) e `POST /api/ai` no Fastify (`server/src/routes.ts`, produção Sebrae). Client: `src/data/ai.ts` + `useAiTask` (mensagens de erro amigáveis; 429 do free tier → aviso de limite).
 
 **Env:** `OPENROUTER_API_KEY` (obrigatória; `.env.local` na raiz em dev, env vars do projeto na Vercel — **nunca** prefixo `VITE_`) e `OPENROUTER_MODEL` (opcional; default em `api/_lib/openrouter.ts`). Catálogo `:free` rotaciona — conferir em `https://openrouter.ai/api/v1/models` antes de trocar o default. Free tier: ~50 req/dia.
 
-**Regras:** novas capacidades de IA = novo literal na união + prompt em `prompts.ts` (não criar endpoints paralelos). Prompts não inventam cortes de classificação — status/threshold continuam vindo do banco. O servidor Fastify (`server/`) **não** tem rota de IA: em produção Sebrae (fase futura) a function precisa ser portada ou o Nginx apontado para outro processo.
+**Regras:** novas capacidades de IA = novo literal na união + prompt em `prompts.ts` (não criar endpoints paralelos). Prompts não inventam cortes de classificação — status/threshold continuam vindo do banco. São **três** transportes sobre a mesma fonte (`api/_lib/handler.ts`): function da Vercel (`api/ai.ts`), middleware de dev do Vite e `POST /api/ai` no Fastify (`server/src/routes.ts`) — este último é o que atende produção Sebrae, onde o Nginx manda todo `/api/*` para o processo Node. No Fastify a chave é opcional: sem ela a API sobe e só o `/api/ai` responde `missing_key`.
 
 ---
 

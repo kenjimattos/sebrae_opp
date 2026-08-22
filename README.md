@@ -145,6 +145,7 @@ Navegador -> Nginx (:80) --+-- /            -> /var/www/sebrae_opp/dist  (SPA)
 
 1. **Nginx** — `server` block em `/etc/nginx/sites-enabled/sebrae_opp`: `root /var/www/sebrae_opp/dist`, SPA fallback (`try_files $uri $uri/ /index.html`) e proxy `location /api/ { proxy_pass http://127.0.0.1:3000; }` (**sem barra no final** — preserva o `/api` no path).
 2. **API via systemd** — unit `/etc/systemd/system/opp-api.service` executando `node dist/index.js` com `WorkingDirectory` = `server/` (o `dotenv` le o `server/.env`, que precisa do `MONGO_URI`). Depois: `sudo systemctl enable --now opp-api`.
+   > `dist/index.js` e um shim gerado no `postbuild`: o entrypoint real e `dist/server/src/index.js` (o tsconfig usa `rootDir: ".."` para compilar o nucleo de IA compartilhado em `api/_lib`). O shim existe justamente para o `ExecStart` acima nao precisar mudar.
 
 ### Atualizar (a cada release)
 

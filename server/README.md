@@ -20,6 +20,7 @@ schema já é validado no próprio Mongo (`database/setup.mongodb.js`).
 | GET | `/api/municipalities/:id` | `IndicatorsData` — agendas + base econômica, **status já calculado** |
 | GET | `/api/map` | `{ options, municipalities }` — valores por município p/ colorir o mapa |
 | GET | `/api/emendas` | `EmendasData` — emendas parlamentares (federal + estadual) dos 223 municípios |
+| POST | `/api/ai` | resposta do LLM para uma task de IA (`AiTaskRequest` → `{ text, items? }`) |
 
 O shape das respostas espelha `src/types/indicators.ts` do frontend: a API devolve
 exatamente o que o `MunicipalityProvider` montava a partir dos TS estáticos.
@@ -43,6 +44,23 @@ Produção:
 ```bash
 npm run build && npm start   # tsc → dist/, node dist/index.js
 ```
+
+## IA (`POST /api/ai`)
+
+Terceiro transporte do **mesmo núcleo** de `api/_lib/handler.ts`, ao lado da function
+da Vercel (`api/ai.ts`) e do middleware de dev do Vite. Nada de lógica de IA vive em
+`server/src/` — a rota só repassa o body e devolve `{ status, body }`. Nova capacidade
+de IA = novo literal na união de `src/types/ai.ts` + prompt em `api/_lib/prompts.ts`;
+os três transportes ganham de graça.
+
+Para compilar esse núcleo compartilhado o `tsconfig.json` usa `rootDir: ".."`, o que
+move o entrypoint emitido para `dist/server/src/index.js`. O `postbuild`
+(`scripts/emit-entry-shim.mjs`) gera um `dist/index.js` que só importa o real, para o
+`ExecStart` da unit systemd (`node dist/index.js`) continuar valendo.
+
+`OPENROUTER_API_KEY` é **opcional**: sem ela a API sobe e só o `/api/ai` responde
+`missing_key`, que o frontend mostra como "O serviço de IA não está configurado neste
+ambiente". Exige saída de rede para `https://openrouter.ai` — ver `.env.example`.
 
 ## Deploy (10.1.100.99)
 
