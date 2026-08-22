@@ -2,7 +2,7 @@
 // Row inside a course trail card — title (uppercase) + hours + "Ver curso" link
 
 import IconButton from '@/components/ui/buttons/IconButton'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight } from '@/components/icons'
 
 interface TrainingCardRowProps {
   title: string
