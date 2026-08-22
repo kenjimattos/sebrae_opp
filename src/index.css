@@ -349,6 +349,152 @@
     .risk-card__dot { animation: none; }
   }
 
+  /* ============ CATÁLOGO DE TRILHAS (/trilhas) ============ */
+  /* A página é um catálogo: billboard + fileiras full-bleed que correm pra fora
+     da tela. As fileiras não usam .section-container (que trava 180px de gutter
+     dos dois lados) — sangram até a borda e alinham o primeiro pôster ao título
+     por padding próprio, com --catalog-gutter respondendo ao viewport. */
+  .catalog {
+    --catalog-gutter: var(--spacing-gutter);
+    /* As fileiras sangram de propósito; `clip` contém a sangria sem criar
+       barra horizontal e sem virar contêiner de scroll (o que quebraria o
+       position: sticky da barra de eixos, ao contrário de overflow: hidden). */
+    overflow-x: clip;
+  }
+  @media (max-width: 1280px) { .catalog { --catalog-gutter: var(--spacing-xl); } }
+  @media (max-width: 640px)  { .catalog { --catalog-gutter: var(--spacing-md); } }
+
+  .catalog-inset { padding-inline: var(--catalog-gutter); }
+
+  /* Epic Pro não quebra palavra: "CAPACITAÇÃO" sozinho estoura 390px no tamanho
+     fixo de --font-size-h1. O clamp faz o título caber sem hifenizar. */
+  .catalog-title {
+    font-size: clamp(1.75rem, 6.2vw, var(--font-size-h1));
+    max-width: 100%;
+  }
+
+  /* Barra de eixos fixa. bg via CSS porque `bg-primary` do tailwind.config
+     aponta pra --semantic-background-primary, token que não existe. */
+  .catalog-nav {
+    background-color: color-mix(in srgb, var(--semantic-background) 88%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* Trilho horizontal: o padding interno alinha o 1º pôster ao título e deixa
+     respiro no fim; scroll-padding faz o snap parar alinhado, não colado. */
+  .catalog-rail {
+    display: flex;
+    gap: var(--spacing-sm);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--catalog-gutter);
+    padding-inline: var(--catalog-gutter);
+    padding-block: var(--spacing-2xs);
+  }
+
+  /* ============ PÔSTER DE CURSO ============ */
+  /* Sem imagem: a face do card é tipográfica. A carga horária ocupa o lugar do
+     "runtime" do catálogo e o medidor no pé dá a proporção dentro da trilha. */
+  .poster {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    width: clamp(184px, 44vw, 248px);
+    height: clamp(288px, 66vw, 320px);
+    padding: var(--spacing-md);
+    padding-bottom: var(--spacing-lg);
+    border-radius: var(--radius-sm);
+    background-color: var(--semantic-surface-primary);
+    text-decoration: none;
+    overflow: hidden;
+    transition: background-color 200ms ease, transform 200ms ease;
+  }
+  .poster:hover {
+    background-color: var(--semantic-surface-secondary);
+    transform: translateY(-4px);
+  }
+  .poster:focus-visible {
+    outline: 2px solid var(--semantic-accent);
+    outline-offset: 3px;
+  }
+  /* A carga horária É a arte do pôster: sem imagem de curso, o numeral em
+     Monoblock ocupa o lugar da capa e faz a fileira ser lida como um perfil de
+     esforço — de 2h a 129h — antes mesmo de ler qualquer título. */
+  .poster__hours {
+    font-family: var(--font-display);
+    font-size: clamp(3.25rem, 8vw, 4.5rem);
+    line-height: 0.85;
+    color: var(--semantic-accent);
+  }
+
+  /* Trilha do medidor + preenchimento proporcional (--load: 0..1). O preenchimento
+     acende no hover — é a confirmação de que o pôster é clicável. */
+  .poster__meter {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 4px;
+    background-color: color-mix(in srgb, var(--semantic-accent) 16%, transparent);
+  }
+  .poster__meter::after {
+    content: "";
+    display: block;
+    height: 100%;
+    width: calc(var(--load, 0) * 100%);
+    background-color: var(--semantic-accent);
+    opacity: 0.65;
+    transition: opacity 200ms ease;
+  }
+  .poster:hover .poster__meter::after,
+  .poster:focus-visible .poster__meter::after { opacity: 1; }
+
+  /* Linha de destino ("Escola Virtual do Governo ↗") — só aparece na intenção. */
+  .poster__cta {
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+  .poster:hover .poster__cta,
+  .poster:focus-visible .poster__cta { opacity: 1; transform: none; }
+
+  /* Pôster sem link: fica presente no catálogo, mas não finge ser clicável. */
+  .poster--inert { cursor: default; opacity: 0.55; }
+  .poster--inert:hover { transform: none; background-color: var(--semantic-surface-primary); }
+
+  /* ============ PAREDE DE HORAS (billboard) ============ */
+  /* A "arte" do billboard é o próprio catálogo: cada carga horária de cada curso,
+     repetida como textura. Máscara diagonal apaga a parede sob o texto à esquerda. */
+  .hours-wall {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: var(--spacing-xs) var(--spacing-md);
+    padding: var(--spacing-md);
+    font-family: var(--font-body);
+    font-size: var(--font-size-body-lg);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--semantic-text-inactive);
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+    -webkit-mask-image: linear-gradient(105deg, transparent 52%, rgba(0,0,0,0.45) 76%, #000 100%);
+            mask-image: linear-gradient(105deg, transparent 52%, rgba(0,0,0,0.45) 76%, #000 100%);
+  }
+  .hours-wall > span { opacity: 0.34; }
+  /* Cargas mais pesadas acesas no lime — a textura vira leitura ao se aproximar. */
+  .hours-wall > span[data-heavy="true"] { color: var(--semantic-accent); opacity: 0.6; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .poster, .poster__cta, .poster__meter::after { transition: none; }
+    .poster:hover { transform: none; }
+  }
+
   .card-hoverable {
     cursor: pointer;
     transition: transform 200ms ease, box-shadow 200ms ease;

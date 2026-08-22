@@ -32,6 +32,9 @@ export default {
         'accent':            'var(--semantic-accent)',
         'primary':           'var(--semantic-background-primary)',
       },
+      outlineColor: {
+        'accent': 'var(--semantic-accent)',
+      },
       textColor: {
         'inactive': 'var(--semantic-text-inactive)',
         'accent':   'var(--semantic-accent)',
