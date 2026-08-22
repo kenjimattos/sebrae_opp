@@ -80,6 +80,13 @@ nesta ordem (cada um imprime um resumo ao final):
 17. `seed/indicador-trabalhadores-superior-completo.mongodb.js` — catálogo `trabalhadores-superior-completo` + 223 valores, Trabalhadores formais com Ensino Superior Completo (RAIS 2024, **data lake do Sebrae**, **sem semáforo**).
 18. `seed/indicador-idsc.mongodb.js` — catálogo `idsc` + 223 valores, IDSC-BR 2025 (Instituto Cidades Sustentáveis, **API pública**, **sem semáforo**).
 19. `seed/indicador-credito-financiamento.mongodb.js` — catálogo `credito-financiamento` + 223 valores, Crédito concedido no município (saldo de Operações de Crédito, ESTBAN/BCB, **data lake do Sebrae**, mês 202011, **sem semáforo**; só 47/223 municípios têm agência, demais `null`).
+20. `seed/emendas-federais.mongodb.js` — 224 docs de emendas parlamentares federais (223 municípios + o rollup `PB:federal`), CGU/Portal da Transparência, janela 2023–2026, **sem semáforo**.
+21. `seed/emendas-estaduais.mongodb.js` — 224 docs de emendas estaduais da ALPB (223 + `PB:estadual`), CODATA/CGE-PB, janela 2021–2025, **sem semáforo**; município inferido do texto do objeto (estimativa).
+
+Os dois de emendas alimentam `GET /api/emendas` (modo "Mapeamento de recursos") e
+vão para a coleção `emendas`, não para `indicatorValues` — não dependem dos seeds de
+indicador, só de `municipios`. **Sem eles a rota devolve 503** e o painel de emendas
+fica vazio.
 
 Todos são **idempotentes** (usam `upsert`): rodar de novo atualiza, não duplica.
 
