@@ -91,9 +91,3 @@ export interface EconomicBaseValue {
   value: string
   variation?: EconomicVariation | string | null
 }
-
-export interface MunicipalityValues {
-  municipality: string
-  agendas: Record<string, string | number>
-  economicBase: Record<string, EconomicBaseValue>
-}

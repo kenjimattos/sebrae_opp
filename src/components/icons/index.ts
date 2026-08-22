@@ -17,31 +17,22 @@ export {
   ArrowLeft,
   ArrowRight,
   Briefcase,
-  Building2,
   ChartColumn,
   Check,
   ChevronDown,
-  ChevronUp,
   Circle,
   CircleDot,
   GraduationCap,
-  DollarSign,
   Info,
   Landmark,
   MessageCircle,
   Minus,
   Plus,
-  Search,
   Sparkles,
   Trash2,
-  TrendingUp,
   TriangleAlert,
-  Users,
   X,
 } from 'lucide-react'
 
 // Type for icon components (accepts size, className, etc.)
 export type { LucideIcon } from 'lucide-react'
-
-// Custom icons (not available in Lucide)
-export { default as UserAvatar } from './UserAvatar'
