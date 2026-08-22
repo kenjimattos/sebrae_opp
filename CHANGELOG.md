@@ -2,6 +2,24 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Não lançado]
+
+### Novidades
+
+- **`/trilhas` virou catálogo.** O pedido do cliente era "lembrar um catálogo estilo Netflix". Copiar a *casca* da Netflix não era opção: o acervo não tem imagem de curso nenhuma, e pôster sem arte vira caixa cinza. Então a página adota o **modelo de navegação** (billboard, fileiras que sangram até a borda, setas nas bordas, pôster que se revela no hover) e tira a identidade do único eixo numérico real dos dados — a **carga horária**. O acento lime do tema entra no lugar do vermelho da Netflix. Substituiu a lista de carrosséis com cards landscape de 393×241 e botão "ver curso".
+  - **A carga horária é a arte do pôster** (`CoursePoster`). O numeral em Monoblock ocupa o lugar da capa, e um medidor de 4px no pé mede o curso contra o **mais pesado da própria trilha** — a fileira inteira passa a ser lida como um perfil de esforço (de 2h a 129h) antes de qualquer título. O pôster inteiro é o alvo do clique; o destino ("Escola Virtual do Governo ↗") aparece na intenção, não o tempo todo. Curso sem `url` não vira link: fica no acervo, esmaecido e rotulado, em vez de um botão morto.
+  - **Billboard com parede de horas** (`CatalogBillboard`). O fundo repete a carga de **cada um dos 35 cursos** como textura, com as ≥40h acesas no acento e uma máscara diagonal abrindo espaço para o texto. Decorativo à distância, verdadeiro de perto: nenhum número ali é inventado, e a ficha do acervo (4 trilhas · 35 cursos · 869 horas) é derivada da mesma fonte, não digitada.
+  - **Fileiras full-bleed** (`CatalogRow`). Diferente do `Carousel` genérico (que segue intocado no Home e nos Casos de sucesso) em dois pontos: as setas ficam **sobrepostas às bordas** e aparecem no hover/foco em vez de empilhadas abaixo, e desabilitam nas pontas. O trilho continua rolável por teclado e trackpad com as setas escondidas. As fileiras sangram até a borda da tela — o corte no fim é o que sinaliza "tem mais".
+  - **Barra de eixos fixa** (`TrailNav`), navegação e não filtro: clicar salta para a fileira, e a trilha visível se marca sozinha por `IntersectionObserver`. Filtrar esconderia acervo, e num catálogo a abundância é parte da mensagem.
+  - **Sem numeração 01/02/03.** Os quatro eixos não são uma sequência, então a sobrancelha de cada fileira carrega o que de fato qualifica o acervo (`8 cursos · 320 horas · Escola Virtual do Governo`) em vez de um ordinal decorativo.
+  - Os deep links do Home (`/trilhas#trilha-{slug}` e `/trilhas#curso-{slug}-{idx}`) continuam valendo, com o destaque agora no anel de acento do pôster.
+
+### Correções
+
+- **Seis cursos duplicados dentro da própria trilha (`src/data/home/training.ts`).** "Gerenciamento de Projetos" repetia Scrum e Ágil (mesmo `url`) nas posições 0/2 e 1/3, e "Captação de Recursos" repetia os convênios de ECTI 650 e 651 com títulos diferentes e a mesma URL. Numa lista de texto passava despercebido; em fileira de pôsteres os repetidos ficam lado a lado. As contagens caem de 14 → 12 e 11 → 9 (catálogo: 41 → 35 cursos, 869 horas).
+- **`max-w-*` em elemento com gutter espremia o cabeçalho das fileiras.** Com `box-sizing: border-box` global, os 180px de gutter de cada lado entram no `max-width`: um `max-w-3xl` (768px) no mesmo elemento deixava ~408px de conteúdo e quebrava a sobrancelha em duas linhas. O `max-width` passou para um filho sem padding.
+- **`outline-accent` não existia no `tailwind.config.js`.** As classes eram usadas mas `outlineColor` não estava no `extend`, então o anel de foco de teclado e o destaque de deep link caíam no `currentColor` e saíam **brancos** em vez do acento. Token adicionado — vale para o projeto inteiro, não só para `/trilhas`.
+
 ## [1.2.0] — 2026-08-22
 
 ### Novidades

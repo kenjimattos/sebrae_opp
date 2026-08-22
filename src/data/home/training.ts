@@ -49,8 +49,6 @@ export const trails: Trail[] = [
     courses: [
       { title: 'Scrum no Contexto do Serviço Público', duration: '15 horas', url: 'https://www.escolavirtual.gov.br/curso/395' },
       { title: 'Ágil no Contexto do Serviço Público', duration: '15 horas', url: 'https://www.escolavirtual.gov.br/curso/317' },
-      { title: 'Scrum no Contexto do Serviço Público', duration: '15 horas', url: 'https://www.escolavirtual.gov.br/curso/395' },
-      { title: 'Ágil no Contexto do Serviço Público', duration: '15 horas', url: 'https://www.escolavirtual.gov.br/curso/317' },
       { title: 'Abordagem Lean aplicada à Transformação Digital', duration: '25 horas', url: 'https://www.escolavirtual.gov.br/curso/524' },
       { title: 'Uso da Lean Inception na Administração Pública', duration: '15 horas', url: 'https://www.escolavirtual.gov.br/curso/527' },
       { title: 'Design Sprint em Projetos de Transformação Digital', duration: '25 horas', url: 'https://www.escolavirtual.gov.br/curso/528' },
@@ -78,8 +76,6 @@ export const trails: Trail[] = [
       { title: 'Instrumentos de Desenvolvimento Urbano Sustentável', duration: '25 horas', url: 'https://www.escolavirtual.gov.br/curso/1019' },
       { title: 'Apoiando a implementação de políticas no município', duration: '18 horas', url: 'https://www.escolavirtual.gov.br/curso/1269' },
       { title: 'Execução Orçamentária e Financeira', duration: '30 horas', url: 'https://www.escolavirtual.gov.br/curso/257' },
-      { title: 'Convênio de Educação, Ciência, Tecnologia e Inovação: Prestação de Contas', duration: '15 horas', url: 'https://www.escolavirtual.gov.br/curso/650' },
-      { title: 'Convênios de Educação, Ciência, Tecnologia e Inovação - ECTI: Execução', duration: '20 horas', url: 'https://www.escolavirtual.gov.br/curso/651' },
     ],
   },
   {
