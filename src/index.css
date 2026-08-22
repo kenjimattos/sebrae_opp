@@ -66,6 +66,11 @@
   --spacing-3xl: 6rem; /* 96px */
   --spacing-gutter: 11.25rem; /* 180px */
 
+  /* Ponto de status (semáforo). Existe como token porque o valor tinha
+     divergido: 8px no modal do indicador e 7px no card de risco — dois lugares
+     que nunca aparecem lado a lado, então ninguém notou. */
+  --size-status-dot: 0.5rem; /* 8px */
+
   /* ============ RADIUS ============ */
   --radius-sm: 0.75rem; /* 12px */
   --radius-md: 1.5rem; /* 24px */
@@ -221,6 +226,15 @@
   .status-success-bg  { background-color: var(--semantic-success-surface); }
   .status-warning-bg  { background-color: var(--semantic-warning-surface); }
   .status-alert-bg    { background-color: var(--semantic-alert-surface); }
+  .status-success-dot,
+  .status-warning-dot,
+  .status-alert-dot,
+  .status-neutral-dot {
+    width: var(--size-status-dot);
+    height: var(--size-status-dot);
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+  }
   .status-success-dot { background-color: var(--semantic-success); }
   .status-warning-dot { background-color: var(--semantic-warning); }
   .status-alert-dot   { background-color: var(--semantic-alert); }
@@ -339,8 +353,8 @@
   }
   /* Ponto pulsante = "sinal ao vivo" ao lado do rótulo de severidade. */
   .risk-card__dot {
-    width: 7px;
-    height: 7px;
+    width: var(--size-status-dot);
+    height: var(--size-status-dot);
     border-radius: var(--radius-full);
     background: var(--risk);
     box-shadow: 0 0 9px 1px color-mix(in srgb, var(--risk) 80%, transparent);

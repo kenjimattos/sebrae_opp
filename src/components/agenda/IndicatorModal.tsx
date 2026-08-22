@@ -20,6 +20,7 @@ import {
   indicatorAiContent,
 } from '@/data/indicators/descriptions/indicator-ai'
 import { catalog } from '@/data/indicators/catalog'
+import { statusStyles } from '@/utils/statusStyles'
 
 interface IndicatorModalProps {
   indicator: Indicator
@@ -153,7 +154,7 @@ export default function IndicatorModal({ indicator, open, onClose }: IndicatorMo
     <Modal open={open} onClose={onClose} title={indicator.label} >
       {/* Valor + status atuais */}
       <div className="flex items-center gap-xs mb-md">
-        <span className={`w-[8px] h-[8px] rounded-full status-${statusDot(indicator.status)}-dot`} aria-hidden />
+        <span className={statusStyles[indicator.status].dot} aria-hidden />
         <span className="typo-body-sm text-inactive">
           {String(indicator.value)} · {statusLabels[indicator.status]} · {municipality.name}
         </span>
@@ -221,10 +222,6 @@ export default function IndicatorModal({ indicator, open, onClose }: IndicatorMo
       </form>
     </Modal>
   )
-}
-
-function statusDot(status: Indicator['status']): string {
-  return status === 'none' ? 'neutral' : status
 }
 
 function ThreadBlock({
