@@ -11,16 +11,17 @@ import CatalogBillboard from '@/components/training/CatalogBillboard'
 import CatalogRow from '@/components/training/CatalogRow'
 import CoursePoster from '@/components/training/CoursePoster'
 import TrailNav from '@/components/training/TrailNav'
+import PillButton from '@/components/ui/buttons/PillButton'
 import { trails, trailAnchor, courseAnchor } from '@/data/home/training'
-import { trailLoad, loadRatio, formatHours } from '@/utils/courseLoad'
-
-// Compensa a barra de eixos sticky (~52px) + respiro, aplicado nos alvos de scroll.
-const SCROLL_MARGIN_TOP = 76
+import { trailLoad, loadRatio, formatHours, catalogLoad } from '@/utils/courseLoad'
 
 export default function Trails() {
   const { hash } = useLocation()
   const activeId = hash.startsWith('#') ? hash.slice(1) : ''
   const firstRowId = trailAnchor(trails[0].slug)
+  const catalog = catalogLoad(trails)
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
   useEffect(() => {
     if (!activeId) return
@@ -34,21 +35,20 @@ export default function Trails() {
   }, [activeId])
 
   return (
-    <div className="catalog flex flex-col gap-lg pb-3xl">
+    <div className="catalog flex flex-col gap-lg">
       <CatalogBillboard firstRowId={firstRowId} />
 
       <TrailNav />
 
       <div className="flex flex-col gap-2xl">
-        {trails.map((trail) => {
+        {trails.map((trail, trailIndex) => {
           const { totalHours, maxHours, courseCount } = trailLoad(trail)
           return (
             <section
               key={trail.slug}
               id={trailAnchor(trail.slug)}
               aria-labelledby={`${trailAnchor(trail.slug)}-title`}
-              className="flex flex-col gap-md"
-              style={{ scrollMarginTop: SCROLL_MARGIN_TOP }}
+              className="catalog-row flex flex-col gap-md"
             >
               {/* max-w vai no filho, não no .catalog-inset: com box-sizing
                   border-box o gutter de 180px entraria no max-width e espremeria
@@ -83,11 +83,32 @@ export default function Trails() {
                       href={course.url}
                       load={loadRatio(course, maxHours)}
                       highlighted={activeId === id}
-                      scrollMarginTop={SCROLL_MARGIN_TOP}
                     />
                   )
                 })}
               </CatalogRow>
+
+              {/* A última fileira reserva uma viewport de rolagem para poder
+                  chegar ao topo; `mt-auto` ancora o fecho na base dessa folga,
+                  em vez de deixá-la ler como página quebrada. */}
+              {trailIndex === trails.length - 1 && (
+                <div className="catalog-inset mt-auto flex flex-wrap items-center justify-between gap-md pt-2xl">
+                  <p className="typo-body-sm text-inactive">
+                    Fim do catálogo
+                    <span className="text-accent px-xs">·</span>
+                    {catalog.courseCount} cursos
+                    <span className="text-accent px-xs">·</span>
+                    {formatHours(catalog.totalHours)} horas na Escola Virtual do Governo
+                  </p>
+                  <PillButton
+                    label="Voltar ao topo"
+                    onClick={scrollToTop}
+                    variant="secondary"
+                    size="sm"
+                    iconPosition="left"
+                  />
+                </div>
+              )}
             </section>
           )
         })}

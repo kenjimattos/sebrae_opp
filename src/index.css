@@ -356,6 +356,10 @@
      por padding próprio, com --catalog-gutter respondendo ao viewport. */
   .catalog {
     --catalog-gutter: var(--spacing-gutter);
+    /* Altura da barra de eixos fixa + respiro. Fonte única: alinha o destino do
+       scroll (scroll-margin-top) com o espaço que a última fileira precisa ter
+       para alcançar o topo. */
+    --catalog-offset: 76px;
     /* As fileiras sangram de propósito; `clip` contém a sangria sem criar
        barra horizontal e sem virar contêiner de scroll (o que quebraria o
        position: sticky da barra de eixos, ao contrário de overflow: hidden). */
@@ -365,6 +369,15 @@
   @media (max-width: 640px)  { .catalog { --catalog-gutter: var(--spacing-md); } }
 
   .catalog-inset { padding-inline: var(--catalog-gutter); }
+
+  .catalog-row { scroll-margin-top: var(--catalog-offset); }
+
+  /* Sem isto a última trilha nunca chega ao topo — não há conteúdo abaixo dela
+     para rolar — e a barra de eixos nunca marca o último eixo. A própria seção
+     passa a ocupar a viewport, então sobra rolagem para ela subir. */
+  .catalog-row:last-child {
+    min-height: calc(100dvh - var(--catalog-offset));
+  }
 
   /* Epic Pro não quebra palavra: "CAPACITAÇÃO" sozinho estoura 390px no tamanho
      fixo de --font-size-h1. O clamp faz o título caber sem hifenizar. */
@@ -403,6 +416,7 @@
     justify-content: space-between;
     flex-shrink: 0;
     scroll-snap-align: start;
+    scroll-margin-top: var(--catalog-offset);
     width: clamp(184px, 44vw, 248px);
     height: clamp(288px, 66vw, 320px);
     padding: var(--spacing-md);

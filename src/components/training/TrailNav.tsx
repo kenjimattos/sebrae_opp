@@ -17,10 +17,24 @@ export default function TrailNav() {
 
     // rootMargin recorta a viewport numa faixa central: a trilha ativa é a que
     // ocupa o meio da tela, não a que apenas encostou no topo.
+    //
+    // O estado vivo fica num Set em vez de sair do batch de `entries`: o
+    // callback só reporta o que MUDOU, então usar `entries.find(isIntersecting)`
+    // perdia a marcação sempre que a única mudança do batch era uma saída de
+    // faixa. Com o Set, empates resolvem pela seção mais alta.
+    const intersecting = new Set<HTMLElement>()
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries.find((entry) => entry.isIntersecting)
-        if (visible) setActiveSlug(visible.target.id.replace('trilha-', ''))
+        entries.forEach((entry) => {
+          const target = entry.target as HTMLElement
+          if (entry.isIntersecting) intersecting.add(target)
+          else intersecting.delete(target)
+        })
+        if (!intersecting.size) return
+        const topmost = [...intersecting].reduce((a, b) =>
+          a.getBoundingClientRect().top <= b.getBoundingClientRect().top ? a : b,
+        )
+        setActiveSlug(topmost.id.replace('trilha-', ''))
       },
       { rootMargin: '-40% 0px -50% 0px', threshold: 0 },
     )
