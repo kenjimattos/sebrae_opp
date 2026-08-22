@@ -6,6 +6,13 @@ O Nginx serve o build estático do frontend **e** faz proxy de `/api/*` para cá
 
 > **Só leitura.** Quem escreve no banco é o ETL (`database/`). A API nunca muta dados.
 
+> **Nesta branch (`preview/snapshot`) esta API não é usada.** O deploy de aprovação roda
+> na Vercel, que não alcança o Mongo do Sebrae, então `/api/*` vem de JSON estático
+> (`public/api-snapshot/`) e o `/api/ai` de uma function serverless — ver o README da
+> raiz. O código aqui está **atrás da `main`**: lá existem também `GET /api/emendas` e
+> `POST /api/ai`, que ainda não foram portados. Só é preciso subir este processo se você
+> for mexer no `server/` (e aí é preciso a VPN do Sebrae).
+
 ## Stack
 
 Node ≥20 · Fastify 5 · driver `mongodb` 6 · TypeScript. Sem framework de ORM — o
