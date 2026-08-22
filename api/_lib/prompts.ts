@@ -270,6 +270,37 @@ export function buildMessages(req: AiTaskRequest): OpenRouterMessage[] {
       ]
     }
 
+    case 'economic-analysis': {
+      const { municipality, economicBase, indicatorsSummary } = req
+      const base = economicBase
+        .map((i) => `- ${i.label}: ${i.value}${i.referenceYear ? ` (${i.referenceYear})` : ''}`)
+        .join('\n')
+      const riscos = indicatorsSummary
+        ? `\n\nIndicadores das agendas do município:\n${indicatorsSummary}`
+        : ''
+      const system =
+        `${SYSTEM_PROMPT}\n\nResponda em texto puro, em um único parágrafo corrido, sem markdown, ` +
+        'sem títulos e sem listas — o texto é exibido como um parágrafo único.'
+      const user =
+        `Escreva a análise de desempenho socioeconômico de ${municipality.name} (PB) para o gestor municipal.\n\n` +
+        `Base econômica do município:\n${base}${riscos}\n\n` +
+        'A análise deve: (1) destacar os pontos fortes, (2) apontar as fragilidades e riscos e ' +
+        '(3) sugerir de 1 a 2 caminhos prioritários para o desenvolvimento do ambiente de pequenos ' +
+        'negócios.\n\n' +
+        // O bloco fica sob os cards, num painel de altura limitada — o texto que
+        // ele substituiu tinha ~70 palavras. Sem um teto explícito o modelo passa
+        // das 180 e estoura o layout.
+        'Limite a resposta a no máximo 110 palavras, terminando em frase completa.\n\n' +
+        'REGRA CRÍTICA: cite apenas números que aparecem nos dados acima, copiados exatamente como ' +
+        'estão. Não estime, não arredonde e não invente nenhum valor, ranking, quantidade ou ' +
+        'comparação com outros municípios ou com a média do estado — esses dados não foram fornecidos. ' +
+        'Se algo não estiver nos dados, escreva de forma qualitativa, sem número.'
+      return [
+        { role: 'system', content: system },
+        { role: 'user', content: user },
+      ]
+    }
+
     case 'chat': {
       const { messages, municipality, indicatorsSummary } = req
       const summary = indicatorsSummary

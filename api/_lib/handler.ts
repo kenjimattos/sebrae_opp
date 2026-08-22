@@ -2,6 +2,7 @@
 // Vercel (api/ai.ts) e pelo middleware de dev do Vite (vite.config.ts).
 import type {
   AiChatMessage,
+  AiEconomicBaseItem,
   AiErrorResponse,
   AiFieldId,
   AiSuccessResponse,
@@ -26,6 +27,10 @@ function isRecord(v: unknown): v is Record<string, unknown> {
 
 function isMunicipality(v: unknown): v is { id: string; name: string } {
   return isRecord(v) && typeof v.id === 'string' && typeof v.name === 'string'
+}
+
+function isEconomicBaseItem(v: unknown): v is AiEconomicBaseItem {
+  return isRecord(v) && typeof v.label === 'string' && typeof v.value === 'string'
 }
 
 function isChatMessage(v: unknown): v is AiChatMessage {
@@ -143,6 +148,27 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
         activities: raw.activities,
         municipality: raw.municipality,
         context,
+      }
+    }
+
+    case 'economic-analysis': {
+      if (!Array.isArray(raw.economicBase)) return null
+      const economicBase = raw.economicBase.filter(isEconomicBaseItem).map((i) => ({
+        label: i.label,
+        value: i.value,
+        referenceYear: typeof i.referenceYear === 'string' ? i.referenceYear : undefined,
+      }))
+      // Sem nenhum card não há o que analisar — e o modelo preencheria o vazio
+      // inventando números, exatamente o que a task existe para evitar.
+      if (economicBase.length === 0) return null
+      return {
+        task: 'economic-analysis',
+        municipality: raw.municipality,
+        economicBase: economicBase.slice(0, 24),
+        indicatorsSummary:
+          typeof raw.indicatorsSummary === 'string'
+            ? raw.indicatorsSummary.slice(0, 4000)
+            : undefined,
       }
     }
 
