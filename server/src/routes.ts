@@ -5,9 +5,10 @@ import {
   getAllValues,
   getMunicipality,
   getValuesForMunicipality,
+  listEmendas,
   listMunicipalities,
 } from './repo.js'
-import { buildIndicatorsData, buildMapData } from './services.js'
+import { buildEmendasData, buildIndicatorsData, buildMapData } from './services.js'
 import type { MunicipalitySummary } from './types.js'
 
 export async function registerRoutes(app: FastifyInstance): Promise<void> {
@@ -50,5 +51,24 @@ export async function registerRoutes(app: FastifyInstance): Promise<void> {
       getAllValues(),
     ])
     return buildMapData(catalog, municipalities, allValues)
+  })
+
+  // Emendas parlamentares por município (modo "Mapeamento de recursos"). Devolve
+  // as duas esferas de uma vez: o modo colore o mapa com o estado inteiro e o
+  // toggle federal/estadual não deve disparar nova requisição.
+  app.get('/api/emendas', async (_req, reply) => {
+    const [municipalities, emendas] = await Promise.all([
+      listMunicipalities(),
+      listEmendas(),
+    ])
+    if (emendas.length === 0) {
+      // Coleção vazia = seeds de emendas ainda não rodaram neste banco. É um erro
+      // de operação, não uma resposta válida: devolver um payload vazio faria a UI
+      // mostrar "R$ 0" para os 223 municípios como se fosse dado real.
+      return reply.code(503).send({
+        error: 'Coleção `emendas` vazia — rode os seeds database/seed/emendas-*.mongodb.js',
+      })
+    }
+    return buildEmendasData(municipalities, emendas)
   })
 }

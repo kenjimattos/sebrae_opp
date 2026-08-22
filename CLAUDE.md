@@ -164,6 +164,9 @@ API de **leitura** sobre o MongoDB `DadosOPP`, em `server/` (Node ≥20 + **Fast
 | `GET /api/municipalities` | `[{ id, name, slug }]` — seletor |
 | `GET /api/municipalities/:id` | `IndicatorsData` (agendas + base econômica, **status já calculado**) |
 | `GET /api/map` | `{ options, municipalities }` — valores por município (mapa) |
+| `GET /api/emendas` | `EmendasData` — emendas parlamentares por município × esfera (modo Mapeamento de recursos) |
+
+**Emendas:** `/api/emendas` lê a coleção `emendas` (224 docs por esfera — 223 municípios + o rollup `PB:<esfera>`, que carrega os metadados da esfera) e devolve as duas esferas de uma vez, porque o toggle federal/estadual não deve disparar nova requisição. `coberturaMunicipal` é derivada na rota; zero no **estadual** vira `null` (lá o município é inferido do texto, então zero é "não atribuímos", não "não recebeu") e no **federal** continua `0` (censo de documentos com código IBGE). Coleção vazia → **503**, nunca um payload zerado. Precisa dos seeds `database/seed/emendas-*.mongodb.js` rodados.
 
 **DB-driven:** o servidor monta agendas/base econômica de `agendas` + `indicators.placements` e deriva o status do campo `threshold` de cada indicador no banco (sem tabela hardcoded). Indicador sem documento no banco (ex.: ainda não implementado) simplesmente não é retornado. O shape espelha `src/types/indicators.ts`. Detalhes de deploy (systemd + Nginx) em `server/README.md`.
 

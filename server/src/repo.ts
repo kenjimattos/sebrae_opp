@@ -1,6 +1,7 @@
 import { getDb } from './db.js'
 import type {
   AgendaDoc,
+  EmendaDoc,
   IndicatorDoc,
   IndicatorValueDoc,
   MunicipalityDoc,
@@ -76,4 +77,11 @@ export async function getValuesForMunicipality(id: string): Promise<IndicatorVal
 
 export async function getAllValues(): Promise<IndicatorValueDoc[]> {
   return getDb().collection<IndicatorValueDoc>('indicatorValues').find().toArray()
+}
+
+// Todas as emendas (224 docs por esfera = ~448). O conjunto é pequeno e a rota
+// devolve o estado inteiro de uma vez para o mapa, então não vale paginar nem
+// filtrar por município aqui.
+export async function listEmendas(): Promise<EmendaDoc[]> {
+  return getDb().collection<EmendaDoc>('emendas').find().toArray()
 }

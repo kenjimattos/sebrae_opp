@@ -972,7 +972,10 @@ qualidades diferentes de atribuição municipal**, registradas no campo `atribui
 > inferida de texto. Somá-las sem ressalva daria um total falsamente preciso — a UI mostra os
 > dois cards lado a lado, com a estadual rotulada como estimativa (`InfoTooltip` explicando a
 > cobertura). Também **não compare as séries `porAno` lado a lado**: os eixos de tempo são
-> diferentes (documento × safra), e cada doc carrega `criterioQuebraAnual` dizendo qual é o seu.
+> diferentes (documento × safra). O doc de rollup `PB:<esfera>` carrega `criterioQuebraAnual`
+> dizendo qual é o eixo daquela esfera (junto de `coletadoEm`, a data da coleta na origem); os
+> dois são metadados da esfera e não se repetem nos 223 docs municipais. `GET /api/emendas` os
+> serve em `esferas.<esfera>`.
 
 **Por que "por documento" no federal.** A lista de emendas traz um campo de localidade que
 vem "MÚLTIPLA"/"Nacional" na maior parte dos casos (uma emenda agregadora distribui para várias
@@ -1015,12 +1018,26 @@ vai no campo `naoMunicipalizado` do doc de estado, para o total do estado fechar
 município nenhum. Município sem emenda sairia **R$ 0** (zero real, não lacuna) no federal, que é
 censo de documentos.
 
-**Como chega no frontend.** Contrato em `src/types/emendas.ts` (`EmendasData`), servido por
-`GET /api/emendas`. ⚠️ **A rota Fastify em `server/` ainda não existe** — o modo Emendas fica sem
-dado até ela ser implementada. Quando existir, deve ler a coleção `emendas` (populada pelos seeds
-`database/seed/emendas-{federais,estaduais}.mongodb.js`) e devolver **exatamente** esse shape.
-Município sem dado numa esfera vem `null` (não `0`), para a UI distinguir "não recebeu" de "não
-medimos". *Se mexer no contrato, mexa nos dois: tipo e rota.*
+**Como chega no frontend.** Contrato em `src/types/emendas.ts` (`EmendasData`), espelhado em
+`server/src/types.ts` e servido por `GET /api/emendas` (`buildEmendasData` em
+`server/src/services.ts`). A rota lê esta coleção — precisa dos seeds
+`database/seed/emendas-{federais,estaduais}.mongodb.js` rodados; com a coleção vazia devolve **503**,
+nunca um payload zerado que a UI mostraria como "R$ 0" real. Devolve as duas esferas de uma vez
+(o toggle federal/estadual não dispara requisição nova) e os 223 municípios na ordem do código IBGE.
+
+Três coisas que a rota **deriva**, em vez de ler cru:
+
+- `coberturaMunicipal` — fração do total do estado atribuída a algum município. A base difere por
+  esfera de propósito: **federal** sobre `pago` (a atribuição é exata, interessa quanto do executado
+  caiu em município), **estadual** sobre `valor` (o que se atribui pelo texto é a emenda inteira, e
+  medir sobre `pago` subestimaria emendas ainda não executadas).
+- **Zero no estadual vira `null`.** Doc todo zerado nessa esfera significa "não conseguimos atribuir"
+  (o município sai do texto livre), não "não recebeu" — e `null` é o que o contrato reserva para
+  "não medimos". No federal zero continua `0`: lá é censo de documentos com código IBGE, zero é real.
+- `naoMunicipalizado` é remontado com os campos declarados (o doc federal guarda um `porAno` extra
+  que o contrato não prevê).
+
+*Se mexer no contrato, mexa nos três: tipo do frontend, tipo do server e `buildEmendasData`.*
 
 **Sem `threshold`** nas duas esferas — valor absoluto em R$, sem faixa oficial; nem a CGU nem a
 CGE-PB classificam.

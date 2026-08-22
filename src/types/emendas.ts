@@ -9,8 +9,9 @@
 //              município; ele é inferido do texto livre do objeto da emenda.
 //              ESTIMATIVA — não somar ao federal num número único sem ressalva.
 //
-// Espelha a coleção `emendas` do MongoDB (ver database/setup.mongodb.js) e é o
-// shape que a rota GET /api/emendas do server/ deve devolver (ainda não existe).
+// Espelha a coleção `emendas` do MongoDB (ver database/setup.mongodb.js) e o que
+// a rota GET /api/emendas devolve (server/src/services.ts → buildEmendasData).
+// O mesmo contrato está em server/src/types.ts — se mexer num, mexa nos dois.
 
 export type EmendaEsfera = 'federal' | 'estadual'
 

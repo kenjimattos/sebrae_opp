@@ -19,6 +19,7 @@ schema já é validado no próprio Mongo (`database/setup.mongodb.js`).
 | GET | `/api/municipalities` | `[{ id, name, slug }]` — seletor |
 | GET | `/api/municipalities/:id` | `IndicatorsData` — agendas + base econômica, **status já calculado** |
 | GET | `/api/map` | `{ options, municipalities }` — valores por município p/ colorir o mapa |
+| GET | `/api/emendas` | `EmendasData` — emendas parlamentares (federal + estadual) dos 223 municípios |
 
 O shape das respostas espelha `src/types/indicators.ts` do frontend: a API devolve
 exatamente o que o `MunicipalityProvider` montava a partir dos TS estáticos.
