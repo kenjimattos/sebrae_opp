@@ -1,14 +1,13 @@
 import type { Agenda, StatusType } from '@/types/indicators'
 
-export const statusStyles: Record<
-  StatusType,
-  { bg: string; dot: string; glow: string }
-> = {
-  success: { bg: 'status-success-bg', dot: 'status-success-dot', glow: 'status-success-glow' },
-  warning: { bg: 'status-warning-bg', dot: 'status-warning-dot', glow: 'status-warning-glow' },
-  alert:   { bg: 'status-alert-bg',   dot: 'status-alert-dot',   glow: 'status-alert-glow' },
+// `bg` saiu do mapa: o Card referencia as classes `status-*-bg` diretamente no
+// seu próprio `surfaceClass`, então a cópia aqui não tinha leitor.
+export const statusStyles: Record<StatusType, { dot: string; glow: string }> = {
+  success: { dot: 'status-success-dot', glow: 'status-success-glow' },
+  warning: { dot: 'status-warning-dot', glow: 'status-warning-glow' },
+  alert:   { dot: 'status-alert-dot',   glow: 'status-alert-glow' },
   // Sem faixa oficial: neutro, sem glow (não sinaliza cor).
-  none:    { bg: 'status-neutral-bg', dot: 'status-neutral-dot', glow: '' },
+  none:    { dot: 'status-neutral-dot', glow: '' },
 }
 
 // Cor da agenda REMOVIDA por decisão de produto: o agregado por agenda é ele
