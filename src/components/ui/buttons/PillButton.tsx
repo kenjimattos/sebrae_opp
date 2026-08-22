@@ -27,9 +27,9 @@ interface PillButtonProps {
 
 // Circle inverts the button colors: label color becomes bg, button bg becomes icon color.
 const circleStyles: Record<string, string> = {
-  primary:   'bg-[var(--semantic-button-label-primary)] text-[color:var(--semantic-button-primary)]',
-  secondary: 'bg-[var(--semantic-button-label-secondary)] text-[color:var(--semantic-button-secondary)]',
-  ghost:     'bg-[var(--semantic-button-tertiary)] text-[color:var(--semantic-button-label-tertiary)]',
+  primary:   'bg-button-label-primary text-button-primary',
+  secondary: 'bg-button-label-secondary text-button-secondary',
+  ghost:     'bg-button-tertiary text-button-label-tertiary',
 }
 
 

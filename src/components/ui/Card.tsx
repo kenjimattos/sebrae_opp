@@ -24,11 +24,11 @@ const surfaceClass: Record<CardSurface, string> = {
 }
 
 const borderColorClass: Record<CardSurface, string> = {
-  primary: 'border-[var(--semantic-surface-secondary)]',
-  secondary: 'border-[var(--semantic-surface-tertiary)]',
-  success: 'border-[var(--semantic-success)]',
-  warning: 'border-[var(--semantic-warning)]',
-  alert: 'border-[var(--semantic-alert)]',
+  primary: 'border-surface-secondary',
+  secondary: 'border-surface-tertiary',
+  success: 'border-success',
+  warning: 'border-warning',
+  alert: 'border-alert',
 }
 
 // Literal strings so Tailwind JIT can detect them at build time.

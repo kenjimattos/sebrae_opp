@@ -83,7 +83,7 @@ export default function ModeToggle({
             aria-selected={isActive}
             onClick={() => onChange(opt.value)}
             className={`relative z-10 rounded-full typo-button transition-colors whitespace-nowrap h-[2.5rem] px-sm m-2xs ${
-              isActive ? 'text-black' : 'text-white hover:text-accent'
+              isActive ? 'text-on-accent' : 'text-primary hover:text-accent'
             }`}
           >
             {opt.label}

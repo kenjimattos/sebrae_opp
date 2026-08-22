@@ -15,7 +15,7 @@ export default function ProgressBar({ value, className = '' }: ProgressBarProps)
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={clamped}
-      className={`w-full h-[0.5rem] rounded-full bg-[var(--semantic-surface-tertiary)] overflow-hidden ${className}`}
+      className={`w-full h-xs rounded-full bg-surface-tertiary overflow-hidden ${className}`}
     >
       <div
         className="h-full rounded-full bg-accent transition-[width] duration-200"

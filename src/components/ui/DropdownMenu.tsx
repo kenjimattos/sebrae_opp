@@ -31,7 +31,7 @@ export default function DropdownMenu({
 
   return (
     <div
-      className={`absolute top-full bg-[var(--semantic-surface-secondary)] rounded-sm p-xs left-0 mt-[var(--spacing-2xs)] w-[max-content] min-w-full ${className}`}
+      className={`absolute top-full bg-surface-secondary rounded-sm p-xs left-0 mt-2xs w-max min-w-full ${className}`}
     >
       <div className="relative shadow-lg overflow-hidden">
         <ul ref={listRef} className="max-h-[40dvh] overflow-y-auto">
@@ -44,7 +44,7 @@ export default function DropdownMenu({
                   onClick={() => onSelect(option.value)}
                   className={`w-full text-left px-sm py-xs cursor-pointer transition-colors whitespace-nowrap ${
                     isSelected
-                      ? 'bg-[var(--semantic-surface-primary)] typo-body-bold'
+                      ? 'bg-surface typo-body-bold'
                       : 'typo-body hover:bg-surface-secondary'
                   }`}
                 >

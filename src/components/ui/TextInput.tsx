@@ -32,10 +32,10 @@ export default function TextInput({
   const fieldClasses = [
     'w-full typo-body px-sm py-xs border border-solid',
     disabled
-      ? 'bg-[var(--semantic-surface-secondary)] border-[var(--semantic-surface-secondary)] cursor-not-allowed'
-      : 'bg-[var(--semantic-background)] border-[var(--semantic-surface-secondary)]',
-    'focus:outline-none focus:border-white',
-    'placeholder:text-[color:var(--semantic-text-inactive)]',
+      ? 'bg-surface-secondary border-surface-secondary cursor-not-allowed'
+      : 'bg-background border-surface-secondary',
+    'focus:outline-none focus:border-text-primary',
+    'placeholder:text-inactive',
   ].join(' ')
 
   return (
