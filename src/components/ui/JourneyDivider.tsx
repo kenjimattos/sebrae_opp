@@ -38,7 +38,7 @@ export default function JourneyDivider({
         type="button"
         onClick={handleClick}
         aria-label="Continue a jornada — role até os pilares abaixo"
-        className="group glass rounded-full flex items-center gap-xs pl-md pr-sm py-2xs transition-transform duration-200 hover:-translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--semantic-accent)]"
+        className="group glass rounded-full flex items-center gap-xs pl-md pr-sm py-2xs transition-transform duration-200 hover:-translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         <span className="typo-body-sm-bold uppercase tracking-[0.08em]">
           Continue a jornada

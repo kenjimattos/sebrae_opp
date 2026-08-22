@@ -177,6 +177,9 @@
 
   --semantic-accent: #D4FE07;
   --semantic-accent-surface: var(--primitives-blue-100);
+  /* Faltava na passada do dark: sem esta linha o hover caía no blue-800 do
+     :root, e o único consumidor (o FAB do chat) ficava azul ao passar o mouse. */
+  --semantic-accent-hover: var(--primitives-lime-500);
 }
 
 /* ============ TYPOGRAPHY — COMPOSITE CLASSES ============ */

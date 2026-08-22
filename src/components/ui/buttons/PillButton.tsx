@@ -113,7 +113,7 @@ export default function PillButton({
       </>
     )
 
-  const sharedClassName = `inline-flex items-center rounded-full no-underline transition-all duration-150 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[var(--semantic-accent)] outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${buttonVariantStyles[variant]} ${s.shell} ${padding} ${className}`
+  const sharedClassName = `inline-flex items-center rounded-full no-underline transition-all duration-150 active:scale-[0.98] outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none ${buttonVariantStyles[variant]} ${s.shell} ${padding} ${className}`
 
   if (href !== undefined) {
     const isInternal = href.startsWith('/') && !href.startsWith('//')
