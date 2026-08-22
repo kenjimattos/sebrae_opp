@@ -159,6 +159,18 @@ ensureCollection('emendas', {
     nEmendas: { bsonType: ['int', 'long', 'double'] },
     nAutores: { bsonType: ['int', 'long', 'double'] },
     janela: { bsonType: 'object', description: '{ de, ate } — safra das emendas consideradas' },
+    coletadoEm: {
+      bsonType: 'string',
+      description:
+        "só em escopo='estado': data da coleta na origem (AAAA-MM-DD). Metadado da esfera, " +
+        'servido em `esferas.<esfera>.coletadoEm` por GET /api/emendas',
+    },
+    criterioQuebraAnual: {
+      bsonType: 'string',
+      description:
+        "só em escopo='estado': texto curto explicando o eixo de `porAno`, que difere por " +
+        'esfera (federal = ano do documento; estadual = safra da emenda)',
+    },
     atribuicao: {
       enum: ['ibge', 'texto-beneficiario'],
       description:

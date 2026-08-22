@@ -133,6 +133,11 @@ SOURCE = (
 )
 SOURCE_DATASET = "cgu_emendas_parlamentares_por_documento"
 
+# Texto do eixo de `porAno`, guardado no doc de escopo estadual: a rota
+# GET /api/emendas devolve isso em `esferas.federal.criterioQuebraAnual`, e o
+# eixo NÃO é o mesmo do estadual (lá é a safra da emenda).
+CRITERIO_QUEBRA_ANUAL = "ano do documento de despesa (quando o recurso foi empenhado ou pago)"
+
 # Colunas do CSV (nomes exatos, com acento).
 C_UF = "UF de aplicação do recurso"
 C_IBGE = "Código IBGE do município de aplicação do recurso"
@@ -410,6 +415,10 @@ def build_docs(snapshot):
         "nAutores": snapshot.get("nAutoresPB", 0),
         "janela": janela,
         "atribuicao": "ibge",
+        # metadados da esfera — só no doc de estado, que é onde a rota
+        # GET /api/emendas lê `esferas.federal` (não se repetem nos 223 municipais)
+        "coletadoEm": snapshot.get("fetchedAt", ""),
+        "criterioQuebraAnual": CRITERIO_QUEBRA_ANUAL,
         "referenceYear": ref,
         "source": SOURCE,
         "isFictional": False,
