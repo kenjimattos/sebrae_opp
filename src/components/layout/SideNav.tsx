@@ -10,7 +10,7 @@ interface SideNavProps {
 
 export default function SideNav({ activeId, onSelect, className = '' }: SideNavProps) {
     return (
-        <div className={`glass rounded-sm flex flex-col items-center p-md gap-lg ${className}`}>
+        <div className={`glass rounded-sm flex flex-col items-center p-md gap-lg overflow-y-auto scrollbar-hide ${className}`}>
             <div>
                 <h3 className="typo-h3 uppercase">
                     {sectionContent.hero.subtitle}
