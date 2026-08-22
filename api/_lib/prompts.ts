@@ -291,10 +291,24 @@ export function buildMessages(req: AiTaskRequest): OpenRouterMessage[] {
         // ele substituiu tinha ~70 palavras. Sem um teto explícito o modelo passa
         // das 180 e estoura o layout.
         'Limite a resposta a no máximo 110 palavras, terminando em frase completa.\n\n' +
+        // Com os 12 cards reais o modelo gastava a metade do texto recitando todos
+        // os valores antes de analisar — repetindo o que o usuário já vê logo acima.
+        'NÃO relacione os dados um a um: eles já estão na tela, em cards logo acima da análise. ' +
+        'Cite no máximo 3 números, escolhidos porque sustentam o argumento. O valor do texto está ' +
+        'na leitura que conecta os dados, não na repetição deles.\n\n' +
         'REGRA CRÍTICA: cite apenas números que aparecem nos dados acima, copiados exatamente como ' +
         'estão. Não estime, não arredonde e não invente nenhum valor, ranking, quantidade ou ' +
         'comparação com outros municípios ou com a média do estado — esses dados não foram fornecidos. ' +
-        'Se algo não estiver nos dados, escreva de forma qualitativa, sem número.'
+        'Se algo não estiver nos dados, escreva de forma qualitativa, sem número.\n\n' +
+        // Só 6 indicadores da plataforma têm faixa oficial no banco; os 11 cards
+        // restantes da base econômica não têm nenhuma. Sem esta regra o modelo
+        // inventava a classificação (chamou IDH-M 0,588 de "avanço no
+        // desenvolvimento humano", quando a faixa oficial põe 0,588 em Alerta).
+        'CLASSIFICAÇÃO: só chame um valor de bom, ruim, alto, baixo, elevado ou preocupante quando o ' +
+        'dado vier com status explícito (Bom, Atenção, Alerta) — e use exatamente esse status, nunca ' +
+        'um julgamento próprio, mesmo que a faixa oficial esteja à vista. Os itens da base econômica ' +
+        'não têm faixa oficial de classificação: descreva os valores deles e o que representam, sem ' +
+        'rotulá-los como altos ou baixos e sem afirmar se são bons ou ruins.'
       return [
         { role: 'system', content: system },
         { role: 'user', content: user },

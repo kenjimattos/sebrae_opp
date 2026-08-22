@@ -24,6 +24,7 @@ import {
 import { Sparkles, iconSizes } from '@/components/icons'
 import Button from '@/components/ui/buttons/Button'
 import { statusLabels } from '@/data/indicators/status-labels'
+import { thresholdSegmentLabels } from '@/utils/segmentLabels'
 import { useAiTask } from '@/hooks/useAiTask'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { useTypewriter } from '@/hooks/useTypewriter'
@@ -52,11 +53,21 @@ export default function EconomicBaseAnalysis({ className = '' }: EconomicBaseAna
     [municipality.data],
   )
 
+  // Indicadores de agenda com status E, quando existir, a faixa oficial do banco.
+  // A faixa é o que ancora o julgamento: sem ela o modelo inventava a própria
+  // leitura (chamou IDH-M 0,588 de "avanço", quando 0,588 < 0,600 é Alerta).
+  // Reusa o mesmo helper que rotula as zonas da IndicatorBar — uma fonte só.
   const indicatorsSummary = useMemo(
     () =>
       (municipality.data?.agendas ?? [])
         .flatMap((a) => a.indicators)
-        .map((i) => `- ${i.label}: ${i.value} (${statusLabels[i.status]})`)
+        .map((i) => {
+          const zonas = thresholdSegmentLabels(i.threshold)
+          const faixa = zonas
+            ? ` — faixa oficial: ${statusLabels.alert} ${zonas[0]}; ${statusLabels.warning} ${zonas[1]}; ${statusLabels.success} ${zonas[2]}`
+            : ''
+          return `- ${i.label}: ${i.value} (${statusLabels[i.status]}${faixa})`
+        })
         .join('\n'),
     [municipality.data],
   )
