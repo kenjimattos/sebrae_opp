@@ -2,7 +2,7 @@
 // Grid de cards expansíveis: cada agenda vira um AgendaIndicatorItem que abre
 // mostrando os indicadores (barra rainbow). Toggle independente por card.
 
-import { useCallback, useLayoutEffect, useRef, useState } from 'react'
+import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import AgendaIndicatorItem from '@/components/agenda/AgendaIndicatorItem'
 import { agendaStatus } from '@/utils/statusStyles'
@@ -10,7 +10,10 @@ import { agendaObjectives } from '@/data/indicators/descriptions/agendas'
 
 export default function ModeEixos() {
   const { municipality } = useMunicipality()
-  const agendas = municipality.data?.agendas ?? []
+  // `?? []` cria um array novo a cada render — memoizado para servir de dep
+  // estável do useCallback abaixo (senão o listener de resize se re-registra
+  // em todo render, e o React Compiler desiste de otimizar o componente).
+  const agendas = useMemo(() => municipality.data?.agendas ?? [], [municipality.data])
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set())
   // Um ref por card (índice global), usado para medir/igualar alturas por linha.
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -18,7 +21,8 @@ export default function ModeEixos() {
   function toggle(id: string) {
     setExpandedIds((prev) => {
       const next = new Set(prev)
-      next.has(id) ? next.delete(id) : next.add(id)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
       return next
     })
   }
