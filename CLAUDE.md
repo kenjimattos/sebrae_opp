@@ -11,8 +11,11 @@ armadilhas** do projeto; o resto se lê no código. Prefira `grep` a suposição
 **Estado:** 1.0.0 em produção no servidor Sebrae a partir da `main`. Home = `SideNav` com 4 pilares (Ambiente de negócio, Mapeamento de
 recursos, Cursos e boas práticas, Formulador de projetos); cada pilar alterna modos
 via `ModeToggle`. **223 municípios da PB**, default Campina Grande (`2504009`).
-Rotas: `/` (Login), `/home`, `/trilhas`, `/oportunidades`. Desktop 1440px. Dark mode
-por tokens, sem toggle na UI.
+Rotas: `/` (Login), `/home`, `/trilhas`. Desktop 1440px. Dark mode por tokens,
+sem toggle na UI.
+
+> **Não há rota catch-all.** URL desconhecida renderiza tela em branco — inclusive
+> `/oportunidades` e `/comunidade`, que existiram e podem estar em links antigos.
 
 ---
 
@@ -27,6 +30,12 @@ Fastify + driver `mongodb` no `server/`.
 - Sem `any` — use `unknown` + type guard. Interfaces em `src/types/`.
 - Pastas espelham os grupos do Figma (`Agenda/Card` → `src/components/agenda/AgendaCard.tsx`).
   Primitivos Tailwind puros em `src/components/ui/`.
+- **Três controles parecidos, papéis distintos** — escolher pelo papel, não pelo visual:
+  `Button` é ação; `Chip` é seleção entre pares lado a lado (estado vem de dados,
+  anunciado por `aria-current`/`aria-pressed`); `ModeToggle` troca painel no lugar
+  (`role="tablist"` + pill deslizante). `Chip` e `Button` são idênticos na tela **por
+  construção** — dividem shell, variantes e tamanhos em `ui/buttons/button-styles.ts`.
+  Mexeu em um, mexeu nos dois; não copiar estilo entre eles.
 
 ---
 
@@ -43,11 +52,23 @@ consultar `index.css` antes de inventar equivalente):
 
 ```
 .typo-display-lg|display|display-sm · .typo-h1..h4 (h4 inclui uppercase)
-.typo-body-lg|body|body-sm (+ variantes -bold) · .typo-button-lg|button|button-sm
+.typo-title-lg|title-md|title-sm · .typo-body-lg|body|body-sm (+ variantes -bold)
+.typo-button-lg|button|button-sm (+ variantes -secondary-)
 .card-surface(-secondary) · .card-hoverable · .flex-center|between|col-start
-.grid-2..5 · .status-{success,warning,alert}-{bg,dot}
+.grid-2..5 · .status-{success,warning,alert,neutral}-{bg,dot} · .glass(-bevel)
 .divider · .scrollbar-hide · .section-container · .typewriter-caret
+.risk-card* (Riscos) · .catalog*, .poster* (/trilhas)
 ```
+
+> **Foco de teclado é `outline`, nunca `ring`.** `box-shadow` some em alto contraste
+> forçado (`forced-colors`), e o gap do `outline-offset` é transparente — funciona
+> sobre qualquer fundo, enquanto `ring-offset` precisaria saber se o controle está
+> sobre `background` ou sobre `surface`. A base em `button-styles.ts` já aplica;
+> componente solto usa `focus-visible:outline outline-2 outline-offset-2 outline-accent`.
+
+> **Tamanho que se repete vira token e mora na classe, não no consumidor.** O ponto de
+> status divergiu (7px num lugar, 8px noutro) porque cada chamador declarava o seu;
+> hoje `--size-status-dot` fica dentro de `.status-*-dot`.
 
 ---
 
@@ -149,9 +170,27 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   Fonte de verdade das 10 etapas: `src/data/formulator/steps.ts`.
 - **Modo Riscos** (`ModeRisks`) não tem dados estáticos: deriva dos indicadores em
   `alert`/`warning` do município (`src/utils/risks.ts`).
+- **Token novo no `:root` precisa entrar no `.dark` também.** `--semantic-accent-hover`
+  ficou de fora da passada do dark e caía silenciosamente no azul do light mode; só não
+  virou incidente porque tinha um consumidor só. Não há erro — a var só resolve errado.
+- **`/trilhas`:** catálogo de fileiras full-bleed. Duas coisas parecem enfeite e não são.
+  (1) A última fileira tem `min-height` de uma viewport (`.catalog-row:last-child`):
+  sem ela não há rolagem para a seção chegar ao topo, e a barra de eixos nunca marca o
+  último eixo. (2) `--catalog-offset` é fonte única do `scroll-margin-top` das seções e
+  dos pôsteres **e** daquele `min-height` — mudar num lugar só dessincroniza.
+  O medidor no pé do pôster compara o curso com o mais pesado **da própria trilha**,
+  não do catálogo; a mesma carga rende barras diferentes em fileiras diferentes.
+- **`max-w-*` no mesmo elemento que tem gutter espreme o conteúdo.** Com
+  `box-sizing: border-box`, os 180px de `padding-inline` entram no `max-width` —
+  `max-w-3xl` vira ~400px úteis. Pôr o `max-width` num filho sem padding.
 - **Testes:** a infra (Vitest + jsdom) segue nos scripts, mas a suíte foi retirada no
   redesign (`src/test/` não existe). Ao reescrever, mockar `src/data/api.ts` — o
   provider faz `fetch`.
+- **Comentário citando componente não é uso.** Numa varredura, três componentes mortos
+  (`ui/Grid`, `agenda/AgendaStats`, `formulator/useFormulatorAi`) sobreviveram só porque
+  comentários os mencionavam. Ao caçar código morto, procurar `import`, não o nome. E o
+  escopo da busca precisa incluir **`api/`**: o handler serverless importa de `src/`
+  (ex.: `AI_FIELD_IDS`), então varrer só `src/` produz falso positivo perigoso.
 
 ---
 
