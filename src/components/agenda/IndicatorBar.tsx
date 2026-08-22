@@ -29,13 +29,13 @@ const ZONE_FALLBACK: Record<
   Exclude<StatusType, 'none'>,
   { color: string; leftPct: number }
 > = {
-  alert:   { color: 'var(--semantic-alert)', leftPct: 16.6 },
-  warning: { color: 'var(--semantic-warning)', leftPct: 50 },
-  success: { color: 'var(--semantic-success)', leftPct: 83.4 },
+  alert:   { color: 'var(--semantic-alert-vivid)', leftPct: 16.6 },
+  warning: { color: 'var(--semantic-warning-vivid)', leftPct: 50 },
+  success: { color: 'var(--semantic-success-vivid)', leftPct: 83.4 },
 }
 
 const BAR_GRADIENT =
-  'linear-gradient(to right, var(--semantic-alert) 0%, var(--semantic-warning) 53.365%, var(--semantic-success) 100%)'
+  'linear-gradient(to right, var(--semantic-alert-vivid) 0%, var(--semantic-warning-vivid) 53.365%, var(--semantic-success-vivid) 100%)'
 
 export default function IndicatorBar({
   status,
