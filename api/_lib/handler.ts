@@ -192,6 +192,13 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
   }
 }
 
+// Teto de tokens por task, onde o default de 800 não serve. A análise do
+// Panorâma é exibida num parágrafo sob os cards: ~260 tokens ≈ 110–130 palavras
+// em pt-BR, e o que passar disso é aparado na última frase completa.
+const MAX_TOKENS_BY_TASK: Partial<Record<AiTaskRequest['task'], number>> = {
+  'economic-analysis': 260,
+}
+
 // Respostas de lista → string[]: uma entrada por linha, sem marcadores/numeração.
 function parseItems(text: string, max = 6): string[] {
   return text
@@ -220,6 +227,7 @@ export async function handleAiTask(
     const text = await callOpenRouter(buildMessages(req), {
       apiKey: env.apiKey,
       model: env.model || DEFAULT_FREE_MODEL,
+      maxTokens: MAX_TOKENS_BY_TASK[req.task],
     })
     const body: AiSuccessResponse =
       req.task === 'generate-specific-objectives'

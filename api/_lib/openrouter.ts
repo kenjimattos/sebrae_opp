@@ -19,6 +19,11 @@ export interface OpenRouterMessage {
 export interface OpenRouterEnv {
   apiKey: string
   model: string
+  // Teto por task. Pedir um limite de palavras no prompt não é confiável (o
+  // modelo cumpre numas respostas e ignora noutras), então tasks com espaço
+  // visual limitado impõem o corte aqui: o estouro é aparado na última frase
+  // completa pelo tratamento de `finish_reason: 'length'` abaixo.
+  maxTokens?: number
 }
 
 export class OpenRouterError extends Error {
@@ -52,7 +57,7 @@ export async function callOpenRouter(
       body: JSON.stringify({
         model: env.model,
         messages,
-        max_tokens: MAX_TOKENS,
+        max_tokens: env.maxTokens ?? MAX_TOKENS,
         temperature: 0.7,
         // Modelos reasoning (ex.: Nemotron 3) vazam a cadeia de raciocínio no
         // content e estouram o max_tokens antes da resposta — desliga.
