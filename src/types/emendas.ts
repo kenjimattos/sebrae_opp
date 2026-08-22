@@ -10,7 +10,7 @@
 //              ESTIMATIVA — não somar ao federal num número único sem ressalva.
 //
 // Espelha a coleção `emendas` do MongoDB (ver database/setup.mongodb.js) e é o
-// mesmo shape servido pelo snapshot estático em public/api-snapshot/emendas.json.
+// shape que a rota GET /api/emendas do server/ deve devolver (ainda não existe).
 
 export type EmendaEsfera = 'federal' | 'estadual'
 

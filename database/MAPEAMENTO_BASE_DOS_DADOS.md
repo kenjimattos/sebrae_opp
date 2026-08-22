@@ -1016,14 +1016,11 @@ município nenhum. Município sem emenda sairia **R$ 0** (zero real, não lacuna
 censo de documentos.
 
 **Como chega no frontend.** Contrato em `src/types/emendas.ts` (`EmendasData`), servido por
-`GET /api/emendas`. Hoje a rota é atendida pelo **snapshot estático**
-`public/api-snapshot/emendas.json` (~145 KB, 223 municípios × 2 esferas), gerado por
-`scripts/gerar_api_snapshot_emendas.py` a partir dos dois snapshots de ETL — mesmo padrão de
-`municipalities.json`, com rewrite no `vercel.json` e bypass do proxy no `vite.config.ts`.
-⚠️ **A rota Fastify em `server/` ainda não existe**; quando existir, deve ler a coleção `emendas`
-e devolver **exatamente** esse shape. Município sem dado numa esfera vem `null` (não `0`), para a
-UI distinguir "não recebeu" de "não medimos". *Se mexer no contrato, mexa nos três: tipo,
-gerador do snapshot e (futura) rota.*
+`GET /api/emendas`. ⚠️ **A rota Fastify em `server/` ainda não existe** — o modo Emendas fica sem
+dado até ela ser implementada. Quando existir, deve ler a coleção `emendas` (populada pelos seeds
+`database/seed/emendas-{federais,estaduais}.mongodb.js`) e devolver **exatamente** esse shape.
+Município sem dado numa esfera vem `null` (não `0`), para a UI distinguir "não recebeu" de "não
+medimos". *Se mexer no contrato, mexa nos dois: tipo e rota.*
 
 **Sem `threshold`** nas duas esferas — valor absoluto em R$, sem faixa oficial; nem a CGU nem a
 CGE-PB classificam.
