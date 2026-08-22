@@ -114,12 +114,12 @@ export default function ChatPanel({ onClose }: ChatPanelProps) {
   return createPortal(
     <aside
       aria-label={chatTitle}
-      className="fixed right-0 top-0 h-full w-[400px] z-50 flex flex-col bg-[var(--semantic-surface-primary)] border-l border-[var(--semantic-surface-secondary)] shadow-lg"
+      className="fixed right-0 top-0 h-full w-[400px] z-50 flex flex-col bg-surface border-l border-surface-secondary shadow-lg"
     >
       {/* Header */}
-      <div className="flex-between gap-md p-md border-b border-[var(--semantic-surface-secondary)]">
+      <div className="flex-between gap-md p-md border-b border-surface-secondary">
         <div className="flex items-center gap-xs">
-          <Sparkles size={iconSizes.md} className="text-[color:var(--semantic-accent)]" aria-hidden />
+          <Sparkles size={iconSizes.md} className="text-accent" aria-hidden />
           <div className="flex flex-col">
             <p className="typo-body-bold">{chatTitle}</p>
             <p className="typo-body-sm text-inactive">{municipality.name}</p>
@@ -166,7 +166,7 @@ export default function ChatPanel({ onClose }: ChatPanelProps) {
 
       {/* Input */}
       <form
-        className="flex items-center gap-xs p-md border-t border-[var(--semantic-surface-secondary)]"
+        className="flex items-center gap-xs p-md border-t border-surface-secondary"
         onSubmit={(e) => {
           e.preventDefault()
           void send(draft)
@@ -210,7 +210,7 @@ function ChatBubble({
     <div className="flex items-start gap-xs max-w-[95%]">
       <Sparkles
         size={iconSizes.sm}
-        className="text-[color:var(--semantic-accent)] shrink-0 mt-[2px]"
+        className="text-accent shrink-0 mt-[2px]"
         aria-hidden
       />
       <div

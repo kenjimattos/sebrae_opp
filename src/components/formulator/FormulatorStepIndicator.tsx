@@ -36,13 +36,13 @@ export default function StepIndicator({
 
   const Icon = isChecked ? Check : isCurrent ? CircleDot : Circle
   const iconColor = isChecked
-    ? 'text-[color:var(--semantic-accent)]'
+    ? 'text-accent'
     : isCurrent
-      ? 'text-[color:var(--semantic-accent)]'
-      : 'text-[color:var(--semantic-text-inactive)]'
+      ? 'text-accent'
+      : 'text-inactive'
 
   const labelColor = isActive
-    ? 'text-[color:var(--semantic-text-primary)]'
+    ? 'text-primary'
     : 'text-inactive'
 
   const base = `flex items-center gap-sm w-full text-left ${className}`
