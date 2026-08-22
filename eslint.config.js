@@ -38,6 +38,31 @@ export default defineConfig([
           ],
         },
       ],
+      // Cor em arbitrary value. Toda cor semântica tem classe nativa no
+      // tailwind.config; escrever `text-[color:var(--semantic-x)]` significa
+      // que falta um mapeamento lá — a saída é adicioná-lo, não contornar.
+      // Escopo deliberadamente estreito: pega só `[...var(--semantic|primitives)]`
+      // e hex cru em classe, deixando passar os arbitrary de dimensão e o
+      // `var()` dentro de gradiente/color-mix em style inline, que são legítimos.
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: 'Literal[value=/\\[(color:)?var\\(--(semantic|primitives)/]',
+          message: 'Cor em arbitrary value: use a classe nativa do tailwind.config (e adicione o token lá se faltar).',
+        },
+        {
+          selector: 'TemplateElement[value.raw=/\\[(color:)?var\\(--(semantic|primitives)/]',
+          message: 'Cor em arbitrary value: use a classe nativa do tailwind.config (e adicione o token lá se faltar).',
+        },
+        {
+          selector: 'Literal[value=/-\\[#[0-9a-fA-F]{3,8}\\]/]',
+          message: 'Hex cru em classe: cor nova entra como primitiva no index.css e sai como token semântico.',
+        },
+        {
+          selector: 'TemplateElement[value.raw=/-\\[#[0-9a-fA-F]{3,8}\\]/]',
+          message: 'Hex cru em classe: cor nova entra como primitiva no index.css e sai como token semântico.',
+        },
+      ],
     },
   },
   {

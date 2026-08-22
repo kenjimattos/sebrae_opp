@@ -141,6 +141,9 @@
   --semantic-button-label-secondary: var(--primitives-black);
   --semantic-button-tertiary: var(--primitives-lime-300);
   --semantic-button-label-tertiary: var(--primitives-black);
+  /* Acompanha o verde, não o tema: o success é escuro no claro e claro no
+     escuro, então o label tem de inverter junto. */
+  --semantic-button-label-success: var(--primitives-white);
 
   /* Status */
   --semantic-success: var(--primitives-green-700);
@@ -199,6 +202,7 @@
   --semantic-button-label-secondary: var(--primitives-white);
   --semantic-button-tertiary: var(--primitives-gray-600);
   --semantic-button-label-tertiary: var(--primitives-white);
+  --semantic-button-label-success: var(--primitives-black);
 
   /* As surfaces de status derivam da própria cor de status tingindo a
      superfície: muda o status, o tinte acompanha. Os pasteis do light

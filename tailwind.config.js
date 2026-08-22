@@ -38,6 +38,7 @@ export default {
         'surface-tertiary':  'var(--semantic-surface-tertiary)',
         'accent':            'var(--semantic-accent)',
         'accent-hover':      'var(--semantic-accent-hover)',
+        'success':           'var(--semantic-success)',
         'accent-surface':    'var(--semantic-accent-surface)',
         'background':        'var(--semantic-background)',
         'success-surface':   'var(--semantic-success-surface)',
@@ -66,6 +67,7 @@ export default {
         'button-label-primary':    'var(--semantic-button-label-primary)',
         'button-label-secondary':  'var(--semantic-button-label-secondary)',
         'button-label-tertiary':   'var(--semantic-button-label-tertiary)',
+        'button-label-success':    'var(--semantic-button-label-success)',
       },
       container: {
         center: true,
