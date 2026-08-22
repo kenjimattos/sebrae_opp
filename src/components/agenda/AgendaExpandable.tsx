@@ -37,9 +37,9 @@ export default function AgendaExpandable({
   const header = (
     <section
       aria-expanded={expanded}
-      className={`flex text-left border border-white justify-between gap-md items-center p-sm ${statusStyles[status].glow}`}
+      className={`flex text-left border border-text-primary justify-between gap-md items-center p-sm ${statusStyles[status].glow}`}
     >
-      <p className={`typo-title-sm uppercase text-white${clampTitle ? ' line-clamp-2 min-h-[2lh]' : ''}`}>
+      <p className={`typo-title-sm uppercase text-primary${clampTitle ? ' line-clamp-2 min-h-[2lh]' : ''}`}>
         {title}
       </p>
 
@@ -54,7 +54,7 @@ export default function AgendaExpandable({
   )
 
   const body = children && (
-    <div className={`border border-white p-sm${fill ? ' flex-1 min-h-0' : ''}`}>
+    <div className={`border border-text-primary p-sm${fill ? ' flex-1 min-h-0' : ''}`}>
       {children}
     </div>
   )
