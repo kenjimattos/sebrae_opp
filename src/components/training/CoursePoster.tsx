@@ -17,7 +17,6 @@ interface CoursePosterProps {
   /** Fração 0..1 da carga frente ao curso mais pesado da trilha. */
   load: number
   highlighted?: boolean
-  scrollMarginTop?: number
   className?: string
 }
 
@@ -28,15 +27,11 @@ export default function CoursePoster({
   href,
   load,
   highlighted = false,
-  scrollMarginTop,
   className = '',
 }: CoursePosterProps) {
   const hours = parseHours(duration)
   const ring = highlighted ? 'outline outline-2 outline-accent outline-offset-[3px]' : ''
-  const style = {
-    '--load': load,
-    ...(scrollMarginTop !== undefined ? { scrollMarginTop } : {}),
-  } as React.CSSProperties
+  const style = { '--load': load } as React.CSSProperties
 
   const face = (
     <>
