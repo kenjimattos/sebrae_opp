@@ -4,8 +4,8 @@
 // A SideNav troca o pilar ativo. Cada pilar declara seus modos no registry abaixo;
 // o ModeToggle fica travado no topo (header + toggle = chrome fixo) e só o modo
 // ativo recebe flex-1 para distribuir seus elementos no espaço restante.
-// A linha usa items-start (em vez do stretch default) para o sticky da SideNav
-// valer: com stretch o item cresce até a altura da linha e nunca "descola".
+// A SideNav vive numa coluna que estica até o fim da linha e é sticky dentro
+// dela: flutua durante o scroll e para com a base no fim da seção.
 
 import { useState, type ComponentType } from 'react'
 import SectionHeader from '@/components/ui/SectionHeader'
@@ -68,11 +68,18 @@ export default function SectionJornada() {
   return (
     <section className="section-container">
       <div className="flex gap-lg flex-1 w-full items-start">
-        <SideNav
-          activeId={activeId}
-          onSelect={handleSelect}
-          className="w-[21%] shrink-0 h-[83dvh] sticky top-md z-10"
-        />
+        {/* Coluna fantasma: estica (self-stretch) até o fim da linha — ou seja,
+            até o fim da seção. É ela que dá o limite do sticky, então a base da
+            SideNav encosta exatamente no fim da seção quando o scroll chega lá.
+            O painel flutua a 83dvh, mas nunca passa da altura da coluna (max-h-full),
+            então em pilares curtos ele fica rente ao fim da seção desde o início. */}
+        <div className="w-[21%] shrink-0 self-stretch flex">
+          <SideNav
+            activeId={activeId}
+            onSelect={handleSelect}
+            className="sticky top-md z-10 w-full h-[83dvh] max-h-full"
+          />
+        </div>
         <div className="flex flex-col gap-md flex-1 min-w-0">
           <SectionHeader
             title={activeJornada.title}
