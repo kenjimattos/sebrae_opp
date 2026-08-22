@@ -1,7 +1,7 @@
 // Tailwind pure — no Figma equivalent
 // Bullet numérico circular para listas ordenadas / outlines / resumos.
 // Variantes compõem bg + cor de texto; o número é renderizado com `.typo-body-sm-bold`
-// (secondary herda a cor padrão da classe; primary sobrescreve para branco).
+// (secondary herda a cor padrão da classe; primary sobrescreve para on-accent).
 
 type NumberBulletVariant = 'primary' | 'secondary'
 type NumberBulletSize = 'sm' | 'md'
@@ -19,9 +19,9 @@ const sizeClass: Record<NumberBulletSize, string> = {
 }
 
 const variantClass: Record<NumberBulletVariant, string> = {
-  // Fundo accent (azul) + número branco — usado para destaque / passos ativos
-  primary:
-    'bg-accent text-[color:var(--semantic-text-secondary)]',
+  // Fundo accent + número na cor que o accent pede (branco no light, preto no
+  // dark) — usado para destaque / passos ativos
+  primary: 'bg-accent text-on-accent',
   // Fundo cinza claro — número herda text-primary da classe typo
   secondary: 'bg-surface-secondary',
 }

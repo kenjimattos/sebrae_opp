@@ -16,8 +16,14 @@ export default {
         'gutter': 'var(--spacing-gutter)', // 180px
       },
       borderColor: {
-        'surface': 'var(--semantic-surface-primary)',
-        'accent':  'var(--semantic-accent)',
+        'surface':           'var(--semantic-surface-primary)',
+        'surface-secondary': 'var(--semantic-surface-secondary)',
+        'surface-tertiary':  'var(--semantic-surface-tertiary)',
+        'accent':            'var(--semantic-accent)',
+        'text-primary':      'var(--semantic-text-primary)',
+        'success':           'var(--semantic-success)',
+        'warning':           'var(--semantic-warning)',
+        'alert':             'var(--semantic-alert)',
       },
       borderRadius: {
         'sm':   'var(--radius-sm)',   // 12px
@@ -29,15 +35,37 @@ export default {
       backgroundColor: {
         'surface':           'var(--semantic-surface-primary)',
         'surface-secondary': 'var(--semantic-surface-secondary)',
+        'surface-tertiary':  'var(--semantic-surface-tertiary)',
         'accent':            'var(--semantic-accent)',
+        'accent-hover':      'var(--semantic-accent-hover)',
+        'accent-surface':    'var(--semantic-accent-surface)',
         'background':        'var(--semantic-background)',
+        'success-surface':   'var(--semantic-success-surface)',
+        'warning-surface':   'var(--semantic-warning-surface)',
+        'alert-surface':     'var(--semantic-alert-surface)',
+        'button-primary':    'var(--semantic-button-primary)',
+        'button-secondary':  'var(--semantic-button-secondary)',
+        'button-tertiary':   'var(--semantic-button-tertiary)',
+        // Pares de label expostos como fundo: o PillButton inverte
+        // deliberadamente bg/texto no círculo da seta.
+        'button-label-primary':   'var(--semantic-button-label-primary)',
+        'button-label-secondary': 'var(--semantic-button-label-secondary)',
       },
       outlineColor: {
         'accent': 'var(--semantic-accent)',
       },
       textColor: {
-        'inactive': 'var(--semantic-text-inactive)',
-        'accent':   'var(--semantic-accent)',
+        'primary':   'var(--semantic-text-primary)',
+        'on-accent': 'var(--semantic-text-on-accent)',
+        'inactive':  'var(--semantic-text-inactive)',
+        'accent':    'var(--semantic-accent)',
+        'success':   'var(--semantic-success)',
+        'warning':   'var(--semantic-warning)',
+        'alert':     'var(--semantic-alert)',
+        'button-primary':          'var(--semantic-button-primary)',
+        'button-label-primary':    'var(--semantic-button-label-primary)',
+        'button-label-secondary':  'var(--semantic-button-label-secondary)',
+        'button-label-tertiary':   'var(--semantic-button-label-tertiary)',
       },
       container: {
         center: true,
