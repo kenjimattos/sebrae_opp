@@ -47,37 +47,6 @@ export const sectionContent = {
         'Acesse ferramentas para te apoiar na formulação de projetos de políticas públicas para transformação do ambiente de negócios local.',
     },
   ],
-  agendas: {
-    title: 'Veja como está o <highlight>Ambiente de Negócios</highlight> do seu município',
-    statsLabel:
-      'indicadores alinhados às agendas estratégicas ' +
-      'para melhorar o ambiente de negócios do seu município',
-  },
-  panorama: {
-    title: 'Como está o Ambiente de Negócios no Estado?',
-    description:
-      'Explore como está o Ambiente de Negócios do estado e a distribuição entre os municípios.',
-    labels: {
-      indicadorNoMapa: 'Indicador',
-      mediaEstadual: 'Média estadual',
-      maior: 'Maior valor do estado',
-    },
-  },
-  economicBase: {
-    title: 'Qual o panorâma sócioeconômico do município?',
-  },
-  risks: {
-    title: 'Onde estão os riscos estratégicos?',
-    description: 'Veja quais são os riscos para o município com base nas agendas estrtatégicas para um melhor ambiente de negócios'
-  },
-  resources: {
-    title: 'Onde acessar oportunidades de captação de recursos?',
-    description: 'Mapeamento de oportunidades abertas para captação de recursos para iniciativas de aprimoramento de Ambiente de Negócios local'
-  },
-  training: {
-    title: 'Habilidades para uma gestão pública inovadora',
-    description: 'Curadoria de cursos e conteúdos de aprimoramento para uma gestão pública cada vez mais inovadora.'
-  },
   caseStudies: {
     title: 'Inspire-se com casos de sucesso',
     description: 'Veja como outros municípios implementaram estratégias eficazes para melhorar seu ambiente de negócios.'

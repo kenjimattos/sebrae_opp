@@ -1,4 +1,4 @@
-import type { EmendaMunicipio, EmendaValores } from '@/types/emendas'
+import type { EmendaValores } from '@/types/emendas'
 
 /**
  * R$ abreviado em escala BR (bi/mi/mil). Os valores vão de milhares a bilhões no
@@ -31,14 +31,4 @@ export function formatReaisCheio(v: number | null | undefined): string {
 export function anosDe(valores: EmendaValores | null | undefined): string[] {
   if (!valores?.porAno) return []
   return Object.keys(valores.porAno).sort()
-}
-
-/**
- * Soma das duas esferas para o município. Existe para o resumo do estado, mas
- * a UI só deve exibir somando quando deixar claro que o estadual é estimativa —
- * ver `atribuicao` no contrato.
- */
-export function totalPago(m: EmendaMunicipio | null): number {
-  if (!m) return 0
-  return (m.federal?.pago ?? 0) + (m.estadual?.pago ?? 0)
 }

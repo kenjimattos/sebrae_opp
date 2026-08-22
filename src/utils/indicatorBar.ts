@@ -13,7 +13,7 @@ import type { IndicatorThreshold } from '@/types/indicators'
 // Converte "18,6h", "0,763", "44,73", "12.840", "R$ 185M" no número, assumindo
 // formato brasileiro (ponto = milhar, vírgula = decimal). Devolve null para
 // placeholders ("—", "N/D") ou quando não há número.
-export function parseIndicatorValue(raw: string | number | null | undefined): number | null {
+function parseIndicatorValue(raw: string | number | null | undefined): number | null {
   if (raw === null || raw === undefined) return null
   if (typeof raw === 'number') return Number.isFinite(raw) ? raw : null
   const s = String(raw).trim()

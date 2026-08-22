@@ -1,6 +1,6 @@
 // Conteúdo do AIAssistant por etapa (descrição + exemplos + ações).
 // v1: ações reais (ligadas ao LLM via useFormulatorAi) só em identificação,
-// justificativa e objetivos — as demais etapas são só conteúdo (actions: []).
+// justificativa e objetivos — as demais etapas são só conteúdo.
 
 import type { AIAssistantContent } from '@/components/formulator/AIAssistant'
 
