@@ -11,8 +11,9 @@ armadilhas** do projeto; o resto se lê no código. Prefira `grep` a suposição
 **Estado:** 1.2.0 em produção no servidor Sebrae a partir da `main`. Home = `SideNav` com 4 pilares (Ambiente de negócio, Mapeamento de
 recursos, Cursos e boas práticas, Formulador de projetos); cada pilar alterna modos
 via `ModeToggle`. **223 municípios da PB**, default Campina Grande (`2504009`).
-Rotas: `/` (Login), `/home`, `/trilhas`. Desktop 1440px. Dark mode por tokens,
-sem toggle na UI.
+Rotas: `/` (Login), `/home`, `/trilhas`. Desktop 1440px. **Tema claro e escuro**,
+com `ThemeToggle` no topo do `SideNav` (automático → claro → escuro; automático é
+o default e segue o sistema).
 
 > **Não há rota catch-all.** URL desconhecida renderiza tela em branco — inclusive
 > `/oportunidades` e `/comunidade`, que existiram e podem estar em links antigos.
@@ -44,8 +45,27 @@ Fastify + driver `mongodb` no `server/`.
 Tokens (`--spacing-*`, `--radius-*`, `--semantic-*`, `--primitives-*`…) estão em
 `src/index.css` e integrados ao `tailwind.config.js`.
 
+**A cor tem três camadas, na ordem:** `--primitives-*` (o único lugar do projeto com
+hex) → `--semantic-*` (o que a UI consome; só esta camada troca por tema) → classes do
+`tailwind.config.js`. Componente nunca lê primitiva direto, e primitiva sem consumidor
+não fica no arquivo.
+
 > **Regra:** usar as classes nativas, nunca arbitrary values. `gap-md`, não
 > `gap-[var(--spacing-md)]`. `rounded-sm`, não `rounded-[var(--radius-sm)]`.
+> Para cor isso é **erro de lint** (`no-restricted-syntax` no `eslint.config.js`):
+> classe sem cobertura significa token faltando no `tailwind.config.js` — a saída é
+> adicioná-lo lá, não contornar. Seguem legítimos: arbitrary de dimensão (`w-[56px]`)
+> e `var()` dentro de gradiente/`color-mix` em `style` inline.
+
+Classes de cor disponíveis além das óbvias: `bg-background|surface-tertiary|accent-hover|
+accent-surface|{success,warning,alert}-surface|button-*`, `text-primary|on-accent|
+{success,warning,alert}|button-label-*`, `border-surface-secondary|surface-tertiary|
+text-primary|{success,warning,alert}`.
+
+> **Label sobre fundo colorido acompanha a cor, não o tema.** `--semantic-text-on-accent`
+> e `--semantic-button-label-success` invertem entre claro e escuro porque o fundo deles
+> inverte (azul escuro ↔ lime claro; verde escuro ↔ verde claro). Escrever `text-white`
+> ali dá 1,7:1 num dos temas — já aconteceu duas vezes (`NumberBullet`, botão `success`).
 
 Classes compostas declaradas em `@layer components` (não são geradas pelo Tailwind —
 consultar `index.css` antes de inventar equivalente):
@@ -56,7 +76,7 @@ consultar `index.css` antes de inventar equivalente):
 .typo-button-lg|button|button-sm (+ variantes -secondary-)
 .card-surface(-secondary) · .card-hoverable · .flex-center|between|col-start
 .grid-2..5 · .status-{success,warning,alert,neutral}-{bg,dot} · .glass(-bevel)
-.divider · .scrollbar-hide · .section-container · .typewriter-caret
+.divider · .scrollbar-hide · .section-container · .typewriter-caret · .journey-cue-chevron
 .risk-card* (Riscos) · .catalog*, .poster* (/trilhas)
 ```
 
@@ -170,9 +190,16 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   Fonte de verdade das 10 etapas: `src/data/formulator/steps.ts`.
 - **Modo Riscos** (`ModeRisks`) não tem dados estáticos: deriva dos indicadores em
   `alert`/`warning` do município (`src/utils/risks.ts`).
-- **Token novo no `:root` precisa entrar no `.dark` também.** `--semantic-accent-hover`
-  ficou de fora da passada do dark e caía silenciosamente no azul do light mode; só não
-  virou incidente porque tinha um consumidor só. Não há erro — a var só resolve errado.
+- **Token novo no `:root` precisa entrar no `.dark` também.** Sem par, ele herda o valor
+  do tema claro em silêncio — não há erro de CSS, a var só resolve errado. Já mordeu três
+  vezes: `--semantic-accent-hover` (azul no hover do FAB lime), as três surfaces de status
+  (pasteis claros sobre o navy) e `--semantic-text-secondary` (1,7:1 no `NumberBullet`).
+  Hoje os dois blocos são espelho um do outro, na mesma ordem: a paridade se confere por
+  diff, e é assim que se confere — nenhum teste pega isso.
+- **O tema claro é novo e menos rodado que o escuro.** Até esta versão a aplicação era
+  escura por decreto e o `:root` nunca chegava à tela; mudança visual precisa ser olhada
+  nos dois temas pelo `ThemeToggle`. Os pares de contraste foram medidos uma vez (AA em
+  ambos), mas a calibragem fina do `.glass`/`.glass-bevel` no claro é recente.
 - **`/trilhas`:** catálogo de fileiras full-bleed. Duas coisas parecem enfeite e não são.
   (1) A última fileira tem `min-height` de uma viewport (`.catalog-row:last-child`):
   sem ela não há rolagem para a seção chegar ao topo, e a barra de eixos nunca marca o
@@ -191,6 +218,11 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   comentários os mencionavam. Ao caçar código morto, procurar `import`, não o nome. E o
   escopo da busca precisa incluir **`api/`**: o handler serverless importa de `src/`
   (ex.: `AI_FIELD_IDS`), então varrer só `src/` produz falso positivo perigoso.
+- **Varredura por `.tsx` esquece os `.ts` — e é neles que mora o design system.** A
+  migração dos arbitrary values de cor deu-se por concluída com um grep em `--include='*.tsx'`;
+  quem tinha o pior caso era `button-styles.ts`, a fonte de estilo de toda a família
+  `Button`/`Chip`/`IconButton`. Só apareceu quando a regra de lint rodou. Ao varrer
+  estilo, incluir `.ts`.
 
 ---
 

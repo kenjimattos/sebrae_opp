@@ -203,8 +203,18 @@ database/                     # ETL lake → OPP: seeds MongoDB, geradores Pytho
 
 Tokens extraídos das Figma Variables (Colors, Typography, Spacing), declarados em
 `src/index.css` e integrados ao `tailwind.config.js` — usar as classes nativas
-(`gap-md`, `rounded-sm`), nunca arbitrary values. Dark mode por tokens, sem toggle na UI;
-token novo no `:root` **precisa** entrar no `.dark` também. Desktop 1440px.
+(`gap-md`, `rounded-sm`, `text-primary`), nunca arbitrary values. Cor em arbitrary
+value é **erro de lint**.
+
+A cor tem três camadas: primitivas (`--primitives-*`, único lugar com hex),
+semânticos (`--semantic-*`, o que os componentes consomem) e as classes do
+`tailwind.config.js`. Componente nunca lê primitiva direto.
+
+**Tema claro e escuro**, alternados pelo `ThemeToggle` no topo do `SideNav`:
+automático (segue o sistema, é o default) → claro → escuro. O tema mora inteiramente
+no CSS — nenhum componente tem variante `dark:`; `useTheme` só liga a classe `dark`
+no `<html>`. Token novo no `:root` **precisa** entrar no `.dark` também: sem par ele
+herda o valor do claro em silêncio, e não há erro que denuncie. Desktop 1440px.
 
 ## Deploy (produção, branch `main`)
 
