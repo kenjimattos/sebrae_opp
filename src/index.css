@@ -583,7 +583,7 @@
 }
 
 body {
-  font-family: var(--font);
+  font-family: var(--font-body);
   font-size: var(--font-size-body);
   color: var(--semantic-text-primary);
   background-color: var(--semantic-background);
