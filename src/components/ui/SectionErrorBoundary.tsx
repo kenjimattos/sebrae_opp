@@ -43,7 +43,7 @@ export default class SectionErrorBoundary extends Component<
       >
         <TriangleAlert
           size={iconSizes.lg}
-          className="text-[color:var(--semantic-alert)]"
+          className="text-alert"
           aria-hidden
         />
         <p className="typo-body-bold">Não foi possível carregar esta seção</p>
