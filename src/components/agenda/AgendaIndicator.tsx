@@ -47,7 +47,7 @@ export default function AgendaIndicator({
         <span className="flex-1 typo-body-bold">{label}</span>
       )}
       <div className="flex-col-start items-center gap-xs">
-        <span className="typo-body-lg-bold text-white" >
+        <span className="typo-body-lg-bold text-primary" >
           {value}
         </span>
         <IndicatorBar status={status} value={value} threshold={threshold} segmentLabels={labels} />

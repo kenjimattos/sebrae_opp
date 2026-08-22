@@ -31,7 +31,7 @@ export default function AgendaCard({
           {title}
         </p>
 
-        <div className="border border-white flex flex-col p-sm w-full">
+        <div className="border border-text-primary flex flex-col p-sm w-full">
           {indicators.map((ind, i) => (
             <div key={ind.id ?? ind.label} className="flex flex-col">
               <AgendaIndicator
