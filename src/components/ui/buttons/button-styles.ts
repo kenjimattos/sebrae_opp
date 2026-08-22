@@ -35,4 +35,4 @@ export const buttonSizeStyles: Record<'sm' | 'md' | 'lg', ButtonSizeStyle> = {
 export type ButtonSize = keyof typeof buttonSizeStyles
 
 export const buttonBaseClass =
-  'hover:scale-[1.02] shrink-0 inline-flex items-center justify-center cursor-pointer transition-all duration-150 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none'
+  'hover:scale-[1.02] shrink-0 inline-flex items-center justify-center cursor-pointer transition-all duration-150 active:scale-[0.98] outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none'
