@@ -71,13 +71,17 @@ export default function SectionJornada() {
         {/* Coluna fantasma: estica (self-stretch) até o fim da linha — ou seja,
             até o fim da seção. É ela que dá o limite do sticky, então a base da
             SideNav encosta exatamente no fim da seção quando o scroll chega lá.
-            O painel flutua a 83dvh, mas nunca passa da altura da coluna (max-h-full),
-            então em pilares curtos ele fica rente ao fim da seção desde o início. */}
+            A altura é a viewport menos a MESMA calha de spacing-md em cima
+            (top-md) e embaixo (o padding-block da .section-container): no fim do
+            scroll a base da coluna da direita cai justamente onde a base da
+            SideNav está pinada, e as duas se encontram sem folga.
+            max-h-full cobre o caso oposto — pilar mais curto que a viewport,
+            em que o painel encolhe até a altura da seção. */}
         <div className="w-[21%] shrink-0 self-stretch flex">
           <SideNav
             activeId={activeId}
             onSelect={handleSelect}
-            className="sticky top-md z-10 w-full h-[83dvh] max-h-full"
+            className="sticky top-md z-10 w-full h-[calc(100dvh_-_var(--spacing-md)_*_2)] max-h-full"
           />
         </div>
         <div className="flex flex-col gap-md flex-1 min-w-0">
