@@ -79,66 +79,61 @@
   --radius-full: 6rem; /* 96px */
 
   /* ============ COLORS — PRIMITIVES ============ */
+  /* Primitivas são globais: valem nos dois temas. Só a camada semântica troca
+     por modo. Manter aqui apenas o que tem consumidor — primitiva sem leitor
+     é peso morto que finge fazer parte da paleta. */
   --primitives-white: white;
   --primitives-black: theme('colors.slate.900');
 
   --primitives-gray-100: theme('colors.slate.100');
   --primitives-gray-200: theme('colors.slate.200');
-  --primitives-gray-300: theme('colors.slate.300');
-  --primitives-gray-400: theme('colors.slate.400');
   --primitives-gray-500: theme('colors.slate.500');
   --primitives-gray-600: theme('colors.slate.600');
-  --primitives-gray-700: theme('colors.slate.700');
   --primitives-gray-800: theme('colors.slate.800');
-  --primitives-gray-900: theme('colors.slate.900');
 
   --primitives-blue-100: theme('colors.blue.100');
-  --primitives-blue-200: theme('colors.blue.200');
-  --primitives-blue-500: theme('colors.blue.600');
+  --primitives-blue-600: theme('colors.blue.600');
   --primitives-blue-800: theme('colors.blue.800');
-  --primitives-blue-900: theme('colors.blue.900');
 
   --primitives-green-100: theme('colors.green.100');
-  --primitives-green-200: theme('colors.green.200');
   --primitives-green-700: theme('colors.green.700');
-  --primitives-green-800: theme('colors.green.800');
-  --primitives-green-900: theme('colors.green.900');
 
   --primitives-yellow-100: theme('colors.yellow.100');
-  --primitives-yellow-200: theme('colors.yellow.200');
   --primitives-yellow-700: theme('colors.yellow.700');
-  --primitives-yellow-800: theme('colors.yellow.800');
-  --primitives-yellow-900: theme('colors.yellow.900');
 
   --primitives-red-100: theme('colors.red.100');
-  --primitives-red-200: theme('colors.red.200');
   --primitives-red-700: theme('colors.red.700');
-  --primitives-red-800: theme('colors.red.800');
-  --primitives-red-900: theme('colors.red.900');
 
-  --primitives-lime-100: theme('colors.lime.100');
-  --primitives-lime-200: theme('colors.lime.200');
   --primitives-lime-300: theme('colors.lime.300');
   --primitives-lime-500: theme('colors.lime.500');
-  --primitives-lime-600: theme('colors.lime.600');
+
+  /* Marca do tema escuro. Não saem da paleta do Tailwind: são as cores do
+     Figma, e por isso ficam em hex aqui — este é o único lugar do projeto
+     onde hex é legítimo. O resto da cadeia referencia estes nomes. */
+  --primitives-navy-900: #161726;
+  --primitives-navy-800: #1A1C31;
+  --primitives-navy-600: #2C335D;
+  --primitives-lime-400: #D4FE07;
+  --primitives-green-400: #40E629;
+  --primitives-yellow-400: #F5E421;
+  --primitives-red-400: #F14635;
 
   /* ============ COLORS — SEMANTIC (LIGHT MODE) ============ */
-  --semantic-main: var(--primitives-blue-500);
-  --semantic-secondary: var(--primitives-gray-200);
-  --semantic-tertiary: var(--primitives-lime-300);
-
+  /* Todo token daqui precisa de par no bloco .dark, salvo quando o valor é
+     deliberadamente igual nos dois temas. Ver a nota no topo do .dark. */
   --semantic-background: var(--primitives-gray-100);
   --semantic-surface-primary: var(--primitives-white);
   --semantic-surface-secondary: var(--primitives-blue-100);
   --semantic-surface-tertiary: var(--primitives-gray-500);
 
   --semantic-text-primary: var(--primitives-black);
-  --semantic-text-secondary: var(--primitives-white);
+  /* Texto sobre superfície accent — acompanha o accent, não o tema:
+     branco sobre o azul do light, preto sobre o lime do dark. */
+  --semantic-text-on-accent: var(--primitives-white);
   --semantic-text-inactive: var(--primitives-gray-600);
-  --semantic-info-text-info: var(--primitives-blue-500);
 
   /* Buttons */
-  --semantic-button-primary: var(--primitives-blue-500);
+  --semantic-button-primary: var(--primitives-blue-600);
   --semantic-button-label-primary: var(--primitives-white);
   --semantic-button-secondary: var(--primitives-blue-100);
   --semantic-button-label-secondary: var(--primitives-black);
@@ -154,37 +149,46 @@
   --semantic-alert-surface: var(--primitives-red-100);
 
   /* Accent — interactive states */
-  --semantic-accent: var(--primitives-blue-500);
+  --semantic-accent: var(--primitives-blue-600);
   --semantic-accent-hover: var(--primitives-blue-800);
   --semantic-accent-surface: var(--primitives-blue-100);
 }
 
 /* ============ DARK MODE ============ */
+/* Espelho completo do bloco semântico do :root — mesma ordem, mesmos nomes.
+   Token que aparece lá e não aqui herda silenciosamente o valor do light e
+   vaza (já aconteceu com --semantic-accent-hover e com as surfaces de status);
+   não há erro de CSS que denuncie, então a paridade se audita por diff. */
 .dark {
-  --semantic-background: #161726;
-  --semantic-surface-primary: #1A1C31;
-  --semantic-surface-secondary: #2C335D;
-  --semantic-surface-tertiary: theme(colors.slate.800);
+  --semantic-background: var(--primitives-navy-900);
+  --semantic-surface-primary: var(--primitives-navy-800);
+  --semantic-surface-secondary: var(--primitives-navy-600);
+  --semantic-surface-tertiary: var(--primitives-gray-800);
 
   --semantic-text-primary: var(--primitives-white);
-  --semantic-text-inactive: theme(colors.slate.500);
+  --semantic-text-on-accent: var(--primitives-black);
+  --semantic-text-inactive: var(--primitives-gray-500);
 
-  --semantic-button-primary:  #D4FE07;
+  --semantic-button-primary: var(--primitives-lime-400);
   --semantic-button-label-primary: var(--primitives-black);
   --semantic-button-secondary: var(--semantic-background);
   --semantic-button-label-secondary: var(--primitives-white);
   --semantic-button-tertiary: var(--primitives-gray-600);
   --semantic-button-label-tertiary: var(--primitives-white);
 
-  --semantic-success: #40E629;
-  --semantic-warning: #F5E421;
-  --semantic-alert: #F14635;
+  /* As surfaces de status derivam da própria cor de status tingindo a
+     superfície: muda o status, o tinte acompanha. Os pasteis do light
+     (*-100) aqui eram manchas claras sobre o navy. */
+  --semantic-success: var(--primitives-green-400);
+  --semantic-success-surface: color-mix(in srgb, var(--primitives-green-400) 16%, var(--primitives-navy-800));
+  --semantic-warning: var(--primitives-yellow-400);
+  --semantic-warning-surface: color-mix(in srgb, var(--primitives-yellow-400) 16%, var(--primitives-navy-800));
+  --semantic-alert: var(--primitives-red-400);
+  --semantic-alert-surface: color-mix(in srgb, var(--primitives-red-400) 16%, var(--primitives-navy-800));
 
-  --semantic-accent: #D4FE07;
-  --semantic-accent-surface: var(--primitives-blue-100);
-  /* Faltava na passada do dark: sem esta linha o hover caía no blue-800 do
-     :root, e o único consumidor (o FAB do chat) ficava azul ao passar o mouse. */
+  --semantic-accent: var(--primitives-lime-400);
   --semantic-accent-hover: var(--primitives-lime-500);
+  --semantic-accent-surface: color-mix(in srgb, var(--primitives-lime-400) 18%, var(--primitives-navy-800));
 }
 
 /* ============ TYPOGRAPHY — COMPOSITE CLASSES ============ */
