@@ -10,7 +10,7 @@ interface SectionHeaderProps {
 export default function SectionHeader({ title, description, className = '' }: SectionHeaderProps) {
     return (
     <div className={`flex items-center gap-xl ${className}`}>
-      <h1 className={`typo-h1 w-full text-right`}>
+      <h1 className="typo-h1 w-full text-right">
         {title}
       </h1>
       <div className="flex-col flex w-full items-start gap-md pt-2xs">

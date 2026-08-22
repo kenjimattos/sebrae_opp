@@ -4,7 +4,7 @@
 
 import Button from '@/components/ui/buttons/Button'
 import { formulatorSteps } from '@/data/formulator/steps'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from '@/components/icons'
 
 interface FormCardProps {
   titulo: string

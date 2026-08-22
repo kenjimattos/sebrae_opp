@@ -4,7 +4,7 @@
 // descrição recolhido, indicadores expandido). Cantos retos, título em
 // Monoblock Bold 16px uppercase, glow conforme status.
 
-import { Minus, Plus } from "lucide-react"
+import { Minus, Plus } from '@/components/icons'
 import IconButton from '@/components/ui/buttons/IconButton'
 import type { StatusType } from '@/types/indicators'
 import { statusStyles } from '@/utils/statusStyles'
@@ -47,7 +47,7 @@ export default function AgendaExpandable({
         variant="tertiary"
         size="sm"
         icon={expanded ? Minus : Plus}
-        aria-label={expanded ? "Recolher" : "Expandir"}
+        aria-label={expanded ? 'Recolher' : 'Expandir'}
         onClick={onToggle}
       />
     </section>
