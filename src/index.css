@@ -128,8 +128,8 @@
   /* ============ COLORS — SEMANTIC (LIGHT MODE) ============ */
   /* Todo token daqui precisa de par no bloco .dark, salvo quando o valor é
      deliberadamente igual nos dois temas. Ver a nota no topo do .dark. */
-  --semantic-background: var(--primitives-gray-100);
-  --semantic-surface-primary: var(--primitives-white);
+  --semantic-background: var(--primitives-gray-200);
+  --semantic-surface-primary: var(--primitives-gray-100);
   --semantic-surface-secondary: var(--primitives-blue-100);
   --semantic-surface-tertiary: var(--primitives-gray-500);
 
@@ -160,16 +160,17 @@
   --semantic-alert: var(--primitives-red-700);
   --semantic-alert-surface: var(--primitives-red-100);
   /* Cor do halo dos cards de risco. Não é a mesma do status de propósito:
-     glow é dispositivo de fundo escuro (luz emitida); sobre branco, misturar o
-     amber escuro dá bege sujo — no claro o halo usa o pastel 300 do matiz. */
+     glow é dispositivo de fundo escuro (luz emitida); sobre fundo claro, misturar
+     o amber escuro dá bege sujo — no claro o halo usa o pastel 300 do matiz. */
   --semantic-warning-glow: var(--primitives-yellow-300);
   --semantic-alert-glow: var(--primitives-red-300);
   /* Farol (preenchimento gráfico: pontos, régua, barra de glow). Vivo nos DOIS
      temas — o pedido é o semáforo ler igual ao escuro. Texto continua no trio
      base, que guarda o contraste AA de cada tema. */
   --semantic-success-vivid: var(--primitives-green-400);
-  /* Única cor do farol que não vem literal do escuro: o neon #F5E421 sobre
-     branco é ~1,07:1 — invisível. O yellow-500 continua farol, mas existe. */
+  /* Única cor do farol que não vem literal do escuro: o neon #F5E421 sobre as
+     superfícies claras fica em ~1,2–1,3:1 — invisível. O yellow-500 continua
+     farol, mas existe. */
   --semantic-warning-vivid: var(--primitives-yellow-500);
   --semantic-alert-vivid: var(--primitives-red-400);
 
@@ -178,30 +179,36 @@
   --semantic-accent-hover: var(--primitives-blue-800);
   --semantic-accent-surface: var(--primitives-blue-100);
 
-  /* gray-200 sobre o gray-100 do background dá 1,13:1 — a linha simplesmente
-     não aparecia. gray-300 iguala o contraste que o divisor tem no escuro. */
+  /* O divisor vive dentro dos cards (superfície gray-100): gray-200 ali dá
+     1,13:1 e some; gray-300 dá ~1,36:1 — visível, mas mais fraco do que era
+     sobre branco (1,5:1). Se sumir, o próximo degrau é o gray-400 (2,3:1). */
   --semantic-divider: var(--primitives-gray-300);
 
   /* Glass (.glass / .glass-bevel). Tokens são cores completas de primitivas;
      quem precisa de transparência aplica o próprio alpha por color-mix no uso
      (o idioma antigo, rgb(var() / a), exigia canais RGB soltos — cor crua fora
-     da camada de primitivas). O traço de 1px é quem define a aresta no claro;
-     o brilho interno é branco (limpo) e a sombra interna usa o gray-400 —
-     escura o bastante para modelar, clara o bastante para não ler como painel
-     sujo, inclusive quando o hover a intensifica. */
+     da camada de primitivas).
+     No claro a luz entra pelo TOPO-ESQUERDA, ao contrário do escuro: por isso
+     o token `shade` (inset do topo-esquerda) recebe branco e o `edge` (inset do
+     inferior-direita) recebe o gray-500 — os nomes seguem a geometria do
+     escuro, onde foram criados. O traço de 1px (gray-600) é quem define a
+     aresta; a sombra fica clara o bastante para não ler como painel sujo,
+     inclusive quando o hover a intensifica. */
   --semantic-glass-tint: color-mix(in srgb, var(--primitives-white) 55%, transparent);
-  --semantic-glass-stroke: var(--primitives-gray-500);
-  --semantic-glass-edge: var(--primitives-white);
-  --semantic-glass-shade: var(--primitives-gray-400);
+  --semantic-glass-stroke: var(--primitives-gray-600);
+  --semantic-glass-edge: var(--primitives-gray-500);
+  --semantic-glass-shade: var(--primitives-white);
   /* O gradiente do bevel é um valor composto guardado inteiro no token: são
      cinco paradas, e espalhá-las em cinco variáveis não deixaria nada mais
-     legível. No claro desce de branco para um azul-acinzentado. */
+     legível. No claro desce de branco para um azul-acinzentado claro; a
+     parada final é mais opaca (0,75) para o pé do bevel não se dissolver no
+     fundo gray-200. */
   --semantic-glass-bevel: linear-gradient(135deg,
     rgba(255, 255, 255, 0.75) 0%,
     rgba(241, 245, 249, 0.6)  34%,
     rgba(226, 232, 240, 0.5)  68%,
     rgba(203, 213, 225, 0.45) 84%,
-    rgba(186, 199, 216, 0.45) 100%);
+    rgba(218, 226, 235, 0.75) 100%);
 }
 
 /* ============ DARK MODE ============ */
@@ -340,7 +347,8 @@
     /* Aproximação do efeito Glass nativo do Figma (lightAngle -45°, depth 20):
        bevel diagonal simétrico — inner shadow escura entrando no topo-esquerda
        e glow branco refratado saindo no inferior-direita (mesmo blur/spread,
-       sinais opostos). CSS não tem refração real. */
+       sinais opostos). CSS não tem refração real. Essa é a geometria do
+       escuro; no claro os tokens shade/edge invertem a luz de lado. */
     box-shadow:
       inset 7px 7px 14px -10px color-mix(in srgb, var(--semantic-glass-shade) 22%, transparent),
       inset -7px -7px 14px -10px color-mix(in srgb, var(--semantic-glass-edge) 20%, transparent);
