@@ -78,7 +78,7 @@ export default function ModeEixos() {
                 ref={(el) => {
                   cardRefs.current[index] = el
                 }}
-                className="flex flex-col"
+                className="flex flex-col bg-surface"
               >
                 <AgendaIndicatorItem
                   title={agenda.name}
