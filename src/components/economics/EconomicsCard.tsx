@@ -28,7 +28,7 @@ export default function EconomicBaseCard({ id, label, value, variation, referenc
 
   return (
     <main
-      className={`flex flex-col border p-sm justify-between gap-sm ${className}`}
+      className={`flex flex-col p-sm justify-between gap-sm ${className}`}
     >
         <span className="typo-body-sm uppercase mt-xs">
           {label}
