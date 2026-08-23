@@ -182,17 +182,17 @@
      não aparecia. gray-300 iguala o contraste que o divisor tem no escuro. */
   --semantic-divider: var(--primitives-gray-300);
 
-  /* Glass (.glass / .glass-bevel). O tinte é cor completa com alpha; o brilho
-     e a sombra do bevel são canais RGB soltos, porque cada uso aplica o seu
-     próprio alpha — rgb(var(--semantic-glass-edge) / 0.28). */
-  --semantic-glass-tint: rgba(255, 255, 255, 0.55);
-  /* O traço de 1px é quem define a aresta no claro (canais do slate-500);
-     o brilho interno fica branco (limpo) e a sombra interna usa canais do
-     slate-400 — escura o bastante para modelar, clara o bastante para não
-     ler como painel sujo, inclusive quando o hover a intensifica. */
-  --semantic-glass-stroke: 100 116 139;
-  --semantic-glass-edge: 255 255 255;
-  --semantic-glass-shade: 148 163 184;
+  /* Glass (.glass / .glass-bevel). Tokens são cores completas de primitivas;
+     quem precisa de transparência aplica o próprio alpha por color-mix no uso
+     (o idioma antigo, rgb(var() / a), exigia canais RGB soltos — cor crua fora
+     da camada de primitivas). O traço de 1px é quem define a aresta no claro;
+     o brilho interno é branco (limpo) e a sombra interna usa o gray-400 —
+     escura o bastante para modelar, clara o bastante para não ler como painel
+     sujo, inclusive quando o hover a intensifica. */
+  --semantic-glass-tint: color-mix(in srgb, var(--primitives-white) 55%, transparent);
+  --semantic-glass-stroke: var(--primitives-gray-500);
+  --semantic-glass-edge: var(--primitives-white);
+  --semantic-glass-shade: var(--primitives-gray-400);
   /* O gradiente do bevel é um valor composto guardado inteiro no token: são
      cinco paradas, e espalhá-las em cinco variáveis não deixaria nada mais
      legível. No claro desce de branco para um azul-acinzentado. */
@@ -250,10 +250,10 @@
 
   --semantic-divider: var(--primitives-navy-600);
 
-  --semantic-glass-tint: rgba(22, 23, 38, 0.2);
-  --semantic-glass-stroke: 255 255 255;
-  --semantic-glass-edge: 255 255 255;
-  --semantic-glass-shade: 0 0 0;
+  --semantic-glass-tint: color-mix(in srgb, var(--primitives-navy-900) 20%, transparent);
+  --semantic-glass-stroke: var(--primitives-white);
+  --semantic-glass-edge: var(--primitives-white);
+  --semantic-glass-shade: var(--primitives-black);
   --semantic-glass-bevel: linear-gradient(135deg,
     rgba(117, 125, 184, 0.4) 0%,
     rgba(92, 99, 149, 0.4)  34%,
@@ -342,8 +342,8 @@
        e glow branco refratado saindo no inferior-direita (mesmo blur/spread,
        sinais opostos). CSS não tem refração real. */
     box-shadow:
-      inset 7px 7px 14px -10px rgb(var(--semantic-glass-shade) / 0.22),
-      inset -7px -7px 14px -10px rgb(var(--semantic-glass-edge) / 0.20);
+      inset 7px 7px 14px -10px color-mix(in srgb, var(--semantic-glass-shade) 22%, transparent),
+      inset -7px -7px 14px -10px color-mix(in srgb, var(--semantic-glass-edge) 20%, transparent);
     position: relative;
   }
   /* Stroke fino claro só na diagonal (topo-esquerda ↔ inferior-direita): gradiente
@@ -356,10 +356,10 @@
     border-radius: inherit;
     padding: 1px;
     background: linear-gradient(150deg,
-      rgb(var(--semantic-glass-stroke) / 0.28) 0%,
-      rgb(var(--semantic-glass-stroke) / 0) 38%,
-      rgb(var(--semantic-glass-stroke) / 0) 62%,
-      rgb(var(--semantic-glass-stroke) / 0.28) 100%);
+      color-mix(in srgb, var(--semantic-glass-stroke) 28%, transparent) 0%,
+      transparent 38%,
+      transparent 62%,
+      color-mix(in srgb, var(--semantic-glass-stroke) 28%, transparent) 100%);
     -webkit-mask:
       linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
@@ -380,8 +380,8 @@
   .glass-bevel:hover {
     /* Intensifica o bevel no hover, simulando o efeito de luz passando mais forte. */
     box-shadow:
-      inset 10px 10px 20px -10px rgb(var(--semantic-glass-shade) / 0.3),
-      inset -10px -10px 20px -10px rgb(var(--semantic-glass-edge) / 0.28);
+      inset 10px 10px 20px -10px color-mix(in srgb, var(--semantic-glass-shade) 30%, transparent),
+      inset -10px -10px 20px -10px color-mix(in srgb, var(--semantic-glass-edge) 28%, transparent);
   }
 
   /* ============ RISK CARD (Ambiente › Riscos estratégicos) ============ */
