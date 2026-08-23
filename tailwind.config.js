@@ -67,6 +67,7 @@ export default {
         'warning':   'var(--semantic-warning)',
         'alert':     'var(--semantic-alert)',
         'button-primary':          'var(--semantic-button-primary)',
+        'button-secondary':        'var(--semantic-button-secondary)',
         'button-label-primary':    'var(--semantic-button-label-primary)',
         'button-label-secondary':  'var(--semantic-button-label-secondary)',
         'button-label-tertiary':   'var(--semantic-button-label-tertiary)',
