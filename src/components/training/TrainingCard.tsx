@@ -22,7 +22,7 @@ export default function TrainingCard({ slug, title, description, courses, classN
 
   return (
     <div
-      className={`flex flex-col border p-md shrink-0 w-[40%] items-center justify-between gap-lg ${className}`}
+      className={`flex flex-col border bg-surface p-md shrink-0 w-[40%] items-center justify-between gap-lg ${className}`}
     >
       <div className="flex flex-col gap-md">
         <TitleSubtitle title={title} subtitle={description} size="sm" />
