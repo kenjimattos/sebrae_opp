@@ -15,6 +15,9 @@ export default {
         '3xl': 'var(--spacing-3xl)',     // 96px
         'gutter': 'var(--spacing-gutter)', // 180px
       },
+      borderWidth: {
+        DEFAULT: '0.5px',
+      },
       borderColor: {
         'surface':           'var(--semantic-surface-primary)',
         'surface-secondary': 'var(--semantic-surface-secondary)',

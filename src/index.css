@@ -354,7 +354,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    padding: 1px;
+    padding: 0.5px;
     background: linear-gradient(150deg,
       color-mix(in srgb, var(--semantic-glass-stroke) 28%, transparent) 0%,
       transparent 38%,
