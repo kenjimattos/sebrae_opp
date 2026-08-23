@@ -54,7 +54,7 @@ export default function AgendaExpandable({
   )
 
   const body = children && (
-    <div className={`border border-text-primary p-sm${fill ? ' flex-1 min-h-0' : ''}`}>
+    <div className={`border border-text-primary border-t-0 p-sm${fill ? ' flex-1 min-h-0' : ''}`}>
       {children}
     </div>
   )
