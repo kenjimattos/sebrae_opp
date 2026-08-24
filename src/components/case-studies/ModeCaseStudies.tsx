@@ -5,9 +5,6 @@ import { caseStudies } from '@/data/home/case-studies'
 import { sectionContent } from '@/data/home/sections'
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
 
-// CaseStudiesCard w-350 + gap-sm (12px)
-const SCROLL_AMOUNT = 350 + 12
-
 export default function ModeCaseStudies() {
   return (
     <>
@@ -18,7 +15,7 @@ export default function ModeCaseStudies() {
           subtitle={sectionContent.caseStudies.description}
         />
 
-        <Carousel scrollAmount={SCROLL_AMOUNT}>
+        <Carousel>
           {caseStudies.map((caseStudy) => (
             <CaseStudiesCard key={caseStudy.id} caseStudy={caseStudy} className="snap-start" />
           ))}
