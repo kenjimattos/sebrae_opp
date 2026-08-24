@@ -1,10 +1,15 @@
-// Carrossel horizontal com snap-scroll + setas laterais sobrepostas.
-// Usado em SectionCapacitacao e SectionCasosSucesso.
+// Carrossel horizontal com snap-scroll e o par de setas empilhado **abaixo**
+// do trilho, alinhado à direita. Consumido pelos dois modos do pilar "Cursos e
+// boas práticas" na Home: ModeTraining e ModeCaseStudies.
 //
-// Os botões ficam absolutamente posicionados nos gutters laterais da section
-// (dentro da faixa de 180px do --spacing-margin da SectionContainer), usando
-// `left/right: calc(-1 * var(--spacing-3xl))` (-96px) — deslocados para fora
-// do content box sem alargar o layout.
+// O passo de rolagem é fixo e vem do consumidor (`scrollAmount` = largura do
+// card + gap), porque aqui o card tem largura conhecida.
+//
+// Não confundir com o CatalogRow da /trilhas, que é outro componente: lá as
+// setas ficam sobrepostas às bordas do trilho, aparecem só na intenção,
+// desabilitam nas pontas e o passo é calculado a partir da largura visível.
+// Os dois compartilham só a ideia de `scrollBy({ behavior: 'smooth' })`; a
+// diferença de chrome é deliberada e está descrita no CatalogRow.
 
 import { useRef } from 'react'
 import { ArrowLeft, ArrowRight } from '@/components/icons'
