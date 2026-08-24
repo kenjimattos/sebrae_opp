@@ -23,11 +23,11 @@ import {
 } from '@/data/home/economic-base'
 import { Sparkles, iconSizes } from '@/components/icons'
 import Button from '@/components/ui/buttons/Button'
+import AiMessage from '@/components/ui/AiMessage'
 import { statusLabels } from '@/data/indicators/status-labels'
 import { thresholdSegmentLabels } from '@/utils/segmentLabels'
 import { useAiTask } from '@/hooks/useAiTask'
 import { useMunicipality } from '@/hooks/useMunicipality'
-import { useTypewriter } from '@/hooks/useTypewriter'
 
 interface EconomicBaseAnalysisProps {
   className?: string
@@ -154,8 +154,6 @@ function GeneratedState({
   onDone: () => void
   onRegenerar: () => void
 }) {
-  const { displayed } = useTypewriter({ text: analysis, enabled: isTyping, onDone })
-  const shown = isTyping ? displayed : analysis
   const busy = isTyping || loading
 
   return (
@@ -187,10 +185,7 @@ function GeneratedState({
           {errorMessage}
         </p>
       )}
-      <p className="typo-body" aria-live={isTyping ? 'polite' : undefined}>
-        {shown}
-        {isTyping && <span className="typewriter-caret" aria-hidden />}
-      </p>
+      <AiMessage text={analysis} isTyping={isTyping} onDone={onDone} icon={false} />
     </>
   )
 }
