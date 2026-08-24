@@ -1,10 +1,10 @@
 // Item da agenda que usa o shell AgendaExpandable. Recolhido mostra a descrição
-// (igual ao AgendaListItem); expandido troca pelas linhas de AgendaIndicator
-// (barra rainbow), separadas por divisor tracejado — mesmo tratamento do
-// AgendaCard flutuante.
+// (igual ao AgendaListItem); expandido troca pela AgendaIndicatorList — a mesma
+// que o AgendaCard flutuante renderiza, agora por compartilhamento e não por
+// cópia mantida à mão.
 
 import AgendaExpandable from '@/components/agenda/AgendaExpandable'
-import AgendaIndicator from '@/components/agenda/AgendaIndicator'
+import AgendaIndicatorList from '@/components/agenda/AgendaIndicatorList'
 import type { Indicator, StatusType } from '@/types/indicators'
 
 interface AgendaIndicatorItemProps {
@@ -34,24 +34,10 @@ export default function AgendaIndicatorItem({
       fill
     >
       {expanded ? (
-        <div className="flex flex-col">
-          {indicators.map((ind, i) => (
-            <div key={ind.id ?? ind.label} className="flex flex-col">
-              <AgendaIndicator
-                id={ind.id}
-                label={ind.label}
-                value={ind.value}
-                status={ind.status}
-                threshold={ind.threshold}
-                className={i < indicators.length - 1 ? 'pb-xs' : ''}
-              />
-
-              {i < indicators.length - 1 && (
-                <hr className="border-accent border-dashed pb-xs" />
-              )}
-            </div>
-          ))}
-        </div>
+        // Sem onIndicatorClick: no modo Eixos o label não abre o modal "IA",
+        // ao contrário do card flutuante. A divergência é anterior a esta
+        // extração e foi preservada como estava.
+        <AgendaIndicatorList indicators={indicators} />
       ) : (
         description && (
           // Reserva 4 linhas para a descrição recolhida → todos os cards fechados
