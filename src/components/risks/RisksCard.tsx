@@ -52,7 +52,7 @@ export default function RisksCard({
         '--risk-vivid': riskAccent[effectiveType].vivid,
         '--risk-glow': riskAccent[effectiveType].glow,
       } as CSSProperties}
-      className={`risk-card glass rounded-md p-lg flex flex-col gap-md h-full ${className}`}
+      className={`risk-card glass rounded-sm p-lg flex flex-col gap-md h-full ${className}`}
     >
       {/* Número-herói + régua tingida */}
       <div className="flex flex-col gap-sm">
