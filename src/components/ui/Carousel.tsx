@@ -2,8 +2,7 @@
 // do trilho, alinhado à direita. Consumido pelos dois modos do pilar "Cursos e
 // boas práticas" na Home: ModeTraining e ModeCaseStudies.
 //
-// O passo de rolagem é fixo e vem do consumidor (`scrollAmount` = largura do
-// card + gap), porque aqui o card tem largura conhecida.
+// O passo de rolagem é um card, medido em tempo de execução (ver `scroll`).
 //
 // Não confundir com o CatalogRow da /trilhas, que é outro componente: lá as
 // setas ficam sobrepostas às bordas do trilho, aparecem só na intenção,
@@ -17,17 +16,27 @@ import IconButton from '@/components/ui/buttons/IconButton'
 
 interface CarouselProps {
   children: React.ReactNode
-  scrollAmount: number
   className?: string
 }
 
-export default function Carousel({ children, scrollAmount, className = '' }: CarouselProps) {
+export default function Carousel({ children, className = '' }: CarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
 
+  // Um card por clique, medido na hora. O passo já foi uma constante por
+  // consumidor (`scrollAmount`), e as duas envelheceram em silêncio: diziam
+  // 480px e 350px de card enquanto os cards viraram w-[40%] e w-[32%] — na
+  // coluna do painel, 325px. O passo andava 1,46 card e o snap-mandatory
+  // corrigia para o mais próximo, então o avanço oscilava entre um e dois
+  // cards conforme a posição. Largura declarada não sobrevive a card fluido;
+  // medida, sim.
   const scroll = (direction: 'left' | 'right') => {
-    if (!scrollRef.current) return
-    scrollRef.current.scrollBy({
-      left: direction === 'left' ? -scrollAmount : scrollAmount,
+    const el = scrollRef.current
+    if (!el) return
+    const first = el.firstElementChild
+    const gap = parseFloat(getComputedStyle(el).columnGap) || 0
+    const step = first ? first.getBoundingClientRect().width + gap : el.clientWidth
+    el.scrollBy({
+      left: direction === 'left' ? -step : step,
       behavior: 'smooth',
     })
   }
