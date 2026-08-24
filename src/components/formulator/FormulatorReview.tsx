@@ -12,6 +12,7 @@ import { useFormulator } from '@/hooks/useFormulator'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import type { FormulatorState } from '@/types/formulator'
 import { isStepComplete } from '@/utils/formulatorCompleteness'
+import { budgetTotal, formatBRL } from '@/utils/currency'
 
 interface FormulatorReviewProps {
   onEdit: () => void
@@ -35,25 +36,6 @@ function parseLinesIntoBlocks(text: string): { label: string; value: string }[] 
       if (i === -1) return { label: '', value: line }
       return { label: line.slice(0, i).trim(), value: line.slice(i + 1).trim() }
     })
-}
-
-// Parsing/formatação BRL — espelha o que StepBudget faz pra preencher o
-// campo "Valor Total" calculado a partir das rubricas.
-function parseValue(valor: string): number {
-  const cleaned = valor
-    .replace(/[^\d,.-]/g, '')
-    .replace(/\./g, '')
-    .replace(',', '.')
-  const num = parseFloat(cleaned)
-  return Number.isFinite(num) ? num : 0
-}
-
-function formatBRL(value: number): string {
-  return value.toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-    minimumFractionDigits: 2,
-  })
 }
 
 function renderSection(
@@ -138,7 +120,7 @@ function renderSection(
     }
     case 'orcamento': {
       const d = state.budget
-      const total = d.items.reduce((acc, r) => acc + parseValue(r.value), 0)
+      const total = budgetTotal(d.items)
       const itemBlocks = d.items
         .filter((r) => r.label || r.value)
         .map((r) => ({ label: r.label || '—', value: r.value || '—' }))

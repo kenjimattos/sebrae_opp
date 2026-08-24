@@ -5,24 +5,7 @@ import { Plus, Sparkles } from '@/components/icons'
 import { useFormulator } from '@/hooks/useFormulator'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { useAiTask } from '@/hooks/useAiTask'
-
-function parseValue(valor: string): number {
-  // Aceita "1.000,50", "1000.50", "1000,50", "R$ 1.000,50" etc.
-  const cleaned = valor
-    .replace(/[^\d,.-]/g, '')
-    .replace(/\./g, '')
-    .replace(',', '.')
-  const num = parseFloat(cleaned)
-  return Number.isFinite(num) ? num : 0
-}
-
-function formatBRL(value: number): string {
-  return value.toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-    minimumFractionDigits: 2,
-  })
-}
+import { budgetTotal, formatBRL } from '@/utils/currency'
 
 export default function StepBudget() {
   const { state, setSlice } = useFormulator()
@@ -59,10 +42,7 @@ export default function StepBudget() {
     setShowUndo(false)
   }
 
-  const total = useMemo(
-    () => data.items.reduce((acc: number, r: { label: string; value: string }) => acc + parseValue(r.value), 0),
-    [data.items],
-  )
+  const total = useMemo(() => budgetTotal(data.items), [data.items])
 
   const setItem = (idx: number, patch: Partial<{ label: string; value: string }>) => {
     const items = data.items.map((r: { label: string; value: string }, i: number) => (i === idx ? { ...r, ...patch } : r))

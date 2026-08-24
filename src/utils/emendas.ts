@@ -1,4 +1,5 @@
 import type { EmendaValores } from '@/types/emendas'
+import { formatBRL } from '@/utils/currency'
 
 /**
  * R$ abreviado em escala BR (bi/mi/mil). Os valores vão de milhares a bilhões no
@@ -16,15 +17,14 @@ export function formatReaisCurto(v: number | null | undefined): string {
   return `R$ ${fmt(v, 0)}`
 }
 
-/** R$ por extenso, para tooltips e detalhamento onde a precisão importa. */
+/**
+ * R$ por extenso, para tooltips e detalhamento onde a precisão importa. Só
+ * acrescenta ao `formatBRL` o que é próprio das emendas: ausência de valor —
+ * que aqui é significativa (ver a regra do zero estadual em CLAUDE.md).
+ */
 export function formatReaisCheio(v: number | null | undefined): string {
   if (v === null || v === undefined || Number.isNaN(v)) return '—'
-  return v.toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  })
+  return formatBRL(v)
 }
 
 /** Anos presentes na quebra anual, em ordem crescente. */
