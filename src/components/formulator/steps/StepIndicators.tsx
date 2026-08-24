@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react'
 import TextInput from '@/components/ui/TextInput'
-import Button from '@/components/ui/buttons/Button'
-import { Sparkles } from '@/components/icons'
+import AiActionBar from '@/components/formulator/AiActionBar'
 import { useFormulator } from '@/hooks/useFormulator'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { useAiTask } from '@/hooks/useAiTask'
@@ -118,28 +117,18 @@ export default function StepIndicators() {
               )
             })}
           </div>
-          <div className="mt-2xs flex items-center gap-xs">
-            <Button
-              label={busyGroup === group.key ? 'Gerando…' : 'Gerar com IA'}
-              variant="secondary"
-              size="sm"
-              icon={Sparkles}
-              iconPosition="left"
-              disabled={ai.status === 'loading' || filledObjectives.length === 0}
-              onClick={() => void generateGroup(group.key)}
-            />
-            {undoableGroups[group.key] && (
-              <Button
-                label="Desfazer"
-                variant="ghost"
-                size="sm"
-                onClick={() => undoGroup(group.key)}
-              />
-            )}
-          </div>
-          {errorGroup === group.key && ai.status === 'error' && ai.errorMessage && (
-            <p className="typo-body-sm text-inactive">{ai.errorMessage}</p>
-          )}
+          <AiActionBar
+            label="Gerar com IA"
+            loading={busyGroup === group.key}
+            disabled={ai.status === 'loading' || filledObjectives.length === 0}
+            onGenerate={() => void generateGroup(group.key)}
+            onUndo={
+              undoableGroups[group.key] ? () => undoGroup(group.key) : undefined
+            }
+            errorMessage={
+              errorGroup === group.key && ai.status === 'error' ? ai.errorMessage : null
+            }
+          />
         </div>
       ))}
     </div>

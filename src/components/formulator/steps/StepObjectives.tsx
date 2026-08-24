@@ -1,12 +1,13 @@
-import { useRef, useState } from 'react'
 import TextInput from '@/components/ui/TextInput'
 import Button from '@/components/ui/buttons/Button'
 import IconButton from '@/components/ui/buttons/IconButton'
 import AiField from '@/components/formulator/AiField'
-import { Plus, Sparkles, Trash2 } from '@/components/icons'
+import AiActionBar from '@/components/formulator/AiActionBar'
+import { Plus, Trash2 } from '@/components/icons'
 import { useFormulator } from '@/hooks/useFormulator'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { useAiTask } from '@/hooks/useAiTask'
+import { useUndoable } from '@/hooks/useUndoable'
 
 export default function StepObjectives() {
   const { state, setSlice } = useFormulator()
@@ -15,8 +16,7 @@ export default function StepObjectives() {
 
   // Geração de objetivos específicos a partir do objetivo geral (IA).
   const specificAi = useAiTask()
-  const previousSpecific = useRef<string[] | null>(null)
-  const [showUndoSpecific, setShowUndoSpecific] = useState(false)
+  const undoableSpecific = useUndoable<string[]>()
 
   const setGeneral = (general: string) => setSlice('objectives', { ...data, general })
 
@@ -39,8 +39,7 @@ export default function StepObjectives() {
 
   async function generateSpecific() {
     if (specificAi.status === 'loading' || data.general.trim() === '') return
-    previousSpecific.current = data.specific
-    setShowUndoSpecific(false)
+    undoableSpecific.capture(data.specific)
     const result = await specificAi.run({
       task: 'generate-specific-objectives',
       general: data.general,
@@ -51,15 +50,13 @@ export default function StepObjectives() {
     // aqui: arrays de inputs não animam bem; a lista aparece preenchida.
     if (result?.items && result.items.length > 0) {
       setSlice('objectives', { ...data, specific: result.items })
-      setShowUndoSpecific(true)
+      undoableSpecific.arm()
     }
   }
 
   function undoSpecific() {
-    if (previousSpecific.current) {
-      setSlice('objectives', { ...data, specific: previousSpecific.current })
-    }
-    setShowUndoSpecific(false)
+    const previous = undoableSpecific.undo()
+    if (previous) setSlice('objectives', { ...data, specific: previous })
   }
 
   return (
@@ -104,7 +101,14 @@ export default function StepObjectives() {
             </div>
           ))}
         </div>
-        <div className="mt-xs flex items-center gap-xs">
+        <AiActionBar
+          label="Gerar objetivos específicos com IA"
+          loading={specificAi.status === 'loading'}
+          disabled={specificAi.status === 'loading' || data.general.trim() === ''}
+          onGenerate={() => void generateSpecific()}
+          onUndo={undoableSpecific.canUndo ? undoSpecific : undefined}
+          errorMessage={specificAi.status === 'error' ? specificAi.errorMessage : null}
+        >
           <Button
             label="Adicionar objetivo"
             variant="ghost"
@@ -113,22 +117,7 @@ export default function StepObjectives() {
             iconPosition="left"
             onClick={addSpecific}
           />
-          <Button
-            label={specificAi.status === 'loading' ? 'Gerando…' : 'Gerar objetivos específicos com IA'}
-            variant="secondary"
-            size="sm"
-            icon={Sparkles}
-            iconPosition="left"
-            disabled={specificAi.status === 'loading' || data.general.trim() === ''}
-            onClick={() => void generateSpecific()}
-          />
-          {showUndoSpecific && (
-            <Button label="Desfazer" variant="ghost" size="sm" onClick={undoSpecific} />
-          )}
-        </div>
-        {specificAi.status === 'error' && specificAi.errorMessage && (
-          <p className="typo-body-sm text-inactive">{specificAi.errorMessage}</p>
-        )}
+        </AiActionBar>
       </div>
     </div>
   )
