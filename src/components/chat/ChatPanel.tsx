@@ -8,6 +8,7 @@ import { createPortal } from 'react-dom'
 import type { AiChatMessage } from '@/types/ai'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { useAiTask } from '@/hooks/useAiTask'
+import { useDismiss } from '@/hooks/useDismiss'
 import TextInput from '@/components/ui/TextInput'
 import Button from '@/components/ui/buttons/Button'
 import IconButton from '@/components/ui/buttons/IconButton'
@@ -55,13 +56,10 @@ export default function ChatPanel({ onClose }: ChatPanelProps) {
       .join('; ')
   }, [municipality.data])
 
-  useEffect(() => {
-    function handleEscape(e: KeyboardEvent) {
-      if (e.key === 'Escape') onClose()
-    }
-    document.addEventListener('keydown', handleEscape)
-    return () => document.removeEventListener('keydown', handleEscape)
-  }, [onClose])
+  // Sem clique-fora: o painel convive com a página atrás dele (o gestor
+  // consulta os cards enquanto pergunta), então clicar no conteúdo não deve
+  // fechar o chat e perder a thread.
+  useDismiss({ active: true, onDismiss: onClose })
 
   useEffect(() => {
     const el = threadRef.current

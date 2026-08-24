@@ -3,9 +3,10 @@
 // `followCursor` e `portal` renderizam o panel em <body> com position: fixed — escapa
 // de stacking contexts criados por cards vizinhos no grid (ex.: transform em hover).
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import Card from '@/components/ui/Card'
+import { useDismiss } from '@/hooks/useDismiss'
 
 type TooltipPlacement = 'top' | 'bottom'
 type TooltipAlign = 'start' | 'end'
@@ -61,23 +62,11 @@ export default function Tooltip({
     }
   }
 
-  useEffect(() => {
-    if (trigger !== 'click') return
-    function handleClickOutside(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false)
-      }
-    }
-    function handleEscape(e: KeyboardEvent) {
-      if (e.key === 'Escape') setOpen(false)
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    document.addEventListener('keydown', handleEscape)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-      document.removeEventListener('keydown', handleEscape)
-    }
-  }, [trigger])
+  useDismiss({
+    active: trigger === 'click',
+    onDismiss: () => setOpen(false),
+    outsideRef: ref,
+  })
 
   function updateCursorFromEvent(e: React.MouseEvent) {
     setCursorPos({ x: e.clientX, y: e.clientY })

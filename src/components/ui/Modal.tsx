@@ -1,11 +1,13 @@
 // Tailwind pure — no Figma equivalent
 // Primitivo de modal: portal em <body>, backdrop, Escape e click-fora fecham,
 // scroll do body travado enquanto aberto. Painel usa o Card primitivo.
-// Padrões de dismiss herdados de ui/Tooltip.tsx (trigger 'click').
+// O clique-fora aqui é o mousedown no backdrop (abaixo), não o listener de
+// documento do useDismiss — o backdrop cobre a tela e já distingue dentro de
+// fora sozinho.
 
-import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import Card from '@/components/ui/Card'
+import { useDismiss } from '@/hooks/useDismiss'
 import IconButton from '@/components/ui/buttons/IconButton'
 import { X } from '@/components/icons'
 
@@ -27,19 +29,7 @@ export default function Modal({
   children,
   className = '',
 }: ModalProps) {
-  useEffect(() => {
-    if (!open) return
-    function handleEscape(e: KeyboardEvent) {
-      if (e.key === 'Escape') onClose()
-    }
-    document.addEventListener('keydown', handleEscape)
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', handleEscape)
-      document.body.style.overflow = previousOverflow
-    }
-  }, [open, onClose])
+  useDismiss({ active: open, onDismiss: onClose, lockScroll: true })
 
   if (!open) return null
 
