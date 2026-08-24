@@ -4,7 +4,7 @@
 // abaixo do box.
 
 import type { Indicator } from '@/types/indicators'
-import AgendaIndicator from '@/components/agenda/AgendaIndicator'
+import AgendaIndicatorList from '@/components/agenda/AgendaIndicatorList'
 
 interface AgendaCardProps {
   title: string
@@ -31,24 +31,11 @@ export default function AgendaCard({
           {title}
         </p>
 
-        <div className="border border-text-primary flex flex-col p-sm w-full bg-surface">
-          {indicators.map((ind, i) => (
-            <div key={ind.id ?? ind.label} className="flex flex-col">
-              <AgendaIndicator
-                id={ind.id}
-                label={ind.label}
-                value={ind.value}
-                status={ind.status}
-                threshold={ind.threshold}
-                onLabelClick={onIndicatorClick && (() => onIndicatorClick(ind))}
-                className={`${i < indicators.length - 1 ? 'pb-xs' : ''}`}
-              />
-
-              {i < indicators.length - 1 && (
-                <hr className="border-accent border-dashed pb-xs" />
-              )}
-            </div>
-          ))}
+        <div className="border border-text-primary p-sm w-full bg-surface">
+          <AgendaIndicatorList
+            indicators={indicators}
+            onIndicatorClick={onIndicatorClick}
+          />
         </div>
 
         {description && (
