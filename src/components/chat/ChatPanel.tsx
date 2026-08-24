@@ -8,11 +8,10 @@ import { createPortal } from 'react-dom'
 import type { AiChatMessage } from '@/types/ai'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { useAiTask } from '@/hooks/useAiTask'
-import { useTypewriter } from '@/hooks/useTypewriter'
 import TextInput from '@/components/ui/TextInput'
 import Button from '@/components/ui/buttons/Button'
 import IconButton from '@/components/ui/buttons/IconButton'
-import MarkdownLite from '@/components/ui/MarkdownLite'
+import AiMessage from '@/components/ui/AiMessage'
 import { Sparkles, X, iconSizes } from '@/components/icons'
 import { statusLabels } from '@/data/indicators/status-labels'
 import {
@@ -195,9 +194,6 @@ function ChatBubble({
   isTyping: boolean
   onDone: () => void
 }) {
-  const { displayed } = useTypewriter({ text: entry.content, enabled: isTyping, onDone })
-  const shown = isTyping ? displayed : entry.content
-
   if (entry.role === 'user') {
     return (
       <div className="self-end max-w-[85%] card-surface-secondary px-sm py-xs">
@@ -207,19 +203,12 @@ function ChatBubble({
   }
 
   return (
-    <div className="flex items-start gap-xs max-w-[95%]">
-      <Sparkles
-        size={iconSizes.sm}
-        className="text-accent shrink-0 mt-[2px]"
-        aria-hidden
-      />
-      <div
-        className={`typo-body ${entry.isError ? 'text-inactive' : ''}`}
-        aria-live={isTyping ? 'polite' : undefined}
-      >
-        <MarkdownLite text={shown} />
-        {isTyping && <span className="typewriter-caret" aria-hidden />}
-      </div>
-    </div>
+    <AiMessage
+      text={entry.content}
+      isTyping={isTyping}
+      onDone={onDone}
+      isError={entry.isError}
+      className="max-w-[95%]"
+    />
   )
 }

@@ -7,12 +7,11 @@ import { useEffect, useRef, useState } from 'react'
 import type { Indicator } from '@/types/indicators'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { useAiTask } from '@/hooks/useAiTask'
-import { useTypewriter } from '@/hooks/useTypewriter'
 import Modal from '@/components/ui/Modal'
 import TextInput from '@/components/ui/TextInput'
 import Button from '@/components/ui/buttons/Button'
-import MarkdownLite from '@/components/ui/MarkdownLite'
-import { Sparkles, iconSizes } from '@/components/icons'
+import AiMessage from '@/components/ui/AiMessage'
+import { Sparkles } from '@/components/icons'
 import { statusLabels } from '@/data/indicators/status-labels'
 import { indicatorInfo } from '@/data/indicators/descriptions/indicators'
 import {
@@ -233,26 +232,15 @@ function ThreadBlock({
   isTyping: boolean
   onDone: () => void
 }) {
-  const { displayed } = useTypewriter({ text: entry.answer, enabled: isTyping, onDone })
-  const shown = isTyping ? displayed : entry.answer
-
   return (
     <div className="flex flex-col gap-xs">
       {entry.question !== undefined && <p className="typo-body-bold">{entry.question}</p>}
-      <div className="flex items-start gap-xs">
-        <Sparkles
-          size={iconSizes.sm}
-          className="text-accent shrink-0 mt-[2px]"
-          aria-hidden
-        />
-        <div
-          className={`typo-body ${entry.source === 'error' ? 'text-inactive' : ''}`}
-          aria-live={isTyping ? 'polite' : undefined}
-        >
-          <MarkdownLite text={shown} />
-          {isTyping && <span className="typewriter-caret" aria-hidden />}
-        </div>
-      </div>
+      <AiMessage
+        text={entry.answer}
+        isTyping={isTyping}
+        onDone={onDone}
+        isError={entry.source === 'error'}
+      />
     </div>
   )
 }
