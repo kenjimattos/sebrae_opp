@@ -7,6 +7,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import type { AiTaskRequest } from '@/types/ai'
 import { useAiTask } from '@/hooks/useAiTask'
 import { useTypewriter } from '@/hooks/useTypewriter'
+import { useUndoable } from '@/hooks/useUndoable'
 import TextInput from '@/components/ui/TextInput'
 import Button from '@/components/ui/buttons/Button'
 import { Sparkles } from '@/components/icons'
@@ -40,8 +41,7 @@ export default function AiField({
   const ai = useAiTask()
   const [generated, setGenerated] = useState('')
   const [typing, setTyping] = useState(false)
-  const [showUndo, setShowUndo] = useState(false)
-  const previousValue = useRef('')
+  const undoable = useUndoable<string>()
 
   // onChange do pai troca de identidade a cada render (closures sobre o
   // slice) — encaminhar via ref evita re-disparo do efeito de digitação.
@@ -50,10 +50,14 @@ export default function AiField({
     onChangeRef.current = onChange
   })
 
+  // Depende de `arm` (estável por useCallback), não do objeto do hook: o
+  // onDone entra nas deps do useTypewriter, e identidade nova a cada render
+  // reiniciaria a digitação.
+  const arm = undoable.arm
   const handleDone = useCallback(() => {
     setTyping(false)
-    setShowUndo(true)
-  }, [])
+    arm()
+  }, [arm])
 
   const { displayed } = useTypewriter({
     text: generated,
@@ -72,8 +76,7 @@ export default function AiField({
 
   async function improve() {
     if (busy || value.trim() === '') return
-    previousValue.current = value
-    setShowUndo(false)
+    undoable.capture(value)
     const result = await ai.run(buildRequest(value))
     if (result) {
       setGenerated(result.text)
@@ -82,8 +85,7 @@ export default function AiField({
   }
 
   function undo() {
-    onChange(previousValue.current)
-    setShowUndo(false)
+    onChange(undoable.undo() ?? '')
   }
 
   return (
@@ -97,15 +99,17 @@ export default function AiField({
         value={value}
         disabled={busy}
         onChange={(v) => {
-          setShowUndo(false)
+          undoable.reset()
           onChange(v)
         }}
       />
       <div className="flex items-center justify-end gap-xs w-full">
         {ai.status === 'error' && ai.errorMessage && (
-          <p className="typo-body-sm text-inactive mr-auto">{ai.errorMessage}</p>
+          <p className="typo-body-sm text-inactive mr-auto" role="alert">
+            {ai.errorMessage}
+          </p>
         )}
-        {showUndo && (
+        {undoable.canUndo && (
           <Button label="Desfazer" variant="ghost" size="sm" onClick={undo} />
         )}
         <Button

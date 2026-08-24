@@ -1,11 +1,14 @@
-import { useMemo, useRef, useState } from 'react'
+import { useMemo } from 'react'
 import TextInput from '@/components/ui/TextInput'
 import Button from '@/components/ui/buttons/Button'
-import { Plus, Sparkles } from '@/components/icons'
+import AiActionBar from '@/components/formulator/AiActionBar'
+import { Plus } from '@/components/icons'
 import { useFormulator } from '@/hooks/useFormulator'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { useAiTask } from '@/hooks/useAiTask'
+import { useUndoable } from '@/hooks/useUndoable'
 import { budgetTotal, formatBRL } from '@/utils/currency'
+import type { BudgetItem } from '@/types/formulator'
 
 export default function StepBudget() {
   const { state, setSlice } = useFormulator()
@@ -15,13 +18,11 @@ export default function StepBudget() {
   // Sugestão de rubricas (IA): só os nomes, derivados das atividades do plano
   // de ação — valores em R$ ficam em branco para o gestor preencher.
   const ai = useAiTask()
-  const previousItems = useRef<{ label: string; value: string }[] | null>(null)
-  const [showUndo, setShowUndo] = useState(false)
+  const undoableItems = useUndoable<BudgetItem[]>()
 
   async function suggestItems() {
     if (ai.status === 'loading' || state.actionPlan.activities.trim() === '') return
-    previousItems.current = data.items
-    setShowUndo(false)
+    undoableItems.capture(data.items)
     const result = await ai.run({
       task: 'suggest-budget-items',
       activities: state.actionPlan.activities,
@@ -33,13 +34,13 @@ export default function StepBudget() {
     })
     if (result?.items && result.items.length > 0) {
       setSlice('budget', { items: result.items.map((label) => ({ label, value: '' })) })
-      setShowUndo(true)
+      undoableItems.arm()
     }
   }
 
   function undoItems() {
-    if (previousItems.current) setSlice('budget', { items: previousItems.current })
-    setShowUndo(false)
+    const previous = undoableItems.undo()
+    if (previous) setSlice('budget', { items: previous })
   }
 
   const total = useMemo(() => budgetTotal(data.items), [data.items])
@@ -78,7 +79,14 @@ export default function StepBudget() {
             </div>
           ))}
         </div>
-        <div className="mt-xs flex items-center gap-xs">
+        <AiActionBar
+          label="Sugerir rubricas com IA"
+          loading={ai.status === 'loading'}
+          disabled={ai.status === 'loading' || state.actionPlan.activities.trim() === ''}
+          onGenerate={() => void suggestItems()}
+          onUndo={undoableItems.canUndo ? undoItems : undefined}
+          errorMessage={ai.status === 'error' ? ai.errorMessage : null}
+        >
           <Button
             label="Adicionar detalhamento"
             variant="ghost"
@@ -87,22 +95,7 @@ export default function StepBudget() {
             iconPosition="left"
             onClick={addItem}
           />
-          <Button
-            label={ai.status === 'loading' ? 'Gerando…' : 'Sugerir rubricas com IA'}
-            variant="secondary"
-            size="sm"
-            icon={Sparkles}
-            iconPosition="left"
-            disabled={ai.status === 'loading' || state.actionPlan.activities.trim() === ''}
-            onClick={() => void suggestItems()}
-          />
-          {showUndo && (
-            <Button label="Desfazer" variant="ghost" size="sm" onClick={undoItems} />
-          )}
-        </div>
-        {ai.status === 'error' && ai.errorMessage && (
-          <p className="typo-body-sm text-inactive">{ai.errorMessage}</p>
-        )}
+        </AiActionBar>
       </div>
 
       <div className="flex flex-col gap-xs">
