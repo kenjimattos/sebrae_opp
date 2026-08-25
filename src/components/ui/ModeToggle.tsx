@@ -1,4 +1,6 @@
-// Toggle segmentado "Meu município / Território" usado sobre o mapa na /new.
+// Toggle segmentado que troca o painel no lugar (role="tablist"). Consumido
+// pela SectionJornada, para alternar os modos de cada pilar, e pelo
+// ModeResources, para alternar as esferas de emenda.
 // Efeito glass com bevel visível: backdrop-blur + gradiente sutil + borda em
 // gradiente (mais clara no topo, escura embaixo) via background-clip + sombra
 // inset white no topo pra reforçar o highlight.

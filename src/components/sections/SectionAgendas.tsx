@@ -1,7 +1,7 @@
-// /new — protótipo do novo design (Figma 1395:2142).
-// Layout: Header + área principal com container esquerdo (rounded-[25px],
-// bg translúcido) contendo heading + lista de agendas, e mapa à direita
-// com MapModeToggle no topo e AgendaCard flutuante no canto inferior.
+// Seção de agendas da Home (Figma 1395:2142).
+// Layout: CitySelector no topo; abaixo, painel glass à esquerda (40%) com
+// heading + AgendaList, e o mapa da Paraíba à direita com o AgendaCard
+// flutuante. A lista e o card só aparecem depois que há município escolhido.
 
 import { useState } from 'react'
 import type { Indicator } from '@/types/indicators'
