@@ -3,8 +3,10 @@
 //
 // Por que ciclo e não ModeToggle: o ModeToggle é um tablist que troca o painel
 // no lugar, com os pares visíveis lado a lado. Aqui os três estados não são
-// painéis irmãos e o controle mora numa faixa estreita da navegação — um botão
-// que avança o estado, anunciando qual está ativo, custa um alvo em vez de três.
+// painéis irmãos e o controle flutua sobre o conteúdo — um botão que avança o
+// estado, anunciando qual está ativo, custa um alvo em vez de três.
+//
+// Montado uma vez só, no Layout (topo à direita, sobre todas as rotas).
 //
 // A11y: o ícone sozinho não diz qual tema está ativo para quem não o vê, então
 // o aria-label carrega o estado atual (não a ação). O botão continua focado
