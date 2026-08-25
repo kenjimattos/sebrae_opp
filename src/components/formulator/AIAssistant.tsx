@@ -25,7 +25,6 @@ export default function AIAssistant({
     <Card
       surface="secondary"
       padding="md"
-      radius="sm"
       className={`flex flex-col items-start gap-md ${className}`}
     >
       <div className="flex flex-col items-start gap-md w-full">

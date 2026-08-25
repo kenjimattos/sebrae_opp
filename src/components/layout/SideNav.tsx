@@ -11,7 +11,7 @@ interface SideNavProps {
 
 export default function SideNav({ activeId, onSelect, className = '' }: SideNavProps) {
     return (
-        <div className={`glass rounded-sm flex flex-col items-center p-md gap-lg overflow-y-auto scrollbar-hide ${className}`}>
+        <div className={`glass rounded flex flex-col items-center p-md gap-lg overflow-y-auto scrollbar-hide ${className}`}>
             <div>
                 <div className="flex-between gap-sm">
                     <h3 className="typo-h3 uppercase">
@@ -29,7 +29,7 @@ export default function SideNav({ activeId, onSelect, className = '' }: SideNavP
                     return (
                         <div
                             key={sectionId}
-                            className={`flex flex-col rounded-sm transition-all duration-300 ease-in-out ${isActive ? 'glass p-xs' : 'p-xs'}`}
+                            className={`flex flex-col rounded transition-all duration-300 ease-in-out ${isActive ? 'glass p-xs' : 'p-xs'}`}
                         >
                             <Button
                                 label={label}

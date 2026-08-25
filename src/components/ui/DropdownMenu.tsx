@@ -31,7 +31,7 @@ export default function DropdownMenu({
 
   return (
     <div
-      className={`absolute top-full bg-surface-secondary rounded-sm p-xs left-0 mt-2xs w-max min-w-full ${className}`}
+      className={`absolute top-full bg-surface-secondary rounded p-xs left-0 mt-2xs w-max min-w-full ${className}`}
     >
       <div className="relative shadow-lg overflow-hidden">
         <ul ref={listRef} className="max-h-[40dvh] overflow-y-auto">

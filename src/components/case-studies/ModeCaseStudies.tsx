@@ -8,7 +8,7 @@ import TitleSubtitle from '@/components/ui/TitleSubtitle'
 export default function ModeCaseStudies() {
   return (
     <>
-      <section className="flex flex-col gap-lg glass rounded-sm p-lg">
+      <section className="flex flex-col gap-lg glass rounded p-lg">
 
         <TitleSubtitle
           title={sectionContent.caseStudies.title}

@@ -69,7 +69,7 @@ export default function SectionHero() {
             return (
               <div
                 key={each.id}
-                className="glass rounded-sm p-md flex items-center gap-md text-left"
+                className="glass rounded p-md flex items-center gap-md text-left"
                 aria-label={`Ir para ${each.title}`}
               >
                 <IconButton icon={Icon} size="lg" decorative/>

@@ -54,7 +54,7 @@ function renderInline(text: string): React.ReactNode[] {
     }
     if (part.startsWith('`') && part.endsWith('`') && part.length > 2) {
       return (
-        <code key={i} className="typo-body-sm bg-surface-secondary px-2xs rounded-sm">
+        <code key={i} className="typo-body-sm bg-surface-secondary px-2xs rounded">
           {part.slice(1, -1)}
         </code>
       )

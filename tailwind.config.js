@@ -29,11 +29,13 @@ export default {
         'alert':             'var(--semantic-alert)',
       },
       borderRadius: {
-        'sm':   'var(--radius-sm)',   // 12px
-        'md':   'var(--radius-md)',   // 24px
-        'lg':   'var(--radius-lg)',   // 32px
-        'xl':   'var(--radius-xl)',   // 48px
+        // `rounded` (sem sufixo) = o raio de superfície. Só existe um, então não
+        // leva nome de tamanho: `sm`/`md`/`lg` sugeririam uma escala que não há.
+        DEFAULT: 'var(--radius-default)', // 12px — card, painel glass, modal
+        'xs':    'var(--radius-xs)', // 2px  — micro-elementos
         // rounded-full mantém o default do Tailwind (9999px) para círculos perfeitos
+        // Atenção: sufixo sem chave aqui NÃO vira erro — cai no default do
+        // Tailwind (rounded-md = 6px). Raio fora de `rounded`/`xs`/`full` é engano.
       },
       backgroundColor: {
         'surface':           'var(--semantic-surface-primary)',

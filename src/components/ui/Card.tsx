@@ -1,16 +1,19 @@
 // Tailwind pure — no Figma equivalent
-// Unified card primitive: surface variants (primary/secondary/status) + padding + radius + optional border
+// Unified card primitive: surface variants (primary/secondary/status) + padding
+// + optional border. O raio é sempre `--radius-sm` e não é configurável: houve
+// uma prop `radius`, e o único consumidor que a usava era o Modal, com 24px.
+// Superfície do projeto tem um raio só — `rounded-full` é dos controles, não
+// daqui. Prop que aceita um valor que ninguém deve escolher é convite a
+// divergir.
 
 type CardSurface = 'primary' | 'secondary' | 'success' | 'warning' | 'alert'
 type CardPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl'
-type CardRadius = 'sm' | 'md'
 
 interface CardProps {
   as?: 'div' | 'section'
   surface?: CardSurface
   padding?: CardPadding
   bordered?: boolean
-  radius?: CardRadius
   className?: string
   children: React.ReactNode
 }
@@ -36,29 +39,24 @@ const paddingClass: Record<CardPadding, string> = {
   none: '', sm: 'p-sm', md: 'p-md', lg: 'p-lg', xl: 'p-xl',
 }
 
-const radiusClass: Record<CardRadius, string> = {
-  sm: 'rounded-sm', md: 'rounded-md',
-}
-
 export default function Card({
   as = 'div',
   surface = 'primary',
   padding = 'md',
   bordered = false,
-  radius = 'sm',
   className = '',
   children,
 }: CardProps) {
   const Tag = as
 
-  // `.card-surface` and `.card-surface-secondary` already include `border-radius: var(--radius-sm)`.
-  // Only emit an explicit radius class for status surfaces or when overriding to a non-default radius.
+  // `.card-surface` e `.card-surface-secondary` já trazem
+  // `border-radius: var(--radius-default)`. Só as superfícies de status
+  // precisam da classe explícita.
   const surfaceHasBakedRadius = surface === 'primary' || surface === 'secondary'
-  const needsRadiusClass = !surfaceHasBakedRadius || radius !== 'sm'
 
   const classes = [
     surfaceClass[surface],
-    needsRadiusClass ? radiusClass[radius] : '',
+    surfaceHasBakedRadius ? '' : 'rounded',
     paddingClass[padding],
     bordered ? `border border-solid ${borderColorClass[surface]}` : '',
     className,

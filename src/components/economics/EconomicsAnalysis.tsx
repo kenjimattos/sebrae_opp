@@ -93,7 +93,7 @@ export default function EconomicBaseAnalysis({ className = '' }: EconomicBaseAna
 
   if (analysis === '') {
     return (
-      <main className={`flex flex-col glass p-md rounded-sm gap-sm w-full ${className}`}>
+      <main className={`flex flex-col glass p-md rounded gap-sm w-full ${className}`}>
         <div className="flex flex-col items-end gap-sm">
           <div className="flex items-center gap-xs w-full">
             <Sparkles size={iconSizes.sm} className="text-accent" aria-hidden />
@@ -122,7 +122,7 @@ export default function EconomicBaseAnalysis({ className = '' }: EconomicBaseAna
   }
 
   return (
-    <main className={`flex flex-col glass p-md rounded-sm gap-sm w-full ${className}`}>
+    <main className={`flex flex-col glass p-md rounded gap-sm w-full ${className}`}>
       <GeneratedState
         key={runId}
         analysis={analysis}

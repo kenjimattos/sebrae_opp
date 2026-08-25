@@ -173,7 +173,7 @@ export function ParaibaOutlineMap({
       {hoveredName && cursor && createPortal(
         <div
           className={`glass glass-bevel pointer-events-none fixed z-50 whitespace-nowrap px-sm py-xs ${
-            hoveredDetail ? 'flex flex-col items-center rounded-sm' : 'rounded-full'
+            hoveredDetail ? 'flex flex-col items-center rounded' : 'rounded-full'
           }`}
           style={{ left: cursor.x, top: cursor.y, transform: 'translate(-50%, calc(-100% - 12px))' }}
         >

@@ -75,7 +75,7 @@ export default function IndicatorBar({
       <div className="relative h-[var(--spacing-2xs)] w-full" style={{ background: BAR_GRADIENT }}>
         {markerStyle && (
           <div
-            className="absolute size-[var(--spacing-sm)] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[2px]"
+            className="absolute size-[var(--spacing-sm)] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xs"
             style={{
               ...markerStyle,
               // O anel destaca o marcador da barra colorida e do fundo da página
