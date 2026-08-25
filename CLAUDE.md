@@ -12,8 +12,10 @@ armadilhas** do projeto; o resto se lê no código. Prefira `grep` a suposição
 recursos, Cursos e boas práticas, Formulador de projetos); cada pilar alterna modos
 via `ModeToggle`. **223 municípios da PB**, default Campina Grande (`2504009`).
 Rotas: `/` (Login), `/home`, `/trilhas`. Desktop 1440px. **Tema claro e escuro**,
-com `ThemeToggle` no topo do `SideNav` (automático → claro → escuro; automático é
-o default e segue o sistema).
+com `ThemeToggle` fixo no topo à direita, montado no `Layout` e portanto presente
+em todas as rotas (automático → claro → escuro; automático é o default e segue o
+sistema). **Instância única** — `useTheme` é estado local, dois consumidores
+montados teriam preferências independentes.
 
 > **Não há rota catch-all.** URL desconhecida renderiza tela em branco — inclusive
 > `/oportunidades` e `/comunidade`, que existiram e podem estar em links antigos.

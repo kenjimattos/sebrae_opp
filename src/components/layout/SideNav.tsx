@@ -1,7 +1,6 @@
 import { navLinks } from '@/data/layout'
 import { sectionContent } from '@/data/home/sections'
 import Button from '@/components/ui/buttons/Button'
-import ThemeToggle from '@/components/ui/ThemeToggle'
 
 interface SideNavProps {
     activeId: string
@@ -13,12 +12,9 @@ export default function SideNav({ activeId, onSelect, className = '' }: SideNavP
     return (
         <div className={`glass rounded flex flex-col items-center p-md gap-lg overflow-y-auto scrollbar-hide ${className}`}>
             <div>
-                <div className="flex-between gap-sm">
-                    <h3 className="typo-h3 uppercase">
-                        {sectionContent.hero.subtitle}
-                    </h3>
-                    <ThemeToggle />
-                </div>
+                <h3 className="typo-h3 uppercase">
+                    {sectionContent.hero.subtitle}
+                </h3>
                 <p className="typo-body-sm py-sm">{sectionContent.hero.description}</p>
             </div>
 
