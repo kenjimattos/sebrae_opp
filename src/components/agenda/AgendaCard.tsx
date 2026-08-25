@@ -1,4 +1,4 @@
-// Card flutuante sobre o mapa na /new. Reproduz o "dados agenda" do Figma:
+// Card flutuante sobre o mapa, na SectionAgendas. Reproduz o "dados agenda" do Figma:
 // micro-título Monoblock acima do box, box semi-transparente com borda branca
 // contendo 3 linhas de indicador separadas por divisor, descrição Monoblock
 // abaixo do box.
