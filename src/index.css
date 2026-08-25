@@ -72,10 +72,23 @@
   --size-status-dot: 0.5rem; /* 8px */
 
   /* ============ RADIUS ============ */
-  --radius-sm: 0.75rem; /* 12px */
-  --radius-md: 1.5rem; /* 24px */
-  --radius-lg: 2rem; /* 32px */
-  --radius-xl: 3rem; /* 48px */
+  /* Três valores, três papéis — nenhum deles é "um tamanho entre outros":
+     `xs` é o arredondamento de micro-elemento (o chip de ícone decorativo, o
+     marcador da régua de indicador), `default` é o raio de TODA superfície
+     (card, painel glass, modal) e `full` faz círculo nos pontos de status.
+
+     O raio de superfície chama-se `default` e não `sm` porque só existe um:
+     nome de tamanho sugeriria uma escala, e sufixo disponível é sufixo que
+     alguém inventa. Existiram md/lg/xl; os três terminaram sem consumidor e
+     saíram, mas antes disso os cards de pilar do Hero foram parar em 32px e o
+     card de risco em 24px, cada um num valor. No Tailwind ele é o DEFAULT, ou
+     seja, a classe `rounded` sem sufixo — token e classe com o mesmo nome.
+
+     Renomear este token quebra em silêncio: `var()` indefinida não é erro de
+     CSS, o border-radius só cai para 0. Ao mexer aqui, conferir os leitores
+     (`.card-surface`, `.card-surface-secondary`, `.poster`). */
+  --radius-xs: 0.125rem; /* 2px */
+  --radius-default: 0.75rem; /* 12px */
   --radius-full: 6rem; /* 96px */
 
   /* ============ COLORS — PRIMITIVES ============ */
@@ -332,8 +345,8 @@
     align-items: center;
     gap: var(--spacing-lg);
   }
-  .card-surface           { background-color: var(--semantic-surface-primary);   border-radius: var(--radius-sm); }
-  .card-surface-secondary { background-color: var(--semantic-surface-secondary); border-radius: var(--radius-sm); }
+  .card-surface           { background-color: var(--semantic-surface-primary);   border-radius: var(--radius-default); }
+  .card-surface-secondary { background-color: var(--semantic-surface-secondary); border-radius: var(--radius-default); }
 
   /* Glass surface (Figma node 1668:7) — painel navy chapado translúcido +
      bevel. backdrop-blur e inset shadows simulam o bevel "esculpido" no vidro;
@@ -519,7 +532,7 @@
     height: clamp(288px, 66vw, 320px);
     padding: var(--spacing-md);
     padding-bottom: var(--spacing-lg);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-default);
     background-color: var(--semantic-surface-primary);
     text-decoration: none;
     overflow: hidden;

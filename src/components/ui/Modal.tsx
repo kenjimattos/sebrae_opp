@@ -47,7 +47,7 @@ export default function Modal({
         aria-label={title}
         className={`w-full ${maxWidth} ${className}`}
       >
-        <Card surface="primary" padding="lg" bordered radius="md" className="shadow-lg">
+        <Card surface="primary" padding="lg" bordered className="shadow-lg">
           {title !== undefined && (
             <div className="flex-between mb-md gap-md">
               <h2 className="typo-h4">{title}</h2>

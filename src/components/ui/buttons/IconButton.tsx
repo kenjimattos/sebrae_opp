@@ -46,7 +46,7 @@ export default function IconButton({
     return (
       <span
         aria-hidden="true"
-        className={`${s.dimensions} ${buttonBaseClass} ${buttonVariantStyles[variant]} rounded-[2px] no-pointer-events`}
+        className={`${s.dimensions} ${buttonBaseClass} ${buttonVariantStyles[variant]} rounded-xs no-pointer-events`}
       >
         {iconEl}
       </span>

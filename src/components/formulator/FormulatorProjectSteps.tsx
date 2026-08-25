@@ -25,7 +25,7 @@ export default function ProjectSteps({
   className = '',
 }: ProjectStepsProps) {
   return (
-    <div className={`glass rounded-sm flex flex-col gap-sm p-md ${className}`}>
+    <div className={`glass rounded flex flex-col gap-sm p-md ${className}`}>
       <p className="typo-body-bold">Etapas do projeto</p>
       {formulatorSteps.map((step) => {
         const status =

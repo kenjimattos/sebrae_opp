@@ -31,7 +31,7 @@ export default function Form({
 
   return (
     <div
-      className={`glass p-md rounded-sm flex flex-col gap-md flex-1 ${className}`}
+      className={`glass p-md rounded flex flex-col gap-md flex-1 ${className}`}
     >
       <div className="flex flex-col items-start gap-xs">
         <h2 className="typo-body-lg-bold">{titulo}</h2>

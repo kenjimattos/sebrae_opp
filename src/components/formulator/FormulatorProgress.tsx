@@ -23,7 +23,7 @@ export default function FormulatorProgress({
 
   return (
     <div
-      className={`glass flex flex-col items-start gap-sm w-full p-md rounded-sm ${className}`}
+      className={`glass flex flex-col items-start gap-sm w-full p-md rounded ${className}`}
     >
       <div className="flex items-center justify-between w-full">
         <p className="typo-body-bold">{Math.round(percent)}% concluído</p>

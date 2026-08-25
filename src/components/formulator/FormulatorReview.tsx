@@ -173,7 +173,7 @@ export default function FormulatorReview({ onEdit, onHome }: FormulatorReviewPro
         completedSlugs={completedSlugs}
       />
 
-      <Card padding="lg" radius="sm" className="flex flex-col gap-lg flex-1">
+      <Card padding="lg" className="flex flex-col gap-lg flex-1">
         <div className="flex flex-col gap-xs">
           <h2 className="typo-body-lg-bold">Conclusão</h2>
           <p className="typo-body">Confira as informações sobre o seu projeto antes da submissão final</p>
@@ -212,7 +212,7 @@ export default function FormulatorReview({ onEdit, onHome }: FormulatorReviewPro
                   <NumberBullet value={idx + 1} variant="primary" />
                   <span className="typo-body-bold">{step.title}</span>
                 </div>
-                <div className="bg-background rounded-sm p-md flex flex-col gap-xs">
+                <div className="bg-background rounded p-md flex flex-col gap-xs">
                   {hasContent ? (
                     blocks.map((b, i) => b.value && (
                       <div key={i} className="flex flex-col gap-2xs">

@@ -56,7 +56,7 @@ export default function ModeResources() {
   return (
     // gap-md (não gap-lg) e p-md: o painel precisa fechar perto da altura da
     // SideNav (83dvh) — com gap-lg os 5 blocos sozinhos custavam 160px de respiro.
-    <div className="flex flex-col w-full glass rounded-sm p-md gap-md">
+    <div className="flex flex-col w-full glass rounded p-md gap-md">
       {/* Título à esquerda e controle à direita, na mesma faixa: empilhados, o
           título alinhado à esquerda brigava com o toggle e o mapa centrados, e
           a linha extra custava ~70px de altura. */}
