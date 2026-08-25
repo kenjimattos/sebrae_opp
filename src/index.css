@@ -92,14 +92,23 @@
   --radius-full: 6rem; /* 96px */
 
   /* ============ BORDER ============ */
-  /* O traço fino do projeto. Tem dois consumidores em linguagens diferentes —
+  /* O traço do projeto. Tem dois consumidores em linguagens diferentes —
      `borderWidth.DEFAULT` no tailwind.config.js (a classe `border`) e o padding
      do `.glass::before`, que recorta o stroke diagonal do vidro pela máscara —
      e os dois precisam concordar, senão a borda de um card e a aresta de um
      painel glass, lado a lado na mesma tela, saem com espessuras diferentes.
-     Estavam os dois hardcoded: um diff nunca os mostraria juntos, porque um é
-     JS e o outro CSS. */
-  --border-default: 0.5px;
+     Estavam os dois hardcoded, e um diff nunca os mostraria juntos porque um é
+     JS e o outro CSS.
+
+     É 1px, e não 0,5px, por medição e não por gosto: `border-width: 0.5px`
+     resolve como 0,5px no WebKit mas é arredondado para 1px no Chromium, em
+     qualquer DPR — enquanto o `padding` do `::before` fica 0,5px nos dois
+     motores. Ou seja, com 0,5px a borda de um card pintava o DOBRO da aresta
+     de um painel glass no Chrome, e batia certo no Safari: o mesmo token, dois
+     renders. Com 1px os dois consumidores pintam igual em todo motor, que é o
+     ponto de eles compartilharem o valor. Não voltar para 0,5px sem medir de
+     novo nos dois. */
+  --border-default: 1px;
 
   /* ============ COLORS — PRIMITIVES ============ */
   /* Primitivas são globais: valem nos dois temas. Só a camada semântica troca
