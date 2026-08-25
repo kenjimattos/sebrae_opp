@@ -91,6 +91,16 @@
   --radius-default: 0.75rem; /* 12px */
   --radius-full: 6rem; /* 96px */
 
+  /* ============ BORDER ============ */
+  /* O traço fino do projeto. Tem dois consumidores em linguagens diferentes —
+     `borderWidth.DEFAULT` no tailwind.config.js (a classe `border`) e o padding
+     do `.glass::before`, que recorta o stroke diagonal do vidro pela máscara —
+     e os dois precisam concordar, senão a borda de um card e a aresta de um
+     painel glass, lado a lado na mesma tela, saem com espessuras diferentes.
+     Estavam os dois hardcoded: um diff nunca os mostraria juntos, porque um é
+     JS e o outro CSS. */
+  --border-default: 0.5px;
+
   /* ============ COLORS — PRIMITIVES ============ */
   /* Primitivas são globais: valem nos dois temas. Só a camada semântica troca
      por modo. Manter aqui apenas o que tem consumidor — primitiva sem leitor
@@ -368,14 +378,15 @@
     position: relative;
   }
   /* Stroke fino claro só na diagonal (topo-esquerda ↔ inferior-direita): gradiente
-     a 135° claro nas pontas e transparente no meio, recortado em 1px de borda via
-     máscara (respeita o border-radius, diferente de border-image). */
+     a 135° claro nas pontas e transparente no meio, recortado em uma borda de
+     `--border-default` via máscara (respeita o border-radius, diferente de
+     border-image). */
   .glass::before {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    padding: 0.5px;
+    padding: var(--border-default);
     background: linear-gradient(150deg,
       color-mix(in srgb, var(--semantic-glass-stroke) 28%, transparent) 0%,
       transparent 38%,

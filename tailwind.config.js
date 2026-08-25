@@ -16,7 +16,9 @@ export default {
         'gutter': 'var(--spacing-gutter)', // 180px
       },
       borderWidth: {
-        DEFAULT: '0.5px',
+        // `border` (sem sufixo) = o traço fino. O mesmo token alimenta o padding
+        // do `.glass::before`: ver o bloco BORDER no index.css.
+        DEFAULT: 'var(--border-default)',
       },
       borderColor: {
         'surface':           'var(--semantic-surface-primary)',
