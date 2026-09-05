@@ -19,5 +19,8 @@
     "declaration": false,
     "sourceMap": true
   },
-  "include": ["src", "../api/_lib", "../src/types/ai.ts"]
+  // Só `src`: api/_lib e src/types/ai.ts entram pela cadeia de imports
+  // (routes.ts → api/_lib/handler.ts → src/types/ai.ts). Listá-los aqui era
+  // redundante — `tsc --listFilesOnly` devolve os mesmos 13 arquivos sem eles.
+  "include": ["src"]
 }
