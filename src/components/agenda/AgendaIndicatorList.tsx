@@ -31,6 +31,7 @@ export default function AgendaIndicatorList({
               id={ind.id}
               label={ind.label}
               value={ind.value}
+              numericValue={ind.numericValue}
               status={ind.status}
               threshold={ind.threshold}
               onLabelClick={onIndicatorClick && (() => onIndicatorClick(ind))}

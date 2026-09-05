@@ -14,8 +14,8 @@ import { markerFraction } from '@/utils/indicatorBar'
 
 interface IndicatorBarProps {
   status: StatusType
-  /** Valor exibido — posiciona o marcador de forma contínua na barra. */
-  value?: string | number
+  /** Valor numérico (do ETL, via API) — posiciona o marcador na barra. */
+  numericValue?: number | null
   /** Faixa oficial — define a escala contínua do marcador. */
   threshold?: IndicatorThreshold
   /** Rótulos opcionais por segmento (ex.: ["< 4.0", "4.0–7.0", "> 7.0"]). */
@@ -39,7 +39,7 @@ const BAR_GRADIENT =
 
 export default function IndicatorBar({
   status,
-  value,
+  numericValue,
   threshold,
   segmentLabels,
   className = '',
@@ -47,7 +47,7 @@ export default function IndicatorBar({
   const empty = status === 'none'
 
   // Posição contínua a partir do valor; na falta, centro da zona do status.
-  const fraction = empty ? null : markerFraction(value, threshold)
+  const fraction = empty ? null : markerFraction(numericValue, threshold)
   const fallback = status === 'none' ? undefined : ZONE_FALLBACK[status]
   const leftPct = fraction !== null ? fraction * 100 : fallback?.leftPct
 

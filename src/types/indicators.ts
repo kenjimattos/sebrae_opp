@@ -27,7 +27,14 @@ export interface EconomicVariation {
 export interface Indicator {
   id?: string
   label: string
+  /** Valor de exibição (padrão BR, com unidade, arredondado). */
   value: string | number
+  /**
+   * O mesmo valor como número, direto do ETL — sem locale, sem unidade, na
+   * precisão da fonte. Vem da API; é ele que posiciona o marcador da barra.
+   * `null` = sem medida.
+   */
+  numericValue?: number | null
   variation?: EconomicVariation | string | null
   status: StatusType
   threshold?: IndicatorThreshold
