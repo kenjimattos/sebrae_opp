@@ -2,6 +2,14 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Não lançado]
+
+### Infraestrutura
+
+- **Dependências atualizadas: 21 vulnerabilidades caíram para 5.** O build no servidor Sebrae vinha acompanhado de um aviso de `npm audit` que ninguém tinha lido até o fim. Lido, ele se separava em três grupos: a árvore do `@vercel/node`, o toolchain de build e uma única dependência de runtime. Só a terceira podia chegar ao usuário — `react-router` 7.14.0, pelo `turbo-stream` vendorizado (invocação arbitrária de construtor). Não era explorável aqui: o app usa `<BrowserRouter>` declarativo, sem *data routers*, *loaders* nem SSR, que é o caminho por onde o `turbo-stream` entra — conferido no artefato, zero ocorrências dele no bundle. Ainda assim subiu para 7.18.3, junto de `vite` 8.0.7→8.2.2 (o que traz `rolldown` de `1.0.0-rc.13` para `1.2.7`), `postcss` 8.5.9→8.5.28, `nanoid`, `tar`, `js-yaml`, `undici` e o resto do toolchain. Tudo dentro dos ranges do `package.json`, que não mudou: apenas o `package-lock.json`. Build e lint conferidos — 1855 módulos, bundle igual (753,81 kB).
+- **As 5 vulnerabilidades restantes ficam de propósito.** Todas moram na subárvore do `@vercel/node` (`ajv`, `path-to-regexp`, `undici` fixado numa major antiga) — uma devDependency que existe só pelo `import type` em `api/ai.ts`, o transporte da Vercel, que **nesta branch não é usado**: quem atende `POST /api/ai` no servidor Sebrae é o Fastify. O `npm audit fix --force` as resolveria oferecendo `@vercel/node@3.0.1` — um *downgrade* de duas majors. Não rodar.
+- **`caniuse-lite` atualizado** (`1.0.30001786` → `1.0.30001810`). O aviso de "browsers data is 6 months old" em todo build era isso; a base define quais prefixos o autoprefixer emite.
+
 ## [1.3.0] — 2026-09-05
 
 ### Novidades
