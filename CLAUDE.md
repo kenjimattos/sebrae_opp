@@ -179,8 +179,12 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
 - **`server/` compila `api/_lib`** (`rootDir: ".."`), então o entrypoint emitido é
   `dist/server/src/index.js`. Um `postbuild` gera `dist/index.js` como shim porque o
   `ExecStart` do systemd aponta para o caminho antigo. Não remover sem editar a unit.
-- **Formulador:** "etapa concluída" é heurística — marca ao clicar Próxima/Finalizar,
-  sem validar campos. Rascunho por município em `localStorage` (`formulator:${id}`).
+- **Formulador:** dois estados diferentes na sidebar. *Concluída* (check) sai de
+  `isStepComplete` em `src/utils/formulatorCompleteness.ts` — campos obrigatórios da
+  etapa preenchidos; é ela também que alimenta o "X% concluído". *Em andamento* sai de
+  `visitedSteps`, marcado ao clicar Próxima/Finalizar, sem validar nada. O PDF não
+  depende de nenhum dos dois: `FormulatorReview` imprime todo campo com texto.
+  Rascunho por município em `localStorage` (`formulator:${id}`).
   Fonte de verdade das 10 etapas: `src/data/formulator/steps.ts`.
 - **Modo Riscos** (`ModeRisks`) não tem dados estáticos: deriva dos indicadores em
   `alert`/`warning` do município (`src/utils/risks.ts`).
