@@ -7,6 +7,10 @@
 //
 // Fechar por Escape ou clique fora resolve `false`: o caminho de menor esforço
 // tem de ser o que preserva o trabalho.
+//
+// Com `options.once`, o aviso é uma vez por sessão. Perguntar a cada clique num
+// botão que a pessoa aperta o tempo todo não protege ninguém: vira o diálogo que
+// se fecha no reflexo, e aí o aviso que importa também passa despercebido.
 
 import { useCallback, useRef, useState, type ReactNode } from 'react'
 import Modal from '@/components/ui/Modal'
@@ -18,14 +22,23 @@ export default function ConfirmProvider({ children }: { children: ReactNode }) {
   // A promessa fica pendente enquanto o modal está aberto; o resolver espera
   // aqui para ser chamado pelo botão, pelo Escape ou pelo clique fora.
   const resolveRef = useRef<((value: boolean) => void) | null>(null)
+  // Chaves de `once` já aceitas nesta sessão. Ref, não estado: nada na tela
+  // depende disso, e re-renderizar a árvore inteira por causa dela seria custo
+  // sem efeito.
+  const aceitas = useRef<Set<string>>(new Set())
 
   const settle = useCallback((value: boolean) => {
+    setOptions((atual) => {
+      if (value && atual?.once) aceitas.current.add(atual.once)
+      return null
+    })
     resolveRef.current?.(value)
     resolveRef.current = null
-    setOptions(null)
   }, [])
 
   const confirm = useCallback<ConfirmFn>((next) => {
+    // Já avisado nesta sessão: segue em frente sem abrir o modal.
+    if (next.once && aceitas.current.has(next.once)) return Promise.resolve(true)
     // Uma confirmação de cada vez: se outra estiver aberta, ela é recusada
     // antes de abrir a nova, para nenhuma promessa ficar pendurada.
     resolveRef.current?.(false)

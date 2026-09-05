@@ -7,6 +7,14 @@ export interface ConfirmOptions {
   /** Rótulo do botão que segue em frente. Deve nomear a ação, não dizer "OK". */
   confirmLabel: string
   cancelLabel?: string
+  /**
+   * Chave de "já avisei". Com ela, a confirmação aparece uma vez por sessão:
+   * depois que a pessoa aceita, as próximas chamadas com a mesma chave passam
+   * direto. Cancelar não marca nada — quem disse não continua sendo perguntado.
+   * Some ao recarregar a página, e é isso mesmo: a memória dura o tempo do
+   * trabalho, não da máquina.
+   */
+  once?: string
 }
 
 /** Abre a confirmação e resolve com a escolha. `false` também no Escape/backdrop. */
