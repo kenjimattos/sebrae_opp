@@ -6,8 +6,10 @@ import { Plus } from '@/components/icons'
 import { useFormulator } from '@/hooks/useFormulator'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { useAiTask } from '@/hooks/useAiTask'
+import { useConfirm } from '@/hooks/useConfirm'
 import { useUndoable } from '@/hooks/useUndoable'
 import { budgetTotal, formatBRL } from '@/utils/currency'
+import { confirmReplaceBudget, filledBudgetCount } from '@/utils/formulatorOverwrite'
 import type { BudgetItem } from '@/types/formulator'
 
 export default function StepBudget() {
@@ -19,9 +21,13 @@ export default function StepBudget() {
   // de ação — valores em R$ ficam em branco para o gestor preencher.
   const ai = useAiTask()
   const undoableItems = useUndoable<BudgetItem[]>()
+  const confirm = useConfirm()
 
   async function suggestItems() {
     if (ai.status === 'loading' || state.actionPlan.activities.trim() === '') return
+    // Troca a lista inteira E zera os valores em R$ — a perda aqui é dupla.
+    const preenchidas = filledBudgetCount(data.items)
+    if (preenchidas > 0 && !(await confirm(confirmReplaceBudget(preenchidas)))) return
     undoableItems.capture(data.items)
     const result = await ai.run({
       task: 'suggest-budget-items',

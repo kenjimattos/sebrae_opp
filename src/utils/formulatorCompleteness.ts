@@ -13,6 +13,24 @@ function anyNonEmpty(arr: string[] | undefined): boolean {
   return Array.isArray(arr) && arr.some(nonEmpty)
 }
 
+// Percorre a estrutura em vez de listar campo por campo: etapa nova ou campo
+// novo passa a contar sozinho, sem ninguém lembrar de atualizar aqui.
+function temTexto(v: unknown): boolean {
+  if (typeof v === 'string') return v.trim().length > 0
+  if (Array.isArray(v)) return v.some(temTexto)
+  if (v && typeof v === 'object') return Object.values(v).some(temTexto)
+  return false
+}
+
+/**
+ * O gestor já escreveu alguma coisa? Usado para só confirmar a troca de
+ * município quando há trabalho na tela — perguntar num formulário em branco é
+ * ruído. `visitedSteps` não conta: passar pelas etapas não é preencher.
+ */
+export function hasAnyContent(state: FormulatorState): boolean {
+  return Object.entries(state).some(([key, slice]) => key !== 'visitedSteps' && temTexto(slice))
+}
+
 export function isStepComplete(slug: string, state: FormulatorState): boolean {
   switch (slug) {
     case 'identificacao': {
