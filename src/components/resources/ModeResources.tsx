@@ -14,6 +14,7 @@ import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import { DATAPEDIA_URL, resourcesContent } from '@/data/home/resources'
 import { findEmendaMunicipio, intensidadePorMunicipio, useEmendas } from '@/hooks/useEmendas'
 import { useMunicipality } from '@/hooks/useMunicipality'
+import { useMunicipalityChange } from '@/hooks/useMunicipalityChange'
 import type { EmendaEsfera } from '@/types/emendas'
 import { formatReaisCurto } from '@/utils/emendas'
 import EmendasEsferaCard from './EmendasEsferaCard'
@@ -24,7 +25,8 @@ const ESFERA_OPTIONS = [
 ]
 
 export default function ModeResources() {
-  const { municipality, municipalities, setMunicipality } = useMunicipality()
+  const { municipality, municipalities } = useMunicipality()
+  const changeMunicipality = useMunicipalityChange()
   const { data, loading, error } = useEmendas()
   const [esfera, setEsfera] = useState<EmendaEsfera>('federal')
 
@@ -41,7 +43,7 @@ export default function ModeResources() {
 
   function handleMapSelect(id: string) {
     const match = municipalities.find((m) => m.id === id)
-    if (match) setMunicipality(match.id, match.name, 'map')
+    if (match) void changeMunicipality(match.id, match.name, 'map')
   }
 
   // Tooltip do hover: o valor daquele município na esfera ativa, para comparar

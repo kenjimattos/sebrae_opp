@@ -6,6 +6,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { AiTaskRequest } from '@/types/ai'
 import { useAiTask } from '@/hooks/useAiTask'
+import { useConfirm } from '@/hooks/useConfirm'
+import { confirmReplaceField } from '@/utils/formulatorOverwrite'
 import { useTypewriter } from '@/hooks/useTypewriter'
 import { useUndoable } from '@/hooks/useUndoable'
 import TextInput from '@/components/ui/TextInput'
@@ -72,10 +74,14 @@ export default function AiField({
     if (typing) onChangeRef.current(displayed)
   }, [displayed, typing])
 
+  const confirm = useConfirm()
   const busy = ai.status === 'loading' || typing
 
   async function improve() {
     if (busy || value.trim() === '') return
+    // O botão só habilita com o campo preenchido, então aprimorar é sempre
+    // trocar um texto do gestor por outro. Confirmar antes, não depois.
+    if (!(await confirm(confirmReplaceField(title)))) return
     undoable.capture(value)
     const result = await ai.run(buildRequest(value))
     if (result) {

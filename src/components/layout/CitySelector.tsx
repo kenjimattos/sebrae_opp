@@ -3,6 +3,7 @@ import { ChevronDown } from '@/components/icons'
 import DropdownMenu from '@/components/ui/DropdownMenu'
 import { useDropdownState } from '@/components/ui/useDropdownState'
 import { useMunicipality } from '@/hooks/useMunicipality'
+import { useMunicipalityChange } from '@/hooks/useMunicipalityChange'
 import Button from '../ui/buttons/Button'
 
 interface CitySelectorProps {
@@ -10,7 +11,8 @@ interface CitySelectorProps {
 }
 
 export default function CitySelector({ className = '' }: CitySelectorProps) {
-  const { municipality, municipalities, setMunicipality } = useMunicipality()
+  const { municipality, municipalities } = useMunicipality()
+  const changeMunicipality = useMunicipalityChange()
   const { open, setOpen, ref } = useDropdownState()
   const [draft, setDraft] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
@@ -28,7 +30,7 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
   function handleSelect(id: string) {
     const match = municipalities.find((m) => m.id === id)
     if (!match) return
-    setMunicipality(match.id, match.name, 'selector')
+    void changeMunicipality(match.id, match.name, 'selector')
     setOpen(false)
     inputRef.current?.blur()
   }

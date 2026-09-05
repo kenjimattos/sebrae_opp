@@ -10,11 +10,13 @@ import AgendaCard from '@/components/agenda/AgendaCard'
 import IndicatorModal from '@/components/agenda/IndicatorModal'
 import { ParaibaOutlineMap } from '@/components/map/ParaibaOutlineMap'
 import { useMunicipality } from '@/hooks/useMunicipality'
+import { useMunicipalityChange } from '@/hooks/useMunicipalityChange'
 import { agendaObjectives } from '@/data/indicators/descriptions/agendas'
 import CitySelector from '@/components/layout/CitySelector'
 
 export default function SectionAgendas() {
-  const { municipality, municipalities, setMunicipality, loading } = useMunicipality()
+  const { municipality, municipalities, loading } = useMunicipality()
+  const changeMunicipality = useMunicipalityChange()
   const agendas = municipality.data?.agendas ?? []
   const [selectedAgendaId, setSelectedAgendaId] = useState<string>(
     agendas[0]?.id ?? 'governanca',
@@ -29,7 +31,7 @@ export default function SectionAgendas() {
 
   function handleMapSelect(id: string) {
     const match = municipalities.find((m) => m.id === id)
-    if (match) setMunicipality(match.id, match.name, 'map')
+    if (match) void changeMunicipality(match.id, match.name, 'map')
   }
 
   // Estado inicial: sem município selecionado, exibimos apenas o mapa e o

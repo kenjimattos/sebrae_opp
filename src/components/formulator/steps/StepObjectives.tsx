@@ -7,6 +7,8 @@ import { Plus, Trash2 } from '@/components/icons'
 import { useFormulator } from '@/hooks/useFormulator'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { useAiTask } from '@/hooks/useAiTask'
+import { useConfirm } from '@/hooks/useConfirm'
+import { confirmReplaceList, filledCount } from '@/utils/formulatorOverwrite'
 import { useUndoable } from '@/hooks/useUndoable'
 
 export default function StepObjectives() {
@@ -17,6 +19,7 @@ export default function StepObjectives() {
   // Geração de objetivos específicos a partir do objetivo geral (IA).
   const specificAi = useAiTask()
   const undoableSpecific = useUndoable<string[]>()
+  const confirm = useConfirm()
 
   const setGeneral = (general: string) => setSlice('objectives', { ...data, general })
 
@@ -39,6 +42,9 @@ export default function StepObjectives() {
 
   async function generateSpecific() {
     if (specificAi.status === 'loading' || data.general.trim() === '') return
+    // Substitui a lista inteira; só pergunta se houver objetivo digitado.
+    const preenchidos = filledCount(data.specific)
+    if (preenchidos > 0 && !(await confirm(confirmReplaceList(preenchidos, 'objetivo específico', 'objetivos específicos')))) return
     undoableSpecific.capture(data.specific)
     const result = await specificAi.run({
       task: 'generate-specific-objectives',

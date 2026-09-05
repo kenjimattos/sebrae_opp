@@ -3,10 +3,12 @@ import Dropdown from '@/components/ui/Dropdown'
 import AiField from '@/components/formulator/AiField'
 import { useFormulator } from '@/hooks/useFormulator'
 import { useMunicipality } from '@/hooks/useMunicipality'
+import { useMunicipalityChange } from '@/hooks/useMunicipalityChange'
 
 export default function StepIdentification() {
   const { state, setSlice } = useFormulator()
-  const { municipality, municipalities, setMunicipality } = useMunicipality()
+  const { municipality, municipalities } = useMunicipality()
+  const changeMunicipality = useMunicipalityChange()
   const data = state.identification
 
   const update = (patch: Partial<typeof data>) =>
@@ -16,7 +18,7 @@ export default function StepIdentification() {
 
   function handleMunicipalityChange(id: string) {
     const match = municipalities.find((m) => m.id === id)
-    if (match) setMunicipality(match.id, match.name)
+    if (match) void changeMunicipality(match.id, match.name)
   }
 
   return (

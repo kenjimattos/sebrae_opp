@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AuthProvider from '@/hooks/AuthProvider'
+import ConfirmProvider from '@/hooks/ConfirmProvider'
 import MunicipalityProvider from '@/hooks/MunicipalityProvider'
 import FormulatorProvider from '@/hooks/FormulatorProvider'
 import ScrollToTop from '@/components/ScrollToTop'
@@ -12,19 +13,21 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <AuthProvider>
-        <MunicipalityProvider>
-          <FormulatorProvider>
-            <Routes>
-              <Route element={<Layout />}>
-                <Route path="/" element={<Login />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/trilhas" element={<Trails />} />
-              </Route>
-            </Routes>
-          </FormulatorProvider>
-        </MunicipalityProvider>
-      </AuthProvider>
+      <ConfirmProvider>
+        <AuthProvider>
+          <MunicipalityProvider>
+            <FormulatorProvider>
+              <Routes>
+                <Route element={<Layout />}>
+                  <Route path="/" element={<Login />} />
+                  <Route path="/home" element={<Home />} />
+                  <Route path="/trilhas" element={<Trails />} />
+                </Route>
+              </Routes>
+            </FormulatorProvider>
+          </MunicipalityProvider>
+        </AuthProvider>
+      </ConfirmProvider>
     </BrowserRouter>
   )
 }
