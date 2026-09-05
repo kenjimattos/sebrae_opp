@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Não lançado]
 
+### Correções
+
+- **A "Política pública associada" era preenchível e não saía no PDF.** A etapa 2 do formulador tem quatro campos; a tela de revisão montava três. O gestor escrevia o campo, via na tela do formulário, clicava em Baixar PDF e o texto não estava lá — sem erro, sem aviso, sem sinal de que faltava algo. É o pior tipo de perda: silenciosa e na saída final, que no piloto é o único artefato que sai da plataforma. Nenhum outro campo tem o problema (conferidos os dez blocos de `renderSection` contra os `TextInput`/`AiField` das dez etapas). O bloco vazio continua não sendo renderizado, então quem não preencher o campo não vê diferença.
+
 ### Infraestrutura
 
 - **A suíte de testes volta a existir, começando pela régua.** O `vite.config.ts` apontava para um `src/test/setup.ts` que não existia desde o redesign, e o repositório tinha `@testing-library/react` instalado com zero testes. A infra passa a ser **um Vitest na raiz com dois projetos** (`test.projects`): `tests/client` em jsdom, com o `setup.ts` do jest-dom, e `tests/server` em node puro, cobrindo `server/src` e `api/_lib`. Uma pasta `tests/` na raiz em vez de arquivos colocados ao lado do código por dois motivos: o build do servidor emite tudo que está sob `server/src`, então teste colocado ali exigiria um `exclude` só para não ir parar no `dist/`; e uma pasta na raiz é visível na primeira tela do repositório. Sem `globals`: `describe`/`it`/`expect` são importados de `'vitest'` em cada arquivo, porque o `tsconfig.node.json`, que cobre `api/_lib`, só conhece os tipos de node. O `tsc -b` checa os testes junto, cada metade no tsconfig do seu ambiente: `tests/client` e o `setup.ts` entram no `tsconfig.app.json`; `tests/server` entra no `tsconfig.node.json`, porque os testes de costura importam `services.ts`, que puxa `config.ts` e `process`, e o config do app não conhece os tipos de node — de propósito, senão um `process.env` em componente React passaria em silêncio.

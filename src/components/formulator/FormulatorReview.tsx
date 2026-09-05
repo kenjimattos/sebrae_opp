@@ -63,6 +63,7 @@ function renderSection(
           { label: 'Problema Central', value: d.problem },
           { label: 'Evidências e Dados', value: d.evidence },
           { label: 'Impacto da Inação', value: d.impact },
+          { label: 'Política Pública Associada', value: d.policy },
         ],
       }
     }
