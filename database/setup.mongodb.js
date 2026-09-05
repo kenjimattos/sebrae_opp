@@ -86,7 +86,13 @@ ensureCollection('indicators', {
 // --- indicatorValues: 1 doc por (município × indicador). ---
 ensureCollection('indicatorValues', {
   bsonType: 'object',
-  required: ['municipalityId', 'indicatorId', 'rawValue', 'referenceYear', 'isFictional'],
+  // numericValue é obrigatório: é ele que classifica (server/src/status.ts), não
+  // o rawValue — que é texto de exibição, arredondado, e perde a casa decimal em
+  // que os cortes oficiais discriminam. `null` segue válido pelo bsonType e
+  // significa "sem medida" (ex.: os 27 municípios 'sem-dados' da Redesim); o que
+  // o required proíbe é a AUSÊNCIA da chave, que reabriria a porta para o
+  // servidor adivinhar o número a partir do texto.
+  required: ['municipalityId', 'indicatorId', 'rawValue', 'numericValue', 'referenceYear', 'isFictional'],
   properties: {
     municipalityId: { bsonType: 'string', description: 'ref municipalities._id (IBGE)' },
     indicatorId: { bsonType: 'string', description: 'ref indicators._id' },
