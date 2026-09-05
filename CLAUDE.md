@@ -88,6 +88,22 @@ consultar `index.css` antes de inventar equivalente):
 > sobre `background` ou sobre `surface`. A base em `button-styles.ts` já aplica;
 > componente solto usa `focus-visible:outline outline-2 outline-offset-2 outline-accent`.
 
+> **`line-clamp` aqui serve a altura uniforme em grade, não a economia de espaço.**
+> Os quatro usos estão em cartões que ficam lado a lado (`AgendaIndicatorItem`,
+> `AgendaExpandable`, `CoursePoster`, `EconomicsCard`), onde texto de tamanho variável
+> deixaria a linha serrilhada; dois deles pareiam com `min-h-[Nlh]`, que fixa o mínimo
+> enquanto o clamp fixa o máximo. **Fora de grade, não cortar** — bloco que ocupa a
+> largura toda e não tem vizinho para alinhar deve crescer com o texto. Já se cortou
+> a análise do Panorâma sem motivo, e o corte foi removido inteiro.
+> Nota de quem for usar: `-webkit-line-clamp` conta linhas de texto **direto** na caixa.
+> Um `<div>` entre a classe e o texto (típico ao envolver um componente, como
+> `AiMessage` → `MarkdownLite` → `<p>`) anula o corte **sem erro nenhum** — nada cai,
+> nada avisa, e `scrollHeight === clientHeight` passa a dizer que não há texto escondido.
+> Por isso os quatro usos põem a classe no próprio `<p>`/`<h4>`. Precisando cortar em
+> volta de um componente, use `max-h-*` + `overflow-hidden`, que não depende do
+> aninhamento. E lembre que **nada disso é alcançável por teste**: jsdom não calcula
+> layout, então mudança de clamp/overflow se confere no navegador.
+
 > **Tamanho que se repete vira token e mora na classe, não no consumidor.** O ponto de
 > status divergiu (7px num lugar, 8px noutro) porque cada chamador declarava o seu;
 > hoje `--size-status-dot` fica dentro de `.status-*-dot`.
