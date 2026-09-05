@@ -3,13 +3,22 @@
 Observatório de Políticas Públicas do Sebrae PB. Este arquivo traz as **regras e
 armadilhas** do projeto; o resto se lê no código. Prefira `grep` a suposição.
 
-**Estado:** 1.0.0 em produção no servidor Sebrae (`10.1.100.99`), Nginx servindo o
-`dist/` + proxy `/api/*` para a API Node (`server/`) sobre o MongoDB `DadosOPP`
-(`10.1.141.23`). Home = `SideNav` com 4 pilares (Ambiente de negócio, Mapeamento de
-recursos, Cursos e boas práticas, Formulador de projetos); cada pilar alterna modos
-via `ModeToggle`. **223 municípios da PB**, default Campina Grande (`2504009`).
-Rotas: `/` (Login), `/home`, `/trilhas`, `/oportunidades`. Desktop 1440px. Dark mode
-por tokens, sem toggle na UI.
+**Estado:** 1.3.0. Esta é a `main` — a branch de implantação no servidor Sebrae
+(`10.1.100.99`), Nginx servindo o `dist/` + proxy `/api/*` para a API Node
+(`server/`) sobre o MongoDB `DadosOPP` (`10.1.141.23`). **Ainda não há produção**: o
+servidor recebe o deploy, mas a plataforma não está aberta a usuário final.
+
+Home = `SideNav` com 4 pilares (Ambiente de negócio, Mapeamento de recursos, Cursos e
+boas práticas, Formulador de projetos); cada pilar alterna modos via `ModeToggle`.
+**223 municípios da PB**, default Campina Grande (`2504009`). Rotas: `/` (Login),
+`/home`, `/trilhas`. Desktop 1440px. **Tema claro e escuro**, com `ThemeToggle` fixo
+no topo à direita, montado no `Layout` e portanto presente em todas as rotas
+(automático → claro → escuro; automático é o default e segue o sistema). **Instância
+única** — `useTheme` é estado local, dois consumidores montados teriam preferências
+independentes.
+
+> **Não há rota catch-all.** URL desconhecida renderiza tela em branco — inclusive
+> `/oportunidades` e `/comunidade`, que existiram e podem estar em links antigos.
 
 ---
 
@@ -24,6 +33,12 @@ Fastify + driver `mongodb` no `server/`.
 - Sem `any` — use `unknown` + type guard. Interfaces em `src/types/`.
 - Pastas espelham os grupos do Figma (`Agenda/Card` → `src/components/agenda/AgendaCard.tsx`).
   Primitivos Tailwind puros em `src/components/ui/`.
+- **Três controles parecidos, papéis distintos** — escolher pelo papel, não pelo visual:
+  `Button` é ação; `Chip` é seleção entre pares lado a lado (estado vem de dados,
+  anunciado por `aria-current`/`aria-pressed`); `ModeToggle` troca painel no lugar
+  (`role="tablist"` + pill deslizante). `Chip` e `Button` são idênticos na tela **por
+  construção** — dividem shell, variantes e tamanhos em `ui/buttons/button-styles.ts`.
+  Mexeu em um, mexeu nos dois; não copiar estilo entre eles.
 
 ---
 
@@ -32,19 +47,50 @@ Fastify + driver `mongodb` no `server/`.
 Tokens (`--spacing-*`, `--radius-*`, `--semantic-*`, `--primitives-*`…) estão em
 `src/index.css` e integrados ao `tailwind.config.js`.
 
+**A cor tem três camadas, na ordem:** `--primitives-*` (o único lugar do projeto com
+hex) → `--semantic-*` (o que a UI consome; só esta camada troca por tema) → classes do
+`tailwind.config.js`. Componente nunca lê primitiva direto, e primitiva sem consumidor
+não fica no arquivo.
+
 > **Regra:** usar as classes nativas, nunca arbitrary values. `gap-md`, não
 > `gap-[var(--spacing-md)]`. `rounded-sm`, não `rounded-[var(--radius-sm)]`.
+> Para cor isso é **erro de lint** (`no-restricted-syntax` no `eslint.config.js`):
+> classe sem cobertura significa token faltando no `tailwind.config.js` — a saída é
+> adicioná-lo lá, não contornar. Seguem legítimos: arbitrary de dimensão (`w-[56px]`)
+> e `var()` dentro de gradiente/`color-mix` em `style` inline.
+
+Classes de cor disponíveis além das óbvias: `bg-background|surface-tertiary|accent-hover|
+accent-surface|{success,warning,alert}-surface|button-*`, `text-primary|on-accent|
+{success,warning,alert}|button-label-*`, `border-surface-secondary|surface-tertiary|
+text-primary|{success,warning,alert}`.
+
+> **Label sobre fundo colorido acompanha a cor, não o tema.** `--semantic-text-on-accent`
+> e `--semantic-button-label-success` invertem entre claro e escuro porque o fundo deles
+> inverte (azul escuro ↔ lime claro; verde escuro ↔ verde claro). Escrever `text-white`
+> ali dá 1,7:1 num dos temas — já aconteceu duas vezes (`NumberBullet`, botão `success`).
 
 Classes compostas declaradas em `@layer components` (não são geradas pelo Tailwind —
 consultar `index.css` antes de inventar equivalente):
 
 ```
 .typo-display-lg|display|display-sm · .typo-h1..h4 (h4 inclui uppercase)
-.typo-body-lg|body|body-sm (+ variantes -bold) · .typo-button-lg|button|button-sm
+.typo-title-lg|title-md|title-sm · .typo-body-lg|body|body-sm (+ variantes -bold)
+.typo-button-lg|button|button-sm (+ variantes -secondary-)
 .card-surface(-secondary) · .card-hoverable · .flex-center|between|col-start
-.grid-2..5 · .status-{success,warning,alert}-{bg,dot}
-.divider · .scrollbar-hide · .section-container · .typewriter-caret
+.grid-2..5 · .status-{success,warning,alert,neutral}-{bg,dot} · .glass(-bevel)
+.divider · .scrollbar-hide · .section-container · .typewriter-caret · .journey-cue-chevron
+.risk-card* (Riscos) · .catalog*, .poster* (/trilhas)
 ```
+
+> **Foco de teclado é `outline`, nunca `ring`.** `box-shadow` some em alto contraste
+> forçado (`forced-colors`), e o gap do `outline-offset` é transparente — funciona
+> sobre qualquer fundo, enquanto `ring-offset` precisaria saber se o controle está
+> sobre `background` ou sobre `surface`. A base em `button-styles.ts` já aplica;
+> componente solto usa `focus-visible:outline outline-2 outline-offset-2 outline-accent`.
+
+> **Tamanho que se repete vira token e mora na classe, não no consumidor.** O ponto de
+> status divergiu (7px num lugar, 8px noutro) porque cada chamador declarava o seu;
+> hoje `--size-status-dot` fica dentro de `.status-*-dot`.
 
 ---
 
@@ -113,7 +159,7 @@ Quatro superfícies, todas via `POST /api/ai` (modelo gratuito, fetch puro — s
 **Arquitetura:** contrato em `src/types/ai.ts` (união `AiTaskRequest`); núcleo em
 `api/_lib/` (`openrouter.ts`, `prompts.ts`, `handler.ts`). **Três transportes sobre a
 mesma fonte** (`handler.ts`): function da Vercel (`api/ai.ts`), middleware de dev do
-Vite e `POST /api/ai` no Fastify (`server/src/routes.ts`) — este atende a produção
+Vite e `POST /api/ai` no Fastify (`server/src/routes.ts`) — este atende o servidor
 Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
 
 **Regras:**
@@ -138,9 +184,39 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   Fonte de verdade das 10 etapas: `src/data/formulator/steps.ts`.
 - **Modo Riscos** (`ModeRisks`) não tem dados estáticos: deriva dos indicadores em
   `alert`/`warning` do município (`src/utils/risks.ts`).
+- **Token novo no `:root` precisa entrar no `.dark` também.** Sem par, ele herda o valor
+  do tema claro em silêncio — não há erro de CSS, a var só resolve errado. Já mordeu três
+  vezes: `--semantic-accent-hover` (azul no hover do FAB lime), as três surfaces de status
+  (pasteis claros sobre o navy) e `--semantic-text-secondary` (1,7:1 no `NumberBullet`).
+  Hoje os dois blocos são espelho um do outro, na mesma ordem: a paridade se confere por
+  diff, e é assim que se confere — nenhum teste pega isso.
+- **O tema claro é novo e menos rodado que o escuro.** Até esta versão a aplicação era
+  escura por decreto e o `:root` nunca chegava à tela; mudança visual precisa ser olhada
+  nos dois temas pelo `ThemeToggle`. Os pares de contraste foram medidos uma vez (AA em
+  ambos), mas a calibragem fina do `.glass`/`.glass-bevel` no claro é recente.
+- **`/trilhas`:** catálogo de fileiras full-bleed. Duas coisas parecem enfeite e não são.
+  (1) A última fileira tem `min-height` de uma viewport (`.catalog-row:last-child`):
+  sem ela não há rolagem para a seção chegar ao topo, e a barra de eixos nunca marca o
+  último eixo. (2) `--catalog-offset` é fonte única do `scroll-margin-top` das seções e
+  dos pôsteres **e** daquele `min-height` — mudar num lugar só dessincroniza.
+  O medidor no pé do pôster compara o curso com o mais pesado **da própria trilha**,
+  não do catálogo; a mesma carga rende barras diferentes em fileiras diferentes.
+- **`max-w-*` no mesmo elemento que tem gutter espreme o conteúdo.** Com
+  `box-sizing: border-box`, os 180px de `padding-inline` entram no `max-width` —
+  `max-w-3xl` vira ~400px úteis. Pôr o `max-width` num filho sem padding.
 - **Testes:** a infra (Vitest + jsdom) segue nos scripts, mas a suíte foi retirada no
   redesign (`src/test/` não existe). Ao reescrever, mockar `src/data/api.ts` — o
   provider faz `fetch`.
+- **Comentário citando componente não é uso.** Numa varredura, três componentes mortos
+  (`ui/Grid`, `agenda/AgendaStats`, `formulator/useFormulatorAi`) sobreviveram só porque
+  comentários os mencionavam. Ao caçar código morto, procurar `import`, não o nome. E o
+  escopo da busca precisa incluir **`api/`**: o handler serverless importa de `src/`
+  (ex.: `AI_FIELD_IDS`), então varrer só `src/` produz falso positivo perigoso.
+- **Varredura por `.tsx` esquece os `.ts` — e é neles que mora o design system.** A
+  migração dos arbitrary values de cor deu-se por concluída com um grep em `--include='*.tsx'`;
+  quem tinha o pior caso era `button-styles.ts`, a fonte de estilo de toda a família
+  `Button`/`Chip`/`IconButton`. Só apareceu quando a regra de lint rodou. Ao varrer
+  estilo, incluir `.ts`.
 
 ---
 

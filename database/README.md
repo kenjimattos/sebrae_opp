@@ -3,37 +3,38 @@
 Modelagem e povoamento do banco **MongoDB** da OPP (servidor do Sebrae Nacional).
 O banco é a **fonte de verdade** dos dados de indicadores, servidos ao frontend pela
 **API de leitura** (`server/` — ver `../server/README.md`). Hoje cobre **33 indicadores**
-para os **223 municípios da Paraíba** — **IDH-M** (Censo 2010), **IGM-CFA** (série
-histórica 2017–2026), **IGMA** (2026), **IDSC** (Instituto Cidades Sustentáveis, 2025),
-**Trabalhadores nas ocupações de C&T**
-(RAIS 2024), **Trabalhadores em economia criativa/inovação/TIC** (RAIS 2024),
-**as duas dimensões ISDEL** — Governança para o Desenvolvimento e Educação
-Empreendedora (Sebrae, série 2015–2023), **Crescimento de MPE** (Observatório
-Sebrae) e a agenda **Simplificação e digitalização** completa (Tempo de abertura /
-viabilidade, Ranking municipal e Tempo de licenciamento, Redesim/PB),
-**Trabalhadores formais com Ensino Médio e Superior Completo** (RAIS 2024, via
-acesso direto ao data lake do Sebrae), além de base econômica (MEIs/MEs/EPPs, negócios
-abertos/extintos, IDEB, Gini, PIB per capita, remuneração média, crédito) e outros; os
-demais entram pelo mesmo padrão (ver
-[Adicionar um novo indicador](#adicionar-um-novo-indicador)).
+(12.934 valores) para os **223 municípios da Paraíba**, mais as **emendas parlamentares**
+federais e estaduais.
 
-> **Estado atual (handoff):**
+Nas **agendas**: IGM-CFA (2017–2026), IGMA (2026), as duas dimensões **ISDEL** (Governança
+para o Desenvolvimento e Educação Empreendedora, 2015–2023), a agenda **Simplificação e
+digitalização** completa (tempo de abertura, viabilidade, licenciamento e Ranking
+Redesim/PB), **Crescimento de MPE**, trabalhadores em **C&T** e em **economia
+criativa/inovação/TIC**, trabalhadores formais com **Ensino Médio e Superior Completo**,
+**empresas ativas** / **negócios abertos e extintos** (RFB), **compras públicas** (PNCP ×
+RFB, total e de inovação), **crédito** (ESTBAN/BCB e BNDES) e **Bolsa Família**.
+
+Na **base econômica** (cards do Panorama): IDH-M, IDEB (anos iniciais e finais), GINI,
+PIB per capita, remuneração média, IDSC, cobertura da atenção básica e os estoques de
+MEIs/MEs/EPPs e empresas ativas.
+
+Indicador novo entra pelo mesmo padrão — ver
+[Adicionar um novo indicador](#adicionar-um-novo-indicador).
+
+> **Estado atual:**
 > - Banco `DadosOPP` (servidor Sebrae, acesso via VPN/NoSQLBooster) **montado e populado**:
->   4 coleções com validadores + índices, 223 municípios, **IDH-M 2010**,
->   **IGM-CFA 2017–2026**, **IGMA 2026**, **Trabalhadores em C&T 2024**,
->   **Trabalhadores em economia criativa/inovação/TIC 2024**, **as duas dimensões ISDEL
->   2015–2023** (Governança + Educação Empreendedora), os indicadores **Redesim** e o
->   **Crescimento de MPE** e **Trabalhadores formais com Ensino Médio/Superior Completo**
->   (RAIS 2024, via **data lake do Sebrae** — ver `RUNBOOK_ETL.md`) já gerados (rode os
->   seeds no NoSQLBooster — ver montagem).
+>   **5 coleções** com validadores + índices, 223 municípios, 6 agendas, 33 indicadores de
+>   catálogo, 12.934 valores e 448 documentos de emendas (224 federais + 224 estaduais,
+>   cada conjunto = 223 municípios + 1 doc de escopo estadual).
 > - Chave de `indicatorValues` **preparada para histórico** (`{município, indicador, ano}`);
 >   o IGM-CFA já exercita isso com **10 anos por município** (2.230 valores) e cada
 >   dimensão ISDEL com **9 anos** (2.007 valores).
-> - **Integração via API concluída (1.0.0 em produção).** O frontend consome a **API de
+> - **Integração via API concluída.** O frontend consome a **API de
 >   leitura** (`server/`, Node/Fastify) que lê o `DadosOPP` e devolve agendas + base
 >   econômica com o **status já calculado** a partir do `threshold` de cada indicador no
->   banco. Os dados estáticos de `src/data/` foram removidos. Deploy no servidor Sebrae
->   (`10.1.100.99`): Nginx serve o `dist/` e faz proxy de `/api/*` para o processo Node.
+>   banco. Não há dados de indicador estáticos em `src/data/`. Implantação no servidor Sebrae
+>   (`10.1.100.99`): Nginx serve o `dist/` e faz proxy de `/api/*` para o processo
+>   Node. Ainda não há produção aberta a usuário final.
 > - **Próximo passo:** adicionar mais indicadores (mesmo padrão) — a API os expõe
 >   automaticamente (indicador sem documento no banco simplesmente não é retornado).
 
@@ -61,32 +62,73 @@ nesta ordem (cada um imprime um resumo ao final):
 > `database/scripts/aplicar_seeds.sh indicador-idsc indicador-cobertura-atencao-basica`
 > ou `--all` para todos. Requer `mongosh` no PATH e o `database/.env` preenchido.
 
-1. `setup.mongodb.js` — cria as 4 coleções (com validadores) e os índices.
+1. `setup.mongodb.js` — cria as **5 coleções** (com validadores) e os índices.
 2. `seed/municipios.mongodb.js` — 223 municípios da PB.
 3. `seed/agendas.mongodb.js` — estrutura das 6 agendas.
-4. `seed/indicador-idh-m.mongodb.js` — catálogo do IDH-M + valores dos 223 municípios.
-5. `seed/indicador-igm-cfa.mongodb.js` — catálogo do IGM-CFA + 2.230 valores (223 × 2017–2026).
-6. `seed/indicador-igma.mongodb.js` — catálogo do IGMA + 223 valores (2026, com 6 pilares).
-7. `seed/indicador-trabalhadores-ct.mongodb.js` — catálogo + 223 valores de Trabalhadores em C&T (RAIS 2024).
-8. `seed/indicador-trabalhadores-tic.mongodb.js` — catálogo + 223 valores de Trabalhadores em economia criativa/inovação/TIC (RAIS 2024).
-9. `seed/indicador-isdel-governanca.mongodb.js` — catálogo + 2.007 valores de Governança para o Desenvolvimento – ISDEL (223 × 2015–2023).
-10. `seed/indicador-tempo-abertura.mongodb.js` — catálogo `tempo-abertura` + 223 valores, Redesim (janela de 12 meses).
-11. `seed/indicador-tempo-viabilidade.mongodb.js` — catálogo `tempo-viabilidade` + 223 valores, Redesim (janela de 12 meses).
-12. `seed/indicador-ranking-redesim.mongodb.js` — catálogo `ranking-redesim` + 223 valores, Ranking Municipal Redesim/PB (janela de 6 meses).
-13. `seed/indicador-tempo-licenciamento.mongodb.js` — catálogo `tempo-licenciamento` + 223 valores, Índice de Tempo de alvará Redesim/PB (janela de 6 meses).
-14. `seed/indicador-crescimento-mpe.mongodb.js` — catálogo `crescimento-mpe` + 223 valores, Crescimento de MPE formalizadas nos ELI (Observatório Sebrae).
-15. `seed/indicador-isdel-educacao-emp.mongodb.js` — catálogo `isdel-educacao-emp` + 2.007 valores, Educação Empreendedora – ISDEL (223 × 2015–2023, **sem semáforo**).
-16. `seed/indicador-trabalhadores-medio-completo.mongodb.js` — catálogo `trabalhadores-medio-completo` + 223 valores, Trabalhadores formais com Ensino Médio Completo (RAIS 2024, **data lake do Sebrae**, **sem semáforo**).
-17. `seed/indicador-trabalhadores-superior-completo.mongodb.js` — catálogo `trabalhadores-superior-completo` + 223 valores, Trabalhadores formais com Ensino Superior Completo (RAIS 2024, **data lake do Sebrae**, **sem semáforo**).
-18. `seed/indicador-idsc.mongodb.js` — catálogo `idsc` + 223 valores, IDSC-BR 2025 (Instituto Cidades Sustentáveis, **API pública**, **sem semáforo**).
-19. `seed/indicador-credito-financiamento.mongodb.js` — catálogo `credito-financiamento` + 223 valores, Crédito concedido no município (saldo de Operações de Crédito, ESTBAN/BCB, **data lake do Sebrae**, mês 202011, **sem semáforo**; só 47/223 municípios têm agência, demais `null`).
-20. `seed/emendas-federais.mongodb.js` — 224 docs de emendas parlamentares federais (223 municípios + o rollup `PB:federal`), CGU/Portal da Transparência, janela 2023–2026, **sem semáforo**.
-21. `seed/emendas-estaduais.mongodb.js` — 224 docs de emendas estaduais da ALPB (223 + `PB:estadual`), CODATA/CGE-PB, janela 2021–2025, **sem semáforo**; município inferido do texto do objeto (estimativa).
 
-Os dois de emendas alimentam `GET /api/emendas` (modo "Mapeamento de recursos") e
-vão para a coleção `emendas`, não para `indicatorValues` — não dependem dos seeds de
-indicador, só de `municipios`. **Sem eles a rota devolve 503** e o painel de emendas
-fica vazio.
+Depois os indicadores. Cada seed traz o **catálogo** (1 doc em `indicators`) e os
+**valores** (`indicatorValues`); a ordem entre eles é livre. Marcados com ⚖️ os que têm
+`threshold` (semáforo) — os demais exibem só o número, por não haver faixa oficial na
+fonte (ver [Classificação](#classificação-semáforo)).
+
+**Agenda Governança** (`governanca`)
+
+4. `seed/indicador-idh-m.mongodb.js` — ⚖️ IDH-M, 223 valores (Censo 2010). Também é card do Panorama.
+5. `seed/indicador-igm-cfa.mongodb.js` — ⚖️ IGM-CFA, 2.230 valores (223 × 2017–2026).
+6. `seed/indicador-igma.mongodb.js` — ⚖️ IGMA, 223 valores (2026, com 6 pilares).
+7. `seed/indicador-isdel-governanca.mongodb.js` — ⚖️ Governança para o Desenvolvimento – ISDEL, 2.007 valores (223 × 2015–2023).
+
+**Agenda Simplificação e digitalização** (`simplificacao`)
+
+8. `seed/indicador-tempo-abertura.mongodb.js` — ⚖️ `tempo-abertura`, 223 valores, Redesim (janela de 12 meses).
+9. `seed/indicador-tempo-viabilidade.mongodb.js` — ⚖️ `tempo-viabilidade`, 223 valores, Redesim (janela de 12 meses).
+10. `seed/indicador-ranking-redesim.mongodb.js` — `ranking-redesim`, 223 valores, Ranking Municipal Redesim/PB (janela de 6 meses).
+11. `seed/indicador-tempo-licenciamento.mongodb.js` — `tempo-licenciamento`, 223 valores, Índice de Tempo de alvará Redesim/PB (janela de 6 meses).
+
+**Agenda Educação** (`educacao`)
+
+12. `seed/indicador-isdel-educacao-emp.mongodb.js` — Educação Empreendedora – ISDEL, 2.007 valores (223 × 2015–2023).
+13. `seed/indicador-trabalhadores-medio-completo.mongodb.js` — Ensino Médio Completo, 223 valores (RAIS 2024, **data lake do Sebrae**).
+14. `seed/indicador-trabalhadores-superior-completo.mongodb.js` — Ensino Superior Completo, 223 valores (RAIS 2024, **data lake do Sebrae**).
+
+**Agenda Inovação** (`inovacao`)
+
+15. `seed/indicador-trabalhadores-ct.mongodb.js` — Trabalhadores em C&T, 223 valores (RAIS 2024).
+16. `seed/indicador-trabalhadores-tic.mongodb.js` — Trabalhadores em economia criativa/inovação/TIC, 223 valores (RAIS 2024).
+17. `seed/indicador-crescimento-mpe.mongodb.js` — `crescimento-mpe`, 223 valores (Observatório Sebrae).
+18. `seed/indicador-compras-publicas-inovacao.mongodb.js` — `compras-publicas-inovacao`, 223 valores (PNCP × RFB, **data lake do Sebrae**).
+
+**Agenda Inclusão produtiva** (`inclusao`)
+
+19. `seed/indicador-empresas-ativas.mongodb.js` — `empresas-ativas`, 223 valores (RFB, **data lake do Sebrae**).
+20. `seed/indicador-negocios-abertos.mongodb.js` — `negocios-abertos`, 223 valores (RFB, **data lake do Sebrae**).
+21. `seed/indicador-negocios-extintos.mongodb.js` — `negocios-extintos`, 223 valores (RFB, **data lake do Sebrae**).
+22. `seed/indicador-mpe-compras-publicas.mongodb.js` — `mpe-compras-publicas`, 223 valores (PNCP × RFB, **data lake do Sebrae**).
+23. `seed/indicador-bolsa-familia.mongodb.js` — `bolsa-familia`, 223 valores (MDS/PBF — proxy municipal, ver nota no gerador).
+
+**Agenda Crédito** (`credito`)
+
+24. `seed/indicador-credito-financiamento.mongodb.js` — `credito-financiamento`, 223 valores (saldo ESTBAN/BCB, **data lake do Sebrae**, mês 202011; só 47/223 municípios têm agência, demais `null`).
+25. `seed/indicador-bndes-operacoes.mongodb.js` — `bndes-operacoes`, 223 valores (BNDES Dados Abertos, acumulado 2002–2025, nominal).
+
+**Base econômica** (cards do Panorama, `section: 'socialeconomic'`)
+
+26. `seed/indicador-ideb-anos-iniciais.mongodb.js` — `ideb-anos-iniciais`, 223 valores (IDEB 2023, rede pública, **data lake do Sebrae**).
+27. `seed/indicador-ideb-anos-finais.mongodb.js` — `ideb-anos-finais`, 223 valores (IDEB 2023, rede pública, **data lake do Sebrae**).
+28. `seed/indicador-gini.mongodb.js` — `gini`, 223 valores (Censo 2010).
+29. `seed/indicador-pib-per-capita.mongodb.js` — `pib-per-capita`, 223 valores (IBGE 2023).
+30. `seed/indicador-remuneracao-media.mongodb.js` — `remuneracao-media`, 223 valores (RAIS 2024, **data lake do Sebrae**).
+31. `seed/indicador-idsc.mongodb.js` — `idsc`, 223 valores (IDSC-BR 2025, Instituto Cidades Sustentáveis, API pública).
+32. `seed/indicador-cobertura-atencao-basica.mongodb.js` — `cobertura-atencao-basica`, 223 valores (MS/e-Gestor).
+33. `seed/indicador-meis.mongodb.js` — `meis`, 223 valores (RFB, **data lake do Sebrae**).
+34. `seed/indicador-mes.mongodb.js` — `mes`, 223 valores (RFB, **data lake do Sebrae**).
+35. `seed/indicador-epps.mongodb.js` — `epps`, 223 valores (RFB, **data lake do Sebrae**).
+36. `seed/indicador-empresas-ativas-total.mongodb.js` — `empresas-ativas-total`, 223 valores (RFB, **data lake do Sebrae**; mesmo estoque do `empresas-ativas` da agenda).
+
+**Emendas parlamentares** (coleção `emendas`, sem catálogo em `indicators`)
+
+37. `seed/emendas-federais.mongodb.js` — 224 docs (223 municípios + escopo estadual), safra 2023–2026, Portal da Transparência/CGU.
+38. `seed/emendas-estaduais.mongodb.js` — 224 docs, safra 2021–2025, CODATA/CGE-PB. Município **inferido de texto livre** — ver [Emendas](#emendas-parlamentares-federal-e-estadual).
 
 Todos são **idempotentes** (usam `upsert`): rodar de novo atualiza, não duplica.
 
@@ -106,8 +148,9 @@ Todos são **idempotentes** (usam `upsert`): rodar de novo atualiza, não duplic
 ```js
 db.municipalities.countDocuments()      // 223
 db.agendas.countDocuments()             // 6
-db.indicators.countDocuments()          // 12
-db.indicatorValues.countDocuments()     // 8251
+db.indicators.countDocuments()          // 33
+db.indicatorValues.countDocuments()     // 12934
+db.emendas.countDocuments()             // 448  (224 federais + 224 estaduais)
 db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'idh-m' })
 // João Pessoa -> rawValue "0,763"  (status deriva do threshold do indicador)
 db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'igm-cfa', referenceYear: '2026' })
@@ -136,7 +179,7 @@ db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'tempo-lice
 
 ## Schema
 
-Quatro coleções. IDs são strings estáveis (código IBGE / id do catálogo), o que
+Cinco coleções. IDs são strings estáveis (código IBGE / id do catálogo), o que
 torna os `upsert` naturais e idempotentes.
 
 ### `municipalities`
@@ -192,7 +235,41 @@ anos (ex: IDH-M `2010` e `2022`) sem sobrescrever. Qual ano exibir: por padrão 
 
 **Índices:** `municipalities.slug` (único); `indicators {placements.section}`;
 `indicatorValues {municipalityId, indicatorId, referenceYear}` (**único**, chave de
-upsert) e `indicatorValues {indicatorId, referenceYear}` (mapa: um indicador num ano).
+upsert) e `indicatorValues {indicatorId, referenceYear}` (mapa: um indicador num ano);
+`emendas {esfera, escopo}` e `emendas {municipalityId, esfera}`.
+
+### `emendas` (1 doc por município × esfera)
+Fora do modelo indicador/valor: emenda não tem catálogo nem semáforo, e as duas esferas
+têm campos diferentes. `_id` é `'<IBGE>:<esfera>'`, ou `'PB:<esfera>'` no doc de escopo
+estadual — daí os 224 docs por esfera (223 municípios + 1 do estado).
+
+| campo | tipo | descrição |
+|---|---|---|
+| `_id` | string | `'<IBGE>:<esfera>'` ou `'PB:<esfera>'` |
+| `escopo` | enum | `municipio` \| `estado` |
+| `municipalityId` | string\|null | ref `municipalities._id`; `null` quando `escopo='estado'` |
+| `esfera` | enum | `federal` \| `estadual` |
+| `valor` | double | R$ destinado (valor aprovado) — **só no estadual**; no federal a origem só publica execução |
+| `empenhado` / `pago` | double | R$ acumulado na janela |
+| `rawEmpenhado` / `rawPago` | string | valor de exibição (`"R$ 195,14 mi"`) |
+| `porAno` | obj | quebra anual — ⚠️ **o eixo muda por esfera** (ver abaixo) |
+| `naoMunicipalizado` | obj | só em `escopo='estado'`: parcela que não entra em nenhum dos 223 municípios |
+| `nEmendas` / `nAutores` | int | contagens da janela |
+| `janela` | obj | `{ de, ate }` — safra das emendas consideradas |
+| `atribuicao` | enum | `ibge` (campo estruturado, exato) \| `texto-beneficiario` (inferido do texto livre, aproximado) |
+| `referenceYear` / `source` / `isFictional` | — | como nos valores de indicador |
+
+**Duas armadilhas, ambas no validador:**
+
+- **`porAno` não é a mesma série nas duas esferas.** No federal o eixo é o ano do
+  **documento** de despesa (quando o dinheiro se moveu); no estadual é a **safra** da
+  emenda (a origem publica a execução agregada, sem data de documento). Não comparar as
+  duas como se fossem a mesma coisa.
+- **Zero significa coisas diferentes.** No federal a cobertura é censo por código IBGE, e
+  `0` é zero de verdade. No estadual o município é inferido do texto livre do objeto
+  (`atribuicao: 'texto-beneficiario'`; só ~62% do valor é municipalizável), então
+  ausência vira **`null`**, não zero — a UI precisa distinguir "não recebeu" de "não
+  atribuímos", e rotular o estadual como estimativa.
 
 ### O caso IDH-M (um indicador, duas seções)
 O IDH-M aparece em dois lugares do produto (agenda `governanca` e cards socialeconomic
@@ -219,6 +296,12 @@ inventados por nós:
 | **Tempo de abertura / viabilidade** (Redesim) | 🟢 até 3 dias · 🟡 3–5 · 🟠 5–7 · 🔴 >7 (1 dia = 24h úteis → 72/120/168h) | `lower-better, 72 / 168` (verde→Bom; amarelo+laranja→Atenção; vermelho→Crítico). Régua de 4 faixas oficiais colapsada no semáforo de 3 níveis, preservando os extremos |
 | **Ranking municipal Redesim/PB** | — sem faixa oficial p/ o total — | **ausente** (sem semáforo). A fonte publica posição e pontos, mas não uma classificação bom/atenção/alerta do total |
 | **Tempo de licenciamento** (Redesim/PB) | — faixas oficiais por documento/horas; não p/ o score combinado — | **ausente** (sem semáforo). É a pontuação do Índice de Tempo de alvará (0–120, maior = + rápido); horas brutas por município não são publicadas |
+
+A tabela acima cobre os indicadores em que a decisão exigiu justificativa. Na prática,
+**6 dos 33** têm `threshold` — `idh-m`, `igm-cfa`, `igma`, `isdel-governanca`,
+`tempo-abertura` e `tempo-viabilidade`. Todo o resto (RAIS, RFB, PNCP, BCB/BNDES, IDEB,
+GINI, PIB, IDSC, atenção básica…) entra **sem semáforo**, pelo mesmo motivo: a fonte não
+publica faixa.
 
 **Regra do projeto (jun/2026):** quando a fonte **não publica** uma classificação
 oficial (caso dos dados brutos da RAIS), o indicador entra **sem `threshold`** — exibe
@@ -612,15 +695,60 @@ python3 database/scripts/gerar_seed_remuneracao_media_lake.py --collection 2024_
 > `RAIS_CAMPO_MUNICIPIO`/`RAIS_CAMPO_VINCULO_ATIVO` no `.env`. Ao sair a RAIS 2025, troque
 > `--collection 2025_VINC --collection-prev 2024_VINC` e as constantes `ANO`/`ANO_PREV` no script.
 
+### Emendas parlamentares (federal e estadual)
+
+Duas fontes públicas independentes, um gerador cada, sem data lake e sem chave de API.
+Ambos gravam o snapshot em `database/data/` e o seed em `database/seed/`.
+
+```bash
+# Federais — Portal da Transparência (CGU), arquivos "Emendas por Documento"
+python3 database/scripts/gerar_seed_emendas_federais.py             # baixa os ZIPs, gera snapshot + seed
+python3 database/scripts/gerar_seed_emendas_federais.py --desde 2023  # recorta o universo por safra
+python3 database/scripts/gerar_seed_emendas_federais.py --offline     # regenera do snapshot versionado
+
+# Estaduais (ALPB) — API de dados abertos da CODATA/CGE-PB
+python3 database/scripts/gerar_seed_emendas_estaduais.py
+python3 database/scripts/gerar_seed_emendas_estaduais.py --offline
+python3 database/scripts/gerar_seed_emendas_estaduais.py --amostra-nao-atribuidas 20  # auditar o resíduo
+```
+
+Os dois aceitam `--inspect` (shape da origem), `--write-mongo` (grava direto, com
+`OPP_MONGO_USER`/`OPP_MONGO_PASS` no `database/.env`) e `--conferir map.json` (mede
+contra uma captura do painel da Datapedia, que parte das mesmas fontes).
+
+**Federal — por que "por documento".** A consulta de emendas traz uma linha por emenda,
+com localidade frequentemente `MÚLTIPLA`/`Nacional`; atribuir município por ali perde a
+maior parte da destinação. Os **documentos de despesa** é que carregam o código IBGE do
+município de aplicação, já estruturado. As colunas de valor são exclusivas por fase
+(empenho preenche só `Valor Empenhado`, pagamento só `Valor Pago`), então somar as duas
+não duplica. Conferido contra o painel da Datapedia: agregado dentro de 0,1%, e 220 dos
+223 municípios dentro de 1%.
+
+**Estadual — a atribuição é inferida, e isso limita o dado.** A origem **não tem campo de
+município**: ele só aparece no texto livre do `objeto` da emenda (`beneficiarioFinal` vem
+preenchido em ~5% dos registros e não serve). O gerador infere pelo padrão
+"para o Município/Prefeitura/Fundo Municipal de `<NOME>`" e **rejeita** quando há entidade
+nomeada antes do município no mesmo trecho — sem essa regra João Pessoa aparece com 2,5×
+o valor real, porque as entidades estaduais são sediadas lá. Resultado: 61,9% do valor é
+municipalizável (a Datapedia, na mesma fonte, chega a 65,2%); o agregado converge, o
+município a município diverge (55% dentro de 1%, 79% dentro de 15%). **É o teto do
+método** — o honesto é exibir como estimativa, não perseguir convergência. O resto vai
+para o doc de `escopo: 'estado'`, em `naoMunicipalizado`.
+
+> Ver também as duas armadilhas de leitura (`porAno` com eixos diferentes, zero vs.
+> `null`) em [`emendas`](#emendas-1-doc-por-município--esfera).
+
 ### Adicionar um novo indicador
 
 > **Política de classificação (obrigatória a cada seed):** ao criar o seed, **coletar
 > também o threshold oficial da fonte**. A régua de classificação (semáforo) **só pode
 > vir da classificação publicada pela própria fonte** — nunca de cortes inventados por
-> nós. Inclusive */src/data/indicators/thresholds.ts*. Se a fonte **não** publica faixa oficial, o indicador entra **sem `threshold`**
-> (sem semáforo, só o valor). Registrar a decisão (cortes oficiais + URL, ou "sem faixa
-> oficial") na tabela da seção [Classificação](#classificação-semáforo) e no comentário
-> do gerador. Ver os 5 indicadores já feitos como exemplo.
+> nós. Se a fonte **não** publica faixa oficial, o indicador entra **sem `threshold`**
+> (sem semáforo, só o valor) — é o caso de 27 dos 33. Registrar a decisão (cortes
+> oficiais + URL, ou "sem faixa oficial") na tabela da seção
+> [Classificação](#classificação-semáforo) e no comentário do gerador. Ver como exemplo
+> os 6 indicadores que têm régua: `idh-m`, `igm-cfa`, `igma`, `isdel-governanca`,
+> `tempo-abertura` e `tempo-viabilidade`.
 
 1. **Threshold (faixa oficial):** pesquisar a classificação oficial da fonte (ex: PNUD
    para IDH-M, Áquila para IGMA, CFA para IGM-CFA). Achou → mapear para `{ kind, success,
@@ -634,60 +762,126 @@ python3 database/scripts/gerar_seed_remuneracao_media_lake.py --collection 2024_
 4. Recomendado: criar um gerador análogo a `gerar_seed_idh_m.py` (uma fonte → um
    script `seed/indicador-<id>.mongodb.js`), para o povoamento ser reproduzível. O
    threshold (ou sua ausência justificada) fica como constante comentada no gerador.
+5. Listar o seed novo em [Como montar o banco](#como-montar-o-banco-primeira-vez) e em
+   [Estrutura de arquivos](#estrutura-de-arquivos) — quem monta o banco do zero segue
+   aquela lista, e seed fora dela vira banco parcial sem erro nenhum.
 
 ---
 
 ## Estrutura de arquivos
+
+Todo arquivo em `seed/` é **gerado** por um script de `scripts/` — não editar à mão. Os
+snapshots de `data/` são a captura versionada da consulta à origem, e permitem regenerar
+os seeds offline (`--offline`), sem rede nem credencial.
 
 ```
 database/
   README.md                       # este arquivo
   RUNBOOK_ETL.md                  # operação do ETL lake do Sebrae -> OPP (3 máquinas, cron)
   MAPEAMENTO_BASE_DOS_DADOS.md    # indicadores × fontes (BD / MB / AQ / data lake Sebrae)
-  setup.mongodb.js                # coleções + validadores + índices (idempotente)
-  seed/
-    municipios.mongodb.js         # 223 municípios da PB (GERADO)
-    agendas.mongodb.js            # 6 agendas (GERADO)
-    indicador-idh-m.mongodb.js    # catálogo + valores IDH-M, 223 municípios (GERADO)
-    indicador-igm-cfa.mongodb.js  # catálogo + valores IGM-CFA, 223 × 2017–2026 (GERADO)
-    indicador-igma.mongodb.js     # catálogo + valores IGMA, 223 × 2026 (GERADO)
-    indicador-trabalhadores-ct.mongodb.js  # catálogo + valores C&T, 223 × 2024 (GERADO)
-    indicador-trabalhadores-tic.mongodb.js # catálogo + valores criativa/inovação/TIC, 223 × 2024 (GERADO)
-    indicador-isdel-governanca.mongodb.js  # catálogo + valores ISDEL Governança, 223 × 2015–2023 (GERADO)
-    indicador-isdel-educacao-emp.mongodb.js # catálogo + valores ISDEL Educação Empreendedora, 223 × 2015–2023 (GERADO)
-    indicador-tempo-abertura.mongodb.js    # catálogo tempo-abertura + 223 valores (GERADO)
-    indicador-tempo-viabilidade.mongodb.js # catálogo tempo-viabilidade + 223 valores (GERADO)
-    indicador-ranking-redesim.mongodb.js   # catálogo ranking-redesim + 223 valores (GERADO)
-    indicador-tempo-licenciamento.mongodb.js # catálogo tempo-licenciamento + 223 valores (GERADO)
-    indicador-crescimento-mpe.mongodb.js    # catálogo crescimento-mpe + 223 valores (GERADO)
-    indicador-trabalhadores-medio-completo.mongodb.js    # catálogo + valores Médio Completo, 223 × 2024 (GERADO)
-    indicador-trabalhadores-superior-completo.mongodb.js # catálogo + valores Superior Completo, 223 × 2024 (GERADO)
+  setup.mongodb.js                # 5 coleções + validadores + índices (idempotente)
+  .env                            # conexões (bloco OPP) usadas por aplicar_seeds.sh e --write-mongo
+
+  seed/                           # TODOS GERADOS — 223 valores por indicador, salvo nota
+    municipios.mongodb.js           # 223 municípios da PB
+    agendas.mongodb.js              # 6 agendas
+    # agenda governanca
+    indicador-idh-m.mongodb.js
+    indicador-igm-cfa.mongodb.js               # 2.230 valores (223 × 2017–2026)
+    indicador-igma.mongodb.js                  # 2026, com 6 pilares
+    indicador-isdel-governanca.mongodb.js      # 2.007 valores (223 × 2015–2023)
+    # agenda simplificacao
+    indicador-tempo-abertura.mongodb.js
+    indicador-tempo-viabilidade.mongodb.js
+    indicador-ranking-redesim.mongodb.js
+    indicador-tempo-licenciamento.mongodb.js
+    # agenda educacao
+    indicador-isdel-educacao-emp.mongodb.js    # 2.007 valores (223 × 2015–2023)
+    indicador-trabalhadores-medio-completo.mongodb.js
+    indicador-trabalhadores-superior-completo.mongodb.js
+    # agenda inovacao
+    indicador-trabalhadores-ct.mongodb.js
+    indicador-trabalhadores-tic.mongodb.js
+    indicador-crescimento-mpe.mongodb.js
+    indicador-compras-publicas-inovacao.mongodb.js
+    # agenda inclusao
+    indicador-empresas-ativas.mongodb.js
+    indicador-negocios-abertos.mongodb.js
+    indicador-negocios-extintos.mongodb.js
+    indicador-mpe-compras-publicas.mongodb.js
+    indicador-bolsa-familia.mongodb.js
+    # agenda credito
+    indicador-credito-financiamento.mongodb.js
+    indicador-bndes-operacoes.mongodb.js
+    # base econômica (cards do Panorama)
+    indicador-ideb-anos-iniciais.mongodb.js
+    indicador-ideb-anos-finais.mongodb.js
+    indicador-gini.mongodb.js
+    indicador-pib-per-capita.mongodb.js
+    indicador-remuneracao-media.mongodb.js
+    indicador-idsc.mongodb.js
+    indicador-cobertura-atencao-basica.mongodb.js
+    indicador-meis.mongodb.js
+    indicador-mes.mongodb.js
+    indicador-epps.mongodb.js
+    indicador-empresas-ativas-total.mongodb.js
+    # coleção emendas (224 docs cada = 223 municípios + escopo estadual)
+    emendas-federais.mongodb.js
+    emendas-estaduais.mongodb.js
+
   scripts/
-    gerar_seed_idh_m.py           # gerador: BigQuery + GeoJSON -> scripts de seed
-    gerar_seed_igm_cfa.py         # gerador: raspa Power BI do CFA + GeoJSON -> seed
-    gerar_seed_igma.py            # gerador: API pública IGMA Áquila -> seed
-    gerar_seed_trabalhadores_ct.py  # gerador: RAIS CBO (BigQuery) -> seed
-    gerar_seed_trabalhadores_tic.py # gerador: RAIS CNAE (BigQuery) -> seed
-    gerar_seed_isdel.py           # gerador: CSV interno do Sebrae (ISDEL) -> 2 seeds (governanca + educacao-emp)
-    gerar_seed_tempo_abertura.py     # gerador: API pública da Redesim (microdados) -> seed tempo-abertura
-    gerar_seed_tempo_viabilidade.py  # gerador: API pública da Redesim (microdados) -> seed tempo-viabilidade
-    gerar_seed_ranking_redesim.py    # gerador: API pública do Ranking Municipal Redesim/PB -> seed ranking-redesim
-    gerar_seed_tempo_licenciamento.py # gerador: Índice de Tempo de alvará (Ranking Redesim/PB) -> seed tempo-licenciamento
-    gerar_seed_crescimento_mpe.py    # gerador: API Tesseract do Observatório Sebrae -> seed crescimento-mpe
-    gerar_seed_escolaridade.py       # gerador: data lake Sebrae (RAIS direto, Mongo) -> 2 seeds (médio + superior completo)
-  data/
-    idhm_pb_2010.json             # snapshot versionado da consulta ao basedosdados
-    igm_cfa_pb.json               # snapshot versionado da raspagem do CFA (com IBGE)
-    igma_pb.json                  # snapshot versionado da API IGMA Áquila (com IBGE)
-    trabalhadores_ct_pb_2024.json # snapshot versionado da consulta RAIS CBO (com breakdown)
-    trabalhadores_tic_pb_2024.json # snapshot versionado da consulta RAIS CNAE (com breakdown)
-    isdel_pb.csv                  # fonte/snapshot do ISDEL (CSV interno Sebrae, 2015–2023; Governança + Educação Empreendedora)
-    tempo_abertura_pb.json        # snapshot versionado dos agregados Redesim — tempo-abertura (janela 12m + cross-check)
-    tempo_viabilidade_pb.json     # snapshot versionado dos agregados Redesim — tempo-viabilidade (janela 12m + cross-check)
-    ranking_redesim_pb.json       # snapshot versionado da resposta do Ranking Municipal Redesim/PB (223 munis, janela 6m)
-    tempo_licenciamento_pb.json   # snapshot versionado do Índice de Tempo de alvará (Localização+Sanitário, janela 6m)
-    crescimento_mpe_pb.json       # snapshot versionado da API Tesseract do Observatório Sebrae (var.% MPE)
-    escolaridade_pb_2024.json     # snapshot versionado da agregação RAIS no data lake do Sebrae (1 linha/município)
+    aplicar_seeds.sh                # aplica seeds via mongosh (lê database/.env); --all ou por nome
+    # geradores — fontes públicas (BigQuery / API / raspagem)
+    gerar_seed_municipios.py        # 223 municípios da PB (IBGE)
+    gerar_seed_idh_m.py             # BigQuery (basedosdados) + GeoJSON
+    gerar_seed_gini.py              # BigQuery (basedosdados), Censo 2010
+    gerar_seed_pib_per_capita.py    # BigQuery (basedosdados), IBGE 2023
+    gerar_seed_igm_cfa.py           # raspa o Power BI do CFA
+    gerar_seed_igma.py              # API pública IGMA Áquila
+    gerar_seed_idsc.py              # API pública do Instituto Cidades Sustentáveis
+    gerar_seed_isdel.py             # CSV interno do Sebrae -> 2 seeds (governanca + educacao-emp)
+    gerar_seed_crescimento_mpe.py   # API Tesseract do Observatório Sebrae
+    gerar_seed_tempo_abertura.py    # API pública da Redesim (microdados)
+    gerar_seed_tempo_viabilidade.py # API pública da Redesim (microdados)
+    gerar_seed_ranking_redesim.py   # Ranking Municipal Redesim/PB
+    gerar_seed_tempo_licenciamento.py # Índice de Tempo de alvará (Ranking Redesim/PB)
+    gerar_seed_trabalhadores_ct.py  # RAIS CBO (BigQuery)
+    gerar_seed_trabalhadores_tic.py # RAIS CNAE (BigQuery)
+    gerar_seed_cobertura_atencao_basica.py # MS/e-Gestor
+    gerar_seed_bolsa_familia.py     # MDS/PBF (proxy municipal)
+    gerar_seed_bndes_operacoes.py   # BNDES, Portal de Dados Abertos
+    gerar_seed_mpe_compras_publicas.py     # versão PNCP direto (anterior à do lake)
+    # geradores — data lake do Sebrae (só rodam na 10.1.141.23; ver RUNBOOK_ETL.md)
+    gerar_seed_escolaridade.py      # RAIS direta -> 2 seeds (médio + superior completo)
+    gerar_seed_ideb_lake.py         # -> 2 seeds (anos iniciais + finais)
+    gerar_seed_remuneracao_media_lake.py
+    gerar_seed_negocios_rfb_lake.py # RFB -> 6 seeds (empresas-ativas, -total, meis, mes, epps, abertos/extintos)
+    gerar_seed_credito_financiamento_lake.py  # ESTBAN/BCB
+    gerar_seed_mpe_compras_publicas_lake.py   # PNCP × RFB
+    gerar_seed_compras_publicas_inovacao_lake.py  # PNCP × RFB, recorte inovação
+    calibrar_compras_inovacao.py    # calibra a cesta de CNAEs/objetos do recorte acima
+    # emendas parlamentares
+    gerar_seed_emendas_federais.py  # Portal da Transparência (CGU), por documento
+    gerar_seed_emendas_estaduais.py # API CODATA/CGE-PB (município inferido de texto livre)
+    # inspeção do lake (exploratórios, não geram seed)
+    inspecionar_bcb_lake.py · inspecionar_ibge_lake.py · inspecionar_redesim_lake.py
+    # migrações pontuais (rodar uma vez)
+    migrar_indicators_updatedAt.mongodb.js  # remove o updatedAt string-ano legado
+    migrar_id_crescimento_mpe.mongodb.js    # renomeia o id do crescimento-mpe
+
+  data/                           # snapshots versionados das consultas (permitem --offline)
+    idhm_pb_2010.json · gini_pb_2010.json · pib_per_capita_pb_2023.json
+    igm_cfa_pb.json · igma_pb.json · idsc_pb_2025.json · isdel_pb.csv
+    tempo_abertura_pb.json · tempo_viabilidade_pb.json · ranking_redesim_pb.json
+    tempo_licenciamento_pb.json · redesim_tempos_lake_pb.json
+    trabalhadores_ct_pb_2024.json · trabalhadores_tic_pb_2024.json
+    escolaridade_pb_2024.json · ideb_pb.json · remuneracao_media_pb_2024.json
+    negocios_rfb_lake_pb.json · municipios_rf_pb.json · crescimento_mpe_pb.json
+    PNCP.json · mpe_compras_publicas_lake_pb.json · compras_publicas_inovacao_lake_pb.json
+    credito_financiamento_pb.json · bndes_operacoes_pb.json · bolsa_familia_pb.json
+    cobertura_atencao_basica_pb_2020.json
+    emendas_federais_pb.json · emendas_estaduais_pb.json
+    ibge_lake_inventario.tsv · ibge_lake_detalhe.txt   # saída dos inspecionar_*
 ```
 
 ## Notas

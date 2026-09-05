@@ -1,6 +1,12 @@
 # Storybook na Plataforma OPP — avaliação
 
-**Data:** 22/08/2026 · **Branch:** `preview/snapshot` · **Situação:** não instalado.
+**Data:** 22/08/2026 · **Situação:** não instalado.
+
+> **Escopo:** avaliação escrita na branch `preview/snapshot`, onde `/api/*` vinha de um
+> snapshot estático e o deploy era na Vercel. A análise do Storybook em si vale igual —
+> os primitivos de `ui/` são os mesmos —, mas os trechos sobre `staticDirs`, fixtures do
+> snapshot e publicação na Vercel pressupõem aquela infraestrutura, que não existe aqui.
+> Nesta branch as fixtures teriam de ser capturadas da API Node.
 
 Este documento responde se vale adotar Storybook aqui, o que custaria e o que já está
 pronto a favor. É avaliação, não decisão: nada foi instalado.
