@@ -6,6 +6,13 @@
 // em todos, mas ele vive no estado local da etapa: sai da etapa e volta, o botão
 // não está mais lá e o texto original acabou — não há histórico em lugar nenhum.
 // Daí a confirmação vir antes, e só quando há o que perder.
+//
+// O aviso é UMA VEZ por sessão (`once`), e as quatro ações dividem a mesma chave
+// porque a lição é uma só: a IA substitui, não acrescenta. Aprendida num botão,
+// vale para os outros. Repetir a cada clique num botão de uso frequente não
+// protegeria ninguém — viraria o diálogo que se fecha no reflexo.
+const ONCE_AI = 'ia-substitui-conteudo'
+const AVISO_UNICO = ' Este aviso aparece uma vez por sessão.'
 
 import type { BudgetItem } from '@/types/formulator'
 import type { ConfirmOptions } from '@/hooks/useConfirm'
@@ -30,9 +37,10 @@ export function confirmReplaceField(label?: string): ConfirmOptions {
   const alvo = label ? `em "${label}"` : 'neste campo'
   return {
     title: 'Substituir o texto?',
-    message: `O texto que você escreveu ${alvo} será trocado pelo da IA. Dá para desfazer enquanto você não sair desta etapa.`,
+    message: `O texto que você escreveu ${alvo} será trocado pelo da IA. Dá para desfazer enquanto você não sair desta etapa.${AVISO_UNICO}`,
     confirmLabel: 'Substituir',
     cancelLabel: 'Manter o meu',
+    once: ONCE_AI,
   }
 }
 
@@ -43,18 +51,20 @@ export function confirmReplaceList(
 ): ConfirmOptions {
   return {
     title: 'Substituir a lista?',
-    message: `Você já preencheu ${plural(n, singular, pluralWord)}. A IA vai trocar a lista inteira, não acrescentar. Dá para desfazer enquanto você não sair desta etapa.`,
+    message: `Você já preencheu ${plural(n, singular, pluralWord)}. A IA vai trocar a lista inteira, não acrescentar. Dá para desfazer enquanto você não sair desta etapa.${AVISO_UNICO}`,
     confirmLabel: 'Substituir',
     cancelLabel: 'Manter as minhas',
+    once: ONCE_AI,
   }
 }
 
 export function confirmReplaceBudget(n: number): ConfirmOptions {
   return {
     title: 'Substituir o orçamento?',
-    message: `Você já preencheu ${plural(n, 'rubrica', 'rubricas')}. A IA vai trocar a lista inteira e os valores em reais voltam a zero. Dá para desfazer enquanto você não sair desta etapa.`,
+    message: `Você já preencheu ${plural(n, 'rubrica', 'rubricas')}. A IA vai trocar a lista inteira e os valores em reais voltam a zero. Dá para desfazer enquanto você não sair desta etapa.${AVISO_UNICO}`,
     confirmLabel: 'Substituir',
     cancelLabel: 'Manter o meu',
+    once: ONCE_AI,
   }
 }
 
@@ -64,4 +74,7 @@ export const CONFIRM_CHANGE_MUNICIPALITY: ConfirmOptions = {
     'O formulário mostra o projeto do município selecionado. Ao trocar, a tela passa a mostrar o do novo município. O que você escreveu fica guardado e volta a aparecer se você selecionar este município de novo.',
   confirmLabel: 'Trocar de município',
   cancelLabel: 'Ficar aqui',
+  // Chave própria: aceitar que a IA substitui um campo não é aceitar que a tela
+  // inteira troque de projeto. São surpresas diferentes.
+  once: 'troca-de-municipio',
 }
