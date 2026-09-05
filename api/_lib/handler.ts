@@ -192,12 +192,20 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
   }
 }
 
-// Teto de tokens por task, onde o default de 800 não serve. A análise do
-// Panorâma é exibida num parágrafo sob os cards: ~260 tokens ≈ 110–130 palavras
-// em pt-BR, e o que passar disso é aparado na última frase completa.
-const MAX_TOKENS_BY_TASK: Partial<Record<AiTaskRequest['task'], number>> = {
-  'economic-analysis': 260,
-}
+// Teto de tokens por task, onde o default de 800 não serve. Hoje nenhuma task
+// precisa disso.
+//
+// A análise do Panorâma teve teto de 260 até esta versão, para caber no bloco
+// sob os cards. Medindo com o prompt real (12 municípios, teto solto), o modelo
+// escreve entre 182 e 275 tokens — a mediana fica em 198, mas a cauda passa do
+// teto: Campina Grande, o município default da plataforma, quis 275. O teto não
+// segurava tamanho, produzia corte no meio da frase em ~1 a cada 10 análises.
+//
+// Tamanho de texto de modelo não se controla por teto de token, porque a única
+// coisa que o teto sabe fazer é truncar. O pedido de 110 palavras no prompt
+// puxa o texto para a faixa certa (as amostras vieram entre 103 e 150), e quem
+// absorve o que sobra é o layout: o bloco da análise recolhe e expande.
+const MAX_TOKENS_BY_TASK: Partial<Record<AiTaskRequest['task'], number>> = {}
 
 // Respostas de lista → string[]: uma entrada por linha, sem marcadores/numeração.
 function parseItems(text: string, max = 6): string[] {
