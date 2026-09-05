@@ -2,6 +2,14 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Não lançado]
+
+### Infraestrutura
+
+- **A suíte de testes volta a existir, começando pela régua.** O `vite.config.ts` apontava para um `src/test/setup.ts` que não existia desde o redesign, e o repositório tinha `@testing-library/react` instalado com zero testes. A infra passa a ser **um Vitest na raiz com dois projetos** (`test.projects`): `tests/client` em jsdom, com o `setup.ts` do jest-dom, e `tests/server` em node puro, cobrindo `server/src` e `api/_lib`. Uma pasta `tests/` na raiz em vez de arquivos colocados ao lado do código por dois motivos: o build do servidor emite tudo que está sob `server/src`, então teste colocado ali exigiria um `exclude` só para não ir parar no `dist/`; e uma pasta na raiz é visível na primeira tela do repositório. Sem `globals`: `describe`/`it`/`expect` são importados de `'vitest'` em cada arquivo, porque o `tsconfig.node.json`, que cobre `api/_lib`, só conhece os tipos de node. O `tsconfig.app.json` inclui `tests` e o `tsc -b` passa a checar os testes junto — inclusive os de servidor, já que o modo `bundler` resolve os sufixos `.js`.
+- **Primeiro arquivo: `tests/server/status.test.ts`, 14 casos de `computeStatus`.** Os cinco pontos de fronteira de cada régua (`>=` no `higher-better`, `<=` no `lower-better`), o caminho `enum` (único que lê texto, com `trim`, ignorando `numericValue`) e os **dois casos de regressão da reforma de 1.3.1**: IGM `5.008` exibido `"5,01"` contra o corte 5,01 e ISDEL `0.470942` exibido `"0,471"` contra o corte 0,471 — se alguém reintroduzir leitura do `rawValue`, os dois acendem. Um bloco próprio trava a última linha de defesa do `numericValue`: ausente, `null`, `NaN`, `Infinity` e string numérica devolvem `'none'`, sem coerção e sem reconstruir a partir do texto — é a garantia que o schema do Mongo, em `validationAction: 'warn'`, apenas anuncia.
+- **`server/tsconfig.json` com `include: ["src"]`.** Os itens `../api/_lib` e `../src/types/ai.ts` eram redundantes: entram pela cadeia de imports (`routes.ts` → `handler.ts` → `types/ai.ts`), e `tsc --listFilesOnly` devolve os mesmos 13 arquivos sem eles.
+
 ## [1.3.1] — 2026-09-05
 
 ### Correções
