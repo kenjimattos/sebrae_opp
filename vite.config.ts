@@ -80,11 +80,32 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
+    // Dois projetos de teste, um por ambiente, na mesma instalação do Vitest:
+    // `tests/client` roda em jsdom (React, localStorage); `tests/server` roda
+    // em node puro (services, status, api/_lib). Sem `globals`: describe/it/
+    // expect são importados de 'vitest' em cada arquivo, porque o tsconfig
+    // que cobre api/_lib só conhece os tipos de node.
     test: {
-      globals: true,
-      environment: 'jsdom',
-      setupFiles: './src/test/setup.ts',
-      css: true,
+      projects: [
+        {
+          extends: true,
+          test: {
+            name: 'client',
+            environment: 'jsdom',
+            include: ['tests/client/**/*.test.{ts,tsx}'],
+            setupFiles: './tests/setup.ts',
+            css: true,
+          },
+        },
+        {
+          extends: true,
+          test: {
+            name: 'server',
+            environment: 'node',
+            include: ['tests/server/**/*.test.ts'],
+          },
+        },
+      ],
     },
   }
 })
