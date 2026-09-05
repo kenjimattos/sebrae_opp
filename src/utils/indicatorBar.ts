@@ -10,42 +10,12 @@
 
 import type { IndicatorThreshold } from '@/types/indicators'
 
-// Converte "18,6h", "0,763", "44,73", "12.840", "R$ 185M" no número, assumindo
-// formato brasileiro (ponto = milhar, vírgula = decimal). Devolve null para
-// placeholders ("—", "N/D") ou quando não há número.
-function parseIndicatorValue(raw: string | number | null | undefined): number | null {
-  if (raw === null || raw === undefined) return null
-  if (typeof raw === 'number') return Number.isFinite(raw) ? raw : null
-  const s = String(raw).trim()
-  if (!s || s === '—' || s === 'N/D' || s.toUpperCase() === 'N/A') return null
-
-  const match = s.match(/[+-]?[\d.,]+/)
-  if (!match) return null
-  const token = match[0]
-  const lastComma = token.lastIndexOf(',')
-  const lastDot = token.lastIndexOf('.')
-
-  let cleaned: string
-  if (lastComma > lastDot) {
-    cleaned = token.replace(/\./g, '').replace(',', '.')
-  } else if (lastDot > lastComma) {
-    const parts = token.split('.')
-    const treatsAsThousands =
-      parts.length > 2 || (parts.length === 2 && parts[1]!.length === 3 && lastComma === -1)
-    cleaned = treatsAsThousands ? parts.join('') : token
-  } else {
-    cleaned = token
-  }
-  const n = parseFloat(cleaned)
-  return Number.isNaN(n) ? null : n
-}
-
 // Fração [0,1] da posição do marcador (0 = extremo esquerdo/pior, 1 = direito/
 // melhor). Devolve null quando não é possível calcular (sem faixa, faixa enum,
 // cortes ausentes/iguais ou valor não-numérico) — o chamador cai no fallback
 // por zona de status.
 export function markerFraction(
-  value: string | number | null | undefined,
+  value: number | null | undefined,
   threshold?: IndicatorThreshold,
 ): number | null {
   if (
@@ -56,8 +26,7 @@ export function markerFraction(
   ) {
     return null
   }
-  const v = parseIndicatorValue(value)
-  if (v === null) return null
+  if (typeof value !== 'number' || !Number.isFinite(value)) return null
 
   const { success: s, warning: w } = threshold
   const d = Math.abs(s - w)
@@ -67,8 +36,8 @@ export function markerFraction(
   // além, com folga de uma zona-largura (d) em cada ponta.
   const g =
     threshold.kind === 'higher-better'
-      ? (v - w) / (3 * d) + 1 / 3
-      : (w - v) / (3 * d) + 1 / 3
+      ? (value - w) / (3 * d) + 1 / 3
+      : (w - value) / (3 * d) + 1 / 3
 
   return Math.min(1, Math.max(0, g))
 }

@@ -9,7 +9,10 @@ import { thresholdSegmentLabels } from '@/utils/segmentLabels'
 interface AgendaIndicatorProps {
   id?: string
   label: string
+  /** Texto exibido ao lado da barra. */
   value: string | number
+  /** Valor numérico — posiciona o marcador da barra (o texto é arredondado). */
+  numericValue?: number | null
   status: StatusType
   /** Faixa oficial — deriva os rótulos das zonas da barra. */
   threshold?: IndicatorThreshold
@@ -23,6 +26,7 @@ interface AgendaIndicatorProps {
 export default function AgendaIndicator({
   label,
   value,
+  numericValue,
   status,
   threshold,
   segmentLabels,
@@ -50,7 +54,12 @@ export default function AgendaIndicator({
         <span className="typo-body-lg-bold text-primary" >
           {value}
         </span>
-        <IndicatorBar status={status} value={value} threshold={threshold} segmentLabels={labels} />
+        <IndicatorBar
+          status={status}
+          numericValue={numericValue}
+          threshold={threshold}
+          segmentLabels={labels}
+        />
       </div>
     </div>
   )
