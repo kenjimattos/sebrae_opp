@@ -83,7 +83,14 @@ export interface MunicipalitySummary {
 export interface Indicator {
   id: string
   label: string
+  /** Valor de exibição (padrão BR, com unidade, arredondado). */
   value: string
+  /**
+   * O mesmo valor como número, direto do ETL — sem locale, sem unidade, na
+   * precisão da fonte. É o que classifica e o que posiciona o marcador da
+   * barra; `value` é só texto. `null` = sem medida.
+   */
+  numericValue?: number | null
   variation?: RawVariation
   status: StatusType
   // Faixa oficial (só nos 6 indicadores classificados). O frontend deriva os

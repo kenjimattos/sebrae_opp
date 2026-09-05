@@ -1,5 +1,5 @@
 import type { Catalog } from './repo.js'
-import { computeStatus, parseNumeric } from './status.js'
+import { computeStatus } from './status.js'
 import type {
   IndicatorDoc,
   IndicatorsData,
@@ -80,8 +80,12 @@ export function buildIndicatorsData(
         id: ind._id,
         label: ind.label,
         value: suppressed ? '—' : v?.rawValue ?? '—',
+        // O número vai junto do texto: o frontend precisa dele para posicionar o
+        // marcador da IndicatorBar, e reconstruí-lo do `value` custaria a mesma
+        // precisão que o semáforo já perdia.
+        numericValue: suppressed ? null : v?.numericValue ?? null,
         variation: suppressed ? undefined : v?.variation,
-        status: suppressed ? 'none' : computeStatus(ind.threshold, v?.rawValue),
+        status: suppressed ? 'none' : computeStatus(ind.threshold, v),
         // threshold vai pro frontend derivar os rótulos das zonas da barra
         // (só existe nos indicadores com faixa oficial).
         threshold: ind.threshold,
@@ -135,12 +139,12 @@ export function buildMapData(
     for (const [indicatorId, v] of byIndicator) {
       if (!agendaIndicatorIds.has(indicatorId)) continue
       if (isLowConfidence(v)) continue
-      const n = parseNumeric(v.rawValue)
-      if (n === null) continue
+      const n = v.numericValue
+      if (typeof n !== 'number' || !Number.isFinite(n)) continue
       indicators[indicatorId] = {
         value: v.rawValue,
         numericValue: n,
-        status: computeStatus(catalog.byId.get(indicatorId)?.threshold, v.rawValue),
+        status: computeStatus(catalog.byId.get(indicatorId)?.threshold, v),
       }
     }
     out[m._id] = { name: m.name, indicators }
