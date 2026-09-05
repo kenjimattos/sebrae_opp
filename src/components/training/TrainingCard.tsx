@@ -1,6 +1,13 @@
 // Figma: Courses/Card (298:8)
 // Trail card with title, description, course rows, and CTA button
+//
+// A navegação usa o router, nunca `window.location`: atribuir a href recarrega
+// o documento inteiro, o que desloga (AuthProvider volta ao estado inicial) e
+// zera o município escolhido — e com o município vazio o rascunho do formulador
+// some da tela, mesmo estando salvo. O hash é resolvido no cliente pela própria
+// /trilhas (useLocation + scrollIntoView), então o router basta.
 
+import { useNavigate } from 'react-router-dom'
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
 import TrainingCardRow from '@/components/training/TrainingCardRow'
 import Button from '../ui/buttons/Button'
@@ -17,6 +24,7 @@ interface TrainingCardProps {
 }
 
 export default function TrainingCard({ slug, title, description, courses, className = '' }: TrainingCardProps) {
+  const navigate = useNavigate()
   const visibleCourses = courses.slice(0, VISIBLE_COUNT)
   const trailHref = `/trilhas#${trailAnchor(slug)}`
 
@@ -47,7 +55,7 @@ export default function TrainingCard({ slug, title, description, courses, classN
         label="Ver todos os cursos"
         variant="secondary"
         aria-label="Ir para a trilha"
-        onClick={() => window.location.href = trailHref}
+        onClick={() => navigate(trailHref)}
         className=""
       />
     </div>

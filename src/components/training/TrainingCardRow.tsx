@@ -1,6 +1,7 @@
 // Figma: Courses/CardRow (297:8)
 // Row inside a course trail card — title (uppercase) + hours + "Ver curso" link
 
+import { useNavigate } from 'react-router-dom'
 import IconButton from '@/components/ui/buttons/IconButton'
 import { ArrowRight } from '@/components/icons'
 
@@ -12,6 +13,8 @@ interface TrainingCardRowProps {
 }
 
 export default function TrainingCardRow({ title, subtitle, href = '#', className = '' }: TrainingCardRowProps) {
+  const navigate = useNavigate()
+
   return (
     <div
       className={`flex-between w-full ${className}`}
@@ -27,7 +30,7 @@ export default function TrainingCardRow({ title, subtitle, href = '#', className
       </div>
 
       {/* Ver curso button */}
-      <IconButton icon={ArrowRight} size="sm" onClick={() => window.location.href = href} />
+      <IconButton icon={ArrowRight} size="sm" onClick={() => navigate(href)} />
     </div>
   )
 }
