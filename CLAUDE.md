@@ -3,7 +3,7 @@
 Observatório de Políticas Públicas do Sebrae PB. Este arquivo traz as **regras e
 armadilhas** do projeto; o resto se lê no código. Prefira `grep` a suposição.
 
-**Estado:** 1.4.0. Esta é a `main` — a branch de implantação no servidor Sebrae
+**Estado:** 1.4.1. Esta é a `main` — a branch de implantação no servidor Sebrae
 (`10.1.100.99`), Nginx servindo o `dist/` + proxy `/api/*` para a API Node
 (`server/`) sobre o MongoDB `DadosOPP` (`10.1.141.23`). **Ainda não há produção**: o
 servidor recebe o deploy, mas a plataforma não está aberta a usuário final.
@@ -200,7 +200,7 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   junho por não haver faixa oficial na RAIS, seguiu sete semanas classificando 219
   dos 223 municípios em `alert` — e alimentando o modo Riscos com um risco falso.
   Nada avisa: o seed roda, imprime `ok`, e o campo velho fica. Ao mexer em gerador,
-  conferir se ele usa `replaceOne`; 25 ainda usam `$set`.
+  conferir se ele continua com `replaceOne`: os 26 já foram convertidos.
 - **`server/` compila `api/_lib`** (`rootDir: ".."`), então o entrypoint emitido é
   `dist/server/src/index.js`. Um `postbuild` gera `dist/index.js` como shim porque o
   `ExecStart` do systemd aponta para o caminho antigo. Não remover sem editar a unit.
