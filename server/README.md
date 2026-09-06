@@ -9,9 +9,10 @@ O Nginx serve o build estático do frontend **e** faz proxy de `/api/*` para cá
 > **Nesta branch (`preview/snapshot`) esta API não é usada.** O deploy de aprovação roda
 > na Vercel, que não alcança o Mongo do Sebrae, então `/api/*` vem de JSON estático
 > (`public/api-snapshot/`) e o `/api/ai` de uma function serverless — ver o README da
-> raiz. O código aqui está **atrás da `main`**: lá existem também `GET /api/emendas` e
-> `POST /api/ai`, que ainda não foram portados. Só é preciso subir este processo se você
-> for mexer no `server/` (e aí é preciso a VPN do Sebrae).
+> raiz. O código aqui é o **mesmo da `main`**, e é assim que deve ficar: mantê-lo
+> atrasado não protegia nada e quebrava o `tsc` da suíte de testes, que é compartilhada.
+> Só é preciso subir este processo se você for mexer no `server/` (e aí é preciso a VPN
+> do Sebrae).
 
 ## Stack
 
@@ -26,6 +27,8 @@ schema já é validado no próprio Mongo (`database/setup.mongodb.js`).
 | GET | `/api/municipalities` | `[{ id, name, slug }]` — seletor |
 | GET | `/api/municipalities/:id` | `IndicatorsData` — agendas + base econômica, **status já calculado** |
 | GET | `/api/map` | `{ options, municipalities }` — valores por município p/ colorir o mapa |
+| GET | `/api/emendas` | `EmendasData` — emendas parlamentares (federal + estadual) dos 223 municípios |
+| POST | `/api/ai` | resposta do LLM para uma task de IA (`AiTaskRequest` → `{ text, items? }`) |
 
 O shape das respostas espelha `src/types/indicators.ts` do frontend: a API devolve
 exatamente o que o `MunicipalityProvider` montava a partir dos TS estáticos.
@@ -49,6 +52,23 @@ Produção:
 ```bash
 npm run build && npm start   # tsc → dist/, node dist/index.js
 ```
+
+## IA (`POST /api/ai`)
+
+Terceiro transporte do **mesmo núcleo** de `api/_lib/handler.ts`, ao lado da function
+da Vercel (`api/ai.ts`) e do middleware de dev do Vite. Nada de lógica de IA vive em
+`server/src/` — a rota só repassa o body e devolve `{ status, body }`. Nova capacidade
+de IA = novo literal na união de `src/types/ai.ts` + prompt em `api/_lib/prompts.ts`;
+os três transportes ganham de graça.
+
+Para compilar esse núcleo compartilhado o `tsconfig.json` usa `rootDir: ".."`, o que
+move o entrypoint emitido para `dist/server/src/index.js`. O `postbuild`
+(`scripts/emit-entry-shim.mjs`) gera um `dist/index.js` que só importa o real, para o
+`ExecStart` da unit systemd (`node dist/index.js`) continuar valendo.
+
+`OPENROUTER_API_KEY` é **opcional**: sem ela a API sobe e só o `/api/ai` responde
+`missing_key`, que o frontend mostra como "O serviço de IA não está configurado neste
+ambiente". Exige saída de rede para `https://openrouter.ai` — ver `.env.example`.
 
 ## Deploy (10.1.100.99)
 

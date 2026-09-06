@@ -72,6 +72,41 @@ export interface MunicipalityDoc {
   slug: string
 }
 
+// Emendas parlamentares por município × esfera. Fica fora de indicatorValues de
+// propósito: não é indicador de agenda (sem threshold/semáforo) e o shape é outro.
+// 224 docs por esfera — 223 municípios (`escopo: 'municipio'`) + 1 rollup do
+// estado (`escopo: 'estado'`, _id 'PB:<esfera>'), que é onde vivem os metadados
+// da esfera (janela, coletadoEm, criterioQuebraAnual, naoMunicipalizado).
+export interface EmendaDoc {
+  _id: string
+  escopo: 'municipio' | 'estado'
+  municipalityId?: string | null
+  esfera: EmendaEsfera
+  // Só no estadual: a origem publica o valor aprovado à parte da execução. No
+  // federal não existe — lá só há empenhado/pago.
+  valor?: number
+  empenhado: number
+  pago: number
+  porAno?: Record<string, { valor?: number; empenhado: number; pago: number }>
+  // Só em escopo='estado'.
+  naoMunicipalizado?: {
+    valor?: number
+    empenhado: number
+    pago: number
+    nota: string
+  }
+  nEmendas?: number
+  nAutores?: number
+  janela?: { de: number; ate: number }
+  atribuicao?: EmendaAtribuicao
+  // Metadados da esfera, gravados só no doc de escopo estadual.
+  coletadoEm?: string
+  criterioQuebraAnual?: string
+  referenceYear: string
+  source?: string | null
+  isFictional: boolean
+}
+
 // --- Respostas da API (o que o frontend consome) ---
 
 export interface MunicipalitySummary {
@@ -138,4 +173,61 @@ export interface MapOption {
 export interface MapData {
   options: MapOption[]
   municipalities: Record<string, MapMunicipality>
+}
+
+// --- GET /api/emendas ---
+// Espelha src/types/emendas.ts no frontend. Se mexer num, mexa nos dois.
+
+export type EmendaEsfera = 'federal' | 'estadual'
+
+// Como o município de destino foi determinado. 'ibge' = campo estruturado na
+// origem (federal, exato); 'texto-beneficiario' = inferido do texto livre do
+// objeto da emenda (estadual, ESTIMATIVA — a UI rotula como tal).
+export type EmendaAtribuicao = 'ibge' | 'texto-beneficiario'
+
+export interface EmendaValoresAno {
+  valor?: number
+  empenhado: number
+  pago: number
+}
+
+export interface EmendaValores {
+  valor?: number
+  empenhado: number
+  pago: number
+  // ATENÇÃO: o eixo muda por esfera — federal é o ano do DOCUMENTO de despesa,
+  // estadual é a safra da emenda. Ver `criterioQuebraAnual`.
+  porAno: Record<string, EmendaValoresAno>
+  nEmendas: number
+  nAutores: number
+}
+
+export interface EmendaMunicipio {
+  id: string
+  name: string
+  federal: EmendaValores | null
+  estadual: EmendaValores | null
+}
+
+export interface EmendaNaoMunicipalizado {
+  valor?: number
+  empenhado: number
+  pago: number
+  nota: string
+}
+
+export interface EmendaEsferaMeta {
+  janela: { de: number; ate: number }
+  atribuicao: EmendaAtribuicao
+  criterioQuebraAnual: string
+  source: string
+  coletadoEm: string
+  estado: EmendaValores & { naoMunicipalizado: EmendaNaoMunicipalizado }
+  coberturaMunicipal: number
+}
+
+export interface EmendasData {
+  esferas: Record<EmendaEsfera, EmendaEsferaMeta>
+  // Sempre os 223 municípios, em ordem alfabética. Esfera sem dado vem `null`.
+  municipios: EmendaMunicipio[]
 }

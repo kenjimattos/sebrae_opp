@@ -150,9 +150,11 @@ O snapshot é gerado do banco pelos scripts em `database/scripts/`; o shape é o
 que a API Node devolve, para o frontend não saber a diferença. Ao mudar um contrato,
 regerar o snapshot.
 
-A API Node existe em `server/` e é a de produção (`main`), mas nesta branch está
-**atrás**: só `health`, `municipalities`, `municipalities/:id` e `map` — sem
-`/api/emendas` e sem `/api/ai`. **Não** documentar aqui rota que só existe na `main`.
+A API Node existe em `server/` e o código é **o mesmo da `main`** — inclusive
+`/api/emendas` e `POST /api/ai`. Ela não atende esta branch (quem atende é o
+snapshot), mas fica em dia de propósito: a suíte de testes é compartilhada e
+`tests/server/` compila contra `server/src/`, então um `server/` atrasado quebra o
+`tsc` e o build aqui. Ao mexer no `server/`, mexer nas duas branches.
 
 **DB-driven:** o status de cada indicador vem do `threshold` no banco, tanto na API
 quanto no snapshot.

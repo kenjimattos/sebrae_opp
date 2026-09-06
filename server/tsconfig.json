@@ -5,7 +5,12 @@
     "moduleResolution": "NodeNext",
     "lib": ["ES2022"],
     "outDir": "dist",
-    "rootDir": "src",
+    // rootDir sobe para a raiz do repo porque o núcleo de IA (api/_lib) é
+    // compartilhado com a function da Vercel e o middleware de dev do Vite —
+    // fonte única, sem fork. Efeito colateral: o entrypoint emitido vira
+    // dist/server/src/index.js (ver `start` no package.json e o ExecStart da
+    // unit systemd no README da raiz).
+    "rootDir": "..",
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "esModuleInterop": true,
@@ -14,5 +19,8 @@
     "declaration": false,
     "sourceMap": true
   },
+  // Só `src`: api/_lib e src/types/ai.ts entram pela cadeia de imports
+  // (routes.ts → api/_lib/handler.ts → src/types/ai.ts). Listá-los aqui era
+  // redundante — `tsc --listFilesOnly` devolve os mesmos 13 arquivos sem eles.
   "include": ["src"]
 }
