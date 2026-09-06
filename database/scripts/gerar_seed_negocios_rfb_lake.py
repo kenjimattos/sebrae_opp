@@ -968,8 +968,10 @@ def emit(indicador, values, ano):
         indicador["label"].replace("{ano}", str(ano)), onde)]
     lines.append("// Receita Federal (Estabelecimentos) via data lake do Sebrae. SEM threshold.")
     lines.append("const indicators = [\n  {},\n]".format(js(indicator)))
-    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {")
-    lines.append("  filter: { _id: i._id }, update: { $set: i }, upsert: true,")
+    # replaceOne, não $set: o documento vira exatamente o que este seed declara,
+    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas).
+    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {")
+    lines.append("  filter: { _id: i._id }, replacement: i, upsert: true,")
     lines.append("} })), { ordered: false })")
     lines.append("print(`indicators({}) -> ok (${{indicators.length}} docs)`)".format(iid))
     lines.append("")

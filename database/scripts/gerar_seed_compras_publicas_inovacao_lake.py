@@ -568,8 +568,10 @@ def emit(values, ref):
     lines.append("// Valor (R$/ano) das compras de inovação a pequenos negócios — NÍVEL, não crescimento.")
     lines.append("// PNCP × Receita Federal (porte + CNAE) — data lake do Sebrae. SEM threshold.")
     lines.append("const indicators = [\n  {},\n]".format(js(indicator)))
-    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {")
-    lines.append("  filter: { _id: i._id }, update: { $set: i }, upsert: true,")
+    # replaceOne, não $set: o documento vira exatamente o que este seed declara,
+    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas).
+    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {")
+    lines.append("  filter: { _id: i._id }, replacement: i, upsert: true,")
     lines.append("} })), { ordered: false })")
     lines.append("print(`indicators({}) -> ok`)".format(INDICATOR_ID))
     lines.append("")

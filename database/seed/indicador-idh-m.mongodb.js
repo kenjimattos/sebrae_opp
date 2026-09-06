@@ -10,8 +10,8 @@ const database = db
 const indicators = [
   {"_id": "idh-m", "label": "IDH-M", "threshold": {"kind": "higher-better", "success": 0.7, "warning": 0.6}, "referenceYear": "2010", "unit": "índice (0–1)", "description": "Índice de Desenvolvimento Humano Municipal — combina longevidade, educação e renda numa escala de 0 a 1. Quanto mais próximo de 1, maior o desenvolvimento humano.", "source": "Atlas do Desenvolvimento Humano (PNUD/Ipea/FJP), Censo 2010 — basedosdados mundo_onu_adh", "sourceDataset": "mundo_onu_adh", "placements": [{"section": "agenda", "agendaId": "governanca", "order": 2}, {"section": "socialeconomic", "order": 1}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(idh-m) -> ok (${indicators.length} docs)`)
 

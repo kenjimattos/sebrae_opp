@@ -9,8 +9,8 @@ const database = db
 const indicators = [
   {"_id": "credito-financiamento", "label": "Crédito concedido no município", "referenceYear": "2020", "unit": "R$", "description": "Saldo das operações de crédito no município (R$), no mês mais recente disponível, somando todas as instituições financeiras com agência no município. Operações de crédito = empréstimos e títulos descontados + financiamentos + financiamentos rurais e agroindustriais + outras operações de crédito (verbete 160 do ESTBAN, líquido de provisão). Fonte: ESTBAN (Estatística Bancária Mensal e por Município) do Banco Central, via data lake do Sebrae. É um SALDO de fim de mês (estoque), não a concessão do período — o ESTBAN não publica fluxo de concessão por município. O ESTBAN só cobre municípios com agência bancária (na Paraíba, ~47 dos 223); os demais ficam sem valor (lacuna de cobertura, não ausência de crédito — os residentes podem tomar crédito em agências de outros municípios).", "source": "ESTBAN — Estatística Bancária Mensal e por Município (Banco Central do Brasil), via data lake do Sebrae. Saldo de fim de mês das Operações de Crédito (verbete 160), soma das instituições do município. Mês-base: último mês disponível", "sourceDataset": "bcb_estban_municipio", "placements": [{"section": "agenda", "agendaId": "credito", "order": 0}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(credito-financiamento) -> ok`)
 

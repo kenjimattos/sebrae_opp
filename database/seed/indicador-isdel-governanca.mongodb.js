@@ -10,8 +10,8 @@ const database = db
 const indicators = [
   {"_id": "isdel-governanca", "label": "Governança para o Desenvolvimento – ISDEL", "threshold": {"kind": "higher-better", "success": 0.471, "warning": 0.311}, "referenceYear": "2023", "unit": "índice (0–1)", "description": "Dimensão do Índice Sebrae de Desenvolvimento Econômico Local (ISDEL) que avalia a capacidade institucional do município para promover desenvolvimento econômico.", "source": "Índice Sebrae de Desenvolvimento Econômico Local (ISDEL 2.0) — dimensão Governança para o Desenvolvimento (Sebrae/CEDEPLAR-UFMG)", "sourceDataset": "isdel_sebrae", "placements": [{"section": "agenda", "agendaId": "governanca", "order": 3}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(isdel-governanca) -> ok (${indicators.length} docs)`)
 

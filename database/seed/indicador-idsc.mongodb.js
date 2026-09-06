@@ -11,8 +11,8 @@ const database = db
 const indicators = [
   {"_id": "idsc", "label": "IDSC", "referenceYear": "2025", "unit": "índice (0–100)", "description": "Índice de Desenvolvimento Sustentável das Cidades — mede, numa escala de 0 a 100, o avanço do município rumo aos 17 Objetivos de Desenvolvimento Sustentável (Agenda 2030). Quanto mais próximo de 100, menor a distância para o desempenho ótimo nos ODS.", "source": "Índice de Desenvolvimento Sustentável das Cidades – Brasil (IDSC-BR 2025), Instituto Cidades Sustentáveis — API cidadessustentaveis.org.br", "sourceDataset": "idsc-br", "placements": [{"section": "socialeconomic", "order": 0}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(idsc) -> ok (${indicators.length} docs)`)
 

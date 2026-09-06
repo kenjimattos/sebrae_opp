@@ -167,8 +167,10 @@ def emit_indicador_idsc(rows: list[dict]) -> None:
     for ind in INDICATORS:
         lines.append(f"  {js(ind)},")
     lines.append("]")
-    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {")
-    lines.append("  filter: { _id: i._id }, update: { $set: i }, upsert: true,")
+    # replaceOne, não $set: o documento vira exatamente o que este seed declara,
+    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas).
+    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {")
+    lines.append("  filter: { _id: i._id }, replacement: i, upsert: true,")
     lines.append("} })), { ordered: false })")
     lines.append("print(`indicators(idsc) -> ok (${indicators.length} docs)`)")
     lines.append("")

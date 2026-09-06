@@ -11,8 +11,8 @@ const database = db
 const indicators = [
   {"_id": "negocios-abertos", "label": "Pequenos negócios abertos", "referenceYear": "2025", "unit": "empresas", "description": "Número de estabelecimentos de pequeno porte (ME e EPP, incluindo MEI) abertos no município no ano de referência, pela data de início de atividade na Receita Federal. Contagem absoluta; o breakdown traz o split MEI/ME/EPP, o ano anterior e a variação.", "source": "Receita Federal — base de Estabelecimentos do CNPJ (situação cadastral, data de início de atividade, porte), via data lake do Sebrae (acesso direto, sem cruzar fonte externa)", "sourceDataset": "sebrae_rfb_estabelecimentos", "placements": [{"section": "agenda", "agendaId": "inclusao", "order": 1}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(negocios-abertos) -> ok (${indicators.length} docs)`)
 

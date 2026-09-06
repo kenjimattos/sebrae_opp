@@ -411,8 +411,10 @@ def emit(values, ref, janela):
     lines.append("// Acumulado {}–{}, nominal. BNDES Dados Abertos. SEM threshold.".format(
         janela.get("desde"), janela.get("ate")))
     lines.append("const indicators = [\n  {},\n]".format(js(indicator)))
-    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {")
-    lines.append("  filter: { _id: i._id }, update: { $set: i }, upsert: true,")
+    # replaceOne, não $set: o documento vira exatamente o que este seed declara,
+    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas).
+    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {")
+    lines.append("  filter: { _id: i._id }, replacement: i, upsert: true,")
     lines.append("} })), { ordered: false })")
     lines.append("print(`indicators({}) -> ok`)".format(INDICATOR_ID))
     lines.append("")

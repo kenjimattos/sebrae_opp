@@ -419,8 +419,10 @@ def emit(indicador, values, ref_year):
     lines.append("// threshold = faixas OFICIAIS da Redesim (🟢≤72h · 🟡🟠 72–168h · 🔴>168h)")
     lines.append("// no semáforo de 3 níveis da OPP. numericValue = marco de 75% (horas úteis).")
     lines.append("const indicators = [\n  %s,\n]" % js(indicator))
-    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {")
-    lines.append("  filter: { _id: i._id }, update: { $set: i }, upsert: true,")
+    # replaceOne, não $set: o documento vira exatamente o que este seed declara,
+    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas).
+    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {")
+    lines.append("  filter: { _id: i._id }, replacement: i, upsert: true,")
     lines.append("} })), { ordered: false })")
     lines.append("print(`indicators(%s) -> ok (${indicators.length} docs)`)" % iid)
     lines.append("")

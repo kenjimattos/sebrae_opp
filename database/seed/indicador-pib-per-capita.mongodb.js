@@ -11,8 +11,8 @@ const database = db
 const indicators = [
   {"_id": "pib-per-capita", "label": "PIB per capita (2023)", "referenceYear": "2023", "unit": "R$", "description": "Produto Interno Bruto per capita — razão entre o PIB municipal a preços correntes e a população residente estimada, em reais por habitante. Fonte: IBGE, Contas Regionais.", "source": "IBGE, Produto Interno Bruto dos Municípios (Contas Regionais) — basedosdados br_ibge_pib × br_ibge_populacao", "sourceDataset": "br_ibge_pib", "placements": [{"section": "socialeconomic", "order": 8}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(pib-per-capita) -> ok (${indicators.length} docs)`)
 

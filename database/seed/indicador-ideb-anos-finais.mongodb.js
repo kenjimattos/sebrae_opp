@@ -11,8 +11,8 @@ const database = db
 const indicators = [
   {"_id": "ideb-anos-finais", "label": "IDEB 2023 - Anos Finais", "referenceYear": "2023", "unit": "índice (0–10)", "description": "Índice de Desenvolvimento da Educação Básica (IDEB) da rede pública para os anos finais do ensino fundamental (6º ao 9º ano), numa escala de 0 a 10. Combina o desempenho dos estudantes no Saeb com a taxa de aprovação (fluxo escolar) — quanto mais próximo de 10, melhor o aprendizado e o fluxo. Valor observado na edição 2023 (bienal); a série histórica desde 2005 fica no detalhe. Fonte: INEP/MEC, via data lake do Sebrae.", "source": "IDEB 2023 (observado), Índice de Desenvolvimento da Educação Básica — INEP/MEC, rede PUBLICA, anos finais do ensino fundamental (6º ao 9º ano), via data lake do Sebrae", "sourceDataset": "inep_ideb_municipio", "placements": [{"section": "socialeconomic", "order": 4}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(ideb-anos-finais) -> ok (${indicators.length} docs)`)
 

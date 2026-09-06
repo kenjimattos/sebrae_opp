@@ -392,8 +392,10 @@ def emit(values: list[dict], ano: int) -> Path:
     lines.append("// Cross-source PNCP (contratos da esfera municipal) × Receita Federal (porte do CNPJ).")
     lines.append("// Pequeno negócio = porte ME/EPP (MEI incluso). SEM threshold (sem faixa oficial).")
     lines.append(f"const indicators = [\n  {js(indicator)},\n]")
-    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {")
-    lines.append("  filter: { _id: i._id }, update: { $set: i }, upsert: true,")
+    # replaceOne, não $set: o documento vira exatamente o que este seed declara,
+    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas).
+    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {")
+    lines.append("  filter: { _id: i._id }, replacement: i, upsert: true,")
     lines.append("} })), { ordered: false })")
     lines.append(f"print(`indicators({INDICATOR_ID}) -> ok (${{indicators.length}} docs)`)")
     lines.append("")

@@ -10,8 +10,8 @@ const database = db
 const indicators = [
   {"_id": "tempo-viabilidade", "label": "Tempo de viabilidade da empresa", "threshold": {"kind": "lower-better", "success": 72, "warning": 168}, "referenceYear": "2025", "unit": "h", "description": "Tempo da etapa de viabilidade (pesquisa prévia de nome e endereço), em horas úteis, no marco de 75% dos processos (metodologia oficial da Redesim).", "source": "Redesim — microdados de solicitações de abertura (data lake do Sebrae, base REDESIM)", "sourceDataset": "sebrae_redesim", "placements": [{"section": "agenda", "agendaId": "simplificacao", "order": 1}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(tempo-viabilidade) -> ok (${indicators.length} docs)`)
 
