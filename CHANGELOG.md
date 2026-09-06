@@ -2,6 +2,13 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Não lançado]
+
+### Correções
+
+- **Um `threshold` que saiu do seed em junho seguia no banco, classificando 219 dos 223 municípios.** O `trabalhadores-ct` é contagem bruta de vínculos da RAIS e a fonte não publica faixa oficial; por isso `72d8e21` (09/06) removeu a régua inventada de 1000/300 do seed, junto com a do `trabalhadores-tic`. O seed grava o catálogo com `updateOne` + `$set`, e `$set` só toca nos campos que o objeto menciona — tirar `threshold` do objeto fez o seed **parar de falar** do campo, não apagá-lo. Todo reaplicar depois disso confirmou o valor antigo em silêncio, sem erro nem aviso. O `tic` escapou porque nasceu e foi corrigido no mesmo dia, e a faixa dele provavelmente nunca chegou ao Mongo; o `ct` existiu um dia inteiro com ela. Medido: dos 33 indicadores do catálogo, **32 batem exatamente com o seed e só este diverge** — não é falha sistemática do mecanismo, é um resíduo pontual. O efeito passava de cosmético: `selectTopRisks` monta o modo Riscos com os indicadores em `alert`/`warning`, e o item falso entrava no top-3 de **89 municípios**, empurrando um risco verdadeiro para fora em 87 deles.
+- **A gravação do catálogo passa a ser `replaceOne`, não `$set`.** O documento no banco vira exatamente o que o seed declara, então campo removido do seed desaparece ao aplicar — sem script de migração avulso, que alguém precisaria lembrar de rodar num banco novo. Conferido que é seguro: só os seeds e as duas migrações escrevem em `indicators`, nada mais acrescenta campo àqueles documentos. A conferência do documento em produção mostrou que `threshold` era o **único** resíduo (9 campos no `ct` contra 8 no `tic`, idênticos no resto), então não há outro campo a recuperar. Por ora só o gerador do `trabalhadores-ct`: os outros 25 têm o mesmo `$set`, mas nenhum deixou resíduo, e trocá-los é prevenção — vai em commit próprio, com o diff conferido.
+
 ## [1.4.0] — 2026-09-05
 
 ### Novidades

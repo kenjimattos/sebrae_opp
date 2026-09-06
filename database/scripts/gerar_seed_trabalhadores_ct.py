@@ -172,8 +172,12 @@ def emit(values: list[dict]) -> None:
     }
     lines = [HEADER, "", "// --- 1) Catálogo: o indicador Trabalhadores em C&T (agenda inovacao) ---"]
     lines.append(f"const indicators = [\n  {js(indicator)},\n]")
-    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {")
-    lines.append("  filter: { _id: i._id }, update: { $set: i }, upsert: true,")
+    # replaceOne, não $set: o documento passa a ser exatamente o que este seed
+    # declara. Com $set, campo REMOVIDO do seed sobrevive no banco — foi assim que
+    # o `threshold` deste indicador, tirado em 72d8e21 por não haver faixa oficial
+    # na RAIS, seguiu classificando 219 dos 223 municípios em produção.
+    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {")
+    lines.append("  filter: { _id: i._id }, replacement: i, upsert: true,")
     lines.append("} })), { ordered: false })")
     lines.append("print(`indicators(trabalhadores-ct) -> ok (${indicators.length} docs)`)")
     lines.append("")

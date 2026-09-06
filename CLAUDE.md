@@ -192,6 +192,15 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
 
 ## Armadilhas conhecidas
 
+- **Tirar campo de um seed não tira do banco.** Os seeds gravam o catálogo com
+  `replaceOne` — o documento vira exatamente o que o seed declara. Nem sempre foi
+  assim: com o `updateOne` + `$set` de antes, `$set` só tocava nos campos
+  mencionados, então remover um campo do objeto fazia o seed **parar de falar**
+  dele, não apagá-lo. Foi assim que o `threshold` do `trabalhadores-ct`, tirado em
+  junho por não haver faixa oficial na RAIS, seguiu sete semanas classificando 219
+  dos 223 municípios em `alert` — e alimentando o modo Riscos com um risco falso.
+  Nada avisa: o seed roda, imprime `ok`, e o campo velho fica. Ao mexer em gerador,
+  conferir se ele usa `replaceOne`; 25 ainda usam `$set`.
 - **`server/` compila `api/_lib`** (`rootDir: ".."`), então o entrypoint emitido é
   `dist/server/src/index.js`. Um `postbuild` gera `dist/index.js` como shim porque o
   `ExecStart` do systemd aponta para o caminho antigo. Não remover sem editar a unit.

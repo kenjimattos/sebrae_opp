@@ -8,10 +8,10 @@ const database = db
 
 // --- 1) Catálogo: o indicador Trabalhadores em C&T (agenda inovacao) ---
 const indicators = [
-  {"_id": "trabalhadores-ct", "label": "Trabalhadores nas ocupações de C&T", "referenceYear": "2024", "unit": "vínculos", "description": "Número de trabalhadores formais em ocupações de Ciência e Tecnologia, conforme RAIS/CAGED.", "source": "RAIS — vínculos formais ativos em 31/12/2024, ocupações de C&T (CBO 2002 subgrupos 20/21/31) — basedosdados br_me_rais", "sourceDataset": "br_me_rais", "placements": [{"section": "agenda", "agendaId": "inovacao", "order": 1}]},
+  {"_id": "trabalhadores-ct", "label": "Trabalhadores nas ocupações de C&T", "referenceYear": "2024", "description": "Número de trabalhadores formais em ocupações de Ciência e Tecnologia, conforme RAIS/CAGED.", "source": "RAIS — vínculos formais ativos em 31/12/2024, ocupações de C&T (CBO 2002 subgrupos 20/21/31) — basedosdados br_me_rais", "sourceDataset": "br_me_rais", "unit": "vínculos", "placements": [{"section": "agenda", "agendaId": "inovacao", "order": 1}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(trabalhadores-ct) -> ok (${indicators.length} docs)`)
 
