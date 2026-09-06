@@ -1,30 +1,29 @@
 {
+  // Os testes ficam FORA do `tsc -b` do build: `tests/server/` importa
+  // `server/src/`, que importa `mongodb` e `dotenv` — pacotes de
+  // `server/node_modules`, instalado à parte. Com os testes no build, um
+  // ambiente que só instala a raiz (a Vercel, um clone novo) quebra em
+  // `Cannot find module 'mongodb'` antes de chegar ao `vite build`.
+  // Aqui eles seguem verificados, por `npm run typecheck`.
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "es2023",
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "esnext",
-    "types": ["vite/client"],
+    "types": ["node", "vite/client"],
     "skipLibCheck": true,
-
-    /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
-
-    /* Path alias */
     "paths": {
       "@/*": ["${configDir}/src/*"]
     },
-
-    /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["tests"]
 }

@@ -2,6 +2,13 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Não lançado]
+
+### Correções
+
+- **O build quebrava em qualquer ambiente que não instalasse `server/`.** `tsconfig.node.json` incluía `tests/server/**/*.ts`, e esses testes importam `server/src/`, que importa `mongodb` e `dotenv` — pacotes de `server/node_modules`, instalado por um `npm install` separado. Localmente ninguém via, porque a pasta está lá; a Vercel roda só o install da raiz e falhava com `Cannot find module 'mongodb'` **antes** de chegar ao `vite build`, nas duas branches. Foi o port da 1.4.1 que expôs isso na `preview/snapshot` (antes ela não tinha `tests/`), mas a `main` carregava o mesmo defeito desde que a suíte nasceu — só não doía, porque de lá ninguém faz deploy pela Vercel.
+- **Os testes saem do `tsc -b` do build e ganham `tsconfig.tests.json`.** O build do frontend compila `src` + `api` e não depende mais das dependências do backend, que é como deveria ser. A verificação não se perdeu: `npm run typecheck` roda o `tsc -b` **e** o dos testes, e é esse o comando antes de commitar. Descartadas as duas alternativas: instalar `server/` na Vercel resolveria só a `preview/snapshot`, porque a `main` não tem `vercel.json`; e tirar o typecheck do deploy desligaria a verificação em vez de arrumá-la.
+
 ## [1.4.1] — 2026-09-05
 
 ### Correções
