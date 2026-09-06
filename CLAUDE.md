@@ -8,7 +8,7 @@ armadilhas** do projeto; o resto se lê no código. Prefira `grep` a suposição
 > Node. A branch de produção é a `main`; ao portar mudanças, ver
 > [Backend nesta branch](#backend-nesta-branch).
 
-**Estado:** 1.4.1, espelhando a `main`. Home = `SideNav` com 4 pilares (Ambiente de negócio, Mapeamento de
+**Estado:** 1.4.2, espelhando a `main`. Home = `SideNav` com 4 pilares (Ambiente de negócio, Mapeamento de
 recursos, Cursos e boas práticas, Formulador de projetos); cada pilar alterna modos
 via `ModeToggle`. **223 municípios da PB**, default Campina Grande (`2504009`).
 Rotas: `/` (Login), `/home`, `/trilhas`. Desktop 1440px. **Tema claro e escuro**,
