@@ -211,7 +211,7 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   junho por não haver faixa oficial na RAIS, seguiu sete semanas classificando 219
   dos 223 municípios em `alert` — e alimentando o modo Riscos com um risco falso.
   Nada avisa: o seed roda, imprime `ok`, e o campo velho fica. Ao mexer em gerador,
-  conferir se ele usa `replaceOne`; 25 ainda usam `$set`.
+  conferir se ele continua com `replaceOne`: os 26 já foram convertidos.
 - **Formulador:** dois estados diferentes na sidebar. *Concluída* (check) sai de
   `isStepComplete` em `src/utils/formulatorCompleteness.ts` — campos obrigatórios da
   etapa preenchidos; é ela também que alimenta o "X% concluído". *Em andamento* sai de
