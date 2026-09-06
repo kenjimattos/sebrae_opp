@@ -203,6 +203,15 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
 - **Snapshot desatualizado é a falha silenciosa desta branch:** o preview mostra
   números velhos sem erro nenhum. Regerar após qualquer mudança de contrato ou carga
   no banco.
+- **Tirar campo de um seed não tira do banco.** Os seeds gravam o catálogo com
+  `replaceOne` — o documento vira exatamente o que o seed declara. Nem sempre foi
+  assim: com o `updateOne` + `$set` de antes, `$set` só tocava nos campos
+  mencionados, então remover um campo do objeto fazia o seed **parar de falar**
+  dele, não apagá-lo. Foi assim que o `threshold` do `trabalhadores-ct`, tirado em
+  junho por não haver faixa oficial na RAIS, seguiu sete semanas classificando 219
+  dos 223 municípios em `alert` — e alimentando o modo Riscos com um risco falso.
+  Nada avisa: o seed roda, imprime `ok`, e o campo velho fica. Ao mexer em gerador,
+  conferir se ele usa `replaceOne`; 25 ainda usam `$set`.
 - **Formulador:** dois estados diferentes na sidebar. *Concluída* (check) sai de
   `isStepComplete` em `src/utils/formulatorCompleteness.ts` — campos obrigatórios da
   etapa preenchidos; é ela também que alimenta o "X% concluído". *Em andamento* sai de
