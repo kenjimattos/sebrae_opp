@@ -3,7 +3,7 @@
 Observatório de Políticas Públicas do Sebrae PB. Este arquivo traz as **regras e
 armadilhas** do projeto; o resto se lê no código. Prefira `grep` a suposição.
 
-**Estado:** 1.4.1. Esta é a `main` — a branch de implantação no servidor Sebrae
+**Estado:** 1.4.2. Esta é a `main` — a branch de implantação no servidor Sebrae
 (`10.1.100.99`), Nginx servindo o `dist/` + proxy `/api/*` para a API Node
 (`server/`) sobre o MongoDB `DadosOPP` (`10.1.141.23`). **Ainda não há produção**: o
 servidor recebe o deploy, mas a plataforma não está aberta a usuário final.
