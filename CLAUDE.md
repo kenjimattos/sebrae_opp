@@ -233,9 +233,14 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
 - **`max-w-*` no mesmo elemento que tem gutter espreme o conteúdo.** Com
   `box-sizing: border-box`, os 180px de `padding-inline` entram no `max-width` —
   `max-w-3xl` vira ~400px úteis. Pôr o `max-width` num filho sem padding.
-- **Testes:** a infra (Vitest + jsdom) segue nos scripts, mas a suíte foi retirada no
-  redesign (`src/test/` não existe). Ao reescrever, mockar `src/data/api.ts` — o
-  provider faz `fetch`.
+- **Testes ficam fora do `npm run build`.** São 156 casos em `tests/`, dois projetos
+  do Vitest (client/jsdom, server/node), e `tests/server/` importa `server/src/` —
+  que importa `mongodb` e `dotenv`, pacotes de `server/node_modules`, instalado à
+  parte. Enquanto os testes estavam no `tsc -b` do build, todo ambiente que só
+  instala a raiz quebrava em `Cannot find module 'mongodb'` antes do `vite build`:
+  derrubou os deploys da Vercel nas duas branches. Hoje o build compila `src` +
+  `api` e os testes têm `tsconfig.tests.json`, rodado por **`npm run typecheck`** —
+  que é o comando a usar antes de commitar, não o `build`.
 - **Comentário citando componente não é uso.** Numa varredura, três componentes mortos
   (`ui/Grid`, `agenda/AgendaStats`, `formulator/useFormulatorAi`) sobreviveram só porque
   comentários os mencionavam. Ao caçar código morto, procurar `import`, não o nome. E o
@@ -264,6 +269,7 @@ npm install --legacy-peer-deps  # obrigatório: peer deps do React 19
 cp .env.example .env.local      # IA em dev: OPENROUTER_API_KEY
 npm run dev                     # :5173 — /api → :3000; /api/ai atendido pelo Vite
 npm run build | preview | lint | test
+npm run typecheck               # tsc do app + dos testes (o build não cobre tests/)
 
 cd server && npm install
 cp .env.example .env            # MONGO_URI (DadosOPP)
