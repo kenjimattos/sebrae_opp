@@ -10,8 +10,8 @@ const database = db
 const indicators = [
   {"_id": "isdel-educacao-emp", "label": "Educação Empreendedora – ISDEL", "referenceYear": "2021", "unit": "índice (0–1)", "description": "Subdimensão do ISDEL (dimensão Capital Empreendedor) que mede a penetração dos programas de educação empreendedora do Sebrae no município — clientes Sebraetec e Programa Empreendedor do Futuro (PF e PJ).", "source": "Índice Sebrae de Desenvolvimento Econômico Local (ISDEL 2.0) — subdimensão Educação Empreendedora (Sebrae/CEDEPLAR-UFMG)", "sourceDataset": "isdel_sebrae", "placements": [{"section": "agenda", "agendaId": "educacao", "order": 1}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(isdel-educacao-emp) -> ok (${indicators.length} docs)`)
 

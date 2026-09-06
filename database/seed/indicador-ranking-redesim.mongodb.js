@@ -12,8 +12,8 @@ const database = db
 const indicators = [
   {"_id": "ranking-redesim", "label": "Ranking municipal Redesim/PB", "referenceYear": "2026", "unit": "pontos (0–600)", "description": "Pontuação do município no Ranking Municipal do Ambiente de Negócios da Redesim/PB, somando os 6 meses da janela (Documentos Habilitados + Índice de Atendimento + Índice de Tempo). Escala 0–600; o breakdown traz posição e as componentes.", "source": "Ranking Municipal do Ambiente de Negócios — Redesim Paraíba (redesim.pb.gov.br/mapa-empresas/ranking-municipal)", "sourceDataset": "redesim_pb_ranking_municipal", "placements": [{"section": "agenda", "agendaId": "simplificacao", "order": 3}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(ranking-redesim) -> ok (${indicators.length} docs)`)
 

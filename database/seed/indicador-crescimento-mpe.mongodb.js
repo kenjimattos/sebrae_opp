@@ -11,8 +11,8 @@ const database = db
 const indicators = [
   {"_id": "crescimento-mpe", "label": "Crescimento de MPE formalizadas no município", "referenceYear": "2025", "unit": "% a.a.", "description": "Variação percentual anual no número de micro e pequenas empresas (MEI+ME+EPP) formalizadas no município, por ano de abertura na Receita Federal. Proxy municipal aberto para o indicador de MPE nos ELI (o recorte por Ecossistemas Locais de Inovação é dado interno do Sebrae e não está em fonte aberta).", "source": "Receita Federal — base de Estabelecimentos do CNPJ (data de início de atividade, porte), via data lake do Sebrae — fluxo de aberturas de MPE (MEI+ME+EPP) por ano de abertura, todas as situações cadastrais; proxy municipal do indicador de MPE nos ELI", "sourceDataset": "sebrae_rfb_estabelecimentos", "placements": [{"section": "agenda", "agendaId": "inovacao", "order": 3}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(crescimento-mpe) -> ok (${indicators.length} docs)`)
 

@@ -199,8 +199,10 @@ def emit(values: list[dict], ref_year: str, janela_label: str) -> Path:
     lines.append("// SEM threshold: a fonte não publica horas brutas por município nem faixa oficial")
     lines.append("// p/ a pontuação combinada de alvará. numericValue = Índice de Tempo (0–120, maior=+rápido).")
     lines.append(f"const indicators = [\n  {js(indicator)},\n]")
-    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {")
-    lines.append("  filter: { _id: i._id }, update: { $set: i }, upsert: true,")
+    # replaceOne, não $set: o documento vira exatamente o que este seed declara,
+    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas).
+    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {")
+    lines.append("  filter: { _id: i._id }, replacement: i, upsert: true,")
     lines.append("} })), { ordered: false })")
     lines.append(f"print(`indicators({INDICATOR_ID}) -> ok (${{indicators.length}} docs)`)")
     lines.append("")

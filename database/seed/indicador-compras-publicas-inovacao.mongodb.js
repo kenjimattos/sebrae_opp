@@ -9,8 +9,8 @@ const database = db
 const indicators = [
   {"_id": "compras-publicas-inovacao", "label": "Valor das compras públicas de inovação nos pequenos negócios (R$/ano)", "referenceYear": "2025", "unit": "R$/ano", "description": "Valor (R$) dos contratos da esfera municipal firmados, no ano, com pequenos negócios (ME/EPP, MEI incluso) em compras de inovação. 'Inovação' = união de dois sinais no data lake do Sebrae: CNAE do fornecedor em setores intensivos em conhecimento (TIC/criativa/P&D, cesta de trabalhadores-tic) OU objeto do contrato classificado como inovação (software, P&D, plataforma, IoT…). Porte e CNAE vêm da Receita Federal; os contratos, do PNCP. É um NÍVEL (não crescimento): a variação a.a. ainda reflete a adesão crescente dos municípios ao PNCP, não a política de inovação — por isso reportamos o valor do ano.", "source": "PNCP (Lei 14.133/2021) × Receita Federal (RF_EMPRESAS/RF_SIMPLES/RF_ESTABELECIMENTOS) — ambos via data lake do Sebrae. Contrato municipal × porte e CNAE do fornecedor. Inovação = CNAE TIC/criativa/P&D ∪ objeto classificado. Pequeno = ME/EPP/MEI", "sourceDataset": "sebrae_pncp_x_rfb_inovacao", "placements": [{"section": "agenda", "agendaId": "inovacao", "order": 4}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(compras-publicas-inovacao) -> ok`)
 

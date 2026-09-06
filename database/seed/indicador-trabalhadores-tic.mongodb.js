@@ -10,8 +10,8 @@ const database = db
 const indicators = [
   {"_id": "trabalhadores-tic", "label": "Trabalhadores nos setores da economia criativa, inovação e TIC", "referenceYear": "2024", "unit": "%", "description": "Participação percentual dos trabalhadores formais em setores intensivos em conhecimento, criatividade e tecnologia.", "source": "RAIS — % dos vínculos formais ativos em 31/12/2024 em setores de economia criativa, inovação e TIC (CNAE 2.0 divisões 26/58/59/60/61/62/63/72/73/74/90/91) — basedosdados br_me_rais", "sourceDataset": "br_me_rais", "placements": [{"section": "agenda", "agendaId": "inovacao", "order": 2}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(trabalhadores-tic) -> ok (${indicators.length} docs)`)
 

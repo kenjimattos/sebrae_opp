@@ -10,8 +10,8 @@ const database = db
 const indicators = [
   {"_id": "igma", "label": "Índice de Gestão Municipal Áquila (IGMA)", "threshold": {"kind": "higher-better", "success": 65, "warning": 50}, "referenceYear": "2026", "unit": "índice (0–100)", "description": "Avaliação multidimensional da gestão municipal desenvolvida pela Áquila, combinando indicadores de eficiência administrativa, fiscal e social.", "source": "Índice de Gestão Municipal Áquila (IGMA) — Áquila (data-igma-api.aquila.com.br)", "sourceDataset": "igma_aquila_api", "placements": [{"section": "agenda", "agendaId": "governanca", "order": 4}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(igma) -> ok (${indicators.length} docs)`)
 

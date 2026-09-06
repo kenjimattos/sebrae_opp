@@ -271,8 +271,10 @@ def emit(values, ref_year):
     lines.append("// (só no CadÚnico amostral 2012–2018) — ver docstring do gerador e o MAPEAMENTO.")
     lines.append("// SEM threshold: não há faixa oficial de crescimento do PBF (não inventamos cortes).")
     lines.append("const indicators = [\n  %s,\n]" % js(indicator))
-    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {")
-    lines.append("  filter: { _id: i._id }, update: { $set: i }, upsert: true,")
+    # replaceOne, não $set: o documento vira exatamente o que este seed declara,
+    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas).
+    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {")
+    lines.append("  filter: { _id: i._id }, replacement: i, upsert: true,")
     lines.append("} })), { ordered: false })")
     lines.append("print(`indicators(%s) -> ok (${indicators.length} docs)`)" % INDICATOR_ID)
     lines.append("")

@@ -14,8 +14,8 @@ const database = db
 const indicators = [
   {"_id": "bolsa-familia", "label": "Crescimento de famílias beneficiárias do Bolsa Família", "referenceYear": "2025", "unit": "% a.a.", "description": "Variação percentual anual na média mensal de famílias beneficiárias do Programa Bolsa Família no município. Proxy municipal aberto: o recorte por idade (18 a 50 anos) do catálogo não existe em fonte municipal atual — só no CadÚnico amostral defasado — então mede-se famílias beneficiárias (Novo Bolsa Família), não pessoas por faixa etária.", "source": "Programa Bolsa Família (cubo MDS_PBF — MDS), via API Tesseract pública do Observatório Setorial Territorial do Sebrae (observatorio.sebrae.com.br) — média mensal de famílias beneficiárias por ano", "sourceDataset": "mds_pbf_observatorio_sebrae", "placements": [{"section": "agenda", "agendaId": "inclusao", "order": 4}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(bolsa-familia) -> ok (${indicators.length} docs)`)
 

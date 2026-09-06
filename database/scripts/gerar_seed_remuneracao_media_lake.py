@@ -399,8 +399,10 @@ def emit(values):
     lines = [HEADER, "", "// --- 1) Catálogo: {} (base econômica) ---".format(INDICATOR_LABEL)]
     lines.append("// Sem threshold: valor absoluto (R$/mês) não tem faixa oficial de semáforo.")
     lines.append("const indicators = [\n  {},\n]".format(js(indicator)))
-    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {")
-    lines.append("  filter: { _id: i._id }, update: { $set: i }, upsert: true,")
+    # replaceOne, não $set: o documento vira exatamente o que este seed declara,
+    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas).
+    lines.append("database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {")
+    lines.append("  filter: { _id: i._id }, replacement: i, upsert: true,")
     lines.append("} })), { ordered: false })")
     lines.append("print(`indicators({}) -> ok (${{indicators.length}} docs)`)".format(INDICATOR_ID))
     lines.append("")

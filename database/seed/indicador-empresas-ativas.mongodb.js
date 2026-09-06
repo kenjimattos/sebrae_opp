@@ -11,8 +11,8 @@ const database = db
 const indicators = [
   {"_id": "empresas-ativas", "label": "Empresas ativas", "referenceYear": "2025", "unit": "empresas", "description": "Número de estabelecimentos com situação cadastral ativa no município (Receita Federal). Considera empresas de todos os portes (estoque ativo no snapshot da base).", "source": "Receita Federal — base de Estabelecimentos do CNPJ (situação cadastral, data de início de atividade, porte), via data lake do Sebrae (acesso direto, sem cruzar fonte externa)", "sourceDataset": "sebrae_rfb_estabelecimentos", "placements": [{"section": "agenda", "agendaId": "inclusao", "order": 2}]},
 ]
-database.indicators.bulkWrite(indicators.map(i => ({ updateOne: {
-  filter: { _id: i._id }, update: { $set: i }, upsert: true,
+database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {
+  filter: { _id: i._id }, replacement: i, upsert: true,
 } })), { ordered: false })
 print(`indicators(empresas-ativas) -> ok (${indicators.length} docs)`)
 
