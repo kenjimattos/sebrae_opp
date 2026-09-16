@@ -88,7 +88,7 @@ export default function SectionAgendas() {
             {selectedAgenda && (
               <AgendaCard
                 title={selectedAgenda.name}
-                indicators={selectedAgenda.indicators.slice(0, 3)}
+                indicators={selectedAgenda.indicators}
                 description={agendaObjectives[selectedAgenda.id]}
                 onIndicatorClick={setSelectedIndicator}
                 className=''
