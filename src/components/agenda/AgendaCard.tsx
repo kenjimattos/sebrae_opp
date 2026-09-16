@@ -24,7 +24,7 @@ export default function AgendaCard({
 }: AgendaCardProps) {
   return (
     <div className={`flex-col-start items-center h-auto ${className}`}>
-      <div className="flex-col-start w-4/5 gap-xs">
+      <div className="flex-col-start w-[82%] gap-xs">
         <p
           className="typo-body-xs"
         >

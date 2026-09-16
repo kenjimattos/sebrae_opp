@@ -27,7 +27,7 @@ export default function Home() {
   }, [hash])
 
   return (
-    <div className="container flex flex-col gap-lg">
+    <div className="container flex flex-col gap-md">
       <div id="agenda">
         <SectionErrorBoundary name="agendas">
           <SectionAgendas />
