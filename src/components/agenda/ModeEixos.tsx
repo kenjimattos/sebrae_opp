@@ -82,7 +82,7 @@ export default function ModeEixos() {
               >
                 <AgendaIndicatorItem
                   title={agenda.name}
-                  indicators={agenda.indicators.slice(0, 3)}
+                  indicators={agenda.indicators}
                   status={agendaStatus(agenda)}
                   expanded={expandedIds.has(id)}
                   onToggle={() => toggle(id)}
