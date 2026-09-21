@@ -360,7 +360,7 @@
   .section-container {
     padding-inline: var(--spacing-gutter);
     display: flex; flex-direction: column;
-    padding-block: var(--spacing-md);
+    padding-block: var(--spacing-lg);
     align-items: center;
     gap: var(--spacing-lg);
   }

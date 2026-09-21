@@ -19,6 +19,15 @@ no topo à direita, montado no `Layout` e portanto presente em todas as rotas
 única** — `useTheme` é estado local, dois consumidores montados teriam preferências
 independentes.
 
+O `Layout` monta também o **logotipo fixo no topo à esquerda**, espelhando o
+`ThemeToggle` no mesmo eixo (`left-[62px]` ↔ `right-[62px]`). Ele é um `<Link>` para
+`/home` — **não** um `onClick` no `<svg>`, que não recebe foco de teclado, não responde
+a Enter e não abre em nova aba. O `PippaWordmark` dentro dele vai com `decorative`,
+senão o leitor de tela anuncia "PIPPA" duas vezes (o nome do link e o do `<svg>`).
+**Não aparece na `/`** — lá o hero já traz a marca em 270px no meio da tela.
+O clique rola ao topo além de navegar: o `ScrollToTop` só reage a *mudança* de rota,
+então não cobre clicar no logotipo já estando em `/home`.
+
 > **Não há rota catch-all.** URL desconhecida renderiza tela em branco — inclusive
 > `/oportunidades` e `/comunidade`, que existiram e podem estar em links antigos.
 

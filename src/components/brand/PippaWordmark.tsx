@@ -18,14 +18,29 @@ const PIPPA_PATH =
 
 interface PippaWordmarkProps {
   className?: string
+  /**
+   * Some da árvore de acessibilidade. Use quando quem envolve o logotipo já se
+   * nomeia — o link do chrome, que se anuncia "PIPPA, página inicial"; sem isto
+   * o leitor de tela diria o nome duas vezes. Mesma convenção do `decorative`
+   * do IconButton.
+   *
+   * Para tornar o logotipo clicável, envolva-o num `<Link>` — não há `onClick`
+   * aqui de propósito: num `<svg>` ele não recebe foco, não responde a Enter e
+   * não abre em nova aba.
+   */
+  decorative?: boolean
 }
 
-export default function PippaWordmark({ className = '' }: PippaWordmarkProps) {
+export default function PippaWordmark({
+  className = '',
+  decorative = false,
+}: PippaWordmarkProps) {
   return (
     <svg
       viewBox="55 -1000 1530 1000"
-      role="img"
-      aria-label="PIPPA"
+      {...(decorative
+        ? { 'aria-hidden': true }
+        : { role: 'img', 'aria-label': 'PIPPA' })}
       className={className}
       fill="currentColor"
     >
