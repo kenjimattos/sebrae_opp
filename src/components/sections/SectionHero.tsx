@@ -1,9 +1,9 @@
 // Hero do Login (Figma node 1630:40) — a tela em que a plataforma se apresenta.
 //
 // Ordem de leitura, do mais alto ao mais baixo: o nome por extenso (a sigla
-// explicada antes de ser usada), o logotipo, a jornada, a entrada, e só então os
-// 4 pilares. O logotipo é o único elemento grande — todo o resto fica pequeno e
-// quieto para que ele seja o que se vê primeiro.
+// explicada antes de ser usada), o logotipo, a jornada, o que a plataforma faz,
+// a entrada, e só então os 4 pilares. O logotipo é o único elemento grande —
+// todo o resto fica pequeno e quieto para que ele seja o que se vê primeiro.
 //
 // Os cards NÃO são clicáveis: no Login não há município escolhido nem sessão,
 // então não há para onde navegar. Eles descrevem, não conduzem.
@@ -40,7 +40,6 @@ export default function SectionHero() {
 
   return (
     <section className="section-container">
-      {/* Nome por extenso. Os dois filetes são só pontuação — o texto é o conteúdo. */}
       {/* Nome por extenso. Os dois filetes são só pontuação — o texto é o conteúdo.
           `.divider` (não <hr>) porque o preflight do Tailwind zera a borda de
           <hr>: o filete do eyebrow antigo nunca chegou a aparecer na tela. */}
@@ -53,7 +52,7 @@ export default function SectionHero() {
       {/* Logotipo — e o <h1> da página: o nome é o título. Largura em clamp
           porque a altura vem sozinha pelo viewBox; fixar as duas deformaria
           o desenho. */}
-      <h1 className="my-lg w-full flex justify-center">
+      <h1 className="mt-lg w-full flex justify-center">
         <PippaWordmark className="block h-auto w-[clamp(220px,30vw,413px)] text-primary" />
       </h1>
 
@@ -64,6 +63,15 @@ export default function SectionHero() {
           className={`${buttonVariantStyles.secondary} ${buttonSizeStyles.md.container} ${buttonSizeStyles.md.typo} rounded-full w-fit`}
         >
           {sectionContent.hero.subtitle}
+        </p>
+
+        {/* O que a plataforma faz — a única frase da tela que explica, já que a
+            sigla aberta lá em cima só nomeia. Em corpo de texto (não no
+            Monoblock 20px herdado do SectionHeader), porque ao lado de um
+            logotipo desse tamanho um tratamento mais forte brigaria com ele.
+            `max-w` em ch prende a medida, e `text-balance` reparte as linhas. */}
+        <p className="typo-body max-w-[70ch] text-center text-balance uppercase">
+          {sectionContent.hero.description}
         </p>
 
         <Button label="Entrar" variant="primary" size="md" onClick={handleLogin} />
