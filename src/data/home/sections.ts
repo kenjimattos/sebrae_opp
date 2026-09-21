@@ -3,7 +3,9 @@
 
 export const sectionContent = {
   hero: {
-    title: 'Observatório de Políticas Públicas',
+    // `tagline` é a sigla aberta — a única linha da tela que diz o que PIPPA
+    // significa. Mexer aqui é mexer no nome da plataforma.
+    tagline: 'Plataforma de Inteligência de Políticas Públicas Aplicada',
     subtitle: 'Jornada do Município Empreendedor',
     description:
       'Uma plataforma de inteligência que converte dados do território em insights e capacidade da gestão pública em ação para transformar o ambiente de negócios local.',

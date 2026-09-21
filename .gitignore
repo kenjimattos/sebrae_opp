@@ -28,6 +28,11 @@ dist-ssr
 *.sln
 *.sw?
 
+# Norfolk Narrow é licenciada só para uso pessoal: o arquivo fica na máquina de
+# quem desenha, nunca no repo nem no bundle. Ela existe aqui só como fonte de
+# onde o contorno do logotipo foi extraído (ver PippaWordmark.tsx).
+src/assets/fonts/Norfolk*
+
 # Claude
 CLAUDE.md
 .claude/
