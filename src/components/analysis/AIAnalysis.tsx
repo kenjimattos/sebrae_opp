@@ -29,11 +29,11 @@ import { thresholdSegmentLabels } from '@/utils/segmentLabels'
 import { useAiTask } from '@/hooks/useAiTask'
 import { useMunicipality } from '@/hooks/useMunicipality'
 
-interface EconomicBaseAnalysisProps {
+interface AIAnalysisProps {
   className?: string
 }
 
-export default function EconomicBaseAnalysis({ className = '' }: EconomicBaseAnalysisProps) {
+export default function AIAnalysis({ className = '' }: AIAnalysisProps) {
   const { municipality } = useMunicipality()
   const ai = useAiTask()
   const [analysis, setAnalysis] = useState('')

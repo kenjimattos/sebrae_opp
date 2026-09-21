@@ -81,7 +81,7 @@ consultar `index.css` antes de inventar equivalente):
 .card-surface(-secondary) · .card-hoverable · .flex-center|between|col-start
 .grid-2..5 · .status-{success,warning,alert,neutral}-{bg,dot} · .glass(-bevel)
 .divider · .scrollbar-hide · .section-container · .typewriter-caret · .journey-cue-chevron
-.risk-card* (Riscos) · .catalog*, .poster* (/trilhas)
+.catalog*, .poster* (/trilhas)
 ```
 
 > **Foco de teclado é `outline`, nunca `ring`.** `box-shadow` some em alto contraste
@@ -204,10 +204,12 @@ Quatro superfícies, todas via `POST /api/ai` (modelo gratuito, fetch puro — s
 2. **Formulador** — `AiField` em 17 campos (allowlist `AI_FIELD_IDS`), gerar objetivos
    (etapa 3), indicadores (etapa 7), rubricas (etapa 8, só nomes, sem valores) e o
    painel `AIAssistant`.
-3. **Análise do Panorâma** (`EconomicsAnalysis`) — task `economic-analysis` recebe os
-   cards da base econômica **estruturados** e o resumo dos indicadores com a faixa
-   oficial; o prompt proíbe citar número fora desse contexto e proíbe classificar o
-   que não vem com status.
+3. **Análise do município** — task `economic-analysis`, que recebe os cards da base
+   econômica **estruturados** e o resumo dos indicadores com a faixa oficial; o prompt
+   proíbe citar número fora desse contexto e proíbe classificar o que não vem com
+   status. Mora em `analysis/AIAnalysis` e sai num lugar só: o modo *Análise do
+   município*. O Panorâma, que antes a trazia abaixo dos cards, hoje é só os cards —
+   as duas cópias do componente viraram uma.
 4. **Chat global** (`ChatButton`/`ChatPanel` na Home).
 
 **Arquitetura:** contrato em `src/types/ai.ts` (união `AiTaskRequest`); núcleo em
@@ -236,7 +238,7 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   mencionados, então remover um campo do objeto fazia o seed **parar de falar**
   dele, não apagá-lo. Foi assim que o `threshold` do `trabalhadores-ct`, tirado em
   junho por não haver faixa oficial na RAIS, seguiu sete semanas classificando 219
-  dos 223 municípios em `alert` — e alimentando o modo Riscos com um risco falso.
+  dos 223 municípios em `alert` — e alimentando o então modo Riscos com um risco falso.
   Nada avisa: o seed roda, imprime `ok`, e o campo velho fica. Ao mexer em gerador,
   conferir se ele continua com `replaceOne`: os 26 já foram convertidos.
 - **`server/` compila `api/_lib`** (`rootDir: ".."`), então o entrypoint emitido é
@@ -249,8 +251,13 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   depende de nenhum dos dois: `FormulatorReview` imprime todo campo com texto.
   Rascunho por município em `localStorage` (`formulator:${id}`).
   Fonte de verdade das 10 etapas: `src/data/formulator/steps.ts`.
-- **Modo Riscos** (`ModeRisks`) não tem dados estáticos: deriva dos indicadores em
-  `alert`/`warning` do município (`src/utils/risks.ts`).
+- **O modo Riscos foi removido.** No lugar dele a aba Ambiente tem *Análise do
+  município* (`analysis/ModeAnalysis`), que serve a análise por IA sozinha. Saíram
+  junto `ModeRisks`, `RisksCard` e `data/indicators/descriptions/risks.ts`. Sobrou
+  no `index.css` o bloco `.risk-card*` (mais o `@keyframes risk-pulse` e os tokens
+  `--semantic-{alert,warning}-glow`), que já não tem consumidor — ao limpar, atenção:
+  `--semantic-{alert,warning}-vivid` **não** são órfãos, `IndicatorBar` e os pontos
+  de status leem os dois.
 - **Token novo no `:root` precisa entrar no `.dark` também.** Sem par, ele herda o valor
   do tema claro em silêncio — não há erro de CSS, a var só resolve errado. Já mordeu três
   vezes: `--semantic-accent-hover` (azul no hover do FAB lime), as três surfaces de status
