@@ -1,6 +1,8 @@
-# CLAUDE.md — Plataforma OPP
+# CLAUDE.md — PIPPA
 
-Observatório de Políticas Públicas do Sebrae PB. Este arquivo traz as **regras e
+Plataforma de Inteligência de Políticas Públicas Aplicada, do Sebrae PB (até
+setembro de 2026 chamada "Plataforma OPP" — o banco segue `DadosOPP` e a pasta
+segue `sebrae_opp`; só a marca mudou). Este arquivo traz as **regras e
 armadilhas** do projeto; o resto se lê no código. Prefira `grep` a suposição.
 
 > **Esta é a branch `preview/snapshot`** — deploy de aprovação na Vercel, que não
@@ -287,6 +289,18 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   comentários os mencionavam. Ao caçar código morto, procurar `import`, não o nome. E o
   escopo da busca precisa incluir **`api/`**: o handler serverless importa de `src/`
   (ex.: `AI_FIELD_IDS`), então varrer só `src/` produz falso positivo perigoso.
+- **`<hr>` não tem borda: o preflight do Tailwind zera a de todo elemento.** O
+  filete do eyebrow do hero era um `<hr className="w-[4rem]">` e nunca chegou a
+  aparecer na tela — uma caixa de altura zero, sem erro nenhum. Filete se faz com
+  `.divider` (que pinta com `--semantic-divider`) e a largura por utility; `<hr>`
+  só serve com `border-t` explícito.
+- **O logotipo é vetor, não fonte** (`components/brand/PippaWordmark.tsx`). A
+  Norfolk Narrow do desenho é licenciada só para uso pessoal, então o `.otf` está
+  no `.gitignore` e o que vive no repo é o contorno das cinco letras, extraído com
+  fontTools. Precisando do nome em outro corpo ou outra palavra, **não** adicione a
+  fonte: regenere o `path` pelo método descrito no cabeçalho do componente. O
+  `fill="currentColor"` é o que faz o logo atravessar os dois temas — quem monta
+  escolhe a cor pela classe de texto.
 - **Varredura por `.tsx` esquece os `.ts` — e é neles que mora o design system.** A
   migração dos arbitrary values de cor deu-se por concluída com um grep em `--include='*.tsx'`;
   quem tinha o pior caso era `button-styles.ts`, a fonte de estilo de toda a família
