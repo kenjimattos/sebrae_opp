@@ -1,3 +1,4 @@
+import compress from '@fastify/compress'
 import Fastify from 'fastify'
 import { config } from './config.js'
 import { connectDb, closeDb } from './db.js'
@@ -16,6 +17,11 @@ async function start() {
   try {
     await connectDb()
     app.log.info(`conectado ao MongoDB (${config.mongoDb})`)
+    // Gzip/brotli nas respostas. As rotas daqui são JSON repetitivo (223 nomes de
+    // município, o mesmo shape de indicador 33 vezes), o formato que mais encolhe.
+    // Abaixo do threshold o overhead de comprimir não se paga — e o Nginx na frente
+    // repassa a resposta já comprimida, não comprime de novo.
+    await app.register(compress, { threshold: 1024 })
     await registerRoutes(app)
     await app.listen({ port: config.port, host: config.host })
   } catch (err) {

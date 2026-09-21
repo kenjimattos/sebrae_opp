@@ -2,6 +2,14 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Não lançado]
+
+### Infraestrutura
+
+- **A API guarda a resposta pronta em memória, com TTL de 5 min.** O alvo é `/api/map`: ela lia `indicatorValues` inteira (223 municípios × 33 indicadores × série histórica) e remontava o JSON **a cada requisição**, para devolver o mesmo byte a todo mundo — cem pessoas abrindo a Home eram cem varreduras idênticas. Agora as quatro rotas de leitura passam por `server/src/payload-cache.ts`, que guarda a **`Promise`** e não o valor: com o cache frio, as requisições simultâneas esperam a primeira leitura em vez de cada uma abrir a sua, que é justamente o que não pode acontecer no pico. Erro nunca fica guardado — a entrada é removida e a próxima tentativa relê —, e é isso que faz o 503 de `/api/emendas` virar 200 assim que os seeds rodam, em vez de ficar preso pelo TTL com a coleção já certa. O preço, documentado no `CLAUDE.md` e no `server/README.md`: carga nova do ETL demora até um TTL para aparecer, e `systemctl restart` zera na hora.
+- **`Cache-Control` nas rotas de leitura, `no-store` no resto.** `public, max-age=<TTL>` nas quatro de dados — não há sessão nem dado por usuário em rota nenhuma da API, então a resposta é compartilhável —, de modo que voltar a um município já visto não repete a chamada. `/api/health` fica `no-store` porque health cacheado responde "up" com o banco caído, e `/api/ai` porque resposta de modelo não é determinística nem serve para outro usuário.
+- **Respostas comprimidas (`@fastify/compress`, threshold 1 KB).** JSON repetitivo é o formato que mais encolhe: medido aqui, uma lista no formato de `/api/municipalities` cai de 21 KB para 1,8 KB (91%). Abaixo do threshold comprimir não se paga.
+
 ## [1.4.2] — 2026-09-05
 
 ### Correções

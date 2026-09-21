@@ -146,6 +146,16 @@ API de **leitura** em `server/` (Node ≥20 + Fastify). Só lê — quem escreve
 `indicators.placements`; o status vem do `threshold` de cada indicador no banco.
 Indicador sem documento simplesmente não é retornado.
 
+**Cache:** resposta pronta em memória do processo (`server/src/payload-cache.ts`),
+TTL 5 min (`PAYLOAD_CACHE_TTL_MS`), nas quatro rotas de leitura; o mesmo número vai no
+`Cache-Control`. Guarda a **Promise**, não o valor — com o cache frio, N requisições
+simultâneas compartilham uma leitura. Erro não fica guardado (é o que destrava o 503
+de `/api/emendas`). Respostas comprimidas por `@fastify/compress`.
+
+> **O ETL não avisa a API.** Carga nova demora até um TTL para chegar à tela;
+> `systemctl restart opp-api` zera na hora. Conferindo dado recém-carregado, reinicie
+> antes de concluir que o ETL falhou.
+
 > **Regra:** nunca inventar cortes de classificação. A régua vive no banco
 > (`threshold`) e em `server/src/status.ts` — ver `database/MAPEAMENTO_BASE_DOS_DADOS.md`.
 
