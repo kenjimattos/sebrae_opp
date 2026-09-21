@@ -39,7 +39,7 @@ export default function SectionHero() {
   }
 
   return (
-    <section className="section-container">
+    <section className="section-container gap-md">
       {/* Nome por extenso. Os dois filetes são só pontuação — o texto é o conteúdo.
           `.divider` (não <hr>) porque o preflight do Tailwind zera a borda de
           <hr>: o filete do eyebrow antigo nunca chegou a aparecer na tela. */}
@@ -52,7 +52,7 @@ export default function SectionHero() {
       {/* Logotipo — e o <h1> da página: o nome é o título. Largura em clamp
           porque a altura vem sozinha pelo viewBox; fixar as duas deformaria
           o desenho. */}
-      <h1 className="mt-lg w-full flex justify-center">
+      <h1 className="w-full flex justify-center">
         <PippaWordmark className="block h-auto w-[clamp(220px,30vw,413px)] text-primary" />
       </h1>
 
@@ -79,7 +79,7 @@ export default function SectionHero() {
         {/* 4 pilares em grid 2×2. A largura sai da conta do Figma (2×466 + 64 de
             gap) e mora sozinha aqui: `max-w` junto de padding lateral espremeria
             o card, porque o padding entra no max-width com box-sizing: border-box. */}
-        <ul className="grid grid-cols-2 auto-rows-[1fr] gap-x-2xl gap-y-md w-full max-w-[996px] mt-lg">
+        <ul className="grid grid-cols-2 auto-rows-[1fr] gap-x-2xl gap-y-md w-full max-w-[996px]">
           {sectionContent.jornadas.map((each) => {
             const Icon = ctaIcons[each.id]
 
