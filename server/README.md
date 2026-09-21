@@ -38,6 +38,27 @@ campo `threshold` de cada `indicators._id` no banco — não há tabela hardcode
 Indicador sem `threshold` → `'none'` (sem semáforo). Indicador sem documento no
 banco (ex.: ainda não implementado) simplesmente não é retornado.
 
+## Cache
+
+As rotas de leitura são as mesmas para todo visitante — não há sessão nem dado por
+usuário —, então a resposta pronta fica em memória do processo
+(`src/payload-cache.ts`), com TTL de 5 min (`PAYLOAD_CACHE_TTL_MS`). O mesmo número
+vai no `Cache-Control: public, max-age=...` da resposta, para o navegador não repetir
+a chamada ao voltar para um município já visto. `/api/health` e `/api/ai` são
+`no-store`.
+
+O que o cache evita é a rota `/api/map` ler `indicatorValues` **inteira** (todos os
+municípios × todos os indicadores × toda a série) uma vez por visitante. Como ele
+guarda a `Promise` e não o valor, N requisições simultâneas com o cache frio
+compartilham uma leitura só — o pico de acesso não vira pico de query.
+
+> **O ETL não avisa a API.** Carga nova leva até um TTL para aparecer; `systemctl
+> restart` zera na hora. Erro nunca fica cacheado (é o que faz o 503 de `/api/emendas`
+> voltar a 200 assim que os seeds rodam).
+
+As respostas saem comprimidas (`@fastify/compress`, threshold 1 KB) — JSON repetitivo
+encolhe muito: medido 21 KB → 1,8 KB numa lista no formato de `/api/municipalities`.
+
 ## Rodar
 
 ```bash

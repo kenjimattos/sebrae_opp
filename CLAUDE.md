@@ -156,6 +156,13 @@ snapshot), mas fica em dia de propósito: a suíte de testes é compartilhada e
 `tests/server/` compila contra `server/src/`, então um `server/` atrasado quebra o
 `tsc` e o build aqui. Ao mexer no `server/`, mexer nas duas branches.
 
+> **O cache de resposta do `server/` não vale para o deploy desta branch.**
+> `server/src/payload-cache.ts` (TTL 5 min, `PAYLOAD_CACHE_TTL_MS`), o
+> `Cache-Control` das rotas e o `@fastify/compress` são do processo Node, que aqui
+> não atende ninguém — quem serve `/api/*` é o snapshot estático, com o cache da
+> Vercel. Está no repositório porque o `server/` acompanha a `main`; para o que ele
+> significa em produção, ver o `CLAUDE.md` de lá.
+
 **DB-driven:** o status de cada indicador vem do `threshold` no banco, tanto na API
 quanto no snapshot.
 
