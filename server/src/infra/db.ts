@@ -1,5 +1,5 @@
 import { MongoClient, type Db } from 'mongodb'
-import { config } from './config.js'
+import { config } from '../config.js'
 
 // Cliente Mongo único (pool de conexões gerenciado pelo driver). Conecta no boot
 // via connectDb() e é reutilizado por todos os repositórios.

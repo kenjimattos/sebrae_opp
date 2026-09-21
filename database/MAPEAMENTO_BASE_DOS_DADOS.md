@@ -1019,8 +1019,8 @@ município nenhum. Município sem emenda sairia **R$ 0** (zero real, não lacuna
 censo de documentos.
 
 **Como chega no frontend.** Contrato em `src/types/emendas.ts` (`EmendasData`), espelhado em
-`server/src/types.ts` e servido por `GET /api/emendas` (`buildEmendasData` em
-`server/src/services.ts`). A rota lê esta coleção — precisa dos seeds
+`server/src/types/api.ts` e servido por `GET /api/emendas` (`buildEmendasData` em
+`server/src/emendas/service.ts`). A rota lê esta coleção — precisa dos seeds
 `database/seed/emendas-{federais,estaduais}.mongodb.js` rodados; com a coleção vazia devolve **503**,
 nunca um payload zerado que a UI mostraria como "R$ 0" real. Devolve as duas esferas de uma vez
 (o toggle federal/estadual não dispara requisição nova) e os 223 municípios na ordem do código IBGE.

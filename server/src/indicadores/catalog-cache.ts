@@ -1,4 +1,4 @@
-import { loadCatalog, type Catalog } from './repo.js'
+import { loadCatalog, type Catalog } from './catalog.js'
 
 // A estrutura (agendas + indicadores + placements) muda raramente e é igual para
 // todos os municípios. Carrega uma vez e reutiliza. Chame invalidate() se um

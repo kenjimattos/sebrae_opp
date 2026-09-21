@@ -122,7 +122,7 @@ npm run lint
 
 Agendas e base econômica são montadas de `agendas` + `indicators.placements`; o status vem
 do `threshold` de cada indicador no banco. **Nunca inventar cortes de classificação** — a
-régua vive no banco e em `server/src/status.ts`, documentada em
+régua vive no banco e em `server/src/indicadores/status.ts`, documentada em
 [`database/MAPEAMENTO_BASE_DOS_DADOS.md`](database/MAPEAMENTO_BASE_DOS_DADOS.md).
 
 Nas **emendas**, zero no estadual vira `null` (o município é inferido de texto livre, então

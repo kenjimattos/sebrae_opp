@@ -142,11 +142,37 @@ API de **leitura** em `server/` (Node ≥20 + Fastify). Só lê — quem escreve
 | `GET /api/emendas` | `EmendasData` — as duas esferas de uma vez |
 | `POST /api/ai` | resposta do LLM para uma task de IA |
 
+**Organização por domínio, não por camada.** Cada pilar traz repo + service +
+regra própria, e assim o trabalho de um cabe numa pasta:
+
+```
+server/src/
+  index.ts · routes.ts · config.ts    ← boot, controller, env
+  infra/        db.ts · payload-cache.ts
+  types/        docs.ts (o que o ETL grava) · api.ts (o que o front consome) · index.ts
+  indicadores/  catalog.ts · catalog-cache.ts · status.ts · values.ts
+  municipios/   repo.ts · service.ts
+  mapa/         service.ts
+  emendas/      repo.ts · service.ts
+```
+
+> **`indicadores/` é regra compartilhada, não um quinto domínio.** `status.ts` (a
+> régua) e `values.ts` (qual ano servir, quando suprimir) valem para a ficha do
+> município **e** para a cor do mapa. Duplicar num dos dois faz o mapa discordar da
+> ficha que ele abre — e a discordância aparece na tela, não no teste.
+
+> **`types/` está partido por motivo de mudança:** `docs.ts` acompanha o ETL
+> (`database/setup.mongodb.js` valida o mesmo schema), `api.ts` acompanha o frontend
+> (espelho de `src/types/indicators.ts` e `src/types/emendas.ts`). Importar sempre de
+> `types/index.js`. O vocabulário comum (`StatusType`, `Threshold`, `RawVariation`,
+> esferas) mora em `docs.ts` e o `api.ts` importa sem reexportar — reexportar daria o
+> mesmo nome saindo por dois caminhos no `index.ts`.
+
 **DB-driven:** agendas e base econômica são montadas de `agendas` +
 `indicators.placements`; o status vem do `threshold` de cada indicador no banco.
 Indicador sem documento simplesmente não é retornado.
 
-**Cache:** resposta pronta em memória do processo (`server/src/payload-cache.ts`),
+**Cache:** resposta pronta em memória do processo (`server/src/infra/payload-cache.ts`),
 TTL 5 min (`PAYLOAD_CACHE_TTL_MS`), nas quatro rotas de leitura; o mesmo número vai no
 `Cache-Control`. Guarda a **Promise**, não o valor — com o cache frio, N requisições
 simultâneas compartilham uma leitura. Erro não fica guardado (é o que destrava o 503
@@ -157,7 +183,7 @@ de `/api/emendas`). Respostas comprimidas por `@fastify/compress`.
 > antes de concluir que o ETL falhou.
 
 > **Regra:** nunca inventar cortes de classificação. A régua vive no banco
-> (`threshold`) e em `server/src/status.ts` — ver `database/MAPEAMENTO_BASE_DOS_DADOS.md`.
+> (`threshold`) e em `server/src/indicadores/status.ts` — ver `database/MAPEAMENTO_BASE_DOS_DADOS.md`.
 
 **Emendas:** coleção `emendas`, 224 docs por esfera (223 municípios + rollup
 `PB:<esfera>` com os metadados). Zero no **estadual** vira `null` (município inferido

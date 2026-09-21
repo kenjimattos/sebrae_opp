@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { buildIndicatorsData, buildMapData } from '../../server/src/services.js'
-import type { Threshold } from '../../server/src/types.js'
+import { buildMapData } from '../../server/src/mapa/service.js'
+import { buildIndicatorsData } from '../../server/src/municipios/service.js'
+import type { Threshold } from '../../server/src/types/index.js'
 import {
   AGENDA,
   CAMPINA,

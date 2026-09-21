@@ -2,13 +2,13 @@
 // Reproduz a garantia de repo.ts: `byId` e `indicatorsByAgenda` guardam
 // referência aos MESMOS objetos — é isso que impede o detalhe e o mapa de
 // lerem thresholds diferentes.
-import type { Catalog } from '../../server/src/repo.js'
+import type { Catalog } from '../../server/src/indicadores/catalog.js'
 import type {
   AgendaDoc,
   IndicatorDoc,
   IndicatorValueDoc,
   MunicipalityDoc,
-} from '../../server/src/types.js'
+} from '../../server/src/types/index.js'
 
 export const AGENDA: AgendaDoc = { _id: 'ambiente', name: 'Ambiente de negócio', order: 1 }
 
