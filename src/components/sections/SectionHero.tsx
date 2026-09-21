@@ -39,21 +39,16 @@ export default function SectionHero() {
   }
 
   return (
-    <section className="section-container gap-md">
-      {/* Nome por extenso. Os dois filetes são só pontuação — o texto é o conteúdo.
-          `.divider` (não <hr>) porque o preflight do Tailwind zera a borda de
-          <hr>: o filete do eyebrow antigo nunca chegou a aparecer na tela. */}
+    <section className="section-container">
+
       <header className="flex items-center gap-md typo-title-sm uppercase">
         <span className="divider w-[69px] shrink-0" aria-hidden="true" />
         {sectionContent.hero.tagline}
         <span className="divider w-[69px] shrink-0" aria-hidden="true" />
       </header>
 
-      {/* Logotipo — e o <h1> da página: o nome é o título. Largura em clamp
-          porque a altura vem sozinha pelo viewBox; fixar as duas deformaria
-          o desenho. */}
       <h1 className="w-full flex justify-center">
-        <PippaWordmark className="block h-auto w-[clamp(220px,30vw,413px)] text-primary" />
+        <PippaWordmark className="block h-auto w-[clamp(220px,30dvh,413px)] text-primary" />
       </h1>
 
       <div className="flex flex-col items-center gap-lg px-lg">
@@ -64,13 +59,7 @@ export default function SectionHero() {
         >
           {sectionContent.hero.subtitle}
         </p>
-
-        {/* O que a plataforma faz — a única frase da tela que explica, já que a
-            sigla aberta lá em cima só nomeia. Em corpo de texto (não no
-            Monoblock 20px herdado do SectionHeader), porque ao lado de um
-            logotipo desse tamanho um tratamento mais forte brigaria com ele.
-            `max-w` em ch prende a medida, e `text-balance` reparte as linhas. */}
-        <p className="typo-body max-w-[70ch] text-center text-balance uppercase">
+        <p className="typo-body text-center text-balance uppercase">
           {sectionContent.hero.description}
         </p>
 
