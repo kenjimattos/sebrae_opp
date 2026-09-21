@@ -1,18 +1,20 @@
 import type { FastifyInstance } from 'fastify'
 import { handleAiTask } from '../../api/_lib/handler.js'
 import { config } from './config.js'
-import { getDb } from './db.js'
-import { getCatalog } from './catalog-cache.js'
-import { CACHE_SECONDS, cachedPayload } from './payload-cache.js'
+import { buildEmendasData } from './emendas/service.js'
+import { listEmendas } from './emendas/repo.js'
+import { getCatalog } from './indicadores/catalog-cache.js'
+import { getDb } from './infra/db.js'
+import { CACHE_SECONDS, cachedPayload } from './infra/payload-cache.js'
+import { buildMapData } from './mapa/service.js'
 import {
   getAllValues,
   getMunicipality,
   getValuesForMunicipality,
-  listEmendas,
   listMunicipalities,
-} from './repo.js'
-import { buildEmendasData, buildIndicatorsData, buildMapData } from './services.js'
-import type { MunicipalitySummary } from './types.js'
+} from './municipios/repo.js'
+import { buildIndicatorsData } from './municipios/service.js'
+import type { MunicipalitySummary } from './types/index.js'
 
 // `Cache-Control` das rotas de leitura. Os dados vêm de uma carga do ETL, não de
 // escrita de usuário — a API é só leitura —, então revalidar a cada clique só

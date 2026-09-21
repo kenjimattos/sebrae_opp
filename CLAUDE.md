@@ -156,8 +156,32 @@ snapshot), mas fica em dia de propósito: a suíte de testes é compartilhada e
 `tests/server/` compila contra `server/src/`, então um `server/` atrasado quebra o
 `tsc` e o build aqui. Ao mexer no `server/`, mexer nas duas branches.
 
+`server/src/` se organiza **por domínio**, não por camada — cada pilar traz repo +
+service + regra própria, e assim o trabalho de um cabe numa pasta:
+
+```
+server/src/
+  index.ts · routes.ts · config.ts    ← boot, controller, env
+  infra/        db.ts · payload-cache.ts
+  types/        docs.ts (o que o ETL grava) · api.ts (o que o front consome) · index.ts
+  indicadores/  catalog.ts · catalog-cache.ts · status.ts · values.ts
+  municipios/   repo.ts · service.ts
+  mapa/         service.ts
+  emendas/      repo.ts · service.ts
+```
+
+> **`indicadores/` é regra compartilhada, não um quinto domínio.** `status.ts` (a
+> régua) e `values.ts` (qual ano servir, quando suprimir) valem para a ficha do
+> município **e** para a cor do mapa. Duplicar num dos dois faz o mapa discordar da
+> ficha que ele abre — e a discordância aparece na tela, não no teste.
+
+> **`types/` está partido por motivo de mudança:** `docs.ts` acompanha o ETL,
+> `api.ts` acompanha o frontend (espelho de `src/types/indicators.ts` e
+> `src/types/emendas.ts` — **e é o que o gerador do snapshot precisa respeitar**).
+> Importar sempre de `types/index.js`.
+
 > **O cache de resposta do `server/` não vale para o deploy desta branch.**
-> `server/src/payload-cache.ts` (TTL 5 min, `PAYLOAD_CACHE_TTL_MS`), o
+> `server/src/infra/payload-cache.ts` (TTL 5 min, `PAYLOAD_CACHE_TTL_MS`), o
 > `Cache-Control` das rotas e o `@fastify/compress` são do processo Node, que aqui
 > não atende ninguém — quem serve `/api/*` é o snapshot estático, com o cache da
 > Vercel. Está no repositório porque o `server/` acompanha a `main`; para o que ele

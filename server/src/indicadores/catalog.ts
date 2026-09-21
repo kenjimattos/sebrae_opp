@@ -1,14 +1,9 @@
-import { getDb } from './db.js'
-import type {
-  AgendaDoc,
-  EmendaDoc,
-  IndicatorDoc,
-  IndicatorValueDoc,
-  MunicipalityDoc,
-} from './types.js'
+import { getDb } from '../infra/db.js'
+import type { AgendaDoc, IndicatorDoc } from '../types/index.js'
 
-// Camada de acesso ao Mongo. Só faz queries; a transformação em respostas da API
-// fica em services.ts.
+// A estrutura fixa da plataforma: quais agendas existem, quais indicadores
+// moram em cada uma e em que ordem. É igual para os 223 municípios — o que muda
+// por município são os valores (ver `municipios/repo.ts`).
 
 export interface Catalog {
   agendas: AgendaDoc[] // ordenadas por `order`
@@ -17,8 +12,8 @@ export interface Catalog {
   byId: Map<string, IndicatorDoc> // lookup rápido por indicators._id
 }
 
-// Carrega a estrutura fixa (agendas + indicadores + placements) do banco. É a
-// mesma para todos os municípios, então o service pode cachear entre requisições.
+// Monta o catálogo a partir de `agendas` + `indicators.placements`. Por ser o
+// mesmo para todo mundo, quem chama é o cache (`catalog-cache.ts`), não a rota.
 export async function loadCatalog(): Promise<Catalog> {
   const db = getDb()
   const [agendas, indicators] = await Promise.all([
@@ -54,34 +49,4 @@ export async function loadCatalog(): Promise<Catalog> {
   socialeconomic.sort((a, b) => placementOrder(a) - placementOrder(b))
 
   return { agendas, indicatorsByAgenda, socialeconomic, byId }
-}
-
-export async function listMunicipalities(): Promise<MunicipalityDoc[]> {
-  return getDb()
-    .collection<MunicipalityDoc>('municipalities')
-    .find()
-    .sort({ name: 1 })
-    .toArray()
-}
-
-export async function getMunicipality(id: string): Promise<MunicipalityDoc | null> {
-  return getDb().collection<MunicipalityDoc>('municipalities').findOne({ _id: id })
-}
-
-export async function getValuesForMunicipality(id: string): Promise<IndicatorValueDoc[]> {
-  return getDb()
-    .collection<IndicatorValueDoc>('indicatorValues')
-    .find({ municipalityId: id })
-    .toArray()
-}
-
-export async function getAllValues(): Promise<IndicatorValueDoc[]> {
-  return getDb().collection<IndicatorValueDoc>('indicatorValues').find().toArray()
-}
-
-// Todas as emendas (224 docs por esfera = ~448). O conjunto é pequeno e a rota
-// devolve o estado inteiro de uma vez para o mapa, então não vale paginar nem
-// filtrar por município aqui.
-export async function listEmendas(): Promise<EmendaDoc[]> {
-  return getDb().collection<EmendaDoc>('emendas').find().toArray()
 }

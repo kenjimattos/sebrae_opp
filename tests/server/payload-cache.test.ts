@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { cachedPayload, invalidatePayloads } from '../../server/src/payload-cache.js'
+import { cachedPayload, invalidatePayloads } from '../../server/src/infra/payload-cache.js'
 
 afterEach(() => {
   invalidatePayloads()

@@ -1,7 +1,7 @@
 import compress from '@fastify/compress'
 import Fastify from 'fastify'
 import { config } from './config.js'
-import { connectDb, closeDb } from './db.js'
+import { connectDb, closeDb } from './infra/db.js'
 import { registerRoutes } from './routes.js'
 
 const app = Fastify({

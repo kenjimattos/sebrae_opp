@@ -1,4 +1,4 @@
-import type { IndicatorValueDoc, StatusType, Threshold } from './types.js'
+import type { IndicatorValueDoc, StatusType, Threshold } from '../types/index.js'
 
 // A régua da classificação NÃO é tabela hardcoded: vem do campo `threshold` de
 // cada documento em `indicators`. O banco é a fonte única.

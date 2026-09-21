@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { buildEmendasData } from '../../server/src/services.js'
-import type { EmendaDoc, MunicipalityDoc } from '../../server/src/types.js'
+import { buildEmendasData } from '../../server/src/emendas/service.js'
+import type { EmendaDoc, MunicipalityDoc } from '../../server/src/types/index.js'
 
 // A cobertura municipal é decisão metodológica que vira número publicado: no
 // FEDERAL mede-se sobre `pago` (atribuição exata por código IBGE, interessa o

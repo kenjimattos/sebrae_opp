@@ -38,6 +38,34 @@ campo `threshold` de cada `indicators._id` no banco — não há tabela hardcode
 Indicador sem `threshold` → `'none'` (sem semáforo). Indicador sem documento no
 banco (ex.: ainda não implementado) simplesmente não é retornado.
 
+## Estrutura
+
+Organizada **por domínio**, não por camada MVC: pilar novo chega com repo, service,
+tipos e regra própria — como `emendas` chegou —, e num MVC clássico esse trabalho se
+espalharia por quatro pastas.
+
+```
+src/
+  index.ts · routes.ts · config.ts    boot · controller (todas as rotas) · env
+  infra/        db.ts (cliente Mongo único) · payload-cache.ts
+  types/        docs.ts · api.ts · index.ts
+  indicadores/  catalog.ts · catalog-cache.ts · status.ts · values.ts
+  municipios/   repo.ts (queries) · service.ts (doc → resposta)
+  mapa/         service.ts
+  emendas/      repo.ts · service.ts
+```
+
+`repo.ts` só faz query; `service.ts` só transforma (função pura — é o que os testes
+em `tests/server/` exercitam, sem banco); `routes.ts` costura os dois e cuida de
+status HTTP e cache.
+
+**`indicadores/`** guarda o que as duas leituras do mesmo dado compartilham: a régua
+(`status.ts`) e a escolha/supressão de valor (`values.ts`). Ficha do município e cor
+do mapa passam pelos dois — regra duplicada num deles faz o mapa discordar da ficha.
+
+**`types/`** está partido por motivo de mudança: `docs.ts` acompanha o ETL, `api.ts`
+acompanha o frontend. Importe sempre de `types/index.js`.
+
 ## Cache
 
 As rotas de leitura são as mesmas para todo visitante — não há sessão nem dado por

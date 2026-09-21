@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { computeStatus } from '../../server/src/status.js'
-import type { Threshold } from '../../server/src/types.js'
+import { computeStatus } from '../../server/src/indicadores/status.js'
+import type { Threshold } from '../../server/src/types/index.js'
 
 const higher: Threshold = { kind: 'higher-better', success: 10, warning: 5 }
 const lower: Threshold = { kind: 'lower-better', success: 5, warning: 10 }
