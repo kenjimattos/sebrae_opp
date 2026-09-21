@@ -258,8 +258,11 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   Fonte de verdade das 10 etapas: `src/data/formulator/steps.ts`.
 - **O modo Riscos foi removido.** No lugar dele a aba Ambiente tem *Análise do
   município* (`analysis/ModeAnalysis`), que serve a análise por IA sozinha. Saíram
-  junto `ModeRisks`, `RisksCard` e `data/indicators/descriptions/risks.ts`. Sobrou
-  no `index.css` o bloco `.risk-card*` (mais o `@keyframes risk-pulse` e os tokens
+  junto `ModeRisks`, `RisksCard`, `data/indicators/descriptions/risks.ts` e
+  `utils/risks.ts` — este último levou consigo o resumo de indicadores que o campo
+  "Evidências e Dados" do Formulador mandava à IA, que hoje recebe só o problema
+  central. Sobrou no `index.css` o bloco `.risk-card*` (mais o `@keyframes
+  risk-pulse` e os tokens
   `--semantic-{alert,warning}-glow`), que já não tem consumidor — ao limpar, atenção:
   `--semantic-{alert,warning}-vivid` **não** são órfãos, `IndicatorBar` e os pontos
   de status leem os dois.

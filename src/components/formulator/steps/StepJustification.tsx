@@ -1,8 +1,6 @@
 import AiField from '@/components/formulator/AiField'
 import { useFormulator } from '@/hooks/useFormulator'
 import { useMunicipality } from '@/hooks/useMunicipality'
-import { selectTopRisks } from '@/utils/risks'
-import { statusLabels } from '@/data/indicators/status-labels'
 
 export default function StepJustification() {
   const { state, setSlice } = useFormulator()
@@ -13,12 +11,6 @@ export default function StepJustification() {
     setSlice('justification', { ...data, ...patch })
 
   const municipalityCtx = { id: municipality.id, name: municipality.name }
-
-  // Indicadores em alerta/atenção do município — fundamentam as "Evidências e
-  // Dados" geradas pela IA com dados reais do diagnóstico.
-  const risksSummary = selectTopRisks(municipality.data?.agendas ?? [], 5)
-    .map((r) => `${r.label}: ${r.value} (${statusLabels[r.status]})`)
-    .join('; ')
 
   return (
     <div className="flex flex-col gap-md">
@@ -49,10 +41,7 @@ export default function StepJustification() {
           field: 'justification.evidence',
           text,
           municipality: municipalityCtx,
-          context: {
-            problema: data.problem,
-            ...(risksSummary !== '' ? { indicadores: risksSummary } : {}),
-          },
+          context: { problema: data.problem },
         })}
       />
       <AiField

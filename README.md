@@ -44,9 +44,8 @@ A Home organiza tudo como uma **Jornada do Município Empreendedor**: uma `SideN
     hardcoded). Indicador sem faixa não mostra a barra.
   - *Panorâma socioeconômico* — cards de base econômica (IDH-M, IDEB, GINI, PIB per
     capita, MEIs/MEs/EPPs, etc.) + análise gerada por IA sobre os cards estruturados.
-  - *Análise do município* — a mesma análise por IA do Panorâma, servida sozinha,
-    sem os cards acima. Substituiu o modo *Riscos estratégicos*, que derivava os
-    indicadores em `alert`/`warning` do município.
+  - *Análise do município* — a análise por IA sozinha. Substituiu o modo
+    *Riscos estratégicos*.
 - **Mapeamento de recursos** — modo *Emendas*: emendas parlamentares federais e estaduais
   por município (`/api/emendas`), com o mapa da PB.
 - **Cursos e boas práticas** — modos *Cursos* (recorte do acervo, com deep link para a
@@ -186,8 +185,7 @@ src/                          # Frontend React
 │                             #   useEmendas, useAiTask, useTypewriter…
 ├── types/                    # indicators.ts, emendas.ts, formulator.ts, ai.ts
 ├── pages/                    # Login (/), Home (/home), Trails (/trilhas)
-├── utils/                    # risks (só o Formulador), emendas, economics,
-│                             #   courseLoad, statusStyles…
+├── utils/                    # emendas, economics, courseLoad, statusStyles…
 └── index.css                 # Design tokens + classes compostas (@layer components)
 
 api/                          # Endpoint de IA da Vercel
