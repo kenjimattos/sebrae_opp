@@ -1,6 +1,9 @@
 // Seleção de riscos a partir das agendas: indicadores com status alert/warning,
-// ordenados alert-first, limitados ao topo N. Compartilhado por SectionRisks e
-// pelo modo "Riscos estratégicos" da Jornada.
+// ordenados alert-first, limitados ao topo N.
+//
+// Nasceu para o modo "Riscos estratégicos" da Jornada, que não existe mais. Hoje
+// o único consumidor é `formulator/steps/StepJustification.tsx`, que monta com
+// isto o contexto de "Evidências e Dados" — por isso o arquivo continua aqui.
 
 import type { Agenda, Indicator } from '@/types/indicators'
 

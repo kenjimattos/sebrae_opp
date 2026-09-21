@@ -15,7 +15,7 @@ import ModeToggle, { type ModeOption } from '@/components/ui/ModeToggle'
 import SectionErrorBoundary from '@/components/ui/SectionErrorBoundary'
 import ModeEixos from '@/components/agenda/ModeEixos'
 import ModeEconomics from '@/components/economics/ModeEconomics'
-import ModeRiscos from '@/components/risks/ModeRisks'
+import ModeAnalysis from '@/components/analysis/ModeAnalysis'
 import ModeResources from '@/components/resources/ModeResources'
 import ModeTraining from '@/components/training/ModeTraining'
 import ModeCaseStudies from '@/components/case-studies/ModeCaseStudies'
@@ -31,7 +31,7 @@ const PANEL_MODES: Record<string, Mode[]> = {
   ambiente: [
     { value: 'agenda', label: 'Eixos prioritários', Component: ModeEixos },
     { value: 'economics', label: 'Panorâma Sócioeconômico', Component: ModeEconomics },
-    { value: 'risks', label: 'Riscos estratégicos', Component: ModeRiscos },
+    { value: 'analysis', label: 'Análise do município', Component: ModeAnalysis },
   ],
   recursos: [
     {value: 'emendas', label: 'Emendas', Component: ModeResources}

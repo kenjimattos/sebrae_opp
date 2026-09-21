@@ -1,7 +1,7 @@
 # Plataforma OPP — Observatório de Políticas Públicas
 
 Plataforma de dados municipais para o Sebrae Paraíba. Consolida indicadores
-socioeconômicos, agendas prioritárias, riscos estratégicos e oportunidades de recursos
+socioeconômicos, agendas prioritárias, análise por IA e oportunidades de recursos
 em uma interface unificada para gestores públicos.
 
 > ### Você está na branch `preview/snapshot`
@@ -44,8 +44,9 @@ A Home organiza tudo como uma **Jornada do Município Empreendedor**: uma `SideN
     hardcoded). Indicador sem faixa não mostra a barra.
   - *Panorâma socioeconômico* — cards de base econômica (IDH-M, IDEB, GINI, PIB per
     capita, MEIs/MEs/EPPs, etc.) + análise gerada por IA sobre os cards estruturados.
-  - *Riscos estratégicos* — derivado, sem dados próprios: extrai os indicadores em
-    `alert`/`warning` do município (`src/utils/risks.ts`).
+  - *Análise do município* — a mesma análise por IA do Panorâma, servida sozinha,
+    sem os cards acima. Substituiu o modo *Riscos estratégicos*, que derivava os
+    indicadores em `alert`/`warning` do município.
 - **Mapeamento de recursos** — modo *Emendas*: emendas parlamentares federais e estaduais
   por município (`/api/emendas`), com o mapa da PB.
 - **Cursos e boas práticas** — modos *Cursos* (recorte do acervo, com deep link para a
@@ -140,9 +141,11 @@ Quatro superfícies, todas sobre `POST /api/ai`:
    (`src/data/indicators/descriptions/indicator-ai.ts`); só a pergunta livre chama o LLM.
 2. **Formulador** — `AiField` nos campos da allowlist `AI_FIELD_IDS`, geração de objetivos
    (etapa 3), indicadores (etapa 7) e rubricas (etapa 8, só nomes) + o painel `AIAssistant`.
-3. **Análise do Panorâma** (`EconomicsAnalysis`) — recebe os cards da base econômica
+3. **Análise do município** — a task `economic-analysis` recebe os cards da base econômica
    estruturados e o resumo dos indicadores com a faixa oficial; o prompt proíbe citar
-   número fora desse contexto e proíbe classificar o que não vem com status.
+   número fora desse contexto e proíbe classificar o que não vem com status. Sai em dois
+   modos da aba Ambiente: no Panorâma, abaixo dos cards (`EconomicsAnalysis`), e sozinha
+   no modo *Análise do município* (`AIAnalysis`).
 4. **Chat global** (`ChatButton`/`ChatPanel`).
 
 Contrato em `src/types/ai.ts` (união `AiTaskRequest`); núcleo em `api/_lib/`
@@ -164,7 +167,7 @@ src/                          # Frontend React
 ├── components/               # Componentes por grupo do Figma
 │   ├── agenda/               # AgendaCard, IndicatorBar, IndicatorModal, ModeEixos
 │   ├── economics/            # EconomicsCard, EconomicsAnalysis, ModeEconomics
-│   ├── risks/                # RisksCard, ModeRisks
+│   ├── analysis/             # ModeAnalysis, AIAnalysis
 │   ├── resources/            # ModeResources, EmendasEsferaCard
 │   ├── training/             # ModeTraining + catálogo de /trilhas
 │   │                         #   (CatalogBillboard, CatalogRow, CoursePoster, TrailNav)
@@ -183,7 +186,8 @@ src/                          # Frontend React
 │                             #   useEmendas, useAiTask, useTypewriter…
 ├── types/                    # indicators.ts, emendas.ts, formulator.ts, ai.ts
 ├── pages/                    # Login (/), Home (/home), Trails (/trilhas)
-├── utils/                    # risks, emendas, economics, courseLoad, statusStyles…
+├── utils/                    # risks (só o Formulador), emendas, economics,
+│                             #   courseLoad, statusStyles…
 └── index.css                 # Design tokens + classes compostas (@layer components)
 
 api/                          # Endpoint de IA da Vercel
