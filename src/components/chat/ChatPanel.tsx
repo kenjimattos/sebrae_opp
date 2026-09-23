@@ -14,7 +14,7 @@ import Button from '@/components/ui/buttons/Button'
 import IconButton from '@/components/ui/buttons/IconButton'
 import AiMessage from '@/components/ui/AiMessage'
 import { Sparkles, X, iconSizes } from '@/components/icons'
-import { statusLabels } from '@/data/indicators/status-labels'
+import { indicatorAiLine } from '@/data/indicators/status-labels'
 import {
   chatEmptyMessage,
   chatInputHint,
@@ -47,12 +47,15 @@ export default function ChatPanel({ onClose }: ChatPanelProps) {
 
   const busy = ai.status === 'loading' || typingId !== null
 
-  // Resumo compacto dos indicadores — contexto real pro modelo.
+  // Resumo compacto dos indicadores — contexto real pro modelo. Sem as zonas
+  // (o chat é compacto e são 22 indicadores), mas COM a procedência: mandar só
+  // "Bom" fazia o modelo tratar todo status como padrão oficial atingido,
+  // inclusive os que são apenas posição relativa entre os 223 municípios.
   const indicatorsSummary = useMemo(() => {
     const agendas = municipality.data?.agendas ?? []
     return agendas
       .flatMap((a) => a.indicators)
-      .map((i) => `${i.label}: ${i.value} (${statusLabels[i.status]})`)
+      .map((i) => indicatorAiLine(i))
       .join('; ')
   }, [municipality.data])
 
