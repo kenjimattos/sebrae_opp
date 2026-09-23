@@ -15,8 +15,11 @@ export const indicatorInfo: Record<string, string> = {
     'Avaliação multidimensional da gestão municipal desenvolvida pela Áquila, combinando indicadores de eficiência administrativa, fiscal e social.',
 
   // Simplificação
+  // Não prometer "comparado à média da Paraíba": nenhuma média estadual é
+  // calculada, servida ou exibida em lugar nenhum — o texto anunciava uma
+  // comparação que não existe. O que existe é a faixa oficial da Redesim.
   'tempo-viabilidade':
-    'Tempo médio para análise de viabilidade locacional na abertura de empresas, comparado à média da Paraíba.',
+    'Tempo médio para análise de viabilidade locacional na abertura de empresas, em horas úteis (marco de 75% dos processos).',
   'tempo-abertura':
     'Horas necessárias para abrir formalmente uma empresa no município, da solicitação ao CNPJ ativo.',
   'ranking-redesim':
@@ -37,10 +40,14 @@ export const indicatorInfo: Record<string, string> = {
   // Educação empreendedora
   'isdel-educacao-emp':
     'Subdimensão do ISDEL que mede o nível de oferta de educação empreendedora na rede de ensino do município.',
+  // O valor exibido é CONTAGEM de vínculos, não percentual — as duas descrições
+  // diziam "Percentual" ao lado de um número como 70.626. A classificação é
+  // por 1.000 habitantes, que é o que torna municípios de portes diferentes
+  // comparáveis; o card segue mostrando a contagem.
   'trabalhadores-medio-completo':
-    'Percentual de trabalhadores com carteira assinada com escolaridade igual ou superior ao Ensino Médio completo (RAIS).',
+    'Número de trabalhadores com carteira assinada cuja escolaridade é o Ensino Médio completo (RAIS). Classificado por 1.000 habitantes.',
   'trabalhadores-superior-completo':
-    'Percentual de trabalhadores com carteira assinada com escolaridade igual ou superior ao Ensino Superior completo (RAIS).',
+    'Número de trabalhadores com carteira assinada cuja escolaridade é o Ensino Superior completo (RAIS). Classificado por 1.000 habitantes.',
 
   // Financiamento e crédito
   'credito-financiamento':

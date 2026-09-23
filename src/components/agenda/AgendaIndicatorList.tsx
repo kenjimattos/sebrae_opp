@@ -8,6 +8,7 @@
 
 import type { Indicator } from '@/types/indicators'
 import AgendaIndicator from '@/components/agenda/AgendaIndicator'
+import { classifiedValue } from '@/utils/indicatorBar'
 
 interface AgendaIndicatorListProps {
   indicators: Indicator[]
@@ -31,7 +32,9 @@ export default function AgendaIndicatorList({
               id={ind.id}
               label={ind.label}
               value={ind.value}
-              numericValue={ind.numericValue}
+              // O número da RÉGUA, não o exibido: numa faixa relativa per
+              // capita, `value` é "70.626" e o corte é 44,5/1k hab.
+              numericValue={classifiedValue(ind)}
               status={ind.status}
               threshold={ind.threshold}
               onLabelClick={onIndicatorClick && (() => onIndicatorClick(ind))}

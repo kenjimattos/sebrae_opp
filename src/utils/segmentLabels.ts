@@ -15,10 +15,19 @@ export function thresholdSegmentLabels(
   const s = fmt(t.success)
   const w = fmt(t.warning)
 
+  // Quando a régua não está na unidade exibida (contagem bruta no card, faixa
+  // per capita), os rótulos precisam dizer em que unidade estão — senão "≥ 44,5"
+  // ao lado de "70.626" lê como um corte que o valor já passou por muito.
+  //
+  // A unidade vai só no rótulo da DIREITA: os três dividem 145px em typo-body-xs,
+  // e sufixar os três estoura a linha. A escala se lê como uma coisa só, então
+  // uma marca de unidade basta.
+  const u = t.basis ? t.basis.unit : ''
+
   if (t.kind === 'higher-better') {
     // maior = melhor: esquerda(alert) baixo → direita(success) alto
-    return [`< ${w}`, `${w}–${s}`, `≥ ${s}`]
+    return [`< ${w}`, `${w}–${s}`, `≥ ${s}${u}`]
   }
   // menor = melhor: esquerda(alert) alto → direita(success) baixo
-  return [`> ${w}`, `${s}–${w}`, `≤ ${s}`]
+  return [`> ${w}`, `${s}–${w}`, `≤ ${s}${u}`]
 }

@@ -11,10 +11,15 @@ interface AgendaIndicatorProps {
   label: string
   /** Texto exibido ao lado da barra. */
   value: string | number
-  /** Valor numérico — posiciona o marcador da barra (o texto é arredondado). */
+  /**
+   * O número **na unidade da régua** — posiciona o marcador. Não é
+   * necessariamente o mesmo que `value` mostra: numa faixa relativa per capita,
+   * `value` é a contagem bruta e este é o normalizado. Quem monta resolve com
+   * `classifiedValue()`.
+   */
   numericValue?: number | null
   status: StatusType
-  /** Faixa oficial — deriva os rótulos das zonas da barra. */
+  /** A régua — deriva os rótulos das zonas da barra e a unidade deles. */
   threshold?: IndicatorThreshold
   /** Sobrepõe os rótulos derivados do threshold (opcional). */
   segmentLabels?: [string, string, string]
