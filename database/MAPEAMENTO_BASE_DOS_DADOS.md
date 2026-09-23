@@ -136,10 +136,28 @@ e das demais fontes disponíveis. A coluna **Fonte** da §1 usa as etiquetas aba
 
 O `threshold` (semáforo Bom / Atenção / Alerta) **só se aplica aos indicadores das agendas**.
 Os cards da **base econômica** (Panorama) exibem só o valor — **por design não têm semáforo**,
-independentemente de existir faixa oficial —, então ficam **fora** desta tabela. Entre os das
-agendas, **só existe threshold quando a fonte publica faixa de classificação oficial** — nunca
-inventamos cortes (ver [[feedback_verify_primary_sources]]). Ground-truth = os seeds
-`seed/indicador-*.mongodb.js` (`"threshold": {…}` vs comentário `SEM threshold`).
+independentemente de existir faixa oficial —, então ficam **fora** desta tabela.
+
+> **Esta regra mudou em set/2026.** Antes: *"só existe threshold quando a fonte publica faixa
+> oficial — nunca inventamos cortes"*. O efeito era 6 indicadores de agenda classificando em 22,
+> e os outros 16 sem barra, sem cor e sem leitura — mais de dois terços do painel não dizia nada.
+> Hoje há **três estados**, e a diferença entre os dois primeiros é declarada no dado
+> (`threshold.provenance`) e obrigatoriamente dita na tela:
+>
+> | Estado | `provenance` | O que o 'Bom' significa |
+> |---|---|---|
+> | **Faixa oficial** | `fonte` (ou ausente) | "atende ao padrão publicado pela fonte" |
+> | **Tercil relativo PB** | `relativo-pb` | "está no terço de cima dos 223 municípios da Paraíba" |
+> | **Sem régua** | — (sem `threshold`) | não classifica; exibe só o valor |
+>
+> O que **não** mudou: continua proibido inventar um corte e apresentá-lo como padrão da fonte
+> (ver [[feedback_verify_primary_sources]]). O tercil não é um padrão — é uma posição relativa, e
+> só é admissível porque viaja rotulado como tal até o modal e até o prompt da IA.
+
+Ground-truth = os seeds `seed/indicador-*.mongodb.js`. A régua relativa é calculada por
+`scripts/aplicar_tercis.py` (tercis p33/p67, catálogo e portão em `scripts/_tercis.py`), que roda
+**depois** dos geradores — o bloco de catálogo usa `replaceOne`, então rodar um `gerar_seed_*.py`
+apaga o threshold derivado e exige nova passada.
 
 **Com semáforo — 6 indicadores de agenda** (têm `threshold` porque a fonte publica faixa oficial):
 
@@ -152,31 +170,53 @@ inventamos cortes (ver [[feedback_verify_primary_sources]]). Ground-truth = os s
 | Tempo de abertura | Simplificação | `lower-better` | ≤72h · 72–168h · >168h | Marco de 75%, faixas oficiais Redesim (§9) |
 | Tempo de viabilidade | Simplificação | `lower-better` | ≤72h · 72–168h · >168h | Idem, faixas oficiais Redesim (§9) |
 
-**Sem semáforo — demais indicadores de agenda** (`threshold: null` — a fonte não publica faixa):
+**Tercil relativo PB — 11 indicadores de agenda** (`provenance: 'relativo-pb'`). Os cortes são
+p33/p67 entre os 223 municípios; a coluna **Classifica sobre** diz qual número a régua lê, que
+nem sempre é o exibido. Distribuição medida em set/2026 — os cortes mudam a cada rodada do ETL.
 
-| Indicador | Agenda | Por que não tem threshold |
+| Indicador | Agenda | Classifica sobre | `kind` | Atenção / Bom | alerta·atenção·bom |
+|---|---|---|---|---|---|
+| Ranking Redesim | Simplificação | pontuação 0–600 (não a posição) | `higher-better` | ≥225 · ≥322 | 74·74·75 |
+| Tempo de licenciamento | Simplificação | pontuação 0–120 | `higher-better` | ≥10 · ≥21 | 30·43·41 ¹ |
+| Trabalhadores C&T | Inovação | **por 1.000 hab.** | `higher-better` | ≥0,294 · ≥0,766 | 74·74·75 |
+| Trabalhadores TIC/criativa | Inovação | % dos vínculos | `higher-better` | ≥0,58 · ≥1,70 | 136·43·44 ² |
+| Crescimento de MPE | Inovação | % a.a. | `higher-better` | ≥12,5 · ≥40,0 | 73·73·77 |
+| Trab. Ensino Médio completo | Educação | **por 1.000 hab.** | `higher-better` | ≥29,758 · ≥44,534 | 74·74·75 |
+| Trab. Ensino Superior completo | Educação | **por 1.000 hab.** | `higher-better` | ≥23,547 · ≥34,231 | 74·74·75 |
+| Pequenos negócios abertos | Inclusão | **por 1.000 hab.** | `higher-better` | ≥3,725 · ≥5,416 | 74·74·75 |
+| Empresas ativas | Inclusão | **por 1.000 hab.** | `higher-better` | ≥24,908 · ≥31,696 | 74·74·75 |
+| Pequenos negócios extintos | Inclusão | **% das empresas ativas** | `lower-better` | ≤9,865 · ≤7,143 | 74·74·75 ³ |
+| Participação MPE em compras | Inclusão | % do valor | `higher-better` | ≥69,7 · ≥90,9 | 49·51·50 ⁴ |
+
+¹ 109 municípios sem base (`semEmissaoAlvara`) — não houve emissão de alvará na janela de 6 meses.
+Zero aqui é **ausência de medida**, não pior desempenho: tratá-lo como piso pintaria metade do
+estado de vermelho por algo que não foi medido nele.
+² Caso oposto: todo zero tem `vinculosTotal > 0` — o município tem emprego formal e nada dele em
+TIC/criativa/P&D. O zero é medido e **é o piso**; os tercis se calculam sobre os positivos. Sem
+isso o corte de alerta cairia em 0, e como `n >= 0` é sempre verdade o semáforo não alertaria
+ninguém (eram 148 amarelos e zero vermelhos).
+³ Taxa de extinção, não contagem per capita: o município que quase não tem empresa também quase
+não tem extinção e ganharia verde por não ter o que fechar. Dividido pelo estoque, é a
+distribuição mais bem-comportada do conjunto (razão média/mediana 1,01).
+⁴ 73 municípios sem contrato público a PJ entram sem base.
+
+**Sem régua — 5 indicadores de agenda.** Os quatro primeiros são **recusa automática** do portão
+em `scripts/_tercis.py`, que imprime o motivo a cada rodada; o último é decisão de produto.
+
+| Indicador | Agenda | Por que a régua não se aplica |
 |---|---|---|
-| Ranking Redesim | Simplificação | Total 0–600; a fonte não publica faixa para o total |
-| Tempo de licenciamento | Simplificação | É a **pontuação** do Índice de Tempo (proxy); horas brutas por município não são publicadas (§10) |
-| Trabalhadores C&T | Ecossistemas de Inovação | Contagem/percentual sem faixa oficial |
-| Trabalhadores TIC/criativa | Ecossistemas de Inovação | Percentual sem faixa oficial |
-| MPE em ELI | Ecossistemas de Inovação | Var. % a.a. (crescimento) sem faixa oficial |
-| Compras públicas de inovação | Ecossistemas de Inovação | Proxy de nível (R$/ano) sem faixa oficial |
-| ISDEL – Educação Empreendedora | Educação empreendedora | **Subdimensão** sem faixa própria (faixa oficial é só do índice agregado — §1) |
-| Trab. Ensino Médio completo | Educação empreendedora | Contagem bruta sem faixa oficial |
-| Trab. Ensino Superior completo | Educação empreendedora | Contagem bruta sem faixa oficial |
-| Crédito concedido | Acesso a crédito | Saldo absoluto (R$); o BCB não classifica |
-| Pequenos negócios abertos | Inclusão produtiva | Contagem bruta de estabelecimentos sem faixa oficial |
-| Empresas ativas | Inclusão produtiva | Contagem bruta de estabelecimentos sem faixa oficial |
-| Pequenos negócios extintos | Inclusão produtiva | Contagem bruta de estabelecimentos sem faixa oficial |
-| Bolsa Família | Inclusão produtiva | Var. % a.a. (crescimento) sem faixa oficial |
-| Participação MPE em compras públicas | Inclusão produtiva | Proxy (% do valor) sem faixa oficial |
+| Crédito contratado BNDES | Acesso a crédito | **213 dos 223 são zero** → p33 = p67 = 0. A faixa pintaria os 223 de verde e pareceria funcionar |
+| Compras públicas de inovação | Inovação | O portão até passaria (73 sem contrato → sem base, sobram 85·32·33), mas o indicador é proxy 🟡 que **não capta CPSI nem encomenda tecnológica** (§12): o zero pode ser cegueira do proxy. Marcaria 85 prefeituras de vermelho por um critério inventado duas vezes |
+| Crédito concedido | Acesso a crédito | Só **47 dos 223** têm agência bancária (21%) — não é comparação entre os 223 |
+| ISDEL – Educação Empreendedora | Educação | Mediana 0,01 no ano exibido (2021): o tercil separaria 0,003 de 0,009, que é ruído. E é **subdimensão** sem faixa própria (§1) |
+| Bolsa Família | Inclusão | Distribuição saudável, mas **direção ambígua**: a queda de 2,7% na PB é o pente-fino do Novo BF, não inserção no mercado de trabalho. Classificar seria afirmação política sem lastro no dado |
 
-> **Regra:** *indicador de agenda + faixa oficial da fonte ⇒ `threshold` ⇒ semáforo*; sem faixa
-> oficial ⇒ sem `threshold` (o card exibe só o valor). **Base econômica nunca tem semáforo.** Se
-> um dia a fonte publicar faixa para um indicador de agenda, é só preencher `threshold` no seed.
-> Indicadores de agenda ainda não coletados (apoiados Sebrae, linhas de crédito, BNDES) ficam de
-> fora até terem seed.
+> **Regra:** *faixa oficial da fonte ⇒ `provenance: 'fonte'`*; sem faixa oficial, *distribuição que
+> separa ⇒ tercil `relativo-pb`*; distribuição que não separa ou direção ambígua ⇒ **sem
+> `threshold`** (o card exibe só o valor). **Base econômica nunca tem semáforo.** Se um dia a
+> fonte publicar faixa para um indicador hoje relativo, a oficial manda — e o seed passa a
+> declará-la à mão, fora do `aplicar_tercis.py`. Indicadores ainda não coletados (apoiados Sebrae,
+> linhas de crédito) ficam de fora até terem seed.
 
 ---
 
