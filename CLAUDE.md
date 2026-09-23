@@ -10,9 +10,11 @@ armadilhas** do projeto; o resto se lê no código. Prefira `grep` a suposição
 > Node. A branch de produção é a `main`; ao portar mudanças, ver
 > [Backend nesta branch](#backend-nesta-branch).
 
-**Estado:** 1.4.2, espelhando a `main`. Home = `SideNav` com 4 pilares (Ambiente de negócio, Mapeamento de
-recursos, Cursos e boas práticas, Formulador de projetos); cada pilar alterna modos
-via `ModeToggle`. **223 municípios da PB**, default Campina Grande (`2504009`).
+**Estado:** 1.4.2, espelhando a `main`. **17 dos 22 indicadores de agenda
+classificam** (6 por faixa oficial da fonte, 11 por tercil relativo aos 223 municípios
+da PB) e o farol por agenda voltou a acender. Home = `SideNav` com 4 pilares (Ambiente
+de negócio, Mapeamento de recursos, Cursos e boas práticas, Formulador de projetos);
+cada pilar alterna modos via `ModeToggle`. **223 municípios da PB**, default Campina Grande (`2504009`).
 Rotas: `/` (Login), `/home`, `/trilhas`. Desktop 1440px. **Tema claro e escuro**,
 com `ThemeToggle` fixo no topo à direita, montado no `Layout` e portanto presente
 em todas as rotas (automático → claro → escuro; automático é o default e segue o
@@ -157,9 +159,17 @@ snapshot estático do banco.
 > snapshot = entrada no `vercel.json` **e** no bypass do `vite.config.ts`, senão
 > funciona no preview e quebra em dev (ou o contrário).
 
-O snapshot é gerado do banco pelos scripts em `database/scripts/`; o shape é o mesmo
-que a API Node devolve, para o frontend não saber a diferença. Ao mudar um contrato,
-regerar o snapshot.
+O snapshot é gerado pelos scripts em `database/scripts/`; o shape é o mesmo que a API
+Node devolve, para o frontend não saber a diferença. Ao mudar um contrato, regerar o
+snapshot — `gerar_api_snapshot_municipios.py` (os 223 + índice) e
+`gerar_api_snapshot_emendas.py`.
+
+> Os dois leem os **seeds**, não o banco: o Mongo do Sebrae não é alcançável daqui, e
+> até set/2026 os 223 JSONs não tinham gerador nenhum (eram dump da API Node em
+> `ccec545`). O de municípios reimplementa ~40 linhas de `server/src/indicadores/`
+> (ano, supressão, régua), então rode **`--conferir` antes de `--escrever`**: ele
+> agrupa as diferenças por indicador, e indicador que você não mexeu tem de sair
+> idêntico. Diferença fora do esperado = a reimplementação divergiu do servidor.
 
 A API Node existe em `server/` e o código é **o mesmo da `main`** — inclusive
 `/api/emendas` e `POST /api/ai`. Ela não atende esta branch (quem atende é o
@@ -199,10 +209,39 @@ server/src/
 > significa em produção, ver o `CLAUDE.md` de lá.
 
 **DB-driven:** o status de cada indicador vem do `threshold` no banco, tanto na API
-quanto no snapshot.
+quanto no snapshot. **A régua tem duas procedências** (`threshold.provenance`), e elas
+pintam a mesma cor sem querer dizer a mesma coisa:
 
-> **Regra:** nunca inventar cortes de classificação — ver
-> `database/MAPEAMENTO_BASE_DOS_DADOS.md`.
+- `fonte` (ou ausente) — faixa publicada pela fonte. São 6 indicadores de agenda.
+- `relativo-pb` — tercis p33/p67 entre os 223 municípios da PB, calculados por
+  `database/scripts/aplicar_tercis.py`. São 11. Um `Bom` aqui é "no terço de cima da
+  Paraíba", **não** "atende a um padrão".
+
+> **Regra:** segue proibido inventar um corte e apresentá-lo como padrão da fonte. O
+> tercil só é admissível porque viaja rotulado (`provenance`) até o `IndicatorModal` e
+> até o prompt da IA. Mexeu na régua, mexa no rótulo. Tabela em
+> `database/MAPEAMENTO_BASE_DOS_DADOS.md`, §Semáforo.
+
+> **`normalizedValue` é o número que a régua relativa lê — e `null` nele significa
+> SEM BASE DE COMPARAÇÃO, não zero.** Contagem bruta não compara municípios (mede o
+> tamanho deles), então 6 dos 11 classificam per capita enquanto o card exibe o bruto;
+> `classifiedNumber` (servidor) e `classifiedValue` (cliente) escolhem qual número vale
+> e **nunca** caem no bruto quando falta o normalizado. O mesmo campo tira do semáforo
+> quem não tem o que comparar — é assim que os 109 municípios sem emissão de alvará
+> saem sem sumir da tela.
+
+> **Zero medido ≠ zero que é ausência, e os dois chegam como `numericValue: 0`.** Só o
+> `breakdown` distingue: `semEmissaoAlvara` no `tempo-licenciamento` (109 zeros = não
+> houve processo → sem base) e `vinculosTotal` no `trabalhadores-tic` (todo zero tem
+> emprego formal, nenhum em TIC → é piso, e os tercis se calculam sobre os positivos).
+> Trocar um pelo outro pinta metade do estado de vermelho, ou apaga a faixa de alerta
+> inteira. Quem decide é o gerador; o servidor não vê `breakdown`.
+
+> **Rodar um `gerar_seed_*.py` APAGA o threshold derivado, em silêncio.** O bloco de
+> catálogo usa `replaceOne` e nenhum gerador conhece os tercis: o seed roda, imprime
+> `ok`, e o indicador volta a `'none'` sem que nada avise. Depois de qualquer gerador
+> dos 11, rodar `aplicar_tercis.py --escrever` (e, nesta branch, regerar o snapshot).
+> Ver `database/RUNBOOK_ETL.md` §4.
 
 **Emendas:** zero no **estadual** é `null` (município inferido de texto livre: zero =
 "não atribuímos"); no **federal** é `0` de verdade (censo por código IBGE).
@@ -303,6 +342,19 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   derrubou os deploys da Vercel nas duas branches. Hoje o build compila `src` +
   `api` e os testes têm `tsconfig.tests.json`, rodado por **`npm run typecheck`** —
   que é o comando a usar antes de commitar, não o `build`.
+- **O farol da agenda ignora `'none'` no denominador — e é isso que o mantém honesto.**
+  `agendaStatus` (`src/utils/statusStyles.ts`) é a média por gravidade (success 2,
+  warning 1, alert 0; ≥1,5 verde, ≥0,5 amarelo) **só sobre os indicadores que
+  classificam**. Ficou desligado (`return 'none'`) de jul a set/2026 porque contava
+  todos: com a maioria em `'none'`, quase toda agenda ia a vermelho — um agregado
+  dominado por ausência de dado, não por desempenho. Agenda sem nenhum classificável
+  devolve `'none'` (glow vazio), e hoje é o caso real de *Acesso a crédito*.
+- **A barra é posicionada pelo número da régua, não pelo exibido.** Quem monta usa
+  `classifiedValue(ind)`, nunca `ind.numericValue` direto: numa faixa per capita o
+  `value` é "70.626" e o corte é 44,5/1k hab., então o bruto grudaria o marcador no
+  extremo direito de toda barra normalizada — sem erro, sem aviso, e com cara de que
+  todo município do estado vai bem. `markerFraction` é geometria pura e não sabe nada
+  disso; não é lá que se resolve.
 - **Comentário citando componente não é uso.** Numa varredura, três componentes mortos
   (`ui/Grid`, `agenda/AgendaStats`, `formulator/useFormulatorAi`) sobreviveram só porque
   comentários os mencionavam. Ao caçar código morto, procurar `import`, não o nome. E o
