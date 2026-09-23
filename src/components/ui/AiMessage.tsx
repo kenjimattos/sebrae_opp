@@ -1,9 +1,9 @@
 // Tailwind pure — no Figma equivalent
 // Bloco de resposta do LLM: ícone Sparkles + markdown + caret do typewriter.
 // Fonte única das três superfícies que exibem texto gerado (ChatPanel,
-// IndicatorModal, EconomicsAnalysis) — antes cada uma tinha sua cópia e a do
-// Panorâma havia perdido o MarkdownLite pelo caminho, renderizando os
-// **negritos** do modelo como texto cru.
+// IndicatorModal, AIAnalysis) — antes cada uma tinha sua cópia e a da análise
+// havia perdido o MarkdownLite pelo caminho, renderizando os **negritos** do
+// modelo como texto cru.
 //
 // O typewriter mora aqui: quem consome passa `isTyping` e `onDone`. Para
 // reiniciar a animação, monte o consumidor com uma `key` nova (mesmo contrato
@@ -22,7 +22,7 @@ interface AiMessageProps {
   /** Mensagem de falha — esmaece o texto. */
   isError?: boolean
   /** Sparkles à esquerda do texto. Falso quando o consumidor já tem o ícone no
-   *  próprio cabeçalho (EconomicsAnalysis). */
+   *  próprio cabeçalho (AIAnalysis). */
   icon?: boolean
   /** Aplicado ao elemento externo (o wrapper com ícone, ou o próprio texto
    *  quando `icon` é falso). */

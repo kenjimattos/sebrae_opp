@@ -1,7 +1,7 @@
 // Modal "IA" do indicador: explicação pré-gravada digitada por typewriter,
 // perguntas sugeridas com respostas prontas (mesmo efeito) e pergunta livre —
 // esta sim faz chamada real ao LLM via /api/ai. Thread cresce para baixo;
-// só a última entrada digita (padrão EconomicsAnalysis: remount por key).
+// só a última entrada digita (padrão do AIAnalysis: remount por key).
 
 import { useEffect, useRef, useState } from 'react'
 import type { Indicator } from '@/types/indicators'

@@ -139,9 +139,8 @@ Quatro superfícies, todas sobre `POST /api/ai`:
    (etapa 3), indicadores (etapa 7) e rubricas (etapa 8, só nomes) + o painel `AIAssistant`.
 3. **Análise do município** — a task `economic-analysis` recebe os cards da base econômica
    estruturados e o resumo dos indicadores com a faixa oficial; o prompt proíbe citar
-   número fora desse contexto e proíbe classificar o que não vem com status. Sai em dois
-   modos da aba Ambiente: no Panorâma, abaixo dos cards (`EconomicsAnalysis`), e sozinha
-   no modo *Análise do município* (`AIAnalysis`).
+   número fora desse contexto e proíbe classificar o que não vem com status. Mora em
+   `analysis/AIAnalysis` e sai num lugar só: o modo *Análise do município*.
 4. **Chat global** (`ChatButton`/`ChatPanel`).
 
 Contrato em `src/types/ai.ts` (união `AiTaskRequest`); núcleo em `api/_lib/`
@@ -163,7 +162,7 @@ Três camadas: o **frontend** (`src/` + `api/`), a **API de leitura** (`server/`
 src/                          # Frontend React
 ├── components/               # Componentes por grupo do Figma
 │   ├── agenda/               # AgendaCard, IndicatorBar, IndicatorModal, ModeEixos
-│   ├── economics/            # EconomicsCard, EconomicsAnalysis, ModeEconomics
+│   ├── economics/            # EconomicsCard, ModeEconomics
 │   ├── analysis/             # ModeAnalysis, AIAnalysis
 │   ├── resources/            # ModeResources, EmendasEsferaCard
 │   ├── training/             # ModeTraining + catálogo de /trilhas
