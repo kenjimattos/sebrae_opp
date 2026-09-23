@@ -97,8 +97,17 @@ export default function Tooltip({
   let panelClass: string
   let panelStyle: React.CSSProperties
   if (useCursorPos) {
+    // ABAIXO do cursor, centrado nele — não ao lado. Quem segue o cursor aqui é
+    // a barra do indicador, que fica à direita de uma linha estreita: um painel
+    // ao lado sairia do card, e acima cobriria o valor e a própria barra, que é
+    // justamente o que o usuário está olhando enquanto lê a faixa.
     panelClass = 'fixed z-50 pointer-events-none'
-    panelStyle = { left: cursorPos.x + CURSOR_OFFSET_PX, top: cursorPos.y, width }
+    panelStyle = {
+      left: cursorPos.x,
+      top: cursorPos.y + CURSOR_OFFSET_PX,
+      width,
+      transform: 'translateX(-50%)',
+    }
   } else if (usePortalAnchor) {
     panelClass = 'fixed z-50'
     const top =

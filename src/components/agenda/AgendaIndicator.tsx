@@ -1,6 +1,7 @@
 // Linha de indicador no AgendaCard floating: label (font-body 14px) à
 // esquerda, valor grande (font-body bold 18px) ao centro-direita, barra
-// rainbow (145px) com marcador e rótulos de zona à direita.
+// rainbow com marcador à direita. As faixas da régua saem no tooltip do hover
+// da barra (ver IndicatorBar).
 
 import type { StatusType, IndicatorThreshold } from '@/types/indicators'
 import IndicatorBar from '@/components/agenda/IndicatorBar'
@@ -21,7 +22,7 @@ interface AgendaIndicatorProps {
   status: StatusType
   /** A régua — deriva os rótulos das zonas da barra e a unidade deles. */
   threshold?: IndicatorThreshold
-  /** Sobrepõe os rótulos derivados do threshold (opcional). */
+  /** Sobrepõe as faixas derivadas do threshold (opcional). */
   segmentLabels?: [string, string, string]
   /** Quando presente, o label vira botão (abre o modal "IA" do indicador). */
   onLabelClick?: () => void
