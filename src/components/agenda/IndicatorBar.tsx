@@ -37,6 +37,11 @@ const ZONE_FALLBACK: Record<
 const BAR_GRADIENT =
   'linear-gradient(to right, var(--semantic-alert-vivid) 0%, var(--semantic-warning-vivid) 53.365%, var(--semantic-success-vivid) 100%)'
 
+// O marcador anda pela BORDA, não pelo centro: `left: 100%` centralizado deixaria
+// metade do cubo fora da barra, e é o que fazia todo indicador no topo da faixa
+// vazar à direita. O trajeto útil é a largura da barra menos a do próprio cubo.
+const markerLeft = (fraction: number) => `calc(${fraction} * (100% - var(--spacing-sm)))`
+
 export default function IndicatorBar({
   status,
   numericValue,
@@ -49,22 +54,23 @@ export default function IndicatorBar({
   // Posição contínua a partir do valor; na falta, centro da zona do status.
   const fraction = empty ? null : markerFraction(numericValue, threshold)
   const fallback = status === 'none' ? undefined : ZONE_FALLBACK[status]
-  const leftPct = fraction !== null ? fraction * 100 : fallback?.leftPct
 
   // Cor do marcador: gradual (amostra a barra no ponto) quando há posição
   // contínua; sólida (cor do status) no fallback.
   const markerStyle =
     fraction !== null
       ? {
-          left: `${leftPct}%`,
+          left: markerLeft(fraction),
           background: BAR_GRADIENT,
           backgroundSize: 'var(--spacing-gutter) 100%',
           backgroundRepeat: 'no-repeat',
-          backgroundPositionX: `calc(var(--spacing-sm) / 2 - var(--spacing-gutter) * ${fraction})`,
+          // Amostra a fatia da barra sob o cubo: desloca o gradiente pelo tanto
+          // que o cubo já andou (mesmo trajeto encurtado do `markerLeft`).
+          backgroundPositionX: `calc(-1 * ${fraction} * (var(--spacing-gutter) - var(--spacing-sm)))`,
           backgroundPositionY: 'center',
         }
       : fallback
-        ? { left: `${leftPct}%`, background: fallback.color }
+        ? { left: markerLeft(fallback.leftPct / 100), background: fallback.color }
         : undefined
 
   return (
@@ -75,7 +81,7 @@ export default function IndicatorBar({
       <div className="relative h-[var(--spacing-2xs)] w-full" style={{ background: BAR_GRADIENT }}>
         {markerStyle && (
           <div
-            className="absolute size-[var(--spacing-sm)] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xs"
+            className="absolute size-[var(--spacing-sm)] top-1/2 -translate-y-1/2 rounded-xs"
             style={{
               ...markerStyle,
               // O anel destaca o marcador da barra colorida e do fundo da página
