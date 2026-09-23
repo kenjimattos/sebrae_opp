@@ -342,6 +342,15 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   derrubou os deploys da Vercel nas duas branches. Hoje o build compila `src` +
   `api` e os testes têm `tsconfig.tests.json`, rodado por **`npm run typecheck`** —
   que é o comando a usar antes de commitar, não o `build`.
+- **`ranking-redesim` e `tempo-licenciamento` exibem PONTUAÇÃO — o rótulo mente, e por
+  isso os dois são `higher-better`.** O primeiro serve o total 0–600 (não a posição
+  entre 223); o segundo serve o Índice de Tempo 0–120, onde **mais pontos = menos
+  horas**, porque a Redesim só publica horas brutas de alvará no nível estadual. Ler o
+  nome e inferir a direção inverte o mapa inteiro sem quebrar nada: já aconteceu duas
+  vezes numa semana, uma delas comigo. O tooltip é o único lugar onde a escala aparece
+  na tela — ele dizia "Dias para emissão", fazendo o card afirmar que Campina leva "57
+  dias" com farol verde. Mexeu na escala de um indicador, confira
+  `src/data/indicators/descriptions/indicators.ts`.
 - **O farol da agenda ignora `'none'` no denominador — e é isso que o mantém honesto.**
   `agendaStatus` (`src/utils/statusStyles.ts`) é a média por gravidade (success 2,
   warning 1, alert 0; ≥1,5 verde, ≥0,5 amarelo) **só sobre os indicadores que

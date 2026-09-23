@@ -22,10 +22,16 @@ export const indicatorInfo: Record<string, string> = {
     'Tempo médio para análise de viabilidade locacional na abertura de empresas, em horas úteis (marco de 75% dos processos).',
   'tempo-abertura':
     'Horas necessárias para abrir formalmente uma empresa no município, da solicitação ao CNPJ ativo.',
+  // Estes dois exibem PONTUAÇÃO, não posição nem tempo — e os rótulos ("Ranking",
+  // "Tempo de licenciamento") sugerem o contrário. O tooltip é o único lugar onde
+  // isso se esclarece, então ele tem de dizer a escala e a direção. O texto anterior
+  // do licenciamento dizia "Dias para emissão", o que fazia o card afirmar que
+  // Campina Grande leva "57 dias" — com farol verde e a barra apontando que mais
+  // é melhor. Ver database/MAPEAMENTO_BASE_DOS_DADOS.md §10.
   'ranking-redesim':
-    'Posição do município na integração com a Rede Nacional para Simplificação do Registro e da Legalização de Empresas e Negócios (Redesim).',
+    'Pontuação do município no Ranking da Redesim/PB (escala 0–600), somando documentos habilitados, atendimento e tempo. Não é a posição: quanto maior a pontuação, melhor a integração à Rede Nacional para Simplificação do Registro e da Legalização de Empresas e Negócios.',
   'tempo-licenciamento':
-    'Dias para emissão de alvará de funcionamento e licenças para atividades de baixo risco.',
+    'Pontuação do Índice de Tempo dos alvarás de localização e sanitário (escala 0–120). Não são dias: quanto maior a pontuação, mais rápido o licenciamento. A Redesim só publica horas brutas de alvará no nível estadual, então por município usa-se a pontuação derivada das faixas oficiais de horas.',
 
   // Inovação
   'trabalhadores-ct':

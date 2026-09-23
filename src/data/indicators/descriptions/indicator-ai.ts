@@ -161,7 +161,7 @@ export const indicatorAiContent: Record<string, IndicatorAiContent> = {
   },
   'ranking-redesim': {
     explanation:
-      'Posição de {municipio} no ranking estadual de integração à Redesim — a rede nacional que unifica registro e legalização de empresas. A pontuação atual é {valor} ("{status}"). Ela reflete o quanto o município aderiu aos módulos de viabilidade, licenciamento e baixa integrados.',
+      'Desempenho de {municipio} no ranking estadual de integração à Redesim — a rede nacional que unifica registro e legalização de empresas. A pontuação atual é {valor} de 600 ("{status}"). Ela reflete o quanto o município aderiu aos módulos de viabilidade, licenciamento e baixa integrados.',
     questions: [
       {
         question: 'O que é a Redesim?',
