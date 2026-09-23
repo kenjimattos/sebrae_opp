@@ -296,19 +296,35 @@ export function buildMessages(req: AiTaskRequest): OpenRouterMessage[] {
         'NÃO relacione os dados um a um: eles já estão na tela, em cards logo acima da análise. ' +
         'Cite no máximo 3 números, escolhidos porque sustentam o argumento. O valor do texto está ' +
         'na leitura que conecta os dados, não na repetição deles.\n\n' +
+        // A proibição de comparar precisou ficar cirúrgica: parte dos indicadores
+        // agora CHEGA com um posicionamento relativo (o tercil entre os 223
+        // municípios da PB). Repetir o que foi fornecido é legítimo; o que segue
+        // proibido é produzir ranking, posição ou média estadual — nenhum desses
+        // é calculado ou servido em lugar nenhum do sistema.
         'REGRA CRÍTICA: cite apenas números que aparecem nos dados acima, copiados exatamente como ' +
-        'estão. Não estime, não arredonde e não invente nenhum valor, ranking, quantidade ou ' +
-        'comparação com outros municípios ou com a média do estado — esses dados não foram fornecidos. ' +
+        'estão. Não estime, não arredonde e não invente nenhum valor, quantidade, posição em ' +
+        'ranking nem média do estado — esses dados não foram fornecidos. Se um dado vier marcado ' +
+        'com uma comparação entre os municípios da Paraíba, você pode repetir exatamente essa ' +
+        'comparação, e nada além dela. ' +
         'Se algo não estiver nos dados, escreva de forma qualitativa, sem número.\n\n' +
-        // Só 6 indicadores da plataforma têm faixa oficial no banco; os 11 cards
-        // restantes da base econômica não têm nenhuma. Sem esta regra o modelo
-        // inventava a classificação (chamou IDH-M 0,588 de "avanço no
-        // desenvolvimento humano", quando a faixa oficial põe 0,588 em Alerta).
+        // Sem esta regra o modelo inventava a classificação (chamou IDH-M 0,588
+        // de "avanço no desenvolvimento humano", quando a faixa oficial põe
+        // 0,588 em Alerta). Os cards da base econômica seguem sem faixa alguma.
         'CLASSIFICAÇÃO: só chame um valor de bom, ruim, alto, baixo, elevado ou preocupante quando o ' +
         'dado vier com status explícito (Bom, Atenção, Alerta) — e use exatamente esse status, nunca ' +
         'um julgamento próprio, mesmo que a faixa oficial esteja à vista. Os itens da base econômica ' +
         'não têm faixa oficial de classificação: descreva os valores deles e o que representam, sem ' +
-        'rotulá-los como altos ou baixos e sem afirmar se são bons ou ruins.'
+        'rotulá-los como altos ou baixos e sem afirmar se são bons ou ruins.\n\n' +
+        // Agora há dois tipos de "Bom" e eles não significam a mesma coisa. Sem
+        // esta regra o modelo escreve que o município "atende ao padrão" quando
+        // ele apenas está no terço de cima da Paraíba — e o gestor lê isso como
+        // uma meta cumprida. A régua vem escrita ao lado de cada status.
+        'ORIGEM DA CLASSIFICAÇÃO: cada status vem acompanhado do critério que o produziu, e os dois ' +
+        'tipos NÃO são equivalentes. Quando o critério for uma faixa oficial da fonte, pode tratar o ' +
+        'status como padrão técnico atingido ou não. Quando for uma comparação entre os 223 ' +
+        'municípios da Paraíba, escreva como posição relativa ("entre os municípios da Paraíba, ' +
+        'está no terço de cima") e NUNCA como padrão, meta, norma ou recomendação — não há padrão ' +
+        'oficial para esses indicadores.'
       return [
         { role: 'system', content: system },
         { role: 'user', content: user },
