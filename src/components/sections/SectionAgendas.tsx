@@ -59,7 +59,7 @@ export default function SectionAgendas() {
       <CitySelector />
       <div className="flex flex-1 min-h-0 gap-md">
           {/* Coluna esquerda: container rounded com heading + agendas */}
-          <div className="flex flex-col w-[40%] min-w-0 shrink-0 glass p-md rounded gap-md">
+          <div className="flex flex-col w-[40%] min-w-0 h-[77dvh] shrink-0 glass p-md rounded gap-md">
             <div>
               <h1
                 className="typo-h1"
@@ -77,19 +77,22 @@ export default function SectionAgendas() {
           </div>
 
           {/* Coluna direita: mapa + overlays */}
-          <div className="flex flex-1 min-w-0 flex-col gap-md">
-            <div className="flex-col-start h-full px-md">
+          <div className="flex flex-1 min-w-0 flex-col">
+            <div className="flex flex-col items-center px-md">
               <ParaibaOutlineMap
-                padding={0}
                 selectedId={municipality.id}
                 onSelect={handleMapSelect}
+                className="max-w-[36dvw]"
               />
             </div>
             {selectedAgenda && (
+            <div className="flex flex-col w-full h-full items-center justify-center">
               <AgendaCard
+                className='w-full'
                 indicators={selectedAgenda.indicators}
                 onIndicatorClick={setSelectedIndicator}
               />
+            </div>
             )}
           </div>
         </div>
