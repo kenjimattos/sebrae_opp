@@ -60,6 +60,19 @@ ensureCollection('indicators', {
         success: { bsonType: ['double', 'int'] },
         warning: { bsonType: ['double', 'int'] },
         map: { bsonType: 'object' },
+        provenance: {
+          enum: ['fonte', 'relativo-pb'],
+          description: "de onde veio a régua; ausente = 'fonte' (faixa publicada pela fonte do dado). 'relativo-pb' = corte por tercil entre os 223 municípios da PB, que a UI é obrigada a rotular como comparação, não como padrão",
+        },
+        basis: {
+          bsonType: 'object',
+          description: 'unidade dos cortes quando NÃO é a unidade exibida (ex.: contagem bruta exibida, régua per capita). Presente => classifica-se por indicatorValues.normalizedValue',
+          properties: {
+            unit: { bsonType: 'string', description: 'sufixo curto para o rótulo da barra (ex: "/1k hab.")' },
+            label: { bsonType: 'string', description: 'texto por extenso para o modal' },
+            denominator: { bsonType: 'string', description: 'rastro do denominador usado pelo ETL (ex: "populacao@pib-per-capita:2023")' },
+          },
+        },
       },
     },
     referenceYear: { bsonType: 'string', description: 'ano de referência exibido por padrão (vintage); o autoritativo por município está em indicatorValues.referenceYear' },
@@ -99,6 +112,14 @@ ensureCollection('indicatorValues', {
     indicatorId: { bsonType: 'string', description: 'ref indicators._id' },
     rawValue: { bsonType: 'string', description: 'valor de exibição em padrão BR (ex: "0,763")' },
     numericValue: { bsonType: ['double', 'int', 'null'], description: 'valor numérico parseado' },
+    // NÃO é required: só existe nos indicadores de régua relativa. E `null` aqui
+    // significa SEM BASE DE COMPARAÇÃO, não zero — é o que tira do semáforo os
+    // 109 municípios sem emissão de alvará e os 73 sem contrato público a PJ,
+    // sem tirá-los da tela. Quem decide é o gerador, olhando o próprio breakdown.
+    normalizedValue: {
+      bsonType: ['double', 'int', 'null'],
+      description: "valor na unidade da régua relativa (ver indicators.threshold.basis); null = sem base de comparação",
+    },
     variation: {
       bsonType: ['object', 'string', 'null'],
       description:

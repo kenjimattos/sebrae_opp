@@ -44,10 +44,15 @@ export function buildMapData(
       if (isLowConfidence(v)) continue
       const n = v.numericValue
       if (typeof n !== 'number' || !Number.isFinite(n)) continue
+      const threshold = catalog.byId.get(indicatorId)?.threshold
       indicators[indicatorId] = {
         value: v.rawValue,
         numericValue: n,
-        status: computeStatus(catalog.byId.get(indicatorId)?.threshold, v),
+        // Serve o normalizado quando existe: é ele que dá intensidade
+        // comparável entre municípios. Colorir pela contagem bruta desenharia
+        // o mapa da população, não o do indicador.
+        normalizedValue: v.normalizedValue ?? null,
+        status: computeStatus(threshold, v),
       }
     }
     out[m._id] = { name: m.name, indicators }

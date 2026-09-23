@@ -68,6 +68,8 @@ describe('buildIndicatorsData · escolha do ano (pickValue pela costura)', () =>
     expect(map.municipalities[CAMPINA._id]!.indicators['igm-cfa']).toEqual({
       value: '5,20',
       numericValue: 5.2,
+      // Faixa oficial não tem normalizado — o mapa serve null, não o omite.
+      normalizedValue: null,
       status: 'success',
     })
   })

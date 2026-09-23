@@ -29,14 +29,21 @@ export interface Indicator {
   value: string
   /**
    * O mesmo valor como número, direto do ETL — sem locale, sem unidade, na
-   * precisão da fonte. É o que classifica e o que posiciona o marcador da
-   * barra; `value` é só texto. `null` = sem medida.
+   * precisão da fonte. `value` é só texto. `null` = sem medida.
    */
   numericValue?: number | null
+  /**
+   * O mesmo valor na unidade em que a régua relativa classifica (ver
+   * `threshold.basis`). Presente só quando `threshold.provenance` é
+   * 'relativo-pb'; é ELE que classifica e posiciona o marcador da barra nesses
+   * casos. `null` = sem base de comparação (≠ zero) → status 'none'.
+   */
+  normalizedValue?: number | null
   variation?: RawVariation
   status: StatusType
-  // Faixa oficial (só nos 6 indicadores classificados). O frontend deriva os
-  // rótulos das zonas da barra a partir daqui.
+  // A régua. `provenance` diz se é faixa oficial da fonte ou corte relativo
+  // entre os 223 municípios da PB — a UI é obrigada a distinguir as duas. O
+  // frontend deriva daqui os rótulos das zonas da barra.
   threshold?: Threshold
 }
 
@@ -63,6 +70,10 @@ export interface IndicatorsData {
 export interface MapIndicatorEntry {
   value: string
   numericValue?: number
+  // Ver `Indicator.normalizedValue`. O mapa serve o número normalizado porque é
+  // ele que dá a intensidade comparável entre municípios — a contagem bruta só
+  // desenharia o mapa da população.
+  normalizedValue?: number | null
   status: StatusType
 }
 
