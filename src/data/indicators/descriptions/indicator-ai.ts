@@ -17,12 +17,16 @@ export interface IndicatorAiContent {
 
 export function fillTemplate(
   text: string,
-  vars: { municipio: string; valor: string; status: string },
+  // `criterio` é a frase de procedência da régua (ver `thresholdCriterion`).
+  // Existe para que um texto possa dizer "Bom **na comparação entre os 223
+  // municípios da PB**" em vez de só "Bom", que num tercil soa a padrão oficial.
+  vars: { municipio: string; valor: string; status: string; criterio?: string },
 ): string {
   return text
     .replaceAll('{municipio}', vars.municipio)
     .replaceAll('{valor}', vars.valor)
     .replaceAll('{status}', vars.status)
+    .replaceAll('{criterio}', vars.criterio ?? 'sem régua de classificação')
 }
 
 export const indicatorAiContent: Record<string, IndicatorAiContent> = {

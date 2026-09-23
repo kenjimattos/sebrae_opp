@@ -12,7 +12,7 @@ import TextInput from '@/components/ui/TextInput'
 import Button from '@/components/ui/buttons/Button'
 import AiMessage from '@/components/ui/AiMessage'
 import { Sparkles } from '@/components/icons'
-import { statusLabels } from '@/data/indicators/status-labels'
+import { statusLabels, thresholdCriterion } from '@/data/indicators/status-labels'
 import { indicatorInfo } from '@/data/indicators/descriptions/indicators'
 import {
   fillTemplate,
@@ -20,6 +20,7 @@ import {
 } from '@/data/indicators/descriptions/indicator-ai'
 import { catalog } from '@/data/indicators/catalog'
 import { statusStyles } from '@/utils/statusStyles'
+import { classifiedValue } from '@/utils/indicatorBar'
 
 interface IndicatorModalProps {
   indicator: Indicator
@@ -57,10 +58,15 @@ export default function IndicatorModal({ indicator, open, onClose }: IndicatorMo
 
   const contentKey = indicator.id ?? indicator.label
   const content = indicatorAiContent[contentKey]
+  // A régua por extenso e o número que ela leu — os dois viajam para a tela e
+  // para a IA. `criterion` é undefined quando o indicador não classifica.
+  const criterion = thresholdCriterion(indicator.threshold)
+  const normalized = indicator.threshold?.basis ? classifiedValue(indicator) : null
   const vars = {
     municipio: municipality.name,
     valor: String(indicator.value),
     status: statusLabels[indicator.status],
+    criterio: criterion ?? 'sem régua de classificação',
   }
   const explanation = fillTemplate(
     content?.explanation ?? indicatorInfo[contentKey] ?? FALLBACK_EXPLANATION,
@@ -152,11 +158,23 @@ export default function IndicatorModal({ indicator, open, onClose }: IndicatorMo
   return (
     <Modal open={open} onClose={onClose} title={indicator.label} >
       {/* Valor + status atuais */}
-      <div className="flex items-center gap-xs mb-md">
-        <span className={statusStyles[indicator.status].dot} aria-hidden />
-        <span className="typo-body-sm text-inactive">
-          {String(indicator.value)} · {statusLabels[indicator.status]} · {municipality.name}
-        </span>
+      <div className="flex flex-col gap-3xs mb-md">
+        <div className="flex items-center gap-xs">
+          <span className={statusStyles[indicator.status].dot} aria-hidden />
+          <span className="typo-body-sm text-inactive">
+            {String(indicator.value)} · {statusLabels[indicator.status]} · {municipality.name}
+          </span>
+        </div>
+        {/* De onde vem a classificação. Sem isto, um 'Bom' por tercil é lido
+            como padrão oficial — e é justamente a confusão que fez a cor de
+            agenda ser desligada. Quando a régua é per capita, mostra também o
+            número normalizado: é ele que foi comparado, não o valor acima. */}
+        {criterion && (
+          <span className="typo-body-xs text-inactive pl-lg">
+            {normalized !== null && `${normalized.toLocaleString('pt-BR')}${indicator.threshold?.basis?.unit} · `}
+            {criterion}
+          </span>
+        )}
       </div>
 
       {/* Thread */}

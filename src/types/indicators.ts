@@ -1,16 +1,35 @@
-// 'none' = indicador sem faixa de classificação oficial (sem semáforo). Só os
-// 6 indicadores de agenda cuja fonte publica faixa recebem success/warning/alert;
-// os demais ficam 'none' → não mostram IndicatorBar. A cor de agenda também é
-// neutralizada (agregado não tem faixa oficial). Ver database/MAPEAMENTO_BASE_DOS_DADOS.md.
+// 'none' = indicador sem régua (sem semáforo) → não mostra IndicatorBar.
+// Hoje 17 dos 22 indicadores de agenda classificam: 6 por faixa oficial da fonte
+// e 11 por tercil entre os 223 municípios da PB. Os 5 restantes ficam 'none'
+// porque a distribuição não separa ou a direção é ambígua — ver a tabela em
+// database/MAPEAMENTO_BASE_DOS_DADOS.md, §Semáforo.
 export type StatusType = 'success' | 'warning' | 'alert' | 'none'
 
-// Faixa oficial de classificação de um indicador (só os 6 com fonte publicando
-// classificação). Vem da API (indicators.threshold no banco). O frontend a usa
-// para rotular as zonas do IndicatorBar. Ausente = sem semáforo ('none').
+// De onde veio a régua. As duas pintam a mesma cor e NÃO significam a mesma
+// coisa: 'Bom' oficial é "atende ao padrão da fonte"; 'Bom' relativo é "está no
+// terço de cima da Paraíba". Apresentar o segundo como o primeiro é o motivo
+// pelo qual a cor de agenda ficou desligada — por isso a procedência é dita na
+// tela (IndicatorModal) e mandada à IA. Ausente = 'fonte'.
+export type ThresholdProvenance = 'fonte' | 'relativo-pb'
+
+// Unidade dos cortes quando NÃO é a unidade exibida. Contagem bruta não compara
+// municípios (mede o tamanho deles), então esses indicadores classificam per
+// capita enquanto o card exibe o bruto. Presente ⇒ o rótulo da barra leva sufixo.
+export interface ThresholdBasis {
+  unit: string
+  label: string
+  denominator: string
+}
+
+// A régua de um indicador. Vem da API (indicators.threshold no banco). O
+// frontend a usa para rotular as zonas do IndicatorBar e para dizer a
+// procedência. Ausente = sem semáforo ('none').
 export interface IndicatorThreshold {
   kind: 'higher-better' | 'lower-better' | 'enum'
   success?: number
   warning?: number
+  provenance?: ThresholdProvenance
+  basis?: ThresholdBasis
 }
 
 // Variação de um indicador vinda do ETL/banco: objeto estruturado com o delta
@@ -31,10 +50,16 @@ export interface Indicator {
   value: string | number
   /**
    * O mesmo valor como número, direto do ETL — sem locale, sem unidade, na
-   * precisão da fonte. Vem da API; é ele que posiciona o marcador da barra.
-   * `null` = sem medida.
+   * precisão da fonte. `null` = sem medida.
    */
   numericValue?: number | null
+  /**
+   * O mesmo valor na unidade em que a régua relativa classifica (ver
+   * `threshold.basis`). Quando existe, é ELE que classifica e posiciona o
+   * marcador — não o bruto. `null` = sem base de comparação (≠ zero).
+   * Use `classifiedValue()` em vez de ler este campo direto.
+   */
+  normalizedValue?: number | null
   variation?: EconomicVariation | string | null
   status: StatusType
   threshold?: IndicatorThreshold
