@@ -87,11 +87,8 @@ export default function SectionAgendas() {
             </div>
             {selectedAgenda && (
               <AgendaCard
-                title={selectedAgenda.name}
                 indicators={selectedAgenda.indicators}
-                description={agendaObjectives[selectedAgenda.id]}
                 onIndicatorClick={setSelectedIndicator}
-                className=''
               />
             )}
           </div>
