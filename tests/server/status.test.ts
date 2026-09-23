@@ -87,6 +87,65 @@ describe('computeStatus', () => {
     })
   })
 
+  // Régua relativa (tercis entre os 223 municípios da PB). Metade desses
+  // indicadores exibe contagem bruta e classifica per capita, então ler o
+  // número errado não quebra nada — só mede o tamanho do município.
+  describe("provenance 'relativo-pb' classifica pelo normalizedValue", () => {
+    const rel: Threshold = {
+      kind: 'higher-better',
+      success: 44.5,
+      warning: 29.8,
+      provenance: 'relativo-pb',
+      basis: {
+        unit: '/1k hab.',
+        label: 'vínculos por 1.000 habitantes',
+        denominator: 'populacao@pib-per-capita:2023',
+      },
+    }
+
+    it('lê o normalizado e IGNORA a contagem bruta', () => {
+      // 70.626 vínculos em João Pessoa = 88,7/1k hab. A contagem bruta passaria
+      // qualquer corte per capita; o normalizado é que decide.
+      expect(
+        computeStatus(rel, { rawValue: '70.626', numericValue: 70626, normalizedValue: 88.7 }),
+      ).toBe('success')
+      // 225 vínculos num município pequeno = 24,2/1k hab → terço de baixo.
+      expect(
+        computeStatus(rel, { rawValue: '225', numericValue: 225, normalizedValue: 24.2 }),
+      ).toBe('alert')
+    })
+
+    // O caso que motivou `classifiedNumber`: sem o normalizado, cair no bruto
+    // classificaria uma contagem contra uma régua per capita — erro que tem
+    // exatamente a mesma cara de funcionar.
+    it.each([
+      ['ausente', undefined],
+      ['null (sem base de comparação)', null],
+      ['NaN', Number.NaN],
+    ])("normalizedValue %s → 'none', nunca o bruto", (_label, n) => {
+      expect(
+        computeStatus(rel, { rawValue: '70.626', numericValue: 70626, normalizedValue: n }),
+      ).toBe('none')
+    })
+
+    // É assim que os 109 municípios sem emissão de alvará e os 73 sem contrato
+    // público a PJ saem do semáforo continuando a exibir o valor.
+    it('normalizedValue null não é zero: sai do semáforo, não vira alerta', () => {
+      expect(
+        computeStatus(rel, { rawValue: '0', numericValue: 0, normalizedValue: null }),
+      ).toBe('none')
+      expect(
+        computeStatus(rel, { rawValue: '0', numericValue: 0, normalizedValue: 0 }),
+      ).toBe('alert')
+    })
+
+    it('faixa oficial segue lendo o numericValue mesmo havendo normalizado', () => {
+      expect(computeStatus(higher, { rawValue: '', numericValue: 12, normalizedValue: 1 })).toBe(
+        'success',
+      )
+    })
+  })
+
   it('threshold incoerente (lower-better com warning < success) é consequência das comparações, não regra', () => {
     // A régua vive no banco e o seed garante coerência; aqui só se trava o que
     // o código faz hoje para que uma mudança seja deliberada.

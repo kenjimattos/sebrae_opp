@@ -28,10 +28,50 @@ export type EmendaEsfera = 'federal' | 'estadual'
 // objeto da emenda (estadual, ESTIMATIVA — a UI rotula como tal).
 export type EmendaAtribuicao = 'ibge' | 'texto-beneficiario'
 
+// De onde veio a régua. 'fonte' = faixa de classificação publicada pela própria
+// fonte do dado (o padrão histórico, e o único até jul/2026). 'relativo-pb' =
+// corte por tercil calculado entre os 223 municípios da Paraíba, porque a fonte
+// não publica faixa. As duas pintam a mesma cor mas NÃO significam a mesma
+// coisa: 'Bom' relativo é "no terço de cima da PB", não "atende a um padrão".
+// A UI e o prompt da IA são obrigados a dizer qual é — ver
+// `src/data/indicators/status-labels.ts` e `api/_lib/prompts.ts`.
+// Ausente = 'fonte' (os 6 seeds oficiais não precisam declarar nada).
+export type ThresholdProvenance = 'fonte' | 'relativo-pb'
+
+// Unidade em que os cortes estão expressos, quando NÃO é a unidade exibida.
+// Contagem bruta não se compara entre municípios (só mede tamanho: João Pessoa
+// tem 19.760 trabalhadores em C&T e a mediana do estado é 3), então esses
+// indicadores classificam per capita enquanto o card segue exibindo o bruto.
+// Presente => o rótulo da barra leva sufixo de unidade.
+export interface ThresholdBasis {
+  // Sufixo curto, para caber no rótulo da barra: '/1k hab.'
+  unit: string
+  // Texto por extenso, para o modal: 'vínculos por 1.000 habitantes'
+  label: string
+  // Rastro de qual denominador o ETL usou: 'populacao@pib-per-capita:2023'
+  denominator: string
+}
+
 export type Threshold =
-  | { kind: 'higher-better'; success: number; warning: number }
-  | { kind: 'lower-better'; success: number; warning: number }
-  | { kind: 'enum'; map: Record<string, StatusType> }
+  | {
+      kind: 'higher-better'
+      success: number
+      warning: number
+      provenance?: ThresholdProvenance
+      basis?: ThresholdBasis
+    }
+  | {
+      kind: 'lower-better'
+      success: number
+      warning: number
+      provenance?: ThresholdProvenance
+      basis?: ThresholdBasis
+    }
+  | {
+      kind: 'enum'
+      map: Record<string, StatusType>
+      provenance?: ThresholdProvenance
+    }
 
 export interface Placement {
   section: 'agenda' | 'socialeconomic'
@@ -61,6 +101,17 @@ export interface IndicatorValueDoc {
   indicatorId: string
   rawValue: string
   numericValue?: number | null
+  // O número na unidade em que a régua RELATIVA classifica. Gravado pelo ETL,
+  // que é quem tem os denominadores (população vive em `breakdown.populacao` de
+  // `pib-per-capita`, e `breakdown` nem é exposto pela API). Preenchido em todo
+  // indicador com `provenance: 'relativo-pb'` — inclusive quando a normalização
+  // é a identidade, para que a regra de leitura seja uma só.
+  //
+  // `null` significa **sem base de comparação**, nunca zero: é como os 109
+  // municípios que não emitiram alvará na janela e os 73 sem contrato público a
+  // PJ saem do semáforo continuando a exibir o valor. Quem decide isso é o
+  // gerador, olhando o próprio breakdown (`semEmissaoAlvara`, `vinculosTotal`).
+  normalizedValue?: number | null
   variation?: RawVariation
   referenceYear: string
   isFictional: boolean

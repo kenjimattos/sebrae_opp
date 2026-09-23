@@ -30,10 +30,14 @@ export function buildIndicatorsData(
         // marcador da IndicatorBar, e reconstruí-lo do `value` custaria a mesma
         // precisão que o semáforo já perdia.
         numericValue: suppressed ? null : v?.numericValue ?? null,
+        // O número na unidade da régua relativa. Vai junto porque é ele que
+        // posiciona o marcador quando o valor exibido é contagem bruta e a
+        // faixa é per capita — ver `classifiedNumber`.
+        normalizedValue: suppressed ? null : v?.normalizedValue ?? null,
         variation: suppressed ? undefined : v?.variation,
         status: suppressed ? 'none' : computeStatus(ind.threshold, v),
-        // threshold vai pro frontend derivar os rótulos das zonas da barra
-        // (só existe nos indicadores com faixa oficial).
+        // threshold vai pro frontend derivar os rótulos das zonas da barra e a
+        // frase de procedência (faixa oficial × comparação entre os 223).
         threshold: ind.threshold,
       }
     }),
