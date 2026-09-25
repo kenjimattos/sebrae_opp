@@ -99,7 +99,7 @@ ensureCollection('indicators', {
 // --- indicatorValues: 1 doc por (município × indicador). ---
 ensureCollection('indicatorValues', {
   bsonType: 'object',
-  // numericValue é obrigatório: é ele que classifica (server/src/status.ts), não
+  // numericValue é obrigatório: é ele que classifica (server/src/indicadores/status.ts), não
   // o rawValue — que é texto de exibição, arredondado, e perde a casa decimal em
   // que os cortes oficiais discriminam. `null` segue válido pelo bsonType e
   // significa "sem medida" (ex.: os 27 municípios 'sem-dados' da Redesim); o que

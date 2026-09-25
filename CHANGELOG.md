@@ -55,6 +55,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - **`Cache-Control` nas rotas de leitura, `no-store` no resto.** `public, max-age=<TTL>` nas quatro de dados — não há sessão nem dado por usuário em rota nenhuma da API, então a resposta é compartilhável —, de modo que voltar a um município já visto não repete a chamada. `/api/health` fica `no-store` porque health cacheado responde "up" com o banco caído, e `/api/ai` porque resposta de modelo não é determinística nem serve para outro usuário.
 - **Respostas comprimidas (`@fastify/compress`, threshold 1 KB).** JSON repetitivo é o formato que mais encolhe: medido aqui, uma lista no formato de `/api/municipalities` cai de 21 KB para 1,8 KB (91%). Abaixo do threshold comprimir não se paga.
 
+- **Dois comentários apontavam para arquivos que a refatoração por domínio extinguiu.** `src/types/emendas.ts` mandava conferir o contrato em `server/src/services.ts` e `server/src/types.ts`, e o validador de `indicatorValues` dizia que a classificação mora em `server/src/status.ts` — os três viraram `emendas/service.ts`, `types/api.ts` e `indicadores/status.ts` em `f2a0925`. Ponteiro morto em comentário não quebra nada: só manda o próximo leitor procurar no lugar errado, e o `CLAUDE.md` pede exatamente que se mexa nos dois lados do contrato. Varridos todos os caminhos `server/src/*.ts` citados no repositório; os que restam mortos estão só neste CHANGELOG, onde descrevem o que era verdade na época.
+
 ## [1.4.2] — 2026-09-05
 
 ### Correções
