@@ -114,7 +114,29 @@ python3 database/scripts/gerar_seed_escolaridade.py \
 # 3) CONFERIR (deve dar 446 = 223 × 2 indicadores)
 mongosh "mongodb://usrdadosopp@127.0.0.1:27017/?authSource=DadosOPP" \
   --eval "db.getSiblingDB('DadosOPP').indicatorValues.countDocuments({indicatorId:/completo/})"
+
+# 4) RECALCULAR A RÉGUA RELATIVA — obrigatório se o indicador for um dos 11 da
+#    lista em database/scripts/_tercis.py. O bloco de catálogo do seed é gravado
+#    com replaceOne: o passo 2 acabou de APAGAR o threshold derivado, em silêncio.
+#    Sem rede, sem VPN; lê os próprios seeds.
+python3 database/scripts/aplicar_tercis.py              # relatório
+python3 database/scripts/aplicar_tercis.py --escrever   # aplica
 ```
+
+> **Por que o passo 4 existe, e o que acontece se for esquecido.** Nenhum
+> `gerar_seed_*.py` conhece os tercis — a conta é ENTRE municípios e atravessa
+> indicadores (população vem do `pib-per-capita`, o estoque vem de
+> `empresas-ativas`). Esquecer o passo 4 não dá erro: o seed roda, imprime `ok`,
+> e os indicadores afetados voltam a `status: 'none'` — perdem barra e cor sem
+> que nada avise. É a mesma mecânica que deixou o `trabalhadores-ct`
+> classificando 219 municípios em `alert` por sete semanas. O relatório do
+> `aplicar_tercis.py` imprime a distribuição de cada indicador e o motivo de cada
+> recusa; é ele que se lê para saber se o resultado faz sentido.
+>
+> Nesta branch o ciclo acaba aqui: quem serve `/api/*` é a API Node lendo o Mongo,
+> então o threshold novo vale na requisição seguinte (respeitado o TTL de 5 min do
+> `payload-cache`). A `preview/snapshot` tem um passo a mais — regerar os 223 JSONs
+> estáticos com `gerar_api_snapshot_municipios.py`, que só existe lá.
 
 Modos úteis:
 - `--inspect` — conecta, mostra 1 doc + distribuição de escolaridade; não escreve.
