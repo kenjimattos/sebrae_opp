@@ -1012,7 +1012,10 @@ qualidades diferentes de atribuição municipal**, registradas no campo `atribui
 > inferida de texto. Somá-las sem ressalva daria um total falsamente preciso — a UI mostra os
 > dois cards lado a lado, com a estadual rotulada como estimativa (`InfoTooltip` explicando a
 > cobertura). Também **não compare as séries `porAno` lado a lado**: os eixos de tempo são
-> diferentes (documento × safra), e cada doc carrega `criterioQuebraAnual` dizendo qual é o seu.
+> diferentes (documento × safra). O doc de rollup `PB:<esfera>` carrega `criterioQuebraAnual`
+> dizendo qual é o eixo daquela esfera (junto de `coletadoEm`, a data da coleta na origem); os
+> dois são metadados da esfera e não se repetem nos 223 docs municipais. `GET /api/emendas` os
+> serve em `esferas.<esfera>`.
 
 **Por que "por documento" no federal.** A lista de emendas traz um campo de localidade que
 vem "MÚLTIPLA"/"Nacional" na maior parte dos casos (uma emenda agregadora distribui para várias
@@ -1060,10 +1063,12 @@ censo de documentos.
 `public/api-snapshot/emendas.json` (~145 KB, 223 municípios × 2 esferas), gerado por
 `scripts/gerar_api_snapshot_emendas.py` a partir dos dois snapshots de ETL — mesmo padrão de
 `municipalities.json`, com rewrite no `vercel.json` e bypass do proxy no `vite.config.ts`.
-⚠️ **A rota Fastify em `server/` ainda não existe**; quando existir, deve ler a coleção `emendas`
-e devolver **exatamente** esse shape. Município sem dado numa esfera vem `null` (não `0`), para a
-UI distinguir "não recebeu" de "não medimos". *Se mexer no contrato, mexa nos três: tipo,
-gerador do snapshot e (futura) rota.*
+A rota Fastify **existe** e serve o mesmo shape lendo a coleção `emendas`
+(`buildEmendasData` em `server/src/emendas/service.ts`) — ela é quem atende a `main`, e aqui fica
+em dia porque `server/` é o mesmo nas duas branches. Município sem dado numa esfera vem `null`
+(não `0`), para a UI distinguir "não recebeu" de "não medimos"; no federal zero é `0` de
+verdade, porque lá é censo por código IBGE. *Se mexer no contrato, mexa nos quatro: tipo do
+frontend, tipo do server, `buildEmendasData` e o gerador do snapshot.*
 
 **Sem `threshold`** nas duas esferas — valor absoluto em R$, sem faixa oficial; nem a CGU nem a
 CGE-PB classificam.

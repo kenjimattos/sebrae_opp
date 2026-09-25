@@ -53,14 +53,16 @@ if [[ -z "${OPP_MONGO_USER:-}" || -z "${OPP_MONGO_PASS:-}" ]]; then
   exit 1
 fi
 
-# --all = todos os seeds (municipios e agendas primeiro, depois os indicadores).
+# --all = todos os seeds (municipios e agendas primeiro, depois os indicadores e
+# as emendas). O glob é por prefixo, então seed novo com prefixo diferente de
+# 'indicador-'/'emendas-' precisa entrar aqui — senão o --all o pula em silêncio.
 if [[ "${1:-}" == "--all" ]]; then
   set --
   for base in municipios agendas; do
     [[ -f "$SEED_DIR/$base.mongodb.js" ]] && set -- "$@" "$base"
   done
   while IFS= read -r f; do set -- "$@" "$(basename "$f")"; done \
-    < <(find "$SEED_DIR" -maxdepth 1 -name 'indicador-*.mongodb.js' | sort)
+    < <(find "$SEED_DIR" -maxdepth 1 \( -name 'indicador-*.mongodb.js' -o -name 'emendas-*.mongodb.js' \) | sort)
 fi
 
 run() {
