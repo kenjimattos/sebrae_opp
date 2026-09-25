@@ -281,8 +281,16 @@ valor por município. Onde for exibido, o status é derivado do `threshold`.
 ### Classificação (semáforo)
 
 Cada indicador pode ter um **semáforo** (verde/amarelo/vermelho — `success`/`warning`/
-`alert`). A régua (`threshold`) vem **das faixas oficiais da fonte**, não de cortes
-inventados por nós:
+`alert`). A régua (`threshold`) tem **duas procedências**, declaradas no campo
+`threshold.provenance`, que pintam a mesma cor sem querer dizer a mesma coisa:
+
+- **`fonte`** (ou ausente) — faixa de classificação publicada pela própria fonte do dado.
+  Um `Bom` aqui significa "atende ao padrão". São **6** indicadores.
+- **`relativo-pb`** — tercis (p33/p67) entre os 223 municípios da Paraíba, calculados por
+  `scripts/aplicar_tercis.py`. Um `Bom` aqui significa apenas "está no terço de cima do
+  estado", e a UI é **obrigada** a dizer isso. São **11** indicadores.
+
+A tabela abaixo cobre os casos em que a decisão exigiu justificativa:
 
 | Indicador | Faixa oficial | `threshold` (success / warning) |
 |---|---|---|
@@ -291,22 +299,42 @@ inventados por nós:
 | **IGMA** (Áquila) | Excelente 80–100 · Desenvolvido 65–80 · Em desenvolvimento 50–65 · Crítico 0–50 | `65 / 50` (verde = Desenvolvido+; amarelo = Em desenvolvimento; vermelho = Crítico) |
 | **ISDEL Governança** (Sebrae) | Muito Alto ≥0,631 · Alto 0,471–0,630 · Médio 0,311–0,470 · Baixo 0,151–0,310 · Muito Baixo <0,150 (faixa do **índice agregado**; nota metodológica 2021, Fig. 4) | `0,471 / 0,311` (verde = Alto+; amarelo = Médio; vermelho = Baixo–). ⚠️ aplicada à **dimensão** Governança — extrapolação razoável (mesma escala 0–1, p.36), Sebrae não publica faixa por dimensão |
 | **ISDEL Educação Empreendedora** (Sebrae) | — faixa oficial só p/ o índice agregado, não p/ **subdimensão** — | **ausente** (sem semáforo). É subdimensão de Capital Empreendedor, fortemente zero-inflada (nota p.34; PB 58% zeros, 2022–2023 ~100%); a nota (p.36) estende a faixa às dimensões, **não** a subdimensões → aplicá-la marcaria todos como "Muito Baixo" |
-| **Trabalhadores C&T** (RAIS) | — sem faixa oficial — | **ausente** (sem semáforo) |
-| **Trabalhadores criativa/TIC** (RAIS) | — sem faixa oficial — | **ausente** (sem semáforo) |
+| **Trabalhadores C&T** (RAIS) | — sem faixa oficial — | `relativo-pb`, `higher-better`, **por 1.000 hab.** — contagem bruta mede o tamanho do município (JP tem 19.760, a mediana do estado é 3) |
+| **Trabalhadores criativa/TIC** (RAIS) | — sem faixa oficial — | `relativo-pb`, `higher-better`, sobre o %. Os 92 zeros são **medidos** (o município tem vínculos, nenhum em TIC) → viram o piso, e os tercis saem só dos positivos |
 | **Tempo de abertura / viabilidade** (Redesim) | 🟢 até 3 dias · 🟡 3–5 · 🟠 5–7 · 🔴 >7 (1 dia = 24h úteis → 72/120/168h) | `lower-better, 72 / 168` (verde→Bom; amarelo+laranja→Atenção; vermelho→Crítico). Régua de 4 faixas oficiais colapsada no semáforo de 3 níveis, preservando os extremos |
-| **Ranking municipal Redesim/PB** | — sem faixa oficial p/ o total — | **ausente** (sem semáforo). A fonte publica posição e pontos, mas não uma classificação bom/atenção/alerta do total |
-| **Tempo de licenciamento** (Redesim/PB) | — faixas oficiais por documento/horas; não p/ o score combinado — | **ausente** (sem semáforo). É a pontuação do Índice de Tempo de alvará (0–120, maior = + rápido); horas brutas por município não são publicadas |
+| **Ranking municipal Redesim/PB** | — sem faixa oficial p/ o total — | `relativo-pb`, `higher-better` sobre a **pontuação 0–600** (não a posição — o rótulo engana) |
+| **Tempo de licenciamento** (Redesim/PB) | — faixas oficiais por documento/horas; não p/ o score combinado — | `relativo-pb`, `higher-better` sobre a pontuação 0–120 (**maior = + rápido**). Os 109 zeros são `semEmissaoAlvara` — ausência de processo, não desempenho ruim — e entram **sem base de comparação** (`normalizedValue: null`), fora do semáforo |
 
-A tabela acima cobre os indicadores em que a decisão exigiu justificativa. Na prática,
-**6 dos 33** têm `threshold` — `idh-m`, `igm-cfa`, `igma`, `isdel-governanca`,
-`tempo-abertura` e `tempo-viabilidade`. Todo o resto (RAIS, RFB, PNCP, BCB/BNDES, IDEB,
-GINI, PIB, IDSC, atenção básica…) entra **sem semáforo**, pelo mesmo motivo: a fonte não
-publica faixa.
+Na prática, **17 dos 22 indicadores de agenda** classificam: 6 por faixa oficial
+(`idh-m`, `igm-cfa`, `igma`, `isdel-governanca`, `tempo-abertura`, `tempo-viabilidade`) e
+11 por tercil relativo. A **base econômica nunca tem semáforo**, por design — os cards do
+Panorama exibem só o valor, exista faixa oficial ou não.
 
-**Regra do projeto (jun/2026):** quando a fonte **não publica** uma classificação
-oficial (caso dos dados brutos da RAIS), o indicador entra **sem `threshold`** — exibe
-só o número, sem cor. Não inventamos cortes. Se no futuro adotarmos um critério próprio
-(ex: tercis dos 223 municípios), ele deve ser documentado aqui como decisão do projeto.
+**Regra do projeto (revisada em set/2026).** A regra de jun/2026 dizia: sem faixa oficial,
+sem `threshold` — e previa que *"se no futuro adotarmos um critério próprio (ex: tercis dos
+223 municípios), ele deve ser documentado aqui como decisão do projeto"*. É o que esta
+seção passa a fazer. O que mudou e o que **não** mudou:
+
+- Segue proibido inventar um corte e apresentá-lo **como padrão da fonte**. O tercil só é
+  admissível porque viaja rotulado (`provenance`) até o `IndicatorModal` e até o prompt da
+  IA, que é obrigado a escrever um `Bom` relativo como posição entre os municípios da PB,
+  nunca como meta ou norma.
+- `scripts/aplicar_tercis.py` **recusa** a faixa quando ela seria mentira, e imprime o
+  motivo: quando `p33 == p67` (não separa ninguém), quando o corte de alerta cai em zero
+  (`n >= 0` é sempre verdade — o semáforo existiria sem alertar ninguém) ou quando a
+  cobertura fica abaixo de 50% dos 223. Hoje isso exclui `bndes-operacoes` (213 dos 223 em
+  zero), `compras-publicas-inovacao`, `credito-financiamento` (47 municípios) e
+  `isdel-educacao-emp`. O `bolsa-familia` **passa** no portão e fica de fora por decisão: a
+  queda de 2,7% na PB é o pente-fino do Novo BF, não inserção no mercado de trabalho — o
+  portão mede distribuição, não significado.
+- Contagem bruta não se compara entre municípios. Seis dos 11 classificam sobre
+  `normalizedValue` (cinco per capita; `negocios-extintos` como % das empresas ativas),
+  enquanto o card segue exibindo o bruto.
+
+> ⚠️ **O bloco de catálogo do seed é gravado com `replaceOne`, e nenhum gerador conhece os
+> tercis.** Rodar um `gerar_seed_*.py` de um dos 11 **apaga o threshold derivado em
+> silêncio** — o seed imprime `ok` e o indicador volta a `status: 'none'`. Depois de
+> qualquer gerador desses, rode `aplicar_tercis.py --escrever`. Ver `RUNBOOK_ETL.md` §4.
 
 ---
 
