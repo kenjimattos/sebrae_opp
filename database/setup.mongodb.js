@@ -99,7 +99,7 @@ ensureCollection('indicators', {
 // --- indicatorValues: 1 doc por (município × indicador). ---
 ensureCollection('indicatorValues', {
   bsonType: 'object',
-  // numericValue é obrigatório: é ele que classifica (server/src/status.ts), não
+  // numericValue é obrigatório: é ele que classifica (server/src/indicadores/status.ts), não
   // o rawValue — que é texto de exibição, arredondado, e perde a casa decimal em
   // que os cortes oficiais discriminam. `null` segue válido pelo bsonType e
   // significa "sem medida" (ex.: os 27 municípios 'sem-dados' da Redesim); o que
@@ -187,6 +187,18 @@ ensureCollection('emendas', {
     nEmendas: { bsonType: ['int', 'long', 'double'] },
     nAutores: { bsonType: ['int', 'long', 'double'] },
     janela: { bsonType: 'object', description: '{ de, ate } — safra das emendas consideradas' },
+    coletadoEm: {
+      bsonType: 'string',
+      description:
+        "só em escopo='estado': data da coleta na origem (AAAA-MM-DD). Metadado da esfera, " +
+        'servido em `esferas.<esfera>.coletadoEm` por GET /api/emendas',
+    },
+    criterioQuebraAnual: {
+      bsonType: 'string',
+      description:
+        "só em escopo='estado': texto curto explicando o eixo de `porAno`, que difere por " +
+        'esfera (federal = ano do documento; estadual = safra da emenda)',
+    },
     atribuicao: {
       enum: ['ibge', 'texto-beneficiario'],
       description:

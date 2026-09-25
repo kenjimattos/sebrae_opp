@@ -57,6 +57,9 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - **`Cache-Control` nas rotas de leitura, `no-store` no resto.** `public, max-age=<TTL>` nas quatro de dados — não há sessão nem dado por usuário em rota nenhuma da API, então a resposta é compartilhável —, de modo que voltar a um município já visto não repete a chamada. `/api/health` fica `no-store` porque health cacheado responde "up" com o banco caído, e `/api/ai` porque resposta de modelo não é determinística nem serve para outro usuário.
 - **Respostas comprimidas (`@fastify/compress`, threshold 1 KB).** JSON repetitivo é o formato que mais encolhe: medido aqui, uma lista no formato de `/api/municipalities` cai de 21 KB para 1,8 KB (91%). Abaixo do threshold comprimir não se paga.
 
+- **O ETL de emendas desta branch estava atrás da `main` e semearia um banco incompleto.** Os dois geradores tinham perdido `coletadoEm` e `criterioQuebraAnual` — os metadados que só vivem no doc de escopo estadual —, e o validador de `emendas` não os documentava. Aqui isso não aparecia, porque quem serve `/api/emendas` é o snapshot, e o `gerar_api_snapshot_emendas.py` supre os dois por conta própria. Mas **o ETL alimenta o mesmo MongoDB das duas branches**: um banco semeado a partir daqui sairia sem dois campos que `EmendaEsferaMeta` declara como `string` obrigatória, e a API da `main` os devolveria `undefined`. Geradores, seeds e validador voltam a ser byte a byte os da `main`; o snapshot de emendas foi regerado e saiu idêntico, confirmando que ele não lê os seeds.
+- **O validador de `indicatorValues` apontava para `server/src/status.ts`,** extinto na refatoração por domínio (`f2a0925`) — hoje `server/src/indicadores/status.ts`.
+
 ## [1.4.2] — 2026-09-05
 
 ### Correções

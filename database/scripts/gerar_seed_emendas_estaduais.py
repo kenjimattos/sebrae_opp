@@ -126,6 +126,12 @@ SOURCE = (
 )
 SOURCE_DATASET = "codata_pb_emendas_parlamentares"
 
+# Texto do eixo de `porAno`, guardado no doc de escopo estadual: a rota
+# GET /api/emendas devolve isso em `esferas.estadual.criterioQuebraAnual`. Aqui o
+# eixo é a SAFRA da emenda (a origem publica a execução agregada, sem data de
+# documento) — diferente do federal, e por isso as duas séries não se comparam.
+CRITERIO_QUEBRA_ANUAL = "ano da emenda (a origem publica a execução agregada, sem data de documento)"
+
 # Municípios renomeados: o texto das emendas usa o nome atual, o seed canônico da OPP
 # (que segue a nomenclatura do GeoJSON/IBGE usada no mapa) ainda traz o antigo.
 ALIASES = {
@@ -407,6 +413,10 @@ def build_docs(snapshot):
         "nAutores": meta["nAutores"],
         "janela": janela,
         "atribuicao": "texto-beneficiario",
+        # metadados da esfera — só no doc de estado, que é onde a rota
+        # GET /api/emendas lê `esferas.estadual` (não se repetem nos 223 municipais)
+        "coletadoEm": snapshot.get("fetchedAt", ""),
+        "criterioQuebraAnual": CRITERIO_QUEBRA_ANUAL,
         "referenceYear": ref,
         "source": SOURCE,
         "isFictional": False,
