@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Não lançado]
 
+### Manutenção
+
+- **Atributos do repositório**: Ajuste para repositório não ser etiquetado como Python.
+
 ### Interface
 
 - **O farol por agenda volta a acender, agora ignorando os indicadores sem régua.** `agendaStatus` retornava `'none'` fixo desde `81c9df4`; volta a ser a média por gravidade (`success` 2, `warning` 1, `alert` 0; ≥1,5 verde, ≥0,5 amarelo), com `'none'` **fora do numerador e do denominador**. Era essa exclusão que faltava: no momento em que a função foi desligada, Campina Grande tinha 3 verdes, 3 amarelos e 18 sem régua, e contar os 18 como zero pintaria quase toda agenda de vermelho — um agregado dominado por ausência de dado, não por desempenho. Agenda sem nenhum indicador classificável fica neutra, e hoje é o caso real de *Acesso a crédito*, cujos dois indicadores são valor absoluto em R$. Toda a fiação já existia (`AgendaList`, `ModeEixos`, `AgendaExpandable`, as classes `.status-*-glow`): a mudança é de uma função só.
