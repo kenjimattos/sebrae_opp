@@ -1,0 +1,5 @@
+# O ETL em Python é parte legítima do projeto e continua no repositório.
+# Ele só domina a contagem de bytes do Linguist e faz o GitHub rotular o
+# repositório como Python, escondendo que a entrega é uma SPA React 19.
+# Marcá-lo como vendored corrige o rótulo sem remover uma linha de código.
+database/** linguist-vendored=true
