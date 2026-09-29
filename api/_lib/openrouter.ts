@@ -86,7 +86,7 @@ export async function callOpenRouter(
         'Content-Type': 'application/json',
         // Atribuição opcional do OpenRouter (aparece no ranking deles).
         'HTTP-Referer': 'https://opp-sebrae.vercel.app',
-        'X-Title': 'Plataforma OPP',
+        'X-Title': 'PIPPA',
       },
       body: JSON.stringify({
         model: env.model,

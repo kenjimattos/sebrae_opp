@@ -278,6 +278,15 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   handler), não pedindo no prompt — o modelo ignora o pedido de forma imprevisível.
 - `OPENROUTER_API_KEY` fica **só no servidor**; prefixo `VITE_` vazaria no bundle.
   Em dev vai no `.env.local`; no preview, nas env vars do projeto na Vercel.
+- **Sigilo do modelo tem duas camadas, e só a segunda garante.** O `SYSTEM_PROMPT` pede
+  para não revelar modelo, fornecedor nem bastidor; `revealsModelIdentity`
+  (`api/_lib/guardrails.ts`) confere a saída no handler e troca a resposta inteira pela
+  frase fixa `IDENTITY_REPLY`. Só o prompt não segurou: o modelo gratuito respondeu
+  "NVIDIA". Nome novo na lista não pode ser palavra comum em pt-BR — `meta` e `google`
+  ficam de fora de propósito (meta do projeto, Google Trends), porque o falso positivo
+  apaga uma resposta boa sem aviso.
+- **Escopo (`SCOPE_NOTE`) só nas entradas de texto livre** (chat e pergunta do modal).
+  No Formulador a recusa cairia dentro do campo de formulário como se fosse conteúdo.
 - O catálogo `:free` rotaciona — conferir `https://openrouter.ai/api/v1/models` antes
   de trocar o default. Free tier ~50 req/dia.
 

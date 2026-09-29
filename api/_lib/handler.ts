@@ -9,6 +9,7 @@ import type {
   AiTaskRequest,
 } from '../../src/types/ai.js'
 import { AI_FIELD_IDS } from '../../src/types/ai.js'
+import { IDENTITY_REPLY, revealsModelIdentity } from './guardrails.js'
 import { buildMessages } from './prompts.js'
 import { callOpenRouter, DEFAULT_FREE_MODEL, OpenRouterError } from './openrouter.js'
 
@@ -232,11 +233,14 @@ export async function handleAiTask(
   }
 
   try {
-    const text = await callOpenRouter(buildMessages(req), {
+    const completion = await callOpenRouter(buildMessages(req), {
       apiKey: env.apiKey,
       model: env.model || DEFAULT_FREE_MODEL,
       maxTokens: MAX_TOKENS_BY_TASK[req.task],
     })
+    // A resposta inteira é trocada, não só o nome: frase que cita o modelo
+    // costuma vir com o resto do bastidor junto ("rodo no X, via Y, com Z").
+    const text = revealsModelIdentity(completion) ? IDENTITY_REPLY : completion
     const body: AiSuccessResponse =
       req.task === 'generate-specific-objectives'
         ? { text, items: parseItems(text) }
