@@ -89,7 +89,7 @@ export async function registerRoutes(app: FastifyInstance): Promise<void> {
   // Emendas parlamentares por município (modo "Mapeamento de recursos"). Devolve
   // as duas esferas de uma vez: o modo colore o mapa com o estado inteiro e o
   // toggle federal/estadual não deve disparar nova requisição.
-  app.get('/api/emendas', async (_req, reply) => {
+  app.get('/api/emendas', async (req, reply) => {
     let data
     try {
       data = await cachedPayload('emendas', async () => {
@@ -109,9 +109,10 @@ export async function registerRoutes(app: FastifyInstance): Promise<void> {
       })
     } catch (err) {
       if (!(err instanceof EmptyEmendasError)) throw err
-      return reply.code(503).send({
-        error: 'Coleção `emendas` vazia — rode os seeds database/seed/emendas-*.mongodb.js',
-      })
+      // O recado operacional vai para o log; a resposta não nomeia coleção nem
+      // caminho de arquivo. O frontend só lê o status.
+      req.log.error('coleção `emendas` vazia — rode os seeds database/seed/emendas-*.mongodb.js')
+      return reply.code(503).send({ error: 'Dados de emendas indisponíveis.' })
     }
     reply.header('cache-control', READ_CACHE)
     return data
