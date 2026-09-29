@@ -225,10 +225,16 @@ export async function handleAiTask(
   if (!req) {
     return { status: 400, body: { error: 'Requisição inválida.', code: 'bad_request' } }
   }
+  // Corpo de erro é genérico em todos os ramos: ele chega ao navegador, e o
+  // que antes ia nele (fornecedor, nome da variável de ambiente, "modelo
+  // gratuito", o corpo cru do upstream com o id do modelo) é mapa para quem
+  // quer abusar — dá até para esgotar a cota de propósito. O detalhe vai para
+  // o log, que é onde quem mantém precisa dele.
   if (!env.apiKey) {
+    console.error('[api/ai] OPENROUTER_API_KEY não configurada')
     return {
-      status: 500,
-      body: { error: 'OPENROUTER_API_KEY não configurada.', code: 'missing_key' },
+      status: 503,
+      body: { error: 'Serviço de IA indisponível.', code: 'unavailable' },
     }
   }
 
@@ -251,13 +257,13 @@ export async function handleAiTask(
             : { text }
     return { status: 200, body }
   } catch (err) {
+    console.error('[api/ai]', req.task, err instanceof Error ? err.message : err)
     if (err instanceof OpenRouterError && err.status === 429) {
       return {
         status: 429,
-        body: { error: 'Limite de requisições do modelo gratuito atingido.', code: 'rate_limited' },
+        body: { error: 'Muitas consultas no momento.', code: 'rate_limited' },
       }
     }
-    const message = err instanceof Error ? err.message : 'erro desconhecido'
-    return { status: 502, body: { error: message, code: 'upstream_error' } }
+    return { status: 502, body: { error: 'Falha ao gerar a resposta.', code: 'upstream_error' } }
   }
 }

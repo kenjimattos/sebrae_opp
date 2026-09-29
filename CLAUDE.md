@@ -272,7 +272,7 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
 - Limite de tamanho de resposta se impõe em `maxTokens` (`MAX_TOKENS_BY_TASK` no
   handler), não pedindo no prompt — o modelo ignora o pedido de forma imprevisível.
 - `OPENROUTER_API_KEY` fica **só no servidor**; prefixo `VITE_` vazaria no bundle.
-  No Fastify ela é opcional: sem ela a API sobe e só o `/api/ai` responde `missing_key`.
+  No Fastify ela é opcional: sem ela a API sobe e só o `/api/ai` responde 503 `unavailable`.
 - **Sigilo do modelo tem duas camadas, e só a segunda garante.** O `SYSTEM_PROMPT` pede
   para não revelar modelo, fornecedor nem bastidor; `revealsModelIdentity`
   (`api/_lib/guardrails.ts`) confere a saída no handler e troca a resposta inteira pela
@@ -280,6 +280,10 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   "NVIDIA". Nome novo na lista não pode ser palavra comum em pt-BR — `meta` e `google`
   ficam de fora de propósito (meta do projeto, Google Trends), porque o falso positivo
   apaga uma resposta boa sem aviso.
+- **Corpo de erro é genérico; o detalhe vai para o log.** O que o handler devolve chega
+  ao navegador — nada de fornecedor, id de modelo, nome de variável de ambiente nem
+  "cota gratuita" (ensina a esgotá-la). Já vazou os três. O código de chave ausente é
+  `unavailable`, não `missing_key`, pelo mesmo motivo.
 - **Escopo (`SCOPE_NOTE`) só nas entradas de texto livre** (chat e pergunta do modal).
   No Formulador a recusa cairia dentro do campo de formulário como se fosse conteúdo.
 - O catálogo `:free` rotaciona — conferir `https://openrouter.ai/api/v1/models` antes

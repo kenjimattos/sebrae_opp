@@ -108,8 +108,8 @@ move o entrypoint emitido para `dist/server/src/index.js`. O `postbuild`
 `ExecStart` da unit systemd (`node dist/index.js`) continuar valendo.
 
 `OPENROUTER_API_KEY` é **opcional**: sem ela a API sobe e só o `/api/ai` responde
-`missing_key`, que o frontend mostra como "O serviço de IA não está configurado neste
-ambiente". Exige saída de rede para `https://openrouter.ai` — ver `.env.example`.
+503 `unavailable`, que o frontend mostra como "O assistente está indisponível no
+momento". O motivo real fica no log (`journalctl -u opp-api`), não na resposta. Exige saída de rede para `https://openrouter.ai` — ver `.env.example`.
 
 ## Deploy (10.1.100.99)
 

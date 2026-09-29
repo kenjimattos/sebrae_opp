@@ -8,8 +8,10 @@ import type { AiSuccessResponse, AiTaskRequest } from '@/types/ai'
 export type AiStatus = 'idle' | 'loading' | 'done' | 'error'
 
 const FRIENDLY_MESSAGES: Record<string, string> = {
-  rate_limited: 'O limite gratuito de consultas de hoje foi atingido. Tente novamente mais tarde.',
-  missing_key: 'O serviço de IA não está configurado neste ambiente.',
+  // Sem "gratuito" nem "de hoje": dizer que a cota é gratuita e diária ensina
+  // a esgotá-la.
+  rate_limited: 'Muitas consultas no momento. Tente novamente em alguns minutos.',
+  unavailable: 'O assistente está indisponível no momento.',
 }
 const FALLBACK_MESSAGE = 'Não foi possível gerar a resposta agora. Tente novamente em instantes.'
 
