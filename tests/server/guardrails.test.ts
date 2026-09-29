@@ -98,3 +98,62 @@ describe('handleAiTask · filtro de identidade', () => {
     expect(body).toEqual({ text: 'Campina Grande pode simplificar o alvará via Redesim.' })
   })
 })
+
+// O corpo de erro chega ao navegador. Nada nele pode apontar fornecedor,
+// modelo, variável de ambiente ou o fato de a cota ser gratuita.
+describe('handleAiTask · erro sem bastidor', () => {
+  const BASTIDOR = /openrouter|nvidia|nemotron|free|gratuit|OPENROUTER_API_KEY|api[_ ]?key/i
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    vi.restoreAllMocks()
+  })
+
+  const chat = {
+    task: 'chat',
+    messages: [{ role: 'user', content: 'Oi' }],
+    municipality,
+  }
+
+  function stubUpstream(status: number, body: string): void {
+    vi.spyOn(console, 'error').mockImplementation(() => {})
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(body, { status })))
+  }
+
+  it('sem chave: 503 unavailable, sem nomear a chave', async () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {})
+    const { status, body } = await handleAiTask(chat, {})
+    expect(status).toBe(503)
+    expect(body).toMatchObject({ code: 'unavailable' })
+    expect(JSON.stringify(body)).not.toMatch(BASTIDOR)
+  })
+
+  it('404 do upstream: 502 sem o corpo cru (que traz o id do modelo)', async () => {
+    stubUpstream(
+      404,
+      '{"error":{"message":"No endpoints found for nvidia/nemotron-3-super-120b-a12b:free"}}',
+    )
+    const { status, body } = await handleAiTask(chat, { apiKey: 'k' })
+    expect(status).toBe(502)
+    expect(body).toMatchObject({ code: 'upstream_error' })
+    expect(JSON.stringify(body)).not.toMatch(BASTIDOR)
+  })
+
+  it('429: rate_limited sem dizer que a cota é gratuita', async () => {
+    stubUpstream(429, '{"error":{"message":"Rate limit exceeded: free-models-per-day"}}')
+    const { status, body } = await handleAiTask(chat, { apiKey: 'k' })
+    expect(status).toBe(429)
+    expect(body).toMatchObject({ code: 'rate_limited' })
+    expect(JSON.stringify(body)).not.toMatch(BASTIDOR)
+  })
+
+  it('o detalhe completo vai para o log', async () => {
+    stubUpstream(404, 'No endpoints found for nvidia/nemotron')
+    await handleAiTask(chat, { apiKey: 'k' })
+    expect(console.error).toHaveBeenCalledWith(
+      '[api/ai]',
+      'chat',
+      expect.stringContaining('nvidia/nemotron'),
+    )
+  })
+})

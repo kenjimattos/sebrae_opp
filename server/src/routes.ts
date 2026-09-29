@@ -120,8 +120,8 @@ export async function registerRoutes(app: FastifyInstance): Promise<void> {
   // Terceiro transporte do mesmo núcleo de IA (api/_lib/handler.ts), ao lado da
   // function da Vercel e do middleware de dev do Vite — é o que atende as
   // superfícies de IA em produção Sebrae, onde o Nginx manda todo /api/* para cá.
-  // Sem OPENROUTER_API_KEY o handler devolve `missing_key` (500) e o frontend
-  // mostra "O serviço de IA não está configurado neste ambiente".
+  // Sem OPENROUTER_API_KEY o handler devolve `unavailable` (503) e o frontend
+  // mostra "O assistente está indisponível no momento".
   app.post('/api/ai', async (req, reply) => {
     const { status, body } = await handleAiTask(req.body, {
       apiKey: config.openrouterApiKey,

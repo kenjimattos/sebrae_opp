@@ -128,7 +128,9 @@ export interface AiSuccessResponse {
   items?: string[]
 }
 
-export type AiErrorCode = 'rate_limited' | 'bad_request' | 'missing_key' | 'upstream_error'
+// `unavailable` era `missing_key` — o próprio código contava ao cliente que a
+// chave faltava.
+export type AiErrorCode = 'rate_limited' | 'bad_request' | 'unavailable' | 'upstream_error'
 
 export interface AiErrorResponse {
   error: string

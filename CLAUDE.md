@@ -285,6 +285,10 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   "NVIDIA". Nome novo na lista não pode ser palavra comum em pt-BR — `meta` e `google`
   ficam de fora de propósito (meta do projeto, Google Trends), porque o falso positivo
   apaga uma resposta boa sem aviso.
+- **Corpo de erro é genérico; o detalhe vai para o log.** O que o handler devolve chega
+  ao navegador — nada de fornecedor, id de modelo, nome de variável de ambiente nem
+  "cota gratuita" (ensina a esgotá-la). Já vazou os três. O código de chave ausente é
+  `unavailable`, não `missing_key`, pelo mesmo motivo.
 - **Escopo (`SCOPE_NOTE`) só nas entradas de texto livre** (chat e pergunta do modal).
   No Formulador a recusa cairia dentro do campo de formulário como se fosse conteúdo.
 - O catálogo `:free` rotaciona — conferir `https://openrouter.ai/api/v1/models` antes
