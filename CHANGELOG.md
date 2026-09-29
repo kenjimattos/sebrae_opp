@@ -70,6 +70,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 - **O MAPEAMENTO desta branch afirmava que a rota Fastify de emendas não existia.** Era verdade quando foi escrito e deixou de ser: `server/` passou a ser o mesmo da `main`, `/api/emendas` incluído. O parágrafo do snapshot fica — ele descreve quem de fato atende a rota aqui —, mas sem o aviso falso. Também estava atrás no fato corrigido junto: `coletadoEm` e `criterioQuebraAnual` são metadados **da esfera**, vivem só no doc de rollup `PB:<esfera>` e não se repetem nos 223 municipais.
 - **O `database/README.md` não tinha sido atualizado para a régua relativa — e ele mesmo pedia que fosse.** A seção *Classificação (semáforo)* ainda dizia "6 dos 33 têm `threshold`", listava quatro indicadores como "ausente (sem semáforo)" depois de eles passarem a classificar, e fechava com: *"se no futuro adotarmos um critério próprio (ex: tercis dos 223 municípios), ele deve ser documentado aqui como decisão do projeto"*. Agora está: as duas procedências, o que o portão recusa e por quê, e o aviso do `replaceOne`. Também dizia que só o snapshot de emendas tinha gerador versionado, o que deixou de ser verdade.
 
+
+### Documentação
+
+- **O `README.md` da raiz descrevia um projeto de duas versões atrás.** Sete afirmações falsas, a pior delas dizendo que **a suíte de testes "foi retirada no redesign e ainda será reescrita"** — são 198 casos em `tests/`, e quem lesse isso não rodaria nenhum. As outras: o semáforo "só aparece nos indicadores com faixa oficial" (hoje 17 dos 22 classificam, 11 por tercil), o Panorâma com "análise gerada por IA" (ela saiu de lá e vive só no modo *Análise do município*), o resumo mandado à IA "com a faixa oficial" (hoje vai com a procedência), `api/_lib/` sem o `guardrails.ts`, e a árvore de `server/src/` ainda no layout por camada que a refatoração por domínio desfez em `f2a0925`. O bloco de comandos também não listava `npm run test` nem `npm run typecheck` — justamente o que se roda antes de commitar.
 ## [1.4.2] — 2026-09-05
 
 ### Correções

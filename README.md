@@ -38,12 +38,16 @@ A Home organiza tudo como uma **Jornada do Município Empreendedor**: uma `SideN
 
 - **Login** (`/`) — porta de entrada do protótipo (autenticação em memória; reload desloga).
 - **Ambiente de negócio** — 3 modos:
-  - *Eixos prioritários* — cards das 6 agendas com as barras de indicador. O semáforo
-    (bom/atenção/alerta) só aparece nos indicadores com **faixa oficial** publicada pela
-    fonte, e o corte vem do `threshold` de cada indicador **no banco** (sem tabela
-    hardcoded). Indicador sem faixa não mostra a barra.
-  - *Panorâma socioeconômico* — cards de base econômica (IDH-M, IDEB, GINI, PIB per
-    capita, MEIs/MEs/EPPs, etc.) + análise gerada por IA sobre os cards estruturados.
+  - *Eixos prioritários* — cards das 6 agendas com as barras de indicador, e um
+    **farol** por agenda (média da gravidade dos indicadores que classificam; agenda sem
+    nenhum fica neutra). O corte sempre vem do `threshold` **no banco**, sem tabela
+    hardcoded, mas ele tem **duas procedências** — e a UI é obrigada a dizer qual é:
+    **faixa oficial da fonte** (6 indicadores, onde "Bom" quer dizer "atende ao padrão")
+    ou **tercil entre os 223 municípios da PB** (11 indicadores, onde "Bom" quer dizer
+    só "está no terço de cima do estado"). Os 5 que restam não classificam — a
+    distribuição não separa ou a direção é ambígua — e não mostram a barra.
+  - *Panorâma socioeconômico* — só os cards de base econômica (IDH-M, IDEB, GINI, PIB
+    per capita, MEIs/MEs/EPPs, etc.), que por design nunca têm semáforo.
   - *Análise do município* — a análise por IA sozinha. Substituiu o modo
     *Riscos estratégicos*.
 - **Mapeamento de recursos** — modo *Emendas*: emendas parlamentares federais e estaduais
@@ -81,14 +85,20 @@ npm install --legacy-peer-deps   # obrigatório: peer deps do React 19
 cp .env.example .env.local       # preencher OPENROUTER_API_KEY (IA em dev)
 npm run dev                      # http://localhost:5173
 
-npm run build                    # build de produção
+npm run build                    # build de produção (NÃO compila tests/)
 npm run preview                  # serve o dist/
 npm run lint
+npm run test                     # 198 casos (client/jsdom + server/node)
+npm run typecheck                # tsc do app E dos testes — é este antes de commitar
 ```
 
-> A infra de testes (Vitest + jsdom) segue nos scripts (`npm run test:run`), mas a suíte
-> foi retirada no redesign (`src/test/` não existe) e ainda será reescrita. Ao reescrever,
-> mockar `src/data/api.ts` — o provider faz `fetch`.
+> **Testes:** 198 casos em `tests/`, em dois projetos do Vitest — `tests/client/`
+> (jsdom: utilitários e componentes) e `tests/server/` (node: régua do status, rotas,
+> cache, guardrails da IA). Eles **não entram no `npm run build`**: `tests/server/`
+> importa `server/src/`, que importa `mongodb` e `dotenv` de `server/node_modules` —
+> instalado à parte —, e enquanto estavam no `tsc -b` do build derrubavam todo ambiente
+> que só instala a raiz. O comando a rodar antes de commitar é **`npm run typecheck`**,
+> que cobre o app **e** os testes; o `build` não cobre.
 
 Só é necessário rodar a API Node se você for **mexer no `server/`** (e aí é preciso a VPN
 do Sebrae para alcançar o Mongo):
@@ -141,7 +151,8 @@ Quatro superfícies, todas sobre `POST /api/ai`:
 2. **Formulador** — `AiField` nos campos da allowlist `AI_FIELD_IDS`, geração de objetivos
    (etapa 3), indicadores (etapa 7) e rubricas (etapa 8, só nomes) + o painel `AIAssistant`.
 3. **Análise do município** — a task `economic-analysis` recebe os cards da base econômica
-   estruturados e o resumo dos indicadores com a faixa oficial; o prompt proíbe citar
+   estruturados e o resumo dos indicadores com a régua **e a procedência dela**; o
+   prompt proíbe citar
    número fora desse contexto e proíbe classificar o que não vem com status. Mora em
    `analysis/AIAnalysis` e sai num lugar só: o modo *Análise do município*.
 4. **Chat global** (`ChatButton`/`ChatPanel`).
@@ -189,12 +200,13 @@ src/                          # Frontend React
 
 api/                          # Endpoint de IA da Vercel
 ├── ai.ts                     # function serverless
-└── _lib/                     # handler.ts, prompts.ts, openrouter.ts (fonte única)
+└── _lib/                     # handler, prompts, openrouter, guardrails (fonte única)
 
 public/api-snapshot/          # Snapshot estático do banco (só nesta branch)
 
 server/                       # API de leitura (Node/Fastify) — ver server/README.md
-└── src/                      # routes, repo, services, status (threshold), db, config
+└── src/                      # por DOMÍNIO, não por camada: indicadores/ (a régua),
+                              #   municipios/, mapa/, emendas/, infra/, types/
 
 database/                     # ETL lake → OPP: seeds MongoDB, geradores Python,
                               #   MAPEAMENTO_BASE_DOS_DADOS.md, RUNBOOK_ETL.md
