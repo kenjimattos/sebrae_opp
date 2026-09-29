@@ -69,6 +69,7 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 ### Documentação
 
 - **O `README.md` da raiz descrevia um projeto de duas versões atrás.** Sete afirmações falsas, a pior delas dizendo que **a suíte de testes "foi retirada no redesign e ainda será reescrita"** — são 198 casos em `tests/`, e quem lesse isso não rodaria nenhum. As outras: o semáforo "só aparece nos indicadores com faixa oficial" (hoje 17 dos 22 classificam, 11 por tercil), o Panorâma com "análise gerada por IA" (ela saiu de lá e vive só no modo *Análise do município*), o resumo mandado à IA "com a faixa oficial" (hoje vai com a procedência), `api/_lib/` sem o `guardrails.ts`, e a árvore de `server/src/` ainda no layout por camada que a refatoração por domínio desfez em `f2a0925`. O bloco de comandos também não listava `npm run test` nem `npm run typecheck` — justamente o que se roda antes de commitar.
+- **A avaliação de Storybook ainda listava como pendência algo já resolvido.** A seção *"Um pré-requisito de higiene"* dizia que `npm test` estava quebrado porque o `vite.config.ts` apontava `setupFiles: './src/test/setup.ts'`, arquivo inexistente — e recomendava consertar isso antes de qualquer conversa sobre teste de componente. Está consertado desde então: `./tests/setup.ts`, 198 casos, dois projetos do Vitest. A seção passa a registrar isso, em vez de mandar o leitor resolver um problema que não existe mais.
 ## [1.4.2] — 2026-09-05
 
 ### Correções

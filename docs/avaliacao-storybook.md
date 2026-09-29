@@ -98,12 +98,15 @@ Componentes que consomem `useMunicipality()` (os `Mode*`, o Formulador inteiro) 
 por último e só se houver demanda: exigem decorator com provider ou mock de
 `src/data/api.ts`, e o Formulador precisa de dois providers aninhados.
 
-## Um pré-requisito de higiene
+## O pré-requisito de higiene, resolvido
 
-Independente do Storybook: `npm test` está quebrado. O `vite.config.ts` aponta
-`setupFiles: './src/test/setup.ts'`, arquivo que não existe desde que a suíte foi
-retirada no redesign. Vitest, jsdom e Testing Library seguem instalados. Consertar isso
-é barato e precede qualquer conversa sobre teste de componente.
+Quando este documento foi escrito, `npm test` estava quebrado: o `vite.config.ts`
+apontava `setupFiles: './src/test/setup.ts'`, arquivo que não existia desde que a suíte
+saiu no redesign — e a recomendação era consertar isso antes de qualquer conversa sobre
+teste de componente. **Feito.** Hoje são 198 casos em `tests/`, em dois projetos do
+Vitest (`tests/client/` em jsdom, `tests/server/` em node), com `setupFiles:
+'./tests/setup.ts'`. Testing Library segue instalada e já é usada em `ui.test.tsx` e
+`ConfirmProvider.test.tsx`, então a adoção do Storybook não esbarra mais nisto.
 
 ## Publicação (se adotado)
 
