@@ -162,7 +162,7 @@ regra própria, e assim o trabalho de um cabe numa pasta:
 
 ```
 server/src/
-  index.ts · routes.ts · config.ts    ← boot, controller, env
+  index.ts · app.ts · routes.ts · config.ts    ← boot, instância + erro, controller, env
   infra/        db.ts · payload-cache.ts
   types/        docs.ts (o que o ETL grava) · api.ts (o que o front consome) · index.ts
   indicadores/  catalog.ts · catalog-cache.ts · status.ts · values.ts
@@ -170,6 +170,14 @@ server/src/
   mapa/         service.ts
   emendas/      repo.ts · service.ts
 ```
+
+> **Corpo de erro nunca leva bastidor; o detalhe vai para o log.** O handler padrão do
+> Fastify devolve `err.message` também em 5xx, e a mensagem do driver traz host e porta
+> do Mongo interno — por isso `createApp` (`app.ts`) registra um `setErrorHandler` que
+> loga e responde `{ error: 'Erro interno.' }`. Resposta montada à mão segue a mesma
+> regra: o 503 de emendas nomeava a coleção e o caminho dos seeds. Sem nome de coleção,
+> IP, caminho, variável de ambiente nem fornecedor. `index.ts` sobe o servidor ao ser
+> importado; teste de rota usa `createApp(false)` + `registerRoutes` + `inject`.
 
 > **`indicadores/` é regra compartilhada, não um quinto domínio.** `status.ts` (a
 > régua) e `values.ts` (qual ano servir, quando suprimir) valem para a ficha do
@@ -342,7 +350,7 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
 - **`max-w-*` no mesmo elemento que tem gutter espreme o conteúdo.** Com
   `box-sizing: border-box`, os 180px de `padding-inline` entram no `max-width` —
   `max-w-3xl` vira ~400px úteis. Pôr o `max-width` num filho sem padding.
-- **Testes ficam fora do `npm run build`.** São 156 casos em `tests/`, dois projetos
+- **Testes ficam fora do `npm run build`.** São 198 casos em `tests/`, dois projetos
   do Vitest (client/jsdom, server/node), e `tests/server/` importa `server/src/` —
   que importa `mongodb` e `dotenv`, pacotes de `server/node_modules`, instalado à
   parte. Enquanto os testes estavam no `tsc -b` do build, todo ambiente que só

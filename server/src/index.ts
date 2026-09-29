@@ -1,17 +1,10 @@
 import compress from '@fastify/compress'
-import Fastify from 'fastify'
+import { createApp } from './app.js'
 import { config } from './config.js'
 import { connectDb, closeDb } from './infra/db.js'
 import { registerRoutes } from './routes.js'
 
-const app = Fastify({
-  logger: {
-    transport:
-      process.env.NODE_ENV === 'production'
-        ? undefined
-        : { target: 'pino-pretty', options: { translateTime: 'HH:MM:ss', ignore: 'pid,hostname' } },
-  },
-})
+const app = createApp()
 
 async function start() {
   try {
