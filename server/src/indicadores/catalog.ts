@@ -9,6 +9,11 @@ export interface Catalog {
   agendas: AgendaDoc[] // ordenadas por `order`
   indicatorsByAgenda: Map<string, IndicatorDoc[]> // agendaId → indicadores ordenados
   socialeconomic: IndicatorDoc[] // indicadores da base econômica, ordenados
+  // Indicadores do grão ESTADUAL, ordenados. Ficam fora de `indicatorsByAgenda` e
+  // de `socialeconomic` de propósito: os valores deles vivem em `stateValues` e
+  // quem os serve é `estado/service.ts`. É por estarem só aqui que eles não
+  // aparecem em agenda nenhuma nem nas opções do mapa.
+  estadual: IndicatorDoc[]
   byId: Map<string, IndicatorDoc> // lookup rápido por indicators._id
 }
 
@@ -24,6 +29,7 @@ export async function loadCatalog(): Promise<Catalog> {
   const byId = new Map(indicators.map((i) => [i._id, i]))
   const indicatorsByAgenda = new Map<string, IndicatorDoc[]>()
   const socialeconomic: IndicatorDoc[] = []
+  const estadual: IndicatorDoc[] = []
 
   for (const ind of indicators) {
     for (const p of ind.placements ?? []) {
@@ -33,20 +39,32 @@ export async function loadCatalog(): Promise<Catalog> {
         indicatorsByAgenda.set(p.agendaId, list)
       } else if (p.section === 'socialeconomic') {
         socialeconomic.push(ind)
+      } else if (p.section === 'estadual') {
+        estadual.push(ind)
       }
     }
   }
 
   // Ordena cada grupo pela `order` do placement correspondente.
-  const placementOrder = (ind: IndicatorDoc, agendaId?: string) =>
+  const placementOrder = (
+    ind: IndicatorDoc,
+    section: 'agenda' | 'socialeconomic' | 'estadual',
+    agendaId?: string,
+  ) =>
     ind.placements.find((p) =>
-      agendaId ? p.agendaId === agendaId : p.section === 'socialeconomic',
+      agendaId ? p.agendaId === agendaId : p.section === section,
     )?.order ?? 999
 
   for (const [agendaId, list] of indicatorsByAgenda) {
-    list.sort((a, b) => placementOrder(a, agendaId) - placementOrder(b, agendaId))
+    list.sort(
+      (a, b) =>
+        placementOrder(a, 'agenda', agendaId) - placementOrder(b, 'agenda', agendaId),
+    )
   }
-  socialeconomic.sort((a, b) => placementOrder(a) - placementOrder(b))
+  socialeconomic.sort(
+    (a, b) => placementOrder(a, 'socialeconomic') - placementOrder(b, 'socialeconomic'),
+  )
+  estadual.sort((a, b) => placementOrder(a, 'estadual') - placementOrder(b, 'estadual'))
 
-  return { agendas, indicatorsByAgenda, socialeconomic, byId }
+  return { agendas, indicatorsByAgenda, socialeconomic, estadual, byId }
 }

@@ -42,9 +42,22 @@ export function socioeconomicIndicator(
   }
 }
 
+export function stateIndicator(
+  id: string,
+  extra: Partial<Omit<IndicatorDoc, '_id' | 'placements'>> = {},
+): IndicatorDoc {
+  return {
+    _id: id,
+    label: id,
+    placements: [{ section: 'estadual', order: 1 }],
+    ...extra,
+  }
+}
+
 export function makeCatalog(indicators: IndicatorDoc[], agendas: AgendaDoc[] = [AGENDA]): Catalog {
   const indicatorsByAgenda = new Map<string, IndicatorDoc[]>()
   const socialeconomic: IndicatorDoc[] = []
+  const estadual: IndicatorDoc[] = []
   for (const ind of indicators) {
     for (const p of ind.placements) {
       if (p.section === 'agenda' && p.agendaId) {
@@ -53,6 +66,8 @@ export function makeCatalog(indicators: IndicatorDoc[], agendas: AgendaDoc[] = [
         indicatorsByAgenda.set(p.agendaId, list)
       } else if (p.section === 'socialeconomic') {
         socialeconomic.push(ind)
+      } else if (p.section === 'estadual') {
+        estadual.push(ind)
       }
     }
   }
@@ -60,6 +75,7 @@ export function makeCatalog(indicators: IndicatorDoc[], agendas: AgendaDoc[] = [
     agendas,
     indicatorsByAgenda,
     socialeconomic,
+    estadual,
     byId: new Map(indicators.map((i) => [i._id, i])),
   }
 }
