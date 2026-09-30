@@ -141,3 +141,42 @@ export interface EmendasData {
   // Sempre os 223 municípios, em ordem alfabética. Esfera sem dado vem `null`.
   municipios: EmendaMunicipio[]
 }
+
+// ---------- grão estadual (GET /api/estado) ----------
+
+// Um ponto da série histórica de um indicador estadual.
+export interface StateSeriesPoint {
+  referenceYear: string
+  value: string
+  numericValue: number | null
+}
+
+// Indicador estadual como o frontend consome.
+//
+// Não há `status` nem `threshold`, e a ausência é o contrato: nenhum indicador
+// estadual classifica. Não há faixa oficial para nenhum dos 8, e a régua relativa
+// do grão municipal não se transplanta — com um valor por indicador não existe
+// distribuição para tercilar, e tercilar contra as 27 UFs põe 7 dos 8 na faixa do
+// meio, que é um semáforo constante. No lugar da cor, `breakdown.posicao` diz onde
+// a UF está entre as 27 e entre as 9 do Nordeste: informação, não classificação.
+export interface StateIndicator {
+  id: string
+  label: string
+  unit?: string
+  description?: string
+  source?: string
+  value: string
+  numericValue: number | null
+  variation?: RawVariation
+  referenceYear: string
+  breakdown?: Record<string, unknown>
+  // Série histórica completa, do ano mais antigo ao mais recente. Vazia nunca:
+  // tem ao menos o ponto servido em `value`.
+  series: StateSeriesPoint[]
+}
+
+export interface StateData {
+  uf: string
+  name: string
+  indicators: StateIndicator[]
+}

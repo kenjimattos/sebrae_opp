@@ -26,10 +26,15 @@ export function isLowConfidence(v: IndicatorValueDoc | undefined): boolean {
 
 // De vários docs do mesmo indicador (série histórica por ano), escolhe o do ano
 // de referência default do indicador; na falta, o ano mais recente.
-function pickValue(
-  docs: IndicatorValueDoc[],
+//
+// Genérico e exportado porque o grão ESTADUAL (`estado/service.ts`) escolhe o ano
+// pela mesma regra sobre outra coleção (`stateValues`). Reimplementar lá faria a
+// visão estadual servir um ano e a municipal outro para o mesmo indicador — o
+// mesmo tipo de divergência que este arquivo existe para evitar entre ficha e mapa.
+export function pickByYear<T extends { referenceYear: string }>(
+  docs: T[],
   defaultYear?: string,
-): IndicatorValueDoc | undefined {
+): T | undefined {
   if (docs.length === 0) return undefined
   if (defaultYear) {
     const exact = docs.find((d) => d.referenceYear === defaultYear)
@@ -51,7 +56,7 @@ export function indexValues(
   }
   const out = new Map<string, IndicatorValueDoc>()
   for (const [indicatorId, docs] of grouped) {
-    const picked = pickValue(docs, byId.get(indicatorId)?.referenceYear)
+    const picked = pickByYear(docs, byId.get(indicatorId)?.referenceYear)
     if (picked) out.set(indicatorId, picked)
   }
   return out

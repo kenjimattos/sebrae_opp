@@ -74,7 +74,11 @@ export type Threshold =
     }
 
 export interface Placement {
-  section: 'agenda' | 'socialeconomic'
+  // 'agenda' e 'socialeconomic' são o grão MUNICIPAL, montados por
+  // `indicadores/catalog.ts`. 'estadual' é o grão UF: os valores vivem em
+  // `stateValues`, não em `indicatorValues`, e o indicador não entra em agenda
+  // nenhuma nem nas opções do mapa.
+  section: 'agenda' | 'socialeconomic' | 'estadual'
   agendaId?: string
   order?: number
 }
@@ -164,4 +168,31 @@ export interface EmendaDoc {
   referenceYear: string
   source?: string | null
   isFictional: boolean
+}
+
+// Valor de indicador no grão ESTADUAL (coleção `stateValues`), 1 doc por
+// (UF × indicador × ano).
+//
+// Coleção separada de `indicatorValues`, e não um campo `escopo` nela: a chave é
+// `uf`, não `municipalityId`, e a separação é o que impede a Paraíba de aparecer
+// como uma 224ª linha na lista de municípios, nas opções do mapa e nos tercis.
+//
+// NÃO tem `normalizedValue`: ele só existe para régua relativa, e nenhum
+// indicador estadual tem `threshold` — não há faixa oficial para nenhum deles, e
+// com um doc por indicador não existe distribuição para tercilar. O que o
+// `breakdown` traz no lugar é a POSIÇÃO da UF entre pares (`posicao`), que é
+// comparação e não classificação, além da distribuição por categoria dos
+// indicadores de recorte (setor, porte). Ver `database/setup.mongodb.js`.
+export interface StateValueDoc {
+  uf: string
+  indicatorId: string
+  rawValue: string
+  numericValue?: number | null
+  variation?: RawVariation
+  referenceYear: string
+  unit?: string
+  source?: string | null
+  isFictional: boolean
+  breakdown?: Record<string, unknown>
+  updatedAt?: Date
 }

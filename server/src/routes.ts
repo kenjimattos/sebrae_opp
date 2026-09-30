@@ -3,6 +3,8 @@ import { handleAiTask } from '../../api/_lib/handler.js'
 import { config } from './config.js'
 import { buildEmendasData } from './emendas/service.js'
 import { listEmendas } from './emendas/repo.js'
+import { listStateValues } from './estado/repo.js'
+import { UF_PADRAO, buildStateData } from './estado/service.js'
 import { getCatalog } from './indicadores/catalog-cache.js'
 import { getDb } from './infra/db.js'
 import { CACHE_SECONDS, cachedPayload } from './infra/payload-cache.js'
@@ -22,8 +24,11 @@ import type { MunicipalitySummary } from './types/index.js'
 // sessão nem dado por usuário em rota nenhuma daqui.
 const READ_CACHE = `public, max-age=${CACHE_SECONDS}`
 
-// Ver o uso em /api/emendas: sinaliza coleção vazia de dentro do cache.
+// Ver o uso em /api/emendas e /api/estado: sinaliza coleção vazia de dentro do
+// cache. O cache guarda valor e descarta erro, então isto é o que impede um
+// payload vazio de ficar preso por todo o TTL depois de os seeds rodarem.
 class EmptyEmendasError extends Error {}
+class EmptyStateError extends Error {}
 
 export async function registerRoutes(app: FastifyInstance): Promise<void> {
   // Health check — usado pelo Nginx/monitoramento e para validar a conexão.
@@ -113,6 +118,33 @@ export async function registerRoutes(app: FastifyInstance): Promise<void> {
       // caminho de arquivo. O frontend só lê o status.
       req.log.error('coleção `emendas` vazia — rode os seeds database/seed/emendas-*.mongodb.js')
       return reply.code(503).send({ error: 'Dados de emendas indisponíveis.' })
+    }
+    reply.header('cache-control', READ_CACHE)
+    return data
+  })
+
+  // Visão estadual: os indicadores da Paraíba no grão UF, com série histórica.
+  // Nenhum deles classifica — não há `status` nem `threshold` no payload, e a
+  // ausência é o contrato (ver `StateIndicator` em types/api.ts).
+  app.get('/api/estado', async (req, reply) => {
+    let data
+    try {
+      data = await cachedPayload('estado', async () => {
+        const [catalog, values] = await Promise.all([
+          getCatalog(),
+          listStateValues(UF_PADRAO),
+        ])
+        // Mesma escolha de /api/emendas: coleção vazia é erro de operação (os
+        // seeds `indicador-uf-*.mongodb.js` não rodaram neste banco), não uma
+        // resposta válida. Um payload com zero indicadores faria a visão estadual
+        // abrir vazia como se a Paraíba não tivesse dado.
+        if (values.length === 0) throw new EmptyStateError()
+        return buildStateData(UF_PADRAO, catalog, values)
+      })
+    } catch (err) {
+      if (!(err instanceof EmptyStateError)) throw err
+      req.log.error('coleção `stateValues` vazia — rode os seeds database/seed/indicador-uf-*.mongodb.js')
+      return reply.code(503).send({ error: 'Dados estaduais indisponíveis.' })
     }
     reply.header('cache-control', READ_CACHE)
     return data

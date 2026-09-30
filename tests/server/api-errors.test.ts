@@ -29,6 +29,22 @@ vi.mock('../../server/src/emendas/repo.js', () => ({
   listEmendas: async () => [],
 }))
 
+vi.mock('../../server/src/estado/repo.js', () => ({
+  listStateValues: async () => [],
+}))
+
+// Sem isto, /api/estado explodiria no getDb do catálogo (500) antes de chegar à
+// checagem de coleção vazia, e o 503 abaixo nunca seria exercitado.
+vi.mock('../../server/src/indicadores/catalog-cache.js', () => ({
+  getCatalog: async () => ({
+    agendas: [],
+    indicatorsByAgenda: new Map(),
+    socialeconomic: [],
+    estadual: [],
+    byId: new Map(),
+  }),
+}))
+
 async function appWithRoutes() {
   const app = createApp(false)
   await registerRoutes(app)
@@ -48,6 +64,15 @@ describe('API · erro sem bastidor', () => {
     const app = await appWithRoutes()
     const res = await app.inject({ method: 'GET', url: '/api/emendas' })
     expect(res.statusCode).toBe(503)
+    expect(res.body).not.toMatch(BASTIDOR)
+  })
+
+  it('503 estadual não nomeia coleção nem caminho dos seeds', async () => {
+    const app = await appWithRoutes()
+    const res = await app.inject({ method: 'GET', url: '/api/estado' })
+    expect(res.statusCode).toBe(503)
+    expect(res.json()).toEqual({ error: 'Dados estaduais indisponíveis.' })
+    // o recado com o nome da coleção e o caminho dos seeds vai para o LOG
     expect(res.body).not.toMatch(BASTIDOR)
   })
 
