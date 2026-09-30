@@ -28,7 +28,7 @@ O `Layout` monta também o **logotipo fixo no topo à esquerda**, espelhando o
 `/home` — **não** um `onClick` no `<svg>`, que não recebe foco de teclado, não responde
 a Enter e não abre em nova aba. O `PippaWordmark` dentro dele vai com `decorative`,
 senão o leitor de tela anuncia "PIPPA" duas vezes (o nome do link e o do `<svg>`).
-**Não aparece na `/`** — lá o hero já traz a marca em 270px no meio da tela.
+**Não aparece na `/`** — lá o hero já traz a marca em 270px no meio da tela — **nem abaixo de 1675px** (`.wordmark-link` no `index.css`): o gutter do `.section-container` já não abre espaço para ele, e com `z-40` ele cobria a `SideNav` sticky. Encolher e dar fundo `.glass` foram tentados e ficaram feios; não reintroduzir sem resolver a sobreposição.
 O clique rola ao topo além de navegar: o `ScrollToTop` só reage a *mudança* de rota,
 então não cobre clicar no logotipo já estando em `/home`.
 

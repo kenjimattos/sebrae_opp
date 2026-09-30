@@ -314,6 +314,10 @@
   .typo-h3 { font-family: var(--font-titles); font-size: var(--font-size-h3); color: var(--semantic-text-primary); line-height: normal; }
   .typo-h4 { font-family: var(--font-titles); font-size: var(--font-size-h4); color: var(--semantic-text-primary); line-height: normal; }
 
+  @media (max-width: 1110px) {
+    .typo-h1 { font-size: var(--font-size-h2); }
+  }
+
   /* Titles */
   .typo-title-lg { font-family: var(--font-titles); font-size: var(--font-size-title-lg); color: var(--semantic-text-primary); line-height: normal; }
   .typo-title-md { font-family: var(--font-titles); font-size: var(--font-size-title-md); color: var(--semantic-text-primary); line-height: normal; }
@@ -366,6 +370,42 @@
   }
   .card-surface           { background-color: var(--semantic-surface-primary);   border-radius: var(--radius-default); }
   .card-surface-secondary { background-color: var(--semantic-surface-secondary); border-radius: var(--radius-default); }
+
+  @media (max-width: 1675px) {
+    .section-container { padding-inline: var(--spacing-3xl); }
+  }
+  @media (max-width: 1400px) {
+    .section-container { padding-inline: var(--spacing-2xl); }
+  }
+  @media (max-width: 1300px) {
+    .section-container { padding-inline: var(--spacing-lg); }
+  }
+  @media (max-width: 1250px) {
+    .section-container { padding-inline: var(--spacing-md); }
+  }
+
+  /* Wordmark fixa do Layout (canto superior esquerdo). Abaixo de 1675px o
+     gutter do .section-container já não abre espaço para os 80px do logo sem
+     invadir a coluna de conteúdo (ex.: SideNav sticky). Encolher e/ou dar
+     fundo glass ainda deixava a sobreposição feia — ocultar é o que sobrou. */
+  @media (max-width: 1675px) {
+    .wordmark-link { display: none; }
+  }
+
+  /* Painel esquerdo de SectionAgendas (heading + AgendaList): altura travada em
+     77dvh para acompanhar o mapa à direita, exceto a partir de md, onde a
+     coluna volta a caber lado a lado sem precisar da altura da viewport. */
+  .agenda-panel {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    min-width: 0;
+    height: 77dvh;
+    flex-shrink: 0;
+  }
+  @media (min-width: 768px) {
+    .agenda-panel { height: fit-content; }
+  }
 
   /* Glass surface (Figma node 1668:7) — painel navy chapado translúcido +
      bevel. backdrop-blur e inset shadows simulam o bevel "esculpido" no vidro;
