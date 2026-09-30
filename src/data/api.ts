@@ -2,6 +2,7 @@
 // em produção o Nginx faz o mesmo. Substitui os imports estáticos de
 // municipalities.json e values/*.ts.
 import type { EmendasData } from '@/types/emendas'
+import type { StateData } from '@/types/estado'
 import type { IndicatorsData } from '@/types/indicators'
 
 export interface MunicipalitySummary {
@@ -36,4 +37,12 @@ export function fetchMunicipalityData(id: string): Promise<IndicatorsData> {
 // o mapa, e o conjunto é pequeno. GET /api/emendas
 export function fetchEmendas(): Promise<EmendasData> {
   return getJSON<EmendasData>('/emendas')
+}
+
+// Indicadores da Paraíba no grão estadual, com série histórica. Payload único —
+// a visão estadual mostra os 8 juntos. Nenhum deles classifica: não há `status`
+// nem `threshold` no contrato, e a ausência é deliberada (ver @/types/estado).
+// GET /api/estado
+export function fetchStateData(): Promise<StateData> {
+  return getJSON<StateData>('/estado')
 }
