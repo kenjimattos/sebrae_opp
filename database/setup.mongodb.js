@@ -1,4 +1,4 @@
-// Setup do banco da OPP: cria as 5 coleções (com validadores de schema) e os
+// Setup do banco da OPP: cria as 6 coleções (com validadores de schema) e os
 // índices. Idempotente — pode rodar quantas vezes quiser.
 //
 // No NoSQLBooster: selecione o banco da OPP na conexão e execute este script
@@ -87,7 +87,14 @@ ensureCollection('indicators', {
         bsonType: 'object',
         required: ['section'],
         properties: {
-          section: { enum: ['agenda', 'socialeconomic'] },
+          section: {
+            enum: ['agenda', 'socialeconomic', 'estadual'],
+            description:
+              "'agenda' e 'socialeconomic' são as seções do grão MUNICIPAL, montadas por " +
+              "server/src/indicadores/catalog.ts. 'estadual' é o grão UF: catalog.ts não a " +
+              'conhece, então esses indicadores não entram em agenda nenhuma nem nas opções ' +
+              'do mapa — os valores deles vivem em stateValues, não em indicatorValues',
+          },
           agendaId: { bsonType: 'string', description: "ref agendas._id (quando section='agenda')" },
           order: { bsonType: ['int', 'long', 'double'] },
         },
@@ -141,6 +148,57 @@ ensureCollection('indicatorValues', {
     isFictional: { bsonType: 'bool', description: 'true = dado de demonstração' },
     breakdown: { bsonType: 'object', description: 'sub-índices opcionais (ex: IDH-M e/l/r)' },
     updatedAt: { bsonType: 'date', description: 'timestamp de carga/atualização do registro no banco (NÃO é o ano do dado — esse é referenceYear)' },
+  },
+})
+
+// --- stateValues: 1 doc por (UF × indicador × ano). ---
+// Coleção SEPARADA de indicatorValues de propósito, e não um campo `escopo` nela: o
+// grão é outro (a chave é `uf`, não `municipalityId`), e a separação é o que impede a
+// Paraíba de vazar como uma 224ª linha na lista de municípios, nas opções do mapa e no
+// cálculo dos tercis. Alimenta a seção de visão estadual.
+ensureCollection('stateValues', {
+  bsonType: 'object',
+  // Mesmo motivo do required de indicatorValues: numericValue é a presença da chave,
+  // e `null` significa "sem medida". Aqui NÃO há normalizedValue — ele só existe para
+  // régua relativa, e o grão estadual não tem régua (ver o comentário de `breakdown`).
+  required: ['uf', 'indicatorId', 'rawValue', 'numericValue', 'referenceYear', 'isFictional'],
+  properties: {
+    uf: { bsonType: 'string', description: "código IBGE da UF (2 dígitos); '25' = Paraíba" },
+    indicatorId: { bsonType: 'string', description: "ref indicators._id — os do grão estadual têm prefixo 'uf-'" },
+    rawValue: { bsonType: 'string', description: 'valor de exibição em padrão BR (ex: "914.955")' },
+    numericValue: { bsonType: ['double', 'int', 'null'], description: 'valor numérico parseado' },
+    variation: {
+      bsonType: ['object', 'string', 'null'],
+      description: 'mesmo shape de indicatorValues.variation — variação vs. observação anterior da série',
+      properties: {
+        deltaPct: { bsonType: ['double', 'int'] },
+        previousValue: { bsonType: ['double', 'int'] },
+        previousYear: { bsonType: 'string' },
+        basis: { enum: ['edicao-anterior', 'yoy', 'yoy-media-anual'] },
+      },
+    },
+    referenceYear: { bsonType: 'string', description: 'ano a que o dado se refere (vintage); faz parte da chave' },
+    unit: { bsonType: 'string', description: 'unidade de exibição, quando difere da do catálogo' },
+    source: { bsonType: ['string', 'null'] },
+    isFictional: { bsonType: 'bool', description: 'true = dado de demonstração' },
+    // Aqui mora tanto a DISTRIBUIÇÃO (o recorte por setor/porte, que a API Tesseract
+    // devolve como uma linha por categoria e o gerador agrupa) quanto a POSIÇÃO da PB
+    // entre as 27 UFs e entre as 9 do Nordeste.
+    //
+    // A posição é INFORMAÇÃO, não classificação: nenhum destes indicadores tem
+    // `threshold`, e é decisão medida, não esquecimento. Não há faixa oficial para
+    // nenhum dos 8, e a régua relativa não se transplanta para cá — com um doc por
+    // indicador não existe distribuição para tercilar, e tercilando contra as 27 UFs
+    // sete dos oito caem na faixa do meio: um semáforo constante, que não informa.
+    // Consequência prática: nenhum `uf-*` entra na tabela de `_tercis.catalogo_derivados`
+    // (que é allowlist revisada a olho, não varredura — então o esquecimento aqui é seguro).
+    breakdown: {
+      bsonType: 'object',
+      description:
+        'distribuição por categoria (setor, porte) e posição da UF entre pares. NÃO é ' +
+        'régua: estes indicadores não têm threshold, por decisão registrada acima',
+    },
+    updatedAt: { bsonType: 'date', description: 'timestamp de carga (NÃO é o ano do dado — esse é referenceYear)' },
   },
 })
 
@@ -232,8 +290,16 @@ database.indicatorValues.createIndex(
 // consultas "todos os municípios de um indicador num ano" (ex: colorir o mapa)
 database.indicatorValues.createIndex({ indicatorId: 1, referenceYear: 1 }, { name: 'by_indicador_ano' })
 
+// stateValues: chave natural / de upsert — 1 doc por UF×indicador×ano.
+database.stateValues.createIndex(
+  { uf: 1, indicatorId: 1, referenceYear: 1 },
+  { unique: true, name: 'uniq_uf_indicador_ano' },
+)
+// consulta "a série de um indicador estadual" (o payload da visão estadual)
+database.stateValues.createIndex({ indicatorId: 1, referenceYear: -1 }, { name: 'by_indicador_ano_desc' })
+
 // emendas: "todos os municípios de uma esfera" (colorir o mapa) e lookup por município.
 database.emendas.createIndex({ esfera: 1, escopo: 1 }, { name: 'by_esfera_escopo' })
 database.emendas.createIndex({ municipalityId: 1, esfera: 1 }, { name: 'by_municipio_esfera' })
 
-print('setup concluído: 5 coleções + índices prontos.')
+print('setup concluído: 6 coleções + índices prontos.')
