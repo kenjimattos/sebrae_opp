@@ -151,7 +151,26 @@ Exceção: `src/data/geo/paraiba.json` (GeoJSON do IBGE) é estático — geomet
 editorial, não indicador.
 
 Contratos em `src/types/indicators.ts` (`IndicatorsData`, `Agenda`, `Indicator`,
-`IndicatorThreshold`, `EconomicBaseItem`) e `src/types/emendas.ts`.
+`IndicatorThreshold`, `EconomicBaseItem`), `src/types/emendas.ts` e
+`src/types/estado.ts`.
+
+**Há dois grãos, em coleções separadas.** O municipal em `indicatorValues` (223 docs por
+indicador) e o **estadual** em `stateValues` (1 doc por UF × indicador × ano, servido por
+`GET /api/estado`). São coleções distintas, e não um campo `escopo` numa só, porque a chave
+é `uf` e não `municipalityId` — a separação é o que impede a Paraíba de aparecer como uma
+224ª linha na lista de municípios, nas opções do mapa e no cálculo dos tercis. O catálogo
+dos dois fica em `indicators`; o que distingue é o `placements.section`, e `'estadual'` é
+uma seção que `indicadores/catalog.ts` **não** monta em agenda nenhuma.
+
+> **O grão estadual não classifica, e a ausência é o contrato** — `StateIndicator` não tem
+> `status` nem `threshold`. Não há faixa oficial para nenhum dos 8 indicadores, e a régua
+> relativa não se transplanta: com um documento por indicador não existe distribuição para
+> tercilar. Tercilar contra as 27 UFs foi medido antes de decidir e **7 dos 8 caem na faixa
+> do meio** — semáforo constante não informa, que é o modo de falha que já desligou o farol
+> de agenda. No lugar da cor vai `breakdown.posicao` (entre as 27 UFs e as 9 do Nordeste):
+> é **comparação, não classificação**, e a UI não deve derivar cor dela. `aplicar_tercis.py`
+> não precisa de guarda: a tabela dele (`_tercis.catalogo_derivados`) é allowlist revisada,
+> e nenhum `uf-*` está nela. Tabela dos 8 em `database/MAPEAMENTO_BASE_DOS_DADOS.md`, §1-A.
 
 **Estado global:** `MunicipalityProvider` + `useMunicipality()` — busca a lista no
 boot e os dados do município sob demanda, com `loading`/`error`.
@@ -168,6 +187,7 @@ snapshot estático do banco.
 |---|---|
 | `/api/municipalities` e `/api/municipalities/:id` | `public/api-snapshot/` (223 JSONs + índice) |
 | `/api/emendas` | `public/api-snapshot/emendas.json` |
+| `/api/estado` | `public/api-snapshot/estado.json` (grão estadual) |
 | Roteamento em produção (Vercel) | `rewrites` do `vercel.json` |
 | Roteamento em dev | `bypass` do proxy no `vite.config.ts` (espelha os rewrites) |
 | `/api/ai` | function serverless `api/ai.ts` (essa sim é real) |
@@ -335,6 +355,26 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   dos 223 municípios em `alert` — e alimentando o então modo Riscos com um risco falso.
   Nada avisa: o seed roda, imprime `ok`, e o campo velho fica. Ao mexer em gerador,
   conferir se ele continua com `replaceOne`: os 26 já foram convertidos.
+- **Denominador vazio já virou ranking bruto em silêncio.** `_tesseract.posicao()` usava
+  `if (denominador)` para decidir se normalizava; dicionário vazio é falso, então quando o
+  ano pedido estava fora da série de população (o caso real: `uf-empresas-ativas` coletado em
+  2026, série do IBGE até 2025) a função **pulava a normalização** e devolvia a posição bruta
+  rotulada `normalizado: false` — 17º de 27 em vez dos 15º per capita, sem erro, com cara de
+  intencional. É a mesma classe de degradação que `classifiedNumber` evita no grão municipal.
+  Hoje denominador pedido e vazio **levanta**, e `populacoes_uf_recente()` dá o ano mais
+  recente disponível. Ao mexer em normalização, o teste é "o que acontece quando o
+  denominador falta", não "o que acontece quando ele existe".
+- **A Tesseract devolve 28 UFs no cubo da RAIS, não 27** — há um `State ID 99 = "Não
+  informado"` (4.113 vínculos em 2025) que desloca todo ranking em uma casa.
+  `_tesseract.ufs_validas()` filtra pela lista canônica do IBGE. E **`Workers` sem o corte
+  `Active worker indicator = 1` mede fluxo, não estoque**: sobe ~28% (1.268.617 contra
+  914.955), porque soma os vínculos encerrados durante o ano.
+- **`--offline` de gerador pode não ser offline.** Os três geradores estaduais que calculam
+  posição per capita buscavam a população das 27 UFs na hora: o modo passava enquanto havia
+  rede e quebraria exatamente quando ela faltasse, que é quando ele serve para algo. Hoje a
+  população vai **dentro** do snapshot. Ao mexer em `--offline`, o teste é rodar com
+  `urllib.request.urlopen` substituído por uma função que levanta — não basta o comando
+  terminar com zero.
 - **Formulador:** dois estados diferentes na sidebar. *Concluída* (check) sai de
   `isStepComplete` em `src/utils/formulatorCompleteness.ts` — campos obrigatórios da
   etapa preenchidos; é ela também que alimenta o "X% concluído". *Em andamento* sai de

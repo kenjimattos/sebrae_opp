@@ -273,6 +273,42 @@ estadual — daí os 224 docs por esfera (223 municípios + 1 do estado).
   ausência vira **`null`**, não zero — a UI precisa distinguir "não recebeu" de "não
   atribuímos", e rotular o estadual como estimativa.
 
+### `stateValues` (1 doc por UF × indicador × ano)
+
+Indicadores no **grão estadual**, servidos por `GET /api/estado`. Chave natural
+`{uf, indicatorId, referenceYear}` (índice `uniq_uf_indicador_ano`).
+
+```js
+{
+  uf: '25',                       // código IBGE da UF; '25' = Paraíba
+  indicatorId: 'uf-emprego-setor',// ref indicators._id — o grão estadual usa prefixo `uf-`
+  rawValue: '914.955',
+  numericValue: 914955,
+  referenceYear: '2025',
+  source: 'RAIS … via API Tesseract do Observatório Sebrae',
+  isFictional: false,
+  breakdown: {
+    porSetor: { 'Administração Pública': 332043, … },   // a distribuição
+    posicao: { entreUfs: 19, totalUfs: 27, entreNordeste: 4, totalNordeste: 9 },
+  },
+}
+```
+
+**É coleção separada, e não um campo `escopo` em `indicatorValues`.** A chave é `uf`, não
+`municipalityId`, e a separação é o que impede a Paraíba de aparecer como uma 224ª linha
+na lista de municípios, nas opções do mapa e no cálculo dos tercis.
+
+**Não tem `normalizedValue` nem `threshold`.** Nenhum indicador estadual classifica — não
+há faixa oficial para nenhum dos 8, e com um documento por indicador não existe
+distribuição para tercilar (medido: tercilando contra as 27 UFs, 7 dos 8 caem na faixa do
+meio). No lugar da cor, `breakdown.posicao` diz onde a UF está entre pares: é comparação,
+não classificação. Detalhe e tabela dos 8 em
+[MAPEAMENTO_BASE_DOS_DADOS.md](MAPEAMENTO_BASE_DOS_DADOS.md), §1-A.
+
+O catálogo fica em `indicators`, com `placements: [{ section: 'estadual', order: N }]` —
+seção que `indicadores/catalog.ts` não conhece, e é por isso que esses indicadores não
+entram em agenda nenhuma.
+
 ### O caso IDH-M (um indicador, duas seções)
 O IDH-M aparece em dois lugares do produto (agenda `governanca` e cards socialeconomic
 do Panorama), mas é **um único** documento `idh-m` com dois `placements` — e **um único**
@@ -341,6 +377,29 @@ seção passa a fazer. O que mudou e o que **não** mudou:
 ---
 
 ## Manter atualizado
+
+### Atualizar os indicadores estaduais (os 8 da Tesseract)
+
+Os únicos geradores do repo que **não precisam de VPN nem de BigQuery** — a API Tesseract
+do Observatório Sebrae é pública. Cinco scripts, cortados por cubo:
+
+```bash
+python3 scripts/gerar_seed_uf_rais.py                  # 4 indicadores (RAIS_workers)
+python3 scripts/gerar_seed_uf_populacao.py             # uf-populacao
+python3 scripts/gerar_seed_uf_enem.py                  # uf-enem-media
+python3 scripts/gerar_seed_uf_matriculas_superior.py   # uf-matriculas-superior
+python3 scripts/gerar_seed_uf_empresas_ativas.py       # uf-empresas-ativas
+
+# sem rede? cada um aceita --offline e reconstrói do snapshot versionado
+# em database/data/uf_*.json (a população das 27 UFs vai DENTRO do snapshot,
+# justamente para o --offline não precisar da API)
+
+# depois, no NoSQLBooster ou pelo aplicar_seeds.sh:
+bash scripts/aplicar_seeds.sh indicador-uf-rais
+```
+
+Não rode `aplicar_tercis.py` por causa deles: o grão estadual não tem régua, e nenhum
+`uf-*` está na tabela de `_tercis.catalogo_derivados`.
 
 ### Atualizar o IDH-M
 

@@ -220,6 +220,65 @@ em `scripts/_tercis.py`, que imprime o motivo a cada rodada; o último é decis�
 
 ---
 
+## 1-A. Indicadores estaduais (grão UF) — coleção `stateValues`
+
+Oito indicadores da Paraíba **no grão estadual**, todos da API Tesseract do
+**Observatório Sebrae** (§11), gravados em `stateValues` (não em `indicatorValues`) e
+servidos por `GET /api/estado`. O catálogo deles fica em `indicators` com
+`placements: [{section: 'estadual'}]` — seção que `catalog.ts` ignora, e é por isso que
+não aparecem em agenda nenhuma nem nas opções do mapa.
+
+| Indicador | Cubo · medida | Corte | Ref. | Valor PB | Posição |
+|---|---|---|---|---|---|
+| `uf-populacao` | `IBGE` · `Population` | — | 2025 | 4.164.468 | 14º/27 · 5º/9 NE |
+| `uf-empresas-ativas` | `RF` · `Establishments` | `Registration Status=2` | 2026¹ | 361.415 | 15º/27 · 2º/9 NE |
+| `uf-empregados` | `RAIS_workers` · `Workers` | ativos² | 2025 | 914.955 | 19º/27 · 4º/9 NE |
+| `uf-remuneracao-media` | `RAIS_workers` · `Remuneration Avg Nominal` | ativos² | 2025 | R$ 3.036,47 | 25º/27 · 7º/9 NE |
+| `uf-emprego-porte` | `RAIS_workers` × `Establishment Size` | ativos², **só ME+EPP**³ | 2025 | 300.186 | 18º/27 · 5º/9 NE |
+| `uf-emprego-setor` | `RAIS_workers` × `Sector` | ativos² | 2025 | 914.955 (10 setores) | 19º/27 · 4º/9 NE |
+| `uf-enem-media` | `INEP_enem` · 4 áreas | média simples⁴ | 2024 | 375,1 | 12º/27 |
+| `uf-matriculas-superior` | `INEP_censo` · `Enrollments` | — | 2024 | 188.630 | 14º/27 · **1º/9 NE** |
+
+¹ **Ano da coleta, não vintage.** O cubo RF não tem dimensão de ano para o estoque;
+`breakdown.coletadoEm` guarda a data. Não soma com o `empresas-ativas` municipal, que vem
+do data lake com outra data de carga — divergir não é defeito de nenhum dos dois.
+² `Active worker indicator = 1` (vínculos ativos em 31/12). **Sem esse corte o número sobe
+~28%** (1.268.617 em vez de 914.955 em 2025): passa a medir fluxo, não estoque.
+³ Só pequenos negócios, por decisão de produto (set/2026). Médias e grandes ficam fora do
+valor — são ~64% do total —, então **não soma com `uf-empregados`**; o total do estado fica
+em `breakdown.totalEstadoTodosOsPortes`.
+⁴ Média das **quatro áreas objetivas**. O cubo não expõe redação, então **não é a nota final
+do ENEM** — a ressalva viaja no label, na descrição e no breakdown.
+
+### Semáforo: nenhum dos 8 classifica, e é decisão medida
+
+Não há faixa oficial para nenhum deles, e a régua relativa do grão municipal **não se
+transplanta**: com um documento por indicador não existe distribuição para tercilar.
+Tercilar contra as 27 UFs foi testado antes de decidir e **7 dos 8 caem na faixa do meio**
+(só a remuneração média sai, em 25º de 27). Semáforo que não varia não informa — é o modo
+de falha que já desligou o farol de agenda de jul a set/2026.
+
+> **Regra:** o grão estadual não tem `threshold`, e a ausência é o contrato (`StateIndicator`
+> não tem `status`). No lugar da cor vai `breakdown.posicao` — onde a PB está entre as 27 UFs
+> e as 9 do Nordeste. É **comparação, não classificação**: a UI pode dizer "19ª de 27", mas
+> não deve derivar cor disso. Nenhum `uf-*` entra na tabela de `_tercis.catalogo_derivados`.
+
+**A posição é per capita onde o bruto mediria o tamanho do estado** — a mesma razão do
+`normalizedValue` no grão municipal. Medido: nº de empregados é 16º no bruto e 19º per
+capita; matrículas no superior é 14º no país e 1º do Nordeste. Ficam **sem** normalizar só
+`uf-populacao` (a posição é a própria ordem de tamanho) e `uf-remuneracao-media` (já é razão).
+
+### Armadilha: a 28ª UF
+
+O cubo `RAIS_workers` devolve **28** unidades no nível `State`, não 27 — há um
+`State ID 99 = "Não informado"` com 4.113 vínculos (2025). Ele deslocava todo ranking em uma
+casa. `_tesseract.ufs_validas()` filtra pela lista canônica do IBGE, então o descarte é por
+regra e não por caso particular.
+
+---
+
+---
+
 ## 2. Dados extras disponíveis (não no catálogo atual, mas úteis pra OPP)
 
 Coisas que **mcp-brasil** entrega e que podem virar features novas no Panorama, Riscos ou Trilhas:

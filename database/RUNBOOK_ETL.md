@@ -427,3 +427,52 @@ python3 database/scripts/gerar_seed_compras_publicas_inovacao_lake.py --offline
   python3 database/scripts/gerar_seed_compras_publicas_inovacao_lake.py \
     --ano 2025 --write-mongo >> $HOME/opp_etl.log 2>&1
 ```
+
+---
+
+## 12. Indicadores estaduais (Tesseract/Observatório Sebrae) — os 8 `uf-*`
+
+**Estes não são deste runbook, e é isso que importa saber.** Todo o resto daqui depende do
+data lake em `10.19.4.174` e, portanto, de estar na `10.1.141.23` com VPN. Os cinco
+geradores estaduais consomem uma **API pública** (`apiv2-observatorio.sebrae.com.br`), então
+rodam de qualquer máquina, inclusive fora da rede Sebrae.
+
+```bash
+# 1) GERAR (de qualquer máquina, sem VPN). Um script por cubo:
+python3 database/scripts/gerar_seed_uf_rais.py                  # uf-empregados, uf-remuneracao-media,
+                                                                # uf-emprego-porte, uf-emprego-setor
+python3 database/scripts/gerar_seed_uf_populacao.py
+python3 database/scripts/gerar_seed_uf_enem.py
+python3 database/scripts/gerar_seed_uf_matriculas_superior.py
+python3 database/scripts/gerar_seed_uf_empresas_ativas.py
+
+# sem rede: --offline reconstrói do snapshot em database/data/uf_*.json.
+# É offline de verdade — a população das 27 UFs (denominador das posições per
+# capita) vai DENTRO do snapshot, não é buscada na hora.
+
+# 2) APLICAR no DadosOPP (aqui sim precisa alcançar o Mongo 10.1.141.23)
+bash database/scripts/aplicar_seeds.sh indicador-uf-rais
+bash database/scripts/aplicar_seeds.sh indicador-uf-populacao
+# … idem para os outros três
+
+# 3) NÃO rode aplicar_tercis.py por causa deles.
+#    O grão estadual não tem régua: não há faixa oficial para nenhum dos 8, e com
+#    um doc por indicador não existe distribuição para tercilar. Nenhum `uf-*` está
+#    na tabela de _tercis.catalogo_derivados, então o passo é seguro de esquecer —
+#    ao contrário dos 11 municipais (§4, passo 4).
+
+# 4) Na branch preview/snapshot, regerar o snapshot estático:
+python3 database/scripts/gerar_api_snapshot_estado.py --conferir   # antes
+python3 database/scripts/gerar_api_snapshot_estado.py --escrever
+```
+
+**Gotchas desta integração** (os três estão medidos em
+[MAPEAMENTO_BASE_DOS_DADOS.md](MAPEAMENTO_BASE_DOS_DADOS.md) §1-A):
+
+1. **A RAIS devolve 28 UFs, não 27** — `State ID 99 = "Não informado"`. Filtrado por
+   `_tesseract.ufs_validas()`; sem isso todo ranking desloca uma casa.
+2. **`Workers` sem `Active worker indicator = 1` mede fluxo, não estoque** — sobe ~28%.
+3. **`uf-empresas-ativas` é estoque sem ano.** `referenceYear` é o ano da *coleta*; rodar o
+   gerador em outro ano cria documento novo em vez de sobrescrever, e é o comportamento
+   desejado. Ele também **não fecha** com o `empresas-ativas` municipal (fonte = lake, outra
+   data de carga).
