@@ -76,6 +76,9 @@ export default defineConfig(({ mode }) => {
             if (url === '/api/emendas') {
               return '/api-snapshot/emendas.json'
             }
+            if (url === '/api/estado') {
+              return '/api-snapshot/estado.json'
+            }
           },
         },
       },

@@ -6,6 +6,7 @@
     { "source": "/api/municipalities", "destination": "/api-snapshot/municipalities.json" },
     { "source": "/api/municipalities/:id", "destination": "/api-snapshot/municipalities/:id.json" },
     { "source": "/api/emendas", "destination": "/api-snapshot/emendas.json" },
+    { "source": "/api/estado", "destination": "/api-snapshot/estado.json" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
