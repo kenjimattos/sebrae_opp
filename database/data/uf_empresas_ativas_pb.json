@@ -1,0 +1,219 @@
+{
+  "ativas": [
+    {
+      "State ID": 11,
+      "State": "Rondônia",
+      "Establishments": 172820.0
+    },
+    {
+      "State ID": 12,
+      "State": "Acre",
+      "Establishments": 55594.0
+    },
+    {
+      "State ID": 13,
+      "State": "Amazonas",
+      "Establishments": 292842.0
+    },
+    {
+      "State ID": 14,
+      "State": "Roraima",
+      "Establishments": 51346.0
+    },
+    {
+      "State ID": 15,
+      "State": "Pará",
+      "Establishments": 554381.0
+    },
+    {
+      "State ID": 16,
+      "State": "Amapá",
+      "Establishments": 52322.0
+    },
+    {
+      "State ID": 17,
+      "State": "Tocantins",
+      "Establishments": 182469.0
+    },
+    {
+      "State ID": 21,
+      "State": "Maranhão",
+      "Establishments": 370436.0
+    },
+    {
+      "State ID": 22,
+      "State": "Piauí",
+      "Establishments": 233879.0
+    },
+    {
+      "State ID": 23,
+      "State": "Ceará",
+      "Establishments": 758386.0
+    },
+    {
+      "State ID": 24,
+      "State": "Rio Grande do Norte",
+      "Establishments": 310131.0
+    },
+    {
+      "State ID": 25,
+      "State": "Paraíba",
+      "Establishments": 361415.0
+    },
+    {
+      "State ID": 26,
+      "State": "Pernambuco",
+      "Establishments": 775674.0
+    },
+    {
+      "State ID": 27,
+      "State": "Alagoas",
+      "Establishments": 237843.0
+    },
+    {
+      "State ID": 28,
+      "State": "Sergipe",
+      "Establishments": 175354.0
+    },
+    {
+      "State ID": 29,
+      "State": "Bahia",
+      "Establishments": 1273573.0
+    },
+    {
+      "State ID": 31,
+      "State": "Minas Gerais",
+      "Establishments": 2944297.0
+    },
+    {
+      "State ID": 32,
+      "State": "Espírito Santo",
+      "Establishments": 607626.0
+    },
+    {
+      "State ID": 33,
+      "State": "Rio de Janeiro",
+      "Establishments": 2300253.0
+    },
+    {
+      "State ID": 35,
+      "State": "São Paulo",
+      "Establishments": 8680349.0
+    },
+    {
+      "State ID": 41,
+      "State": "Paraná",
+      "Establishments": 2016913.0
+    },
+    {
+      "State ID": 42,
+      "State": "Santa Catarina",
+      "Establishments": 1553079.0
+    },
+    {
+      "State ID": 43,
+      "State": "Rio Grande do Sul",
+      "Establishments": 1757342.0
+    },
+    {
+      "State ID": 50,
+      "State": "Mato Grosso do Sul",
+      "Establishments": 384083.0
+    },
+    {
+      "State ID": 51,
+      "State": "Mato Grosso",
+      "Establishments": 572969.0
+    },
+    {
+      "State ID": 52,
+      "State": "Goiás",
+      "Establishments": 1052257.0
+    },
+    {
+      "State ID": 53,
+      "State": "Distrito Federal",
+      "Establishments": 477207.0
+    },
+    {
+      "State ID": 93,
+      "State": "Exterior",
+      "Establishments": 80894.0
+    },
+    {
+      "State ID": 99,
+      "State": "Não informado",
+      "Establishments": 563.0
+    }
+  ],
+  "situacoes": [
+    {
+      "State ID": 25,
+      "State": "Paraíba",
+      "Registration Status ID": 1,
+      "Registration Status": "Nula",
+      "Establishments": 1518.0
+    },
+    {
+      "State ID": 25,
+      "State": "Paraíba",
+      "Registration Status ID": 2,
+      "Registration Status": "Ativa",
+      "Establishments": 361415.0
+    },
+    {
+      "State ID": 25,
+      "State": "Paraíba",
+      "Registration Status ID": 3,
+      "Registration Status": "Suspensa",
+      "Establishments": 1805.0
+    },
+    {
+      "State ID": 25,
+      "State": "Paraíba",
+      "Registration Status ID": 4,
+      "Registration Status": "Inapta",
+      "Establishments": 123684.0
+    },
+    {
+      "State ID": 25,
+      "State": "Paraíba",
+      "Registration Status ID": 8,
+      "Registration Status": "Baixada",
+      "Establishments": 448657.0
+    }
+  ],
+  "coletadoEm": "2026-09-30",
+  "populacoes": {
+    "2025": {
+      "11": 1751950.0,
+      "12": 884372.0,
+      "13": 4321616.0,
+      "14": 738772.0,
+      "15": 8711196.0,
+      "16": 806517.0,
+      "17": 1586859.0,
+      "21": 7018211.0,
+      "22": 3384547.0,
+      "23": 9268836.0,
+      "24": 3455236.0,
+      "25": 4164468.0,
+      "26": 9562007.0,
+      "27": 3220848.0,
+      "28": 2299425.0,
+      "29": 14870907.0,
+      "31": 21393441.0,
+      "32": 4126854.0,
+      "33": 17223547.0,
+      "35": 46081801.0,
+      "41": 11890517.0,
+      "42": 8187029.0,
+      "43": 11233263.0,
+      "50": 2924631.0,
+      "51": 3893659.0,
+      "52": 7423629.0,
+      "53": 2996899.0
+    }
+  },
+  "anoPopulacao": "2025"
+}
