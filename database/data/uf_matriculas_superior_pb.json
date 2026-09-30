@@ -1,0 +1,1385 @@
+{
+  "rows": [
+    {
+      "State ID": 11,
+      "State": "Rondônia",
+      "Year": 2018,
+      "Enrollments": 78182.0
+    },
+    {
+      "State ID": 11,
+      "State": "Rondônia",
+      "Year": 2019,
+      "Enrollments": 78883.0
+    },
+    {
+      "State ID": 11,
+      "State": "Rondônia",
+      "Year": 2020,
+      "Enrollments": 79033.0
+    },
+    {
+      "State ID": 11,
+      "State": "Rondônia",
+      "Year": 2021,
+      "Enrollments": 82150.0
+    },
+    {
+      "State ID": 11,
+      "State": "Rondônia",
+      "Year": 2022,
+      "Enrollments": 85485.0
+    },
+    {
+      "State ID": 11,
+      "State": "Rondônia",
+      "Year": 2023,
+      "Enrollments": 87697.0
+    },
+    {
+      "State ID": 11,
+      "State": "Rondônia",
+      "Year": 2024,
+      "Enrollments": 88648.0
+    },
+    {
+      "State ID": 12,
+      "State": "Acre",
+      "Year": 2018,
+      "Enrollments": 37531.0
+    },
+    {
+      "State ID": 12,
+      "State": "Acre",
+      "Year": 2019,
+      "Enrollments": 37832.0
+    },
+    {
+      "State ID": 12,
+      "State": "Acre",
+      "Year": 2020,
+      "Enrollments": 37251.0
+    },
+    {
+      "State ID": 12,
+      "State": "Acre",
+      "Year": 2021,
+      "Enrollments": 37027.0
+    },
+    {
+      "State ID": 12,
+      "State": "Acre",
+      "Year": 2022,
+      "Enrollments": 38916.0
+    },
+    {
+      "State ID": 12,
+      "State": "Acre",
+      "Year": 2023,
+      "Enrollments": 40197.0
+    },
+    {
+      "State ID": 12,
+      "State": "Acre",
+      "Year": 2024,
+      "Enrollments": 39096.0
+    },
+    {
+      "State ID": 13,
+      "State": "Amazonas",
+      "Year": 2018,
+      "Enrollments": 168076.0
+    },
+    {
+      "State ID": 13,
+      "State": "Amazonas",
+      "Year": 2019,
+      "Enrollments": 166321.0
+    },
+    {
+      "State ID": 13,
+      "State": "Amazonas",
+      "Year": 2020,
+      "Enrollments": 139222.0
+    },
+    {
+      "State ID": 13,
+      "State": "Amazonas",
+      "Year": 2021,
+      "Enrollments": 172491.0
+    },
+    {
+      "State ID": 13,
+      "State": "Amazonas",
+      "Year": 2022,
+      "Enrollments": 178876.0
+    },
+    {
+      "State ID": 13,
+      "State": "Amazonas",
+      "Year": 2023,
+      "Enrollments": 199623.0
+    },
+    {
+      "State ID": 13,
+      "State": "Amazonas",
+      "Year": 2024,
+      "Enrollments": 196696.0
+    },
+    {
+      "State ID": 14,
+      "State": "Roraima",
+      "Year": 2018,
+      "Enrollments": 25841.0
+    },
+    {
+      "State ID": 14,
+      "State": "Roraima",
+      "Year": 2019,
+      "Enrollments": 27510.0
+    },
+    {
+      "State ID": 14,
+      "State": "Roraima",
+      "Year": 2020,
+      "Enrollments": 26723.0
+    },
+    {
+      "State ID": 14,
+      "State": "Roraima",
+      "Year": 2021,
+      "Enrollments": 27382.0
+    },
+    {
+      "State ID": 14,
+      "State": "Roraima",
+      "Year": 2022,
+      "Enrollments": 30909.0
+    },
+    {
+      "State ID": 14,
+      "State": "Roraima",
+      "Year": 2023,
+      "Enrollments": 32430.0
+    },
+    {
+      "State ID": 14,
+      "State": "Roraima",
+      "Year": 2024,
+      "Enrollments": 34171.0
+    },
+    {
+      "State ID": 15,
+      "State": "Pará",
+      "Year": 2018,
+      "Enrollments": 262030.0
+    },
+    {
+      "State ID": 15,
+      "State": "Pará",
+      "Year": 2019,
+      "Enrollments": 285144.0
+    },
+    {
+      "State ID": 15,
+      "State": "Pará",
+      "Year": 2020,
+      "Enrollments": 273380.0
+    },
+    {
+      "State ID": 15,
+      "State": "Pará",
+      "Year": 2021,
+      "Enrollments": 312506.0
+    },
+    {
+      "State ID": 15,
+      "State": "Pará",
+      "Year": 2022,
+      "Enrollments": 332768.0
+    },
+    {
+      "State ID": 15,
+      "State": "Pará",
+      "Year": 2023,
+      "Enrollments": 354559.0
+    },
+    {
+      "State ID": 15,
+      "State": "Pará",
+      "Year": 2024,
+      "Enrollments": 370821.0
+    },
+    {
+      "State ID": 16,
+      "State": "Amapá",
+      "Year": 2018,
+      "Enrollments": 49363.0
+    },
+    {
+      "State ID": 16,
+      "State": "Amapá",
+      "Year": 2019,
+      "Enrollments": 48168.0
+    },
+    {
+      "State ID": 16,
+      "State": "Amapá",
+      "Year": 2020,
+      "Enrollments": 50161.0
+    },
+    {
+      "State ID": 16,
+      "State": "Amapá",
+      "Year": 2021,
+      "Enrollments": 49243.0
+    },
+    {
+      "State ID": 16,
+      "State": "Amapá",
+      "Year": 2022,
+      "Enrollments": 49254.0
+    },
+    {
+      "State ID": 16,
+      "State": "Amapá",
+      "Year": 2023,
+      "Enrollments": 46984.0
+    },
+    {
+      "State ID": 16,
+      "State": "Amapá",
+      "Year": 2024,
+      "Enrollments": 47793.0
+    },
+    {
+      "State ID": 17,
+      "State": "Tocantins",
+      "Year": 2018,
+      "Enrollments": 70616.0
+    },
+    {
+      "State ID": 17,
+      "State": "Tocantins",
+      "Year": 2019,
+      "Enrollments": 71969.0
+    },
+    {
+      "State ID": 17,
+      "State": "Tocantins",
+      "Year": 2020,
+      "Enrollments": 71922.0
+    },
+    {
+      "State ID": 17,
+      "State": "Tocantins",
+      "Year": 2021,
+      "Enrollments": 73682.0
+    },
+    {
+      "State ID": 17,
+      "State": "Tocantins",
+      "Year": 2022,
+      "Enrollments": 84463.0
+    },
+    {
+      "State ID": 17,
+      "State": "Tocantins",
+      "Year": 2023,
+      "Enrollments": 85740.0
+    },
+    {
+      "State ID": 17,
+      "State": "Tocantins",
+      "Year": 2024,
+      "Enrollments": 86744.0
+    },
+    {
+      "State ID": 21,
+      "State": "Maranhão",
+      "Year": 2018,
+      "Enrollments": 183452.0
+    },
+    {
+      "State ID": 21,
+      "State": "Maranhão",
+      "Year": 2019,
+      "Enrollments": 195579.0
+    },
+    {
+      "State ID": 21,
+      "State": "Maranhão",
+      "Year": 2020,
+      "Enrollments": 190216.0
+    },
+    {
+      "State ID": 21,
+      "State": "Maranhão",
+      "Year": 2021,
+      "Enrollments": 209100.0
+    },
+    {
+      "State ID": 21,
+      "State": "Maranhão",
+      "Year": 2022,
+      "Enrollments": 224416.0
+    },
+    {
+      "State ID": 21,
+      "State": "Maranhão",
+      "Year": 2023,
+      "Enrollments": 235935.0
+    },
+    {
+      "State ID": 21,
+      "State": "Maranhão",
+      "Year": 2024,
+      "Enrollments": 231739.0
+    },
+    {
+      "State ID": 22,
+      "State": "Piauí",
+      "Year": 2018,
+      "Enrollments": 129159.0
+    },
+    {
+      "State ID": 22,
+      "State": "Piauí",
+      "Year": 2019,
+      "Enrollments": 136268.0
+    },
+    {
+      "State ID": 22,
+      "State": "Piauí",
+      "Year": 2020,
+      "Enrollments": 129608.0
+    },
+    {
+      "State ID": 22,
+      "State": "Piauí",
+      "Year": 2021,
+      "Enrollments": 126005.0
+    },
+    {
+      "State ID": 22,
+      "State": "Piauí",
+      "Year": 2022,
+      "Enrollments": 132303.0
+    },
+    {
+      "State ID": 22,
+      "State": "Piauí",
+      "Year": 2023,
+      "Enrollments": 142576.0
+    },
+    {
+      "State ID": 22,
+      "State": "Piauí",
+      "Year": 2024,
+      "Enrollments": 148716.0
+    },
+    {
+      "State ID": 23,
+      "State": "Ceará",
+      "Year": 2018,
+      "Enrollments": 300088.0
+    },
+    {
+      "State ID": 23,
+      "State": "Ceará",
+      "Year": 2019,
+      "Enrollments": 316705.0
+    },
+    {
+      "State ID": 23,
+      "State": "Ceará",
+      "Year": 2020,
+      "Enrollments": 326083.0
+    },
+    {
+      "State ID": 23,
+      "State": "Ceará",
+      "Year": 2021,
+      "Enrollments": 315573.0
+    },
+    {
+      "State ID": 23,
+      "State": "Ceará",
+      "Year": 2022,
+      "Enrollments": 353362.0
+    },
+    {
+      "State ID": 23,
+      "State": "Ceará",
+      "Year": 2023,
+      "Enrollments": 380676.0
+    },
+    {
+      "State ID": 23,
+      "State": "Ceará",
+      "Year": 2024,
+      "Enrollments": 380358.0
+    },
+    {
+      "State ID": 24,
+      "State": "Rio Grande do Norte",
+      "Year": 2018,
+      "Enrollments": 117823.0
+    },
+    {
+      "State ID": 24,
+      "State": "Rio Grande do Norte",
+      "Year": 2019,
+      "Enrollments": 121376.0
+    },
+    {
+      "State ID": 24,
+      "State": "Rio Grande do Norte",
+      "Year": 2020,
+      "Enrollments": 124019.0
+    },
+    {
+      "State ID": 24,
+      "State": "Rio Grande do Norte",
+      "Year": 2021,
+      "Enrollments": 128772.0
+    },
+    {
+      "State ID": 24,
+      "State": "Rio Grande do Norte",
+      "Year": 2022,
+      "Enrollments": 136010.0
+    },
+    {
+      "State ID": 24,
+      "State": "Rio Grande do Norte",
+      "Year": 2023,
+      "Enrollments": 145425.0
+    },
+    {
+      "State ID": 24,
+      "State": "Rio Grande do Norte",
+      "Year": 2024,
+      "Enrollments": 150753.0
+    },
+    {
+      "State ID": 25,
+      "State": "Paraíba",
+      "Year": 2018,
+      "Enrollments": 156876.0
+    },
+    {
+      "State ID": 25,
+      "State": "Paraíba",
+      "Year": 2019,
+      "Enrollments": 163351.0
+    },
+    {
+      "State ID": 25,
+      "State": "Paraíba",
+      "Year": 2020,
+      "Enrollments": 157694.0
+    },
+    {
+      "State ID": 25,
+      "State": "Paraíba",
+      "Year": 2021,
+      "Enrollments": 163353.0
+    },
+    {
+      "State ID": 25,
+      "State": "Paraíba",
+      "Year": 2022,
+      "Enrollments": 169437.0
+    },
+    {
+      "State ID": 25,
+      "State": "Paraíba",
+      "Year": 2023,
+      "Enrollments": 180896.0
+    },
+    {
+      "State ID": 25,
+      "State": "Paraíba",
+      "Year": 2024,
+      "Enrollments": 188630.0
+    },
+    {
+      "State ID": 26,
+      "State": "Pernambuco",
+      "Year": 2018,
+      "Enrollments": 282648.0
+    },
+    {
+      "State ID": 26,
+      "State": "Pernambuco",
+      "Year": 2019,
+      "Enrollments": 295494.0
+    },
+    {
+      "State ID": 26,
+      "State": "Pernambuco",
+      "Year": 2020,
+      "Enrollments": 300407.0
+    },
+    {
+      "State ID": 26,
+      "State": "Pernambuco",
+      "Year": 2021,
+      "Enrollments": 299640.0
+    },
+    {
+      "State ID": 26,
+      "State": "Pernambuco",
+      "Year": 2022,
+      "Enrollments": 323031.0
+    },
+    {
+      "State ID": 26,
+      "State": "Pernambuco",
+      "Year": 2023,
+      "Enrollments": 337213.0
+    },
+    {
+      "State ID": 26,
+      "State": "Pernambuco",
+      "Year": 2024,
+      "Enrollments": 371775.0
+    },
+    {
+      "State ID": 27,
+      "State": "Alagoas",
+      "Year": 2018,
+      "Enrollments": 106751.0
+    },
+    {
+      "State ID": 27,
+      "State": "Alagoas",
+      "Year": 2019,
+      "Enrollments": 107191.0
+    },
+    {
+      "State ID": 27,
+      "State": "Alagoas",
+      "Year": 2020,
+      "Enrollments": 105777.0
+    },
+    {
+      "State ID": 27,
+      "State": "Alagoas",
+      "Year": 2021,
+      "Enrollments": 108286.0
+    },
+    {
+      "State ID": 27,
+      "State": "Alagoas",
+      "Year": 2022,
+      "Enrollments": 112220.0
+    },
+    {
+      "State ID": 27,
+      "State": "Alagoas",
+      "Year": 2023,
+      "Enrollments": 119134.0
+    },
+    {
+      "State ID": 27,
+      "State": "Alagoas",
+      "Year": 2024,
+      "Enrollments": 123043.0
+    },
+    {
+      "State ID": 28,
+      "State": "Sergipe",
+      "Year": 2018,
+      "Enrollments": 81763.0
+    },
+    {
+      "State ID": 28,
+      "State": "Sergipe",
+      "Year": 2019,
+      "Enrollments": 82378.0
+    },
+    {
+      "State ID": 28,
+      "State": "Sergipe",
+      "Year": 2020,
+      "Enrollments": 81448.0
+    },
+    {
+      "State ID": 28,
+      "State": "Sergipe",
+      "Year": 2021,
+      "Enrollments": 83069.0
+    },
+    {
+      "State ID": 28,
+      "State": "Sergipe",
+      "Year": 2022,
+      "Enrollments": 84338.0
+    },
+    {
+      "State ID": 28,
+      "State": "Sergipe",
+      "Year": 2023,
+      "Enrollments": 87921.0
+    },
+    {
+      "State ID": 28,
+      "State": "Sergipe",
+      "Year": 2024,
+      "Enrollments": 89646.0
+    },
+    {
+      "State ID": 29,
+      "State": "Bahia",
+      "Year": 2018,
+      "Enrollments": 441201.0
+    },
+    {
+      "State ID": 29,
+      "State": "Bahia",
+      "Year": 2019,
+      "Enrollments": 448659.0
+    },
+    {
+      "State ID": 29,
+      "State": "Bahia",
+      "Year": 2020,
+      "Enrollments": 413647.0
+    },
+    {
+      "State ID": 29,
+      "State": "Bahia",
+      "Year": 2021,
+      "Enrollments": 421828.0
+    },
+    {
+      "State ID": 29,
+      "State": "Bahia",
+      "Year": 2022,
+      "Enrollments": 477604.0
+    },
+    {
+      "State ID": 29,
+      "State": "Bahia",
+      "Year": 2023,
+      "Enrollments": 489389.0
+    },
+    {
+      "State ID": 29,
+      "State": "Bahia",
+      "Year": 2024,
+      "Enrollments": 501861.0
+    },
+    {
+      "State ID": 31,
+      "State": "Minas Gerais",
+      "Year": 2018,
+      "Enrollments": 852156.0
+    },
+    {
+      "State ID": 31,
+      "State": "Minas Gerais",
+      "Year": 2019,
+      "Enrollments": 861444.0
+    },
+    {
+      "State ID": 31,
+      "State": "Minas Gerais",
+      "Year": 2020,
+      "Enrollments": 857444.0
+    },
+    {
+      "State ID": 31,
+      "State": "Minas Gerais",
+      "Year": 2021,
+      "Enrollments": 875063.0
+    },
+    {
+      "State ID": 31,
+      "State": "Minas Gerais",
+      "Year": 2022,
+      "Enrollments": 912900.0
+    },
+    {
+      "State ID": 31,
+      "State": "Minas Gerais",
+      "Year": 2023,
+      "Enrollments": 953358.0
+    },
+    {
+      "State ID": 31,
+      "State": "Minas Gerais",
+      "Year": 2024,
+      "Enrollments": 950761.0
+    },
+    {
+      "State ID": 32,
+      "State": "Espírito Santo",
+      "Year": 2018,
+      "Enrollments": 156227.0
+    },
+    {
+      "State ID": 32,
+      "State": "Espírito Santo",
+      "Year": 2019,
+      "Enrollments": 154771.0
+    },
+    {
+      "State ID": 32,
+      "State": "Espírito Santo",
+      "Year": 2020,
+      "Enrollments": 163916.0
+    },
+    {
+      "State ID": 32,
+      "State": "Espírito Santo",
+      "Year": 2021,
+      "Enrollments": 169256.0
+    },
+    {
+      "State ID": 32,
+      "State": "Espírito Santo",
+      "Year": 2022,
+      "Enrollments": 175529.0
+    },
+    {
+      "State ID": 32,
+      "State": "Espírito Santo",
+      "Year": 2023,
+      "Enrollments": 182091.0
+    },
+    {
+      "State ID": 32,
+      "State": "Espírito Santo",
+      "Year": 2024,
+      "Enrollments": 182335.0
+    },
+    {
+      "State ID": 33,
+      "State": "Rio de Janeiro",
+      "Year": 2018,
+      "Enrollments": 717376.0
+    },
+    {
+      "State ID": 33,
+      "State": "Rio de Janeiro",
+      "Year": 2019,
+      "Enrollments": 722860.0
+    },
+    {
+      "State ID": 33,
+      "State": "Rio de Janeiro",
+      "Year": 2020,
+      "Enrollments": 784760.0
+    },
+    {
+      "State ID": 33,
+      "State": "Rio de Janeiro",
+      "Year": 2021,
+      "Enrollments": 817680.0
+    },
+    {
+      "State ID": 33,
+      "State": "Rio de Janeiro",
+      "Year": 2022,
+      "Enrollments": 859969.0
+    },
+    {
+      "State ID": 33,
+      "State": "Rio de Janeiro",
+      "Year": 2023,
+      "Enrollments": 922810.0
+    },
+    {
+      "State ID": 33,
+      "State": "Rio de Janeiro",
+      "Year": 2024,
+      "Enrollments": 944813.0
+    },
+    {
+      "State ID": 35,
+      "State": "São Paulo",
+      "Year": 2018,
+      "Enrollments": 2030066.0
+    },
+    {
+      "State ID": 35,
+      "State": "São Paulo",
+      "Year": 2019,
+      "Enrollments": 2031669.0
+    },
+    {
+      "State ID": 35,
+      "State": "São Paulo",
+      "Year": 2020,
+      "Enrollments": 2075475.0
+    },
+    {
+      "State ID": 35,
+      "State": "São Paulo",
+      "Year": 2021,
+      "Enrollments": 2065778.0
+    },
+    {
+      "State ID": 35,
+      "State": "São Paulo",
+      "Year": 2022,
+      "Enrollments": 2166788.0
+    },
+    {
+      "State ID": 35,
+      "State": "São Paulo",
+      "Year": 2023,
+      "Enrollments": 2322190.0
+    },
+    {
+      "State ID": 35,
+      "State": "São Paulo",
+      "Year": 2024,
+      "Enrollments": 2441033.0
+    },
+    {
+      "State ID": 41,
+      "State": "Paraná",
+      "Year": 2018,
+      "Enrollments": 542573.0
+    },
+    {
+      "State ID": 41,
+      "State": "Paraná",
+      "Year": 2019,
+      "Enrollments": 557155.0
+    },
+    {
+      "State ID": 41,
+      "State": "Paraná",
+      "Year": 2020,
+      "Enrollments": 577562.0
+    },
+    {
+      "State ID": 41,
+      "State": "Paraná",
+      "Year": 2021,
+      "Enrollments": 629613.0
+    },
+    {
+      "State ID": 41,
+      "State": "Paraná",
+      "Year": 2022,
+      "Enrollments": 647955.0
+    },
+    {
+      "State ID": 41,
+      "State": "Paraná",
+      "Year": 2023,
+      "Enrollments": 687754.0
+    },
+    {
+      "State ID": 41,
+      "State": "Paraná",
+      "Year": 2024,
+      "Enrollments": 711466.0
+    },
+    {
+      "State ID": 42,
+      "State": "Santa Catarina",
+      "Year": 2018,
+      "Enrollments": 366848.0
+    },
+    {
+      "State ID": 42,
+      "State": "Santa Catarina",
+      "Year": 2019,
+      "Enrollments": 385964.0
+    },
+    {
+      "State ID": 42,
+      "State": "Santa Catarina",
+      "Year": 2020,
+      "Enrollments": 408546.0
+    },
+    {
+      "State ID": 42,
+      "State": "Santa Catarina",
+      "Year": 2021,
+      "Enrollments": 431336.0
+    },
+    {
+      "State ID": 42,
+      "State": "Santa Catarina",
+      "Year": 2022,
+      "Enrollments": 442553.0
+    },
+    {
+      "State ID": 42,
+      "State": "Santa Catarina",
+      "Year": 2023,
+      "Enrollments": 463790.0
+    },
+    {
+      "State ID": 42,
+      "State": "Santa Catarina",
+      "Year": 2024,
+      "Enrollments": 459509.0
+    },
+    {
+      "State ID": 43,
+      "State": "Rio Grande do Sul",
+      "Year": 2018,
+      "Enrollments": 519608.0
+    },
+    {
+      "State ID": 43,
+      "State": "Rio Grande do Sul",
+      "Year": 2019,
+      "Enrollments": 518225.0
+    },
+    {
+      "State ID": 43,
+      "State": "Rio Grande do Sul",
+      "Year": 2020,
+      "Enrollments": 534507.0
+    },
+    {
+      "State ID": 43,
+      "State": "Rio Grande do Sul",
+      "Year": 2021,
+      "Enrollments": 565263.0
+    },
+    {
+      "State ID": 43,
+      "State": "Rio Grande do Sul",
+      "Year": 2022,
+      "Enrollments": 575885.0
+    },
+    {
+      "State ID": 43,
+      "State": "Rio Grande do Sul",
+      "Year": 2023,
+      "Enrollments": 588214.0
+    },
+    {
+      "State ID": 43,
+      "State": "Rio Grande do Sul",
+      "Year": 2024,
+      "Enrollments": 579186.0
+    },
+    {
+      "State ID": 50,
+      "State": "Mato Grosso do Sul",
+      "Year": 2018,
+      "Enrollments": 128250.0
+    },
+    {
+      "State ID": 50,
+      "State": "Mato Grosso do Sul",
+      "Year": 2019,
+      "Enrollments": 127089.0
+    },
+    {
+      "State ID": 50,
+      "State": "Mato Grosso do Sul",
+      "Year": 2020,
+      "Enrollments": 126051.0
+    },
+    {
+      "State ID": 50,
+      "State": "Mato Grosso do Sul",
+      "Year": 2021,
+      "Enrollments": 141127.0
+    },
+    {
+      "State ID": 50,
+      "State": "Mato Grosso do Sul",
+      "Year": 2022,
+      "Enrollments": 143089.0
+    },
+    {
+      "State ID": 50,
+      "State": "Mato Grosso do Sul",
+      "Year": 2023,
+      "Enrollments": 153930.0
+    },
+    {
+      "State ID": 50,
+      "State": "Mato Grosso do Sul",
+      "Year": 2024,
+      "Enrollments": 154246.0
+    },
+    {
+      "State ID": 51,
+      "State": "Mato Grosso",
+      "Year": 2018,
+      "Enrollments": 168662.0
+    },
+    {
+      "State ID": 51,
+      "State": "Mato Grosso",
+      "Year": 2019,
+      "Enrollments": 170686.0
+    },
+    {
+      "State ID": 51,
+      "State": "Mato Grosso",
+      "Year": 2020,
+      "Enrollments": 163448.0
+    },
+    {
+      "State ID": 51,
+      "State": "Mato Grosso",
+      "Year": 2021,
+      "Enrollments": 176718.0
+    },
+    {
+      "State ID": 51,
+      "State": "Mato Grosso",
+      "Year": 2022,
+      "Enrollments": 184666.0
+    },
+    {
+      "State ID": 51,
+      "State": "Mato Grosso",
+      "Year": 2023,
+      "Enrollments": 191534.0
+    },
+    {
+      "State ID": 51,
+      "State": "Mato Grosso",
+      "Year": 2024,
+      "Enrollments": 189869.0
+    },
+    {
+      "State ID": 52,
+      "State": "Goiás",
+      "Year": 2018,
+      "Enrollments": 255813.0
+    },
+    {
+      "State ID": 52,
+      "State": "Goiás",
+      "Year": 2019,
+      "Enrollments": 265522.0
+    },
+    {
+      "State ID": 52,
+      "State": "Goiás",
+      "Year": 2020,
+      "Enrollments": 261262.0
+    },
+    {
+      "State ID": 52,
+      "State": "Goiás",
+      "Year": 2021,
+      "Enrollments": 280974.0
+    },
+    {
+      "State ID": 52,
+      "State": "Goiás",
+      "Year": 2022,
+      "Enrollments": 290085.0
+    },
+    {
+      "State ID": 52,
+      "State": "Goiás",
+      "Year": 2023,
+      "Enrollments": 307764.0
+    },
+    {
+      "State ID": 52,
+      "State": "Goiás",
+      "Year": 2024,
+      "Enrollments": 312645.0
+    },
+    {
+      "State ID": 53,
+      "State": "Distrito Federal",
+      "Year": 2018,
+      "Enrollments": 221535.0
+    },
+    {
+      "State ID": 53,
+      "State": "Distrito Federal",
+      "Year": 2019,
+      "Enrollments": 224454.0
+    },
+    {
+      "State ID": 53,
+      "State": "Distrito Federal",
+      "Year": 2020,
+      "Enrollments": 219029.0
+    },
+    {
+      "State ID": 53,
+      "State": "Distrito Federal",
+      "Year": 2021,
+      "Enrollments": 221481.0
+    },
+    {
+      "State ID": 53,
+      "State": "Distrito Federal",
+      "Year": 2022,
+      "Enrollments": 228479.0
+    },
+    {
+      "State ID": 53,
+      "State": "Distrito Federal",
+      "Year": 2023,
+      "Enrollments": 234605.0
+    },
+    {
+      "State ID": 53,
+      "State": "Distrito Federal",
+      "Year": 2024,
+      "Enrollments": 248333.0
+    },
+    {
+      "State ID": 99,
+      "State": "Não informado",
+      "Year": 2018,
+      "Enrollments": 1234.0
+    },
+    {
+      "State ID": 99,
+      "State": "Não informado",
+      "Year": 2019,
+      "Enrollments": 1859.0
+    },
+    {
+      "State ID": 99,
+      "State": "Não informado",
+      "Year": 2020,
+      "Enrollments": 2354.0
+    },
+    {
+      "State ID": 99,
+      "State": "Não informado",
+      "Year": 2021,
+      "Enrollments": 2724.0
+    },
+    {
+      "State ID": 99,
+      "State": "Não informado",
+      "Year": 2022,
+      "Enrollments": 2826.0
+    },
+    {
+      "State ID": 99,
+      "State": "Não informado",
+      "Year": 2023,
+      "Enrollments": 2782.0
+    },
+    {
+      "State ID": 99,
+      "State": "Não informado",
+      "Year": 2024,
+      "Enrollments": 2580.0
+    }
+  ],
+  "populacoes": {
+    "2018": {
+      "11": 1757589.0,
+      "12": 869265.0,
+      "13": 4080611.0,
+      "14": 576568.0,
+      "15": 8513497.0,
+      "16": 829494.0,
+      "17": 1555229.0,
+      "21": 7035055.0,
+      "22": 3264531.0,
+      "23": 9075649.0,
+      "24": 3479010.0,
+      "25": 3996496.0,
+      "26": 9496294.0,
+      "27": 3322820.0,
+      "28": 2278308.0,
+      "29": 14812617.0,
+      "31": 21040662.0,
+      "32": 3972388.0,
+      "33": 17159960.0,
+      "35": 45538936.0,
+      "41": 11348937.0,
+      "42": 7075494.0,
+      "43": 11329605.0,
+      "50": 2748023.0,
+      "51": 3441998.0,
+      "52": 6921161.0,
+      "53": 2974703.0
+    },
+    "2019": {
+      "11": 1777225.0,
+      "12": 881935.0,
+      "13": 4144597.0,
+      "14": 605761.0,
+      "15": 8602865.0,
+      "16": 845731.0,
+      "17": 1572866.0,
+      "21": 7075181.0,
+      "22": 3273227.0,
+      "23": 9132078.0,
+      "24": 3506853.0,
+      "25": 4018127.0,
+      "26": 9557071.0,
+      "27": 3337357.0,
+      "28": 2298696.0,
+      "29": 14873064.0,
+      "31": 21168791.0,
+      "32": 4018650.0,
+      "33": 17264943.0,
+      "35": 45919049.0,
+      "41": 11433957.0,
+      "42": 7164788.0,
+      "43": 11377239.0,
+      "50": 2778986.0,
+      "51": 3484466.0,
+      "52": 7018354.0,
+      "53": 3015268.0
+    },
+    "2020": {
+      "11": 1796460.0,
+      "12": 894470.0,
+      "13": 4207714.0,
+      "14": 631181.0,
+      "15": 8690745.0,
+      "16": 861773.0,
+      "17": 1590248.0,
+      "21": 7114598.0,
+      "22": 3281480.0,
+      "23": 9187103.0,
+      "24": 3534165.0,
+      "25": 4039277.0,
+      "26": 9616621.0,
+      "27": 3351543.0,
+      "28": 2318822.0,
+      "29": 14930634.0,
+      "31": 21292666.0,
+      "32": 4064052.0,
+      "33": 17366189.0,
+      "35": 46289333.0,
+      "41": 11516840.0,
+      "42": 7252502.0,
+      "43": 11422973.0,
+      "50": 2809394.0,
+      "51": 3526220.0,
+      "52": 7113540.0,
+      "53": 3055149.0
+    },
+    "2021": {
+      "11": 1815278.0,
+      "12": 906876.0,
+      "13": 4269995.0,
+      "14": 652713.0,
+      "15": 8777124.0,
+      "16": 877613.0,
+      "17": 1607363.0,
+      "21": 7153262.0,
+      "22": 3289290.0,
+      "23": 9240580.0,
+      "24": 3560903.0,
+      "25": 4059905.0,
+      "26": 9674793.0,
+      "27": 3365351.0,
+      "28": 2338474.0,
+      "29": 14985284.0,
+      "31": 21411923.0,
+      "32": 4108508.0,
+      "33": 17463349.0,
+      "35": 46649132.0,
+      "41": 11597484.0,
+      "42": 7338473.0,
+      "43": 11466630.0,
+      "50": 2839188.0,
+      "51": 3567234.0,
+      "52": 7206589.0,
+      "53": 3094325.0
+    },
+    "2022": {
+      "11": 0.0,
+      "12": 0.0,
+      "13": 0.0,
+      "14": 0.0,
+      "15": 0.0,
+      "16": 0.0,
+      "17": 0.0,
+      "21": 0.0,
+      "22": 0.0,
+      "23": 0.0,
+      "24": 0.0,
+      "25": 0.0,
+      "26": 0.0,
+      "27": 0.0,
+      "28": 0.0,
+      "29": 0.0,
+      "31": 0.0,
+      "32": 0.0,
+      "33": 0.0,
+      "35": 0.0,
+      "41": 0.0,
+      "42": 0.0,
+      "43": 0.0,
+      "50": 0.0,
+      "51": 0.0,
+      "52": 0.0,
+      "53": 0.0
+    },
+    "2023": {
+      "11": 0.0,
+      "12": 0.0,
+      "13": 0.0,
+      "14": 0.0,
+      "15": 0.0,
+      "16": 0.0,
+      "17": 0.0,
+      "21": 0.0,
+      "22": 0.0,
+      "23": 0.0,
+      "24": 0.0,
+      "25": 0.0,
+      "26": 0.0,
+      "27": 0.0,
+      "28": 0.0,
+      "29": 0.0,
+      "31": 0.0,
+      "32": 0.0,
+      "33": 0.0,
+      "35": 0.0,
+      "41": 0.0,
+      "42": 0.0,
+      "43": 0.0,
+      "50": 0.0,
+      "51": 0.0,
+      "52": 0.0,
+      "53": 0.0
+    },
+    "2024": {
+      "11": 1746227.0,
+      "12": 880631.0,
+      "13": 4281209.0,
+      "14": 716793.0,
+      "15": 8664306.0,
+      "16": 802837.0,
+      "17": 1577342.0,
+      "21": 7010960.0,
+      "22": 3375646.0,
+      "23": 9233656.0,
+      "24": 3446071.0,
+      "25": 4145040.0,
+      "26": 9539029.0,
+      "27": 3220104.0,
+      "28": 2291077.0,
+      "29": 14850513.0,
+      "31": 21322691.0,
+      "32": 4102129.0,
+      "33": 17219679.0,
+      "35": 45973194.0,
+      "41": 11824665.0,
+      "42": 8058441.0,
+      "43": 11229915.0,
+      "50": 2901895.0,
+      "51": 3836399.0,
+      "52": 7350483.0,
+      "53": 2982818.0
+    }
+  }
+}

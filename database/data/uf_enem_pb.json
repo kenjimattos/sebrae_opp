@@ -1,0 +1,2162 @@
+[
+  {
+    "State ID": 11,
+    "State": "Rondônia",
+    "Year": 2017,
+    "Languages": 492.9720005720421,
+    "Math": 494.21204074399486,
+    "Natural Sciences": 498.0921180150413,
+    "Social Sciences": 500.94880569869673,
+    "Students": 80433.0
+  },
+  {
+    "State ID": 11,
+    "State": "Rondônia",
+    "Year": 2018,
+    "Languages": 506.4423650569986,
+    "Math": 508.38177849260506,
+    "Natural Sciences": 475.75031128786725,
+    "Social Sciences": 547.6604790377249,
+    "Students": 62266.0
+  },
+  {
+    "State ID": 11,
+    "State": "Rondônia",
+    "Year": 2019,
+    "Languages": 503.70200376136864,
+    "Math": 494.72362634218695,
+    "Natural Sciences": 459.22302630456994,
+    "Social Sciences": 487.2159059156413,
+    "Students": 58885.0
+  },
+  {
+    "State ID": 11,
+    "State": "Rondônia",
+    "Year": 2020,
+    "Languages": 179.51334309078453,
+    "Math": 162.04358564630564,
+    "Natural Sciences": 156.93346840928922,
+    "Social Sciences": 174.24959765813384,
+    "Students": 69594.0
+  },
+  {
+    "State ID": 11,
+    "State": "Rondônia",
+    "Year": 2021,
+    "Languages": 301.50200902814925,
+    "Math": 290.05142211634944,
+    "Natural Sciences": 272.4083443165974,
+    "Social Sciences": 311.9372884238015,
+    "Students": 32801.0
+  },
+  {
+    "State ID": 11,
+    "State": "Rondônia",
+    "Year": 2022,
+    "Languages": 329.97459722104446,
+    "Math": 317.1973004268188,
+    "Natural Sciences": 296.2249429510586,
+    "Social Sciences": 336.87248585807276,
+    "Students": 31969.0
+  },
+  {
+    "State ID": 11,
+    "State": "Rondônia",
+    "Year": 2023,
+    "Languages": 337.97826456418943,
+    "Math": 322.4268744276197,
+    "Natural Sciences": 308.28920862498603,
+    "Social Sciences": 340.45068259027227,
+    "Students": 36038.0
+  },
+  {
+    "State ID": 11,
+    "State": "Rondônia",
+    "Year": 2024,
+    "Languages": 358.04391211932807,
+    "Math": 331.2004325202939,
+    "Natural Sciences": 319.16051690028684,
+    "Social Sciences": 346.23403348435875,
+    "Students": 38609.0
+  },
+  {
+    "State ID": 12,
+    "State": "Acre",
+    "Year": 2017,
+    "Languages": 485.7233944224791,
+    "Math": 480.0625411461079,
+    "Natural Sciences": 487.6360897196206,
+    "Social Sciences": 488.0997607766747,
+    "Students": 53659.0
+  },
+  {
+    "State ID": 12,
+    "State": "Acre",
+    "Year": 2018,
+    "Languages": 503.4705302846708,
+    "Math": 498.3019154660615,
+    "Natural Sciences": 467.92274332439763,
+    "Social Sciences": 540.3836927127418,
+    "Students": 37785.0
+  },
+  {
+    "State ID": 12,
+    "State": "Acre",
+    "Year": 2019,
+    "Languages": 499.9916427309081,
+    "Math": 482.29739206792345,
+    "Natural Sciences": 451.29046243033457,
+    "Social Sciences": 480.99524639187274,
+    "Students": 38229.0
+  },
+  {
+    "State ID": 12,
+    "State": "Acre",
+    "Year": 2020,
+    "Languages": 241.6038828976025,
+    "Math": 210.55932724959266,
+    "Natural Sciences": 206.8088968564466,
+    "Social Sciences": 231.69177987508036,
+    "Students": 41824.0
+  },
+  {
+    "State ID": 12,
+    "State": "Acre",
+    "Year": 2021,
+    "Languages": 326.6565351373656,
+    "Math": 311.0164585398652,
+    "Natural Sciences": 294.5816483471358,
+    "Social Sciences": 336.80657956283176,
+    "Students": 20336.0
+  },
+  {
+    "State ID": 12,
+    "State": "Acre",
+    "Year": 2022,
+    "Languages": 338.9750143780043,
+    "Math": 319.6477235579964,
+    "Natural Sciences": 302.27347463527866,
+    "Social Sciences": 344.31841965400196,
+    "Students": 22601.0
+  },
+  {
+    "State ID": 12,
+    "State": "Acre",
+    "Year": 2023,
+    "Languages": 334.919638210126,
+    "Math": 306.5137719026044,
+    "Natural Sciences": 295.31710470702,
+    "Social Sciences": 335.2766869896924,
+    "Students": 24274.0
+  },
+  {
+    "State ID": 12,
+    "State": "Acre",
+    "Year": 2024,
+    "Languages": 348.14900844110855,
+    "Math": 313.71668545304016,
+    "Natural Sciences": 304.62409554024447,
+    "Social Sciences": 335.98011648470873,
+    "Students": 26424.0
+  },
+  {
+    "State ID": 13,
+    "State": "Amazonas",
+    "Year": 2017,
+    "Languages": 489.0408226470289,
+    "Math": 483.5704653063267,
+    "Natural Sciences": 490.31639415093764,
+    "Social Sciences": 491.42493097689555,
+    "Students": 165171.0
+  },
+  {
+    "State ID": 13,
+    "State": "Amazonas",
+    "Year": 2018,
+    "Languages": 502.8778289873533,
+    "Math": 502.94811313359696,
+    "Natural Sciences": 470.7161860669704,
+    "Social Sciences": 541.4504416059735,
+    "Students": 123755.0
+  },
+  {
+    "State ID": 13,
+    "State": "Amazonas",
+    "Year": 2019,
+    "Languages": 499.32270435412687,
+    "Math": 481.22529874918155,
+    "Natural Sciences": 450.881955682586,
+    "Social Sciences": 481.3541405076331,
+    "Students": 118087.0
+  },
+  {
+    "State ID": 13,
+    "State": "Amazonas",
+    "Year": 2020,
+    "Languages": 155.96519704755727,
+    "Math": 148.95058989205347,
+    "Natural Sciences": 144.36002960845585,
+    "Social Sciences": 155.54753161344425,
+    "Students": 163426.0
+  },
+  {
+    "State ID": 13,
+    "State": "Amazonas",
+    "Year": 2021,
+    "Languages": 260.06651070517944,
+    "Math": 242.86540802551949,
+    "Natural Sciences": 229.93744793132413,
+    "Social Sciences": 267.4693722427376,
+    "Students": 89778.0
+  },
+  {
+    "State ID": 13,
+    "State": "Amazonas",
+    "Year": 2022,
+    "Languages": 276.8760859876841,
+    "Math": 254.55430443291075,
+    "Natural Sciences": 243.1752117557265,
+    "Social Sciences": 282.0936050857809,
+    "Students": 80986.0
+  },
+  {
+    "State ID": 13,
+    "State": "Amazonas",
+    "Year": 2023,
+    "Languages": 277.5765423060972,
+    "Math": 254.58106134864556,
+    "Natural Sciences": 247.54324880648667,
+    "Social Sciences": 277.4189751479027,
+    "Students": 92916.0
+  },
+  {
+    "State ID": 13,
+    "State": "Amazonas",
+    "Year": 2024,
+    "Languages": 301.2190024703006,
+    "Math": 267.20254908803054,
+    "Natural Sciences": 260.6403258840829,
+    "Social Sciences": 289.82926590383755,
+    "Students": 96898.0
+  },
+  {
+    "State ID": 14,
+    "State": "Roraima",
+    "Year": 2017,
+    "Languages": 492.4816769285972,
+    "Math": 492.22551432059805,
+    "Natural Sciences": 500.62269934887667,
+    "Social Sciences": 500.78246113084117,
+    "Students": 20215.0
+  },
+  {
+    "State ID": 14,
+    "State": "Roraima",
+    "Year": 2018,
+    "Languages": 512.0384193469199,
+    "Math": 514.8828623555479,
+    "Natural Sciences": 484.18597033707323,
+    "Social Sciences": 550.5513191802515,
+    "Students": 14029.0
+  },
+  {
+    "State ID": 14,
+    "State": "Roraima",
+    "Year": 2019,
+    "Languages": 507.88539442181116,
+    "Math": 498.3558183065064,
+    "Natural Sciences": 467.3139461304015,
+    "Social Sciences": 494.9909954114728,
+    "Students": 12947.0
+  },
+  {
+    "State ID": 14,
+    "State": "Roraima",
+    "Year": 2020,
+    "Languages": 207.71551083877378,
+    "Math": 181.9901568854741,
+    "Natural Sciences": 177.003973905582,
+    "Social Sciences": 201.99022800399243,
+    "Students": 16885.0
+  },
+  {
+    "State ID": 14,
+    "State": "Roraima",
+    "Year": 2021,
+    "Languages": 321.0855139398054,
+    "Math": 308.248808087043,
+    "Natural Sciences": 292.8072366686066,
+    "Social Sciences": 331.17159890228845,
+    "Students": 8056.0
+  },
+  {
+    "State ID": 14,
+    "State": "Roraima",
+    "Year": 2022,
+    "Languages": 326.03884274014825,
+    "Math": 306.4133981872515,
+    "Natural Sciences": 288.4060471055065,
+    "Social Sciences": 332.2688759868677,
+    "Students": 8434.0
+  },
+  {
+    "State ID": 14,
+    "State": "Roraima",
+    "Year": 2023,
+    "Languages": 351.1520489841987,
+    "Math": 330.52764824191394,
+    "Natural Sciences": 314.2863679457062,
+    "Social Sciences": 354.07088920909075,
+    "Students": 9639.0
+  },
+  {
+    "State ID": 14,
+    "State": "Roraima",
+    "Year": 2024,
+    "Languages": 364.17742409091994,
+    "Math": 329.0272627143514,
+    "Natural Sciences": 321.0162741722296,
+    "Social Sciences": 354.24575030644985,
+    "Students": 12695.0
+  },
+  {
+    "State ID": 15,
+    "State": "Pará",
+    "Year": 2017,
+    "Languages": 489.7422210246756,
+    "Math": 486.2044876948322,
+    "Natural Sciences": 495.8392922096469,
+    "Social Sciences": 500.8364676861938,
+    "Students": 356845.0
+  },
+  {
+    "State ID": 15,
+    "State": "Pará",
+    "Year": 2018,
+    "Languages": 504.10930597061673,
+    "Math": 506.19963249522164,
+    "Natural Sciences": 475.09560932473505,
+    "Social Sciences": 549.0132750094922,
+    "Students": 283861.0
+  },
+  {
+    "State ID": 15,
+    "State": "Pará",
+    "Year": 2019,
+    "Languages": 498.196950133197,
+    "Math": 484.9973301558808,
+    "Natural Sciences": 457.2058273267045,
+    "Social Sciences": 485.5804608346657,
+    "Students": 281518.0
+  },
+  {
+    "State ID": 15,
+    "State": "Pará",
+    "Year": 2020,
+    "Languages": 246.76754501684533,
+    "Math": 222.684228279293,
+    "Natural Sciences": 217.8594518159251,
+    "Social Sciences": 239.77174135681625,
+    "Students": 330883.0
+  },
+  {
+    "State ID": 15,
+    "State": "Pará",
+    "Year": 2021,
+    "Languages": 324.1524911860453,
+    "Math": 318.48371739294134,
+    "Natural Sciences": 302.2132682008137,
+    "Social Sciences": 339.2941842696099,
+    "Students": 185978.0
+  },
+  {
+    "State ID": 15,
+    "State": "Pará",
+    "Year": 2022,
+    "Languages": 345.459657709159,
+    "Math": 332.60070428945176,
+    "Natural Sciences": 316.1524254268177,
+    "Social Sciences": 356.5310234345335,
+    "Students": 202621.0
+  },
+  {
+    "State ID": 15,
+    "State": "Pará",
+    "Year": 2023,
+    "Languages": 346.9428657404361,
+    "Math": 325.1599510454484,
+    "Natural Sciences": 317.03481336424454,
+    "Social Sciences": 351.4865850543709,
+    "Students": 229162.0
+  },
+  {
+    "State ID": 15,
+    "State": "Pará",
+    "Year": 2024,
+    "Languages": 370.94774230356427,
+    "Math": 342.2160351831382,
+    "Natural Sciences": 331.4230971166764,
+    "Social Sciences": 359.2654858643453,
+    "Students": 248061.0
+  },
+  {
+    "State ID": 16,
+    "State": "Amapá",
+    "Year": 2017,
+    "Languages": 487.57357176081507,
+    "Math": 479.1058198742762,
+    "Natural Sciences": 487.855674955206,
+    "Social Sciences": 495.4847242308582,
+    "Students": 50852.0
+  },
+  {
+    "State ID": 16,
+    "State": "Amapá",
+    "Year": 2018,
+    "Languages": 501.63519351360145,
+    "Math": 499.61691629714164,
+    "Natural Sciences": 468.99476696323154,
+    "Social Sciences": 543.2976057525847,
+    "Students": 40109.0
+  },
+  {
+    "State ID": 16,
+    "State": "Amapá",
+    "Year": 2019,
+    "Languages": 495.66248900387177,
+    "Math": 473.5320072284227,
+    "Natural Sciences": 450.2672869541784,
+    "Social Sciences": 482.029298454646,
+    "Students": 42140.0
+  },
+  {
+    "State ID": 16,
+    "State": "Amapá",
+    "Year": 2020,
+    "Languages": 222.85964913260574,
+    "Math": 194.32462391777565,
+    "Natural Sciences": 192.17542682303306,
+    "Social Sciences": 216.6289423309036,
+    "Students": 47263.0
+  },
+  {
+    "State ID": 16,
+    "State": "Amapá",
+    "Year": 2021,
+    "Languages": 307.8663221274984,
+    "Math": 294.52189767837,
+    "Natural Sciences": 280.3326353057528,
+    "Social Sciences": 322.06192710093694,
+    "Students": 21774.0
+  },
+  {
+    "State ID": 16,
+    "State": "Amapá",
+    "Year": 2022,
+    "Languages": 335.2209490395585,
+    "Math": 311.7717738168795,
+    "Natural Sciences": 298.73866982757386,
+    "Social Sciences": 344.43733354904793,
+    "Students": 22674.0
+  },
+  {
+    "State ID": 16,
+    "State": "Amapá",
+    "Year": 2023,
+    "Languages": 336.5434477182348,
+    "Math": 305.02339011814144,
+    "Natural Sciences": 300.0076856645934,
+    "Social Sciences": 339.338358625467,
+    "Students": 28807.0
+  },
+  {
+    "State ID": 16,
+    "State": "Amapá",
+    "Year": 2024,
+    "Languages": 353.57342579379554,
+    "Math": 314.05782376810544,
+    "Natural Sciences": 309.47289393862155,
+    "Social Sciences": 342.217833653212,
+    "Students": 30650.0
+  },
+  {
+    "State ID": 17,
+    "State": "Tocantins",
+    "Year": 2017,
+    "Languages": 488.40327982358457,
+    "Math": 492.49520821958805,
+    "Natural Sciences": 494.3725095288106,
+    "Social Sciences": 496.33157672659104,
+    "Students": 68397.0
+  },
+  {
+    "State ID": 17,
+    "State": "Tocantins",
+    "Year": 2018,
+    "Languages": 499.46891212342786,
+    "Math": 507.080702912376,
+    "Natural Sciences": 475.71752812610146,
+    "Social Sciences": 538.4545231788494,
+    "Students": 55145.0
+  },
+  {
+    "State ID": 17,
+    "State": "Tocantins",
+    "Year": 2019,
+    "Languages": 500.6782386943881,
+    "Math": 494.93365702122605,
+    "Natural Sciences": 458.52845852720054,
+    "Social Sciences": 481.5421052312716,
+    "Students": 47181.0
+  },
+  {
+    "State ID": 17,
+    "State": "Tocantins",
+    "Year": 2020,
+    "Languages": 224.47093514446294,
+    "Math": 205.28127652770206,
+    "Natural Sciences": 197.0681365924017,
+    "Social Sciences": 216.94253070490282,
+    "Students": 59209.0
+  },
+  {
+    "State ID": 17,
+    "State": "Tocantins",
+    "Year": 2021,
+    "Languages": 328.0674019446778,
+    "Math": 326.04063425362796,
+    "Natural Sciences": 304.37908205054526,
+    "Social Sciences": 338.8758300083378,
+    "Students": 30873.0
+  },
+  {
+    "State ID": 17,
+    "State": "Tocantins",
+    "Year": 2022,
+    "Languages": 342.8129177611807,
+    "Math": 336.6649525538735,
+    "Natural Sciences": 313.7033050008442,
+    "Social Sciences": 350.88554008318033,
+    "Students": 29440.0
+  },
+  {
+    "State ID": 17,
+    "State": "Tocantins",
+    "Year": 2023,
+    "Languages": 353.52390406959023,
+    "Math": 335.0804157045399,
+    "Natural Sciences": 319.1790514510986,
+    "Social Sciences": 355.45433194130464,
+    "Students": 32618.0
+  },
+  {
+    "State ID": 17,
+    "State": "Tocantins",
+    "Year": 2024,
+    "Languages": 365.2986912929058,
+    "Math": 336.7268739146596,
+    "Natural Sciences": 319.5553461474257,
+    "Social Sciences": 350.94215520609544,
+    "Students": 34539.0
+  },
+  {
+    "State ID": 21,
+    "State": "Maranhão",
+    "Year": 2017,
+    "Languages": 485.2570138944332,
+    "Math": 483.8664281565985,
+    "Natural Sciences": 490.06117189115287,
+    "Social Sciences": 491.61105917556335,
+    "Students": 287971.0
+  },
+  {
+    "State ID": 21,
+    "State": "Maranhão",
+    "Year": 2018,
+    "Languages": 500.00099503397917,
+    "Math": 500.8753404695606,
+    "Natural Sciences": 470.643386508129,
+    "Social Sciences": 541.9170646452582,
+    "Students": 218462.0
+  },
+  {
+    "State ID": 21,
+    "State": "Maranhão",
+    "Year": 2019,
+    "Languages": 494.85455250891874,
+    "Math": 483.6859134610844,
+    "Natural Sciences": 450.88258625338074,
+    "Social Sciences": 477.66661167902237,
+    "Students": 219673.0
+  },
+  {
+    "State ID": 21,
+    "State": "Maranhão",
+    "Year": 2020,
+    "Languages": 249.75678841951807,
+    "Math": 226.61962000810743,
+    "Natural Sciences": 220.4867126709218,
+    "Social Sciences": 241.25261252495733,
+    "Students": 238272.0
+  },
+  {
+    "State ID": 21,
+    "State": "Maranhão",
+    "Year": 2021,
+    "Languages": 332.5181205028058,
+    "Math": 330.56817873446306,
+    "Natural Sciences": 310.4383933114631,
+    "Social Sciences": 344.1380704337925,
+    "Students": 127905.0
+  },
+  {
+    "State ID": 21,
+    "State": "Maranhão",
+    "Year": 2022,
+    "Languages": 348.32498264780554,
+    "Math": 342.1321872627492,
+    "Natural Sciences": 323.326705638499,
+    "Social Sciences": 357.2432754136842,
+    "Students": 132916.0
+  },
+  {
+    "State ID": 21,
+    "State": "Maranhão",
+    "Year": 2023,
+    "Languages": 348.2908986488673,
+    "Math": 329.2019142341066,
+    "Natural Sciences": 318.14337940069237,
+    "Social Sciences": 350.7131349849017,
+    "Students": 165756.0
+  },
+  {
+    "State ID": 21,
+    "State": "Maranhão",
+    "Year": 2024,
+    "Languages": 369.4785258209049,
+    "Math": 345.7196160657375,
+    "Natural Sciences": 330.39442215630925,
+    "Social Sciences": 355.9014605450126,
+    "Students": 178833.0
+  },
+  {
+    "State ID": 22,
+    "State": "Piauí",
+    "Year": 2017,
+    "Languages": 489.23309670609154,
+    "Math": 496.1451424373793,
+    "Natural Sciences": 495.5126699931186,
+    "Social Sciences": 498.46450239101813,
+    "Students": 147553.0
+  },
+  {
+    "State ID": 22,
+    "State": "Piauí",
+    "Year": 2018,
+    "Languages": 504.45457354619066,
+    "Math": 512.5798176987894,
+    "Natural Sciences": 475.72393826604286,
+    "Social Sciences": 546.2222944763647,
+    "Students": 118350.0
+  },
+  {
+    "State ID": 22,
+    "State": "Piauí",
+    "Year": 2019,
+    "Languages": 500.2824634617716,
+    "Math": 499.2100135611825,
+    "Natural Sciences": 459.24782606225585,
+    "Social Sciences": 484.99835816734605,
+    "Students": 121181.0
+  },
+  {
+    "State ID": 22,
+    "State": "Piauí",
+    "Year": 2020,
+    "Languages": 262.18344787322116,
+    "Math": 248.101968399107,
+    "Natural Sciences": 237.51383076771467,
+    "Social Sciences": 255.00966078645322,
+    "Students": 134678.0
+  },
+  {
+    "State ID": 22,
+    "State": "Piauí",
+    "Year": 2021,
+    "Languages": 353.9360014155296,
+    "Math": 362.8486088637057,
+    "Natural Sciences": 336.41321640111005,
+    "Social Sciences": 366.29051886649654,
+    "Students": 79969.0
+  },
+  {
+    "State ID": 22,
+    "State": "Piauí",
+    "Year": 2022,
+    "Languages": 367.9596469405477,
+    "Math": 372.2963827145834,
+    "Natural Sciences": 344.8655627907848,
+    "Social Sciences": 378.0088909503521,
+    "Students": 84400.0
+  },
+  {
+    "State ID": 22,
+    "State": "Piauí",
+    "Year": 2023,
+    "Languages": 364.879114570396,
+    "Math": 358.38577868246705,
+    "Natural Sciences": 339.6470126970375,
+    "Social Sciences": 366.83902385934755,
+    "Students": 99639.0
+  },
+  {
+    "State ID": 22,
+    "State": "Piauí",
+    "Year": 2024,
+    "Languages": 386.9367661862278,
+    "Math": 375.49913230497214,
+    "Natural Sciences": 350.9843672651053,
+    "Social Sciences": 372.63570893580794,
+    "Students": 108113.0
+  },
+  {
+    "State ID": 23,
+    "State": "Ceará",
+    "Year": 2017,
+    "Languages": 501.024637953367,
+    "Math": 513.1996427374198,
+    "Natural Sciences": 501.84421519797314,
+    "Social Sciences": 509.79433329974194,
+    "Students": 366345.0
+  },
+  {
+    "State ID": 23,
+    "State": "Ceará",
+    "Year": 2018,
+    "Languages": 516.5703988727123,
+    "Math": 529.0588376324298,
+    "Natural Sciences": 483.156834026122,
+    "Social Sciences": 557.1422987445957,
+    "Students": 329406.0
+  },
+  {
+    "State ID": 23,
+    "State": "Ceará",
+    "Year": 2019,
+    "Languages": 511.8271866148597,
+    "Math": 517.529064980721,
+    "Natural Sciences": 468.25696875595065,
+    "Social Sciences": 497.71504371968194,
+    "Students": 295870.0
+  },
+  {
+    "State ID": 23,
+    "State": "Ceará",
+    "Year": 2020,
+    "Languages": 266.1677726443878,
+    "Math": 249.88692092342654,
+    "Natural Sciences": 234.056987830293,
+    "Social Sciences": 259.15910955357396,
+    "Students": 325680.0
+  },
+  {
+    "State ID": 23,
+    "State": "Ceará",
+    "Year": 2021,
+    "Languages": 336.5609367914932,
+    "Math": 339.7624513999434,
+    "Natural Sciences": 310.84200765009757,
+    "Social Sciences": 346.20623533223755,
+    "Students": 220517.0
+  },
+  {
+    "State ID": 23,
+    "State": "Ceará",
+    "Year": 2022,
+    "Languages": 366.4059317061237,
+    "Math": 368.48835749467275,
+    "Natural Sciences": 338.1955402012492,
+    "Social Sciences": 374.67164506780244,
+    "Students": 226377.0
+  },
+  {
+    "State ID": 23,
+    "State": "Ceará",
+    "Year": 2023,
+    "Languages": 378.68943378954884,
+    "Math": 377.9533704481789,
+    "Natural Sciences": 348.7413981936671,
+    "Social Sciences": 380.3800805827018,
+    "Students": 241960.0
+  },
+  {
+    "State ID": 23,
+    "State": "Ceará",
+    "Year": 2024,
+    "Languages": 402.85557272776657,
+    "Math": 397.2813516763476,
+    "Natural Sciences": 365.2838731161813,
+    "Social Sciences": 391.39533375647034,
+    "Students": 250607.0
+  },
+  {
+    "State ID": 24,
+    "State": "Rio Grande do Norte",
+    "Year": 2017,
+    "Languages": 503.54591157913455,
+    "Math": 510.2808162649043,
+    "Natural Sciences": 506.9462846131453,
+    "Social Sciences": 510.52359865076323,
+    "Students": 159076.0
+  },
+  {
+    "State ID": 24,
+    "State": "Rio Grande do Norte",
+    "Year": 2018,
+    "Languages": 521.0593156682169,
+    "Math": 531.8563096555785,
+    "Natural Sciences": 487.64595830278284,
+    "Social Sciences": 562.5124975488819,
+    "Students": 124039.0
+  },
+  {
+    "State ID": 24,
+    "State": "Rio Grande do Norte",
+    "Year": 2019,
+    "Languages": 517.2902203207265,
+    "Math": 518.5071524705404,
+    "Natural Sciences": 475.5849198311383,
+    "Social Sciences": 502.9475212444091,
+    "Students": 119179.0
+  },
+  {
+    "State ID": 24,
+    "State": "Rio Grande do Norte",
+    "Year": 2020,
+    "Languages": 275.0013061069947,
+    "Math": 260.3261284043408,
+    "Natural Sciences": 245.9213808087236,
+    "Social Sciences": 267.3600076384062,
+    "Students": 131225.0
+  },
+  {
+    "State ID": 24,
+    "State": "Rio Grande do Norte",
+    "Year": 2021,
+    "Languages": 365.40567184331184,
+    "Math": 370.328887541841,
+    "Natural Sciences": 342.76527716304605,
+    "Social Sciences": 379.7634965552519,
+    "Students": 80820.0
+  },
+  {
+    "State ID": 24,
+    "State": "Rio Grande do Norte",
+    "Year": 2022,
+    "Languages": 381.2172927238635,
+    "Math": 377.63524860850464,
+    "Natural Sciences": 350.2306863110896,
+    "Social Sciences": 387.9162159816745,
+    "Students": 88049.0
+  },
+  {
+    "State ID": 24,
+    "State": "Rio Grande do Norte",
+    "Year": 2023,
+    "Languages": 386.0409150969352,
+    "Math": 381.0647985185528,
+    "Natural Sciences": 357.897605966149,
+    "Social Sciences": 390.5636436915896,
+    "Students": 100706.0
+  },
+  {
+    "State ID": 24,
+    "State": "Rio Grande do Norte",
+    "Year": 2024,
+    "Languages": 403.271225303557,
+    "Math": 386.1867680501525,
+    "Natural Sciences": 365.2974024762521,
+    "Social Sciences": 393.43304704780803,
+    "Students": 102215.0
+  },
+  {
+    "State ID": 25,
+    "State": "Paraíba",
+    "Year": 2017,
+    "Languages": 499.0456002231203,
+    "Math": 505.2252255483377,
+    "Natural Sciences": 500.71642868834385,
+    "Social Sciences": 506.6147792390457,
+    "Students": 189876.0
+  },
+  {
+    "State ID": 25,
+    "State": "Paraíba",
+    "Year": 2018,
+    "Languages": 513.3663255463848,
+    "Math": 523.5352672180073,
+    "Natural Sciences": 482.18012709249837,
+    "Social Sciences": 557.1835495431512,
+    "Students": 152049.0
+  },
+  {
+    "State ID": 25,
+    "State": "Paraíba",
+    "Year": 2019,
+    "Languages": 510.04816275165655,
+    "Math": 509.8056357227071,
+    "Natural Sciences": 467.78114065071026,
+    "Social Sciences": 495.90769126892667,
+    "Students": 147780.0
+  },
+  {
+    "State ID": 25,
+    "State": "Paraíba",
+    "Year": 2020,
+    "Languages": 277.9409207865826,
+    "Math": 261.72504834639994,
+    "Natural Sciences": 249.24491195856768,
+    "Social Sciences": 270.3093425734661,
+    "Students": 164965.0
+  },
+  {
+    "State ID": 25,
+    "State": "Paraíba",
+    "Year": 2021,
+    "Languages": 352.9535685897315,
+    "Math": 360.5236749974974,
+    "Natural Sciences": 333.4489068673645,
+    "Social Sciences": 366.4353129967566,
+    "Students": 102002.0
+  },
+  {
+    "State ID": 25,
+    "State": "Paraíba",
+    "Year": 2022,
+    "Languages": 373.35367498104256,
+    "Math": 372.0313683823555,
+    "Natural Sciences": 345.4924301058484,
+    "Social Sciences": 381.2397440996046,
+    "Students": 103238.0
+  },
+  {
+    "State ID": 25,
+    "State": "Paraíba",
+    "Year": 2023,
+    "Languages": 369.8934383159949,
+    "Math": 362.9361405272014,
+    "Natural Sciences": 342.8206134924238,
+    "Social Sciences": 373.0949040684266,
+    "Students": 124511.0
+  },
+  {
+    "State ID": 25,
+    "State": "Paraíba",
+    "Year": 2024,
+    "Languages": 390.67362736935263,
+    "Math": 375.58259764681077,
+    "Natural Sciences": 353.75278576255045,
+    "Social Sciences": 380.30244885832604,
+    "Students": 128546.0
+  },
+  {
+    "State ID": 26,
+    "State": "Pernambuco",
+    "Year": 2017,
+    "Languages": 502.1332498932816,
+    "Math": 509.7639005378567,
+    "Natural Sciences": 500.936180421274,
+    "Social Sciences": 506.68267578353397,
+    "Students": 367435.0
+  },
+  {
+    "State ID": 26,
+    "State": "Pernambuco",
+    "Year": 2018,
+    "Languages": 516.1682436659305,
+    "Math": 528.5855816191777,
+    "Natural Sciences": 484.1223425079648,
+    "Social Sciences": 557.3144999606965,
+    "Students": 304302.0
+  },
+  {
+    "State ID": 26,
+    "State": "Pernambuco",
+    "Year": 2019,
+    "Languages": 514.1039853711138,
+    "Math": 517.5818177239526,
+    "Natural Sciences": 470.5602415194845,
+    "Social Sciences": 498.54607409558554,
+    "Students": 271727.0
+  },
+  {
+    "State ID": 26,
+    "State": "Pernambuco",
+    "Year": 2020,
+    "Languages": 265.07044481955904,
+    "Math": 248.48649388480146,
+    "Natural Sciences": 234.55795690945936,
+    "Social Sciences": 255.52859404057986,
+    "Students": 315569.0
+  },
+  {
+    "State ID": 26,
+    "State": "Pernambuco",
+    "Year": 2021,
+    "Languages": 352.0454233617352,
+    "Math": 357.2756052883329,
+    "Natural Sciences": 327.7358048718563,
+    "Social Sciences": 361.65290623579665,
+    "Students": 193616.0
+  },
+  {
+    "State ID": 26,
+    "State": "Pernambuco",
+    "Year": 2022,
+    "Languages": 370.1964450421805,
+    "Math": 370.218849639301,
+    "Natural Sciences": 338.78164190126716,
+    "Social Sciences": 376.00756293882085,
+    "Students": 189595.0
+  },
+  {
+    "State ID": 26,
+    "State": "Pernambuco",
+    "Year": 2023,
+    "Languages": 371.5261528927733,
+    "Math": 368.79293928114595,
+    "Natural Sciences": 341.58555555373914,
+    "Social Sciences": 373.3445615233639,
+    "Students": 218859.0
+  },
+  {
+    "State ID": 26,
+    "State": "Pernambuco",
+    "Year": 2024,
+    "Languages": 392.6450463779596,
+    "Math": 378.72377754492214,
+    "Natural Sciences": 351.4752633572658,
+    "Social Sciences": 379.7642282555998,
+    "Students": 237615.0
+  },
+  {
+    "State ID": 27,
+    "State": "Alagoas",
+    "Year": 2017,
+    "Languages": 489.70816752669555,
+    "Math": 492.1643686709476,
+    "Natural Sciences": 492.0439838130669,
+    "Social Sciences": 495.1376190894173,
+    "Students": 121049.0
+  },
+  {
+    "State ID": 27,
+    "State": "Alagoas",
+    "Year": 2018,
+    "Languages": 506.39235889686137,
+    "Math": 516.08698838498,
+    "Natural Sciences": 476.6647193137462,
+    "Social Sciences": 548.213113743701,
+    "Students": 89670.0
+  },
+  {
+    "State ID": 27,
+    "State": "Alagoas",
+    "Year": 2019,
+    "Languages": 502.8063604059514,
+    "Math": 499.6834673070553,
+    "Natural Sciences": 458.54780873977563,
+    "Social Sciences": 485.4999584352084,
+    "Students": 91707.0
+  },
+  {
+    "State ID": 27,
+    "State": "Alagoas",
+    "Year": 2020,
+    "Languages": 267.622177304806,
+    "Math": 249.15464798829038,
+    "Natural Sciences": 238.5982905981736,
+    "Social Sciences": 258.40909793779105,
+    "Students": 102551.0
+  },
+  {
+    "State ID": 27,
+    "State": "Alagoas",
+    "Year": 2021,
+    "Languages": 349.45109217571064,
+    "Math": 354.2016258665819,
+    "Natural Sciences": 326.67269896598003,
+    "Social Sciences": 361.78543770540796,
+    "Students": 56584.0
+  },
+  {
+    "State ID": 27,
+    "State": "Alagoas",
+    "Year": 2022,
+    "Languages": 360.31090624841556,
+    "Math": 356.88090389739995,
+    "Natural Sciences": 330.52442883998515,
+    "Social Sciences": 367.82392052103035,
+    "Students": 63945.0
+  },
+  {
+    "State ID": 27,
+    "State": "Alagoas",
+    "Year": 2023,
+    "Languages": 348.80233082686027,
+    "Math": 338.9386612421536,
+    "Natural Sciences": 320.3716372556765,
+    "Social Sciences": 351.4988895462353,
+    "Students": 82760.0
+  },
+  {
+    "State ID": 27,
+    "State": "Alagoas",
+    "Year": 2024,
+    "Languages": 371.6546582200701,
+    "Math": 355.8828349570047,
+    "Natural Sciences": 334.5775288467874,
+    "Social Sciences": 358.7076584086133,
+    "Students": 88896.0
+  },
+  {
+    "State ID": 28,
+    "State": "Sergipe",
+    "Year": 2017,
+    "Languages": 497.5444991817784,
+    "Math": 502.1791700893052,
+    "Natural Sciences": 502.63793658269816,
+    "Social Sciences": 507.18309272312405,
+    "Students": 90271.0
+  },
+  {
+    "State ID": 28,
+    "State": "Sergipe",
+    "Year": 2018,
+    "Languages": 513.901430055239,
+    "Math": 519.7374193724326,
+    "Natural Sciences": 485.30650981619806,
+    "Social Sciences": 557.1568691497387,
+    "Students": 74633.0
+  },
+  {
+    "State ID": 28,
+    "State": "Sergipe",
+    "Year": 2019,
+    "Languages": 510.0948310513528,
+    "Math": 507.9030971298503,
+    "Natural Sciences": 468.77986508379166,
+    "Social Sciences": 496.0075529591137,
+    "Students": 75895.0
+  },
+  {
+    "State ID": 28,
+    "State": "Sergipe",
+    "Year": 2020,
+    "Languages": 270.59074654752965,
+    "Math": 252.55534830027972,
+    "Natural Sciences": 244.108168427927,
+    "Social Sciences": 263.92006920253965,
+    "Students": 88205.0
+  },
+  {
+    "State ID": 28,
+    "State": "Sergipe",
+    "Year": 2021,
+    "Languages": 355.3697188791001,
+    "Math": 360.034997007875,
+    "Natural Sciences": 335.40914190075233,
+    "Social Sciences": 368.7452246071513,
+    "Students": 53796.0
+  },
+  {
+    "State ID": 28,
+    "State": "Sergipe",
+    "Year": 2022,
+    "Languages": 380.2387656113594,
+    "Math": 376.6879286596618,
+    "Natural Sciences": 352.49200158571244,
+    "Social Sciences": 389.87112944350844,
+    "Students": 58312.0
+  },
+  {
+    "State ID": 28,
+    "State": "Sergipe",
+    "Year": 2023,
+    "Languages": 376.1914647590979,
+    "Math": 368.52128165055603,
+    "Natural Sciences": 350.9918064926469,
+    "Social Sciences": 380.4777615647,
+    "Students": 65540.0
+  },
+  {
+    "State ID": 28,
+    "State": "Sergipe",
+    "Year": 2024,
+    "Languages": 398.9493362265894,
+    "Math": 382.0982741377965,
+    "Natural Sciences": 361.9696385435001,
+    "Social Sciences": 387.3422716116579,
+    "Students": 69529.0
+  },
+  {
+    "State ID": 29,
+    "State": "Bahia",
+    "Year": 2017,
+    "Languages": 498.2167151261263,
+    "Math": 497.3648521505572,
+    "Natural Sciences": 501.5538194677355,
+    "Social Sciences": 507.60454020794583,
+    "Students": 493468.0
+  },
+  {
+    "State ID": 29,
+    "State": "Bahia",
+    "Year": 2018,
+    "Languages": 513.1082464996183,
+    "Math": 515.8861394056407,
+    "Natural Sciences": 481.68708314195146,
+    "Social Sciences": 556.3957384680513,
+    "Students": 401328.0
+  },
+  {
+    "State ID": 29,
+    "State": "Bahia",
+    "Year": 2019,
+    "Languages": 508.9582984929192,
+    "Math": 500.6490207704679,
+    "Natural Sciences": 464.7493749586595,
+    "Social Sciences": 493.3793881557069,
+    "Students": 398095.0
+  },
+  {
+    "State ID": 29,
+    "State": "Bahia",
+    "Year": 2020,
+    "Languages": 248.58578394673384,
+    "Math": 229.3845009230757,
+    "Natural Sciences": 221.33984532021788,
+    "Social Sciences": 240.44637193121716,
+    "Students": 447691.0
+  },
+  {
+    "State ID": 29,
+    "State": "Bahia",
+    "Year": 2021,
+    "Languages": 339.6506108862856,
+    "Math": 338.2747413801889,
+    "Natural Sciences": 316.161453648554,
+    "Social Sciences": 351.52709565277695,
+    "Students": 266194.0
+  },
+  {
+    "State ID": 29,
+    "State": "Bahia",
+    "Year": 2022,
+    "Languages": 368.38830880344875,
+    "Math": 360.2208073846644,
+    "Natural Sciences": 336.54802198256033,
+    "Social Sciences": 375.8684872643752,
+    "Students": 265166.0
+  },
+  {
+    "State ID": 29,
+    "State": "Bahia",
+    "Year": 2023,
+    "Languages": 358.80639255923705,
+    "Math": 345.2787123786026,
+    "Natural Sciences": 329.95048542806893,
+    "Social Sciences": 362.9931362217555,
+    "Students": 324268.0
+  },
+  {
+    "State ID": 29,
+    "State": "Bahia",
+    "Year": 2024,
+    "Languages": 367.0748971066584,
+    "Math": 342.3340845630643,
+    "Natural Sciences": 326.5124799252651,
+    "Social Sciences": 355.1497671328483,
+    "Students": 376845.0
+  },
+  {
+    "State ID": 31,
+    "State": "Minas Gerais",
+    "Year": 2017,
+    "Languages": 521.2094134712207,
+    "Math": 540.940697688209,
+    "Natural Sciences": 524.4925767583658,
+    "Social Sciences": 534.0986234439424,
+    "Students": 731308.0
+  },
+  {
+    "State ID": 31,
+    "State": "Minas Gerais",
+    "Year": 2018,
+    "Languages": 537.6735883285977,
+    "Math": 555.1883910732537,
+    "Natural Sciences": 507.8570137752333,
+    "Social Sciences": 581.1051298691314,
+    "Students": 587471.0
+  },
+  {
+    "State ID": 31,
+    "State": "Minas Gerais",
+    "Year": 2019,
+    "Languages": 531.2155500336687,
+    "Math": 546.7962076361698,
+    "Natural Sciences": 492.33336490966286,
+    "Social Sciences": 520.842738433975,
+    "Students": 538896.0
+  },
+  {
+    "State ID": 31,
+    "State": "Minas Gerais",
+    "Year": 2020,
+    "Languages": 253.480041258163,
+    "Math": 245.49279433682082,
+    "Natural Sciences": 226.52417053195057,
+    "Social Sciences": 249.90077095612853,
+    "Students": 577211.0
+  },
+  {
+    "State ID": 31,
+    "State": "Minas Gerais",
+    "Year": 2021,
+    "Languages": 367.05502166119226,
+    "Math": 377.11141634409097,
+    "Natural Sciences": 341.26048425076146,
+    "Social Sciences": 380.92388106719716,
+    "Students": 327829.0
+  },
+  {
+    "State ID": 31,
+    "State": "Minas Gerais",
+    "Year": 2022,
+    "Languages": 389.3393235915885,
+    "Math": 398.884875089834,
+    "Natural Sciences": 355.01838236018483,
+    "Social Sciences": 398.1051797746481,
+    "Students": 309781.0
+  },
+  {
+    "State ID": 31,
+    "State": "Minas Gerais",
+    "Year": 2023,
+    "Languages": 390.2562281065792,
+    "Math": 397.5948551758255,
+    "Natural Sciences": 360.48027583830975,
+    "Social Sciences": 397.2745966519593,
+    "Students": 358575.0
+  },
+  {
+    "State ID": 31,
+    "State": "Minas Gerais",
+    "Year": 2024,
+    "Languages": 400.7872542312863,
+    "Math": 392.0400117791386,
+    "Natural Sciences": 361.4859635216783,
+    "Social Sciences": 395.1266263765896,
+    "Students": 393824.0
+  },
+  {
+    "State ID": 32,
+    "State": "Espírito Santo",
+    "Year": 2017,
+    "Languages": 516.0175641528302,
+    "Math": 534.0225476178539,
+    "Natural Sciences": 521.4874504197967,
+    "Social Sciences": 529.9044650973453,
+    "Students": 137531.0
+  },
+  {
+    "State ID": 32,
+    "State": "Espírito Santo",
+    "Year": 2018,
+    "Languages": 531.9040736179578,
+    "Math": 549.9350159608472,
+    "Natural Sciences": 502.0270703089658,
+    "Social Sciences": 577.7717973621676,
+    "Students": 112173.0
+  },
+  {
+    "State ID": 32,
+    "State": "Espírito Santo",
+    "Year": 2019,
+    "Languages": 527.201510192538,
+    "Math": 541.7564261334484,
+    "Natural Sciences": 488.9714967137249,
+    "Social Sciences": 517.6513023576769,
+    "Students": 102435.0
+  },
+  {
+    "State ID": 32,
+    "State": "Espírito Santo",
+    "Year": 2020,
+    "Languages": 249.92292366666666,
+    "Math": 237.81447751466274,
+    "Natural Sciences": 222.25708045046645,
+    "Social Sciences": 246.43154556544945,
+    "Students": 105812.0
+  },
+  {
+    "State ID": 32,
+    "State": "Espírito Santo",
+    "Year": 2021,
+    "Languages": 357.79999525819954,
+    "Math": 361.2259110915702,
+    "Natural Sciences": 331.25371370933544,
+    "Social Sciences": 371.57612838313605,
+    "Students": 64181.0
+  },
+  {
+    "State ID": 32,
+    "State": "Espírito Santo",
+    "Year": 2022,
+    "Languages": 373.62769087427637,
+    "Math": 374.07110823171666,
+    "Natural Sciences": 337.44789648801606,
+    "Social Sciences": 382.72525750847404,
+    "Students": 63700.0
+  },
+  {
+    "State ID": 32,
+    "State": "Espírito Santo",
+    "Year": 2023,
+    "Languages": 373.42503383508773,
+    "Math": 373.12382672736084,
+    "Natural Sciences": 341.58254165405185,
+    "Social Sciences": 379.42668336184556,
+    "Students": 73724.0
+  },
+  {
+    "State ID": 32,
+    "State": "Espírito Santo",
+    "Year": 2024,
+    "Languages": 396.68353166474395,
+    "Math": 381.67604199980553,
+    "Natural Sciences": 355.32238980492815,
+    "Social Sciences": 389.8242933324669,
+    "Students": 74543.0
+  },
+  {
+    "State ID": 33,
+    "State": "Rio de Janeiro",
+    "Year": 2017,
+    "Languages": 526.1913704069237,
+    "Math": 539.5761083970773,
+    "Natural Sciences": 521.1681616813222,
+    "Social Sciences": 535.7181132313958,
+    "Students": 439114.0
+  },
+  {
+    "State ID": 33,
+    "State": "Rio de Janeiro",
+    "Year": 2018,
+    "Languages": 543.1342571538512,
+    "Math": 552.122638886548,
+    "Natural Sciences": 504.7233456035165,
+    "Social Sciences": 584.1808843127615,
+    "Students": 382078.0
+  },
+  {
+    "State ID": 33,
+    "State": "Rio de Janeiro",
+    "Year": 2019,
+    "Languages": 535.9005299189548,
+    "Math": 539.5648768257198,
+    "Natural Sciences": 491.8923845653257,
+    "Social Sciences": 523.3619155071941,
+    "Students": 338710.0
+  },
+  {
+    "State ID": 33,
+    "State": "Rio de Janeiro",
+    "Year": 2020,
+    "Languages": 257.6099847932392,
+    "Math": 241.15932328842538,
+    "Natural Sciences": 224.95465569266275,
+    "Social Sciences": 251.10973132194422,
+    "Students": 387480.0
+  },
+  {
+    "State ID": 33,
+    "State": "Rio de Janeiro",
+    "Year": 2021,
+    "Languages": 366.4134563799799,
+    "Math": 364.76028649779477,
+    "Natural Sciences": 332.8254544626872,
+    "Social Sciences": 378.9966741945997,
+    "Students": 238347.0
+  },
+  {
+    "State ID": 33,
+    "State": "Rio de Janeiro",
+    "Year": 2022,
+    "Languages": 382.2124604388115,
+    "Math": 376.0165343183686,
+    "Natural Sciences": 340.95397462353355,
+    "Social Sciences": 388.3289525694777,
+    "Students": 250890.0
+  },
+  {
+    "State ID": 33,
+    "State": "Rio de Janeiro",
+    "Year": 2023,
+    "Languages": 369.0808934312187,
+    "Math": 362.3209924716524,
+    "Natural Sciences": 332.4060726969531,
+    "Social Sciences": 374.4271466675203,
+    "Students": 282296.0
+  },
+  {
+    "State ID": 33,
+    "State": "Rio de Janeiro",
+    "Year": 2024,
+    "Languages": 396.97584975014536,
+    "Math": 379.6343597226619,
+    "Natural Sciences": 353.5300092983743,
+    "Social Sciences": 389.33666378908583,
+    "Students": 289397.0
+  },
+  {
+    "State ID": 35,
+    "State": "São Paulo",
+    "Year": 2017,
+    "Languages": 528.1254793367972,
+    "Math": 540.0279546948252,
+    "Natural Sciences": 521.9691933704653,
+    "Social Sciences": 535.1753113861593,
+    "Students": 1133824.0
+  },
+  {
+    "State ID": 35,
+    "State": "São Paulo",
+    "Year": 2018,
+    "Languages": 546.9461677912266,
+    "Math": 559.2001291430327,
+    "Natural Sciences": 510.7846514376515,
+    "Social Sciences": 585.9227778839478,
+    "Students": 934174.0
+  },
+  {
+    "State ID": 35,
+    "State": "São Paulo",
+    "Year": 2019,
+    "Languages": 539.9001783422493,
+    "Math": 551.5596750586045,
+    "Natural Sciences": 496.9960637161103,
+    "Social Sciences": 527.7855691827352,
+    "Students": 813772.0
+  },
+  {
+    "State ID": 35,
+    "State": "São Paulo",
+    "Year": 2020,
+    "Languages": 248.2127894413294,
+    "Math": 235.58953325157788,
+    "Natural Sciences": 216.29969674633026,
+    "Social Sciences": 243.21878894606763,
+    "Students": 910492.0
+  },
+  {
+    "State ID": 35,
+    "State": "São Paulo",
+    "Year": 2021,
+    "Languages": 384.5892255120438,
+    "Math": 391.42212570836085,
+    "Natural Sciences": 352.9880553694496,
+    "Social Sciences": 396.4670715216533,
+    "Students": 509954.0
+  },
+  {
+    "State ID": 35,
+    "State": "São Paulo",
+    "Year": 2022,
+    "Languages": 395.1992961355204,
+    "Math": 395.11757614057996,
+    "Natural Sciences": 352.06852683687623,
+    "Social Sciences": 398.8032596578087,
+    "Students": 544442.0
+  },
+  {
+    "State ID": 35,
+    "State": "São Paulo",
+    "Year": 2023,
+    "Languages": 395.9140449539436,
+    "Math": 398.9359840589223,
+    "Natural Sciences": 359.3827004681966,
+    "Social Sciences": 399.65556133481095,
+    "Students": 590767.0
+  },
+  {
+    "State ID": 35,
+    "State": "São Paulo",
+    "Year": 2024,
+    "Languages": 413.580089894365,
+    "Math": 403.7499191126574,
+    "Natural Sciences": 371.90912759507887,
+    "Social Sciences": 405.28927963658924,
+    "Students": 647215.0
+  },
+  {
+    "State ID": 41,
+    "State": "Paraná",
+    "Year": 2017,
+    "Languages": 523.2265346434752,
+    "Math": 535.4193512633977,
+    "Natural Sciences": 524.1588861493068,
+    "Social Sciences": 534.5553477377083,
+    "Students": 287271.0
+  },
+  {
+    "State ID": 41,
+    "State": "Paraná",
+    "Year": 2018,
+    "Languages": 539.5010036288269,
+    "Math": 548.2038526172892,
+    "Natural Sciences": 506.54214693359637,
+    "Social Sciences": 583.1919908018629,
+    "Students": 236533.0
+  },
+  {
+    "State ID": 41,
+    "State": "Paraná",
+    "Year": 2019,
+    "Languages": 532.9989807693713,
+    "Math": 541.396788354359,
+    "Natural Sciences": 492.35059730016945,
+    "Social Sciences": 523.5453628435441,
+    "Students": 210080.0
+  },
+  {
+    "State ID": 41,
+    "State": "Paraná",
+    "Year": 2020,
+    "Languages": 256.1403972972364,
+    "Math": 245.100039221968,
+    "Natural Sciences": 227.68368893807474,
+    "Social Sciences": 253.1550116030854,
+    "Students": 239635.0
+  },
+  {
+    "State ID": 41,
+    "State": "Paraná",
+    "Year": 2021,
+    "Languages": 364.83121736458037,
+    "Math": 366.7346619283077,
+    "Natural Sciences": 336.4995606295344,
+    "Social Sciences": 377.6876270389741,
+    "Students": 144282.0
+  },
+  {
+    "State ID": 41,
+    "State": "Paraná",
+    "Year": 2022,
+    "Languages": 377.38083662966847,
+    "Math": 373.5304130177386,
+    "Natural Sciences": 338.8339503569382,
+    "Social Sciences": 383.90399808920955,
+    "Students": 150396.0
+  },
+  {
+    "State ID": 41,
+    "State": "Paraná",
+    "Year": 2023,
+    "Languages": 389.53335371438203,
+    "Math": 382.9254135172708,
+    "Natural Sciences": 351.119972287196,
+    "Social Sciences": 392.82665786247384,
+    "Students": 166506.0
+  },
+  {
+    "State ID": 41,
+    "State": "Paraná",
+    "Year": 2024,
+    "Languages": 403.7677028774758,
+    "Math": 381.50709791783487,
+    "Natural Sciences": 359.980717269321,
+    "Social Sciences": 393.7339792189582,
+    "Students": 179954.0
+  },
+  {
+    "State ID": 42,
+    "State": "Santa Catarina",
+    "Year": 2017,
+    "Languages": 525.9304989719707,
+    "Math": 545.9661487961682,
+    "Natural Sciences": 529.2579650534115,
+    "Social Sciences": 538.0686794421505,
+    "Students": 127087.0
+  },
+  {
+    "State ID": 42,
+    "State": "Santa Catarina",
+    "Year": 2018,
+    "Languages": 541.7209927089953,
+    "Math": 553.6062424653028,
+    "Natural Sciences": 508.51111698504144,
+    "Social Sciences": 586.4368091952762,
+    "Students": 123933.0
+  },
+  {
+    "State ID": 42,
+    "State": "Santa Catarina",
+    "Year": 2019,
+    "Languages": 534.4317657007688,
+    "Math": 548.5511492723268,
+    "Natural Sciences": 493.05507645628893,
+    "Social Sciences": 525.5698033001834,
+    "Students": 109515.0
+  },
+  {
+    "State ID": 42,
+    "State": "Santa Catarina",
+    "Year": 2020,
+    "Languages": 252.2769985507071,
+    "Math": 239.95070125093713,
+    "Natural Sciences": 221.6047865039273,
+    "Social Sciences": 249.81148958586772,
+    "Students": 121153.0
+  },
+  {
+    "State ID": 42,
+    "State": "Santa Catarina",
+    "Year": 2021,
+    "Languages": 371.9967882751378,
+    "Math": 375.7629765340701,
+    "Natural Sciences": 343.0511534049977,
+    "Social Sciences": 387.62908056955,
+    "Students": 80765.0
+  },
+  {
+    "State ID": 42,
+    "State": "Santa Catarina",
+    "Year": 2022,
+    "Languages": 388.257530325842,
+    "Math": 384.97099320252175,
+    "Natural Sciences": 345.8596102943572,
+    "Social Sciences": 394.1666532828116,
+    "Students": 82791.0
+  },
+  {
+    "State ID": 42,
+    "State": "Santa Catarina",
+    "Year": 2023,
+    "Languages": 391.04243342052445,
+    "Math": 387.9300669083697,
+    "Natural Sciences": 352.4619933741621,
+    "Social Sciences": 396.30764166295677,
+    "Students": 91263.0
+  },
+  {
+    "State ID": 42,
+    "State": "Santa Catarina",
+    "Year": 2024,
+    "Languages": 404.9602485581187,
+    "Math": 382.88342830697337,
+    "Natural Sciences": 358.0795260935604,
+    "Social Sciences": 397.7642233020295,
+    "Students": 95126.0
+  },
+  {
+    "State ID": 43,
+    "State": "Rio Grande do Sul",
+    "Year": 2017,
+    "Languages": 525.4396656901057,
+    "Math": 536.1772616425739,
+    "Natural Sciences": 520.6023058851125,
+    "Social Sciences": 531.9167387566007,
+    "Students": 294973.0
+  },
+  {
+    "State ID": 43,
+    "State": "Rio Grande do Sul",
+    "Year": 2018,
+    "Languages": 540.7377553628419,
+    "Math": 544.453517998757,
+    "Natural Sciences": 500.14917849979275,
+    "Social Sciences": 582.8230608137421,
+    "Students": 243555.0
+  },
+  {
+    "State ID": 43,
+    "State": "Rio Grande do Sul",
+    "Year": 2019,
+    "Languages": 534.0188403761949,
+    "Math": 539.7329847835658,
+    "Natural Sciences": 486.5046920875955,
+    "Social Sciences": 523.481137444029,
+    "Students": 218763.0
+  },
+  {
+    "State ID": 43,
+    "State": "Rio Grande do Sul",
+    "Year": 2020,
+    "Languages": 257.98406375867705,
+    "Math": 241.31938504442726,
+    "Natural Sciences": 223.5342881070363,
+    "Social Sciences": 252.15069681211318,
+    "Students": 249130.0
+  },
+  {
+    "State ID": 43,
+    "State": "Rio Grande do Sul",
+    "Year": 2021,
+    "Languages": 370.3764307299875,
+    "Math": 369.9284587841957,
+    "Natural Sciences": 338.07069320883534,
+    "Social Sciences": 383.6830094891781,
+    "Students": 150484.0
+  },
+  {
+    "State ID": 43,
+    "State": "Rio Grande do Sul",
+    "Year": 2022,
+    "Languages": 383.4115788572776,
+    "Math": 374.91187102468945,
+    "Natural Sciences": 337.39478379676046,
+    "Social Sciences": 387.38679929360245,
+    "Students": 152295.0
+  },
+  {
+    "State ID": 43,
+    "State": "Rio Grande do Sul",
+    "Year": 2023,
+    "Languages": 395.93925358665155,
+    "Math": 387.58935522047824,
+    "Natural Sciences": 353.47659186800934,
+    "Social Sciences": 398.4803931940954,
+    "Students": 159919.0
+  },
+  {
+    "State ID": 43,
+    "State": "Rio Grande do Sul",
+    "Year": 2024,
+    "Languages": 302.75319506604694,
+    "Math": 275.0356276276403,
+    "Natural Sciences": 257.9113012855775,
+    "Social Sciences": 294.9542203823244,
+    "Students": 279039.0
+  },
+  {
+    "State ID": 50,
+    "State": "Mato Grosso do Sul",
+    "Year": 2017,
+    "Languages": 507.0783908884263,
+    "Math": 513.3999030399473,
+    "Natural Sciences": 511.1872312320951,
+    "Social Sciences": 513.296372434467,
+    "Students": 92198.0
+  },
+  {
+    "State ID": 50,
+    "State": "Mato Grosso do Sul",
+    "Year": 2018,
+    "Languages": 521.8714627381476,
+    "Math": 525.4943378806998,
+    "Natural Sciences": 493.31574786324114,
+    "Social Sciences": 563.6846146385594,
+    "Students": 72319.0
+  },
+  {
+    "State ID": 50,
+    "State": "Mato Grosso do Sul",
+    "Year": 2019,
+    "Languages": 516.0578902611131,
+    "Math": 513.9847965096834,
+    "Natural Sciences": 474.63770262462765,
+    "Social Sciences": 500.1943968652756,
+    "Students": 70157.0
+  },
+  {
+    "State ID": 50,
+    "State": "Mato Grosso do Sul",
+    "Year": 2020,
+    "Languages": 216.73728881978874,
+    "Math": 197.62437433586692,
+    "Natural Sciences": 188.05239983343122,
+    "Social Sciences": 210.35561456936122,
+    "Students": 84548.0
+  },
+  {
+    "State ID": 50,
+    "State": "Mato Grosso do Sul",
+    "Year": 2021,
+    "Languages": 338.9695740019021,
+    "Math": 336.1126265276458,
+    "Natural Sciences": 310.3831959527586,
+    "Social Sciences": 348.9486256244576,
+    "Students": 42490.0
+  },
+  {
+    "State ID": 50,
+    "State": "Mato Grosso do Sul",
+    "Year": 2022,
+    "Languages": 347.7911711305795,
+    "Math": 339.6614887746454,
+    "Natural Sciences": 313.3797305476587,
+    "Social Sciences": 353.21812538782314,
+    "Students": 44683.0
+  },
+  {
+    "State ID": 50,
+    "State": "Mato Grosso do Sul",
+    "Year": 2023,
+    "Languages": 362.05521440490907,
+    "Math": 350.2885871074509,
+    "Natural Sciences": 328.47247704612533,
+    "Social Sciences": 365.4874871325209,
+    "Students": 47455.0
+  },
+  {
+    "State ID": 50,
+    "State": "Mato Grosso do Sul",
+    "Year": 2024,
+    "Languages": 371.33548167999413,
+    "Math": 347.7018670876855,
+    "Natural Sciences": 329.06537769384016,
+    "Social Sciences": 361.7047261150762,
+    "Students": 51311.0
+  },
+  {
+    "State ID": 51,
+    "State": "Mato Grosso",
+    "Year": 2017,
+    "Languages": 496.3844917687896,
+    "Math": 502.75689761043554,
+    "Natural Sciences": 504.5370557403383,
+    "Social Sciences": 506.3908474479561,
+    "Students": 126254.0
+  },
+  {
+    "State ID": 51,
+    "State": "Mato Grosso",
+    "Year": 2018,
+    "Languages": 513.167791733662,
+    "Math": 518.2387691752315,
+    "Natural Sciences": 483.8898533701551,
+    "Social Sciences": 554.9362526645308,
+    "Students": 96762.0
+  },
+  {
+    "State ID": 51,
+    "State": "Mato Grosso",
+    "Year": 2019,
+    "Languages": 508.0965997185397,
+    "Math": 505.3414562626624,
+    "Natural Sciences": 467.0560275690555,
+    "Social Sciences": 494.28016115323004,
+    "Students": 88349.0
+  },
+  {
+    "State ID": 51,
+    "State": "Mato Grosso",
+    "Year": 2020,
+    "Languages": 217.9209128525535,
+    "Math": 200.0641855421759,
+    "Natural Sciences": 191.0398556732361,
+    "Social Sciences": 212.35747146115204,
+    "Students": 101727.0
+  },
+  {
+    "State ID": 51,
+    "State": "Mato Grosso",
+    "Year": 2021,
+    "Languages": 329.5562788334932,
+    "Math": 327.0781296637454,
+    "Natural Sciences": 303.6089008019444,
+    "Social Sciences": 342.6313417279445,
+    "Students": 56085.0
+  },
+  {
+    "State ID": 51,
+    "State": "Mato Grosso",
+    "Year": 2022,
+    "Languages": 344.06725545129535,
+    "Math": 333.352750842086,
+    "Natural Sciences": 308.5790083800989,
+    "Social Sciences": 351.1236776536718,
+    "Students": 59381.0
+  },
+  {
+    "State ID": 51,
+    "State": "Mato Grosso",
+    "Year": 2023,
+    "Languages": 352.08648454449116,
+    "Math": 338.08502789453325,
+    "Natural Sciences": 319.63664252576876,
+    "Social Sciences": 355.44820692554435,
+    "Students": 63912.0
+  },
+  {
+    "State ID": 51,
+    "State": "Mato Grosso",
+    "Year": 2024,
+    "Languages": 357.2268611510292,
+    "Math": 330.3509220567782,
+    "Natural Sciences": 314.66064584682584,
+    "Social Sciences": 346.9506092403016,
+    "Students": 67782.0
+  },
+  {
+    "State ID": 52,
+    "State": "Goiás",
+    "Year": 2017,
+    "Languages": 510.0165223020445,
+    "Math": 519.3818404769141,
+    "Natural Sciences": 514.5000628141906,
+    "Social Sciences": 518.6444503405803,
+    "Students": 219996.0
+  },
+  {
+    "State ID": 52,
+    "State": "Goiás",
+    "Year": 2018,
+    "Languages": 523.8344033213554,
+    "Math": 532.1583433379743,
+    "Natural Sciences": 494.4005935535763,
+    "Social Sciences": 563.5201649809482,
+    "Students": 191029.0
+  },
+  {
+    "State ID": 52,
+    "State": "Goiás",
+    "Year": 2019,
+    "Languages": 520.40013391143,
+    "Math": 523.3868505426941,
+    "Natural Sciences": 478.25815067042595,
+    "Social Sciences": 505.836761205282,
+    "Students": 170147.0
+  },
+  {
+    "State ID": 52,
+    "State": "Goiás",
+    "Year": 2020,
+    "Languages": 238.39972189200884,
+    "Math": 220.1997669364683,
+    "Natural Sciences": 208.90820443321223,
+    "Social Sciences": 231.97347597147376,
+    "Students": 211069.0
+  },
+  {
+    "State ID": 52,
+    "State": "Goiás",
+    "Year": 2021,
+    "Languages": 325.6149618334015,
+    "Math": 324.74729359623325,
+    "Natural Sciences": 299.7274243222907,
+    "Social Sciences": 336.2224592049423,
+    "Students": 136915.0
+  },
+  {
+    "State ID": 52,
+    "State": "Goiás",
+    "Year": 2022,
+    "Languages": 348.61945105541076,
+    "Math": 341.9227287586727,
+    "Natural Sciences": 313.64525848921784,
+    "Social Sciences": 355.73505031718594,
+    "Students": 141622.0
+  },
+  {
+    "State ID": 52,
+    "State": "Goiás",
+    "Year": 2023,
+    "Languages": 354.48970828375803,
+    "Math": 345.8270672927927,
+    "Natural Sciences": 322.45964185412714,
+    "Social Sciences": 357.7919602569156,
+    "Students": 149110.0
+  },
+  {
+    "State ID": 52,
+    "State": "Goiás",
+    "Year": 2024,
+    "Languages": 378.94409156611255,
+    "Math": 359.28948123796465,
+    "Natural Sciences": 336.9259787332015,
+    "Social Sciences": 369.38705726015536,
+    "Students": 151158.0
+  },
+  {
+    "State ID": 53,
+    "State": "Distrito Federal",
+    "Year": 2017,
+    "Languages": 524.5001171243111,
+    "Math": 528.041046911572,
+    "Natural Sciences": 523.3962813162981,
+    "Social Sciences": 532.0952135614405,
+    "Students": 123169.0
+  },
+  {
+    "State ID": 53,
+    "State": "Distrito Federal",
+    "Year": 2018,
+    "Languages": 541.8014223776557,
+    "Math": 545.1920499675642,
+    "Natural Sciences": 505.77848895163106,
+    "Social Sciences": 579.1597276702471,
+    "Students": 104531.0
+  },
+  {
+    "State ID": 53,
+    "State": "Distrito Federal",
+    "Year": 2019,
+    "Languages": 535.2378845648515,
+    "Math": 536.7885622853196,
+    "Natural Sciences": 492.78628589486095,
+    "Social Sciences": 523.1346708897195,
+    "Students": 94352.0
+  },
+  {
+    "State ID": 53,
+    "State": "Distrito Federal",
+    "Year": 2020,
+    "Languages": 258.784282313596,
+    "Math": 242.10037712233142,
+    "Natural Sciences": 228.0885052825653,
+    "Social Sciences": 252.96743489756975,
+    "Students": 116932.0
+  },
+  {
+    "State ID": 53,
+    "State": "Distrito Federal",
+    "Year": 2021,
+    "Languages": 370.27339742671853,
+    "Math": 369.4273699078337,
+    "Natural Sciences": 340.3028502369988,
+    "Social Sciences": 382.257849492182,
+    "Students": 67501.0
+  },
+  {
+    "State ID": 53,
+    "State": "Distrito Federal",
+    "Year": 2022,
+    "Languages": 390.42472894906876,
+    "Math": 382.3953578409617,
+    "Natural Sciences": 349.96776803447807,
+    "Social Sciences": 394.1580678856673,
+    "Students": 65401.0
+  },
+  {
+    "State ID": 53,
+    "State": "Distrito Federal",
+    "Year": 2023,
+    "Languages": 391.0456060508736,
+    "Math": 384.1420814891056,
+    "Natural Sciences": 355.7291441737793,
+    "Social Sciences": 395.1489454818678,
+    "Students": 72975.0
+  },
+  {
+    "State ID": 53,
+    "State": "Distrito Federal",
+    "Year": 2024,
+    "Languages": 406.8027791808001,
+    "Math": 388.03381780193365,
+    "Natural Sciences": 364.03630309706404,
+    "Social Sciences": 398.99266367496114,
+    "Students": 74520.0
+  }
+]
