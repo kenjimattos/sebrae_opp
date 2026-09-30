@@ -50,7 +50,7 @@ export default function Layout() {
           to="/home"
           onClick={scrollToTop}
           aria-label="PIPPA — página inicial"
-          className="fixed top-lg left-[62px] z-40 text-primary hover:text-accent transition-colors rounded-xs outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          className="wordmark-link fixed top-lg left-[62px] z-40 text-primary hover:text-accent transition-colors rounded-xs outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
           <PippaWordmark className="block h-auto w-[80px]" decorative />
         </Link>
