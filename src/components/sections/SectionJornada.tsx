@@ -62,11 +62,12 @@ export default function SectionJornada() {
   }
 
   return (
-    // --nav-h é a única fonte da altura da SideNav: o pb da seção deriva dela
-    // (ver comentário abaixo), então os dois não têm como sair de sincronia.
+    // --nav-h e --nav-top são a única fonte da geometria da SideNav: o pb da
+    // seção deriva dos dois (ver comentário abaixo), então não têm como sair de
+    // sincronia. --nav-top desconta o header sticky do Layout.
     <section
-      className="section-container pb-[calc(100dvh_-_var(--nav-h)_-_var(--spacing-md))]"
-      style={{ '--nav-h': '83dvh' } as CSSProperties}
+      className="section-container pb-[calc(100dvh_-_var(--nav-h)_-_var(--nav-top))]"
+      style={{ '--nav-h': '83dvh', '--nav-top': 'calc(var(--header-h) + var(--spacing-md))' } as CSSProperties}
     >
       <div className="flex gap-lg flex-1 w-full items-start">
         {/* Coluna fantasma: estica (self-stretch) até o fim da linha — ou seja,
@@ -74,7 +75,7 @@ export default function SectionJornada() {
             SideNav encosta exatamente no fim da seção quando o scroll chega lá.
             O painel não ocupa a viewport toda (barra alta demais lê mal): fica
             em --nav-h e a sobra vira padding-bottom da seção — pb = 100dvh -
-            --nav-h - top-md. Assim, no fim do scroll o documento termina
+            --nav-h - --nav-top. Assim, no fim do scroll o documento termina
             exatamente na linha em que a base da SideNav está pinada, e as duas
             bases se encontram sem que a barra se solte e suba.
             max-h-full cobre o caso oposto — pilar mais curto que a viewport,
@@ -83,7 +84,7 @@ export default function SectionJornada() {
           <SideNav
             activeId={activeId}
             onSelect={handleSelect}
-            className="sticky top-md z-10 w-full h-[var(--nav-h)] max-h-full"
+            className="sticky top-[var(--nav-top)] z-10 w-full h-[var(--nav-h)] max-h-full"
           />
         </div>
         <div className="flex flex-col gap-md flex-1 min-w-0">

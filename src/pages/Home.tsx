@@ -7,23 +7,16 @@ import JourneyDivider from '@/components/ui/JourneyDivider'
 import ChatButton from '@/components/chat/ChatButton'
 import { useMunicipality } from '@/hooks/useMunicipality'
 
-const HEADER_OFFSET = 95
-
 export default function Home() {
   const { municipality } = useMunicipality()
   const { hash } = useLocation()
   const data = municipality.data
 
-  // Suporta navegação por hash (`/#agendas`) — usada quando o usuário sai do
-  // Formulador clicando num link do Header. Scroll respeita o offset do
-  // header sticky.
+  // Navegação por hash (`/home#ambiente`). O desconto do header sticky vem do
+  // scroll-padding-top do <html>, não de um offset aqui.
   useEffect(() => {
     if (!hash) return
-    const id = hash.slice(1)
-    const el = document.getElementById(id)
-    if (!el) return
-    const top = el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET
-    window.scrollTo({ top, behavior: 'smooth' })
+    document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }, [hash])
 
   return (

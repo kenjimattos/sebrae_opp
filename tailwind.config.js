@@ -14,6 +14,7 @@ export default {
         '2xl': 'var(--spacing-2xl)',     // 64px
         '3xl': 'var(--spacing-3xl)',     // 96px
         'gutter': 'var(--spacing-gutter)', // 180px
+        'header': 'var(--header-h)',       // 64px — altura do header sticky
       },
       borderWidth: {
         // `border` (sem sufixo) = o traço fino. O mesmo token alimenta o padding
