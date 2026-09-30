@@ -5,6 +5,7 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import ThemeToggle from '@/components/ui/ThemeToggle'
 import SiteHeader from '@/components/layout/SiteHeader'
+import NarrowScreenNotice from '@/components/ui/NarrowScreenNotice'
 
 export default function Layout() {
   const { pathname } = useLocation()
@@ -28,6 +29,7 @@ export default function Layout() {
       <main className="flex-1">
         <Outlet />
       </main>
+      <NarrowScreenNotice />
     </div>
   )
 }
