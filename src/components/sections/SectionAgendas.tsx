@@ -77,22 +77,21 @@ export default function SectionAgendas() {
           </div>
 
           {/* Coluna direita: mapa + overlays */}
-          <div className="flex flex-1 min-w-0 flex-col">
+          <div className="flex flex-col justify-center gap-lg">
             <div className="flex flex-col items-center px-md">
               <ParaibaOutlineMap
                 selectedId={municipality.id}
                 onSelect={handleMapSelect}
-                className="max-w-[36dvw]"
               />
             </div>
             {selectedAgenda && (
-            <div className="flex flex-col w-full h-full items-center justify-center">
+            
               <AgendaCard
                 className='w-full'
                 indicators={selectedAgenda.indicators}
                 onIndicatorClick={setSelectedIndicator}
               />
-            </div>
+            
             )}
           </div>
         </div>
