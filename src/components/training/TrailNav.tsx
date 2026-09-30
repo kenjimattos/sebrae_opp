@@ -50,7 +50,7 @@ export default function TrailNav() {
   return (
     <nav
       aria-label="Trilhas do catálogo"
-      className="catalog-inset catalog-nav sticky top-0 z-20 flex gap-xs overflow-x-auto scrollbar-hide py-sm"
+      className="catalog-inset catalog-nav sticky top-header z-20 flex gap-xs overflow-x-auto scrollbar-hide py-sm"
     >
       {trails.map((trail) => (
         <Chip

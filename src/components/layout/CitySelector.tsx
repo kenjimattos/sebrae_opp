@@ -7,10 +7,12 @@ import { useMunicipalityChange } from '@/hooks/useMunicipalityChange'
 import Button from '../ui/buttons/Button'
 
 interface CitySelectorProps {
+  /** Header compactado: some o rótulo "Meu município", fica só a busca. */
+  compact?: boolean
   className?: string
 }
 
-export default function CitySelector({ className = '' }: CitySelectorProps) {
+export default function CitySelector({ compact = false, className = '' }: CitySelectorProps) {
   const { municipality, municipalities } = useMunicipality()
   const changeMunicipality = useMunicipalityChange()
   const { open, setOpen, ref } = useDropdownState()
@@ -40,16 +42,19 @@ export default function CitySelector({ className = '' }: CitySelectorProps) {
       className="glass glass-bevel w-fit relative inline-flex items-center rounded-full px-xs py-2xs"
       aria-label="Modo de visualização do mapa"
     >
-      <Button
-        label={municipality.id ? 'Meu município' : 'Selecione seu município'}
-        className="h-fit py-xs"
-      ></Button>
+      {!compact && (
+        <Button
+          label={municipality.id ? 'Meu município' : 'Selecione seu município'}
+          className="h-fit py-xs"
+        />
+      )}
       <div ref={ref} className={`relative ${className}`}>
         <div className="flex items-center gap-sm px-sm py-xs overflow-hidden">
           <input
             size={16}
             ref={inputRef}
             type="text"
+            aria-label="Município"
             value={query}
             onChange={(e) => {
               setDraft(e.target.value)

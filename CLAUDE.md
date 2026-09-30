@@ -15,20 +15,35 @@ classificam** (6 por faixa oficial da fonte, 11 por tercil relativo aos 223 muni
 da PB) e o farol por agenda voltou a acender. Home = `SideNav` com 4 pilares (Ambiente
 de negócio, Mapeamento de recursos, Cursos e boas práticas, Formulador de projetos);
 cada pilar alterna modos via `ModeToggle`. **223 municípios da PB**, default Campina Grande (`2504009`).
-Rotas: `/` (Login), `/home`, `/trilhas`. Desktop 1440px. **Tema claro e escuro**,
-com `ThemeToggle` fixo no topo à direita, montado no `Layout` e portanto presente
-em todas as rotas (automático → claro → escuro; automático é o default e segue o
+Rotas: `/` (Login), `/home`, `/trilhas`. Desktop 1440px. **Tema claro e escuro**
+pelo `ThemeToggle` (automático → claro → escuro; automático é o default e segue o
 sistema). **Instância única** — `useTheme` é estado local, dois consumidores
-montados teriam preferências independentes.
+montados teriam preferências independentes; o `Layout` monta um só em qualquer rota.
 
-O `Layout` monta também o **logotipo fixo no topo à esquerda**, espelhando o
-`ThemeToggle` no mesmo eixo (`left-[62px]` ↔ `right-[62px]`). Ele é um `<Link>` para
-`/home` — **não** um `onClick` no `<svg>`, que não recebe foco de teclado, não responde
-a Enter e não abre em nova aba. O `PippaWordmark` dentro dele vai com `decorative`,
-senão o leitor de tela anuncia "PIPPA" duas vezes (o nome do link e o do `<svg>`).
-**Não aparece na `/`** — lá o hero já traz a marca em 270px no meio da tela — **nem abaixo de 1675px** (`.wordmark-link` no `index.css`): o gutter do `.section-container` já não abre espaço para ele, e com `z-40` ele cobria a `SideNav` sticky. Encolher e dar fundo `.glass` foram tentados e ficaram feios; não reintroduzir sem resolver a sobreposição.
-O clique rola ao topo além de navegar: o `ScrollToTop` só reage a *mudança* de rota,
-então não cobre clicar no logotipo já estando em `/home`.
+**Header do app (`layout/SiteHeader`)** em `/home` e `/trilhas`: logotipo à esquerda,
+`CitySelector` ao centro (**só em `/home`** — nada em `/trilhas` depende do município)
+e `ThemeToggle` à direita. É `sticky` e está no fluxo, então o conteúdo começa abaixo
+dele. Compacta ao rolar (barra de 96 → 64px, logo de 80 → 56px, o seletor perde o
+rótulo "Meu município"), detectado por um marcador no topo com `IntersectionObserver`.
+**Na `/` não há header**: o hero já traz a marca em 270px, e o tema fica solto no canto.
+
+> **A caixa do header tem altura FIXA (`--header-h`, 64px); só a barra visual cresce
+> no topo** (`--header-h-expanded`), por cima do `padding-block` do conteúdo. Se a
+> caixa encolhesse ao compactar, o conteúdo pularia 32px e o scroll anchoring do
+> navegador devolveria o pulo ao scroll — que podia voltar para cima do limiar e
+> expandir de novo, em laço.
+
+> **Todo `sticky` e todo destino de rolagem desconta `--header-h`.** A `SideNav` gruda
+> em `--nav-top` (header + `md`), e o `pb` da `SectionJornada` deriva dele; a barra de
+> eixos de `/trilhas` usa `top-header`; e `html { scroll-padding-top: var(--header-h) }`
+> cobre `scrollIntoView` e âncoras de hash, somando com o `scroll-margin-top` do alvo.
+> `sticky top-0` novo fica atrás do header sem erro nenhum.
+
+O logotipo é um `<Link>` para `/home` — **não** um `onClick` no `<svg>`, que não
+recebe foco de teclado, não responde a Enter e não abre em nova aba. O
+`PippaWordmark` dentro dele vai com `decorative`, senão o leitor de tela anuncia
+"PIPPA" duas vezes. O clique rola ao topo além de navegar: o `ScrollToTop` só reage
+a *mudança* de rota, então não cobre clicar no logotipo já estando em `/home`.
 
 > **Não há rota catch-all.** URL desconhecida renderiza tela em branco — inclusive
 > `/oportunidades` e `/comunidade`, que existiram e podem estar em links antigos.

@@ -66,6 +66,11 @@
   --spacing-3xl: 6rem; /* 96px */
   --spacing-gutter: 11.25rem; /* 180px */
 
+  /* Header do app. A caixa ocupa sempre --header-h no fluxo; só a barra visual
+     cresce até --header-h-expanded no topo da página (ver .site-header). */
+  --header-h: 4rem; /* 64px */
+  --header-h-expanded: 6rem; /* 96px */
+
   /* Ponto de status (semáforo). Existe como token porque o valor tinha
      divergido: 8px no modal do indicador e 7px no card de risco — dois lugares
      que nunca aparecem lado a lado, então ninguém notou. */
@@ -388,12 +393,47 @@
     .section-container { padding-inline: var(--spacing-md); }
   }
 
-  /* Wordmark fixa do Layout (canto superior esquerdo). Abaixo de 1675px o
-     gutter do .section-container já não abre espaço para os 80px do logo sem
-     invadir a coluna de conteúdo (ex.: SideNav sticky). Encolher e/ou dar
-     fundo glass ainda deixava a sobreposição feia — ocultar é o que sobrou. */
-  @media (max-width: 1675px) {
-    .wordmark-link { display: none; }
+  /* ============ HEADER DO APP ============ */
+  /* Sticky e no fluxo: o conteúdo começa abaixo dele, então nada passa por
+     baixo do logo. A caixa tem altura FIXA (--header-h) e só a barra, absoluta,
+     cresce para --header-h-expanded no topo — os 32px a mais caem sobre o
+     padding-block do conteúdo, que é respiro vazio. Se a caixa mudasse de
+     altura ao compactar, o conteúdo pularia 32px, e o scroll anchoring do
+     navegador devolveria esse pulo ao scroll — que podia voltar para cima do
+     limiar e expandir de novo, em laço. */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    height: var(--header-h);
+  }
+  .site-header__bar {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: var(--header-h-expanded);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    /* Mesmo eixo do ChatButton (right-[62px]). */
+    padding-inline: 62px;
+    border-bottom: var(--border-default) solid transparent;
+    transition: height 200ms ease, background-color 200ms ease, border-color 200ms ease;
+  }
+  /* Compacto: mesmo material da barra de eixos de /trilhas (.catalog-nav), que
+     encosta logo abaixo — as duas leem como uma faixa só. */
+  .site-header[data-compact='true'] .site-header__bar {
+    height: var(--header-h);
+    background-color: color-mix(in srgb, var(--semantic-background) 88%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom-color: var(--semantic-divider);
+  }
+  .site-header__logo { width: 80px; transition: width 200ms ease; }
+  .site-header[data-compact='true'] .site-header__logo { width: 56px; }
+  @media (prefers-reduced-motion: reduce) {
+    .site-header__bar,
+    .site-header__logo { transition: none; }
   }
 
   /* Painel esquerdo de SectionAgendas (heading + AgendaList): altura travada em
@@ -551,7 +591,7 @@
      para rolar — e a barra de eixos nunca marca o último eixo. A própria seção
      passa a ocupar a viewport, então sobra rolagem para ela subir. */
   .catalog-row:last-child {
-    min-height: calc(100dvh - var(--catalog-offset));
+    min-height: calc(100dvh - var(--header-h) - var(--catalog-offset));
   }
 
   /* Epic Pro não quebra palavra: "CAPACITAÇÃO" sozinho estoura 390px no tamanho
@@ -748,6 +788,13 @@ body {
   background-color: var(--semantic-background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Todo scrollIntoView e âncora de hash para abaixo do header sticky, sem cada
+   destino precisar descontá-lo. Soma com o scroll-margin-top do alvo (ex.:
+   --catalog-offset em /trilhas, que desconta só a barra de eixos). */
+html {
+  scroll-padding-top: var(--header-h);
 }
 
 /* ============ PRINT ============ */
