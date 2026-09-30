@@ -340,6 +340,10 @@
   .typo-button-secondary    { font-family: var(--font-titles); font-size: var(--font-size-button);    color: var(--semantic-button-label-secondary); line-height: normal; }
   .typo-button-secondary-sm { font-family: var(--font-titles); font-size: var(--font-size-button-sm); color: var(--semantic-button-label-secondary); line-height: normal; }
 
+  @media (max-width: 1490px) {
+    .typo-button-sm { font-size: var(--font-size-body-sm); }
+  }
+
   /* ============ STATUS ============ */
   .status-success-bg  { background-color: var(--semantic-success-surface); }
   .status-warning-bg  { background-color: var(--semantic-warning-surface); }

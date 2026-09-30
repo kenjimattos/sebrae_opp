@@ -79,7 +79,7 @@ export default function SectionJornada() {
             bases se encontram sem que a barra se solte e suba.
             max-h-full cobre o caso oposto — pilar mais curto que a viewport,
             em que o painel encolhe até a altura da seção. */}
-        <div className="w-[21%] shrink-0 self-stretch flex">
+        <div className="w-[21%] max-[1220px]:w-[247px] shrink-0 self-stretch flex">
           <SideNav
             activeId={activeId}
             onSelect={handleSelect}
