@@ -15,7 +15,9 @@ classificam** (6 por faixa oficial da fonte, 11 por tercil relativo aos 223 muni
 da PB) e o farol por agenda voltou a acender. Home = `SideNav` com 4 pilares (Ambiente
 de negócio, Mapeamento de recursos, Cursos e boas práticas, Formulador de projetos);
 cada pilar alterna modos via `ModeToggle`. **223 municípios da PB**, default Campina Grande (`2504009`).
-Rotas: `/` (Login), `/home`, `/trilhas`. Desktop 1440px. **Tema claro e escuro**
+Rotas: `/` (Login), `/home`, `/trilhas`. Desktop 1440px; o layout se sustenta até
+1000px, e abaixo disso `ui/NarrowScreenNotice` avisa **sem bloquear** (zoom alto num
+notebook também cai ali). **Tema claro e escuro**
 pelo `ThemeToggle` (automático → claro → escuro; automático é o default e segue o
 sistema). **Instância única** — `useTheme` é estado local, dois consumidores
 montados teriam preferências independentes; o `Layout` monta um só em qualquer rota.
