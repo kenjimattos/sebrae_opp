@@ -13,13 +13,13 @@ export default function SectionHeader({ title, description, className = '' }: Se
       <h1 className="typo-h1 w-full text-right">
         {title}
       </h1>
-      <div className="flex-col flex w-full items-start gap-md pt-2xs">
         { description && 
+      <div className="flex-col flex w-full items-start gap-md pt-2xs">
         <p className="typo-title-md uppercase">
           {description}
         </p>
-        }
       </div>
+        }
     </div>
   )
 }
