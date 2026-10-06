@@ -39,13 +39,14 @@ export default function StateIndicatorCard({
 
   // Quanto o card representa de um todo maior — hoje, o emprego em MPE dentro do
   // emprego formal do estado. Sai do breakdown: a conta muda a cada carga.
-  let partePct = ''
-  if (view.parte) {
-    const total = readNumber(indicator.breakdown, view.parte.totalKey)
-    if (total !== null && total > 0 && indicator.numericValue !== null) {
-      partePct = `${formatNumberBR((indicator.numericValue / total) * 100)}%`
-    }
-  }
+  const total = view.parte ? readNumber(indicator.breakdown, view.parte.totalKey) : null
+  const parte =
+    view.parte && total !== null && total > 0 && indicator.numericValue !== null
+      ? {
+          pct: `${formatNumberBR((indicator.numericValue / total) * 100)}%`,
+          label: view.parte.totalLabel,
+        }
+      : null
 
   // "R$ 3.036,47" já diz a unidade; repetir "R$" ao lado seria ruído.
   const unidade = indicator.unit && !indicator.value.includes(indicator.unit) ? indicator.unit : ''
@@ -106,9 +107,9 @@ export default function StateIndicatorCard({
         )}
       </div>
 
-      {partePct && view.parte && (
+      {parte && (
         <p className="typo-body-sm">
-          <span className="typo-body-sm-bold">{partePct}</span> {view.parte.totalLabel}
+          <span className="typo-body-sm-bold">{parte.pct}</span> {parte.label}
         </p>
       )}
 

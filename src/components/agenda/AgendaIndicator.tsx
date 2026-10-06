@@ -40,7 +40,8 @@ export default function AgendaIndicator({
   className = '',
 }: AgendaIndicatorProps) {
   // Rótulos das zonas = cortes da faixa oficial (ex.: "< 5,01 · 5,01–7,51 · ≥ 7,51").
-  // Indicador sem faixa ('none') → sem rótulos (e a barra fica invisível).
+  // Indicador sem faixa → sem rótulos e sem barra; o `min-w-gutter` da coluna
+  // do valor guarda a largura que a barra ocuparia.
   const labels = segmentLabels ?? thresholdSegmentLabels(threshold)
 
   return (
@@ -56,16 +57,18 @@ export default function AgendaIndicator({
       ) : (
         <span className="flex-1 typo-body-bold">{label}</span>
       )}
-      <div className="flex-col-start items-center gap-xs">
-        <span className="typo-body-lg-bold text-primary" >
+      <div className="flex-col-start items-center gap-xs min-w-gutter">
+        <span className="typo-body-lg-bold text-primary">
           {value}
         </span>
-        <IndicatorBar
-          status={status}
-          numericValue={numericValue}
-          threshold={threshold}
-          segmentLabels={labels}
-        />
+        {threshold && (
+          <IndicatorBar
+            status={status}
+            numericValue={numericValue}
+            threshold={threshold}
+            segmentLabels={labels}
+          />
+        )}
       </div>
     </div>
   )

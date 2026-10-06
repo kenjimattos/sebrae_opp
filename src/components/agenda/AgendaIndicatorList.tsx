@@ -25,6 +25,7 @@ export default function AgendaIndicatorList({
   return (
     <div className={`flex flex-col ${className}`}>
       {indicators.map((ind, i) => {
+        const first = i === 0
         const last = i === indicators.length - 1
         return (
           <div key={ind.id ?? ind.label} className="flex flex-col">
@@ -32,15 +33,13 @@ export default function AgendaIndicatorList({
               id={ind.id}
               label={ind.label}
               value={ind.value}
-              // O número da RÉGUA, não o exibido: numa faixa relativa per
-              // capita, `value` é "70.626" e o corte é 44,5/1k hab.
               numericValue={classifiedValue(ind)}
               status={ind.status}
               threshold={ind.threshold}
               onLabelClick={onIndicatorClick && (() => onIndicatorClick(ind))}
-              className={last ? '' : 'pb-xs'}
+              className={`${first ? '' : 'pt-sm'} ${last ? '' : 'pb-sm'}`}
             />
-            {!last && <hr className="border-accent border-dashed pb-xs" />}
+            {!last && <hr className="border-accent border-dashed" />}
           </div>
         )
       })}
