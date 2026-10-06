@@ -459,14 +459,17 @@
     flex-direction: column;
     width: 40%;
     min-width: 0;
-    height: 81dvh;
-    min-height: 730px;
-    max-height: 750px;
+    height: clamp(730px, 81dvh, 750px);
     flex-shrink: 0;
   }
   @media (max-width:1236px) {
     .agenda-panel { height: auto; }
-    
+  }
+  /* As duas caixas da coluna direita (mapa e card): metade do painel cada —
+     o 375px é metade do teto de 750px do clamp dele. Mexeu num, mexa no outro. */
+  .agenda-panel-half {
+    height: 40dvh;
+    max-height: 375px;
   }
   /* Glass surface (Figma node 1668:7) — painel navy chapado translúcido +
      bevel. backdrop-blur e inset shadows simulam o bevel "esculpido" no vidro;
