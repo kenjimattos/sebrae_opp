@@ -78,8 +78,8 @@ export default function SectionEstado() {
   const isDimmed = (view: EstadoCardView) => tema !== TEMA_PADRAO && !view.temas.includes(tema)
 
   return (
-    <section className="section-container flex flex-col gap-md">
-      <SectionHeader title={estadoContent.title} description={estadoContent.subtitle} />
+    <section className="section-container flex flex-col gap-md mt-lg">
+      <SectionHeader title={estadoContent.title} />
 
       {/* O toggle fica na própria linha e centrado, como na Jornada: com seis
           temas ele ocupa quase a largura útil, e dividir a faixa com texto o
