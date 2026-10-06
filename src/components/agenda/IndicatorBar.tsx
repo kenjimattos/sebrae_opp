@@ -120,7 +120,7 @@ export default function IndicatorBar({
 
   return (
     <div
-      className={`w-[var(--spacing-gutter)] ${empty ? 'invisible' : ''} ${className}`}
+      className={`w-gutter pb-xs ${empty ? 'invisible' : ''} ${className}`}
       aria-hidden={empty || undefined}
     >
       {segmentLabels && !empty ? (

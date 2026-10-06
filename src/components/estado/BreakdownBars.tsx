@@ -32,11 +32,12 @@ export default function BreakdownBars({
   return (
     <div className={`flex flex-col gap-xs ${className}`}>
       {slices.map((slice) => {
-        const recuada = destaque !== undefined && slice.label !== destaque
+        const acesa = destaque === slice.label
+        const recuada = destaque !== undefined && !acesa
         return (
           <div key={slice.label} className="flex items-center gap-sm">
             <span
-              className={`${destaque === slice.label ? 'typo-body-sm-bold' : 'typo-body-sm'} w-2/5 shrink-0 truncate`}
+              className={`${acesa ? 'typo-body-sm-bold' : 'typo-body-sm'} w-2/5 shrink-0 truncate`}
               title={slice.label}
             >
               {slice.label}
