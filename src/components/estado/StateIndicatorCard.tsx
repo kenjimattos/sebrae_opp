@@ -1,21 +1,22 @@
 // Card de um indicador estadual.
 //
-// Mesma anatomia do EconomicsCard (rótulo, número grande, variação à direita,
-// ano no pé) com duas adições que o grão estadual exige:
+// Rótulo, número grande, variação e ano, mais o que o grão estadual exige:
 //   1. a posição entre UFs, que ocupa o lugar do semáforo — SEM cor;
-//   2. um gráfico escolhido pelo que o dado é (ver EstadoChart em
+//   2. onde o dado é composição, as barras (ver EstadoChart em
 //      src/data/home/estado.ts).
 // A descrição e a fonte vêm da API e moram no tooltip: oito cards com parágrafo
 // aberto viram uma parede de texto, e o número é o que se vem ler.
+//
+// Duas anatomias, pela largura: no `sm` a posição vai ao pé, sob um filete; no
+// `lg` ela sobe para o canto direito do cabeçalho, e o resto do card é das barras.
 
 import InfoTooltip from '@/components/ui/InfoTooltip'
 import BreakdownBars from '@/components/estado/BreakdownBars'
-import SeriesLine from '@/components/estado/SeriesLine'
-import StatePositionLine from '@/components/estado/StatePosition'
+import StatePositionBlock from '@/components/estado/StatePosition'
 import type { EstadoCardView } from '@/data/home/estado'
 import type { StateIndicator } from '@/types/estado'
 import { toEconomicVariation, formatVariationPct } from '@/utils/economics'
-import { formatNumberBR, readDistribution, readNumber, readPosition, readSeries } from '@/utils/estado'
+import { formatNumberBR, readDistribution, readNumber, readPosition } from '@/utils/estado'
 
 interface StateIndicatorCardProps {
   indicator: StateIndicator
@@ -33,17 +34,22 @@ export default function StateIndicatorCard({
 }: StateIndicatorCardProps) {
   const variation = toEconomicVariation(indicator.variation)
   const position = readPosition(indicator.breakdown)
+  const largo = view.width === 'lg'
+  const chart = view.chart
 
   // Quanto o card representa de um todo maior — hoje, o emprego em MPE dentro do
   // emprego formal do estado. Sai do breakdown: a conta muda a cada carga.
-  const chart = view.chart
-  let parte = ''
-  if (chart.kind === 'bars' && chart.totalKey) {
-    const total = readNumber(indicator.breakdown, chart.totalKey)
+  let partePct = ''
+  if (view.parte) {
+    const total = readNumber(indicator.breakdown, view.parte.totalKey)
     if (total !== null && total > 0 && indicator.numericValue !== null) {
-      parte = `${formatNumberBR((indicator.numericValue / total) * 100)}% ${chart.totalLabel ?? ''}`.trim()
+      partePct = `${formatNumberBR((indicator.numericValue / total) * 100)}%`
     }
   }
+
+  // "R$ 3.036,47" já diz a unidade; repetir "R$" ao lado seria ruído.
+  const unidade = indicator.unit && !indicator.value.includes(indicator.unit) ? indicator.unit : ''
+  const base = [variation && `vs ${variation.previousYear}`, unidade].filter(Boolean).join(' · ')
 
   const detalhe = [indicator.description, view.nota, indicator.source && `Fonte: ${indicator.source}`]
     .filter(Boolean)
@@ -51,55 +57,72 @@ export default function StateIndicatorCard({
 
   return (
     <article
-      className={`flex flex-col bg-surface p-sm gap-sm transition-opacity duration-300 motion-reduce:transition-none ${
+      className={`card-raised flex flex-col p-md gap-md transition-opacity duration-300 motion-reduce:transition-none ${
         dimmed ? 'opacity-40 hover:opacity-100 focus-within:opacity-100' : ''
       } ${className}`}
     >
-      <div className="flex items-start justify-between gap-2xs">
-        <h4 className="typo-body-sm uppercase">{indicator.label}</h4>
-        {detalhe && (
-          <InfoTooltip
-            label={`Sobre ${indicator.label}`}
-            title={indicator.label}
-            subtitle={detalhe}
+      <div
+        className={
+          largo ? 'flex items-start justify-between gap-md' : 'flex flex-1 flex-col gap-md'
+        }
+      >
+        <div className="flex min-w-0 flex-1 flex-col gap-xs">
+          <div className="flex items-start gap-xs">
+            <h4 className="typo-body-sm uppercase text-inactive flex-1">{indicator.label}</h4>
+            <span className="typo-body-sm-bold tabular-nums shrink-0 rounded-full border border-divider px-xs">
+              {indicator.referenceYear}
+            </span>
+            {detalhe && (
+              <InfoTooltip
+                label={`Sobre ${indicator.label}`}
+                title={indicator.label}
+                subtitle={detalhe}
+              />
+            )}
+          </div>
+
+          <span className="typo-h2 tabular-nums">{indicator.value}</span>
+
+          {(variation || base) && (
+            <p className="flex flex-wrap items-center gap-xs typo-body-sm text-inactive">
+              {variation && (
+                <span
+                  className="typo-body-sm-bold tabular-nums rounded-full bg-accent-surface px-xs"
+                  title={`vs ${variation.previousYear}: ${variation.previousValue}`}
+                >
+                  {formatVariationPct(variation)}
+                </span>
+              )}
+              {base}
+            </p>
+          )}
+        </div>
+
+        {position && (
+          <StatePositionBlock
+            position={position}
+            className={largo ? 'shrink-0' : 'mt-auto border-t border-divider pt-sm'}
           />
         )}
       </div>
 
-      <div className="flex items-baseline justify-between gap-xs">
-        <span className="typo-display-sm tabular-nums">{indicator.value}</span>
-        {variation && (
-          <span
-            className="typo-body-sm-bold tabular-nums"
-            title={`vs ${variation.previousYear}: ${variation.previousValue}`}
-          >
-            {formatVariationPct(variation)}
-          </span>
-        )}
-      </div>
+      {partePct && view.parte && (
+        <p className="typo-body-sm">
+          <span className="typo-body-sm-bold">{partePct}</span> {view.parte.totalLabel}
+        </p>
+      )}
 
-      {position && <StatePositionLine position={position} />}
-
-      {/* mt-auto gruda o gráfico e o ano no pé: numa grade, cards de alturas
-          diferentes alinhariam os gráficos em linhas quebradas. */}
-      <div className="mt-auto flex flex-col gap-xs pt-2xs">
-        {chart.kind === 'bars' && (
-          <>
-            <BreakdownBars
-              slices={readDistribution(indicator.breakdown, chart.key)}
-              max={chart.max}
-              caption={chart.caption}
-            />
-            {parte && <p className="typo-body-sm text-inactive">{parte}</p>}
-          </>
-        )}
-        {chart.kind === 'line' && (
-          <SeriesLine points={readSeries(indicator)} label={indicator.label} />
-        )}
-        <span className="typo-body-sm text-inactive text-right tabular-nums">
-          {indicator.referenceYear}
-        </span>
-      </div>
+      {/* flex-1 + justify-between: quando o card estica para fechar a coluna, a
+          sobra se espalha entre as barras em vez de abrir um vazio sob o título. */}
+      {chart.kind === 'bars' && (
+        <BreakdownBars
+          slices={readDistribution(indicator.breakdown, chart.key)}
+          max={chart.max}
+          caption={chart.caption}
+          destaque={chart.destaque}
+          className="flex-1 justify-between"
+        />
+      )}
     </article>
   )
 }

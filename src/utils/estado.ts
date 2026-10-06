@@ -5,8 +5,6 @@
 // 8 indicadores (ver src/types/estado.ts). Quem lê precisa de type guard — daí
 // este arquivo, e não um cast no componente.
 
-import type { StateIndicator, StateSeriesPoint } from '@/types/estado'
-
 /**
  * Posição da UF entre pares. É COMPARAÇÃO, NÃO CLASSIFICAÇÃO: nenhum indicador
  * estadual tem `threshold`, e a UI não deve derivar cor daqui (ver CLAUDE.md).
@@ -17,7 +15,8 @@ export interface StatePosition {
   entreNordeste: number
   totalNordeste: number
   // Quando `true`, a posição foi calculada per capita e `valorNormalizado` traz
-  // o número que de fato ordenou — que não é o exibido no card.
+  // o número que de fato ordenou — que não é o exibido no card. A tela avisa que
+  // a ordem é per capita, mas não mostra esse número.
   normalizado: boolean
   valorNormalizado: number | null
   unidadeNormalizada: string
@@ -81,13 +80,6 @@ export function readNumber(
   key: string,
 ): number | null {
   return num(breakdown?.[key])
-}
-
-/** Série do mais antigo ao mais recente, só com os pontos que têm número. */
-export function readSeries(indicator: StateIndicator): StateSeriesPoint[] {
-  return indicator.series
-    .filter((p) => typeof p.numericValue === 'number')
-    .sort((a, b) => a.referenceYear.localeCompare(b.referenceYear))
 }
 
 /** Inteiro em pt-BR; decimais só quando o número os tem. */

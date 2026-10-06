@@ -90,9 +90,9 @@ não fica no arquivo.
 > e `var()` dentro de gradiente/`color-mix` em `style` inline.
 
 Classes de cor disponíveis além das óbvias: `bg-background|surface-tertiary|accent-hover|
-accent-surface|{success,warning,alert}-surface|button-*`, `text-primary|on-accent|
+accent-surface|divider|{success,warning,alert}-surface|button-*`, `text-primary|on-accent|
 {success,warning,alert}|button-label-*`, `border-surface-secondary|surface-tertiary|
-text-primary|{success,warning,alert}`.
+divider|text-primary|{success,warning,alert}`.
 
 > **Label sobre fundo colorido acompanha a cor, não o tema.** `--semantic-text-on-accent`
 > e `--semantic-button-label-success` invertem entre claro e escuro porque o fundo deles
@@ -106,7 +106,7 @@ consultar `index.css` antes de inventar equivalente):
 .typo-display-lg|display|display-sm · .typo-h1..h4 (h4 inclui uppercase)
 .typo-title-lg|title-md|title-sm · .typo-body-lg|body|body-sm (+ variantes -bold)
 .typo-button-lg|button|button-sm (+ variantes -secondary-)
-.card-surface(-secondary) · .card-hoverable · .flex-center|between|col-start
+.card-surface(-secondary) · .card-raised · .card-hoverable · .flex-center|between|col-start
 .grid-2..5 · .status-{success,warning,alert,neutral}-{bg,dot} · .glass(-bevel)
 .divider · .scrollbar-hide · .section-container · .typewriter-caret · .journey-cue-chevron
 .catalog*, .poster* (/trilhas)

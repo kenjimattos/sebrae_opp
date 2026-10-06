@@ -24,12 +24,12 @@ import { useEstado } from '@/hooks/useEstado'
 import type { StateIndicator } from '@/types/estado'
 
 // Indicador que a API passou a servir e a tabela de apresentação ainda não
-// conhece: entra como card pequeno com a série em linha, no tema geral. O painel
+// conhece: entra como card pequeno, sem gráfico, no tema geral. O painel
 // é DB-driven — dado novo aparece sem release de frontend.
 function viewFor(indicator: StateIndicator): EstadoCardView {
   const known = CARD_VIEWS.find((v) => v.id === indicator.id)
   if (known) return known
-  return { id: indicator.id, temas: [], width: 'sm', chart: { kind: 'line' } }
+  return { id: indicator.id, temas: [], width: 'sm', chart: { kind: 'none' } }
 }
 
 export default function SectionEstado() {
@@ -66,28 +66,38 @@ export default function SectionEstado() {
   }
 
   const pequenos = cards.filter((c) => c.view.width === 'sm')
-  const largos = cards.filter((c) => c.view.width === 'lg')
+  // A API manda numa ordem; dentro da coluna quem manda é a tabela de apresentação.
+  const ordem = (id: string) => CARD_VIEWS.findIndex((v) => v.id === id)
+  const largos = cards
+    .filter((c) => c.view.width === 'lg')
+    .sort((a, b) => ordem(a.indicator.id) - ordem(b.indicator.id))
+  const colunas = [
+    largos.filter((c) => c.view.coluna !== 'direita'),
+    largos.filter((c) => c.view.coluna === 'direita'),
+  ]
   const isDimmed = (view: EstadoCardView) => tema !== TEMA_PADRAO && !view.temas.includes(tema)
 
   return (
     <section className="section-container flex flex-col gap-md">
       <SectionHeader title={estadoContent.title} description={estadoContent.subtitle} />
 
-      <div className="flex flex-col w-full glass rounded p-md gap-md">
-        {/* O toggle fica na própria linha e centrado, como na Jornada: com seis
-            temas ele ocupa quase a largura útil, e dividir a faixa com texto o
-            espremeria. Rola na horizontal em vez de quebrar linha — o pill de
-            seleção é posicionado por offsetLeft e não sobrevive a duas linhas. */}
-        <div className="max-w-full self-center overflow-x-auto scrollbar-hide">
-          <ModeToggle
-            value={tema}
-            onChange={setTema}
-            options={temas}
-            ariaLabel={estadoContent.destaque}
-          />
-        </div>
+      {/* O toggle fica na própria linha e centrado, como na Jornada: com seis
+          temas ele ocupa quase a largura útil, e dividir a faixa com texto o
+          espremeria. Rola na horizontal em vez de quebrar linha — o pill de
+          seleção é posicionado por offsetLeft e não sobrevive a duas linhas. */}
+      <div className="max-w-full self-center overflow-x-auto scrollbar-hide">
+        <ModeToggle
+          value={tema}
+          onChange={setTema}
+          options={temas}
+          ariaLabel={estadoContent.destaque}
+        />
+      </div>
 
-        <div className="grid-4">
+      <div className="flex flex-col w-full glass rounded p-md gap-md">
+        {/* Duas colunas abaixo de xl: o número em typo-h2 ("R$ 3.036,47") não
+            cabe num quarto da largura. */}
+        <div className="grid grid-cols-2 xl:grid-cols-4 gap-sm">
           {pequenos.map(({ indicator, view }) => (
             <StateIndicatorCard
               key={indicator.id}
@@ -99,13 +109,19 @@ export default function SectionEstado() {
         </div>
 
         <div className="grid-2">
-          {largos.map(({ indicator, view }) => (
-            <StateIndicatorCard
-              key={indicator.id}
-              indicator={indicator}
-              view={view}
-              dimmed={isDimmed(view)}
-            />
+          {colunas.map((coluna, i) => (
+            <div key={i} className="flex flex-col gap-sm">
+              {coluna.map(({ indicator, view }) => (
+                <StateIndicatorCard
+                  key={indicator.id}
+                  indicator={indicator}
+                  view={view}
+                  dimmed={isDimmed(view)}
+                  // Quem tem barras absorve a sobra de altura da coluna.
+                  className={view.chart.kind === 'bars' ? 'flex-1' : ''}
+                />
+              ))}
+            </div>
           ))}
         </div>
 

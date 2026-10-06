@@ -93,10 +93,16 @@ describe('SectionEstado', () => {
     expect(screen.getByRole('tab', { name: 'Demografia e desenvolvimento' })).toBeTruthy()
   })
 
-  it('a posição per capita diz qual número ordenou; a bruta não inventa um', () => {
+  it('a posição per capita vem rotulada; a bruta não ganha o rótulo', () => {
     render(<SectionEstado />)
-    expect(cardOf('Emprego em micro e pequenas empresas').textContent).toContain('72,1 /1k hab.')
+    expect(cardOf('Emprego em micro e pequenas empresas').textContent).toContain('Posição per capita')
     expect(cardOf('População total').textContent).not.toContain('per capita')
+  })
+
+  it('não desenha gráfico de linha nem as barras de porte', () => {
+    const { container } = render(<SectionEstado />)
+    expect(container.querySelector('svg polyline')).toBeNull()
+    expect(screen.queryByText('Microempresa (ME)')).toBeNull()
   })
 
   it('não pinta status: nenhuma classe de semáforo no painel', () => {

@@ -1,25 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import { CARD_VIEWS, TEMAS, TEMA_PADRAO } from '@/data/home/estado'
-import type { StateIndicator } from '@/types/estado'
 import {
   formatNumberBR,
   ordinalF,
   readDistribution,
   readPosition,
-  readSeries,
 } from '@/utils/estado'
-
-function indicator(partial: Partial<StateIndicator> = {}): StateIndicator {
-  return {
-    id: 'uf-teste',
-    label: 'Teste',
-    value: '1',
-    numericValue: 1,
-    referenceYear: '2025',
-    series: [],
-    ...partial,
-  }
-}
 
 describe('readPosition', () => {
   it('lê a posição entre UFs e no Nordeste', () => {
@@ -81,21 +67,6 @@ describe('readDistribution', () => {
   it('devolve lista vazia quando a chave não existe', () => {
     expect(readDistribution({ posicao: {} }, 'porSetor')).toEqual([])
     expect(readDistribution(undefined, 'porSetor')).toEqual([])
-  })
-})
-
-describe('readSeries', () => {
-  it('ordena do ano mais antigo ao mais recente e descarta ponto sem número', () => {
-    const pontos = readSeries(
-      indicator({
-        series: [
-          { referenceYear: '2025', value: '3', numericValue: 3 },
-          { referenceYear: '2023', value: '1', numericValue: 1 },
-          { referenceYear: '2024', value: '—', numericValue: null },
-        ],
-      }),
-    )
-    expect(pontos.map((p) => p.referenceYear)).toEqual(['2023', '2025'])
   })
 })
 
