@@ -169,6 +169,9 @@
   --semantic-surface-primary: var(--primitives-gray-100);
   --semantic-surface-secondary: var(--primitives-blue-100);
   --semantic-surface-tertiary: var(--primitives-gray-500);
+  /* Card que precisa se destacar de um painel `.glass`: no claro, surface-primary
+     (gray-100) sobre o vidro (branco a 55% sobre gray-200) dá quase a mesma cor. */
+  --semantic-surface-raised: var(--primitives-white);
 
   --semantic-text-primary: var(--primitives-black);
   /* Texto sobre superfície accent — acompanha o accent, não o tema:
@@ -220,6 +223,9 @@
      1,13:1 e some; gray-300 dá ~1,36:1 — visível, mas mais fraco do que era
      sobre branco (1,5:1). Se sumir, o próximo degrau é o gray-400 (2,3:1). */
   --semantic-divider: var(--primitives-gray-300);
+  --semantic-shadow-raised:
+    0 1px 2px color-mix(in srgb, var(--primitives-black) 6%, transparent),
+    0 6px 16px -6px color-mix(in srgb, var(--primitives-black) 12%, transparent);
 
   /* Glass (.glass / .glass-bevel). Tokens são cores completas de primitivas;
      quem precisa de transparência aplica o próprio alpha por color-mix no uso
@@ -258,6 +264,7 @@
   --semantic-surface-primary: var(--primitives-navy-800);
   --semantic-surface-secondary: var(--primitives-navy-600);
   --semantic-surface-tertiary: var(--primitives-gray-800);
+  --semantic-surface-raised: var(--primitives-navy-800);
 
   --semantic-text-primary: var(--primitives-white);
   --semantic-text-on-accent: var(--primitives-black);
@@ -293,6 +300,8 @@
   --semantic-accent-surface: color-mix(in srgb, var(--primitives-lime-400) 18%, var(--primitives-navy-800));
 
   --semantic-divider: var(--primitives-navy-600);
+  /* No escuro a separação vem da borda: sombra sobre navy não aparece. */
+  --semantic-shadow-raised: none;
 
   --semantic-glass-tint: color-mix(in srgb, var(--primitives-navy-900) 20%, transparent);
   --semantic-glass-stroke: var(--primitives-white);
@@ -379,6 +388,12 @@
   }
   .card-surface           { background-color: var(--semantic-surface-primary);   border-radius: var(--radius-default); }
   .card-surface-secondary { background-color: var(--semantic-surface-secondary); border-radius: var(--radius-default); }
+  .card-raised {
+    background-color: var(--semantic-surface-raised);
+    border: var(--border-default) solid var(--semantic-divider);
+    border-radius: var(--radius-default);
+    box-shadow: var(--semantic-shadow-raised);
+  }
 
   @media (max-width: 1675px) {
     .section-container { padding-inline: var(--spacing-3xl); }
