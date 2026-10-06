@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import SectionAgendas from '@/components/sections/SectionAgendas'
+import SectionEstado from '@/components/sections/SectionEstado'
 import SectionJornada from '@/components/sections/SectionJornada'
 import SectionErrorBoundary from '@/components/ui/SectionErrorBoundary'
 import JourneyDivider from '@/components/ui/JourneyDivider'
@@ -24,6 +25,14 @@ export default function Home() {
       <div id="agenda">
         <SectionErrorBoundary name="agendas">
           <SectionAgendas />
+        </SectionErrorBoundary>
+      </div>
+      {/* Panorama estadual: contexto da Paraíba inteira, entre o diagnóstico do
+          município e os pilares. Independe do município selecionado — por isso
+          fica fora do bloco condicional abaixo. */}
+      <div id="estado">
+        <SectionErrorBoundary name="estado">
+          <SectionEstado />
         </SectionErrorBoundary>
       </div>
       {data ? (
