@@ -401,10 +401,10 @@
   @media (max-width: 1400px) {
     .section-container { padding-inline: var(--spacing-2xl); }
   }
-  @media (max-width: 1300px) {
+  @media (max-width: 1316px) {
     .section-container { padding-inline: var(--spacing-lg); }
   }
-  @media (max-width: 1250px) {
+  @media (max-width: 1268px) {
     .section-container { padding-inline: var(--spacing-md); }
   }
 
@@ -459,13 +459,15 @@
     flex-direction: column;
     width: 40%;
     min-width: 0;
-    height: 77dvh;
+    height: 81dvh;
+    min-height: 730px;
+    max-height: 750px;
     flex-shrink: 0;
   }
-  @media (min-width: 768px) {
-    .agenda-panel { height: fit-content; }
+  @media (max-width:1236px) {
+    .agenda-panel { height: auto; }
+    
   }
-
   /* Glass surface (Figma node 1668:7) — painel navy chapado translúcido +
      bevel. backdrop-blur e inset shadows simulam o bevel "esculpido" no vidro;
      o highlight branco no topo / sombra na base dão o relevo. Usa background-color
