@@ -11,9 +11,7 @@ export interface EstadoTema {
 }
 
 export const estadoContent = {
-  title: 'Panorama estadual',
-  // Entra no SectionHeader, em caixa alta — frase curta por isso.
-  subtitle: 'o estado inteiro, para situar o município',
+  title: 'visão estadual da paraíba',
   // Por que não há semáforo aqui — a ausência é deliberada, e a tela precisa
   // dizer isso antes que alguém leia a posição como nota.
   nota: 'Cada card traz a posição da Paraíba entre as 27 UFs e entre as 9 do Nordeste. Posição compara o estado com os pares; não classifica desempenho — estes indicadores não têm faixa oficial, e por isso não recebem cor.',
