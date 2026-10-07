@@ -1,22 +1,21 @@
 // Tailwind pure — no Figma equivalent
-// Header do app: logotipo, seletor de município (só em /home) e tema. Sticky
-// no topo; compacta ao rolar. Geometria e estados em .site-header (index.css).
+// Header do app: logotipo e tema. Sticky no topo; compacta ao rolar. Geometria
+// e estados em .site-header (index.css). O seletor de município não mora aqui:
+// fica acima do mapa, em SectionAgendas.
 //
-// É <header> de propósito: com logo, seletor e tema juntos ele é o cabeçalho
+// É <header> de propósito: com logo e tema juntos ele é o cabeçalho
 // do documento, e o landmark `banner` convive com o <main> único do Layout.
 
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ThemeToggle from '@/components/ui/ThemeToggle'
 import PippaWordmark from '@/components/brand/PippaWordmark'
-import CitySelector from '@/components/layout/CitySelector'
 
 interface SiteHeaderProps {
-  showCitySelector: boolean
   className?: string
 }
 
-export default function SiteHeader({ showCitySelector, className = '' }: SiteHeaderProps) {
+export default function SiteHeader({ className = '' }: SiteHeaderProps) {
   const sentinelRef = useRef<HTMLDivElement>(null)
   const [compact, setCompact] = useState(false)
 
@@ -53,8 +52,6 @@ export default function SiteHeader({ showCitySelector, className = '' }: SiteHea
           >
             <PippaWordmark className="site-header__logo block h-auto" decorative />
           </Link>
-
-          <div>{showCitySelector && <CitySelector compact={compact} />}</div>
 
           {/* Instância única — useTheme é estado local (ver useTheme.ts). */}
           <div className="justify-self-end glass glass-bevel rounded-full p-2xs">

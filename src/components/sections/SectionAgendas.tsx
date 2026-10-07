@@ -1,7 +1,7 @@
 // Seção de agendas da Home (Figma 1395:2142).
 // Layout: painel glass à esquerda (40%) com heading + AgendaList, e o mapa da
-// Paraíba à direita com o AgendaCard. A lista e o card só aparecem depois que
-// há município escolhido. O CitySelector mora no SiteHeader.
+// Paraíba à direita com o AgendaCard. O CitySelector fica acima do mapa, na
+// mesma caixa. A lista e o card só aparecem depois que há município escolhido.
 
 import { useState } from 'react'
 import type { Indicator } from '@/types/indicators'
@@ -12,6 +12,7 @@ import { ParaibaOutlineMap } from '@/components/map/ParaibaOutlineMap'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { useMunicipalityChange } from '@/hooks/useMunicipalityChange'
 import { agendaObjectives } from '@/data/indicators/descriptions/agendas'
+import CitySelector from '@/components/layout/CitySelector'
 
 export default function SectionAgendas() {
   const { municipality, municipalities, loading } = useMunicipality()
@@ -33,15 +34,16 @@ export default function SectionAgendas() {
     if (match) void changeMunicipality(match.id, match.name, 'map')
   }
 
-  // Estado inicial: sem município selecionado, exibimos apenas o mapa. A lista
-  // de agendas e o card só aparecem após a seleção (ou enquanto os dados do
-  // município recém-selecionado carregam).
+  // Estado inicial: sem município selecionado, exibimos apenas o mapa e o
+  // CitySelector. A lista de agendas e o card só aparecem após a seleção
+  // (ou enquanto os dados do município recém-selecionado carregam).
   if (!hasSelection) {
     return (
       <section className="section-container">
-        <p className="typo-body">
-          {loading ? 'Carregando indicadores…' : 'Busque seu município no topo ou clique no mapa'}
-        </p>
+        <div className="flex flex-col gap-xs items-center">
+          <CitySelector />
+          <p className="typo-body">{loading ? 'Carregando indicadores…' : 'ou clique no mapa'}</p>
+        </div>
         <div className="flex w-full px-xl">
           <ParaibaOutlineMap
             selectedId={municipality.id}
@@ -75,11 +77,20 @@ export default function SectionAgendas() {
 
           {/* Coluna direita: mapa + overlays */}
           <div className="flex flex-col flex-1 min-w-0 justify-center">
-            <div className="agenda-panel-half flex flex-col items-center px-md">
-              <ParaibaOutlineMap
-                selectedId={municipality.id}
-                onSelect={handleMapSelect}
-              />
+            <div className="agenda-panel-half flex flex-col items-center gap-sm px-md">
+              {/* z-10: a lista de municípios abre por cima do mapa e do card. */}
+              <div className="relative z-10">
+                <CitySelector />
+              </div>
+              {/* O seletor divide a caixa com o mapa: o mapa fica com a altura
+                  que sobra (`max-h-full`) em vez de vazar para cima do card. */}
+              <div className="flex w-full flex-1 min-h-0 justify-center">
+                <ParaibaOutlineMap
+                  selectedId={municipality.id}
+                  onSelect={handleMapSelect}
+                  className="max-h-full"
+                />
+              </div>
             </div>
             {selectedAgenda && (
               <div className="agenda-panel-half flex flex-col justify-center">
