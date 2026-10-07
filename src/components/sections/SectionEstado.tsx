@@ -1,4 +1,4 @@
-// Visão estadual da Home: os 8 indicadores da Paraíba no grão UF.
+// Visão estadual da Home: os indicadores da Paraíba no grão UF.
 //
 // O ModeToggle aqui NÃO troca de painel — ele destaca um tema e recua os demais
 // cards. A grade não se reorganiza de propósito: filtrar esconderia que os
@@ -15,6 +15,7 @@ import ModeToggle from '@/components/ui/ModeToggle'
 import SectionHeader from '@/components/ui/SectionHeader'
 import {
   CARD_VIEWS,
+  SEM_CARD,
   TEMAS,
   TEMA_PADRAO,
   estadoContent,
@@ -37,7 +38,10 @@ export default function SectionEstado() {
   const [tema, setTema] = useState(TEMA_PADRAO)
 
   const cards = useMemo(
-    () => (data?.indicators ?? []).map((indicator) => ({ indicator, view: viewFor(indicator) })),
+    () =>
+      (data?.indicators ?? [])
+        .filter((indicator) => !SEM_CARD.has(indicator.id))
+        .map((indicator) => ({ indicator, view: viewFor(indicator) })),
     [data],
   )
 
@@ -65,9 +69,15 @@ export default function SectionEstado() {
     )
   }
 
-  const pequenos = cards.filter((c) => c.view.width === 'sm')
-  // A API manda numa ordem; dentro da coluna quem manda é a tabela de apresentação.
-  const ordem = (id: string) => CARD_VIEWS.findIndex((v) => v.id === id)
+  // A API manda numa ordem; na tela quem manda é a tabela de apresentação.
+  // Indicador que ela ainda não conhece vai para o fim da fileira dos pequenos.
+  const ordem = (id: string) => {
+    const i = CARD_VIEWS.findIndex((v) => v.id === id)
+    return i === -1 ? CARD_VIEWS.length : i
+  }
+  const pequenos = cards
+    .filter((c) => c.view.width === 'sm')
+    .sort((a, b) => ordem(a.indicator.id) - ordem(b.indicator.id))
   const largos = cards
     .filter((c) => c.view.width === 'lg')
     .sort((a, b) => ordem(a.indicator.id) - ordem(b.indicator.id))

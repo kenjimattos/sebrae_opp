@@ -8,7 +8,7 @@
 // aberto viram uma parede de texto, e o número é o que se vem ler.
 //
 // Duas anatomias, pela largura: no `sm` a posição vai ao pé, sob um filete; no
-// `lg` ela sobe para o canto direito do cabeçalho, e o resto do card é das barras.
+// `lg` ela fica ao lado do número principal, e o resto do card é das barras.
 
 import InfoTooltip from '@/components/ui/InfoTooltip'
 import BreakdownBars from '@/components/estado/BreakdownBars'
@@ -56,61 +56,76 @@ export default function StateIndicatorCard({
     .filter(Boolean)
     .join(' ')
 
+  const cabecalho = (
+    <div className="flex items-start gap-xs">
+      <h4 className="typo-body-sm uppercase text-inactive flex-1">{indicator.label}</h4>
+      <span className="typo-body-sm-bold tabular-nums shrink-0 rounded-full border border-divider px-xs">
+        {indicator.referenceYear}
+      </span>
+      {detalhe && (
+        <InfoTooltip label={`Sobre ${indicator.label}`} title={indicator.label} subtitle={detalhe} />
+      )}
+    </div>
+  )
+
+  const numeros = (
+    <>
+      <span className="typo-h2 tabular-nums">{indicator.value}</span>
+
+      {(variation || base) && (
+        <p className="flex flex-wrap items-center gap-xs typo-body-sm text-inactive">
+          {variation && (
+            <span
+              className="typo-body-sm-bold tabular-nums rounded-full bg-accent-surface px-xs"
+              title={`vs ${variation.previousYear}: ${variation.previousValue}`}
+            >
+              {formatVariationPct(variation)}
+            </span>
+          )}
+          {base}
+        </p>
+      )}
+
+      {parte && (
+        <p className="typo-body-sm">
+          <span className="typo-body-sm-bold">{parte.pct}</span> {parte.label}
+        </p>
+      )}
+    </>
+  )
+
   return (
     <article
       className={`card-raised flex flex-col p-md gap-md transition-opacity duration-300 motion-reduce:transition-none ${
         dimmed ? 'opacity-40 hover:opacity-100 focus-within:opacity-100' : ''
       } ${className}`}
     >
-      <div
-        className={
-          largo ? 'flex items-start justify-between gap-md' : 'flex flex-1 flex-col gap-md'
-        }
-      >
-        <div className="flex min-w-0 flex-1 flex-col gap-xs">
-          <div className="flex items-start gap-xs">
-            <h4 className="typo-body-sm uppercase text-inactive flex-1">{indicator.label}</h4>
-            <span className="typo-body-sm-bold tabular-nums shrink-0 rounded-full border border-divider px-xs">
-              {indicator.referenceYear}
-            </span>
-            {detalhe && (
-              <InfoTooltip
-                label={`Sobre ${indicator.label}`}
-                title={indicator.label}
-                subtitle={detalhe}
+      {largo ? (
+        <div className="flex flex-col gap-xs">
+          {cabecalho}
+          <div className="flex flex-wrap items-start gap-md">
+            <div className="flex flex-col gap-xs">{numeros}</div>
+            {position && (
+              <StatePositionBlock
+                position={position}
+                className="shrink-0 border-l border-divider pl-md"
               />
             )}
           </div>
-
-          <span className="typo-h2 tabular-nums">{indicator.value}</span>
-
-          {(variation || base) && (
-            <p className="flex flex-wrap items-center gap-xs typo-body-sm text-inactive">
-              {variation && (
-                <span
-                  className="typo-body-sm-bold tabular-nums rounded-full bg-accent-surface px-xs"
-                  title={`vs ${variation.previousYear}: ${variation.previousValue}`}
-                >
-                  {formatVariationPct(variation)}
-                </span>
-              )}
-              {base}
-            </p>
+        </div>
+      ) : (
+        <div className="flex flex-1 flex-col gap-md">
+          <div className="flex flex-col gap-xs">
+            {cabecalho}
+            {numeros}
+          </div>
+          {position && (
+            <StatePositionBlock
+              position={position}
+              className="mt-auto border-t border-divider pt-sm"
+            />
           )}
         </div>
-
-        {position && (
-          <StatePositionBlock
-            position={position}
-            className={largo ? 'shrink-0' : 'mt-auto border-t border-divider pt-sm'}
-          />
-        )}
-      </div>
-
-      {parte && (
-        <p className="typo-body-sm">
-          <span className="typo-body-sm-bold">{parte.pct}</span> {parte.label}
-        </p>
       )}
 
       {/* flex-1 + justify-between: quando o card estica para fechar a coluna, a
