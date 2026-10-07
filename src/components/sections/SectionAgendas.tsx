@@ -1,7 +1,8 @@
 // Seção de agendas da Home (Figma 1395:2142).
 // Layout: painel glass à esquerda (40%) com heading + AgendaList, e o mapa da
-// Paraíba à direita com o AgendaCard. O CitySelector fica acima do mapa, na
-// mesma caixa. A lista e o card só aparecem depois que há município escolhido.
+// Paraíba à direita com o AgendaCard. O CitySelector fica no topo da seção,
+// centrado, com ou sem município escolhido — logo abaixo da visão estadual.
+// A lista e o card só aparecem depois que há município escolhido.
 
 import { useState } from 'react'
 import type { Indicator } from '@/types/indicators'
@@ -56,6 +57,11 @@ export default function SectionAgendas() {
 
   return (
     <section className="section-container">
+      {/* Mesmo lugar do estado inicial: escolher um município não desloca o
+          seletor. z-10 para a lista abrir por cima do painel e do mapa. */}
+      <div className="relative z-10">
+        <CitySelector />
+      </div>
       <div className="flex flex-1 min-h-0 gap-md">
           {/* Coluna esquerda: container rounded com heading + agendas */}
           <div className="agenda-panel glass p-md rounded gap-md">
@@ -77,20 +83,11 @@ export default function SectionAgendas() {
 
           {/* Coluna direita: mapa + overlays */}
           <div className="flex flex-col flex-1 min-w-0 justify-center">
-            <div className="agenda-panel-half flex flex-col items-center gap-sm px-md">
-              {/* z-10: a lista de municípios abre por cima do mapa e do card. */}
-              <div className="relative z-10">
-                <CitySelector />
-              </div>
-              {/* O seletor divide a caixa com o mapa: o mapa fica com a altura
-                  que sobra (`max-h-full`) em vez de vazar para cima do card. */}
-              <div className="flex w-full flex-1 min-h-0 justify-center">
-                <ParaibaOutlineMap
-                  selectedId={municipality.id}
-                  onSelect={handleMapSelect}
-                  className="max-h-full"
-                />
-              </div>
+            <div className="agenda-panel-half flex flex-col items-center px-md">
+              <ParaibaOutlineMap
+                selectedId={municipality.id}
+                onSelect={handleMapSelect}
+              />
             </div>
             {selectedAgenda && (
               <div className="agenda-panel-half flex flex-col justify-center">
