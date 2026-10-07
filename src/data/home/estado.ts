@@ -73,6 +73,14 @@ export interface EstadoCardView {
 // Indicador que não estiver aqui ainda aparece: cai no fallback de SectionEstado
 // (card `sm`, sem gráfico, tema `geral`). O painel é DB-driven como o resto —
 // não pode sumir com dado novo só porque esta tabela não foi atualizada.
+// Por isso tirar um indicador da tela pede entrada em SEM_CARD: só apagar a linha
+// daqui o devolveria como card pequeno pelo fallback.
+/**
+ * Indicadores que a API serve e a tela não desenha. `uf-empregados` é o total de
+ * vínculos, o mesmo número que `uf-emprego-setor` já exibe com a divisão por setor.
+ */
+export const SEM_CARD: ReadonlySet<string> = new Set(['uf-empregados'])
+
 export const CARD_VIEWS: EstadoCardView[] = [
   {
     id: 'uf-populacao',
@@ -80,13 +88,6 @@ export const CARD_VIEWS: EstadoCardView[] = [
     width: 'sm',
     chart: { kind: 'none' },
     nota: 'A posição aqui é ordem de tamanho — 14ª UF mais populosa —, não desempenho.',
-  },
-  {
-    id: 'uf-empregados',
-    temas: ['trabalho', 'economia'],
-    width: 'sm',
-    chart: { kind: 'none' },
-    nota: 'Conta vínculos ativos em 31 de dezembro, não pessoas: quem tem dois empregos formais aparece duas vezes.',
   },
   {
     id: 'uf-remuneracao-media',
@@ -102,11 +103,22 @@ export const CARD_VIEWS: EstadoCardView[] = [
     chart: { kind: 'none' },
   },
   {
+    id: 'uf-emprego-porte',
+    temas: ['trabalho', 'empresas'],
+    // Sem barras: ME contra EPP são duas linhas quase iguais, e o que informa é
+    // a fatia do emprego formal — por isso cabe na fileira dos pequenos.
+    width: 'sm',
+    chart: { kind: 'none' },
+    parte: { totalKey: 'totalEstadoTodosOsPortes', totalLabel: 'do emprego formal do estado' },
+    nota: 'Só micro e pequenas empresas: médias e grandes ficam fora do total.',
+  },
+  {
     id: 'uf-emprego-setor',
     temas: ['trabalho', 'economia'],
     width: 'lg',
     coluna: 'esquerda',
     chart: { kind: 'bars', key: 'porSetor' },
+    nota: 'Conta vínculos ativos em 31 de dezembro, não pessoas: quem tem dois empregos formais aparece duas vezes.',
   },
   {
     id: 'uf-empresas-ativas',
@@ -119,17 +131,6 @@ export const CARD_VIEWS: EstadoCardView[] = [
       destaque: 'Ativa',
       caption: 'Todas as situações cadastrais na Receita Federal; o valor do card é só a linha Ativa.',
     },
-  },
-  {
-    id: 'uf-emprego-porte',
-    temas: ['trabalho', 'empresas'],
-    width: 'lg',
-    coluna: 'esquerda',
-    // Sem barras: ME contra EPP são duas linhas quase iguais, e o que informa é
-    // a fatia do emprego formal.
-    chart: { kind: 'none' },
-    parte: { totalKey: 'totalEstadoTodosOsPortes', totalLabel: 'do emprego formal do estado' },
-    nota: 'Só micro e pequenas empresas: médias e grandes ficam fora do total.',
   },
   {
     id: 'uf-enem-media',
