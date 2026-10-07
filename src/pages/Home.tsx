@@ -1,41 +1,42 @@
-import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import SectionAgendas from '@/components/sections/SectionAgendas'
-import SectionEstado from '@/components/sections/SectionEstado'
-import SectionJornada from '@/components/sections/SectionJornada'
-import SectionErrorBoundary from '@/components/ui/SectionErrorBoundary'
-import JourneyDivider from '@/components/ui/JourneyDivider'
-import ChatButton from '@/components/chat/ChatButton'
-import { useMunicipality } from '@/hooks/useMunicipality'
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import SectionAgendas from '@/components/sections/SectionAgendas';
+import SectionEstado from '@/components/sections/SectionEstado';
+import SectionJornada from '@/components/sections/SectionJornada';
+import SectionErrorBoundary from '@/components/ui/SectionErrorBoundary';
+import JourneyDivider from '@/components/ui/JourneyDivider';
+import ChatButton from '@/components/chat/ChatButton';
+import { useMunicipality } from '@/hooks/useMunicipality';
 
 export default function Home() {
-  const { municipality } = useMunicipality()
-  const { hash } = useLocation()
-  const data = municipality.data
+  const { municipality } = useMunicipality();
+  const { hash } = useLocation();
+  const data = municipality.data;
 
   // Navegação por hash (`/home#ambiente`). O desconto do header sticky vem do
   // scroll-padding-top do <html>, não de um offset aqui.
   useEffect(() => {
-    if (!hash) return
-    document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }, [hash])
+    if (!hash) return;
+    document
+      .getElementById(hash.slice(1))
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [hash]);
 
   return (
     <div className="container flex flex-col gap-sm">
-      <div id="agenda">
-        <SectionErrorBoundary name="agendas">
-          <SectionAgendas />
-        </SectionErrorBoundary>
-      </div>
-      {/* Panorama estadual: contexto da Paraíba inteira, entre o diagnóstico do
-          município e os pilares. Independe do município selecionado — por isso
-          fica fora do bloco condicional abaixo. */}
       <div id="estado">
         <SectionErrorBoundary name="estado">
           <SectionEstado />
         </SectionErrorBoundary>
       </div>
-      {data ? (
+
+      <div id="agenda">
+        <SectionErrorBoundary name="agendas">
+          <SectionAgendas />
+        </SectionErrorBoundary>
+      </div>
+
+      {data && (
         <>
           <JourneyDivider targetId="ambiente" />
           <div id="ambiente">
@@ -44,9 +45,9 @@ export default function Home() {
             </SectionErrorBoundary>
           </div>
         </>
-      ) : ''}
+      )}
       {/* Chat global de IA — só faz sentido com município selecionado. */}
       {data && <ChatButton />}
     </div>
-  )
+  );
 }
