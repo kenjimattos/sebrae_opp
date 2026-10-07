@@ -26,7 +26,8 @@ montados teriam preferências independentes; o `Layout` monta um só em qualquer
 e `ThemeToggle` à direita. É `sticky` e está no fluxo, então o conteúdo começa abaixo
 dele. Compacta ao rolar (barra de 96 → 64px, logo de 80 → 56px), detectado por um
 marcador no topo com `IntersectionObserver`. **O `CitySelector` não mora no header**:
-fica acima do mapa, em `SectionAgendas` — esteve no header por uma semana e voltou.
+fica no topo de `SectionAgendas`, centrado, no mesmo lugar com ou sem município
+escolhido — esteve no header por uma semana e voltou.
 **Na `/` não há header**: o hero já traz a marca em 270px, e o tema fica solto no canto.
 
 > **A caixa do header tem altura FIXA (`--header-h`, 64px); só a barra visual cresce

@@ -1,7 +1,7 @@
 // Tailwind pure — no Figma equivalent
 // Header do app: logotipo e tema. Sticky no topo; compacta ao rolar. Geometria
 // e estados em .site-header (index.css). O seletor de município não mora aqui:
-// fica acima do mapa, em SectionAgendas.
+// fica no topo de SectionAgendas.
 //
 // É <header> de propósito: com logo e tema juntos ele é o cabeçalho
 // do documento, e o landmark `banner` convive com o <main> único do Layout.
