@@ -22,11 +22,11 @@ pelo `ThemeToggle` (automático → claro → escuro; automático é o default e
 sistema). **Instância única** — `useTheme` é estado local, dois consumidores
 montados teriam preferências independentes; o `Layout` monta um só em qualquer rota.
 
-**Header do app (`layout/SiteHeader`)** em `/home` e `/trilhas`: logotipo à esquerda,
-`CitySelector` ao centro (**só em `/home`** — nada em `/trilhas` depende do município)
+**Header do app (`layout/SiteHeader`)** em `/home` e `/trilhas`: logotipo à esquerda
 e `ThemeToggle` à direita. É `sticky` e está no fluxo, então o conteúdo começa abaixo
-dele. Compacta ao rolar (barra de 96 → 64px, logo de 80 → 56px, o seletor perde o
-rótulo "Meu município"), detectado por um marcador no topo com `IntersectionObserver`.
+dele. Compacta ao rolar (barra de 96 → 64px, logo de 80 → 56px), detectado por um
+marcador no topo com `IntersectionObserver`. **O `CitySelector` não mora no header**:
+fica acima do mapa, em `SectionAgendas` — esteve no header por uma semana e voltou.
 **Na `/` não há header**: o hero já traz a marca em 270px, e o tema fica solto no canto.
 
 > **A caixa do header tem altura FIXA (`--header-h`, 64px); só a barra visual cresce
