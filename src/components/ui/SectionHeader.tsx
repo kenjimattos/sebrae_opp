@@ -1,6 +1,3 @@
-// Figma: SectionHeader (set 327:1963)
-// Variants: "Default" (title + description side by side), "No description" (title only)
-
 interface SectionHeaderProps {
   title: string
   description?: string
@@ -8,18 +5,18 @@ interface SectionHeaderProps {
 }
 
 export default function SectionHeader({ title, description, className = '' }: SectionHeaderProps) {
-    return (
+  return (
     <div className={`flex items-center gap-xl ${className}`}>
       <h1 className="typo-h1 w-full text-right">
         {title}
       </h1>
-        { description && 
-      <div className="flex-col flex w-full items-start gap-md pt-2xs">
-        <p className="typo-title-md uppercase">
-          {description}
-        </p>
-      </div>
-        }
+      {description && (
+        <div className="flex-col flex w-full items-start gap-md pt-2xs">
+          <p className="typo-title-md uppercase">
+            {description}
+          </p>
+        </div>
+      )}
     </div>
   )
 }
