@@ -26,8 +26,10 @@ montados teriam preferências independentes; o `Layout` monta um só em qualquer
 e `ThemeToggle` à direita. É `sticky` e está no fluxo, então o conteúdo começa abaixo
 dele. Compacta ao rolar (barra de 96 → 64px, logo de 80 → 56px), detectado por um
 marcador no topo com `IntersectionObserver`. **O `CitySelector` não mora no header**:
-fica no topo de `SectionAgendas`, centrado, no mesmo lugar com ou sem município
-escolhido — esteve no header por uma semana e voltou.
+fica com o mapa da PB em `map/MunicipalityMap`, no topo da `SectionJornada`, acima do
+`ModeToggle` e em todos os pilares — esteve no header por uma semana e voltou. Sem
+município escolhido a jornada é só o mapa; os modos só montam com dados.
+**Não há mais `SectionAgendas`** (lista de agendas + `AgendaCard` ao lado do mapa).
 **Na `/` não há header**: o hero já traz a marca no painel da esquerda, e o tema fica
 solto no canto. A `/` é a escolha de UF (`layout/StateSelector` + `map/BrasilOutlineMap`):
 não há botão "Entrar", **escolher a Paraíba é a entrada**. As outras 26 UFs são listadas e

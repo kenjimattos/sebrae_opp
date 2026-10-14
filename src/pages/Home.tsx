@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import SectionAgendas from '@/components/sections/SectionAgendas';
 import SectionEstado from '@/components/sections/SectionEstado';
 import SectionJornada from '@/components/sections/SectionJornada';
 import SectionErrorBoundary from '@/components/ui/SectionErrorBoundary';
@@ -30,22 +29,13 @@ export default function Home() {
         </SectionErrorBoundary>
       </div>
 
-      <div id="agenda">
-        <SectionErrorBoundary name="agendas">
-          <SectionAgendas />
+      <JourneyDivider targetId="ambiente" />
+      <div id="ambiente">
+        <SectionErrorBoundary name="jornada">
+          <SectionJornada />
         </SectionErrorBoundary>
       </div>
 
-      {data && (
-        <>
-          <JourneyDivider targetId="ambiente" />
-          <div id="ambiente">
-            <SectionErrorBoundary name="jornada">
-              <SectionJornada />
-            </SectionErrorBoundary>
-          </div>
-        </>
-      )}
       {/* Chat global de IA — só faz sentido com município selecionado. */}
       {data && <ChatButton />}
     </div>
