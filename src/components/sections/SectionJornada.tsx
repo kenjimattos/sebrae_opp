@@ -1,9 +1,10 @@
 // Tailwind pure — no Figma equivalent yet
 // SideNav à esquerda (w-1/5, sticky — flutua e acompanha o scroll da seção)
 // + área comutável à direita.
-// O mapa de escolha do município (MunicipalityMap) fica acima do ModeToggle,
-// em todos os pilares. Sem município escolhido, a seção é só o mapa: os modos
-// leem os dados do município e não têm o que mostrar antes disso.
+// A escolha do município (MunicipalityMap) fica acima do ModeToggle: o seletor
+// em todos os pilares, o mapa só em Ambiente de negócio. Sem município
+// escolhido, a seção é só isso — os modos leem os dados do município e não têm
+// o que mostrar antes.
 // A SideNav troca o pilar ativo. Cada pilar declara seus modos no registry abaixo;
 // o ModeToggle fica travado no topo (header + toggle = chrome fixo) e só o modo
 // ativo recebe flex-1 para distribuir seus elementos no espaço restante.
@@ -100,7 +101,7 @@ export default function SectionJornada() {
             description={activeJornada.subtitle}
           />
         <div className="flex flex-col gap-lg flex-1 min-w-0">
-            <MunicipalityMap />
+            <MunicipalityMap showMap={activeId === 'ambiente'} />
             { hasData && modes.length > 1 ? <ModeToggle
               value={value}
               onChange={setValue}

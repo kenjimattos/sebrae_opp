@@ -1,7 +1,6 @@
-// Item da agenda que usa o shell AgendaExpandable. Recolhido mostra a descrição
-// (igual ao AgendaListItem); expandido troca pela AgendaIndicatorList — a mesma
-// que o AgendaCard flutuante renderiza, agora por compartilhamento e não por
-// cópia mantida à mão.
+// Item da agenda que usa o shell AgendaExpandable. Recolhido mostra a descrição;
+// expandido troca pela AgendaIndicatorList, cujo label abre o modal "IA" do
+// indicador quando o chamador passa `onIndicatorClick`.
 
 import AgendaExpandable from '@/components/agenda/AgendaExpandable'
 import AgendaIndicatorList from '@/components/agenda/AgendaIndicatorList'
@@ -14,6 +13,7 @@ interface AgendaIndicatorItemProps {
   expanded: boolean
   onToggle: () => void
   description?: string
+  onIndicatorClick?: (indicator: Indicator) => void
 }
 
 export default function AgendaIndicatorItem({
@@ -23,6 +23,7 @@ export default function AgendaIndicatorItem({
   expanded,
   onToggle,
   description,
+  onIndicatorClick,
 }: AgendaIndicatorItemProps) {
   return (
     <AgendaExpandable
@@ -34,10 +35,7 @@ export default function AgendaIndicatorItem({
       fill
     >
       {expanded ? (
-        // Sem onIndicatorClick: no modo Eixos o label não abre o modal "IA",
-        // ao contrário do card flutuante. A divergência é anterior a esta
-        // extração e foi preservada como estava.
-        <AgendaIndicatorList indicators={indicators} />
+        <AgendaIndicatorList indicators={indicators} onIndicatorClick={onIndicatorClick} />
       ) : (
         description && (
           // Reserva 4 linhas para a descrição recolhida → todos os cards fechados
