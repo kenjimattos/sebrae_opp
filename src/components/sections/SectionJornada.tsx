@@ -1,6 +1,9 @@
 // Tailwind pure — no Figma equivalent yet
 // SideNav à esquerda (w-1/5, sticky — flutua e acompanha o scroll da seção)
 // + área comutável à direita.
+// O mapa de escolha do município (MunicipalityMap) fica acima do ModeToggle,
+// em todos os pilares. Sem município escolhido, a seção é só o mapa: os modos
+// leem os dados do município e não têm o que mostrar antes disso.
 // A SideNav troca o pilar ativo. Cada pilar declara seus modos no registry abaixo;
 // o ModeToggle fica travado no topo (header + toggle = chrome fixo) e só o modo
 // ativo recebe flex-1 para distribuir seus elementos no espaço restante.
@@ -20,6 +23,8 @@ import ModeResources from '@/components/resources/ModeResources'
 import ModeTraining from '@/components/training/ModeTraining'
 import ModeCaseStudies from '@/components/case-studies/ModeCaseStudies'
 import ModeFormulator from '@/components/formulator/ModeFormulator'
+import MunicipalityMap from '@/components/map/MunicipalityMap'
+import { useMunicipality } from '@/hooks/useMunicipality'
 
 interface Mode extends ModeOption {
   Component: ComponentType
@@ -48,6 +53,8 @@ const PANEL_MODES: Record<string, Mode[]> = {
 
 export default function SectionJornada() {
   const { jornadas } = sectionContent
+  const { municipality } = useMunicipality()
+  const hasData = municipality.data != null
   const [activeId, setActiveId] = useState<string>(jornadas[0].id)
   const activeJornada = jornadas.find((j) => j.id === activeId) ?? jornadas[0]
   const modes = PANEL_MODES[activeId]
@@ -93,7 +100,8 @@ export default function SectionJornada() {
             description={activeJornada.subtitle}
           />
         <div className="flex flex-col gap-lg flex-1 min-w-0">
-            { modes.length > 1 ? <ModeToggle
+            <MunicipalityMap />
+            { hasData && modes.length > 1 ? <ModeToggle
               value={value}
               onChange={setValue}
               options={modes}
@@ -102,9 +110,11 @@ export default function SectionJornada() {
             /> : null }
             {/* key={value}: remonta o boundary ao trocar de modo, resetando o
                 estado de erro. No caminho feliz o boundary não adiciona wrapper. */}
-            <SectionErrorBoundary key={value} name={`jornada:${value}`} className="flex-1">
-              <Active />
-            </SectionErrorBoundary>
+            {hasData && (
+              <SectionErrorBoundary key={value} name={`jornada:${value}`} className="flex-1">
+                <Active />
+              </SectionErrorBoundary>
+            )}
         </div>
         </div>
       </div>
