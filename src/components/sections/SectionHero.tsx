@@ -7,8 +7,9 @@
 // porque explica o logotipo antes de ele aparecer.
 //
 // Não há botão "Entrar": escolher a Paraíba (no seletor ou no mapa) é a
-// entrada. As outras UFs respondem ao hover e ao clique, mas não mudam a
-// seleção — ela é fixa na Paraíba, a única com dados.
+// entrada. A tela abre sem seleção: nenhuma UF marcada no mapa, seletor vazio.
+// As outras UFs respondem ao hover, mas o clique nelas não faz nada — só a
+// Paraíba tem dados.
 //
 // Os cards dos pilares NÃO são clicáveis: antes de entrar não há para onde
 // navegar. Eles descrevem, não conduzem.
@@ -94,7 +95,6 @@ export default function SectionHero() {
           <StateSelector onEnter={enter} />
           <BrasilOutlineMap
             className="max-w-[640px]"
-            selectedId={PB_UF_ID}
             tooltipDetail={(id) => (id === PB_UF_ID ? 'Clique para entrar' : 'Em breve')}
             onSelect={(id) => {
               if (id === PB_UF_ID) enter()

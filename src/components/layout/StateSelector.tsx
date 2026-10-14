@@ -1,9 +1,10 @@
 // Seletor de UF da entrada. Mesma casca do CitySelector (pílula glass com o
 // rótulo em Button), mas sem busca: são 27 opções e só uma está aberta.
 //
-// A seleção é FIXA na Paraíba. As outras UFs aparecem na lista para dizer que
-// a plataforma é nacional no desenho, mas escolher uma não muda nada — fecha o
-// menu e a Paraíba segue marcada. Escolher a Paraíba é o que entra na Home.
+// Começa SEM seleção. As outras UFs aparecem na lista para dizer que a
+// plataforma é nacional no desenho, mas escolher uma não muda nada — fecha o
+// menu e o seletor segue vazio. Escolher a Paraíba é o que entra na Home, por
+// isso não há estado "Paraíba selecionada" para mostrar aqui.
 import { ChevronDown } from '@/components/icons'
 import DropdownMenu from '@/components/ui/DropdownMenu'
 import { useDropdownState } from '@/components/ui/useDropdownState'
@@ -19,8 +20,6 @@ const options = UFS.map((uf) => ({
   label: uf.id === PB_UF_ID ? uf.name : `${uf.name} (em breve)`,
   value: uf.id,
 }))
-
-const pbName = UFS.find((uf) => uf.id === PB_UF_ID)?.name ?? 'Paraíba'
 
 export default function StateSelector({ onEnter, className = '' }: StateSelectorProps) {
   const { open, setOpen, ref } = useDropdownState()
@@ -39,16 +38,16 @@ export default function StateSelector({ onEnter, className = '' }: StateSelector
         <button
           type="button"
           aria-expanded={open}
-          aria-label={`Estado: ${pbName}`}
+          aria-label="Estado: nenhum selecionado"
           onClick={() => setOpen(!open)}
           className="flex items-center gap-xl px-sm py-xs typo-body-bold rounded-full focus-visible:outline outline-2 outline-offset-2 outline-accent"
         >
-          {pbName}
+          <span className="text-inactive">Nenhum</span>
           <ChevronDown className="text-accent" />
         </button>
 
         {open && (
-          <DropdownMenu options={options} value={PB_UF_ID} onSelect={handleSelect} />
+          <DropdownMenu options={options} value="" onSelect={handleSelect} />
         )}
       </div>
     </div>
