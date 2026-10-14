@@ -28,7 +28,10 @@ dele. Compacta ao rolar (barra de 96 → 64px, logo de 80 → 56px), detectado p
 marcador no topo com `IntersectionObserver`. **O `CitySelector` não mora no header**:
 fica no topo de `SectionAgendas`, centrado, no mesmo lugar com ou sem município
 escolhido — esteve no header por uma semana e voltou.
-**Na `/` não há header**: o hero já traz a marca em 270px, e o tema fica solto no canto.
+**Na `/` não há header**: o hero já traz a marca no painel da esquerda, e o tema fica
+solto no canto. A `/` é a escolha de UF (`layout/StateSelector` + `map/BrasilOutlineMap`):
+não há botão "Entrar", **escolher a Paraíba é a entrada**. As outras 26 UFs são listadas e
+respondem no mapa, mas a seleção é fixa em PB (`PB_UF_ID`, em `data/geo/ufs.ts`).
 
 > **A caixa do header tem altura FIXA (`--header-h`, 64px); só a barra visual cresce
 > no topo** (`--header-h-expanded`), por cima do `padding-block` do conteúdo. Se a
@@ -148,7 +151,8 @@ municípios, emendas) vêm da **API** (`src/data/api.ts` → `server/`). Conteú
 **editorial** (descrições de tooltip, textos de seção, etapas do formulador) fica
 estático em `src/data/`. Não reintroduzir dados de indicador em arquivo.
 
-Exceção: `src/data/geo/paraiba.json` (GeoJSON do IBGE) é estático — geometria é
+Exceção: `src/data/geo/paraiba.json` e `brasil.json` (GeoJSON do IBGE; o segundo é a malha
+de UFs em qualidade mínima, só para a entrada) são estáticos — geometria é
 editorial, não indicador.
 
 Contratos em `src/types/indicators.ts` (`IndicatorsData`, `Agenda`, `Indicator`,
