@@ -2,6 +2,14 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Não lançado]
+
+### Interface
+
+- **A entrada (`/`) vira a escolha de UF, segundo o Figma (node 2041:1815).** Duas colunas: à esquerda, num painel glass, logotipo, descrição, a pílula da jornada e os 4 pilares empilhados (antes em grade 2×2 sob o logotipo centralizado); à direita, o seletor de estado e o mapa do Brasil. **Sai o botão "Entrar"**: escolher a Paraíba — no seletor ou clicando nela no mapa — é o que entra na Home. As outras 26 UFs aparecem na lista ("em breve") e respondem ao hover no mapa, mas escolher uma só fecha o menu: a seleção é fixa em PB, a única UF com dados. Os cards dos pilares usam um texto curto novo (`summary` em `data/home/sections.ts`), o do Figma; o `description` longo segue na `SideNav`.
+  **O mapa da PB virou um caso do mapa genérico.** A projeção e o desenho saem de `ParaibaOutlineMap` para `map/OutlineMap`, que recebe o GeoJSON; `ParaibaOutlineMap` e o novo `BrasilOutlineMap` são invólucros de uma linha. Os consumidores não mudam. A malha das UFs (`data/geo/brasil.json`) é a da API de malhas do IBGE em qualidade mínima, com nome por UF acrescentado; `data/geo/ufs.ts` lê a lista dela. O mapa do Figma vinha em 26 SVGs sem nome de UF — não daria para saber qual é a Paraíba.
+  Testes: `stateSelector.test.tsx` (27 UFs listadas; PB entra; outra UF não entra e mantém PB). O layout se conferiu no navegador, nos dois temas, a 1440px.
+
 ## [1.5.0] — 2026-09-07
 
 ### Manutenção
