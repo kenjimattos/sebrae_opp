@@ -1,10 +1,6 @@
-// Linhas de AgendaIndicator separadas por divisor tracejado. Miolo comum do
-// AgendaCard (flutuante, sobre o mapa) e do AgendaIndicatorItem (modo Eixos,
-// dentro do AgendaExpandable) — os dois traziam este bloco copiado, e o
-// comentário de um deles já dizia "mesmo tratamento do AgendaCard flutuante".
-//
-// O que os cards não compartilham é a casca: título, borda, descrição e
-// recolher/expandir são de cada um. Aqui mora só a lista.
+// Linhas de AgendaIndicator separadas por divisor tracejado — o miolo do
+// AgendaIndicatorItem (modo Eixos), dentro do AgendaExpandable. A casca
+// (título, borda, descrição, recolher/expandir) é do item; aqui mora só a lista.
 
 import type { Indicator } from '@/types/indicators'
 import AgendaIndicator from '@/components/agenda/AgendaIndicator'

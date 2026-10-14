@@ -30,7 +30,8 @@ fica em `map/MunicipalityMap`, no topo da `SectionJornada`, acima do `ModeToggle
 em todos os pilares — esteve no header por uma semana e voltou. O mapa da PB vem junto
 **só no pilar Ambiente de negócio**. Sem município escolhido a jornada é só isso; os
 modos só montam com dados.
-**Não há mais `SectionAgendas`** (lista de agendas + `AgendaCard` ao lado do mapa).
+**Não há mais `SectionAgendas`** (lista de agendas + card ao lado do mapa); os
+indicadores por eixo ficam só no modo Eixos.
 **Na `/` não há header**: o hero já traz a marca no painel da esquerda, e o tema fica
 solto no canto. A `/` é a escolha de UF (`layout/StateSelector` + `map/BrasilOutlineMap`):
 não há botão "Entrar", **escolher a Paraíba é a entrada**. As outras 26 UFs são listadas e
@@ -69,7 +70,7 @@ Fastify + driver `mongodb` no `server/`.
   Figma e o que faltar é React + Tailwind puro. O mapa é SVG próprio, sem lib de mapa.
 - Props sempre tipadas; aceitar `className` opcional para extensão.
 - Sem `any` — use `unknown` + type guard. Interfaces em `src/types/`.
-- Pastas espelham os grupos do Figma (`Agenda/Card` → `src/components/agenda/AgendaCard.tsx`).
+- Pastas espelham os grupos do Figma (`Agenda/Expandable` → `src/components/agenda/AgendaExpandable.tsx`).
   Primitivos Tailwind puros em `src/components/ui/`.
 - **Três controles parecidos, papéis distintos** — escolher pelo papel, não pelo visual:
   `Button` é ação; `Chip` é seleção entre pares lado a lado (estado vem de dados,

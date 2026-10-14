@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Não lançado]
 
+### Manutenção
+
+- **Sai o código que só a seção de agendas usava**: `AgendaCard`, `AgendaList`, `AgendaListItem` e o bloco `.agenda-panel` / `.agenda-panel-half` do `index.css`. Nenhum tinha importador desde a remoção de `SectionAgendas`; o que eles importavam (`AgendaExpandable`, `AgendaIndicatorList`, `agendaStatus`) segue em uso pelo modo Eixos. Comentários que citavam o `AgendaCard` em `AgendaIndicator`, `AgendaIndicatorList` e `InfoTooltip` foram reescritos.
+
 ### Interface
 
 - **O `IndicatorModal` volta a abrir, agora pelo modo Eixos; o mapa fica só em Ambiente de negócio e encolhe.** Com a seção de agendas fora, o modal (explicação pré-gravada + pergunta livre à IA, e o rótulo de procedência da régua) não tinha mais porta. Clicar no nome de um indicador dentro de um eixo aberto o abre: `AgendaIndicatorItem` passa `onIndicatorClick` à `AgendaIndicatorList`, que já sabia virar botão, e `ModeEixos` guarda o indicador escolhido e monta o modal (mesmo `key` por indicador+município de antes). Sai o comentário que justificava o Eixos sem modal.

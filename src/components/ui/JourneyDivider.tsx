@@ -1,4 +1,4 @@
-// Marco de transição entre a SectionAgendas (diagnóstico: indicadores + mapa) e
+// Marco de transição entre a SectionEstado (visão estadual) e
 // a SectionJornada (os 4 pilares). Além de separar visualmente as duas seções,
 // avisa que há mais conteúdo abaixo e leva até lá: clicar rola suave até a Jornada.
 //
