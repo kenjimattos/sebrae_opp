@@ -10,6 +10,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Interface
 
+- **O título da visão estadual ganha o nome da UF como seletor: "visão estadual da [Paraíba ▾]".** Componente novo, `estado/StateHeader`, no lugar do `SectionHeader` da `SectionEstado`. O nome vem sublinhado no acento com uma seta, e abre a lista das 27 UFs. **A preposição acompanha a UF** — "da Paraíba", "do Ceará", "de Pernambuco" — por uma tabela em `data/geo/ufs.ts` (`preposicao` em cada `Uf`), porque o nome não diz se leva artigo ("do Pará", mas "de Goiás"); Mato Grosso e Mato Grosso do Sul ficam em "de", a forma dos governos estaduais. `estadoContent.title` passa a ser só "visão estadual".
+  **A UF segue fixa em PB**: as outras vêm "(em breve)" e a `SectionEstado` ignora a escolha, porque trocar o nome sem trocar os números faria o título mentir sobre os cards. O componente é controlado e já serve para quando houver dado de outra UF.
+  Entra `textDecorationColor.accent` no `tailwind.config.js` para o sublinhado (não havia token de cor de decoração). Testes: `stateHeader.test.tsx` (preposição de 7 UFs dos três tipos; o título troca a preposição com a UF; 27 opções e as indisponíveis marcadas). Conferido no navegador nos dois temas.
+
 - **O `IndicatorModal` volta a abrir, agora pelo modo Eixos; o mapa fica só em Ambiente de negócio e encolhe.** Com a seção de agendas fora, o modal (explicação pré-gravada + pergunta livre à IA, e o rótulo de procedência da régua) não tinha mais porta. Clicar no nome de um indicador dentro de um eixo aberto o abre: `AgendaIndicatorItem` passa `onIndicatorClick` à `AgendaIndicatorList`, que já sabia virar botão, e `ModeEixos` guarda o indicador escolhido e monta o modal (mesmo `key` por indicador+município de antes). Sai o comentário que justificava o Eixos sem modal.
   `MunicipalityMap` ganha `showMap`: o `CitySelector` segue em todos os pilares, o mapa só aparece com o pilar Ambiente ativo, e cai de 900 para 680px de largura máxima. Sem município e fora de Ambiente, o texto sob o seletor diz "Escolha um município para continuar" em vez de "ou clique no mapa".
 

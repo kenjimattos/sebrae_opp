@@ -12,7 +12,8 @@
 import { useMemo, useState } from 'react'
 import StateIndicatorCard from '@/components/estado/StateIndicatorCard'
 import ModeToggle from '@/components/ui/ModeToggle'
-import SectionHeader from '@/components/ui/SectionHeader'
+import StateHeader from '@/components/estado/StateHeader'
+import { PB_UF_ID } from '@/data/geo/ufs'
 import {
   CARD_VIEWS,
   SEM_CARD,
@@ -89,7 +90,13 @@ export default function SectionEstado() {
 
   return (
     <section className="section-container flex flex-col gap-md mt-lg">
-      <SectionHeader title={estadoContent.title} />
+      {/* UF fixa: só a Paraíba tem dados, e escolher outra não troca nada. */}
+      <StateHeader
+        title={estadoContent.title}
+        value={PB_UF_ID}
+        available={[PB_UF_ID]}
+        onChange={() => {}}
+      />
 
       {/* O toggle fica na própria linha e centrado, como na Jornada: com seis
           temas ele ocupa quase a largura útil, e dividir a faixa com texto o
