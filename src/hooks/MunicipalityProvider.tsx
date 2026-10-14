@@ -9,8 +9,8 @@ import {
   type MunicipalitySummary,
 } from '@/data/api'
 
-// Estado inicial sem município: a Home exibe apenas mapa + seletor até o
-// usuário escolher um município (ver `{data && ...}` em Home / SectionAgendas).
+// Estado inicial sem município: a jornada exibe apenas seletor (+ mapa, em
+// Ambiente) até o usuário escolher um município (ver `hasData` em SectionJornada).
 const emptyMunicipality: MunicipalityState = {
   id: '',
   name: '',

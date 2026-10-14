@@ -1,4 +1,4 @@
-// Linha de indicador no AgendaCard floating: label (font-body 14px) à
+// Linha de indicador da AgendaIndicatorList (modo Eixos): label (font-body 14px) à
 // esquerda, valor grande (font-body bold 18px) ao centro-direita, barra
 // rainbow com marcador à direita. As faixas da régua saem no tooltip do hover
 // da barra (ver IndicatorBar).

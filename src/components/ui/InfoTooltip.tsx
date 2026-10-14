@@ -1,8 +1,6 @@
 // Tailwind pure — no Figma equivalent
 // Padrão compartilhado: botão com ícone Info + Tooltip + hover accent.
-// Consumidor único hoje: EmendasEsferaCard. Já serviu ao AgendaCard e ao
-// EconomicsCard — o nome deles no comentário sobreviveu ao uso, que é
-// exatamente o que faz varredura de código morto errar.
+// Consumidor único hoje: EmendasEsferaCard.
 
 import Tooltip from '@/components/ui/Tooltip'
 import { Info } from '@/components/icons'
