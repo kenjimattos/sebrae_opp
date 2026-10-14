@@ -35,7 +35,10 @@ indicadores por eixo ficam só no modo Eixos.
 **Na `/` não há header**: o hero já traz a marca no painel da esquerda, e o tema fica
 solto no canto. A `/` é a escolha de UF (`layout/StateSelector` + `map/BrasilOutlineMap`):
 não há botão "Entrar", **escolher a Paraíba é a entrada**. As outras 26 UFs são listadas e
-respondem no hover do mapa, mas escolhê-las não faz nada. A tela abre **sem seleção**
+respondem no hover do mapa, mas escolhê-las não faz nada. O mesmo vale para o título da
+visão estadual (`estado/StateHeader`, "visão estadual da [Paraíba ▾]"): lista as 27 e
+fica em PB. **A preposição é tabela, não regra** (`PREPOSICOES` em `data/geo/ufs.ts`) —
+"do Pará" mas "de Goiás"; nome não diz se leva artigo. A tela abre **sem seleção**
 (mapa sem UF marcada, seletor em "Nenhum"); `PB_UF_ID` fica em `data/geo/ufs.ts`.
 
 > **A caixa do header tem altura FIXA (`--header-h`, 64px); só a barra visual cresce

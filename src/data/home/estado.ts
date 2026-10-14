@@ -11,7 +11,9 @@ export interface EstadoTema {
 }
 
 export const estadoContent = {
-  title: 'visão estadual da paraíba',
+  // Sem a UF: o nome vem do seletor do título (StateHeader), com a preposição
+  // certa para cada uma ("da Paraíba", "do Ceará", "de Pernambuco").
+  title: 'visão estadual',
   // Por que não há semáforo aqui — a ausência é deliberada, e a tela precisa
   // dizer isso antes que alguém leia a posição como nota.
   nota: 'Cada card traz a posição da Paraíba entre as 27 UFs e entre as 9 do Nordeste. Posição compara o estado com os pares; não classifica desempenho — estes indicadores não têm faixa oficial, e por isso não recebem cor.',

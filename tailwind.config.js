@@ -65,6 +65,10 @@ export default {
       outlineColor: {
         'accent': 'var(--semantic-accent)',
       },
+      // Sublinhado do nome da UF no título da visão estadual (StateHeader).
+      textDecorationColor: {
+        'accent': 'var(--semantic-accent)',
+      },
       textColor: {
         'primary':   'var(--semantic-text-primary)',
         'on-accent': 'var(--semantic-text-on-accent)',
