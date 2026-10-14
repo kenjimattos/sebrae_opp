@@ -26,9 +26,10 @@ montados teriam preferências independentes; o `Layout` monta um só em qualquer
 e `ThemeToggle` à direita. É `sticky` e está no fluxo, então o conteúdo começa abaixo
 dele. Compacta ao rolar (barra de 96 → 64px, logo de 80 → 56px), detectado por um
 marcador no topo com `IntersectionObserver`. **O `CitySelector` não mora no header**:
-fica com o mapa da PB em `map/MunicipalityMap`, no topo da `SectionJornada`, acima do
-`ModeToggle` e em todos os pilares — esteve no header por uma semana e voltou. Sem
-município escolhido a jornada é só o mapa; os modos só montam com dados.
+fica em `map/MunicipalityMap`, no topo da `SectionJornada`, acima do `ModeToggle` e
+em todos os pilares — esteve no header por uma semana e voltou. O mapa da PB vem junto
+**só no pilar Ambiente de negócio**. Sem município escolhido a jornada é só isso; os
+modos só montam com dados.
 **Não há mais `SectionAgendas`** (lista de agendas + `AgendaCard` ao lado do mapa).
 **Na `/` não há header**: o hero já traz a marca no painel da esquerda, e o tema fica
 solto no canto. A `/` é a escolha de UF (`layout/StateSelector` + `map/BrasilOutlineMap`):
@@ -305,7 +306,8 @@ pintam a mesma cor sem querer dizer a mesma coisa:
 
 Quatro superfícies, todas via `POST /api/ai` (modelo gratuito, fetch puro — sem SDK):
 
-1. **Modal do indicador** (`IndicatorModal`) — explicação e perguntas sugeridas são
+1. **Modal do indicador** (`IndicatorModal`, aberto pelo nome do indicador no modo
+   Eixos — a única porta de entrada) — explicação e perguntas sugeridas são
    **pré-gravadas** (`descriptions/indicator-ai.ts`); só a pergunta livre chama o LLM.
 2. **Formulador** — `AiField` em 17 campos (allowlist `AI_FIELD_IDS`), gerar objetivos
    (etapa 3), indicadores (etapa 7), rubricas (etapa 8, só nomes, sem valores) e o

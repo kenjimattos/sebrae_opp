@@ -1,12 +1,16 @@
 // Modo "Eixos prioritários" da aba Ambiente.
 // Grid de cards expansíveis: cada agenda vira um AgendaIndicatorItem que abre
 // mostrando os indicadores (barra rainbow). Toggle independente por card.
+// Clicar no nome de um indicador abre o IndicatorModal (explicação + IA) — é a
+// única porta de entrada do modal desde que a seção de agendas saiu da Home.
 
 import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import AgendaIndicatorItem from '@/components/agenda/AgendaIndicatorItem'
 import { agendaStatus } from '@/utils/statusStyles'
 import { agendaObjectives } from '@/data/indicators/descriptions/agendas'
+import IndicatorModal from '@/components/agenda/IndicatorModal'
+import type { Indicator } from '@/types/indicators'
 
 export default function ModeEixos() {
   const { municipality } = useMunicipality()
@@ -15,6 +19,7 @@ export default function ModeEixos() {
   // em todo render, e o React Compiler desiste de otimizar o componente).
   const agendas = useMemo(() => municipality.data?.agendas ?? [], [municipality.data])
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set())
+  const [selectedIndicator, setSelectedIndicator] = useState<Indicator | null>(null)
   // Um ref por card (índice global), usado para medir/igualar alturas por linha.
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
 
@@ -87,12 +92,22 @@ export default function ModeEixos() {
                   expanded={expandedIds.has(id)}
                   onToggle={() => toggle(id)}
                   description={agendaObjectives[agenda.id]}
+                  onIndicatorClick={setSelectedIndicator}
                 />
               </div>
             )
           })}
         </div>
       ))}
+      {selectedIndicator && (
+        <IndicatorModal
+          // Remount por indicador+município: reinicia o thread e o typewriter.
+          key={`${selectedIndicator.id ?? selectedIndicator.label}:${municipality.id}`}
+          indicator={selectedIndicator}
+          open
+          onClose={() => setSelectedIndicator(null)}
+        />
+      )}
     </div>
   )
 }

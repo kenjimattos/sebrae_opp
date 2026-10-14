@@ -6,6 +6,9 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Interface
 
+- **O `IndicatorModal` volta a abrir, agora pelo modo Eixos; o mapa fica só em Ambiente de negócio e encolhe.** Com a seção de agendas fora, o modal (explicação pré-gravada + pergunta livre à IA, e o rótulo de procedência da régua) não tinha mais porta. Clicar no nome de um indicador dentro de um eixo aberto o abre: `AgendaIndicatorItem` passa `onIndicatorClick` à `AgendaIndicatorList`, que já sabia virar botão, e `ModeEixos` guarda o indicador escolhido e monta o modal (mesmo `key` por indicador+município de antes). Sai o comentário que justificava o Eixos sem modal.
+  `MunicipalityMap` ganha `showMap`: o `CitySelector` segue em todos os pilares, o mapa só aparece com o pilar Ambiente ativo, e cai de 900 para 680px de largura máxima. Sem município e fora de Ambiente, o texto sob o seletor diz "Escolha um município para continuar" em vez de "ou clique no mapa".
+
 - **Sai a seção de agendas da Home; o mapa da PB sobe para a jornada, acima do `ModeToggle`.** `SectionAgendas` (painel com a lista de agendas, mapa e `AgendaCard`) foi removida. O seletor de município e o mapa viram `map/MunicipalityMap`, montado no topo da `SectionJornada` em todos os pilares, entre o título do pilar e o toggle. A jornada agora aparece também sem município escolhido — antes a Home a escondia; sem dados, ela mostra só o mapa e o "ou clique no mapa", e o toggle e o modo ativo só montam quando o município carrega. A âncora `#agenda` deixa de existir (nenhum link apontava para ela).
   **O `IndicatorModal` fica sem porta de entrada**: ele só abria pelo clique no indicador do `AgendaCard`, e o modo Eixos não abre o modal de propósito. Ficam sem importador também `AgendaList`, `AgendaListItem`, `AgendaCard` e o CSS `.agenda-panel*` — mantidos por ora, à espera da decisão sobre o modal. Conferido no navegador só o estado sem município (a API local não sobe sem `MONGO_URI`).
 
