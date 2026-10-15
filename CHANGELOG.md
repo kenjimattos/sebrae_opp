@@ -6,6 +6,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Manutenção
 
+- **Saem as cores sem consumidor do `index.css`.** `--semantic-accent-surface` perdeu o último leitor real quando a pílula de variação do `StateIndicatorCard` passou a `bg-surface-secondary` (o accent-surface era a única cor do projeto sem par no DS: lime a 18% sobre navy no escuro); sobrava só no `.card-hoverable`, que nenhum componente usa. Saem também as `{success,warning,alert}-surface` (nenhum leitor), os `-glow` e o bloco `.risk-card*` com o `@keyframes risk-pulse` (resto do modo Riscos), as classes correspondentes no `tailwind.config.js` e as cinco primitivas que só elas liam (`green-100`, `yellow-100`, `yellow-300`, `red-100`, `red-300`). Os dois blocos de tema seguem espelhados.
+
 - **Sai o código que só a seção de agendas usava**: `AgendaCard`, `AgendaList`, `AgendaListItem` e o bloco `.agenda-panel` / `.agenda-panel-half` do `index.css`. Nenhum tinha importador desde a remoção de `SectionAgendas`; o que eles importavam (`AgendaExpandable`, `AgendaIndicatorList`, `agendaStatus`) segue em uso pelo modo Eixos. Comentários que citavam o `AgendaCard` em `AgendaIndicator`, `AgendaIndicatorList` e `InfoTooltip` foram reescritos.
 
 ### Interface

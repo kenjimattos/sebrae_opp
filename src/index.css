@@ -134,18 +134,13 @@
   --primitives-blue-600: theme('colors.blue.600');
   --primitives-blue-800: theme('colors.blue.800');
 
-  --primitives-green-100: theme('colors.green.100');
   --primitives-green-700: theme('colors.green.700');
 
-  --primitives-yellow-100: theme('colors.yellow.100');
-  --primitives-yellow-300: theme('colors.yellow.300');
   --primitives-yellow-500: theme('colors.yellow.500');
   /* amber, não yellow: escurecido a AA sobre branco, o yellow do Tailwind vira
      oliva — o amber continua lendo como "amarelo de atenção". */
   --primitives-amber-700: theme('colors.amber.700');
 
-  --primitives-red-100: theme('colors.red.100');
-  --primitives-red-300: theme('colors.red.300');
   --primitives-red-700: theme('colors.red.700');
 
   --primitives-lime-300: theme('colors.lime.300');
@@ -194,16 +189,8 @@
      contraste AA de cada tema. O preenchimento gráfico não sai daqui — sai do
      trio -vivid abaixo, que é neon nos dois temas. */
   --semantic-success: var(--primitives-green-700);
-  --semantic-success-surface: var(--primitives-green-100);
   --semantic-warning: var(--primitives-amber-700);
-  --semantic-warning-surface: var(--primitives-yellow-100);
   --semantic-alert: var(--primitives-red-700);
-  --semantic-alert-surface: var(--primitives-red-100);
-  /* Cor do halo dos cards de risco. Não é a mesma do status de propósito:
-     glow é dispositivo de fundo escuro (luz emitida); sobre fundo claro, misturar
-     o amber escuro dá bege sujo — no claro o halo usa o pastel 300 do matiz. */
-  --semantic-warning-glow: var(--primitives-yellow-300);
-  --semantic-alert-glow: var(--primitives-red-300);
   /* Farol (preenchimento gráfico: pontos, régua, barra de glow). Vivo nos DOIS
      temas — o pedido é o semáforo ler igual ao escuro. Texto continua no trio
      base, que guarda o contraste AA de cada tema. */
@@ -217,7 +204,6 @@
   /* Accent — interactive states */
   --semantic-accent: var(--primitives-blue-600);
   --semantic-accent-hover: var(--primitives-blue-800);
-  --semantic-accent-surface: var(--primitives-blue-100);
 
   /* O divisor vive dentro dos cards (superfície gray-100): gray-200 ali dá
      1,13:1 e some; gray-300 dá ~1,36:1 — visível, mas mais fraco do que era
@@ -280,24 +266,15 @@
   --semantic-button-label-tertiary: var(--primitives-white);
   --semantic-button-label-success: var(--primitives-black);
 
-  /* As surfaces de status derivam da própria cor de status tingindo a
-     superfície: muda o status, o tinte acompanha. Os pasteis do light
-     (*-100) aqui eram manchas claras sobre o navy. */
   --semantic-success: var(--primitives-green-400);
-  --semantic-success-surface: color-mix(in srgb, var(--primitives-green-400) 16%, var(--primitives-navy-800));
   --semantic-warning: var(--primitives-yellow-400);
-  --semantic-warning-surface: color-mix(in srgb, var(--primitives-yellow-400) 16%, var(--primitives-navy-800));
   --semantic-alert: var(--primitives-red-400);
-  --semantic-alert-surface: color-mix(in srgb, var(--primitives-red-400) 16%, var(--primitives-navy-800));
-  --semantic-warning-glow: var(--primitives-yellow-400);
-  --semantic-alert-glow: var(--primitives-red-400);
   --semantic-success-vivid: var(--primitives-green-400);
   --semantic-warning-vivid: var(--primitives-yellow-400);
   --semantic-alert-vivid: var(--primitives-red-400);
 
   --semantic-accent: var(--primitives-lime-400);
   --semantic-accent-hover: var(--primitives-lime-500);
-  --semantic-accent-surface: color-mix(in srgb, var(--primitives-lime-400) 18%, var(--primitives-navy-800));
 
   --semantic-divider: var(--primitives-navy-600);
   /* No escuro a separação vem da borda: sombra sobre navy não aparece. */
@@ -509,61 +486,6 @@
       inset -10px -10px 20px -10px color-mix(in srgb, var(--semantic-glass-edge) 28%, transparent);
   }
 
-  /* ============ RISK CARD (Ambiente › Riscos estratégicos) ============ */
-  /* Painel glass escuro lido como um "readout" de severidade. A cor do status
-     entra por uma única variável (--risk) e tinge tudo que comunica risco: o
-     glow que vaza do topo, o número-herói, a régua e o rótulo. Combina com .glass. */
-  .risk-card {
-    --risk: var(--semantic-warning);
-    --risk-glow: var(--semantic-warning-glow);
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-    transition: transform 220ms ease, box-shadow 220ms ease;
-  }
-  /* Sinal: glow radial ancorado no topo-centro, na cor do risco, esvaindo pra
-     baixo. Fica acima do fundo translúcido do glass, mas atrás do conteúdo
-     (filhos recebem z-index 1 abaixo). */
-  .risk-card::after {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 48%;
-    background: radial-gradient(125% 100% at 50% 0%,
-      color-mix(in srgb, var(--risk-glow) 42%, transparent) 0%,
-      color-mix(in srgb, var(--risk-glow) 12%, transparent) 42%,
-      transparent 72%);
-    opacity: 0.85;
-    transition: opacity 220ms ease;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .risk-card > * { position: relative; z-index: 1; }
-
-  /* Régua tingida que esvai nas pontas — separa o número do corpo do card. */
-  .risk-card__rule {
-    height: 1px;
-    border: 0;
-    background: linear-gradient(90deg,
-      transparent 0%,
-      color-mix(in srgb, var(--risk) 60%, transparent) 50%,
-      transparent 100%);
-  }
-  /* Ponto pulsante = "sinal ao vivo" ao lado do rótulo de severidade. */
-  .risk-card__dot {
-    width: var(--size-status-dot);
-    height: var(--size-status-dot);
-    border-radius: var(--radius-full);
-    background: var(--risk-vivid, var(--risk));
-    box-shadow: 0 0 9px 1px color-mix(in srgb, var(--risk-glow) 80%, transparent);
-    animation: risk-pulse 2.2s ease-in-out infinite;
-  }
-  .risk-card__label-accent { color: var(--risk); }
-
-  @media (prefers-reduced-motion: reduce) {
-    .risk-card__dot { animation: none; }
-  }
-
   /* ============ CATÁLOGO DE TRILHAS (/trilhas) ============ */
   /* A página é um catálogo: billboard + fileiras full-bleed que correm pra fora
      da tela. As fileiras não usam .section-container (que trava 180px de gutter
@@ -698,23 +620,6 @@
     .poster:hover { transform: none; }
   }
 
-  .card-hoverable {
-    cursor: pointer;
-    transition: transform 200ms ease, box-shadow 200ms ease;
-  }
-  .card-hoverable:hover {
-    transform: translateY(-2px);
-    /* 1ª sombra: anel 1px por fora do border-box — não sobrescreve border do card.
-       2ª/3ª: lift padrão. */
-    box-shadow:
-      0 0 0 1px var(--semantic-accent-surface),
-      0 10px 15px -3px rgb(0 0 0 / 0.1),
-      0 4px 6px -4px rgb(0 0 0 / 0.1);
-  }
-  .card-hoverable:focus-visible {
-    outline: 2px solid var(--semantic-accent);
-    outline-offset: 2px;
-  }
   .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-sm); }
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-sm); }
   .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-xs); }
@@ -759,12 +664,6 @@
 @keyframes typewriter-caret-blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
-}
-
-/* Pulso do ponto de status no RisksCard (sinal "ao vivo"). */
-@keyframes risk-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%      { opacity: 0.4; transform: scale(0.82); }
 }
 
 @keyframes journey-cue {
