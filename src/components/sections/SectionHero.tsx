@@ -101,7 +101,6 @@ export default function SectionHero() {
             }}
             fillColor="var(--semantic-background)"
             strokeColor="var(--semantic-text-primary)"
-            hoverFillColor="var(--semantic-surface-secondary)"
           />
         </div>
       </div>

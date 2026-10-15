@@ -14,6 +14,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Interface
 
+- **O hover do mapa do Brasil, na entrada, passa a ser o mesmo do mapa da Paraíba**: preenchimento e contorno em accent. O `SectionHero` sobrescrevia o preenchimento com `surface-secondary` (azul-claro no claro, navy no escuro), e a UF apontada pouco se destacava; sem a sobrescrita, vale o padrão do `OutlineMap`. Preenchimento e traço em repouso continuam os da entrada (fundo e texto primário).
+
 - **O título da visão estadual ganha o nome da UF como seletor: "visão estadual da [Paraíba ▾]".** Componente novo, `estado/StateHeader`, no lugar do `SectionHeader` da `SectionEstado`. O nome vem numa pílula de acento (`bg-accent` + `text-on-accent`, que inverte com o tema) com seta cheia, e o rótulo "selecione estado" pequeno acima dela, fora do fluxo para não empurrar o título; clicar abre a lista das 27 UFs. **A preposição acompanha a UF** — "da Paraíba", "do Ceará", "de Pernambuco" — por uma tabela em `data/geo/ufs.ts` (`preposicao` em cada `Uf`), porque o nome não diz se leva artigo ("do Pará", mas "de Goiás"); Mato Grosso e Mato Grosso do Sul ficam em "de", a forma dos governos estaduais. `estadoContent.title` passa a ser só "visão estadual".
   **A UF segue fixa em PB**: as outras vêm "(em breve)" e a `SectionEstado` ignora a escolha, porque trocar o nome sem trocar os números faria o título mentir sobre os cards. O componente é controlado e já serve para quando houver dado de outra UF.
   Testes: `stateHeader.test.tsx` (preposição de 7 UFs dos três tipos; o título troca a preposição com a UF; 27 opções e as indisponíveis marcadas). Conferido no navegador nos dois temas.
