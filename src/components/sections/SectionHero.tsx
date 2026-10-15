@@ -99,8 +99,6 @@ export default function SectionHero() {
             onSelect={(id) => {
               if (id === PB_UF_ID) enter()
             }}
-            fillColor="var(--semantic-background)"
-            strokeColor="var(--semantic-text-primary)"
           />
         </div>
       </div>
