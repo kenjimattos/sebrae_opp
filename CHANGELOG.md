@@ -14,6 +14,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Interface
 
+- **O painel da entrada perde o `glass-bevel` e fica só `.glass`.** No tema claro o degradê do bevel (até 75% de branco) somava com o tinte do vidro (55%) e deixava o painel quase branco no topo, enquanto a base se confundia com o fundo; os cards dos pilares, vidro sobre vidro, ficavam ainda mais brancos. Num controle pequeno o efeito não aparece; num painel alto com cards dentro, sim. No escuro o painel perde o degradê azul-arroxeado e fica no navy translúcido do `.glass`.
+
 - **O hover do mapa do Brasil, na entrada, passa a ser o mesmo do mapa da Paraíba**: preenchimento e contorno em accent. O `SectionHero` sobrescrevia o preenchimento com `surface-secondary` (azul-claro no claro, navy no escuro), e a UF apontada pouco se destacava; sem a sobrescrita, vale o padrão do `OutlineMap`. Preenchimento e traço em repouso continuam os da entrada (fundo e texto primário).
 
 - **O título da visão estadual ganha o nome da UF como seletor: "visão estadual da [Paraíba ▾]".** Componente novo, `estado/StateHeader`, no lugar do `SectionHeader` da `SectionEstado`. O nome vem numa pílula de acento (`bg-accent` + `text-on-accent`, que inverte com o tema) com seta cheia, e o rótulo "selecione estado" pequeno acima dela, fora do fluxo para não empurrar o título; clicar abre a lista das 27 UFs. **A preposição acompanha a UF** — "da Paraíba", "do Ceará", "de Pernambuco" — por uma tabela em `data/geo/ufs.ts` (`preposicao` em cada `Uf`), porque o nome não diz se leva artigo ("do Pará", mas "de Goiás"); Mato Grosso e Mato Grosso do Sul ficam em "de", a forma dos governos estaduais. `estadoContent.title` passa a ser só "visão estadual".

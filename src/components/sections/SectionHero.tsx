@@ -55,7 +55,7 @@ export default function SectionHero() {
       </header>
 
       <div className="grid w-full grid-cols-[minmax(0,511px)_minmax(0,1fr)] items-start gap-2xl">
-        <div className="glass glass-bevel rounded flex flex-col gap-md p-lg">
+        <div className="glass rounded flex flex-col gap-md p-lg">
           <h1>
             <PippaWordmark className="block h-auto w-[clamp(120px,16dvh,180px)] text-primary" />
           </h1>
