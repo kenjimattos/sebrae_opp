@@ -31,7 +31,7 @@ export default function JourneyDivider({
     >
       <span
         aria-hidden
-        className="h-px flex-1 bg-gradient-to-r from-transparent to-[color-mix(in_srgb,var(--semantic-accent)_45%,transparent)]"
+        className="h-px flex-1 bg-gradient-to-r from-transparent to-accent-muted"
       />
 
       <button
@@ -52,7 +52,7 @@ export default function JourneyDivider({
 
       <span
         aria-hidden
-        className="h-px flex-1 bg-gradient-to-l from-transparent to-[color-mix(in_srgb,var(--semantic-accent)_45%,transparent)]"
+        className="h-px flex-1 bg-gradient-to-l from-transparent to-accent-muted"
       />
     </div>
   )

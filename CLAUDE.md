@@ -106,6 +106,15 @@ divider|button-*`, `text-primary|on-accent|
 {success,warning,alert}|button-label-*`, `border-surface-secondary|surface-tertiary|
 divider|text-primary|{success,warning,alert}`.
 
+> **Versão fraca ou translúcida de uma cor é token derivado, não `color-mix` no
+> consumidor.** O DS só tem cores sólidas; o que precisa de transparência usa
+> `--semantic-background-frosted` (barra flutuante com desfoque), `--semantic-accent-subtle`
+> (trilho) ou `--semantic-accent-muted` (filete, também como `to-accent-muted`). Eles moram
+> num bloco `:root` próprio, depois do `.dark`, sem par: a fórmula é igual nos dois temas e
+> resolve certo porque a `.dark` fica no `<html>`. Ficam de fora o material do `.glass`, a
+> escala do mapa (`OutlineMap` e a legenda do `ModeResources`, que repete o piso de 8%) e o
+> anel do marcador do `IndicatorBar`: são cálculo de um lugar só, não cor da paleta.
+
 > **Label sobre fundo colorido acompanha a cor, não o tema.** `--semantic-text-on-accent`
 > e `--semantic-button-label-success` invertem entre claro e escuro porque o fundo deles
 > inverte (azul escuro ↔ lime claro; verde escuro ↔ verde claro). Escrever `text-white`

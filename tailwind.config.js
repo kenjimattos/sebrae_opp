@@ -58,6 +58,10 @@ export default {
         'button-label-primary':   'var(--semantic-button-label-primary)',
         'button-label-secondary': 'var(--semantic-button-label-secondary)',
       },
+      // Paradas de gradiente: só o que algum `from-`/`to-` usa.
+      gradientColorStops: {
+        'accent-muted': 'var(--semantic-accent-muted)',
+      },
       outlineColor: {
         'accent': 'var(--semantic-accent)',
       },

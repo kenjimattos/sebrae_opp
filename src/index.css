@@ -292,6 +292,26 @@
     rgba(30, 35, 64, 0.4)   100%);
 }
 
+/* ============ COLORS — SEMANTIC DERIVADAS ============ */
+/* Versões fracas e translúcidas de uma cor semântica. O DS do Figma só tem
+   cores sólidas, e cada tela escolhia a própria porcentagem (8, 16, 18, 45,
+   88%): aqui elas ganham nome pelo papel, não pelo número.
+   Ficam fora do :root/.dark de propósito: a fórmula é a mesma nos dois temas
+   e a cor de base já troca sozinha. Funciona porque a classe .dark mora no
+   <html>, o mesmo elemento do :root, então o var() resolve já com o tema
+   ativo. Se a .dark sair do <html>, estes tokens congelam no claro.
+   Para manter a paridade entre os dois blocos auditável por diff, derivada
+   nova entra aqui e não lá. */
+:root {
+  /* Barra que flutua sobre o conteúdo com desfoque (header compacto, barra
+     de eixos de /trilhas). As duas encostam e precisam ler como uma faixa só. */
+  --semantic-background-frosted: color-mix(in srgb, var(--semantic-background) 88%, transparent);
+  /* Trilho: o accent quase apagado, sob um preenchimento em accent cheio. */
+  --semantic-accent-subtle: color-mix(in srgb, var(--semantic-accent) 16%, transparent);
+  /* Filete decorativo em accent, presente sem competir com o controle ao lado. */
+  --semantic-accent-muted: color-mix(in srgb, var(--semantic-accent) 45%, transparent);
+}
+
 /* ============ TYPOGRAPHY — COMPOSITE CLASSES ============ */
 @layer components {
   /* Display */
@@ -416,7 +436,7 @@
      encosta logo abaixo — as duas leem como uma faixa só. */
   .site-header[data-compact='true'] .site-header__bar {
     height: var(--header-h);
-    background-color: color-mix(in srgb, var(--semantic-background) 88%, transparent);
+    background-color: var(--semantic-background-frosted);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom-color: var(--semantic-divider);
@@ -523,10 +543,9 @@
     max-width: 100%;
   }
 
-  /* Barra de eixos fixa. bg via CSS porque o color-mix com transparência não
-     tem classe nativa (bg-background é o mesmo token, mas opaco). */
+  /* Barra de eixos fixa. O material é o mesmo do header compacto. */
   .catalog-nav {
-    background-color: color-mix(in srgb, var(--semantic-background) 88%, transparent);
+    background-color: var(--semantic-background-frosted);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
@@ -588,7 +607,7 @@
     position: absolute;
     inset: auto 0 0 0;
     height: 4px;
-    background-color: color-mix(in srgb, var(--semantic-accent) 16%, transparent);
+    background-color: var(--semantic-accent-subtle);
   }
   .poster__meter::after {
     content: "";
