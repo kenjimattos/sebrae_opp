@@ -102,7 +102,7 @@ não fica no arquivo.
 > e `var()` dentro de gradiente/`color-mix` em `style` inline.
 
 Classes de cor disponíveis além das óbvias: `bg-background|surface-tertiary|accent-hover|
-accent-surface|divider|{success,warning,alert}-surface|button-*`, `text-primary|on-accent|
+divider|button-*`, `text-primary|on-accent|
 {success,warning,alert}|button-label-*`, `border-surface-secondary|surface-tertiary|
 divider|text-primary|{success,warning,alert}`.
 
@@ -118,7 +118,7 @@ consultar `index.css` antes de inventar equivalente):
 .typo-display-lg|display|display-sm · .typo-h1..h4 (h4 inclui uppercase)
 .typo-title-lg|title-md|title-sm · .typo-body-lg|body|body-sm (+ variantes -bold)
 .typo-button-lg|button|button-sm (+ variantes -secondary-)
-.card-surface(-secondary) · .card-raised · .card-hoverable · .flex-center|between|col-start
+.card-surface(-secondary) · .card-raised · .flex-center|between|col-start
 .grid-2..5 · .status-{success,warning,alert,neutral}-{bg,dot} · .glass(-bevel)
 .divider · .scrollbar-hide · .section-container · .typewriter-caret · .journey-cue-chevron
 .catalog*, .poster* (/trilhas)
@@ -401,11 +401,9 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   junto `ModeRisks`, `RisksCard`, `data/indicators/descriptions/risks.ts` e
   `utils/risks.ts` — este último levou consigo o resumo de indicadores que o campo
   "Evidências e Dados" do Formulador mandava à IA, que hoje recebe só o problema
-  central. Sobrou no `index.css` o bloco `.risk-card*` (mais o `@keyframes
-  risk-pulse` e os tokens
-  `--semantic-{alert,warning}-glow`), que já não tem consumidor — ao limpar, atenção:
-  `--semantic-{alert,warning}-vivid` **não** são órfãos, `IndicatorBar` e os pontos
-  de status leem os dois.
+  central. O CSS que sobrou dele (`.risk-card*`, `@keyframes risk-pulse`, os tokens
+  `-glow`) saiu em out/2026. Os `--semantic-*-vivid` **ficam**: `IndicatorBar` e os
+  pontos de status leem os três.
 - **Token novo no `:root` precisa entrar no `.dark` também.** Sem par, ele herda o valor
   do tema claro em silêncio — não há erro de CSS, a var só resolve errado. Já mordeu três
   vezes: `--semantic-accent-hover` (azul no hover do FAB lime), as três surfaces de status

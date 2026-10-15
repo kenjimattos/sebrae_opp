@@ -76,7 +76,7 @@ export default function StateIndicatorCard({
         <p className="flex flex-wrap items-center gap-xs typo-body-sm text-inactive">
           {variation && (
             <span
-              className="typo-body-sm-bold tabular-nums rounded-full bg-accent-surface px-xs"
+              className="typo-body-sm-bold tabular-nums rounded-full bg-surface-secondary px-xs"
               title={`vs ${variation.previousYear}: ${variation.previousValue}`}
             >
               {formatVariationPct(variation)}
