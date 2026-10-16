@@ -6,6 +6,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Correção
 
+- **Quatro indicadores tinham tooltip e explicação do modal descrevendo outro dado.** Os textos de `indicators.ts` e `indicator-ai.ts` passam a seguir os seeds: `credito-financiamento` citava o SCR e dizia que o dado cobria crédito tomado "em todo o sistema, não apenas nas agências instaladas ali" — é o contrário: é saldo do ESTBAN, só das agências do município (~47 dos 223), estoque e não concessão; `crescimento-mpe` dizia medir MPE "dentro dos ELI apoiados pelo Sebrae", mas é proxy do município inteiro; `compras-publicas-inovacao` falava em "variação anual", mas o valor é R$ no ano (e o proxy não capta CPSI); `bolsa-familia` falava em beneficiários de 18 a 50 anos, mas conta famílias, e a explicação passa a ressalvar a direção ambígua que o deixa sem semáforo.
+
 - **O dropdown do `StateHeader` fica acima do `ModeToggle` na Home.** A `SectionEstado` empilha o título da visão estadual e o `ModeToggle` em sequência: ambos os contêineres tinham `z-10` e o toggle vem depois no DOM, então o toggle pintava por cima do menu aberto (a lista de UFs aparecia "para trás" das letras). O contêiner do `StateHeader` passa a `z-20` — o `DropdownMenu` está dentro dele e herda o contexto, então a lista de UFs fica acima do toggle nos dois temas.
 
 ### Manutenção
