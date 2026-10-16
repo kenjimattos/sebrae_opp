@@ -247,7 +247,7 @@ export const indicatorAiContent: Record<string, IndicatorAiContent> = {
   },
   'crescimento-mpe': {
     explanation:
-      'Mede a variação anual do número de micro e pequenas empresas formalizadas em {municipio}, no contexto dos Ecossistemas Locais de Inovação (ELI) apoiados pelo Sebrae. O valor atual é {valor} ("{status}"). Crescimento consistente indica ambiente favorável ao nascimento e sobrevivência de negócios.',
+      'Mede a variação anual do número de micro e pequenas empresas abertas em {municipio}. O indicador original olha para os Ecossistemas Locais de Inovação (ELI) apoiados pelo Sebrae, mas esse recorte não existe em fonte aberta — aqui se mede o município inteiro. O valor atual é {valor} ("{status}"). Crescimento consistente indica ambiente favorável ao nascimento de negócios.',
     questions: [
       {
         question: 'O que faz as MPE de um município crescerem?',
@@ -257,7 +257,7 @@ export const indicatorAiContent: Record<string, IndicatorAiContent> = {
       {
         question: 'O que é um Ecossistema Local de Inovação (ELI)?',
         answer:
-          'É a articulação, num território, dos atores que fazem inovação acontecer: empreendedores, poder público, instituições de ensino, investidores e comunidades. O Sebrae apoia a estruturação de ELIs para que municípios criem ambientes onde negócios inovadores nasçam e cresçam — este indicador acompanha um dos efeitos esperados.',
+          'É a articulação, num território, dos atores que fazem inovação acontecer: empreendedores, poder público, instituições de ensino, investidores e comunidades. O Sebrae apoia a estruturação de ELIs para que municípios criem ambientes onde negócios inovadores nasçam e cresçam. Os dados por ELI são internos do Sebrae, então este indicador acompanha as aberturas no município como um todo.',
       },
       {
         question: 'Crescer o número de MPE basta?',
@@ -268,7 +268,7 @@ export const indicatorAiContent: Record<string, IndicatorAiContent> = {
   },
   'compras-publicas-inovacao': {
     explanation:
-      'Acompanha o crescimento do valor que a prefeitura de {municipio} gasta comprando bens e serviços inovadores de pequenos negócios. O valor atual é {valor} ("{status}"). Compras públicas são uma das ferramentas mais poderosas — e subutilizadas — de fomento à inovação local.',
+      'Mostra quanto a prefeitura de {municipio} gastou no ano em contratos de inovação com pequenos negócios — compras identificadas pelo setor do fornecedor (tecnologia, economia criativa, pesquisa) ou pelo objeto do contrato. Não capta instrumentos como o CPSI e a encomenda tecnológica. O valor atual é {valor} ("{status}"). Compras públicas são uma das ferramentas mais poderosas — e subutilizadas — de fomento à inovação local.',
     questions: [
       {
         question: 'O poder público pode mesmo comprar inovação de MPE?',
@@ -356,12 +356,12 @@ export const indicatorAiContent: Record<string, IndicatorAiContent> = {
   // ===== Crédito =====
   'credito-financiamento': {
     explanation:
-      'Montante total de crédito concedido a pessoas e empresas de {municipio}, segundo o Sistema de Informações de Crédito (SCR) do Banco Central. O valor atual é {valor} ("{status}"). Crédito é o oxigênio do pequeno negócio — capital de giro, investimento, travessia de crises.',
+      'Saldo das operações de crédito das agências bancárias instaladas em {municipio}, no fim do mês mais recente, segundo a Estatística Bancária por Município (ESTBAN) do Banco Central. É estoque, não o volume concedido no período. O valor atual é {valor} ("{status}"). Crédito é o oxigênio do pequeno negócio — capital de giro, investimento, travessia de crises.',
     questions: [
       {
         question: 'Por que o volume de crédito local importa?',
         answer:
-          'Onde o crédito flui, negócios investem, estocam e contratam; onde falta, o crescimento fica limitado ao caixa próprio. O volume concedido no município indica o quanto o sistema financeiro enxerga e atende a economia local — e costuma refletir também a formalização: banco empresta para quem tem CNPJ, faturamento declarado e garantias.',
+          'Onde o crédito flui, negócios investem, estocam e contratam; onde falta, o crescimento fica limitado ao caixa próprio. O saldo de crédito no município indica o quanto o sistema financeiro enxerga e atende a economia local — e costuma refletir também a formalização: banco empresta para quem tem CNPJ, faturamento declarado e garantias.',
       },
       {
         question: 'Como {municipio} pode ampliar o acesso a crédito?',
@@ -371,7 +371,7 @@ export const indicatorAiContent: Record<string, IndicatorAiContent> = {
       {
         question: 'De onde vêm esses dados?',
         answer:
-          'Do SCR/Banco Central, que consolida as operações de crédito do sistema financeiro nacional. O dado reflete o crédito tomado por residentes e empresas do município em todo o sistema — não apenas nas agências fisicamente instaladas ali.',
+          'Da ESTBAN (Estatística Bancária Mensal e por Município), do Banco Central. Ela soma as operações das agências fisicamente instaladas no município — por isso só cobre municípios com agência bancária (cerca de 47 dos 223 da Paraíba). Nos demais o indicador fica sem valor, o que não significa ausência de crédito: os moradores podem tomar crédito em agências de outras cidades.',
       },
     ],
   },
@@ -463,12 +463,12 @@ export const indicatorAiContent: Record<string, IndicatorAiContent> = {
   },
   'bolsa-familia': {
     explanation:
-      'Mede a variação anual do número de beneficiários do Bolsa Família entre 18 e 50 anos em {municipio}: {valor} ("{status}"). Funciona como indicador inverso de inclusão produtiva — quando pessoas em idade produtiva saem do programa por conta de renda própria, o mercado de trabalho e o empreendedorismo local estão absorvendo gente.',
+      'Mede a variação anual da média mensal de famílias beneficiárias do Bolsa Família em {municipio}: {valor} ("{status}"). O indicador original pedia beneficiários de 18 a 50 anos, mas esse recorte não existe em fonte municipal aberta — aqui se contam famílias. A leitura pede cuidado: uma queda pode ser saída do programa por renda própria ou só revisão cadastral, como o pente-fino do Novo Bolsa Família.',
     questions: [
       {
         question: 'Por que este indicador está numa agenda de pequenos negócios?',
         answer:
-          'Porque nos municípios menores o caminho mais realista de saída da dependência de transferência de renda costuma ser o trabalho por conta própria e o microempreendedorismo. Acompanhar os beneficiários em idade produtiva mostra se as políticas de trabalho e renda estão funcionando na ponta.',
+          'Porque nos municípios menores o caminho mais realista de saída da dependência de transferência de renda costuma ser o trabalho por conta própria e o microempreendedorismo. Acompanhar as famílias beneficiárias ajuda a ver se as políticas de trabalho e renda estão funcionando na ponta.',
       },
       {
         question: 'Como transformar beneficiários em empreendedores?',

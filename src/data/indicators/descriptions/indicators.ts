@@ -38,10 +38,12 @@ export const indicatorInfo: Record<string, string> = {
     'Número de trabalhadores formais em ocupações de Ciência e Tecnologia, conforme RAIS/CAGED.',
   'trabalhadores-tic':
     'Participação percentual dos trabalhadores formais em setores intensivos em conhecimento, criatividade e tecnologia.',
+  // Proxy: o recorte "nos ELI" é dado interno do Sebrae, então mede-se o município inteiro.
   'crescimento-mpe':
-    'Variação anual no número de micro e pequenas empresas formalizadas dentro de Ecossistemas Locais de Inovação (ELI) apoiados pelo Sebrae.',
+    'Variação anual no número de micro e pequenas empresas (MEI, ME e EPP) abertas no município. Proxy municipal: o recorte por Ecossistemas Locais de Inovação (ELI) não existe em fonte aberta.',
+  // Nível, não crescimento: a variação anual mede a adesão ao PNCP, não a política de inovação.
   'compras-publicas-inovacao':
-    'Variação anual do volume que o município adquire em bens e serviços inovadores ofertados por micro e pequenas empresas.',
+    'Valor (R$ no ano) dos contratos municipais com micro e pequenas empresas em compras de inovação, identificadas pelo setor do fornecedor ou pelo objeto do contrato.',
 
   // Educação empreendedora
   'isdel-educacao-emp':
@@ -56,8 +58,9 @@ export const indicatorInfo: Record<string, string> = {
     'Número de trabalhadores com carteira assinada cuja escolaridade é o Ensino Superior completo (RAIS). Classificado por 1.000 habitantes.',
 
   // Financiamento e crédito
+  // É saldo (estoque) do ESTBAN, não concessão: a fonte não publica fluxo por município.
   'credito-financiamento':
-    'Montante total de crédito e financiamento concedido a pessoas físicas e jurídicas no município (base SCR/Banco Central).',
+    'Saldo das operações de crédito das agências bancárias do município no fim do mês mais recente (ESTBAN/Banco Central). É estoque, não o volume concedido no período, e só cobre municípios com agência.',
   'bndes-operacoes':
     'Volume de financiamentos estruturados (diretos e indiretos) direcionados ao município, excluindo repasses automáticos.',
 
@@ -68,8 +71,10 @@ export const indicatorInfo: Record<string, string> = {
     'Estoque total de empresas com CNPJ ativo no município.',
   'negocios-extintos':
     'Número de micro e pequenas empresas com baixa formalizada no município no período de referência.',
+  // Conta famílias, não pessoas de 18–50 anos (recorte inexistente em fonte municipal), e
+  // não classifica: a queda pode ser pente-fino do programa, não inserção no trabalho.
   'bolsa-familia':
-    'Variação anual no número de beneficiários em idade produtiva — funciona como indicador inverso de inserção no mercado de trabalho.',
+    'Variação anual na média mensal de famílias beneficiárias do Bolsa Família no município. Proxy: o recorte por idade (18 a 50 anos) não existe em fonte municipal aberta.',
   'apoiados-sebrae':
     'Quantidade de micro e pequenas empresas que receberam alguma solução de atendimento do Sebrae no período.',
   'mpe-compras-publicas':
