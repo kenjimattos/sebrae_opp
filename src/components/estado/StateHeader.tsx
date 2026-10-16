@@ -47,7 +47,11 @@ export default function StateHeader({
       <span>
         {title} {uf?.preposicao ?? 'de'}
       </span>
-      <span ref={ref} className="relative z-10 inline-flex">
+      {/* z-20 para que o dropdown fique acima do ModeToggle que vem logo
+          abaixo no DOM (SectionEstado empilha StateHeader + ModeToggle).
+          O ModeToggle tem z-10 nos botões, então z-20 aqui garante que a
+          lista de UFs não fica soterrada pelas letras do toggle. */}
+      <span ref={ref} className="relative z-20 inline-flex">
         {/* Rótulo fora do fluxo: fica sobre a pílula sem empurrar o título
             para baixo. aria-hidden porque o aria-label do botão já o diz. */}
         <span
