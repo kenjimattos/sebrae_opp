@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Não lançado]
 
+### Correção
+
+- **O dropdown do `StateHeader` fica acima do `ModeToggle` na Home.** A `SectionEstado` empilha o título da visão estadual e o `ModeToggle` em sequência: ambos os contêineres tinham `z-10` e o toggle vem depois no DOM, então o toggle pintava por cima do menu aberto (a lista de UFs aparecia "para trás" das letras). O contêiner do `StateHeader` passa a `z-20` — o `DropdownMenu` está dentro dele e herda o contexto, então a lista de UFs fica acima do toggle nos dois temas.
+
 ### Manutenção
 
 - **As cores translúcidas ganham nome no DS.** O Figma só tem cores sólidas, e cada consumidor escolhia a própria porcentagem. Entram três tokens derivados, num bloco `:root` próprio depois do `.dark`, sem par por tema: `--semantic-background-frosted` (fundo a 88%, antes copiado no header compacto e no `.catalog-nav`), `--semantic-accent-subtle` (accent a 16%, trilho do medidor do pôster) e `--semantic-accent-muted` (accent a 45%, filete do `JourneyDivider`, que deixa o arbitrary value por `to-accent-muted`, nova parada em `gradientColorStops`). Os valores não mudam, então a tela não muda. Ficam de fora, de propósito, o material do `.glass`, a escala do mapa de recursos e o anel do marcador da `IndicatorBar`.
