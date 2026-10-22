@@ -26,6 +26,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Interface
 
+- **Tabela "Emendas federais por função" no modo Emendas.** `resources/EmendasFuncaoTable` aparece sob os dois cards do município selecionado, sempre com a esfera federal (o estadual ainda não traz a quebra): função, empenhado, pago com o % pago e valor em aberto (`empenhado − pago`), da maior para a menor em empenhado, com o nº de emendas sob cada nome. `linhasPorFuncao` e `formatPercentual` em `utils/emendas.ts` (empate desempata por nome; empenhado zero dá fração `null`, não divisão; em aberto negativo é mantido). Testes em `emendasFuncao.test.ts`. Conferido no navegador (Campina Grande, tema escuro, 1440px): sem estouro horizontal; o tema claro não foi olhado.
+
 - **O painel da entrada perde o `glass-bevel` e fica só `.glass`.** No tema claro o degradê do bevel (até 75% de branco) somava com o tinte do vidro (55%) e deixava o painel quase branco no topo, enquanto a base se confundia com o fundo; os cards dos pilares, vidro sobre vidro, ficavam ainda mais brancos. Num controle pequeno o efeito não aparece; num painel alto com cards dentro, sim. No escuro o painel perde o degradê azul-arroxeado e fica no navy translúcido do `.glass`.
 
 - **O mapa do Brasil, na entrada, passa a ter as cores do mapa da Paraíba**, em repouso e no hover: preenchimento `surface-primary`, contorno `text-inactive`, e accent na UF apontada. O `SectionHero` sobrescrevia as três cores (fundo da página, texto primário e `surface-secondary` no hover), e o mapa se confundia com o fundo; sem as sobrescritas, vale o padrão do `OutlineMap`. Conferido no navegador nos dois temas.

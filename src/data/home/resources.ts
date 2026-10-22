@@ -34,6 +34,15 @@ export const resourcesContent = {
     empenhado: 'Empenhado',
     pago: 'Pago',
   },
+  funcao: {
+    titulo: 'Emendas federais por função',
+    subtitulo: 'acumulado de empenhado e pago',
+    caption: 'Emendas federais do município por função orçamentária',
+    colunas: { funcao: 'Função', emAberto: 'Em aberto' },
+    // O pago por função é o da emenda inteira (a função do empenho), não o da linha
+    // de pagamento, que a origem rotula "Múltiplo".
+    nota: 'Cada emenda conta na função em que foi empenhada. Em aberto = empenhado menos pago.',
+  },
   mapa: {
     legendaTitulo: 'Valor pago por município',
     legendaMenor: 'menor',
