@@ -236,6 +236,14 @@ ensureCollection('emendas', {
         'a safra da emenda (a origem publica a execução agregada, sem data de documento). ' +
         'Não comparar as duas séries como se fossem a mesma coisa',
     },
+    porFuncao: {
+      bsonType: 'object',
+      description:
+        "só no federal: quebra por função orçamentária { 'Saúde': { empenhado, pago, " +
+        'nEmendas } }, acumulada na janela (sem recorte anual). A função de cada emenda é a ' +
+        'do EMPENHO — o documento de pagamento vem como "Múltiplo" na origem. A soma das ' +
+        'funções fecha com empenhado/pago do doc',
+    },
     naoMunicipalizado: {
       bsonType: 'object',
       description:

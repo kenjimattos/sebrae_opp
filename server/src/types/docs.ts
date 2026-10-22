@@ -151,6 +151,8 @@ export interface EmendaDoc {
   empenhado: number
   pago: number
   porAno?: Record<string, { valor?: number; empenhado: number; pago: number }>
+  // Só no federal: { 'Saúde': { empenhado, pago, nEmendas } }, acumulado da janela.
+  porFuncao?: Record<string, { empenhado: number; pago: number; nEmendas: number }>
   // Só em escopo='estado'.
   naoMunicipalizado?: {
     valor?: number

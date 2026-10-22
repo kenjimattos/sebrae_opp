@@ -26,6 +26,9 @@ function toValores(doc: EmendaDoc, esfera: EmendaEsfera): EmendaValores {
     nAutores: doc.nAutores ?? 0,
   }
   if (TEM_VALOR[esfera]) out.valor = doc.valor ?? 0
+  // Ausente quando a origem não traz a quebra (estadual, ou snapshot antigo): o contrato
+  // diz "não medimos" com a chave ausente, não com {}.
+  if (doc.porFuncao && Object.keys(doc.porFuncao).length > 0) out.porFuncao = doc.porFuncao
   return out
 }
 

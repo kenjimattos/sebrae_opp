@@ -225,3 +225,39 @@ describe('buildEmendasData · metadados da esfera', () => {
     expect(esferas.estadual.atribuicao).toBe('texto-beneficiario')
   })
 })
+
+describe('buildEmendasData · porFuncao', () => {
+  const SAUDE = { empenhado: 600, pago: 540, nEmendas: 3 }
+  const URBANISMO = { empenhado: 300, pago: 100, nEmendas: 1 }
+
+  it('repassa a quebra por função do município e do estado, sem mexer nos números', () => {
+    const { esferas, municipios } = buildEmendasData(
+      [CAMPINA],
+      [
+        estadoDoc({
+          esfera: 'federal', empenhado: 900, pago: 640,
+          porFuncao: { Saúde: SAUDE, Urbanismo: URBANISMO },
+        }),
+        municipioDoc({
+          esfera: 'federal', municipalityId: '2504009', empenhado: 900, pago: 640,
+          porFuncao: { Saúde: SAUDE, Urbanismo: URBANISMO },
+        }),
+      ],
+    )
+    expect(esferas.federal.estado.porFuncao).toEqual({ Saúde: SAUDE, Urbanismo: URBANISMO })
+    expect(municipios[0]!.federal!.porFuncao).toEqual({ Saúde: SAUDE, Urbanismo: URBANISMO })
+  })
+
+  it('sem a quebra na origem a chave fica ausente — não vira {}', () => {
+    // {} diria "não houve emenda em nenhuma função"; ausente diz "não medimos".
+    const { municipios, esferas } = buildEmendasData(
+      [CAMPINA],
+      [
+        estadoDoc({ esfera: 'federal', empenhado: 5, pago: 5, porFuncao: {} }),
+        municipioDoc({ esfera: 'federal', municipalityId: '2504009', empenhado: 5, pago: 5 }),
+      ],
+    )
+    expect('porFuncao' in esferas.federal.estado).toBe(false)
+    expect('porFuncao' in municipios[0]!.federal!).toBe(false)
+  })
+})
