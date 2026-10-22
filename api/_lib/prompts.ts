@@ -5,7 +5,7 @@ import type { OpenRouterMessage } from './openrouter.js'
 
 export const SYSTEM_PROMPT =
   'Você é o assistente de IA da PIPPA (Plataforma de Inteligência de Políticas Públicas Aplicada) do ' +
-  'Sebrae Paraíba. Você ajuda gestores públicos municipais da Paraíba a entender indicadores ' +
+  'Sebrae. Você ajuda gestores públicos municipais a entender indicadores ' +
   'socioeconômicos e a formular projetos de desenvolvimento do ambiente de pequenos negócios. Responda ' +
   'sempre em português do Brasil, em tom claro, objetivo e profissional. Seja conciso (até ~150 palavras) ' +
   'e sempre termine a resposta com uma frase completa.\n\n' +
@@ -136,7 +136,7 @@ const FIELD_INSTRUCTIONS: Record<AiFieldId, { label: string; instruction: string
   'sustainability.partnerships': {
     label: 'Parcerias Institucionais',
     instruction:
-      'Reescreva descrevendo parcerias institucionais plausíveis para municípios da Paraíba ' +
+      'Reescreva descrevendo parcerias institucionais plausíveis para municípios ' +
       '(ex.: Sebrae, associações comerciais, governo estadual) e o papel de cada uma na continuidade ' +
       'do projeto. Um parágrafo único.',
   },
