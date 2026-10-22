@@ -18,6 +18,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Manutenção
 
+- **O modelo gratuito padrão da IA passa a ser o `nvidia/nemotron-3-ultra-550b-a55b:free`**, no lugar do `nemotron-3-super-120b-a12b:free` (`DEFAULT_FREE_MODEL` em `api/_lib/openrouter.ts`). `OPENROUTER_MODEL` continua sobrescrevendo.
+
+- **O prompt de sistema da IA deixa de prender o assistente à Paraíba.** `SYSTEM_PROMPT` passa de "Sebrae Paraíba" / "gestores públicos municipais da Paraíba" para "Sebrae" / "gestores públicos municipais", e a instrução do campo `sustainability.partnerships` pede parcerias "para municípios" em vez de "municípios da Paraíba". O exemplo de parceiros (Sebrae, associações comerciais, governo estadual) não muda.
+
 - **As cores translúcidas ganham nome no DS.** O Figma só tem cores sólidas, e cada consumidor escolhia a própria porcentagem. Entram três tokens derivados, num bloco `:root` próprio depois do `.dark`, sem par por tema: `--semantic-background-frosted` (fundo a 88%, antes copiado no header compacto e no `.catalog-nav`), `--semantic-accent-subtle` (accent a 16%, trilho do medidor do pôster) e `--semantic-accent-muted` (accent a 45%, filete do `JourneyDivider`, que deixa o arbitrary value por `to-accent-muted`, nova parada em `gradientColorStops`). Os valores não mudam, então a tela não muda. Ficam de fora, de propósito, o material do `.glass`, a escala do mapa de recursos e o anel do marcador da `IndicatorBar`.
 
 - **Saem as cores sem consumidor do `index.css`.** `--semantic-accent-surface` perdeu o último leitor real quando a pílula de variação do `StateIndicatorCard` passou a `bg-surface-secondary` (o accent-surface era a única cor do projeto sem par no DS: lime a 18% sobre navy no escuro); sobrava só no `.card-hoverable`, que nenhum componente usa. Saem também as `{success,warning,alert}-surface` (nenhum leitor), os `-glow` e o bloco `.risk-card*` com o `@keyframes risk-pulse` (resto do modo Riscos), as classes correspondentes no `tailwind.config.js` e as cinco primitivas que só elas liam (`green-100`, `yellow-100`, `yellow-300`, `red-100`, `red-300`). Os dois blocos de tema seguem espelhados.
