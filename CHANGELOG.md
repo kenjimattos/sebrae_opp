@@ -4,6 +4,12 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Não lançado]
 
+### Adicionado
+
+- **Emendas federais quebradas por função orçamentária (Saúde, Urbanismo, Agricultura…), por município e para o estado.** O CSV por documento da CGU já trazia `Função`; o gerador ignorava. `gerar_seed_emendas_federais.py` passa a somar empenhado, pago e nº de emendas distintas por função, acumulados na janela 2023–2026 (sem quebra anual, pelo efeito de restos a pagar), e confere que a soma das funções fecha com o total de cada doc. O contrato ganha `porFuncao` opcional em `EmendaValores` (município e `esferas.federal.estado`), repassado por `buildEmendasData`; no estadual a chave fica ausente, não `{}`.
+  **A função da emenda é a do empenho.** O documento de pagamento vem como "Múltiplo" na origem: somar por linha jogava R$ 665 mi pagos (634 de emendas de Saúde) num balde sem empenhado e deixava a Saúde com 70% pago em vez de 91%. Conferido contra o painel da Datapedia: Saúde 91,3% (91,47%), Encargos especiais 93,7% (93,61%), Direitos da cidadania com R$ 11.208 em aberto (idêntico). Fica de fora só o balde Múltiplo deles (R$ 164 mi, 5 emendas), que contamos na função do empenho.
+  O snapshot foi regerado com a coleta de 22/out/2026 (os totais federais mudam em relação a 6/ago: R$ 5,42 bi empenhados, R$ 4,30 bi pagos). `public/api-snapshot/emendas.json` vai de 149 para 232 KB. Testes em `emendas.test.ts` (repasse; chave ausente quando vazia).
+
 ### Correção
 
 - **Quatro indicadores tinham tooltip e explicação do modal descrevendo outro dado.** Os textos de `indicators.ts` e `indicator-ai.ts` passam a seguir os seeds: `credito-financiamento` citava o SCR e dizia que o dado cobria crédito tomado "em todo o sistema, não apenas nas agências instaladas ali" — é o contrário: é saldo do ESTBAN, só das agências do município (~47 dos 223), estoque e não concessão; `crescimento-mpe` dizia medir MPE "dentro dos ELI apoiados pelo Sebrae", mas é proxy do município inteiro; `compras-publicas-inovacao` falava em "variação anual", mas o valor é R$ no ano (e o proxy não capta CPSI); `bolsa-familia` falava em beneficiários de 18 a 50 anos, mas conta famílias, e a explicação passa a ressalvar a direção ambígua que o deixa sem semáforo.

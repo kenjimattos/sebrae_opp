@@ -75,6 +75,10 @@ def valores(agg, com_valor):
     }
     if com_valor:
         out["valor"] = agg.get("valor", 0.0)
+    # só o federal tem a quebra por função (o estadual publica função em taxonomia própria
+    # e ainda não entrou); ausente é ausente, não {}.
+    if agg.get("porFuncao"):
+        out["porFuncao"] = agg["porFuncao"]
     return out
 
 
@@ -113,6 +117,7 @@ def main():
                 "empenhado": estado_emp, "pago": estado_pago,
                 "porAno": dict(sorted(por_ano.items())),
                 "nEmendas": snap.get("nEmendasPB", 0), "nAutores": snap.get("nAutoresPB", 0),
+                "porFuncao": snap.get("porFuncaoPB") or {},
                 "naoMunicipalizado": {
                     "empenhado": sem.get("empenhado", 0.0),
                     "pago": sem.get("pago", 0.0),

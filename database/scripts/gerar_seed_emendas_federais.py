@@ -150,8 +150,13 @@ C_EMPENHADO = "Valor Empenhado"
 C_PAGO = "Valor Pago"
 C_DATA = "Data Documento"
 C_FASE = "Fase da despesa"
+C_FUNCAO = "Função"
 
-OBRIGATORIAS = (C_UF, C_IBGE, C_ANO_EMENDA, C_EMPENHADO, C_PAGO, C_DATA, C_FASE)
+OBRIGATORIAS = (C_UF, C_IBGE, C_ANO_EMENDA, C_EMPENHADO, C_PAGO, C_DATA, C_FASE, C_FUNCAO)
+
+# Linha sem função na origem não some: vira um balde próprio, para a soma por função
+# continuar fechando com o total (e para a UI poder dizer que existe).
+FUNCAO_SEM_INFO = "Não informada"
 
 
 # ============================================================================
@@ -242,7 +247,16 @@ def open_rows(zip_path):
 # ============================================================================
 
 def _blank():
-    return {"empenhado": 0.0, "pago": 0.0, "porAno": {}, "emendas": set(), "autores": set()}
+    return {"empenhado": 0.0, "pago": 0.0, "porAno": {}, "porFuncao": {},
+            "emendas": set(), "autores": set()}
+
+
+def _acc_funcao(porFuncao, funcao, empenhado, pago, cod_emenda):
+    f = porFuncao.setdefault(funcao, {"empenhado": 0.0, "pago": 0.0, "emendas": set()})
+    f["empenhado"] += empenhado
+    f["pago"] += pago
+    if cod_emenda:
+        f["emendas"].add(cod_emenda)
 
 
 def _acc(a, empenhado, pago, ano_doc, cod_emenda, autor):
@@ -264,9 +278,38 @@ def _finalize(a):
         "pago": round(a["pago"], 2),
         "porAno": dict((k, {"empenhado": round(v["empenhado"], 2), "pago": round(v["pago"], 2)})
                        for k, v in sorted(a["porAno"].items())),
+        # Acumulado da janela inteira (sem quebra anual): a função é do documento, e o
+        # pago de um ano pode ser resto a pagar de outra safra. Ordem = maior empenhado.
+        "porFuncao": _finalize_funcoes(a["porFuncao"]),
         "nEmendas": len(a["emendas"]),
         "nAutores": len(a["autores"]),
     }
+
+
+def _finalize_funcoes(porFuncao):
+    itens = sorted(porFuncao.items(), key=lambda kv: (-kv[1]["empenhado"], kv[0]))
+    return dict((k, {"empenhado": round(v["empenhado"], 2), "pago": round(v["pago"], 2),
+                     "nEmendas": len(v["emendas"])}) for k, v in itens)
+
+
+def funcao_por_emenda(empenhos, pagamentos):
+    """Função de cada emenda = a do EMPENHO (a que ela tem no orçamento), não a da linha
+    de pagamento. Medido (PB, safra 2023+): o documento de pagamento vem com a função
+    genérica "Múltiplo" (pagamento via Banco do Brasil, fundo a fundo) — R$ 665 mi pagos,
+    634 deles de emendas que no empenho são Saúde. Somar a função por linha empilharia isso
+    num balde "Múltiplo" com empenhado zero e deixaria a Saúde com 70% de pago, contra 91%
+    de verdade. 748 das 750 emendas têm uma função só no empenho.
+    `empenhos`/`pagamentos`: {cod: {funcao: valor}}. Sem empenho na janela (raro: 1 emenda,
+    R$ 98 mil), cai na função dominante dos próprios pagamentos."""
+    def dominante(c):
+        return max(sorted(c), key=lambda f: c[f])
+    out = {}
+    for cod, c in pagamentos.items():
+        if cod not in empenhos:
+            out[cod] = dominante(c)
+    for cod, c in empenhos.items():
+        out[cod] = dominante(c)
+    return out
 
 
 def harvest(zips, code_set, desde, ate):
@@ -282,6 +325,13 @@ def harvest(zips, code_set, desde, ate):
     # contagem, e somá-las contaria a mesma emenda uma vez por município atendido.
     emendas_pb = set()
     autores_pb = set()
+    # idem por função: uma emenda que atende várias cidades conta uma vez no estado.
+    funcao_pb = {}
+    # Linhas guardadas para a 2ª passada: a função do pagamento só se resolve depois de
+    # ver o empenho da mesma emenda (ver `funcao_por_emenda`).
+    linhas = []                 # (bucket, cod, empenhado, pago, funcao_da_linha)
+    emp_func = {}               # cod -> {funcao: empenhado}
+    pag_func = {}               # cod -> {funcao: pago}
 
     for zip_path in zips:
         rows, close = open_rows(zip_path)
@@ -314,16 +364,34 @@ def harvest(zips, code_set, desde, ate):
                 emendas_pb.add(cod)
             if autor:
                 autores_pb.add(autor)
+            funcao = (row.get(C_FUNCAO) or "").strip() or FUNCAO_SEM_INFO
+            if empenhado:
+                emp_func.setdefault(cod, {})[funcao] = \
+                    emp_func.get(cod, {}).get(funcao, 0.0) + empenhado
+            elif pago:
+                pag_func.setdefault(cod, {})[funcao] = \
+                    pag_func.get(cod, {}).get(funcao, 0.0) + pago
             ibge = (row.get(C_IBGE) or "").strip()
             if ibge in code_set:
                 nomes_vistos[ibge] = (row.get(C_MUN) or "").strip()
-                _acc(muni.setdefault(ibge, _blank()), empenhado, pago, ano_doc, cod, autor)
+                bucket = muni.setdefault(ibge, _blank())
+                _acc(bucket, empenhado, pago, ano_doc, cod, autor)
             else:
                 if ibge and ibge.isdigit():
                     fora_ibge.add(ibge)
-                _acc(sem_mun, empenhado, pago, ano_doc, cod, autor)
+                bucket = sem_mun
+                _acc(bucket, empenhado, pago, ano_doc, cod, autor)
+            linhas.append((bucket, cod, empenhado, pago, funcao))
         close()
         print("[emendas] {} varrido.".format(zip_path.name), file=sys.stderr)
+
+    # 2ª passada: função por emenda (a do empenho) aplicada a empenho e pagamento.
+    fe = funcao_por_emenda(emp_func, pag_func)
+    for bucket, cod, empenhado, pago, funcao_linha in linhas:
+        # linha com empenho já traz a função real; só o pagamento puro herda da emenda
+        funcao = funcao_linha if empenhado else fe.get(cod, funcao_linha)
+        _acc_funcao(bucket["porFuncao"], funcao, empenhado, pago, cod)
+        _acc_funcao(funcao_pb, funcao, empenhado, pago, cod)
 
     if fora_ibge:
         print("[emendas] aviso: {} códigos IBGE da PB não casaram com os 223 canônicos "
@@ -334,6 +402,7 @@ def harvest(zips, code_set, desde, ate):
         "totalLinhas": n_total, "linhasPB": n_pb, "linhasForaDoUniverso": n_fora_universo,
         "safras": sorted(safras),
         "nEmendasPB": len(emendas_pb), "nAutoresPB": len(autores_pb),
+        "porFuncaoPB": _finalize_funcoes(funcao_pb),
     }
     print("[emendas] {} linhas nos arquivos; PB no universo: {} documentos, {} municípios, "
           "{} documentos sem município.".format(n_total, n_pb, len(muni),
@@ -365,7 +434,7 @@ def build_docs(snapshot):
     tot = {"empenhado": 0.0, "pago": 0.0, "com": 0}
 
     for ibge, nome in municipios_canonicos():
-        a = muni.get(ibge) or {"empenhado": 0.0, "pago": 0.0, "porAno": {},
+        a = muni.get(ibge) or {"empenhado": 0.0, "pago": 0.0, "porAno": {}, "porFuncao": {},
                                "nEmendas": 0, "nAutores": 0}
         tot["empenhado"] += a["empenhado"]
         tot["pago"] += a["pago"]
@@ -381,6 +450,7 @@ def build_docs(snapshot):
             "rawEmpenhado": fmt_reais(a["empenhado"]),
             "rawPago": fmt_reais(a["pago"]),
             "porAno": a["porAno"],
+            "porFuncao": a.get("porFuncao") or {},
             "nEmendas": a["nEmendas"],
             "nAutores": a["nAutores"],
             "janela": janela,
@@ -402,6 +472,9 @@ def build_docs(snapshot):
         "rawEmpenhado": fmt_reais(tot["empenhado"] + sem.get("empenhado", 0.0)),
         "rawPago": fmt_reais(tot["pago"] + sem.get("pago", 0.0)),
         "porAno": _somar_por_ano(muni, sem),
+        # contagem de emendas distinta na PB inteira, vinda do harvest (não a soma das
+        # municipais); os valores são a mesma soma que o doc de estado já faz.
+        "porFuncao": snapshot.get("porFuncaoPB") or {},
         "naoMunicipalizado": {
             "empenhado": sem.get("empenhado", 0.0),
             "pago": sem.get("pago", 0.0),
@@ -424,6 +497,25 @@ def build_docs(snapshot):
         "isFictional": False,
     })
     return docs, {"ref": ref, "janela": janela, "tot": tot, "sem": sem}
+
+
+def _conferir_funcoes(docs):
+    """A soma por função tem de fechar com o total do mesmo doc (centavos de arredondamento
+    toleram). Se não fechar, o gerador parou de contar alguma linha — e a tabela da UI
+    passaria a mostrar um total que não bate com o card ao lado. Só vale com `porFuncao`
+    preenchido; um snapshot antigo (sem a quebra) sai em silêncio e é avisado em main."""
+    erros = []
+    for d in docs:
+        pf = d.get("porFuncao") or {}
+        if not pf:
+            continue
+        for campo in ("empenhado", "pago"):
+            soma = sum(v[campo] for v in pf.values())
+            if abs(soma - d[campo]) > 0.05 * max(1, len(pf)):
+                erros.append("{} {}: funções somam {:,.2f}, doc diz {:,.2f}".format(
+                    d["_id"], campo, soma, d[campo]))
+    if erros:
+        sys.exit("Soma por função não fecha com o total:\n  " + "\n  ".join(erros[:10]))
 
 
 def _somar_por_ano(muni, sem):
@@ -627,6 +719,7 @@ def main():
             "totalLinhas": meta["totalLinhas"], "linhasPB": meta["linhasPB"],
             "safras": meta["safras"],
             "nEmendasPB": meta["nEmendasPB"], "nAutoresPB": meta["nAutoresPB"],
+            "porFuncaoPB": meta["porFuncaoPB"],
             "municipios": municipios, "semMunicipioPB": sem_mun,
         }
         snapshot_path.write_text(json.dumps(snapshot, ensure_ascii=False, indent=1),
@@ -637,6 +730,10 @@ def main():
         _conferir(snapshot, args.conferir)
 
     docs, m = build_docs(snapshot)
+    if not snapshot.get("porFuncaoPB"):
+        print("[emendas] aviso: snapshot sem quebra por função — rode online uma vez "
+              "para gerá-la.", file=sys.stderr)
+    _conferir_funcoes(docs)
     out = emit(docs, m["ref"], m["janela"])
     tot, sem = m["tot"], m["sem"]
     print("emendas federais (janela {}–{}, safra da emenda): {}/223 municípios com valor.".format(

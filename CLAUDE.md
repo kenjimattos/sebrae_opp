@@ -398,6 +398,17 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   população vai **dentro** do snapshot. Ao mexer em `--offline`, o teste é rodar com
   `urllib.request.urlopen` substituído por uma função que levanta — não basta o comando
   terminar com zero.
+- **A função da emenda federal é a do EMPENHO, nunca a da linha de pagamento.** No CSV
+  por documento da CGU o pagamento (via Banco do Brasil, fundo a fundo) vem com `Função =
+  "Múltiplo"`, e o empenho da mesma emenda traz a real. Somar por linha deu R$ 665 mi pagos
+  num balde "Múltiplo" com empenhado zero, 634 deles de emendas que são Saúde — Saúde com 70%
+  de pago em vez de 91%, sem erro nenhum e com a soma fechando com o total.
+  `funcao_por_emenda` (`gerar_seed_emendas_federais.py`) resolve a função pelo código da
+  emenda; 748 das 750 têm uma só. O teste é comparar o % pago por função com o painel da
+  Datapedia, não "a soma fecha" (fecha de qualquer jeito). `porFuncao` é acumulado da janela,
+  sem quebra anual, e só existe no federal; no estadual a chave é **ausente**, não `{}`. A
+  diferença que sobra para o painel deles é o balde Múltiplo (R$ 164 mi, 5 emendas, que nós
+  contamos na função do empenho — Urbanismo na maior parte).
 - **Formulador:** dois estados diferentes na sidebar. *Concluída* (check) sai de
   `isStepComplete` em `src/utils/formulatorCompleteness.ts` — campos obrigatórios da
   etapa preenchidos; é ela também que alimenta o "X% concluído". *Em andamento* sai de
