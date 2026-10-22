@@ -18,6 +18,7 @@ import { useMunicipalityChange } from '@/hooks/useMunicipalityChange'
 import type { EmendaEsfera } from '@/types/emendas'
 import { formatReaisCurto } from '@/utils/emendas'
 import EmendasEsferaCard from './EmendasEsferaCard'
+import EmendasFuncaoTable from './EmendasFuncaoTable'
 
 const ESFERA_OPTIONS = [
   { value: 'federal', label: resourcesContent.esferas.federal.label },
@@ -140,6 +141,9 @@ export default function ModeResources() {
                     />
                   ))}
                 </div>
+                {/* Sempre a federal, independente do toggle: o estadual ainda não
+                    traz a quebra por função. */}
+                <EmendasFuncaoTable meta={data!.esferas.federal} valores={selecionado.federal} />
               </>
             ) : (
               <p className="typo-body text-inactive">

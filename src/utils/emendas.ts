@@ -32,3 +32,45 @@ export function anosDe(valores: EmendaValores | null | undefined): string[] {
   if (!valores?.porAno) return []
   return Object.keys(valores.porAno).sort()
 }
+
+export interface LinhaFuncao {
+  funcao: string
+  empenhado: number
+  pago: number
+  /** Empenhado que ainda não foi pago. */
+  emAberto: number
+  /** pago / empenhado (0–1); `null` quando não há empenhado — divisão sem sentido. */
+  fracaoPaga: number | null
+  nEmendas: number
+}
+
+/**
+ * Linhas da tabela por função, da maior para a menor em empenhado.
+ *
+ * `emAberto` é `empenhado − pago` e pode sair negativo: o pago é o do documento de
+ * pagamento (inclui restos a pagar de safras anteriores à janela do empenho), então
+ * numa função pequena ele pode passar do empenhado. Não é cortado em zero porque
+ * esconder o sinal esconderia o motivo de a linha não fechar.
+ */
+export function linhasPorFuncao(valores: EmendaValores | null | undefined): LinhaFuncao[] {
+  if (!valores?.porFuncao) return []
+  return Object.entries(valores.porFuncao)
+    .map(([funcao, v]) => ({
+      funcao,
+      empenhado: v.empenhado,
+      pago: v.pago,
+      emAberto: Math.round((v.empenhado - v.pago) * 100) / 100,
+      fracaoPaga: v.empenhado > 0 ? v.pago / v.empenhado : null,
+      nEmendas: v.nEmendas,
+    }))
+    .sort((a, b) => b.empenhado - a.empenhado || a.funcao.localeCompare(b.funcao, 'pt-BR'))
+}
+
+/** Percentual com vírgula e uma casa ("91,3%"); `—` sem base de comparação. */
+export function formatPercentual(fracao: number | null): string {
+  if (fracao === null || Number.isNaN(fracao)) return '—'
+  return `${(fracao * 100).toLocaleString('pt-BR', {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  })}%`
+}
