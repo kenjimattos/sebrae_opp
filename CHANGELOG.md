@@ -32,6 +32,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Interface
 
+- **Os rótulos das barras de composição do `BreakdownBars` não são mais cortados.** O rótulo (coluna de 2/5 da linha) perdia o `truncate` e passa a quebrar em mais de uma linha quando não cabe, em vez de terminar em reticências. Não conferido no navegador.
+
 - **O modo de cursos diz de onde vêm os cursos.** O `ModeTraining` ganha, acima do carrossel, a linha "Cursos disponibilizados na plataforma" com o link para a ENAP (`origin` em `data/home/training.ts`, fonte única da URL). O fragmento raiz vira um `div` em coluna com `gap-sm` para acomodar a linha.
 
 - **Textos da Home reescritos: hero e descrições dos quatro pilares.** Em `data/home/sections.ts`, o `tagline` passa a "Políticas Públicas Aplicadas" (plural), o `subtitle` a "Jornada para um Município Empreendedor" e a `description` do hero é reescrita. **O campo `summary` dos pilares sai**: o `description` passa a ser a frase curta ("agendas estratégicas", "fontes de recursos que podem impulsionar o ambiente de negócios", "curadoria de cursos e casos para se inspirar", "ferramenta para te apoiar") e é o que o `SectionHero` lê nos cards da entrada. O texto longo antigo deixa de existir — nenhum outro componente lia o `description` dos pilares.
