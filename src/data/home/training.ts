@@ -93,3 +93,5 @@ export const trails: Trail[] = [
     ],
   },
 ]
+
+export const origin: string = 'https://www.enap.gov.br/'

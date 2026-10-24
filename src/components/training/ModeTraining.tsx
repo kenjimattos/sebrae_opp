@@ -2,11 +2,16 @@
 
 import Carousel from '@/components/ui/Carousel'
 import TrainingCard from '@/components/training/TrainingCard'
-import { trails } from '@/data/home/training'
+import { trails, origin } from '@/data/home/training'
 
 export default function ModeTraining() {
+  const url = origin
+
   return (
-    <>
+    <div className='flex flex-col gap-sm'>
+      <span className='typo-body-sm-bold'>
+        Cursos disponibilizados na plataforma <a className='text-accent' href={url}>{url}</a>
+      </span>
       <Carousel>
         {trails.map((trail) => (
           <TrainingCard
@@ -19,6 +24,6 @@ export default function ModeTraining() {
           />
         ))}
       </Carousel>
-    </>
+    </div>
   )
 }
