@@ -32,6 +32,9 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Interface
 
+- **Textos do Formulador revisados.** O subtítulo do pilar na Home (`sections.ts`) deixa de falar em "riscos estratégicos" (modo removido) e passa a "indicadores estratégicos do seu município", acrescentando "e apresente aos interessados". Na etapa 2, o subtítulo vira "Porquê esse projeto é necessário" e o campo "Impacto da Inação" passa a "Consequências da falta de ação" (`StepJustification`). Na etapa de orçamento, "Rúbrica" vira "Rubrica" (`StepBudget`).
+  **O rótulo antigo segue em dois lugares**: `Impacto da Inação` em `FormulatorReview` (o PDF) e em `api/_lib/prompts.ts` (o rótulo que a IA recebe). Não foram alterados, então o campo tem nome diferente na tela e no PDF.
+
 - **Os rótulos das barras de composição do `BreakdownBars` não são mais cortados.** O rótulo (coluna de 2/5 da linha) perdia o `truncate` e passa a quebrar em mais de uma linha quando não cabe, em vez de terminar em reticências. Não conferido no navegador.
 
 - **O modo de cursos diz de onde vêm os cursos.** O `ModeTraining` ganha, acima do carrossel, a linha "Cursos disponibilizados na plataforma" com o link para a ENAP (`origin` em `data/home/training.ts`, fonte única da URL). O fragmento raiz vira um `div` em coluna com `gap-sm` para acomodar a linha.

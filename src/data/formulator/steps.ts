@@ -22,7 +22,7 @@ export const formulatorSteps: FormulatorStep[] = [
     label: '2. Justificativa',
     name: 'Justificativa',
     title: 'Justificativa',
-    subtitle: 'Por que esse projeto é necessário',
+    subtitle: 'Porquê esse projeto é necessário',
   },
   {
     slug: 'objetivos',

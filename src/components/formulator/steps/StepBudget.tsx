@@ -67,7 +67,7 @@ export default function StepBudget() {
           {data.items.map((item: { label: string; value: string }, idx: number) => (
             <div key={idx} className="grid grid-cols-2 gap-sm">
               <div className="flex flex-col gap-2xs">
-                <span className="typo-body-sm">Rúbrica {idx + 1}</span>
+                <span className="typo-body-sm">Rubrica {idx + 1}</span>
                 <TextInput
                   value={item.label}
                   hint="Pessoal, material, serviços..."

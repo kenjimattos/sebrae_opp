@@ -43,7 +43,7 @@ export const sectionContent = {
       id: 'formulador',
       label: 'Formulador',
       title: 'Formulador de projetos',
-      subtitle: 'Com base nos riscos estratégicos e pontos de atenção identificados, comece a escrever seu projeto para fortalecer o ambiente de negócios no seu município.',
+      subtitle: 'Com base nos indicadores estratégicos do seu município e os pontos de atenção identificados, comece a escrever um projeto para fortalecer o ambiente de negócios do seu município e apresente aos interessados.',
       description: 'Ferramenta para te apoiar na formulação de projetos de políticas públicas.'
     },
   ],

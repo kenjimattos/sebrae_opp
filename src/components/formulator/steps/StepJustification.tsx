@@ -45,7 +45,7 @@ export default function StepJustification() {
         })}
       />
       <AiField
-        title="Impacto da Inação"
+        title="Consequências da falta de ação"
         hint="O que acontece se o problema não for resolvido?"
         multiline
         rows={2}
