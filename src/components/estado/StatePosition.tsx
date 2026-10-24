@@ -26,7 +26,7 @@ export default function StatePosition({ position, className = '' }: StatePositio
         {totalNordeste > 0 && (
           <p className="flex flex-col gap-2xs border-l border-divider pl-sm">
             <span className="typo-title-lg tabular-nums">{ordinalF(entreNordeste)}</span>
-            <span className="typo-body-sm text-inactive">de {totalNordeste} no Nordeste</span>
+            <span className="typo-body-sm text-inactive">de {totalNordeste} do Nordeste</span>
           </p>
         )}
       </div>
