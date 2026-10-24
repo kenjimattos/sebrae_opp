@@ -27,7 +27,7 @@ interface ModeToggleProps {
 // Default mantido por compatibilidade; consumidores devem passar `options`.
 const DEFAULT_OPTIONS: ModeOption[] = [
   { value: '1', label: 'Eixos prioritários' },
-  { value: '2', label: 'Panorâma Sócioeconômico' },
+  { value: '2', label: 'Panorâma Socioeconômico' },
   { value: '3', label: 'Riscos estratégicos' },
 ]
 
