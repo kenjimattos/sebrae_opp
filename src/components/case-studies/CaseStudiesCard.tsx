@@ -15,12 +15,14 @@ export default function CaseStudiesCard({ caseStudy, className = '' }: CaseStudi
       className={`flex-col-start overflow-clip border w-[32%] shrink-0 ${className}`}
     >
       {/* Image */}
-      <div className="h-[14dvh] w-full relative">
-        <img
-          alt={caseStudy.title}
-          className="absolute inset-0 object-cover size-full"
-          src={caseStudy.image}
-        />
+      <div className="h-[14dvh] w-full relative bg-surface-tertiary">
+        {caseStudy.image && (
+          <img
+            alt={caseStudy.title}
+            className="absolute inset-0 object-cover size-full"
+            src={caseStudy.image}
+          />
+        )}
       </div>
 
       {/* Content + CTA */}
