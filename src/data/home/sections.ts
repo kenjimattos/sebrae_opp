@@ -5,16 +5,16 @@ export const sectionContent = {
   hero: {
     // `tagline` é a sigla aberta — a única linha da tela que diz o que PIPPA
     // significa. Mexer aqui é mexer no nome da plataforma.
-    tagline: 'Plataforma de Inteligência de Políticas Públicas Aplicada',
-    subtitle: 'Jornada do Município Empreendedor',
+    tagline: 'Plataforma de Inteligência de Políticas Públicas Aplicadas',
+    subtitle: 'Jornada para um Município Empreendedor',
     description:
-      'Uma plataforma de inteligência que converte dados do território em insights e capacidade da gestão pública em ação para transformar o ambiente de negócios local.',
+      'Uma plataforma de inteligência que converte dados do território em insights para gerar mas capacidade para a gestão pública transformar o ambiente de negócios do seu território.',
   },
   // Os 4 pilares da Jornada — fonte única de verdade.
   // `id` é também o anchor de scroll (Home/Header) e a chave de aba (SideNav/SectionJornada).
   // `label` = texto curto de navegação (Header + SideNav); `title`/`subtitle` = SectionHeader;
-  // `description` = texto longo (descrição expandida na SideNav); `summary` = versão
-  // curta, de uma ou duas linhas, para os cards empilhados da entrada.
+  // `description` = frase curta, de uma ou duas linhas, usada nos cards empilhados
+  // da entrada.
   jornadas: [
     {
       id: 'ambiente',
@@ -22,9 +22,7 @@ export const sectionContent = {
       title: 'Ambiente de negócio',
       subtitle:
         'Veja os principais indicadores para qualidade do ambiente negocio do seu municipio',
-      description:
-        'Identifique e priorize causas estratégicas para o seu território, conectando e interpretando dados públicos, de políticas e do ecossistema de negócios.',
-      summary: 'Identifique e priorize causas estratégicas para o seu território',
+      description: 'Identifique e priorize agendas estratégicas para o seu território.'
     },
     {
       id: 'recursos',
@@ -32,26 +30,21 @@ export const sectionContent = {
       title: 'Mapeamento de recursos',
       subtitle: 'Encontre oportunidades de captação de recursos para o seu município',
       description:
-        'Mapeamento de oportunidades abertas para captação de recursos (emendas, editais e outras fontes) para aprimoramento de ambiente de negócios local.',
-      summary: 'Mapeamento de oportunidades abertas para captação de recursos',
+        'Mapeamento de fontes de recursos que podem impulsionar o ambiente de negócios do seu município.'
     },
     {
       id: 'capacitacao',
       label: 'Capacitação',
       title: 'Cursos e boas práticas',
       subtitle: 'Curadoria de conteúdos para desenvolver novas habilidades para uma gestão pública cada vez mais inovadora.',
-      description:
-        'Curadoria de cursos e casos de sucesso, além de acesso à comunidade de prática, para aprendizagem significativa de uma gestão pública inovadora.',
-      summary: 'Curadoria de cursos e casos de sucesso',
+      description: 'Curadoria de cursos e casos para se inspirar.'
     },
     {
       id: 'formulador',
       label: 'Formulador',
       title: 'Formulador de projetos',
       subtitle: 'Com base nos riscos estratégicos e pontos de atenção identificados, comece a escrever seu projeto para fortalecer o ambiente de negócios no seu município.',
-      description:
-        'Acesse ferramentas para te apoiar na formulação de projetos de políticas públicas para transformação do ambiente de negócios local.',
-      summary: 'Acesse ferramentas para te apoiar na formulação de projetos de políticas públicas',
+      description: 'Ferramenta para te apoiar na formulação de projetos de políticas públicas.'
     },
   ],
   caseStudies: {
