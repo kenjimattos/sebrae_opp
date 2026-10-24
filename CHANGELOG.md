@@ -32,6 +32,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Interface
 
+- **O modo de cursos diz de onde vêm os cursos.** O `ModeTraining` ganha, acima do carrossel, a linha "Cursos disponibilizados na plataforma" com o link para a ENAP (`origin` em `data/home/training.ts`, fonte única da URL). O fragmento raiz vira um `div` em coluna com `gap-sm` para acomodar a linha.
+
 - **Textos da Home reescritos: hero e descrições dos quatro pilares.** Em `data/home/sections.ts`, o `tagline` passa a "Políticas Públicas Aplicadas" (plural), o `subtitle` a "Jornada para um Município Empreendedor" e a `description` do hero é reescrita. **O campo `summary` dos pilares sai**: o `description` passa a ser a frase curta ("agendas estratégicas", "fontes de recursos que podem impulsionar o ambiente de negócios", "curadoria de cursos e casos para se inspirar", "ferramenta para te apoiar") e é o que o `SectionHero` lê nos cards da entrada. O texto longo antigo deixa de existir — nenhum outro componente lia o `description` dos pilares.
 
 - **Tabela "Emendas federais por função" no modo Emendas.** `resources/EmendasFuncaoTable` aparece sob os dois cards do município selecionado, sempre com a esfera federal (o estadual ainda não traz a quebra): função, empenhado, pago com o % pago e valor em aberto (`empenhado − pago`), da maior para a menor em empenhado, com o nº de emendas sob cada nome. `linhasPorFuncao` e `formatPercentual` em `utils/emendas.ts` (empate desempata por nome; empenhado zero dá fração `null`, não divisão; em aberto negativo é mantido). Testes em `emendasFuncao.test.ts`. Conferido no navegador (Campina Grande, tema escuro, 1440px): sem estouro horizontal; o tema claro não foi olhado.
