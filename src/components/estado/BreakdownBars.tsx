@@ -37,7 +37,7 @@ export default function BreakdownBars({
         return (
           <div key={slice.label} className="flex items-center gap-sm">
             <span
-              className={`${acesa ? 'typo-body-sm-bold' : 'typo-body-sm'} w-2/5 shrink-0 truncate`}
+              className={`${acesa ? 'typo-body-sm-bold' : 'typo-body-sm'} w-2/5 shrink-0`}
               title={slice.label}
             >
               {slice.label}
