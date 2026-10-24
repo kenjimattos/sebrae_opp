@@ -1,4 +1,4 @@
-// Helpers da base econômica (modo "Panorâma Socioeconômico").
+// Helpers da base econômica (modo "Panorama Socioeconômico").
 // A API repassa `variation` do banco: um objeto estruturado quando há variação,
 // ou string vazia quando não há. Estes helpers normalizam e formatam esse dado
 // para exibição — o card nunca deve renderizar o objeto cru (React error #31).

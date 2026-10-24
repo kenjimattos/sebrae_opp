@@ -1,4 +1,4 @@
-// Modo "Panorâma Socioeconômico" da aba Ambiente — só os cards de base econômica.
+// Modo "Panorama Socioeconômico" da aba Ambiente — só os cards de base econômica.
 // A análise por IA que ficava abaixo deles mudou de endereço: virou o modo vizinho
 // "Análise do município" (`analysis/ModeAnalysis`), para não existir em duas cópias.
 
