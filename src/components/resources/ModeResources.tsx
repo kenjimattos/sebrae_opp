@@ -4,14 +4,12 @@
 // as esferas federal e estadual. As duas NÃO são somadas num número único: a
 // federal vem de código IBGE estruturado (exata) e a estadual é inferida do
 // texto da emenda (estimativa) — ver `atribuicao` em src/types/emendas.ts.
-// O detalhamento por emenda continua sendo encaminhado para o Datapedia.
 
 import { useMemo, useState } from 'react'
 import { ParaibaOutlineMap } from '@/components/map/ParaibaOutlineMap'
-import Button from '@/components/ui/buttons/Button'
 import ModeToggle from '@/components/ui/ModeToggle'
 import TitleSubtitle from '@/components/ui/TitleSubtitle'
-import { DATAPEDIA_URL, resourcesContent } from '@/data/home/resources'
+import { resourcesContent } from '@/data/home/resources'
 import { findEmendaMunicipio, intensidadePorMunicipio, useEmendas } from '@/hooks/useEmendas'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { useMunicipalityChange } from '@/hooks/useMunicipalityChange'
@@ -157,7 +155,6 @@ export default function ModeResources() {
 
       {/* Rodapé: contexto do estado à esquerda, CTA à direita. Em linhas
           separadas custavam ~150px de altura; juntos, cabem em uma faixa. */}
-      <div className="flex-between w-full gap-md border-t pt-sm">
         {estado && meta ? (
           <p className="typo-body-sm text-inactive">
             <span className="typo-body-sm-bold">
@@ -173,15 +170,6 @@ export default function ModeResources() {
         ) : (
           <span />
         )}
-        <a
-          href={DATAPEDIA_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="shrink-0"
-        >
-          <Button label={resourcesContent.buttons.explorarEmendas} variant="secondary" />
-        </a>
-      </div>
     </div>
   )
 }

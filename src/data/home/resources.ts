@@ -1,6 +1,3 @@
-export const DATAPEDIA_URL =
-  'https://datapedia.info/sebrae/conexao/po5aavozprm7z6+-ppswzktavzqb1p3k/ta6dedoanvp1a5d96p6hv9dq77dp64ia'
-
 // Rótulos e textos do modo "Mapeamento de recursos". Os NÚMEROS não moram mais
 // aqui: vêm de GET /api/emendas (ETLs em database/scripts/gerar_seed_emendas_*.py).
 // Antes desta versão havia cinco valores estáticos do estado inteiro que já
@@ -51,12 +48,7 @@ export const resourcesContent = {
   },
   estado: {
     titulo: 'Paraíba',
-    // Frase curta: o resumo divide a linha com o botão do Datapedia, então
-    // precisa caber em uma ou duas linhas estreitas.
     naoMunicipalizadoFederal: 'em aplicação estadual ou nacional',
     naoMunicipalizadoEstadual: 'para entidades e órgãos estaduais',
-  },
-  buttons: {
-    explorarEmendas: 'Explorar emendas no Datapedia',
-  },
+  }
 } as const
