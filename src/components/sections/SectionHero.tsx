@@ -83,7 +83,7 @@ export default function SectionHero() {
 
                   <div className="flex flex-col gap-2xs">
                     <h2 className="typo-title-md uppercase">{each.title}</h2>
-                    <p className="typo-body-sm">{each.summary}</p>
+                    <p className="typo-body-sm">{each.description}</p>
                   </div>
                 </li>
               )
