@@ -1,5 +1,5 @@
 // Modo "Análise do município" da aba Ambiente — só a análise gerada por IA, sem
-// os cards de base econômica que o modo Panorâma põe acima dela. Substituiu o
+// os cards de base econômica que o modo Panorama põe acima dela. Substituiu o
 // modo "Riscos estratégicos".
 //
 // `key={municipality.id}` é o que remonta o AIAnalysis ao trocar de município;

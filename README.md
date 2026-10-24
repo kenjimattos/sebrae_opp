@@ -46,7 +46,7 @@ A Home organiza tudo como uma **Jornada do Município Empreendedor**: uma `SideN
     ou **tercil entre os 223 municípios da PB** (11 indicadores, onde "Bom" quer dizer
     só "está no terço de cima do estado"). Os 5 que restam não classificam — a
     distribuição não separa ou a direção é ambígua — e não mostram a barra.
-  - *Panorâma socioeconômico* — só os cards de base econômica (IDH-M, IDEB, GINI, PIB
+  - *Panorama socioeconômico* — só os cards de base econômica (IDH-M, IDEB, GINI, PIB
     per capita, MEIs/MEs/EPPs, etc.), que por design nunca têm semáforo.
   - *Análise do município* — a análise por IA sozinha. Substituiu o modo
     *Riscos estratégicos*.

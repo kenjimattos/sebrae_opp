@@ -14,6 +14,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Correção
 
+- **"Panorâma" vira "Panorama".** A palavra não leva circunflexo; o rótulo do modo ("Panorama Socioeconômico") na `SectionJornada` e no `ModeToggle`, os comentários de código e o `README.md`/`CLAUDE.md` estavam com a grafia errada. A entrada de "Sócioeconômico" logo abaixo, que dizia manter o circunflexo, fica superada por esta.
+
 - **"Sócioeconômico" vira "Socioeconômico" no rótulo do modo.** O `ModeToggle` mostrava "Panorâma Sócioeconômico" (o prefixo *socio-* não leva acento). Corrigido no rótulo da `SectionJornada` e no default do `ModeToggle`, e nos comentários de `ModeEconomics`, `economic-base.ts`, `economics.ts` e `types/ai.ts`. "Panorâma" segue com circunflexo, como estava.
 
 - **Quatro indicadores tinham tooltip e explicação do modal descrevendo outro dado.** Os textos de `indicators.ts` e `indicator-ai.ts` passam a seguir os seeds: `credito-financiamento` citava o SCR e dizia que o dado cobria crédito tomado "em todo o sistema, não apenas nas agências instaladas ali" — é o contrário: é saldo do ESTBAN, só das agências do município (~47 dos 223), estoque e não concessão; `crescimento-mpe` dizia medir MPE "dentro dos ELI apoiados pelo Sebrae", mas é proxy do município inteiro; `compras-publicas-inovacao` falava em "variação anual", mas o valor é R$ no ano (e o proxy não capta CPSI); `bolsa-familia` falava em beneficiários de 18 a 50 anos, mas conta famílias, e a explicação passa a ressalvar a direção ambígua que o deixa sem semáforo.

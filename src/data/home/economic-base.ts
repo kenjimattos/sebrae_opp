@@ -1,4 +1,4 @@
-// Rótulos do bloco de análise do modo "Panorâma Socioeconômico".
+// Rótulos do bloco de análise do modo "Panorama Socioeconômico".
 //
 // O texto da análise NÃO mora aqui: é gerado pela IA (task `economic-analysis`),
 // com os cards da base econômica do município como única fonte de números.

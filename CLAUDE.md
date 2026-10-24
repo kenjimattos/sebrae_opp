@@ -145,7 +145,7 @@ consultar `index.css` antes de inventar equivalente):
 > deixaria a linha serrilhada; dois deles pareiam com `min-h-[Nlh]`, que fixa o mínimo
 > enquanto o clamp fixa o máximo. **Fora de grade, não cortar** — bloco que ocupa a
 > largura toda e não tem vizinho para alinhar deve crescer com o texto. Já se cortou
-> a análise do Panorâma sem motivo, e o corte foi removido inteiro.
+> a análise do Panorama sem motivo, e o corte foi removido inteiro.
 > Nota de quem for usar: `-webkit-line-clamp` conta linhas de texto **direto** na caixa.
 > Um `<div>` entre a classe e o texto (típico ao envolver um componente, como
 > `AiMessage` → `MarkdownLite` → `<p>`) anula o corte **sem erro nenhum** — nada cai,
@@ -329,7 +329,7 @@ Quatro superfícies, todas via `POST /api/ai` (modelo gratuito, fetch puro — s
    econômica **estruturados** e o resumo dos indicadores com a faixa oficial; o prompt
    proíbe citar número fora desse contexto e proíbe classificar o que não vem com
    status. Mora em `analysis/AIAnalysis` e sai num lugar só: o modo *Análise do
-   município*. O Panorâma, que antes a trazia abaixo dos cards, hoje é só os cards —
+   município*. O Panorama, que antes a trazia abaixo dos cards, hoje é só os cards —
    as duas cópias do componente viraram uma.
 4. **Chat global** (`ChatButton`/`ChatPanel` na Home).
 
