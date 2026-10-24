@@ -32,6 +32,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Interface
 
+- **A posição entre os estados lê "de 9 do Nordeste", não "de 9 no Nordeste".** Texto do `StatePosition`, abaixo do ordinal da posição entre as UFs do Nordeste.
+
 - **Textos do Formulador revisados.** O subtítulo do pilar na Home (`sections.ts`) deixa de falar em "riscos estratégicos" (modo removido) e passa a "indicadores estratégicos do seu município", acrescentando "e apresente aos interessados". Na etapa 2, o subtítulo vira "Porquê esse projeto é necessário" e o campo "Impacto da Inação" passa a "Consequências da falta de ação" (`StepJustification`). Na etapa de orçamento, "Rúbrica" vira "Rubrica" (`StepBudget`).
   **O rótulo antigo segue em dois lugares**: `Impacto da Inação` em `FormulatorReview` (o PDF) e em `api/_lib/prompts.ts` (o rótulo que a IA recebe). Não foram alterados, então o campo tem nome diferente na tela e no PDF.
 
