@@ -32,6 +32,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Interface
 
+- **Sai o botão "Explorar emendas no Datapedia" do modo Emendas.** Saem o link e o botão do rodapé do `ModeResources`, `DATAPEDIA_URL` e `buttons.explorarEmendas` de `data/home/resources.ts`, e os comentários que falavam do botão. O resumo do estado fica sozinho no rodapé, sem o contêiner `flex-between` que o dividia com o botão. A Datapedia segue citada só na documentação do `database/` e nos geradores de emendas, como referência de validação dos números.
+
 - **A posição entre os estados lê "de 9 do Nordeste", não "de 9 no Nordeste".** Texto do `StatePosition`, abaixo do ordinal da posição entre as UFs do Nordeste.
 
 - **Textos do Formulador revisados.** O subtítulo do pilar na Home (`sections.ts`) deixa de falar em "riscos estratégicos" (modo removido) e passa a "indicadores estratégicos do seu município", acrescentando "e apresente aos interessados". Na etapa 2, o subtítulo vira "Porquê esse projeto é necessário" e o campo "Impacto da Inação" passa a "Consequências da falta de ação" (`StepJustification`). Na etapa de orçamento, "Rúbrica" vira "Rubrica" (`StepBudget`).
