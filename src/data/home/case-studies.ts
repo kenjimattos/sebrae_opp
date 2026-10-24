@@ -72,6 +72,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Licenciamento Zero troca alvará por comunicação prévia',
     description:
       'Balcão único digital substitui a autorização prévia por mera comunicação para abrir estabelecimentos, num regime construído entre governo central e municípios.',
+    image: '/images/cases/licenciamento-zero-portugal.jpg',
     url: 'https://sabiasque.pt/tecnologia/noticias/2160-nova-versao-do-licenciamento-zero-arranca-em-abrantes-agueda-e-tavira.html',
   },
   {
@@ -80,6 +81,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Microcrédito orientado chega a R$ 1 bilhão em 20 anos',
     description:
       'Programa estadual oferta microcrédito com orientação técnica em todos os 78 municípios, com agente de crédito que analisa, orienta a aplicação e acompanha o investimento.',
+    image: '/images/cases/nossocredito-es.jpg',
     url: 'https://www.es.gov.br/Noticia/programa-nossocredito-completa-20-anos-e-alcanca-a-marca-de-1-bilhao-em-microcredito-concedido',
   },
 ]
