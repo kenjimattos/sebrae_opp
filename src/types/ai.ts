@@ -48,7 +48,7 @@ export interface AiChatMessage {
   content: string
 }
 
-// Um card da base econômica, como exibido no modo "Panorâma Sócioeconômico".
+// Um card da base econômica, como exibido no modo "Panorâma Socioeconômico".
 // Estruturado (e não um resumo em texto) de propósito: o prompt proíbe o modelo
 // de citar qualquer número fora desta lista, e a lista vem da API — foi assim que
 // a análise antiga, com valores fixos no código, passou a contradizer os cards.

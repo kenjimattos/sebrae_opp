@@ -36,7 +36,7 @@ interface Mode extends ModeOption {
 const PANEL_MODES: Record<string, Mode[]> = {
   ambiente: [
     { value: 'agenda', label: 'Eixos prioritários', Component: ModeEixos },
-    { value: 'economics', label: 'Panorâma Sócioeconômico', Component: ModeEconomics },
+    { value: 'economics', label: 'Panorâma Socioeconômico', Component: ModeEconomics },
     { value: 'analysis', label: 'Análise do município', Component: ModeAnalysis },
   ],
   recursos: [
