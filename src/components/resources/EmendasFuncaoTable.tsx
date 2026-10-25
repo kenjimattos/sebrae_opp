@@ -1,9 +1,9 @@
-// Emendas federais de um município quebradas por função orçamentária (Saúde,
-// Urbanismo, Agricultura…): empenhado, pago e o que ainda está em aberto, somados
-// na janela inteira. Só federal — o estadual ainda não traz a quebra.
+// Emendas de um município quebradas por função orçamentária (Saúde, Urbanismo,
+// Agricultura…), na esfera ativa: empenhado, pago e o que ainda está em aberto,
+// somados na janela inteira. As duas esferas usam os mesmos nomes de função.
 
 import { resourcesContent } from '@/data/home/resources'
-import type { EmendaEsferaMeta, EmendaValores } from '@/types/emendas'
+import type { EmendaEsfera, EmendaEsferaMeta, EmendaValores } from '@/types/emendas'
 import {
   formatPercentual,
   formatReaisCheio,
@@ -12,12 +12,14 @@ import {
 } from '@/utils/emendas'
 
 interface EmendasFuncaoTableProps {
+  esfera: EmendaEsfera
   meta: EmendaEsferaMeta
   valores: EmendaValores | null
   className?: string
 }
 
 export default function EmendasFuncaoTable({
+  esfera,
   meta,
   valores,
   className = '',
@@ -31,7 +33,7 @@ export default function EmendasFuncaoTable({
   return (
     <div className={`glass rounded flex flex-col gap-xs p-md ${className}`}>
       <div className="flex flex-col">
-        <span className="typo-body-bold">{copy.titulo}</span>
+        <span className="typo-body-bold">{copy.titulo[esfera]}</span>
         <span className="typo-body-sm text-inactive">
           {copy.subtitulo} ·{' '}
           <span className="whitespace-nowrap">
@@ -41,7 +43,7 @@ export default function EmendasFuncaoTable({
       </div>
 
       <table className="w-full border-collapse">
-        <caption className="sr-only">{copy.caption}</caption>
+        <caption className="sr-only">{copy.caption[esfera]}</caption>
         <thead>
           <tr className="border-b border-divider">
             <th scope="col" className={th}>
@@ -93,7 +95,7 @@ export default function EmendasFuncaoTable({
         </tbody>
       </table>
 
-      <span className="typo-body-sm text-inactive">{copy.nota}</span>
+      <span className="typo-body-sm text-inactive">{copy.nota[esfera]}</span>
     </div>
   )
 }

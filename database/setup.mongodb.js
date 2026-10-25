@@ -239,10 +239,10 @@ ensureCollection('emendas', {
     porFuncao: {
       bsonType: 'object',
       description:
-        "só no federal: quebra por função orçamentária { 'Saúde': { empenhado, pago, " +
-        'nEmendas } }, acumulada na janela (sem recorte anual). A função de cada emenda é a ' +
-        'do EMPENHO — o documento de pagamento vem como "Múltiplo" na origem. A soma das ' +
-        'funções fecha com empenhado/pago do doc',
+        "quebra por função orçamentária { 'Saúde': { [valor], empenhado, pago, nEmendas } }, " +
+        'acumulada na janela (sem recorte anual); `valor` só no estadual. Federal: função do ' +
+        'EMPENHO (o documento de pagamento vem como "Múltiplo" na origem). Estadual: função ' +
+        'da linha de execução. A soma das funções fecha com valor/empenhado/pago do doc',
     },
     naoMunicipalizado: {
       bsonType: 'object',

@@ -102,6 +102,7 @@ export interface EmendaValoresAno {
 }
 
 export interface EmendaFuncaoValores {
+  valor?: number
   empenhado: number
   pago: number
   nEmendas: number
@@ -114,7 +115,8 @@ export interface EmendaValores {
   // ATENÇÃO: o eixo muda por esfera — federal é o ano do DOCUMENTO de despesa,
   // estadual é a safra da emenda. Ver `criterioQuebraAnual`.
   porAno: Record<string, EmendaValoresAno>
-  // Só no federal. Acumulado da janela; função da emenda = a do empenho.
+  // Acumulado da janela, nas duas esferas. Federal: função do empenho; estadual: da
+  // linha de execução. `valor` por função só no estadual.
   porFuncao?: Record<string, EmendaFuncaoValores>
   nEmendas: number
   nAutores: number

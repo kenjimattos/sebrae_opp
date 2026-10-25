@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-08-10",
+ "fetchedAt": "2026-10-25",
  "fonte": "codata-cge-pb",
  "dataset": "codata_pb_emendas_parlamentares",
  "esfera": "estadual",
@@ -30,6 +30,14 @@
      "valor": 180000.0,
      "empenhado": 180000.0,
      "pago": 180000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 441550.0,
+     "empenhado": 441550.0,
+     "pago": 441550.0,
+     "nEmendas": 3
     }
    },
    "nEmendas": 3,
@@ -66,6 +74,20 @@
      "pago": 150000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 402067.24,
+     "empenhado": 402067.24,
+     "pago": 300000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 307046.0,
+     "empenhado": 307046.0,
+     "pago": 307046.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 5,
    "nAutores": 3
   },
@@ -98,6 +120,20 @@
      "valor": 900000.0,
      "empenhado": 900000.0,
      "pago": 900000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1682508.0,
+     "empenhado": 1600000.0,
+     "pago": 1200000.0,
+     "nEmendas": 11
+    },
+    "Assistência social": {
+     "valor": 1116201.72,
+     "empenhado": 1046201.72,
+     "pago": 880000.0,
+     "nEmendas": 5
     }
    },
    "nEmendas": 16,
@@ -134,6 +170,20 @@
      "pago": 750000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1820568.67,
+     "empenhado": 1820568.67,
+     "pago": 1640000.0,
+     "nEmendas": 8
+    },
+    "Assistência social": {
+     "valor": 496201.72,
+     "empenhado": 416201.72,
+     "pago": 150000.0,
+     "nEmendas": 3
+    }
+   },
    "nEmendas": 11,
    "nAutores": 5
   },
@@ -161,6 +211,32 @@
      "valor": 250000.0,
      "empenhado": 250000.0,
      "pago": 250000.0
+    }
+   },
+   "porFuncao": {
+    "Educação": {
+     "valor": 566201.71,
+     "empenhado": 566201.71,
+     "pago": 566201.71,
+     "nEmendas": 1
+    },
+    "Desporto e lazer": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 400000.0,
+     "nEmendas": 1
+    },
+    "Saúde": {
+     "valor": 306620.17,
+     "empenhado": 306620.17,
+     "pago": 250000.0,
+     "nEmendas": 2
+    },
+    "Assistência social": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 5,
@@ -197,6 +273,26 @@
      "pago": 690025.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1440367.0,
+     "empenhado": 1440367.0,
+     "pago": 1290367.0,
+     "nEmendas": 5
+    },
+    "Educação": {
+     "valor": 510000.0,
+     "empenhado": 510000.0,
+     "pago": 295000.0,
+     "nEmendas": 2
+    },
+    "Assistência social": {
+     "valor": 350000.0,
+     "empenhado": 350000.0,
+     "pago": 350000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 8,
    "nAutores": 1
   },
@@ -231,6 +327,32 @@
      "pago": 700000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1338620.17,
+     "empenhado": 1338620.17,
+     "pago": 1338620.17,
+     "nEmendas": 8
+    },
+    "Assistência social": {
+     "valor": 313240.34,
+     "empenhado": 313240.34,
+     "pago": 156620.17,
+     "nEmendas": 2
+    },
+    "Não informada": {
+     "valor": 200000.0,
+     "empenhado": 0.0,
+     "pago": 0.0,
+     "nEmendas": 1
+    },
+    "Saneamento": {
+     "valor": 100000.0,
+     "empenhado": 100000.0,
+     "pago": 100000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 12,
    "nAutores": 5
   },
@@ -258,6 +380,20 @@
      "valor": 135000.0,
      "empenhado": 135000.0,
      "pago": 135000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 631201.72,
+     "empenhado": 631201.72,
+     "pago": 528100.86,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 285000.0,
+     "empenhado": 285000.0,
+     "pago": 285000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 5,
@@ -294,6 +430,20 @@
      "pago": 300000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 993372.72,
+     "empenhado": 993372.72,
+     "pago": 577171.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 650000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 6,
    "nAutores": 2
   },
@@ -311,6 +461,20 @@
      "valor": 280000.0,
      "empenhado": 280000.0,
      "pago": 280000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 280000.0,
+     "empenhado": 280000.0,
+     "pago": 280000.0,
+     "nEmendas": 1
+    },
+    "Educação": {
+     "valor": 266200.0,
+     "empenhado": 266200.0,
+     "pago": 0.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 2,
@@ -340,6 +504,20 @@
      "valor": 500000.0,
      "empenhado": 500000.0,
      "pago": 500000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1586201.72,
+     "empenhado": 1586201.72,
+     "pago": 1160000.0,
+     "nEmendas": 6
+    },
+    "Saúde": {
+     "valor": 374366.95,
+     "empenhado": 374366.95,
+     "pago": 80000.0,
+     "nEmendas": 3
     }
    },
    "nEmendas": 9,
@@ -376,6 +554,26 @@
      "pago": 1000000.0
     }
    },
+   "porFuncao": {
+    "Desporto e lazer": {
+     "valor": 1080000.0,
+     "empenhado": 1080000.0,
+     "pago": 1080000.0,
+     "nEmendas": 2
+    },
+    "Saúde": {
+     "valor": 791485.72,
+     "empenhado": 791485.72,
+     "pago": 705284.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 487455.72,
+     "empenhado": 487455.72,
+     "pago": 290627.0,
+     "nEmendas": 4
+    }
+   },
    "nEmendas": 9,
    "nAutores": 1
   },
@@ -408,6 +606,20 @@
      "valor": 750000.0,
      "empenhado": 750000.0,
      "pago": 750000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 892455.72,
+     "empenhado": 711201.72,
+     "pago": 545000.0,
+     "nEmendas": 4
+    },
+    "Saúde": {
+     "valor": 786201.72,
+     "empenhado": 786201.72,
+     "pago": 670000.0,
+     "nEmendas": 5
     }
    },
    "nEmendas": 9,
@@ -444,6 +656,20 @@
      "pago": 300000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1193240.34,
+     "empenhado": 993240.34,
+     "pago": 880000.0,
+     "nEmendas": 6
+    },
+    "Desporto e lazer": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 7,
    "nAutores": 4
   },
@@ -456,6 +682,14 @@
      "valor": 150000.0,
      "empenhado": 150000.0,
      "pago": 0.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 0.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 1,
@@ -492,6 +726,26 @@
      "pago": 500000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1170000.0,
+     "empenhado": 1170000.0,
+     "pago": 870000.0,
+     "nEmendas": 4
+    },
+    "Saúde": {
+     "valor": 702201.72,
+     "empenhado": 702201.72,
+     "pago": 600000.0,
+     "nEmendas": 3
+    },
+    "Cultura": {
+     "valor": 60000.0,
+     "empenhado": 60000.0,
+     "pago": 60000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 8,
    "nAutores": 4
   },
@@ -514,6 +768,32 @@
      "valor": 2490025.0,
      "empenhado": 2490025.0,
      "pago": 2490025.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1866201.72,
+     "empenhado": 1866201.72,
+     "pago": 1866201.72,
+     "nEmendas": 4
+    },
+    "Saúde": {
+     "valor": 1736226.71,
+     "empenhado": 1736226.71,
+     "pago": 1170025.0,
+     "nEmendas": 6
+    },
+    "Desporto e lazer": {
+     "valor": 100000.0,
+     "empenhado": 100000.0,
+     "pago": 100000.0,
+     "nEmendas": 1
+    },
+    "Gestão ambiental": {
+     "valor": 90000.0,
+     "empenhado": 90000.0,
+     "pago": 90000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 12,
@@ -550,6 +830,26 @@
      "pago": 770025.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 3772770.0,
+     "empenhado": 3772770.0,
+     "pago": 3772770.0,
+     "nEmendas": 12
+    },
+    "Assistência social": {
+     "valor": 412509.0,
+     "empenhado": 412509.0,
+     "pago": 371254.5,
+     "nEmendas": 2
+    },
+    "Direitos da cidadania": {
+     "valor": 70000.0,
+     "empenhado": 70000.0,
+     "pago": 70000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 15,
    "nAutores": 5
   },
@@ -584,6 +884,26 @@
      "pago": 700000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 2596201.72,
+     "empenhado": 2596201.72,
+     "pago": 2100000.0,
+     "nEmendas": 13
+    },
+    "Assistência social": {
+     "valor": 1600000.0,
+     "empenhado": 1600000.0,
+     "pago": 900000.0,
+     "nEmendas": 8
+    },
+    "Saneamento": {
+     "valor": 0.0,
+     "empenhado": 172208.64,
+     "pago": 172208.64,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 21,
    "nAutores": 8
   },
@@ -613,6 +933,20 @@
      "pago": 600000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1261771.62,
+     "empenhado": 1261771.62,
+     "pago": 1261771.62,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 640000.0,
+     "empenhado": 640000.0,
+     "pago": 400000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 5,
    "nAutores": 3
   },
@@ -640,6 +974,26 @@
      "valor": 120000.0,
      "empenhado": 120000.0,
      "pago": 120000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 446201.71,
+     "empenhado": 446201.71,
+     "pago": 360000.0,
+     "nEmendas": 3
+    },
+    "Educação": {
+     "valor": 120000.0,
+     "empenhado": 120000.0,
+     "pago": 120000.0,
+     "nEmendas": 1
+    },
+    "Assistência social": {
+     "valor": 52403.44,
+     "empenhado": 52403.44,
+     "pago": 52403.44,
+     "nEmendas": 1
     }
    },
    "nEmendas": 5,
@@ -676,6 +1030,26 @@
      "pago": 500000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1051550.0,
+     "empenhado": 1051550.0,
+     "pago": 1051550.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 450000.0,
+     "empenhado": 450000.0,
+     "pago": 450000.0,
+     "nEmendas": 2
+    },
+    "Educação": {
+     "valor": 140000.0,
+     "empenhado": 140000.0,
+     "pago": 140000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 8,
    "nAutores": 4
   },
@@ -710,6 +1084,20 @@
      "pago": 4118192.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 4283192.0,
+     "empenhado": 4283192.0,
+     "pago": 4283192.0,
+     "nEmendas": 9
+    },
+    "Assistência social": {
+     "valor": 3582403.44,
+     "empenhado": 3450000.0,
+     "pago": 3235000.0,
+     "nEmendas": 6
+    }
+   },
    "nEmendas": 15,
    "nAutores": 5
   },
@@ -737,6 +1125,20 @@
      "valor": 600000.0,
      "empenhado": 600000.0,
      "pago": 600000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 995620.95,
+     "empenhado": 995620.95,
+     "pago": 901254.0,
+     "nEmendas": 6
+    },
+    "Educação": {
+     "valor": 530000.0,
+     "empenhado": 530000.0,
+     "pago": 300000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 8,
@@ -773,6 +1175,20 @@
      "pago": 850000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1366000.0,
+     "empenhado": 1140000.0,
+     "pago": 1140000.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 1350000.0,
+     "empenhado": 1350000.0,
+     "pago": 1150000.0,
+     "nEmendas": 5
+    }
+   },
    "nEmendas": 10,
    "nAutores": 4
   },
@@ -807,6 +1223,26 @@
      "pago": 800000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1692201.71,
+     "empenhado": 1192201.71,
+     "pago": 626000.0,
+     "nEmendas": 6
+    },
+    "Educação": {
+     "valor": 754000.0,
+     "empenhado": 754000.0,
+     "pago": 754000.0,
+     "nEmendas": 2
+    },
+    "Assistência social": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 9,
    "nAutores": 4
   },
@@ -834,6 +1270,26 @@
      "valor": 200000.0,
      "empenhado": 200000.0,
      "pago": 200000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 256620.17,
+     "empenhado": 256620.17,
+     "pago": 200000.0,
+     "nEmendas": 2
+    },
+    "Desporto e lazer": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
+    },
+    "Não informada": {
+     "valor": 130000.0,
+     "empenhado": 0.0,
+     "pago": 0.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 4,
@@ -870,6 +1326,20 @@
      "pago": 150000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 450000.0,
+     "empenhado": 450000.0,
+     "pago": 390000.0,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 5,
    "nAutores": 4
   },
@@ -902,6 +1372,20 @@
      "valor": 650000.0,
      "empenhado": 650000.0,
      "pago": 650000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1156201.72,
+     "empenhado": 1156201.72,
+     "pago": 790000.0,
+     "nEmendas": 4
+    },
+    "Saúde": {
+     "valor": 920000.0,
+     "empenhado": 920000.0,
+     "pago": 920000.0,
+     "nEmendas": 3
     }
    },
    "nEmendas": 7,
@@ -938,6 +1422,26 @@
      "pago": 934500.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1530000.0,
+     "empenhado": 1530000.0,
+     "pago": 1480000.0,
+     "nEmendas": 6
+    },
+    "Saúde": {
+     "valor": 840000.0,
+     "empenhado": 840000.0,
+     "pago": 840000.0,
+     "nEmendas": 3
+    },
+    "Educação": {
+     "valor": 300000.0,
+     "empenhado": 304500.0,
+     "pago": 154500.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 10,
    "nAutores": 4
   },
@@ -970,6 +1474,32 @@
      "valor": 270012.0,
      "empenhado": 270012.0,
      "pago": 270012.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 470012.0,
+     "empenhado": 470012.0,
+     "pago": 270012.0,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 450000.0,
+     "empenhado": 450000.0,
+     "pago": 450000.0,
+     "nEmendas": 2
+    },
+    "Desporto e lazer": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
+    },
+    "Educação": {
+     "valor": 110000.0,
+     "empenhado": 110000.0,
+     "pago": 110000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 7,
@@ -1006,6 +1536,20 @@
      "pago": 600000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1075254.0,
+     "empenhado": 1075254.0,
+     "pago": 1075254.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 900000.0,
+     "empenhado": 900000.0,
+     "pago": 720000.0,
+     "nEmendas": 4
+    }
+   },
    "nEmendas": 9,
    "nAutores": 3
   },
@@ -1038,6 +1582,26 @@
      "valor": 1664000.0,
      "empenhado": 1664000.0,
      "pago": 1664000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 2160171.0,
+     "empenhado": 2160171.0,
+     "pago": 2160171.0,
+     "nEmendas": 9
+    },
+    "Assistência social": {
+     "valor": 1070000.0,
+     "empenhado": 1070000.0,
+     "pago": 1070000.0,
+     "nEmendas": 5
+    },
+    "Educação": {
+     "valor": 494000.0,
+     "empenhado": 494000.0,
+     "pago": 494000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 16,
@@ -1074,6 +1638,20 @@
      "pago": 290000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 801000.0,
+     "empenhado": 770000.0,
+     "pago": 645000.0,
+     "nEmendas": 4
+    },
+    "Saúde": {
+     "valor": 603411.34,
+     "empenhado": 603411.34,
+     "pago": 490171.0,
+     "nEmendas": 4
+    }
+   },
    "nEmendas": 8,
    "nAutores": 3
   },
@@ -1096,6 +1674,20 @@
      "valor": 503017.0,
      "empenhado": 503017.0,
      "pago": 503017.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 583017.0,
+     "empenhado": 583017.0,
+     "pago": 493017.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 460000.0,
+     "empenhado": 460000.0,
+     "pago": 400000.0,
+     "nEmendas": 5
     }
    },
    "nEmendas": 10,
@@ -1132,6 +1724,26 @@
      "pago": 200000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 2823701.72,
+     "empenhado": 2823701.72,
+     "pago": 2007500.0,
+     "nEmendas": 11
+    },
+    "Saúde": {
+     "valor": 1977500.0,
+     "empenhado": 1977500.0,
+     "pago": 1977500.0,
+     "nEmendas": 4
+    },
+    "Desporto e lazer": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 150000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 16,
    "nAutores": 2
   },
@@ -1161,6 +1773,20 @@
      "pago": 150000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 525000.0,
+     "empenhado": 525000.0,
+     "pago": 525000.0,
+     "nEmendas": 4
+    },
+    "Saúde": {
+     "valor": 80000.0,
+     "empenhado": 80000.0,
+     "pago": 0.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 5,
    "nAutores": 3
   },
@@ -1188,6 +1814,20 @@
      "valor": 245000.0,
      "empenhado": 245000.0,
      "pago": 245000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 480000.0,
+     "empenhado": 480000.0,
+     "pago": 360000.0,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 291201.72,
+     "empenhado": 291201.72,
+     "pago": 125000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 5,
@@ -1224,6 +1864,26 @@
      "pago": 580012.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1390354.82,
+     "empenhado": 1390354.0,
+     "pago": 1390354.0,
+     "nEmendas": 8
+    },
+    "Saúde": {
+     "valor": 932403.44,
+     "empenhado": 932403.44,
+     "pago": 300000.0,
+     "nEmendas": 5
+    },
+    "Educação": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 110000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 15,
    "nAutores": 9
   },
@@ -1251,6 +1911,20 @@
      "valor": 100000.0,
      "empenhado": 100000.0,
      "pago": 100000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 803025.62,
+     "empenhado": 803025.62,
+     "pago": 641254.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 527642.0,
+     "empenhado": 527642.0,
+     "pago": 527642.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 6,
@@ -1282,6 +1956,20 @@
      "pago": 500000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1195171.0,
+     "empenhado": 1195171.0,
+     "pago": 1035171.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 150000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 6,
    "nAutores": 3
   },
@@ -1304,6 +1992,20 @@
      "valor": 500171.0,
      "empenhado": 500171.0,
      "pago": 500171.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 400000.0,
+     "nEmendas": 1
+    },
+    "Saúde": {
+     "valor": 391721.0,
+     "empenhado": 391721.0,
+     "pago": 250171.0,
+     "nEmendas": 3
     }
    },
    "nEmendas": 4,
@@ -1340,6 +2042,26 @@
      "pago": 255000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 936201.72,
+     "empenhado": 936201.72,
+     "pago": 600000.0,
+     "nEmendas": 4
+    },
+    "Comércio e serviços": {
+     "valor": 255000.0,
+     "empenhado": 255000.0,
+     "pago": 255000.0,
+     "nEmendas": 1
+    },
+    "Saúde": {
+     "valor": 100000.0,
+     "empenhado": 100000.0,
+     "pago": 100000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 6,
    "nAutores": 2
   },
@@ -1357,6 +2079,20 @@
      "valor": 150000.0,
      "empenhado": 150000.0,
      "pago": 150000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 350000.0,
+     "empenhado": 350000.0,
+     "pago": 150000.0,
+     "nEmendas": 2
+    },
+    "Assistência social": {
+     "valor": 100000.0,
+     "empenhado": 0.0,
+     "pago": 0.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 3,
@@ -1386,6 +2122,20 @@
      "valor": 400000.0,
      "empenhado": 400000.0,
      "pago": 400000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 700000.0,
+     "empenhado": 700000.0,
+     "pago": 500000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 300000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 5,
@@ -1422,6 +2172,26 @@
      "pago": 300000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 900000.0,
+     "empenhado": 900000.0,
+     "pago": 900000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 380000.0,
+     "empenhado": 380000.0,
+     "pago": 300000.0,
+     "nEmendas": 2
+    },
+    "Educação": {
+     "valor": 356000.0,
+     "empenhado": 356000.0,
+     "pago": 220000.0,
+     "nEmendas": 3
+    }
+   },
    "nEmendas": 9,
    "nAutores": 3
   },
@@ -1444,6 +2214,20 @@
      "valor": 200000.0,
      "empenhado": 200000.0,
      "pago": 200000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 356620.17,
+     "empenhado": 356620.17,
+     "pago": 356620.17,
+     "nEmendas": 3
+    },
+    "Administração": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 4,
@@ -1473,6 +2257,20 @@
      "valor": 90000.0,
      "empenhado": 90000.0,
      "pago": 90000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 370000.0,
+     "empenhado": 370000.0,
+     "pago": 185000.0,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 310342.0,
+     "empenhado": 310342.0,
+     "pago": 310342.0,
+     "nEmendas": 3
     }
    },
    "nEmendas": 6,
@@ -1509,6 +2307,26 @@
      "pago": 390000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 700000.0,
+     "empenhado": 700000.0,
+     "pago": 700000.0,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 612000.0,
+     "empenhado": 612000.0,
+     "pago": 612000.0,
+     "nEmendas": 4
+    },
+    "Educação": {
+     "valor": 60000.0,
+     "empenhado": 60000.0,
+     "pago": 60000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 8,
    "nAutores": 4
   },
@@ -1526,6 +2344,14 @@
      "valor": 140000.0,
      "empenhado": 0.0,
      "pago": 0.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 423100.0,
+     "empenhado": 0.0,
+     "pago": 0.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 2,
@@ -1562,6 +2388,20 @@
      "pago": 500000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1590000.0,
+     "empenhado": 1590000.0,
+     "pago": 1390000.0,
+     "nEmendas": 7
+    },
+    "Educação": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 200000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 9,
    "nAutores": 4
   },
@@ -1594,6 +2434,32 @@
      "valor": 800000.0,
      "empenhado": 800000.0,
      "pago": 800000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 750342.0,
+     "empenhado": 750342.0,
+     "pago": 750342.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 450000.0,
+     "empenhado": 450000.0,
+     "pago": 400000.0,
+     "nEmendas": 3
+    },
+    "Desporto e lazer": {
+     "valor": 250000.0,
+     "empenhado": 250000.0,
+     "pago": 250000.0,
+     "nEmendas": 1
+    },
+    "Habitação": {
+     "valor": 250000.0,
+     "empenhado": 250000.0,
+     "pago": 250000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 9,
@@ -1630,6 +2496,20 @@
      "pago": 1100000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1530000.0,
+     "empenhado": 1530000.0,
+     "pago": 1380000.0,
+     "nEmendas": 4
+    },
+    "Saúde": {
+     "valor": 740000.0,
+     "empenhado": 740000.0,
+     "pago": 740000.0,
+     "nEmendas": 4
+    }
+   },
    "nEmendas": 8,
    "nAutores": 3
   },
@@ -1657,6 +2537,14 @@
      "valor": 450000.0,
      "empenhado": 450000.0,
      "pago": 450000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 960000.0,
+     "empenhado": 960000.0,
+     "pago": 960000.0,
+     "nEmendas": 6
     }
    },
    "nEmendas": 6,
@@ -1693,6 +2581,20 @@
      "pago": 550000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1637046.0,
+     "empenhado": 1495000.0,
+     "pago": 1215000.0,
+     "nEmendas": 10
+    },
+    "Assistência social": {
+     "valor": 81254.0,
+     "empenhado": 81254.0,
+     "pago": 81254.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 11,
    "nAutores": 6
   },
@@ -1725,6 +2627,26 @@
      "valor": 770000.0,
      "empenhado": 770000.0,
      "pago": 770000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1160000.0,
+     "empenhado": 1160000.0,
+     "pago": 1160000.0,
+     "nEmendas": 7
+    },
+    "Assistência social": {
+     "valor": 830000.0,
+     "empenhado": 830000.0,
+     "pago": 755000.0,
+     "nEmendas": 6
+    },
+    "Educação": {
+     "valor": 60000.0,
+     "empenhado": 60000.0,
+     "pago": 60000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 14,
@@ -1761,6 +2683,20 @@
      "pago": 450000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 2638254.0,
+     "empenhado": 2638254.0,
+     "pago": 2438254.0,
+     "nEmendas": 8
+    },
+    "Assistência social": {
+     "valor": 1443201.72,
+     "empenhado": 1443201.72,
+     "pago": 1360100.86,
+     "nEmendas": 3
+    }
+   },
    "nEmendas": 11,
    "nAutores": 3
   },
@@ -1783,6 +2719,20 @@
      "valor": 150000.0,
      "empenhado": 150000.0,
      "pago": 150000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1000000.0,
+     "empenhado": 1000000.0,
+     "pago": 900000.0,
+     "nEmendas": 4
+    },
+    "Saúde": {
+     "valor": 539413.62,
+     "empenhado": 539413.62,
+     "pago": 539413.62,
+     "nEmendas": 2
     }
    },
    "nEmendas": 6,
@@ -1814,6 +2764,26 @@
      "pago": 800000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1600000.0,
+     "empenhado": 1600000.0,
+     "pago": 1600000.0,
+     "nEmendas": 2
+    },
+    "Educação": {
+     "valor": 781254.0,
+     "empenhado": 781254.0,
+     "pago": 390627.0,
+     "nEmendas": 1
+    },
+    "Assistência social": {
+     "valor": 100000.0,
+     "empenhado": 100000.0,
+     "pago": 50000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 4,
    "nAutores": 2
   },
@@ -1831,6 +2801,20 @@
      "valor": 500000.0,
      "empenhado": 500000.0,
      "pago": 500000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 441550.0,
+     "empenhado": 441550.0,
+     "pago": 441550.0,
+     "nEmendas": 3
+    },
+    "Desporto e lazer": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 4,
@@ -1862,6 +2846,14 @@
      "pago": 375000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1150000.0,
+     "empenhado": 1150000.0,
+     "pago": 890000.0,
+     "nEmendas": 6
+    }
+   },
    "nEmendas": 6,
    "nAutores": 1
   },
@@ -1889,6 +2881,20 @@
      "valor": 750000.0,
      "empenhado": 750000.0,
      "pago": 750000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1731254.0,
+     "empenhado": 1731254.0,
+     "pago": 1481254.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 100000.0,
+     "empenhado": 100000.0,
+     "pago": 50000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 6,
@@ -1920,6 +2926,20 @@
      "pago": 300000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 530000.0,
+     "empenhado": 530000.0,
+     "pago": 530000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 150000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 5,
    "nAutores": 1
   },
@@ -1949,6 +2969,14 @@
      "pago": 300000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1036620.17,
+     "empenhado": 1036620.17,
+     "pago": 980000.0,
+     "nEmendas": 7
+    }
+   },
    "nEmendas": 7,
    "nAutores": 3
   },
@@ -1976,6 +3004,20 @@
      "valor": 95000.0,
      "empenhado": 95000.0,
      "pago": 95000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 355000.0,
+     "empenhado": 355000.0,
+     "pago": 165000.0,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 4,
@@ -2012,6 +3054,20 @@
      "pago": 500000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1141550.0,
+     "empenhado": 1141550.0,
+     "pago": 1000000.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 100000.0,
+     "empenhado": 100000.0,
+     "pago": 100000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 6,
    "nAutores": 2
   },
@@ -2044,6 +3100,20 @@
      "valor": 850000.0,
      "empenhado": 850000.0,
      "pago": 850000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1760000.0,
+     "empenhado": 1760000.0,
+     "pago": 1485000.0,
+     "nEmendas": 9
+    },
+    "Saúde": {
+     "valor": 916201.72,
+     "empenhado": 916201.72,
+     "pago": 858100.86,
+     "nEmendas": 3
     }
    },
    "nEmendas": 12,
@@ -2080,6 +3150,20 @@
      "pago": 900000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1462171.0,
+     "empenhado": 1390171.0,
+     "pago": 1290171.0,
+     "nEmendas": 9
+    },
+    "Assistência social": {
+     "valor": 650000.0,
+     "empenhado": 650000.0,
+     "pago": 600000.0,
+     "nEmendas": 3
+    }
+   },
    "nEmendas": 12,
    "nAutores": 4
   },
@@ -2112,6 +3196,26 @@
      "valor": 800025.64,
      "empenhado": 800025.0,
      "pago": 800025.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1548294.36,
+     "empenhado": 1548293.72,
+     "pago": 1416465.0,
+     "nEmendas": 5
+    },
+    "Saúde": {
+     "valor": 804425.0,
+     "empenhado": 804425.0,
+     "pago": 701425.0,
+     "nEmendas": 5
+    },
+    "Educação": {
+     "valor": 100000.0,
+     "empenhado": 99970.0,
+     "pago": 99970.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 11,
@@ -2148,6 +3252,14 @@
      "pago": 450000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1390000.0,
+     "empenhado": 1240000.0,
+     "pago": 1140000.0,
+     "nEmendas": 5
+    }
+   },
    "nEmendas": 5,
    "nAutores": 1
   },
@@ -2182,6 +3294,32 @@
      "pago": 620000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 980000.0,
+     "empenhado": 980000.0,
+     "pago": 980000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 801771.62,
+     "empenhado": 801771.62,
+     "pago": 640000.0,
+     "nEmendas": 3
+    },
+    "Administração": {
+     "valor": 180000.0,
+     "empenhado": 180000.0,
+     "pago": 180000.0,
+     "nEmendas": 1
+    },
+    "Educação": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 75000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 8,
    "nAutores": 3
   },
@@ -2211,6 +3349,20 @@
      "pago": 300000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 622067.24,
+     "empenhado": 622067.24,
+     "pago": 520000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 5,
    "nAutores": 1
   },
@@ -2238,6 +3390,26 @@
      "valor": 940025.65,
      "empenhado": 940025.0,
      "pago": 940025.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1010000.0,
+     "empenhado": 1010000.0,
+     "pago": 750000.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 790025.65,
+     "empenhado": 790025.0,
+     "pago": 790025.0,
+     "nEmendas": 3
+    },
+    "Desporto e lazer": {
+     "valor": 540000.0,
+     "empenhado": 540000.0,
+     "pago": 540000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 9,
@@ -2274,6 +3446,20 @@
      "pago": 450000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 944262.17,
+     "empenhado": 944262.17,
+     "pago": 944262.17,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 513240.34,
+     "empenhado": 413240.34,
+     "pago": 300000.0,
+     "nEmendas": 3
+    }
+   },
    "nEmendas": 8,
    "nAutores": 3
   },
@@ -2308,6 +3494,26 @@
      "pago": 250000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 660000.0,
+     "empenhado": 660000.0,
+     "pago": 660000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 601254.0,
+     "empenhado": 601254.0,
+     "pago": 500627.0,
+     "nEmendas": 2
+    },
+    "Desporto e lazer": {
+     "valor": 250000.0,
+     "empenhado": 250000.0,
+     "pago": 250000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 7,
    "nAutores": 4
   },
@@ -2332,6 +3538,14 @@
      "pago": 335000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 996550.0,
+     "empenhado": 996550.0,
+     "pago": 855000.0,
+     "nEmendas": 5
+    }
+   },
    "nEmendas": 5,
    "nAutores": 3
   },
@@ -2354,6 +3568,20 @@
      "valor": 370000.0,
      "empenhado": 370000.0,
      "pago": 370000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 490000.0,
+     "empenhado": 490000.0,
+     "pago": 490000.0,
+     "nEmendas": 2
+    },
+    "Saúde": {
+     "valor": 141550.0,
+     "empenhado": 0.0,
+     "pago": 0.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 3,
@@ -2390,6 +3618,26 @@
      "pago": 540000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 730000.0,
+     "empenhado": 730000.0,
+     "pago": 730000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 600000.0,
+     "empenhado": 600000.0,
+     "pago": 450000.0,
+     "nEmendas": 5
+    },
+    "Educação": {
+     "valor": 90000.0,
+     "empenhado": 90000.0,
+     "pago": 90000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 10,
    "nAutores": 4
   },
@@ -2417,6 +3665,20 @@
      "valor": 300000.0,
      "empenhado": 300000.0,
      "pago": 300000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 653240.34,
+     "empenhado": 653240.34,
+     "pago": 540000.0,
+     "nEmendas": 3
+    },
+    "Educação": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 150000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 4,
@@ -2453,6 +3715,14 @@
      "pago": 500000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1400000.0,
+     "empenhado": 1400000.0,
+     "pago": 1300000.0,
+     "nEmendas": 7
+    }
+   },
    "nEmendas": 7,
    "nAutores": 2
   },
@@ -2485,6 +3755,26 @@
      "valor": 150000.0,
      "empenhado": 150000.0,
      "pago": 150000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 457046.0,
+     "empenhado": 457046.0,
+     "pago": 457046.0,
+     "nEmendas": 3
+    },
+    "Cultura": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 150000.0,
+     "nEmendas": 1
+    },
+    "Assistência social": {
+     "valor": 80000.0,
+     "empenhado": 80000.0,
+     "pago": 80000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 5,
@@ -2521,6 +3811,26 @@
      "pago": 120000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 620000.0,
+     "empenhado": 620000.0,
+     "pago": 520000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 301244.0,
+     "empenhado": 301244.0,
+     "pago": 226244.0,
+     "nEmendas": 2
+    },
+    "Educação": {
+     "valor": 120000.0,
+     "empenhado": 120000.0,
+     "pago": 120000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 7,
    "nAutores": 4
   },
@@ -2548,6 +3858,20 @@
      "valor": 500000.0,
      "empenhado": 500000.0,
      "pago": 500000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1030885.96,
+     "empenhado": 1030885.96,
+     "pago": 1030885.96,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 580885.96,
+     "empenhado": 580885.96,
+     "pago": 580885.96,
+     "nEmendas": 2
     }
    },
    "nEmendas": 5,
@@ -2579,6 +3903,26 @@
      "pago": 400000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 540000.0,
+     "empenhado": 540000.0,
+     "pago": 380000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 400000.0,
+     "nEmendas": 2
+    },
+    "Saneamento": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 7,
    "nAutores": 2
   },
@@ -2606,6 +3950,14 @@
      "valor": 130000.0,
      "empenhado": 130000.0,
      "pago": 130000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 521550.0,
+     "empenhado": 521550.0,
+     "pago": 380000.0,
+     "nEmendas": 4
     }
    },
    "nEmendas": 4,
@@ -2642,6 +3994,20 @@
      "pago": 300000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 622067.24,
+     "empenhado": 622067.24,
+     "pago": 622067.24,
+     "nEmendas": 4
+    },
+    "Educação": {
+     "valor": 451254.0,
+     "empenhado": 451254.0,
+     "pago": 451254.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 6,
    "nAutores": 1
   },
@@ -2669,6 +4035,20 @@
      "valor": 120000.0,
      "empenhado": 120000.0,
      "pago": 120000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 842000.0,
+     "empenhado": 842000.0,
+     "pago": 742000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 20000.0,
+     "empenhado": 20000.0,
+     "pago": 20000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 5,
@@ -2705,6 +4085,20 @@
      "pago": 840025.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 887899.17,
+     "empenhado": 887899.17,
+     "pago": 831279.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 775000.0,
+     "empenhado": 775000.0,
+     "pago": 775000.0,
+     "nEmendas": 6
+    }
+   },
    "nEmendas": 11,
    "nAutores": 5
   },
@@ -2737,6 +4131,26 @@
      "valor": 150000.0,
      "empenhado": 150000.0,
      "pago": 150000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 450000.0,
+     "empenhado": 450000.0,
+     "pago": 400000.0,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 220000.0,
+     "empenhado": 220000.0,
+     "pago": 100000.0,
+     "nEmendas": 2
+    },
+    "Desporto e lazer": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 7,
@@ -2773,6 +4187,14 @@
      "pago": 650000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1550000.0,
+     "empenhado": 1550000.0,
+     "pago": 1465000.0,
+     "nEmendas": 7
+    }
+   },
    "nEmendas": 7,
    "nAutores": 1
   },
@@ -2807,6 +4229,26 @@
      "pago": 650000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 913240.34,
+     "empenhado": 913240.34,
+     "pago": 913240.34,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 250000.0,
+     "empenhado": 250000.0,
+     "pago": 175000.0,
+     "nEmendas": 2
+    },
+    "Educação": {
+     "valor": 240000.0,
+     "empenhado": 240000.0,
+     "pago": 240000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 8,
    "nAutores": 4
   },
@@ -2834,6 +4276,26 @@
      "valor": 500000.0,
      "empenhado": 500000.0,
      "pago": 500000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 966201.72,
+     "empenhado": 900000.0,
+     "pago": 750000.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 100000.0,
+     "nEmendas": 1
+    },
+    "Educação": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 7,
@@ -2870,6 +4332,20 @@
      "pago": 1440000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1302046.0,
+     "empenhado": 1160000.0,
+     "pago": 1160000.0,
+     "nEmendas": 7
+    },
+    "Assistência social": {
+     "valor": 1245000.0,
+     "empenhado": 1185000.0,
+     "pago": 1105000.0,
+     "nEmendas": 8
+    }
+   },
    "nEmendas": 15,
    "nAutores": 6
   },
@@ -2892,6 +4368,26 @@
      "valor": 300000.0,
      "empenhado": 300000.0,
      "pago": 300000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 600000.0,
+     "empenhado": 600000.0,
+     "pago": 600000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 511000.0,
+     "empenhado": 511000.0,
+     "pago": 255500.0,
+     "nEmendas": 2
+    },
+    "Educação": {
+     "valor": 120000.0,
+     "empenhado": 120000.0,
+     "pago": 120000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 6,
@@ -2928,6 +4424,26 @@
      "pago": 280000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 620000.0,
+     "empenhado": 620000.0,
+     "pago": 620000.0,
+     "nEmendas": 4
+    },
+    "Comércio e serviços": {
+     "valor": 280000.0,
+     "empenhado": 280000.0,
+     "pago": 280000.0,
+     "nEmendas": 1
+    },
+    "Assistência social": {
+     "valor": 250000.0,
+     "empenhado": 250000.0,
+     "pago": 0.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 6,
    "nAutores": 2
   },
@@ -2960,6 +4476,20 @@
      "valor": 150000.0,
      "empenhado": 150000.0,
      "pago": 150000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 626771.92,
+     "empenhado": 626771.92,
+     "pago": 626771.92,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 350000.0,
+     "empenhado": 350000.0,
+     "pago": 125000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 6,
@@ -2996,6 +4526,20 @@
      "pago": 540000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 931550.0,
+     "empenhado": 931550.0,
+     "pago": 790000.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 421254.0,
+     "empenhado": 421254.0,
+     "pago": 330627.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 7,
    "nAutores": 3
   },
@@ -3023,6 +4567,20 @@
      "valor": 1780025.0,
      "empenhado": 1780025.0,
      "pago": 1780025.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1825025.0,
+     "empenhado": 1825025.0,
+     "pago": 1825025.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 1400000.0,
+     "empenhado": 1400000.0,
+     "pago": 1400000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 7,
@@ -3059,6 +4617,20 @@
      "pago": 150000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 621620.17,
+     "empenhado": 621620.17,
+     "pago": 565000.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 6,
    "nAutores": 4
   },
@@ -3081,6 +4653,14 @@
      "valor": 550000.0,
      "empenhado": 550000.0,
      "pago": 550000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 971550.0,
+     "empenhado": 971550.0,
+     "pago": 971550.0,
+     "nEmendas": 6
     }
    },
    "nEmendas": 6,
@@ -3117,6 +4697,20 @@
      "pago": 300000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 820000.0,
+     "empenhado": 820000.0,
+     "pago": 820000.0,
+     "nEmendas": 6
+    },
+    "Assistência social": {
+     "valor": 140000.0,
+     "empenhado": 140000.0,
+     "pago": 0.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 7,
    "nAutores": 4
   },
@@ -3149,6 +4743,20 @@
      "valor": 150000.0,
      "empenhado": 150000.0,
      "pago": 150000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 710000.0,
+     "empenhado": 710000.0,
+     "pago": 610000.0,
+     "nEmendas": 6
+    },
+    "Assistência social": {
+     "valor": 120000.0,
+     "empenhado": 120000.0,
+     "pago": 120000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 7,
@@ -3185,6 +4793,20 @@
      "pago": 1000000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1400000.0,
+     "empenhado": 1400000.0,
+     "pago": 1400000.0,
+     "nEmendas": 2
+    },
+    "Saúde": {
+     "valor": 1395620.95,
+     "empenhado": 1395620.95,
+     "pago": 1050627.0,
+     "nEmendas": 3
+    }
+   },
    "nEmendas": 5,
    "nAutores": 2
   },
@@ -3212,6 +4834,20 @@
      "valor": 600000.0,
      "empenhado": 600000.0,
      "pago": 600000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1200000.0,
+     "empenhado": 1200000.0,
+     "pago": 1200000.0,
+     "nEmendas": 4
+    },
+    "Educação": {
+     "valor": 100000.0,
+     "empenhado": 100000.0,
+     "pago": 0.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 5,
@@ -3243,6 +4879,20 @@
      "pago": 257025.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 407025.65,
+     "empenhado": 407025.0,
+     "pago": 407025.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 398100.0,
+     "empenhado": 398100.0,
+     "pago": 315000.0,
+     "nEmendas": 3
+    }
+   },
    "nEmendas": 6,
    "nAutores": 4
   },
@@ -3260,6 +4910,14 @@
      "valor": 150000.0,
      "empenhado": 150000.0,
      "pago": 150000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 310000.0,
+     "empenhado": 310000.0,
+     "pago": 150000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 2,
@@ -3289,6 +4947,20 @@
      "valor": 150000.0,
      "empenhado": 150000.0,
      "pago": 150000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 465000.0,
+     "empenhado": 465000.0,
+     "pago": 465000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 166201.72,
+     "empenhado": 166201.72,
+     "pago": 0.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 4,
@@ -3325,6 +4997,20 @@
      "pago": 300000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 816620.17,
+     "empenhado": 816620.17,
+     "pago": 816620.17,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 490000.0,
+     "empenhado": 250000.0,
+     "pago": 250000.0,
+     "nEmendas": 3
+    }
+   },
    "nEmendas": 8,
    "nAutores": 4
   },
@@ -3352,6 +5038,20 @@
      "valor": 500000.0,
      "empenhado": 500000.0,
      "pago": 500000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 786201.72,
+     "empenhado": 786201.72,
+     "pago": 700000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 4,
@@ -3388,6 +5088,20 @@
      "pago": 400000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 810000.0,
+     "empenhado": 810000.0,
+     "pago": 730000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 220000.0,
+     "empenhado": 220000.0,
+     "pago": 160000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 6,
    "nAutores": 3
   },
@@ -3422,6 +5136,20 @@
      "pago": 200000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 950000.0,
+     "empenhado": 850000.0,
+     "pago": 750000.0,
+     "nEmendas": 7
+    },
+    "Assistência social": {
+     "valor": 190000.0,
+     "empenhado": 190000.0,
+     "pago": 190000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 8,
    "nAutores": 4
   },
@@ -3449,6 +5177,20 @@
      "valor": 216000.0,
      "empenhado": 216000.0,
      "pago": 216000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 593642.0,
+     "empenhado": 593642.0,
+     "pago": 493642.0,
+     "nEmendas": 5
+    },
+    "Saúde": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 150000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 6,
@@ -3480,6 +5222,20 @@
      "pago": 405000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1040000.0,
+     "empenhado": 1040000.0,
+     "pago": 1040000.0,
+     "nEmendas": 6
+    },
+    "Assistência social": {
+     "valor": 210000.0,
+     "empenhado": 210000.0,
+     "pago": 210000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 8,
    "nAutores": 5
   },
@@ -3497,6 +5253,20 @@
      "valor": 160000.0,
      "empenhado": 160000.0,
      "pago": 160000.0
+    }
+   },
+   "porFuncao": {
+    "Educação": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 0.0,
+     "nEmendas": 1
+    },
+    "Saúde": {
+     "valor": 160000.0,
+     "empenhado": 160000.0,
+     "pago": 160000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 2,
@@ -3523,6 +5293,26 @@
      "pago": 910000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 791771.62,
+     "empenhado": 791771.62,
+     "pago": 630000.0,
+     "nEmendas": 3
+    },
+    "Saneamento": {
+     "valor": 780000.0,
+     "empenhado": 780000.0,
+     "pago": 780000.0,
+     "nEmendas": 2
+    },
+    "Saúde": {
+     "valor": 180000.0,
+     "empenhado": 180000.0,
+     "pago": 180000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 6,
    "nAutores": 2
   },
@@ -3545,6 +5335,20 @@
      "valor": 300000.0,
      "empenhado": 300000.0,
      "pago": 300000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 501254.0,
+     "empenhado": 501254.0,
+     "pago": 391254.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 4,
@@ -3581,6 +5385,20 @@
      "pago": 100000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 640000.0,
+     "empenhado": 640000.0,
+     "pago": 490000.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 6,
    "nAutores": 2
   },
@@ -3615,6 +5433,26 @@
      "pago": 350000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 762748.34,
+     "empenhado": 762748.34,
+     "pago": 649508.0,
+     "nEmendas": 6
+    },
+    "Gestão ambiental": {
+     "valor": 250000.0,
+     "empenhado": 250000.0,
+     "pago": 250000.0,
+     "nEmendas": 1
+    },
+    "Assistência social": {
+     "valor": 180000.0,
+     "empenhado": 180000.0,
+     "pago": 180000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 9,
    "nAutores": 5
   },
@@ -3642,6 +5480,20 @@
      "valor": 150000.0,
      "empenhado": 150000.0,
      "pago": 150000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 545000.0,
+     "empenhado": 545000.0,
+     "pago": 545000.0,
+     "nEmendas": 4
+    },
+    "Educação": {
+     "valor": 0.0,
+     "empenhado": 1445469.96,
+     "pago": 0.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 4,
@@ -3673,6 +5525,26 @@
      "pago": 875000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1400000.0,
+     "empenhado": 1400000.0,
+     "pago": 1400000.0,
+     "nEmendas": 6
+    },
+    "Saúde": {
+     "valor": 380201.72,
+     "empenhado": 380201.72,
+     "pago": 150000.0,
+     "nEmendas": 3
+    },
+    "Administração": {
+     "valor": 225000.0,
+     "empenhado": 225000.0,
+     "pago": 225000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 10,
    "nAutores": 5
   },
@@ -3700,6 +5572,20 @@
      "valor": 550000.0,
      "empenhado": 550000.0,
      "pago": 550000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 736620.17,
+     "empenhado": 736620.17,
+     "pago": 736620.17,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 233240.34,
+     "empenhado": 233240.34,
+     "pago": 120000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 6,
@@ -3736,6 +5622,26 @@
      "pago": 150000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 465000.0,
+     "empenhado": 465000.0,
+     "pago": 465000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 380000.0,
+     "empenhado": 380000.0,
+     "pago": 315000.0,
+     "nEmendas": 3
+    },
+    "Não informada": {
+     "valor": 125000.0,
+     "empenhado": 0.0,
+     "pago": 0.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 8,
    "nAutores": 4
   },
@@ -3758,6 +5664,14 @@
      "valor": 150000.0,
      "empenhado": 150000.0,
      "pago": 150000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 365000.0,
+     "empenhado": 365000.0,
+     "pago": 285000.0,
+     "nEmendas": 3
     }
    },
    "nEmendas": 3,
@@ -3787,6 +5701,20 @@
      "valor": 800000.0,
      "empenhado": 800000.0,
      "pago": 800000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1644366.95,
+     "empenhado": 1644366.95,
+     "pago": 1550000.0,
+     "nEmendas": 8
+    },
+    "Agricultura": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 9,
@@ -3823,6 +5751,14 @@
      "pago": 150000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 693247.72,
+     "empenhado": 551201.72,
+     "pago": 465000.0,
+     "nEmendas": 5
+    }
+   },
    "nEmendas": 5,
    "nAutores": 2
   },
@@ -3850,6 +5786,32 @@
      "valor": 500013.0,
      "empenhado": 500013.0,
      "pago": 500013.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 380013.0,
+     "empenhado": 380013.0,
+     "pago": 300013.0,
+     "nEmendas": 2
+    },
+    "Assistência social": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 1
+    },
+    "Saneamento": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
+    },
+    "Não informada": {
+     "valor": 130000.0,
+     "empenhado": 0.0,
+     "pago": 0.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 5,
@@ -3886,6 +5848,20 @@
      "pago": 270000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1168100.0,
+     "empenhado": 1168100.0,
+     "pago": 985000.0,
+     "nEmendas": 7
+    },
+    "Saúde": {
+     "valor": 812508.0,
+     "empenhado": 812508.0,
+     "pago": 812508.0,
+     "nEmendas": 4
+    }
+   },
    "nEmendas": 11,
    "nAutores": 4
   },
@@ -3908,6 +5884,20 @@
      "valor": 140000.0,
      "empenhado": 140000.0,
      "pago": 140000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 110000.0,
+     "nEmendas": 2
+    },
+    "Saúde": {
+     "valor": 140000.0,
+     "empenhado": 140000.0,
+     "pago": 140000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 3,
@@ -3939,6 +5929,20 @@
      "pago": 240000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 640000.0,
+     "empenhado": 640000.0,
+     "pago": 560000.0,
+     "nEmendas": 5
+    },
+    "Saúde": {
+     "valor": 315000.0,
+     "empenhado": 315000.0,
+     "pago": 315000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 7,
    "nAutores": 5
   },
@@ -3966,6 +5970,26 @@
      "valor": 1010013.0,
      "empenhado": 1010013.0,
      "pago": 1010013.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1890013.0,
+     "empenhado": 1890013.0,
+     "pago": 1890013.0,
+     "nEmendas": 8
+    },
+    "Assistência social": {
+     "valor": 1000000.0,
+     "empenhado": 1000000.0,
+     "pago": 650000.0,
+     "nEmendas": 4
+    },
+    "Não informada": {
+     "valor": 130000.0,
+     "empenhado": 0.0,
+     "pago": 0.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 13,
@@ -3997,6 +6021,20 @@
      "pago": 180000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 600000.0,
+     "empenhado": 600000.0,
+     "pago": 600000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 5,
    "nAutores": 3
   },
@@ -4019,6 +6057,20 @@
      "valor": 150000.0,
      "empenhado": 150000.0,
      "pago": 150000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 220000.0,
+     "empenhado": 220000.0,
+     "pago": 220000.0,
+     "nEmendas": 2
+    },
+    "Assistência social": {
+     "valor": 180000.0,
+     "empenhado": 0.0,
+     "pago": 0.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 3,
@@ -4050,6 +6102,20 @@
      "pago": 600000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 6759032.0,
+     "empenhado": 6759032.0,
+     "pago": 5545143.0,
+     "nEmendas": 30
+    },
+    "Assistência social": {
+     "valor": 1211254.0,
+     "empenhado": 1211254.0,
+     "pago": 770627.0,
+     "nEmendas": 4
+    }
+   },
    "nEmendas": 34,
    "nAutores": 16
   },
@@ -4077,6 +6143,26 @@
      "valor": 2853000.0,
      "empenhado": 2853000.0,
      "pago": 2853000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 6616321.0,
+     "empenhado": 6616321.0,
+     "pago": 6616321.0,
+     "nEmendas": 10
+    },
+    "Administração": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 400000.0,
+     "nEmendas": 1
+    },
+    "Assistência social": {
+     "valor": 347642.0,
+     "empenhado": 347642.0,
+     "pago": 347642.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 12,
@@ -4108,6 +6194,26 @@
      "pago": 130000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 390000.0,
+     "empenhado": 390000.0,
+     "pago": 270000.0,
+     "nEmendas": 2
+    },
+    "Saúde": {
+     "valor": 380000.0,
+     "empenhado": 380000.0,
+     "pago": 380000.0,
+     "nEmendas": 3
+    },
+    "Educação": {
+     "valor": 120000.0,
+     "empenhado": 120000.0,
+     "pago": 120000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 6,
    "nAutores": 4
   },
@@ -4135,6 +6241,26 @@
      "valor": 400000.0,
      "empenhado": 400000.0,
      "pago": 400000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 510000.0,
+     "empenhado": 510000.0,
+     "pago": 410000.0,
+     "nEmendas": 3
+    },
+    "Desporto e lazer": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 400000.0,
+     "nEmendas": 1
+    },
+    "Saúde": {
+     "valor": 100000.0,
+     "empenhado": 100000.0,
+     "pago": 100000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 5,
@@ -4166,6 +6292,20 @@
      "pago": 125000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 695000.0,
+     "empenhado": 695000.0,
+     "pago": 470000.0,
+     "nEmendas": 4
+    },
+    "Saúde": {
+     "valor": 550000.0,
+     "empenhado": 550000.0,
+     "pago": 550000.0,
+     "nEmendas": 4
+    }
+   },
    "nEmendas": 8,
    "nAutores": 6
   },
@@ -4195,6 +6335,20 @@
      "pago": 440000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1500000.0,
+     "empenhado": 1500000.0,
+     "pago": 1500000.0,
+     "nEmendas": 6
+    },
+    "Saúde": {
+     "valor": 800000.0,
+     "empenhado": 800000.0,
+     "pago": 800000.0,
+     "nEmendas": 5
+    }
+   },
    "nEmendas": 11,
    "nAutores": 7
   },
@@ -4217,6 +6371,20 @@
      "valor": 507000.0,
      "empenhado": 507000.0,
      "pago": 507000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1050000.0,
+     "empenhado": 950000.0,
+     "pago": 950000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 178000.0,
+     "empenhado": 178000.0,
+     "pago": 147500.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 6,
@@ -4248,6 +6416,20 @@
      "pago": 800013.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 1720000.0,
+     "empenhado": 1720000.0,
+     "pago": 1530000.0,
+     "nEmendas": 5
+    },
+    "Saúde": {
+     "valor": 980013.0,
+     "empenhado": 980013.0,
+     "pago": 980013.0,
+     "nEmendas": 6
+    }
+   },
    "nEmendas": 11,
    "nAutores": 3
   },
@@ -4275,6 +6457,20 @@
      "valor": 150000.0,
      "empenhado": 150000.0,
      "pago": 150000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 900000.0,
+     "empenhado": 900000.0,
+     "pago": 900000.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 7,
@@ -4306,6 +6502,32 @@
      "pago": 1824000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 3656508.0,
+     "empenhado": 3656508.0,
+     "pago": 3656508.0,
+     "nEmendas": 8
+    },
+    "Assistência social": {
+     "valor": 950000.0,
+     "empenhado": 950000.0,
+     "pago": 850000.0,
+     "nEmendas": 6
+    },
+    "Desporto e lazer": {
+     "valor": 350000.0,
+     "empenhado": 350000.0,
+     "pago": 350000.0,
+     "nEmendas": 2
+    },
+    "Educação": {
+     "valor": 250000.0,
+     "empenhado": 250000.0,
+     "pago": 250000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 17,
    "nAutores": 8
   },
@@ -4328,6 +6550,20 @@
      "valor": 250000.0,
      "empenhado": 250000.0,
      "pago": 250000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 340000.0,
+     "empenhado": 340000.0,
+     "pago": 340000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 5,
@@ -4359,6 +6595,26 @@
      "pago": 150000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 940000.0,
+     "empenhado": 940000.0,
+     "pago": 840000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 550000.0,
+     "empenhado": 550000.0,
+     "pago": 425000.0,
+     "nEmendas": 3
+    },
+    "Administração": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 150000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 8,
    "nAutores": 4
   },
@@ -4386,6 +6642,20 @@
      "valor": 350000.0,
      "empenhado": 350000.0,
      "pago": 350000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 850000.0,
+     "empenhado": 850000.0,
+     "pago": 850000.0,
+     "nEmendas": 6
+    },
+    "Assistência social": {
+     "valor": 560000.0,
+     "empenhado": 560000.0,
+     "pago": 510000.0,
+     "nEmendas": 4
     }
    },
    "nEmendas": 10,
@@ -4417,6 +6687,32 @@
      "pago": 550000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 500000.0,
+     "empenhado": 500000.0,
+     "pago": 400000.0,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 480000.0,
+     "empenhado": 480000.0,
+     "pago": 480000.0,
+     "nEmendas": 2
+    },
+    "Agricultura": {
+     "valor": 120000.0,
+     "empenhado": 120000.0,
+     "pago": 120000.0,
+     "nEmendas": 1
+    },
+    "Educação": {
+     "valor": 0.0,
+     "empenhado": 24000.0,
+     "pago": 24000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 6,
    "nAutores": 4
   },
@@ -4439,6 +6735,14 @@
      "valor": 700000.0,
      "empenhado": 700000.0,
      "pago": 700000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 950000.0,
+     "empenhado": 950000.0,
+     "pago": 950000.0,
+     "nEmendas": 4
     }
    },
    "nEmendas": 4,
@@ -4470,6 +6774,20 @@
      "pago": 880000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1230000.0,
+     "empenhado": 1230000.0,
+     "pago": 1230000.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 6,
    "nAutores": 4
   },
@@ -4497,6 +6815,26 @@
      "valor": 1480000.0,
      "empenhado": 1480000.0,
      "pago": 1480000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1985342.0,
+     "empenhado": 1985342.0,
+     "pago": 1985342.0,
+     "nEmendas": 6
+    },
+    "Assistência social": {
+     "valor": 1740000.0,
+     "empenhado": 1740000.0,
+     "pago": 1740000.0,
+     "nEmendas": 8
+    },
+    "Habitação": {
+     "valor": 0.0,
+     "empenhado": 2066.64,
+     "pago": 2066.64,
+     "nEmendas": 1
     }
    },
    "nEmendas": 14,
@@ -4528,6 +6866,14 @@
      "pago": 350000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 860000.0,
+     "empenhado": 860000.0,
+     "pago": 860000.0,
+     "nEmendas": 6
+    }
+   },
    "nEmendas": 6,
    "nAutores": 2
   },
@@ -4557,6 +6903,20 @@
      "pago": 326000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 799000.0,
+     "empenhado": 699000.0,
+     "pago": 699000.0,
+     "nEmendas": 6
+    },
+    "Assistência social": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 150000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 8,
    "nAutores": 3
   },
@@ -4581,6 +6941,20 @@
      "pago": 350025.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1485175.0,
+     "empenhado": 1485175.0,
+     "pago": 1485175.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 577642.0,
+     "empenhado": 577642.0,
+     "pago": 577642.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 5,
    "nAutores": 3
   },
@@ -4603,6 +6977,26 @@
      "valor": 200000.0,
      "empenhado": 200000.0,
      "pago": 200000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 250000.0,
+     "empenhado": 250000.0,
+     "pago": 250000.0,
+     "nEmendas": 1
+    },
+    "Assistência social": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
+    },
+    "Educação": {
+     "valor": 100000.0,
+     "empenhado": 100000.0,
+     "pago": 100000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 3,
@@ -4634,6 +7028,26 @@
      "pago": 380000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1320000.0,
+     "empenhado": 1320000.0,
+     "pago": 1320000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 300000.0,
+     "nEmendas": 2
+    },
+    "Encargos especiais": {
+     "valor": 0.0,
+     "empenhado": 318.18,
+     "pago": 159.09,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 6,
    "nAutores": 2
   },
@@ -4658,6 +7072,20 @@
      "pago": 365000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 785000.0,
+     "empenhado": 785000.0,
+     "pago": 785000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 280000.0,
+     "empenhado": 280000.0,
+     "pago": 280000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 5,
    "nAutores": 3
   },
@@ -4675,6 +7103,14 @@
      "valor": 300000.0,
      "empenhado": 300000.0,
      "pago": 300000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 500000.0,
+     "empenhado": 500000.0,
+     "pago": 500000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 2,
@@ -4699,6 +7135,20 @@
      "valor": 570000.0,
      "empenhado": 570000.0,
      "pago": 570000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 700000.0,
+     "empenhado": 700000.0,
+     "pago": 700000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 370254.0,
+     "empenhado": 270000.0,
+     "pago": 270000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 5,
@@ -4730,6 +7180,20 @@
      "pago": 440000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 900000.0,
+     "empenhado": 900000.0,
+     "pago": 750000.0,
+     "nEmendas": 5
+    },
+    "Saúde": {
+     "valor": 420000.0,
+     "empenhado": 420000.0,
+     "pago": 420000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 7,
    "nAutores": 5
   },
@@ -4742,6 +7206,14 @@
      "valor": 71254.0,
      "empenhado": 71254.0,
      "pago": 0.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 71254.0,
+     "empenhado": 71254.0,
+     "pago": 0.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 1,
@@ -4773,6 +7245,20 @@
      "pago": 490000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 690000.0,
+     "empenhado": 690000.0,
+     "pago": 690000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 500342.0,
+     "empenhado": 500342.0,
+     "pago": 440342.0,
+     "nEmendas": 4
+    }
+   },
    "nEmendas": 7,
    "nAutores": 4
   },
@@ -4800,6 +7286,26 @@
      "valor": 200000.0,
      "empenhado": 200000.0,
      "pago": 200000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 215342.0,
+     "empenhado": 215342.0,
+     "pago": 215342.0,
+     "nEmendas": 2
+    },
+    "Administração": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
+    },
+    "Assistência social": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 150000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 4,
@@ -4831,6 +7337,26 @@
      "pago": 250000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 600000.0,
+     "empenhado": 600000.0,
+     "pago": 600000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 250000.0,
+     "nEmendas": 2
+    },
+    "Educação": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 150000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 6,
    "nAutores": 4
   },
@@ -4860,6 +7386,20 @@
      "pago": 450013.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 765013.0,
+     "empenhado": 765013.0,
+     "pago": 765013.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 60254.0,
+     "empenhado": 60254.0,
+     "pago": 30127.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 5,
    "nAutores": 4
   },
@@ -4882,6 +7422,14 @@
      "valor": 650000.0,
      "empenhado": 650000.0,
      "pago": 650000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 802000.0,
+     "empenhado": 802000.0,
+     "pago": 802000.0,
+     "nEmendas": 4
     }
    },
    "nEmendas": 4,
@@ -4908,6 +7456,20 @@
      "pago": 200000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 260000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 2
+    },
+    "Assistência social": {
+     "valor": 130000.0,
+     "empenhado": 130000.0,
+     "pago": 130000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 3,
    "nAutores": 3
   },
@@ -4930,6 +7492,20 @@
      "valor": 400000.0,
      "empenhado": 400000.0,
      "pago": 400000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 750000.0,
+     "empenhado": 750000.0,
+     "pago": 750000.0,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 121254.0,
+     "empenhado": 121254.0,
+     "pago": 121254.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 4,
@@ -4961,6 +7537,26 @@
      "pago": 1100000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1524349.0,
+     "empenhado": 1524349.0,
+     "pago": 1524349.0,
+     "nEmendas": 6
+    },
+    "Assistência social": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
+    },
+    "Educação": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 8,
    "nAutores": 5
   },
@@ -4983,6 +7579,20 @@
      "valor": 700013.0,
      "empenhado": 700013.0,
      "pago": 700013.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1190013.0,
+     "empenhado": 1190013.0,
+     "pago": 1190013.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 600000.0,
+     "empenhado": 600000.0,
+     "pago": 600000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 7,
@@ -5014,6 +7624,20 @@
      "pago": 150000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 442046.0,
+     "empenhado": 442046.0,
+     "pago": 442046.0,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 265000.0,
+     "empenhado": 265000.0,
+     "pago": 265000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 5,
    "nAutores": 3
   },
@@ -5036,6 +7660,20 @@
      "valor": 520012.0,
      "empenhado": 520012.0,
      "pago": 520012.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 610000.0,
+     "empenhado": 610000.0,
+     "pago": 610000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 450012.0,
+     "empenhado": 450012.0,
+     "pago": 450012.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 5,
@@ -5067,6 +7705,20 @@
      "pago": 400000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 600000.0,
+     "empenhado": 600000.0,
+     "pago": 600000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 260000.0,
+     "empenhado": 260000.0,
+     "pago": 200000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 6,
    "nAutores": 3
   },
@@ -5096,6 +7748,26 @@
      "pago": 460000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 730000.0,
+     "empenhado": 730000.0,
+     "pago": 730000.0,
+     "nEmendas": 5
+    },
+    "Administração": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 150000.0,
+     "nEmendas": 1
+    },
+    "Desporto e lazer": {
+     "valor": 140000.0,
+     "empenhado": 140000.0,
+     "pago": 140000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 7,
    "nAutores": 4
   },
@@ -5118,6 +7790,20 @@
      "valor": 1100000.0,
      "empenhado": 1100000.0,
      "pago": 1100000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 2350000.0,
+     "empenhado": 2350000.0,
+     "pago": 2350000.0,
+     "nEmendas": 5
+    },
+    "Assistência social": {
+     "valor": 1810000.0,
+     "empenhado": 1810000.0,
+     "pago": 1810000.0,
+     "nEmendas": 5
     }
    },
    "nEmendas": 10,
@@ -5144,6 +7830,20 @@
      "pago": 1500000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 2250000.0,
+     "empenhado": 2250000.0,
+     "pago": 2250000.0,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 1977642.0,
+     "empenhado": 1977642.0,
+     "pago": 1977642.0,
+     "nEmendas": 6
+    }
+   },
    "nEmendas": 9,
    "nAutores": 1
   },
@@ -5166,6 +7866,26 @@
      "valor": 200000.0,
      "empenhado": 200000.0,
      "pago": 200000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 400000.0,
+     "nEmendas": 2
+    },
+    "Saúde": {
+     "valor": 350000.0,
+     "empenhado": 353206.8,
+     "pago": 353206.8,
+     "nEmendas": 2
+    },
+    "Desporto e lazer": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 5,
@@ -5192,6 +7912,20 @@
      "pago": 180000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 280000.0,
+     "empenhado": 280000.0,
+     "pago": 280000.0,
+     "nEmendas": 2
+    },
+    "Assistência social": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 3,
    "nAutores": 2
   },
@@ -5214,6 +7948,20 @@
      "valor": 400000.0,
      "empenhado": 400000.0,
      "pago": 400000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 660000.0,
+     "empenhado": 660000.0,
+     "pago": 660000.0,
+     "nEmendas": 3
+    },
+    "Desporto e lazer": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 4,
@@ -5240,6 +7988,14 @@
      "pago": 350000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 750000.0,
+     "empenhado": 750000.0,
+     "pago": 750000.0,
+     "nEmendas": 6
+    }
+   },
    "nEmendas": 6,
    "nAutores": 2
   },
@@ -5262,6 +8018,14 @@
      "valor": 300000.0,
      "empenhado": 300000.0,
      "pago": 300000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 850000.0,
+     "empenhado": 850000.0,
+     "pago": 850000.0,
+     "nEmendas": 4
     }
    },
    "nEmendas": 4,
@@ -5288,6 +8052,38 @@
      "pago": 600000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 650000.0,
+     "empenhado": 650000.0,
+     "pago": 650000.0,
+     "nEmendas": 2
+    },
+    "Desporto e lazer": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 1
+    },
+    "Habitação": {
+     "valor": 162000.0,
+     "empenhado": 162000.0,
+     "pago": 162000.0,
+     "nEmendas": 1
+    },
+    "Assistência social": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 150000.0,
+     "nEmendas": 1
+    },
+    "Cultura": {
+     "valor": 130000.0,
+     "empenhado": 130000.0,
+     "pago": 130000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 6,
    "nAutores": 3
   },
@@ -5310,6 +8106,14 @@
      "valor": 200000.0,
      "empenhado": 200000.0,
      "pago": 200000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 600000.0,
+     "empenhado": 600000.0,
+     "pago": 600000.0,
+     "nEmendas": 3
     }
    },
    "nEmendas": 3,
@@ -5336,6 +8140,26 @@
      "pago": 200000.0
     }
    },
+   "porFuncao": {
+    "Desporto e lazer": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 400000.0,
+     "nEmendas": 1
+    },
+    "Saúde": {
+     "valor": 350000.0,
+     "empenhado": 250000.0,
+     "pago": 250000.0,
+     "nEmendas": 2
+    },
+    "Assistência social": {
+     "valor": 320000.0,
+     "empenhado": 320000.0,
+     "pago": 320000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 5,
    "nAutores": 2
   },
@@ -5358,6 +8182,20 @@
      "valor": 200000.0,
      "empenhado": 200000.0,
      "pago": 200000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 390000.0,
+     "empenhado": 390000.0,
+     "pago": 390000.0,
+     "nEmendas": 2
+    },
+    "Saúde": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 3,
@@ -5384,6 +8222,20 @@
      "pago": 400000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 500000.0,
+     "empenhado": 500000.0,
+     "pago": 500000.0,
+     "nEmendas": 2
+    },
+    "Saúde": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 3,
    "nAutores": 2
   },
@@ -5406,6 +8258,26 @@
      "valor": 650000.0,
      "empenhado": 650000.0,
      "pago": 650000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 867642.0,
+     "empenhado": 868212.36,
+     "pago": 868212.36,
+     "nEmendas": 6
+    },
+    "Assistência social": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
+    },
+    "Administração": {
+     "valor": 100000.0,
+     "empenhado": 100000.0,
+     "pago": 100000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 8,
@@ -5432,6 +8304,26 @@
      "pago": 800000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 700000.0,
+     "empenhado": 700000.0,
+     "pago": 700000.0,
+     "nEmendas": 4
+    },
+    "Assistência social": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 400000.0,
+     "nEmendas": 1
+    },
+    "Desporto e lazer": {
+     "valor": 100000.0,
+     "empenhado": 100000.0,
+     "pago": 100000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 6,
    "nAutores": 2
   },
@@ -5449,6 +8341,14 @@
      "valor": 100000.0,
      "empenhado": 100000.0,
      "pago": 100000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 250000.0,
+     "empenhado": 250000.0,
+     "pago": 250000.0,
+     "nEmendas": 2
     }
    },
    "nEmendas": 2,
@@ -5475,6 +8375,14 @@
      "pago": 150000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 465000.0,
+     "empenhado": 465000.0,
+     "pago": 465000.0,
+     "nEmendas": 3
+    }
+   },
    "nEmendas": 3,
    "nAutores": 2
   },
@@ -5492,6 +8400,20 @@
      "valor": 60000.0,
      "empenhado": 60000.0,
      "pago": 60000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 100000.0,
+     "empenhado": 100000.0,
+     "pago": 100000.0,
+     "nEmendas": 1
+    },
+    "Assistência social": {
+     "valor": 60000.0,
+     "empenhado": 60000.0,
+     "pago": 60000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 2,
@@ -5518,6 +8440,20 @@
      "pago": 200000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 520000.0,
+     "empenhado": 520000.0,
+     "pago": 520000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 200000.0,
+     "empenhado": 200000.0,
+     "pago": 200000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 4,
    "nAutores": 3
   },
@@ -5542,6 +8478,14 @@
      "pago": 340012.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 840012.82,
+     "empenhado": 840012.0,
+     "pago": 840012.0,
+     "nEmendas": 4
+    }
+   },
    "nEmendas": 4,
    "nAutores": 1
   },
@@ -5554,6 +8498,14 @@
      "valor": 250000.0,
      "empenhado": 250000.0,
      "pago": 250000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 250000.0,
+     "empenhado": 250000.0,
+     "pago": 250000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 1,
@@ -5580,6 +8532,20 @@
      "pago": 200000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 2
+    },
+    "Saúde": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 4,
    "nAutores": 3
   },
@@ -5602,6 +8568,20 @@
      "valor": 250000.0,
      "empenhado": 250000.0,
      "pago": 250000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 510000.0,
+     "empenhado": 510000.0,
+     "pago": 510000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 250000.0,
+     "empenhado": 250000.0,
+     "pago": 250000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 4,
@@ -5628,6 +8608,26 @@
      "pago": 400000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 270000.0,
+     "empenhado": 270000.0,
+     "pago": 270000.0,
+     "nEmendas": 2
+    },
+    "Administração": {
+     "valor": 250000.0,
+     "empenhado": 250000.0,
+     "pago": 250000.0,
+     "nEmendas": 1
+    },
+    "Assistência social": {
+     "valor": 90000.0,
+     "empenhado": 90000.0,
+     "pago": 90000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 4,
    "nAutores": 3
   },
@@ -5652,6 +8652,20 @@
      "pago": 440000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 500000.0,
+     "empenhado": 500000.0,
+     "pago": 500000.0,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 290000.0,
+     "empenhado": 140000.0,
+     "pago": 140000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 5,
    "nAutores": 4
   },
@@ -5664,6 +8678,14 @@
      "valor": 100000.0,
      "empenhado": 100000.0,
      "pago": 100000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 100000.0,
+     "empenhado": 100000.0,
+     "pago": 100000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 1,
@@ -5685,6 +8707,14 @@
      "pago": 250000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 450000.0,
+     "empenhado": 450000.0,
+     "pago": 450000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 2,
    "nAutores": 1
   },
@@ -5702,6 +8732,20 @@
      "valor": 670025.0,
      "empenhado": 670024.0,
      "pago": 670024.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 975012.5,
+     "empenhado": 975012.0,
+     "pago": 975012.0,
+     "nEmendas": 3
+    },
+    "Saúde": {
+     "valor": 730012.5,
+     "empenhado": 730012.0,
+     "pago": 730012.0,
+     "nEmendas": 3
     }
    },
    "nEmendas": 6,
@@ -5723,6 +8767,20 @@
      "pago": 1941340.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 2500342.0,
+     "empenhado": 2500342.0,
+     "pago": 2500342.0,
+     "nEmendas": 4
+    },
+    "Saúde": {
+     "valor": 1440000.0,
+     "empenhado": 1481340.0,
+     "pago": 1481340.0,
+     "nEmendas": 7
+    }
+   },
    "nEmendas": 10,
    "nAutores": 2
   },
@@ -5740,6 +8798,14 @@
      "valor": 725025.0,
      "empenhado": 725025.0,
      "pago": 725025.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 875025.0,
+     "empenhado": 875025.0,
+     "pago": 875025.0,
+     "nEmendas": 4
     }
    },
    "nEmendas": 4,
@@ -5761,6 +8827,14 @@
      "pago": 450000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 850000.0,
+     "empenhado": 850000.0,
+     "pago": 850000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 2,
    "nAutores": 1
   },
@@ -5778,6 +8852,14 @@
      "valor": 4600000.0,
      "empenhado": 4600000.0,
      "pago": 4600000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 4750000.0,
+     "empenhado": 4750000.0,
+     "pago": 4750000.0,
+     "nEmendas": 11
     }
    },
    "nEmendas": 11,
@@ -5799,6 +8881,14 @@
      "pago": 250000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 400000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 2,
    "nAutores": 1
   },
@@ -5816,6 +8906,20 @@
      "valor": 700000.0,
      "empenhado": 700000.0,
      "pago": 700000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 690000.0,
+     "empenhado": 690000.0,
+     "pago": 690000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 400000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 4,
@@ -5837,6 +8941,14 @@
      "pago": 800000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 1100000.0,
+     "empenhado": 1100000.0,
+     "pago": 1100000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 2,
    "nAutores": 2
   },
@@ -5854,6 +8966,14 @@
      "valor": 265000.0,
      "empenhado": 265000.0,
      "pago": 265000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 415000.0,
+     "empenhado": 415000.0,
+     "pago": 415000.0,
+     "nEmendas": 3
     }
    },
    "nEmendas": 3,
@@ -5875,6 +8995,20 @@
      "pago": 680000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 880000.0,
+     "empenhado": 880000.0,
+     "pago": 880000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 300000.0,
+     "empenhado": 300000.0,
+     "pago": 300000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 5,
    "nAutores": 4
   },
@@ -5892,6 +9026,20 @@
      "valor": 440000.0,
      "empenhado": 440000.0,
      "pago": 440000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 440000.0,
+     "empenhado": 440000.0,
+     "pago": 440000.0,
+     "nEmendas": 2
+    },
+    "Saúde": {
+     "valor": 440000.0,
+     "empenhado": 440000.0,
+     "pago": 440000.0,
+     "nEmendas": 3
     }
    },
    "nEmendas": 5,
@@ -5913,6 +9061,20 @@
      "pago": 860000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 800000.0,
+     "empenhado": 800000.0,
+     "pago": 800000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 310000.0,
+     "empenhado": 310000.0,
+     "pago": 310000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 4,
    "nAutores": 3
   },
@@ -5925,6 +9087,14 @@
      "valor": 150000.0,
      "empenhado": 150000.0,
      "pago": 150000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 150000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 1,
@@ -5946,6 +9116,14 @@
      "pago": 250000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 400000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 2,
    "nAutores": 1
   },
@@ -5963,6 +9141,20 @@
      "valor": 500000.0,
      "empenhado": 500000.0,
      "pago": 500000.0
+    }
+   },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 580000.0,
+     "empenhado": 580000.0,
+     "pago": 580000.0,
+     "nEmendas": 2
+    },
+    "Saúde": {
+     "valor": 480000.0,
+     "empenhado": 480000.0,
+     "pago": 480000.0,
+     "nEmendas": 3
     }
    },
    "nEmendas": 5,
@@ -5984,6 +9176,20 @@
      "pago": 440000.0
     }
    },
+   "porFuncao": {
+    "Assistência social": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 400000.0,
+     "nEmendas": 2
+    },
+    "Saúde": {
+     "valor": 390000.0,
+     "empenhado": 390000.0,
+     "pago": 390000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 4,
    "nAutores": 2
   },
@@ -5996,6 +9202,14 @@
      "valor": 150000.0,
      "empenhado": 150000.0,
      "pago": 150000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 150000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 1,
@@ -6017,6 +9231,14 @@
      "pago": 250000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 400000.0,
+     "nEmendas": 2
+    }
+   },
    "nEmendas": 2,
    "nAutores": 1
   },
@@ -6034,6 +9256,20 @@
      "valor": 250000.0,
      "empenhado": 250000.0,
      "pago": 250000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 275000.0,
+     "empenhado": 275000.0,
+     "pago": 275000.0,
+     "nEmendas": 2
+    },
+    "Assistência social": {
+     "valor": 125000.0,
+     "empenhado": 125000.0,
+     "pago": 125000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 3,
@@ -6055,6 +9291,20 @@
      "pago": 350000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 370000.0,
+     "empenhado": 370000.0,
+     "pago": 370000.0,
+     "nEmendas": 3
+    },
+    "Assistência social": {
+     "valor": 250000.0,
+     "empenhado": 250000.0,
+     "pago": 250000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 4,
    "nAutores": 2
   },
@@ -6074,6 +9324,14 @@
      "pago": 495000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 695000.0,
+     "empenhado": 695000.0,
+     "pago": 695000.0,
+     "nEmendas": 3
+    }
+   },
    "nEmendas": 3,
    "nAutores": 3
   },
@@ -6086,6 +9344,14 @@
      "valor": 180000.0,
      "empenhado": 180000.0,
      "pago": 180000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 180000.0,
+     "empenhado": 180000.0,
+     "pago": 180000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 1,
@@ -6102,6 +9368,14 @@
      "pago": 150000.0
     }
    },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 150000.0,
+     "empenhado": 150000.0,
+     "pago": 150000.0,
+     "nEmendas": 1
+    }
+   },
    "nEmendas": 1,
    "nAutores": 1
   },
@@ -6114,6 +9388,14 @@
      "valor": 400000.0,
      "empenhado": 400000.0,
      "pago": 400000.0
+    }
+   },
+   "porFuncao": {
+    "Saúde": {
+     "valor": 400000.0,
+     "empenhado": 400000.0,
+     "pago": 400000.0,
+     "nEmendas": 1
     }
    },
    "nEmendas": 1,
@@ -6149,6 +9431,140 @@
     "valor": 166747690.51,
     "empenhado": 157476850.22,
     "pago": 153210510.77
+   }
+  },
+  "porFuncao": {
+   "Saúde": {
+    "valor": 286342600.03,
+    "empenhado": 267854469.46,
+    "pago": 247802469.88,
+    "nEmendas": 1324
+   },
+   "Assistência social": {
+    "valor": 165049845.46,
+    "empenhado": 145007202.99,
+    "pago": 123387283.25,
+    "nEmendas": 1125
+   },
+   "Educação": {
+    "valor": 11215619.43,
+    "empenhado": 11813547.8,
+    "pago": 8085470.62,
+    "nEmendas": 68
+   },
+   "Não informada": {
+    "valor": 8839435.0,
+    "empenhado": 0.0,
+    "pago": 0.0,
+    "nEmendas": 80
+   },
+   "Desporto e lazer": {
+    "valor": 8225002.0,
+    "empenhado": 7535000.0,
+    "pago": 7190340.0,
+    "nEmendas": 40
+   },
+   "Essencial à justiça": {
+    "valor": 7192926.0,
+    "empenhado": 7046389.93,
+    "pago": 5536818.67,
+    "nEmendas": 72
+   },
+   "Agricultura": {
+    "valor": 4134213.72,
+    "empenhado": 2370872.0,
+    "pago": 1750872.0,
+    "nEmendas": 29
+   },
+   "Cultura": {
+    "valor": 3030171.0,
+    "empenhado": 2590591.0,
+    "pago": 2520591.0,
+    "nEmendas": 42
+   },
+   "Segurança pública": {
+    "valor": 2875045.43,
+    "empenhado": 1902460.6,
+    "pago": 571932.41,
+    "nEmendas": 22
+   },
+   "Saneamento": {
+    "valor": 2490000.0,
+    "empenhado": 1452208.64,
+    "pago": 1452208.64,
+    "nEmendas": 29
+   },
+   "Administração": {
+    "valor": 2085000.0,
+    "empenhado": 1940280.0,
+    "pago": 1855000.0,
+    "nEmendas": 11
+   },
+   "Gestão ambiental": {
+    "valor": 1979007.5,
+    "empenhado": 805000.0,
+    "pago": 805000.0,
+    "nEmendas": 18
+   },
+   "Ciência e Tecnologia": {
+    "valor": 1806213.72,
+    "empenhado": 1748252.07,
+    "pago": 650352.07,
+    "nEmendas": 9
+   },
+   "Comércio e serviços": {
+    "valor": 1090171.0,
+    "empenhado": 920000.0,
+    "pago": 920000.0,
+    "nEmendas": 8
+   },
+   "Transporte": {
+    "valor": 660000.0,
+    "empenhado": 0.0,
+    "pago": 0.0,
+    "nEmendas": 4
+   },
+   "Urbanismo": {
+    "valor": 630000.0,
+    "empenhado": 0.0,
+    "pago": 0.0,
+    "nEmendas": 2
+   },
+   "Habitação": {
+    "valor": 412000.0,
+    "empenhado": 414066.64,
+    "pago": 414066.64,
+    "nEmendas": 3
+   },
+   "Legislativa": {
+    "valor": 100000.0,
+    "empenhado": 0.0,
+    "pago": 0.0,
+    "nEmendas": 1
+   },
+   "Direitos da cidadania": {
+    "valor": 70000.0,
+    "empenhado": 70000.0,
+    "pago": 70000.0,
+    "nEmendas": 1
+   },
+   "Comunicações": {
+    "valor": 0.0,
+    "empenhado": 0.0,
+    "pago": 0.0,
+    "nEmendas": 1
+   },
+   "Encargos especiais": {
+    "valor": 0.0,
+    "empenhado": 318.18,
+    "pago": 159.09,
+    "nEmendas": 1
+   },
+   "Judiciária": {
+    "valor": 0.0,
+    "empenhado": 0.0,
+    "pago": 0.0,
+    "nEmendas": 1
    }
   },
   "nEmendas": 0,
