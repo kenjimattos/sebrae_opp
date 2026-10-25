@@ -40,6 +40,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Interface
 
+- **Emendas federais e estaduais na mesma tela; sai o toggle de esfera.** O modo Emendas passa a ter dois mapas lado a lado, cada um com a própria escala de cor (o federal está na casa dos bilhões e o estadual na dos milhões; uma régua comum apagaria o mapa estadual) e, sob cada mapa, o total do estado daquela esfera. Embaixo, o card e a tabela por função de cada esfera, na mesma coluna do seu mapa. Os blocos ficam numa grade única intercalada (mapa, mapa, card, card, tabela, tabela), para cada faixa se alinhar pelo topo entre as colunas; clicar em qualquer um dos mapas escolhe o município nos dois. A legenda é uma só, avisando que a escala é de cada mapa.
+  A grade usa `grid-cols-2` (`minmax(0, 1fr)`) e não o `.grid-2` (`1fr`): com `1fr` a coluna não encolhe abaixo do conteúdo, e a 1000px o mapa estourava a página em 184px. Abaixo de `xl` (1280px) as duas tabelas por função ocupam a largura toda, uma sob a outra — em meia coluna as três colunas de R$ não cabiam e a de pago ficava atrás de uma rolagem; a tabela ganha `overflow-x-auto` como rede de segurança. Os cabeçalhos numéricos da tabela passam a ter o recuo e o `nowrap` das células ("Pago" e "Em aberto" encostavam em meia largura).
+  Conferido no navegador a 1440px (escuro e claro) e a 1000px (escuro), sem rolagem horizontal.
+
 - **Sai o botão "Explorar emendas no Datapedia" do modo Emendas.** Saem o link e o botão do rodapé do `ModeResources`, `DATAPEDIA_URL` e `buttons.explorarEmendas` de `data/home/resources.ts`, e os comentários que falavam do botão. O resumo do estado fica sozinho no rodapé, sem o contêiner `flex-between` que o dividia com o botão. A Datapedia segue citada só na documentação do `database/` e nos geradores de emendas, como referência de validação dos números.
 
 - **A posição entre os estados lê "de 9 do Nordeste", não "de 9 no Nordeste".** Texto do `StatePosition`, abaixo do ordinal da posição entre as UFs do Nordeste.
