@@ -54,27 +54,28 @@ export default function EmendasEsferaCard({
         <span className="typo-body text-inactive">Sem emendas registradas no período.</span>
       ) : (
         <>
+        <div className="flex gap-3xl">
           {/* Empenhado e pago lado a lado, rótulo sobre o valor: o card ocupa a
               largura do painel, e em linhas (rótulo à esquerda, valor à direita)
               os dois ficavam a centenas de pixels um do outro. */}
-          <div className="flex flex-wrap gap-x-xl gap-y-xs">
-            <div className="flex flex-col">
+          <div className="flex flex-col gap-x-xl gap-y-xs">
+            <div className="flex flex-col gap-xs">
               <span className="typo-body-sm text-inactive">
                 {resourcesContent.metricas.empenhado}
               </span>
               <span
-                className="typo-body-lg-bold whitespace-nowrap"
+                className="typo-display-sm whitespace-nowrap"
                 title={formatReaisCheio(valores.empenhado)}
               >
                 {formatReaisCurto(valores.empenhado)}
               </span>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-xs">
               <span className="typo-body-sm text-inactive">
                 {resourcesContent.metricas.pago}
               </span>
               <span
-                className="typo-body-lg-bold text-accent whitespace-nowrap"
+                className="typo-display-sm text-accent whitespace-nowrap"
                 title={formatReaisCheio(valores.pago)}
               >
                 {formatReaisCurto(valores.pago)}
@@ -85,7 +86,7 @@ export default function EmendasEsferaCard({
           {/* Só com algum pago: barra é zero-based e, tudo zerado, o gráfico não teria
               escala — sobraria o título sozinho. */}
           {anos.some((ano) => (valores.porAno[ano]?.pago ?? 0) > 0) && (
-            <div className="flex flex-col gap-xs">
+            <div className="flex flex-col gap-xs w-full">
               <span className="typo-body-sm text-inactive">Pago {copy.notaAno}</span>
               {/* Barras zero-based, escala = o maior ano do próprio município: compara
                   os anos entre si, não o município com o estado. Ano em ordem
@@ -102,8 +103,8 @@ export default function EmendasEsferaCard({
               />
             </div>
           )}
-
-          <span className="typo-body-sm text-inactive">
+        </div>
+        <span className="typo-body-sm text-inactive">
             {valores.nEmendas} {valores.nEmendas === 1 ? 'emenda' : 'emendas'} ·{' '}
             {valores.nAutores} {valores.nAutores === 1 ? 'autor' : 'autores'}
           </span>

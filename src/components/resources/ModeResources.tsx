@@ -58,7 +58,7 @@ export default function ModeResources() {
   return (
     // gap-md (não gap-lg) e p-md: o painel precisa fechar perto da altura da
     // SideNav (83dvh) — com gap-lg os blocos sozinhos custavam 160px de respiro.
-    <div className="flex flex-col w-full glass rounded p-md gap-md">
+    <div className="flex flex-col w-full glass rounded p-md gap-lg">
       <TitleSubtitle
         size="md"
         title={resourcesContent.emendas.title}
@@ -73,7 +73,7 @@ export default function ModeResources() {
 
       {/* Toggle logo acima do mapa e centrado com ele: é o mapa (e tudo abaixo)
           que ele troca, não o título. */}
-      <div className="flex flex-col items-center w-full gap-xs">
+      <div className="flex flex-col items-center w-full gap-lg">
         <ModeToggle
           value={esfera}
           onChange={(v) => setEsfera(v as EmendaEsfera)}
@@ -82,6 +82,7 @@ export default function ModeResources() {
         />
         {/* Mapa limitado em largura — a altura dele acompanha a largura
             (viewBox ~1000×460). */}
+        <div className="flex flex-col items-center w-full gap-sm">
         <ParaibaOutlineMap
           values={intensidades}
           tooltipDetail={tooltipDetail}
@@ -123,6 +124,7 @@ export default function ModeResources() {
             .
           </p>
         )}
+      </div>
       </div>
 
       {/* Abaixo do mapa, um sob o outro e na largura toda: nome do município, card
