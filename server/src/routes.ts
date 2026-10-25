@@ -92,8 +92,8 @@ export async function registerRoutes(app: FastifyInstance): Promise<void> {
   })
 
   // Emendas parlamentares por município (modo "Mapeamento de recursos"). Devolve
-  // as duas esferas de uma vez: o modo mostra um mapa de cada, lado a lado, com
-  // o estado inteiro colorido.
+  // as duas esferas de uma vez: o modo colore o mapa com o estado inteiro e o
+  // toggle federal/estadual não deve disparar nova requisição.
   app.get('/api/emendas', async (req, reply) => {
     let data
     try {
