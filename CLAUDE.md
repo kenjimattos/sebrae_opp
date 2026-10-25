@@ -406,9 +406,16 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   `funcao_por_emenda` (`gerar_seed_emendas_federais.py`) resolve a função pelo código da
   emenda; 748 das 750 têm uma só. O teste é comparar o % pago por função com o painel da
   Datapedia, não "a soma fecha" (fecha de qualquer jeito). `porFuncao` é acumulado da janela,
-  sem quebra anual, e só existe no federal; no estadual a chave é **ausente**, não `{}`. A
-  diferença que sobra para o painel deles é o balde Múltiplo (R$ 164 mi, 5 emendas, que nós
-  contamos na função do empenho — Urbanismo na maior parte).
+  sem quebra anual; sem a quebra na origem a chave é **ausente**, não `{}`. A diferença que
+  sobra para o painel deles é o balde Múltiplo (R$ 164 mi, 5 emendas, que nós contamos na
+  função do empenho — Urbanismo na maior parte).
+- **No estadual a função vem da linha de execução, e o `valor` não se reparte.** Das ~2.800
+  emendas, 14 têm duas linhas com funções diferentes: o `valor` da listagem bate com uma, e
+  a outra é outra coisa sob o mesmo número (estorno com `valorEmenda` negativo, ou repasse a
+  outro órgão). Repartir o `valor` em proporção deu valor negativo numa função; por isso
+  `repartir_por_funcao` (`gerar_seed_emendas_estaduais.py`) dá o valor inteiro à linha de
+  `valorEmenda` mais próximo, e empenhado/pago seguem por linha. Os nomes vêm em caixa alta
+  e com acento irregular ("EDUCACAO"); `FUNCOES` os leva à grafia do federal.
 - **Formulador:** dois estados diferentes na sidebar. *Concluída* (check) sai de
   `isStepComplete` em `src/utils/formulatorCompleteness.ts` — campos obrigatórios da
   etapa preenchidos; é ela também que alimenta o "X% concluído". *Em andamento* sai de

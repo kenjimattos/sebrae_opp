@@ -248,6 +248,21 @@ describe('buildEmendasData · porFuncao', () => {
     expect(municipios[0]!.federal!.porFuncao).toEqual({ Saúde: SAUDE, Urbanismo: URBANISMO })
   })
 
+  it('no estadual a quebra segue com valor por função', () => {
+    const porFuncao = { Saúde: { valor: 2000, empenhado: 700, pago: 500, nEmendas: 4 } }
+    const { municipios } = buildEmendasData(
+      [CAMPINA],
+      [
+        ESTADUAL_ESTADO,
+        municipioDoc({
+          esfera: 'estadual', municipalityId: '2504009', valor: 2000, empenhado: 700, pago: 500,
+          porFuncao,
+        }),
+      ],
+    )
+    expect(municipios[0]!.estadual!.porFuncao).toEqual(porFuncao)
+  })
+
   it('sem a quebra na origem a chave fica ausente — não vira {}', () => {
     // {} diria "não houve emenda em nenhuma função"; ausente diz "não medimos".
     const { municipios, esferas } = buildEmendasData(

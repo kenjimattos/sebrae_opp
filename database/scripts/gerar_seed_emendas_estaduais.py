@@ -154,6 +154,22 @@ BENEFICIARIO = re.compile(
     r"\s+D[EO]?\s+([A-Z\s]{3,40})")
 
 
+# Função orçamentária (Portaria MOG 42/1999) com a grafia do conjunto FEDERAL, para as
+# duas esferas usarem os mesmos rótulos na tela. A CODATA publica a mesma taxonomia, mas
+# em caixa alta e com acento irregular ("SAÚDE", "EDUCACAO"); a chave aqui é `norm()`.
+FUNCOES = (
+    "Legislativa", "Judiciária", "Essencial à justiça", "Administração", "Defesa nacional",
+    "Segurança pública", "Relações exteriores", "Assistência social", "Previdência social",
+    "Saúde", "Trabalho", "Educação", "Cultura", "Direitos da cidadania", "Urbanismo",
+    "Habitação", "Saneamento", "Gestão ambiental", "Ciência e Tecnologia", "Agricultura",
+    "Organização agrária", "Indústria", "Comércio e serviços", "Comunicações", "Energia",
+    "Transporte", "Desporto e lazer", "Encargos especiais",
+)
+# Emenda sem linha de execução na origem: não há de onde tirar a função. Não some —
+# vira balde próprio, para a soma por função continuar fechando com `valor`.
+FUNCAO_SEM_INFO = "Não informada"
+
+
 # ============================================================================
 # utilidades
 # ============================================================================
@@ -189,6 +205,71 @@ def municipios_canonicos():
     if len(pares) < 200:
         sys.exit("Esperava 223 municípios em {}, achei {}.".format(MUNICIPIOS_SEED, len(pares)))
     return pares
+
+
+_FUNCOES_IDX = None
+
+
+def nome_funcao(bruto):
+    """'EDUCACAO' -> 'Educação'. Nome fora da tabela sai em caixa de frase, com aviso:
+    a tabela é a lista oficial, então isso indica mudança na origem."""
+    global _FUNCOES_IDX
+    if _FUNCOES_IDX is None:
+        _FUNCOES_IDX = dict((norm(f), f) for f in FUNCOES)
+    chave = norm(bruto)
+    if not chave:
+        return FUNCAO_SEM_INFO
+    if chave not in _FUNCOES_IDX:
+        novo = (bruto or "").strip().capitalize()
+        print("[emendas-pb] aviso: função fora da tabela oficial: {!r}".format(bruto),
+              file=sys.stderr)
+        _FUNCOES_IDX[chave] = novo
+    return _FUNCOES_IDX[chave]
+
+
+def repartir_por_funcao(valor, linhas):
+    """{funcao: {valor, empenhado, pago}} de UMA emenda.
+
+    Empenhado e pago vêm de cada linha de execução, que já traz a função. O `valor` é da
+    listagem (um por emenda) e vai INTEIRO para a função da linha cujo `valorEmenda` mais
+    se aproxima dele. Medido (2021–2025): nas 14 emendas com duas funções, o valor da
+    listagem bate com uma das linhas, e a outra é outra coisa sob o mesmo número — estorno
+    (`valorEmenda` negativo) ou repasse a outro órgão. Repartir em proporção ao
+    `valorEmenda` deu valor NEGATIVO numa função (Comunicações, −R$ 85 mil).
+    Empate (0420/2024: duas linhas de 100 mil) desempata pelo maior empenhado.
+    Sem execução, tudo vai para FUNCAO_SEM_INFO."""
+    if not linhas:
+        return {FUNCAO_SEM_INFO: {"valor": valor, "empenhado": 0.0, "pago": 0.0}}
+    out = {}
+    for r in linhas:
+        f = out.setdefault(nome_funcao(r.get("funcao")),
+                           {"valor": 0.0, "empenhado": 0.0, "pago": 0.0})
+        f["empenhado"] += float(r.get("valorEmpenhado") or 0)
+        f["pago"] += float(r.get("valorPago") or 0)
+    dona = min(linhas, key=lambda r: (abs(float(r.get("valorEmenda") or 0) - valor),
+                                      -float(r.get("valorEmpenhado") or 0)))
+    out[nome_funcao(dona.get("funcao"))]["valor"] = valor
+    return out
+
+
+def _acc_funcoes(acc, partes, chave_emenda):
+    for funcao, v in partes.items():
+        f = acc.setdefault(funcao, {"valor": 0.0, "empenhado": 0.0, "pago": 0.0,
+                                    "emendas": set()})
+        for k in ("valor", "empenhado", "pago"):
+            f[k] += v[k]
+        f["emendas"].add(chave_emenda)
+
+
+def _finalize_funcoes(acc):
+    # Função zerada nas três métricas é só a linha de estorno de uma emenda mista (ver
+    # `repartir_por_funcao`): não muda soma nenhuma e viraria uma linha de "R$ 0" na tela.
+    itens = sorted(((k, v) for k, v in acc.items()
+                    if round(v["valor"], 2) or round(v["empenhado"], 2) or round(v["pago"], 2)),
+                   key=lambda kv: (-kv[1]["valor"], kv[0]))
+    return dict((k, {"valor": round(v["valor"], 2), "empenhado": round(v["empenhado"], 2),
+                     "pago": round(v["pago"], 2), "nEmendas": len(v["emendas"])})
+                for k, v in itens)
 
 
 def indice_nomes(municipios):
@@ -245,7 +326,7 @@ def atribuir(texto_norm, nomes_idx):
 def harvest(desde, ate, nomes_idx):
     """Consulta a API, atribui município e junta com a execução. Devolve o snapshot."""
     municipios = {}
-    estado = {"valor": 0.0, "empenhado": 0.0, "pago": 0.0, "porAno": {}}
+    estado = {"valor": 0.0, "empenhado": 0.0, "pago": 0.0, "porAno": {}, "porFuncao": {}}
     nao_atribuidas = []
     n_emendas = n_atribuidas = 0
     autores = set()
@@ -267,6 +348,7 @@ def harvest(desde, ate, nomes_idx):
 
         # execução pode ter mais de uma linha por emenda (órgãos distintos) — somar.
         exec_por_emenda = {}
+        linhas_por_emenda = {}      # as mesmas linhas, cruas, para a quebra por função
         for r in execucao:
             k = (r.get("emenda") or "").strip()
             if not k:
@@ -274,6 +356,7 @@ def harvest(desde, ate, nomes_idx):
             a = exec_por_emenda.setdefault(k, {"empenhado": 0.0, "pago": 0.0})
             a["empenhado"] += float(r.get("valorEmpenhado") or 0)
             a["pago"] += float(r.get("valorPago") or 0)
+            linhas_por_emenda.setdefault(k, []).append(r)
 
         for row in listagem:
             n_emendas += 1
@@ -295,6 +378,9 @@ def harvest(desde, ate, nomes_idx):
             slot["valor"] += valor
             slot["empenhado"] += ex["empenhado"]
             slot["pago"] += ex["pago"]
+            # chave da emenda inclui o ano: o número ("0399/2025") só é único na safra
+            partes = repartir_por_funcao(valor, linhas_por_emenda.get(chave))
+            _acc_funcoes(estado["porFuncao"], partes, (ano_str, chave))
 
             texto = norm(" ".join(x for x in (row.get("objeto"), row.get("beneficiarioFinal")) if x))
             ibge = atribuir(texto, nomes_idx)
@@ -307,8 +393,9 @@ def harvest(desde, ate, nomes_idx):
 
             n_atribuidas += 1
             a = municipios.setdefault(ibge, {
-                "valor": 0.0, "empenhado": 0.0, "pago": 0.0, "porAno": {},
+                "valor": 0.0, "empenhado": 0.0, "pago": 0.0, "porAno": {}, "porFuncao": {},
                 "nEmendas": 0, "autores": set()})
+            _acc_funcoes(a["porFuncao"], partes, (ano_str, chave))
             a["valor"] += valor
             a["empenhado"] += ex["empenhado"]
             a["pago"] += ex["pago"]
@@ -330,6 +417,8 @@ def harvest(desde, ate, nomes_idx):
             "pago": round(a["pago"], 2),
             "porAno": dict((k, dict((kk, round(vv, 2)) for kk, vv in v.items()))
                            for k, v in sorted(a["porAno"].items())),
+            # acumulado da janela, sem recorte anual; ordem = maior valor
+            "porFuncao": _finalize_funcoes(a.get("porFuncao") or {}),
             "nEmendas": a.get("nEmendas", 0),
             "nAutores": len(a["autores"]) if isinstance(a.get("autores"), set) else 0,
         }
@@ -363,7 +452,7 @@ def build_docs(snapshot):
 
     for ibge, _nome in municipios_canonicos():
         a = muni.get(ibge) or {"valor": 0.0, "empenhado": 0.0, "pago": 0.0,
-                               "porAno": {}, "nEmendas": 0, "nAutores": 0}
+                               "porAno": {}, "porFuncao": {}, "nEmendas": 0, "nAutores": 0}
         tot["valor"] += a["valor"]
         tot["empenhado"] += a["empenhado"]
         tot["pago"] += a["pago"]
@@ -380,6 +469,7 @@ def build_docs(snapshot):
             "rawEmpenhado": fmt_reais(a["empenhado"]),
             "rawPago": fmt_reais(a["pago"]),
             "porAno": a["porAno"],
+            "porFuncao": a.get("porFuncao") or {},
             "nEmendas": a["nEmendas"],
             "nAutores": a["nAutores"],
             "janela": janela,
@@ -401,6 +491,7 @@ def build_docs(snapshot):
         "rawEmpenhado": fmt_reais(estado["empenhado"]),
         "rawPago": fmt_reais(estado["pago"]),
         "porAno": estado["porAno"],
+        "porFuncao": estado.get("porFuncao") or {},
         "naoMunicipalizado": {
             "valor": nao_mun_valor,
             "empenhado": round(estado["empenhado"] - tot["empenhado"], 2),
@@ -422,6 +513,23 @@ def build_docs(snapshot):
         "isFictional": False,
     })
     return docs, {"ref": ref, "janela": janela, "tot": tot, "estado": estado, "meta": meta}
+
+
+def _conferir_funcoes(docs):
+    """A soma por função tem de fechar com valor/empenhado/pago do mesmo doc. Não fechar
+    = alguma linha deixou de ser contada, e a tabela da UI desmentiria o card ao lado."""
+    erros = []
+    for d in docs:
+        pf = d.get("porFuncao") or {}
+        if not pf:
+            continue
+        for campo in ("valor", "empenhado", "pago"):
+            soma = sum(v[campo] for v in pf.values())
+            if abs(soma - d[campo]) > 0.05 * max(1, len(pf)):
+                erros.append("{} {}: funções somam {:,.2f}, doc diz {:,.2f}".format(
+                    d["_id"], campo, soma, d[campo]))
+    if erros:
+        sys.exit("Soma por função não fecha com o total:\n  " + "\n  ".join(erros[:10]))
 
 
 HEADER = """// ARQUIVO GERADO por database/scripts/gerar_seed_emendas_estaduais.py — NÃO editar à mão.
@@ -610,6 +718,10 @@ def main():
         _amostra(snapshot.get("naoAtribuidas") or [], args.amostra_nao_atribuidas)
 
     docs, m = build_docs(snapshot)
+    if not (snapshot.get("estado") or {}).get("porFuncao"):
+        print("[emendas-pb] aviso: snapshot sem quebra por função — rode online uma vez "
+              "para gerá-la.", file=sys.stderr)
+    _conferir_funcoes(docs)
     out = emit(docs, m["janela"], m["meta"])
     tot, estado, meta = m["tot"], m["estado"], m["meta"]
     print("emendas estaduais (janela {}–{}): {}/223 municípios com valor; {} emendas, "

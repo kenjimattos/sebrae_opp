@@ -139,9 +139,13 @@ export default function ModeResources() {
                     />
                   ))}
                 </div>
-                {/* Sempre a federal, independente do toggle: o estadual ainda não
-                    traz a quebra por função. */}
-                <EmendasFuncaoTable meta={data!.esferas.federal} valores={selecionado.federal} />
+                {/* Segue o toggle. Some sozinha quando a esfera não tem quebra
+                    (município sem emenda estadual vem `null`). */}
+                <EmendasFuncaoTable
+                  esfera={esfera}
+                  meta={data!.esferas[esfera]}
+                  valores={selecionado[esfera]}
+                />
               </>
             ) : (
               <p className="typo-body text-inactive">

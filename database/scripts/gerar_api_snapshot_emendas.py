@@ -137,6 +137,7 @@ def main():
                 "pago": e.get("pago", 0.0),
                 "porAno": e.get("porAno") or {},
                 "nEmendas": meta.get("nEmendas", 0), "nAutores": meta.get("nAutores", 0),
+                "porFuncao": e.get("porFuncao") or {},
                 "naoMunicipalizado": {
                     "valor": round(e.get("valor", 0.0) - tot["valor"], 2),
                     "empenhado": round(e.get("empenhado", 0.0) - tot["empenhado"], 2),

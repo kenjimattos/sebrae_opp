@@ -27,10 +27,12 @@ export interface EmendaValoresAno {
 }
 
 /**
- * Acumulado de uma função orçamentária (Saúde, Urbanismo…). Sem `valor`: é só federal.
- * `nEmendas` é distinto dentro do recorte (município ou estado), não soma de partes.
+ * Acumulado de uma função orçamentária (Saúde, Urbanismo…). `valor` só no estadual,
+ * como em `EmendaValores`. `nEmendas` é distinto dentro do recorte (município ou
+ * estado), não soma de partes.
  */
 export interface EmendaFuncaoValores {
+  valor?: number
   empenhado: number
   pago: number
   nEmendas: number
@@ -49,10 +51,11 @@ export interface EmendaValores {
   porAno: Record<string, EmendaValoresAno>
   /**
    * Quebra por função orçamentária, acumulada na janela inteira (sem recorte anual: o
-   * pago de um ano pode ser resto a pagar de outra safra). Só no federal — ausente no
-   * estadual, que ainda não traz a quebra. A função de cada emenda é a do EMPENHO;
-   * o documento de pagamento vem como "Múltiplo" na origem e não serve de critério.
-   * A soma das funções fecha com `empenhado`/`pago` do mesmo objeto.
+   * pago de um ano pode ser resto a pagar de outra safra). As duas esferas usam os mesmos
+   * nomes de função. No federal a função da emenda é a do EMPENHO (o documento de
+   * pagamento vem como "Múltiplo" na origem); no estadual, a da linha de execução.
+   * A soma das funções fecha com `valor`/`empenhado`/`pago` do mesmo objeto. Ausente
+   * quando a origem não trouxe a quebra (snapshot antigo).
    */
   porFuncao?: Record<string, EmendaFuncaoValores>
   nEmendas: number
