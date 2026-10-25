@@ -53,7 +53,8 @@ export const resourcesContent = {
     },
   },
   mapa: {
-    legendaTitulo: 'Valor pago por município',
+    // Cada mapa tem a própria escala (federal em bilhões, estadual em milhões).
+    legendaTitulo: 'Valor pago por município, na escala de cada mapa',
     legendaMenor: 'menor',
     legendaMaior: 'maior',
     semSelecao: 'Selecione um município no mapa ou no seletor acima',

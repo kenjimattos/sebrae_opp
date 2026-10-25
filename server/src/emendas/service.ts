@@ -8,8 +8,8 @@ import type {
 } from '../types/index.js'
 
 // Monta GET /api/emendas (modo "Mapeamento de recursos"). As duas esferas saem
-// juntas: o mapa colore o estado inteiro e o toggle federal/estadual não deve
-// disparar nova requisição.
+// juntas: o modo mostra um mapa de cada esfera, lado a lado, com o estado
+// inteiro colorido.
 
 const ESFERAS: EmendaEsfera[] = ['federal', 'estadual']
 
