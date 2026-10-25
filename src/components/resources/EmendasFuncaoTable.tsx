@@ -45,8 +45,7 @@ export default function EmendasFuncaoTable({
         </span>
       </div>
 
-      {/* Rede de segurança: se a tabela não couber, rola ela, não a página. Quem
-          monta já evita meia coluna estreita (ver ModeResources, `xl:col-span-1`). */}
+      {/* Rede de segurança: se a tabela não couber, rola ela, não a página. */}
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
           <caption className="sr-only">{copy.caption[esfera]}</caption>
