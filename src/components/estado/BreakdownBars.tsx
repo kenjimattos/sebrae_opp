@@ -15,6 +15,14 @@ interface BreakdownBarsProps {
   caption?: string
   /** Rótulo da fatia que é o valor do card: fica acesa e as demais recuam. */
   destaque?: string
+  /** Como escrever o valor. Default: número em pt-BR. As emendas passam R$ abreviado. */
+  formatValue?: (value: number) => string
+  /** Valor por extenso no tooltip do número, quando o abreviado perde precisão. */
+  formatTitle?: (value: number) => string
+  /** Largura da coluna de rótulo. Default 2/5, para nomes de setor; ano cabe em bem menos. */
+  labelClassName?: string
+  /** Largura da coluna de valor. Default 1/5; R$ abreviado pede largura fixa. */
+  valueClassName?: string
   className?: string
 }
 
@@ -23,6 +31,10 @@ export default function BreakdownBars({
   max,
   caption,
   destaque,
+  formatValue = formatNumberBR,
+  formatTitle,
+  labelClassName = 'w-2/5',
+  valueClassName = 'w-1/5',
   className = '',
 }: BreakdownBarsProps) {
   if (slices.length === 0) return null
@@ -37,7 +49,7 @@ export default function BreakdownBars({
         return (
           <div key={slice.label} className="flex items-center gap-sm">
             <span
-              className={`${acesa ? 'typo-body-sm-bold' : 'typo-body-sm'} w-2/5 shrink-0`}
+              className={`${acesa ? 'typo-body-sm-bold' : 'typo-body-sm'} ${labelClassName} shrink-0`}
               title={slice.label}
             >
               {slice.label}
@@ -49,8 +61,11 @@ export default function BreakdownBars({
                 style={{ width: `${Math.min(100, (slice.value / limite) * 100)}%` }}
               />
             </span>
-            <span className="typo-body-sm-bold w-1/5 shrink-0 text-right tabular-nums">
-              {formatNumberBR(slice.value)}
+            <span
+              className={`typo-body-sm-bold ${valueClassName} shrink-0 text-right tabular-nums whitespace-nowrap`}
+              title={formatTitle?.(slice.value)}
+            >
+              {formatValue(slice.value)}
             </span>
           </div>
         )

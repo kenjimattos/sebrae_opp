@@ -71,83 +71,74 @@ export default function ModeResources() {
         </p>
       )}
 
-      {/* Faixa de cima: mapa à esquerda, card do município à direita (a partir de
-          `xl`; abaixo, empilham). A tabela por função vem embaixo, na largura toda,
-          porque é o bloco que precisa de largura (três colunas de R$). */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-md items-start">
-        {/* Toggle logo acima do mapa e centrado com ele: é o mapa (e tudo abaixo)
-            que ele troca, não o título. */}
-        <div className="flex flex-col items-center w-full gap-xs min-w-0">
-          <ModeToggle
-            value={esfera}
-            onChange={(v) => setEsfera(v as EmendaEsfera)}
-            options={ESFERA_OPTIONS}
-            ariaLabel="Esfera das emendas"
+      {/* Toggle logo acima do mapa e centrado com ele: é o mapa (e tudo abaixo)
+          que ele troca, não o título. */}
+      <div className="flex flex-col items-center w-full gap-xs">
+        <ModeToggle
+          value={esfera}
+          onChange={(v) => setEsfera(v as EmendaEsfera)}
+          options={ESFERA_OPTIONS}
+          ariaLabel="Esfera das emendas"
+        />
+        {/* Mapa limitado em largura — a altura dele acompanha a largura
+            (viewBox ~1000×460). */}
+        <ParaibaOutlineMap
+          values={intensidades}
+          tooltipDetail={tooltipDetail}
+          selectedId={municipality.id}
+          onSelect={handleMapSelect}
+          padding={2}
+          className="max-w-[520px]"
+        />
+        <div className="flex items-center gap-sm">
+          <span className="typo-body-sm text-inactive">
+            {resourcesContent.mapa.legendaTitulo}
+          </span>
+          <span className="typo-body-sm text-inactive">
+            {resourcesContent.mapa.legendaMenor}
+          </span>
+          <div
+            aria-hidden
+            className="h-2 w-32 rounded-full"
+            style={{
+              background:
+                'linear-gradient(to right, color-mix(in oklab, var(--semantic-accent) 8%, var(--semantic-surface-primary)), var(--semantic-accent))',
+            }}
           />
-          {/* Mapa limitado em largura — a altura dele acompanha a largura
-              (viewBox ~1000×460). */}
-          <ParaibaOutlineMap
-            values={intensidades}
-            tooltipDetail={tooltipDetail}
-            selectedId={municipality.id}
-            onSelect={handleMapSelect}
-            padding={2}
-            className="max-w-[520px]"
-          />
-          <div className="flex items-center gap-sm">
-            <span className="typo-body-sm text-inactive">
-              {resourcesContent.mapa.legendaTitulo}
-            </span>
-            <span className="typo-body-sm text-inactive">
-              {resourcesContent.mapa.legendaMenor}
-            </span>
-            <div
-              aria-hidden
-              className="h-2 w-32 rounded-full"
-              style={{
-                background:
-                  'linear-gradient(to right, color-mix(in oklab, var(--semantic-accent) 8%, var(--semantic-surface-primary)), var(--semantic-accent))',
-              }}
-            />
-            <span className="typo-body-sm text-inactive">
-              {resourcesContent.mapa.legendaMaior}
-            </span>
-          </div>
-          {/* Total do estado na esfera ativa, sob o mapa: é o contexto da escala. */}
-          {estado && (
-            <p className="typo-body-sm text-inactive text-center">
-              <span className="typo-body-sm-bold">
-                {resourcesContent.estado.titulo} · {resourcesContent.esferas[esfera].label}
-              </span>{' '}
-              — {formatReaisCurto(estado.pago)} pagos, dos quais{' '}
-              {formatReaisCurto(estado.naoMunicipalizado.pago)}{' '}
-              {esfera === 'federal'
-                ? resourcesContent.estado.naoMunicipalizadoFederal
-                : resourcesContent.estado.naoMunicipalizadoEstadual}
-              .
-            </p>
-          )}
+          <span className="typo-body-sm text-inactive">
+            {resourcesContent.mapa.legendaMaior}
+          </span>
         </div>
-
-        {/* Município selecionado, só na esfera ativa. */}
-        <div className="flex flex-col w-full gap-md min-w-0">
-          {loading && !data ? (
-            <p className="typo-body text-inactive">Carregando emendas…</p>
-          ) : municipality.id && selecionado && meta ? (
-            <>
-              <h3 className="typo-h3">{selecionado.name}</h3>
-              <EmendasEsferaCard esfera={esfera} meta={meta} valores={selecionado[esfera]} />
-            </>
-          ) : (
-            <p className="typo-body text-inactive">{resourcesContent.mapa.semSelecao}</p>
-          )}
-        </div>
+        {/* Total do estado na esfera ativa, sob o mapa: é o contexto da escala. */}
+        {estado && (
+          <p className="typo-body-sm text-inactive text-center">
+            <span className="typo-body-sm-bold">
+              {resourcesContent.estado.titulo} · {resourcesContent.esferas[esfera].label}
+            </span>{' '}
+            — {formatReaisCurto(estado.pago)} pagos, dos quais{' '}
+            {formatReaisCurto(estado.naoMunicipalizado.pago)}{' '}
+            {esfera === 'federal'
+              ? resourcesContent.estado.naoMunicipalizadoFederal
+              : resourcesContent.estado.naoMunicipalizadoEstadual}
+            .
+          </p>
+        )}
       </div>
 
-      {/* Some sozinha quando a esfera não tem quebra (município sem emenda estadual
-          vem `null`) ou quando não há município. */}
-      {municipality.id && selecionado && meta && (
-        <EmendasFuncaoTable esfera={esfera} meta={meta} valores={selecionado[esfera]} />
+      {/* Abaixo do mapa, um sob o outro e na largura toda: nome do município, card
+          e tabela por função — tudo da esfera ativa. */}
+      {loading && !data ? (
+        <p className="typo-body text-inactive">Carregando emendas…</p>
+      ) : municipality.id && selecionado && meta ? (
+        <div className="flex flex-col w-full gap-md">
+          <h3 className="typo-h3">{selecionado.name}</h3>
+          <EmendasEsferaCard esfera={esfera} meta={meta} valores={selecionado[esfera]} />
+          {/* Some sozinha quando a esfera não tem quebra (município sem emenda
+              estadual vem `null`). */}
+          <EmendasFuncaoTable esfera={esfera} meta={meta} valores={selecionado[esfera]} />
+        </div>
+      ) : (
+        <p className="typo-body text-inactive">{resourcesContent.mapa.semSelecao}</p>
       )}
     </div>
   )
