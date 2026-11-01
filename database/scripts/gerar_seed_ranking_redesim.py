@@ -23,7 +23,9 @@ INDICADOR: `ranking-redesim`. A API soma as avaliações dos 6 meses, então as 
 
 SEM THRESHOLD (semáforo): o ranking publica posição e pontos, mas **não** uma faixa
 oficial de "bom/atenção/alerta" para o total. Seguindo a regra do projeto (não inventar
-cortes), o indicador entra **sem `threshold`** — exibe só o valor/posição. (O corte
+cortes), o gerador não emite `threshold`.
+A régua relativa (relativo-pb) é gravada depois por aplicar_tercis.py
+(_tercis.catalogo_derivados). (O corte
 `higher-better 900/600` que estava em src/data/indicators/thresholds.ts era inventado e
 numa escala que nem bate com a fonte.)
 

@@ -51,7 +51,7 @@ LABEL = "IGM – Índice CFA de Governança Municipal"
 # https://cfa.org.br/diagnostico-brasil-igm-cfa-... — mapeadas para o semáforo:
 # success = 7,51 (Alto = verde) · warning = 5,01 (Médio = amarelo) · < 5,01 = Baixo (vermelho).
 THRESHOLD = {"kind": "higher-better", "success": 7.51, "warning": 5.01}
-# descrição espelha src/data/indicators/descriptions/indicators.ts ('igm-cfa-2025').
+# descrição espelha src/data/indicators/descriptions/indicators.ts ('igm-cfa').
 DESCRIPTION = (
     "Índice do Conselho Federal de Administração que avalia a qualidade da gestão "
     "pública municipal em três dimensões: Finanças, Gestão e Desempenho."

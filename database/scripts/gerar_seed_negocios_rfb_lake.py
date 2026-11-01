@@ -57,7 +57,9 @@ MÉTRICAS (decisões do projeto, jun/2026):
   "Pequeno negócio" = porte normalizado IN ('1','3') (ME/EPP; MEI ⊂ ME, separado no breakdown).
 
 SEM threshold (semáforo): contagem bruta, sem faixa oficial bom/atenção/alerta (mesma regra de
-trabalhadores-*/mpe-compras — não inventamos cortes). Os três entram SEM `threshold`.
+trabalhadores-*/mpe-compras — não inventamos cortes). Todos saem daqui SEM `threshold`.
+Nos 4 de agenda, a régua relativa (relativo-pb) é gravada depois por aplicar_tercis.py
+(_tercis.catalogo_derivados).
 
 Cobertura: 223 municípios da PB (lista canônica vem do seed de municípios). Município sem
 estabelecimento na fatia entra com 0 (ativas) ou numericValue null (abertos/extintos sem base).
@@ -969,7 +971,8 @@ def emit(indicador, values, ano):
     lines.append("// Receita Federal (Estabelecimentos) via data lake do Sebrae. SEM threshold.")
     lines.append("const indicators = [\n  {},\n]".format(js(indicator)))
     # replaceOne, não $set: o documento vira exatamente o que este seed declara,
-    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas).
+    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas). Vale só
+    # para o seed .js: o --write-mongo ainda grava o catálogo com $set.
     lines.append("database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {")
     lines.append("  filter: { _id: i._id }, replacement: i, upsert: true,")
     lines.append("} })), { ordered: false })")

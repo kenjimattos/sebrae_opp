@@ -43,7 +43,9 @@ GOTCHAS da RAIS crua (≠ basedosdados, que já harmoniza):
      env RAIS_CAMPO_*). Só então rode de verdade.
 
 SEM CLASSIFICAÇÃO (semáforo): contagem bruta da RAIS, sem faixa oficial
-bom/atenção/alerta (mesma decisão de trabalhadores-ct). Entra SEM `threshold`.
+bom/atenção/alerta (mesma decisão de trabalhadores-ct). O gerador não emite `threshold`.
+A régua relativa (relativo-pb) é gravada depois por aplicar_tercis.py
+(_tercis.catalogo_derivados).
 O breakdown carrega o denominador (total de vínculos) e o percentual, então o
 front pode exibir como share se quiser — mais comparável entre municípios de
 portes diferentes que a contagem absoluta.
@@ -381,7 +383,8 @@ def emit(indicador: dict, values: List[dict]) -> Path:
     lines = [HEADER, "", f"// --- 1) Catálogo: {indicador['label']} (agenda {AGENDA_ID}) ---"]
     lines.append(f"const indicators = [\n  {js(indicator)},\n]")
     # replaceOne, não $set: o documento vira exatamente o que este seed declara,
-    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas).
+    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas). Vale só
+    # para o seed .js: o --write-mongo ainda grava o catálogo com $set.
     lines.append("database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {")
     lines.append("  filter: { _id: i._id }, replacement: i, upsert: true,")
     lines.append("} })), { ordered: false })")

@@ -22,7 +22,7 @@ O QUE ISTO REIMPLEMENTA — E O RISCO
 MENOS REGRA QUE O DE MUNICÍPIOS, DE PROPÓSITO
     Aqui não há supressão por confiabilidade nem cálculo de status: nenhum
     indicador estadual tem `threshold`. Se algum dia um tiver, esta função precisa
-    aprender a régua junto com o serviço — e a asserção no fim avisa.
+    aprender a régua junto com o serviço — e a asserção em `montar()` avisa.
 """
 from __future__ import print_function
 

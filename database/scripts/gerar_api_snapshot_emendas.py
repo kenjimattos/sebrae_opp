@@ -11,8 +11,8 @@ Lê os snapshots dos dois ETLs de emendas e monta o shape do contrato:
     database/data/emendas_estaduais_pb.json   (gerar_seed_emendas_estaduais.py)
         -> public/api-snapshot/emendas.json
 
-O shape emitido aqui é o MESMO que a rota Fastify vai devolver quando ela existir
-(server/), lendo a coleção `emendas` do Mongo. O contrato TypeScript é
+O shape emitido aqui é o MESMO que a rota Fastify devolve
+(server/src/routes.ts), lendo a coleção `emendas` do Mongo. O contrato TypeScript é
 `src/types/emendas.ts` — se mexer num, mexa nos dois.
 
 Municípios sem dado numa esfera saem com `null` naquela esfera (e não zero), para a
@@ -75,8 +75,8 @@ def valores(agg, com_valor):
     }
     if com_valor:
         out["valor"] = agg.get("valor", 0.0)
-    # só o federal tem a quebra por função (o estadual publica função em taxonomia própria
-    # e ainda não entrou); ausente é ausente, não {}.
+    # a quebra por função vem dos dois geradores (federal pelo empenho, estadual pela linha
+    # de execução); sem ela na origem, ausente é ausente, não {}.
     if agg.get("porFuncao"):
         out["porFuncao"] = agg["porFuncao"]
     return out

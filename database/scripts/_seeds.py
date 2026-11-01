@@ -86,7 +86,7 @@ def valores_por_municipio(nome_seed, indicator_id=None, reference_year=None):
     Um seed pode carregar mais de um indicador (o do ISDEL traz duas dimensões)
     e mais de um ano — o ISDEL tem a série 2015–2023, nove docs por município.
     Quando há série, o ano vem do `referenceYear` do catálogo, que é a mesma
-    regra do `pickValue` do servidor.
+    regra do `pickByYear` do servidor.
 
     Sem isso, pegar "o último doc lido" devolveria um ano arbitrário e a conta
     sairia plausível e errada: o ISDEL de 2023 é ~100% zerado, e foi justamente

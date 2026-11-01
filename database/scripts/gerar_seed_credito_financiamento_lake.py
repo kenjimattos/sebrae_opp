@@ -39,7 +39,7 @@ Valores em REAIS (inteiros). Reconfirme com --inspect se schemas de meses antigo
 == USO ==
     python3 ..._credito_financiamento_lake.py --inspect            # 1 doc + coleções + campos
     python3 ..._credito_financiamento_lake.py --inspect-verbetes   # soma PB por verbete
-    python3 ..._credito_financiamento_lake.py                      # auto: último dez/AAAA
+    python3 ..._credito_financiamento_lake.py                      # auto: último mês disponível
     python3 ..._credito_financiamento_lake.py --mes 202012
     python3 ..._credito_financiamento_lake.py --write-mongo        # + OPP_MONGO_USER/PASS no .env
     python3 ..._credito_financiamento_lake.py --offline            # regenera o seed do snapshot
@@ -414,7 +414,8 @@ def emit(values, ref):
     lines.append("// ESTBAN (Estatística Bancária Mensal, BCB) — data lake do Sebrae. SEM threshold.")
     lines.append("const indicators = [\n  {},\n]".format(js(indicator)))
     # replaceOne, não $set: o documento vira exatamente o que este seed declara,
-    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas).
+    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas). Vale só
+    # para o seed .js: o --write-mongo ainda grava o catálogo com $set.
     lines.append("database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {")
     lines.append("  filter: { _id: i._id }, replacement: i, upsert: true,")
     lines.append("} })), { ordered: false })")

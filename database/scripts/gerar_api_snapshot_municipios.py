@@ -15,7 +15,7 @@ POR QUE ESTE ARQUIVO EXISTE
     o banco recebe. Sem rede, sem VPN, determinístico.
 
 O QUE ELE REIMPLEMENTA, E POR QUE ISSO É UM RISCO ACEITO
-    A lógica de leitura do servidor: escolha do ano (`pickValue`), supressão por
+    A lógica de leitura do servidor: escolha do ano (`pickByYear`), supressão por
     amostra baixa (`isLowConfidence`) e a régua (`computeStatus` +
     `classifiedNumber`). São ~40 linhas duplicadas de `server/src/indicadores/`,
     e a duplicação é deliberada: a alternativa seria rodar o Node contra o Mongo,
@@ -90,7 +90,7 @@ def catalogo():
 def valores_indexados(por_id):
     """(municipality_id, indicator_id) -> doc, com o ano já resolvido.
 
-    Espelha `indexValues` + `pickValue`: ano default do catálogo; na falta, o
+    Espelha `indexValues` + `pickByYear`: ano default do catálogo; na falta, o
     mais recente. Ler o ano errado produz número plausível e errado.
     """
     por_indicador = {}

@@ -24,8 +24,9 @@ Tempo de Alvará de Localização + Alvará Sanitário na janela de 6 meses (esc
 
 SEM THRESHOLD (semáforo): a fonte não publica uma faixa oficial de bom/atenção/alerta para
 a pontuação combinada dos alvarás (as faixas oficiais são por documento e em horas; aqui o
-valor é um score agregado). Seguindo a regra do projeto (não inventar cortes), entra **sem
-`threshold`**. (O corte `lower-better 15/25` que estava em src/data/indicators/thresholds.ts
+valor é um score agregado). Seguindo a regra do projeto (não inventar cortes), o gerador não
+emite `threshold`. A régua relativa (relativo-pb) é gravada depois por aplicar_tercis.py
+(_tercis.catalogo_derivados). (O corte `lower-better 15/25` que estava em src/data/indicators/thresholds.ts
 era inventado e pressupunha horas, que não temos por município.)
 
 Cobertura: os 223 municípios da PB (a API devolve os 223; valida contra a lista canônica).
