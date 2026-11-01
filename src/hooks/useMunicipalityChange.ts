@@ -2,9 +2,9 @@
 //
 // A troca é global (MunicipalityProvider) e o formulador reage a ela recarregando
 // o rascunho do novo município — o que esvazia a tela de quem estava escrevendo.
-// São QUATRO entradas de interface para o mesmo efeito: a busca de cidade no topo
-// da Home, o mapa da seção de agendas, o seletor dentro da etapa 1 do formulador
-// e o mapa do pilar de recursos. Por isso a guarda mora aqui, num hook que todas
+// São QUATRO entradas de interface para o mesmo efeito: a busca de cidade
+// (CitySelector), o mapa de Ambiente (MunicipalityMap), o seletor dentro da etapa 1
+// do formulador e o mapa do pilar de recursos (ModeResources). Por isso a guarda mora aqui, num hook que todas
 // usam, e não em cada botão: colocada num só, as outras três seguem abertas.
 //
 // A confirmação precisa vir ANTES de `setMunicipality`, porque lá dentro a troca

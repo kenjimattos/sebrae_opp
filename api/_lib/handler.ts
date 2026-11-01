@@ -1,5 +1,6 @@
 // Núcleo transport-agnóstico do endpoint /api/ai — usado pela function da
-// Vercel (api/ai.ts) e pelo middleware de dev do Vite (vite.config.ts).
+// Vercel (api/ai.ts), pelo middleware de dev do Vite (vite.config.ts) e pela
+// rota do Fastify (server/src/routes.ts).
 import type {
   AiChatMessage,
   AiEconomicBaseItem,
@@ -196,10 +197,10 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
 // Teto de tokens por task, onde o default de 800 não serve. Hoje nenhuma task
 // precisa disso.
 //
-// A análise do Panorama teve teto de 260 até esta versão, para caber no bloco
-// sob os cards. Medindo com o prompt real (12 municípios, teto solto), o modelo
+// A análise do município teve teto de 260, quando ainda morava sob os cards do
+// Panorama. Medindo com o prompt real (12 municípios, teto solto), o modelo
 // escreve entre 182 e 275 tokens — a mediana fica em 198, mas a cauda passa do
-// teto: Campina Grande, o município default da plataforma, quis 275. O teto não
+// teto: Campina Grande quis 275. O teto não
 // segurava tamanho, produzia corte no meio da frase em ~1 a cada 10 análises.
 //
 // Tamanho de texto de modelo não se controla por teto de token, porque a única

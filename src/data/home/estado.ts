@@ -24,7 +24,8 @@ export const estadoContent = {
 
 // Ordem fixa do toggle. `saude` está declarado porque é um dos temas pedidos,
 // mas só aparece quando existir indicador estadual de saúde: tema sem indicador
-// apagaria o painel inteiro ao ser escolhido. Entra sozinho quando o dado chegar.
+// apagaria o painel inteiro ao ser escolhido. Entra quando o indicador chegar com
+// entrada em CARD_VIEWS (sem ela, ele fica só na Visão geral).
 export const TEMAS: EstadoTema[] = [
   { value: 'geral', label: 'Visão geral' },
   { value: 'demografia', label: 'Demografia e desenvolvimento' },

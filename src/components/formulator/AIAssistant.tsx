@@ -1,5 +1,5 @@
 // Figma: Formulador/AIAssistant (603:1803)
-// Sidebar direita: bloco "Assistente IA" + descrição + bloco "Exemplo" com separador + bloco "Ações da IA".
+// Sidebar direita: bloco "Assistente IA" + descrição + lista de exemplos.
 // Conteúdo varia por etapa (src/data/formulator/ai-assistant.ts). O painel é
 // só leitura: os botões de ação de IA saíram num refactor anterior, e a geração
 // hoje acontece nos próprios campos (AiField) e nas etapas 7 e 8.

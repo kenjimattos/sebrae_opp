@@ -1,6 +1,6 @@
 // Tailwind pure — no Figma equivalent
 // Unified card primitive: surface variants (primary/secondary/status) + padding
-// + optional border. O raio é sempre `--radius-sm` e não é configurável: houve
+// + optional border. O raio é sempre `--radius-default` e não é configurável: houve
 // uma prop `radius`, e o único consumidor que a usava era o Modal, com 24px.
 // Superfície do projeto tem um raio só — `rounded-full` é dos controles, não
 // daqui. Prop que aceita um valor que ninguém deve escolher é convite a

@@ -7,8 +7,8 @@ export const DEFAULT_FREE_MODEL = 'nvidia/nemotron-3-ultra-550b-a55b:free'
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 const TIMEOUT_MS = 30_000
-// Folga para respostas em lista (chat) — o prompt pede ~150 palavras, mas
-// modelos estouram. É teto de segurança contra resposta desgovernada, não
+// Teto padrão de todas as tasks (MAX_TOKENS_BY_TASK está vazio). O chat pede ~150
+// palavras e modelos estouram. É teto de segurança contra resposta desgovernada, não
 // controle de tamanho: o tamanho quem absorve é o layout de cada superfície.
 const MAX_TOKENS = 800
 

@@ -7,7 +7,7 @@
 //
 // Até a task existir, este componente exibia um texto fixo por município e o
 // typewriter servia só para simular geração — inclusive com números defasados que
-// contradiziam os cards logo acima. O contexto agora sai da própria API.
+// contradiziam os cards do Panorama. O contexto agora sai da própria API.
 //
 // Para resetar entre municípios, o consumidor deve passar `key={municipioId}`
 // de modo que o componente monte do zero quando trocar o município.

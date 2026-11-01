@@ -14,8 +14,8 @@ export default function Layout() {
   return (
     // `relative`: ancora o marcador de rolagem do SiteHeader no topo do documento.
     <div className="relative min-h-screen bg-background flex flex-col">
-      {/* No login não há header: o hero já traz a marca em 270px no meio da
-          tela. O tema segue
+      {/* No login não há header: o hero já traz a marca, em até 180px, no
+          painel da esquerda. O tema segue
           solto no canto, fixo no mesmo eixo do ChatButton (right-[62px]).
           Instância única de ThemeToggle em qualquer rota — useTheme é estado
           local, e dois montados teriam preferências independentes. */}
