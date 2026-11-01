@@ -54,7 +54,7 @@ describe('estado · payload', () => {
     expect(data.indicators[0].numericValue).toBe(362)
   })
 
-  it('sem referenceViewYear no catálogo, serve o ano mais recente', () => {
+  it('sem referenceYear no catálogo, serve o ano mais recente', () => {
     const data = buildStateData(UF, makeCatalog([stateIndicator('uf-populacao')]), [
       stateDoc('uf-populacao', '2023', 4_000_000),
       stateDoc('uf-populacao', '2025', 4_164_468),

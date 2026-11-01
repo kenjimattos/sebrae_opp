@@ -22,7 +22,7 @@ export default defineConfig([
     rules: {
       quotes: ['error', 'single', { avoidEscape: true }],
       // Parâmetro prefixado com `_` = deliberadamente não usado (ex.: assinatura
-      // preservada por contrato, como `agendaStatus(_agenda)`). Sem isto o
+      // preservada por contrato). Sem isto o
       // prefixo não significa nada para o linter.
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       // Force all Lucide imports through @/components/icons (central registry).

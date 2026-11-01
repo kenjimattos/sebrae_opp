@@ -125,7 +125,7 @@ describe('buildEmendasData · o campo valor existe só no estadual', () => {
     expect(esferas.estadual.estado.naoMunicipalizado.valor).toBe(800)
   })
 
-  it('o federal não vaza o porAno do doc de estado para fora do contrato', () => {
+  it('o federal monta naoMunicipalizado campo a campo, sem campos fora do contrato', () => {
     const doc = estadoDoc({
       esfera: 'federal',
       empenhado: 900,

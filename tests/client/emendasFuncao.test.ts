@@ -18,7 +18,7 @@ describe('linhasPorFuncao', () => {
     expect(linhas[0]).toMatchObject({ emAberto: 60, fracaoPaga: 0.9, nEmendas: 3 })
   })
 
-  it('sem a quebra (estadual, snapshot antigo) devolve lista vazia', () => {
+  it('sem a quebra (snapshot antigo) devolve lista vazia', () => {
     expect(linhasPorFuncao(valores(undefined))).toEqual([])
     expect(linhasPorFuncao(null)).toEqual([])
   })
