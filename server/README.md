@@ -1,6 +1,6 @@
-# OPP API
+# API da PIPPA
 
-API de leitura da Plataforma OPP sobre o MongoDB `DadosOPP`. Processo Node
+API de leitura da PIPPA sobre o MongoDB `DadosOPP`. Processo Node
 (Fastify) que roda na máquina da app (`10.1.100.99`) e lê o banco (`10.1.141.23`).
 O Nginx serve o build estático do frontend **e** faz proxy de `/api/*` para cá.
 
@@ -20,6 +20,7 @@ schema já é validado no próprio Mongo (`database/setup.mongodb.js`).
 | GET | `/api/municipalities/:id` | `IndicatorsData` — agendas + base econômica, **status já calculado** |
 | GET | `/api/map` | `{ options, municipalities }` — valores por município p/ colorir o mapa |
 | GET | `/api/emendas` | `EmendasData` — emendas parlamentares (federal + estadual) dos 223 municípios |
+| GET | `/api/estado` | `StateData` — indicadores da PB no grão UF, sem `status` nem `threshold` |
 | POST | `/api/ai` | resposta do LLM para uma task de IA (`AiTaskRequest` → `{ text, items? }`) |
 
 O shape das respostas espelha `src/types/indicators.ts` do frontend: a API devolve
@@ -38,13 +39,14 @@ espalharia por quatro pastas.
 
 ```
 src/
-  index.ts · routes.ts · config.ts    boot · controller (todas as rotas) · env
+  index.ts · app.ts · routes.ts · config.ts    boot · instância + erro · controller (todas as rotas) · env
   infra/        db.ts (cliente Mongo único) · payload-cache.ts
   types/        docs.ts · api.ts · index.ts
   indicadores/  catalog.ts · catalog-cache.ts · status.ts · values.ts
   municipios/   repo.ts (queries) · service.ts (doc → resposta)
   mapa/         service.ts
   emendas/      repo.ts · service.ts
+  estado/       repo.ts · service.ts
 ```
 
 `repo.ts` só faz query; `service.ts` só transforma (função pura — é o que os testes
@@ -62,7 +64,7 @@ acompanha o frontend. Importe sempre de `types/index.js`.
 
 As rotas de leitura são as mesmas para todo visitante — não há sessão nem dado por
 usuário —, então a resposta pronta fica em memória do processo
-(`src/payload-cache.ts`), com TTL de 5 min (`PAYLOAD_CACHE_TTL_MS`). O mesmo número
+(`src/infra/payload-cache.ts`), com TTL de 5 min (`PAYLOAD_CACHE_TTL_MS`). O mesmo número
 vai no `Cache-Control: public, max-age=...` da resposta, para o navegador não repetir
 a chamada ao voltar para um município já visto. `/api/health` e `/api/ai` são
 `no-store`.
@@ -72,8 +74,9 @@ municípios × todos os indicadores × toda a série) uma vez por visitante. Com
 guarda a `Promise` e não o valor, N requisições simultâneas com o cache frio
 compartilham uma leitura só — o pico de acesso não vira pico de query.
 
-> **O ETL não avisa a API.** Carga nova leva até um TTL para aparecer; `systemctl
-> restart` zera na hora. Erro nunca fica cacheado (é o que faz o 503 de `/api/emendas`
+> **O ETL não avisa a API.** Valor novo leva até um TTL para aparecer; mudança de catálogo
+> (`threshold`, rótulos, indicador novo) só com `systemctl restart`, porque o catálogo fica
+> em memória sem TTL. Erro nunca fica cacheado (é o que faz o 503 de `/api/emendas`
 > voltar a 200 assim que os seeds rodam).
 
 As respostas saem comprimidas (`@fastify/compress`, threshold 1 KB) — JSON repetitivo
@@ -91,7 +94,7 @@ npm run dev               # tsx watch, porta 3000
 Produção:
 
 ```bash
-npm run build && npm start   # tsc → dist/, node dist/index.js
+npm run build && npm start   # tsc → dist/, node dist/server/src/index.js
 ```
 
 ## IA (`POST /api/ai`)

@@ -14,23 +14,23 @@ servidor recebe o deploy, mas a plataforma não está aberta a usuário final.
 11 por tercil relativo aos 223 municípios da PB) e o farol por agenda voltou a
 acender.
 
-Home = `SideNav` com 4 pilares (Ambiente de negócio, Mapeamento de recursos, Cursos e
-boas práticas, Formulador de projetos); cada pilar alterna modos via `ModeToggle`.
-**223 municípios da PB**, default Campina Grande (`2504009`). Rotas: `/` (Login),
-`/home`, `/trilhas`. Desktop 1440px; o layout se sustenta até 1000px, e abaixo disso
-`ui/NarrowScreenNotice` avisa **sem bloquear** (zoom alto num notebook também cai
-ali). **Tema claro e escuro** pelo `ThemeToggle` (automático → claro → escuro;
-automático é o default e segue o sistema). **Instância única** — `useTheme` é estado
-local, dois consumidores montados teriam preferências independentes; o `Layout` monta
-um só em qualquer rota.
+Home = visão estadual (`SectionEstado`) + jornada (`SectionJornada`), com `SideNav` de 4 pilares (Ambiente
+de negócio, Mapeamento de recursos, Cursos e boas práticas, Formulador de projetos);
+os pilares com mais de um modo (Ambiente, Cursos e boas práticas) alternam via `ModeToggle`. **223 municípios da PB**; a sessão começa sem nenhum escolhido.
+Rotas: `/` (Login), `/home`, `/trilhas`. Desktop 1440px; o layout se sustenta até
+1000px, e abaixo disso `ui/NarrowScreenNotice` avisa **sem bloquear** (zoom alto num
+notebook também cai ali). **Tema claro e escuro**
+pelo `ThemeToggle` (automático → claro → escuro; automático é o default e segue o
+sistema). **Instância única** — `useTheme` é estado local, dois consumidores
+montados teriam preferências independentes; o `Layout` monta um só em qualquer rota.
 
 **Header do app (`layout/SiteHeader`)** em `/home` e `/trilhas`: logotipo à esquerda
 e `ThemeToggle` à direita. É `sticky` e está no fluxo, então o conteúdo começa abaixo
 dele. Compacta ao rolar (barra de 96 → 64px, logo de 80 → 56px), detectado por um
 marcador no topo com `IntersectionObserver`. **O `CitySelector` não mora no header**:
 fica em `map/MunicipalityMap`, no topo da `SectionJornada`, acima do `ModeToggle` e
-em todos os pilares — esteve no header por uma semana e voltou. O mapa da PB vem junto
-**só no pilar Ambiente de negócio**. Sem município escolhido a jornada é só isso; os
+em todos os pilares — esteve no header por uma semana e voltou. O mapa de seleção vem junto
+**só no pilar Ambiente de negócio** (o modo Emendas tem mapa próprio, colorido pelo valor pago). Sem município escolhido a jornada é só isso; os
 modos só montam com dados.
 **Não há mais `SectionAgendas`** (lista de agendas + card ao lado do mapa); os
 indicadores por eixo ficam só no modo Eixos.
@@ -80,7 +80,7 @@ Fastify + driver `mongodb` no `server/`.
 - **Três controles parecidos, papéis distintos** — escolher pelo papel, não pelo visual:
   `Button` é ação; `Chip` é seleção entre pares lado a lado (estado vem de dados,
   anunciado por `aria-current`/`aria-pressed`); `ModeToggle` troca painel no lugar
-  (`role="tablist"` + pill deslizante). `Chip` e `Button` são idênticos na tela **por
+  (`role="tablist"` + pill deslizante; na `SectionEstado` ele só destaca um tema, sem trocar painel). `Chip` e `Button` são idênticos na tela **por
   construção** — dividem shell, variantes e tamanhos em `ui/buttons/button-styles.ts`.
   Mexeu em um, mexeu nos dois; não copiar estilo entre eles.
 
@@ -97,7 +97,7 @@ hex) → `--semantic-*` (o que a UI consome; só esta camada troca por tema) →
 não fica no arquivo.
 
 > **Regra:** usar as classes nativas, nunca arbitrary values. `gap-md`, não
-> `gap-[var(--spacing-md)]`. `rounded-sm`, não `rounded-[var(--radius-sm)]`.
+> `gap-[var(--spacing-md)]`. `rounded`, não `rounded-[var(--radius-default)]`.
 > Para cor isso é **erro de lint** (`no-restricted-syntax` no `eslint.config.js`):
 > classe sem cobertura significa token faltando no `tailwind.config.js` — a saída é
 > adicioná-lo lá, não contornar. Seguem legítimos: arbitrary de dimensão (`w-[56px]`)
@@ -126,13 +126,13 @@ Classes compostas declaradas em `@layer components` (não são geradas pelo Tail
 consultar `index.css` antes de inventar equivalente):
 
 ```
-.typo-display-lg|display|display-sm · .typo-h1..h4 (h4 inclui uppercase)
-.typo-title-lg|title-md|title-sm · .typo-body-lg|body|body-sm (+ variantes -bold)
+.typo-display-lg|display|display-sm · .typo-h1..h4
+.typo-title-lg|title-md|title-sm · .typo-body-lg|body|body-sm|body-xs (+ variantes -bold)
 .typo-button-lg|button|button-sm (+ variantes -secondary-)
 .card-surface(-secondary) · .card-raised · .flex-center|between|col-start
 .grid-2..5 · .status-{success,warning,alert,neutral}-{bg,dot} · .glass(-bevel)
 .divider · .scrollbar-hide · .section-container · .typewriter-caret · .journey-cue-chevron
-.catalog*, .poster* (/trilhas)
+.site-header* · .catalog*, .poster* (/trilhas)
 ```
 
 > **Foco de teclado é `outline`, nunca `ring`.** `box-shadow` some em alto contraste
@@ -179,7 +179,7 @@ Contratos em `src/types/indicators.ts` (`IndicatorsData`, `Agenda`, `Indicator`,
 `src/types/estado.ts`.
 
 **Há dois grãos, em coleções separadas.** O municipal em `indicatorValues` (223 docs por
-indicador) e o **estadual** em `stateValues` (1 doc por UF × indicador × ano, servido por
+indicador × ano) e o **estadual** em `stateValues` (1 doc por UF × indicador × ano, servido por
 `GET /api/estado`). São coleções distintas, e não um campo `escopo` numa só, porque a chave
 é `uf` e não `municipalityId` — a separação é o que impede a Paraíba de aparecer como uma
 224ª linha na lista de municípios, nas opções do mapa e no cálculo dos tercis. O catálogo
@@ -228,6 +228,7 @@ server/src/
   municipios/   repo.ts · service.ts
   mapa/         service.ts
   emendas/      repo.ts · service.ts
+  estado/       repo.ts · service.ts
 ```
 
 > **Corpo de erro nunca leva bastidor; o detalhe vai para o log.** O handler padrão do
@@ -245,7 +246,8 @@ server/src/
 
 > **`types/` está partido por motivo de mudança:** `docs.ts` acompanha o ETL
 > (`database/setup.mongodb.js` valida o mesmo schema), `api.ts` acompanha o frontend
-> (espelho de `src/types/indicators.ts` e `src/types/emendas.ts`). Importar sempre de
+> (espelho de `src/types/indicators.ts`, `src/types/emendas.ts` e
+> `src/types/estado.ts`). Importar sempre de
 > `types/index.js`. O vocabulário comum (`StatusType`, `Threshold`, `RawVariation`,
 > esferas) mora em `docs.ts` e o `api.ts` importa sem reexportar — reexportar daria o
 > mesmo nome saindo por dois caminhos no `index.ts`.
@@ -280,7 +282,7 @@ querer dizer a mesma coisa:
 
 > **`normalizedValue` é o número que a régua relativa lê — e `null` nele significa
 > SEM BASE DE COMPARAÇÃO, não zero.** Contagem bruta não compara municípios (mede o
-> tamanho deles), então 6 dos 11 classificam per capita enquanto o card exibe o bruto;
+> tamanho deles), então 5 dos 11 classificam per capita (e `negocios-extintos`, como % das ativas) enquanto o card exibe o bruto;
 > `classifiedNumber` (servidor) e `classifiedValue` (cliente) escolhem qual número vale
 > e **nunca** caem no bruto quando falta o normalizado. O mesmo campo tira do semáforo
 > quem não tem o que comparar — é assim que os 109 municípios sem emissão de alvará
@@ -295,8 +297,11 @@ querer dizer a mesma coisa:
 
 > **Rodar um `gerar_seed_*.py` APAGA o threshold derivado, em silêncio.** O bloco de
 > catálogo usa `replaceOne` e nenhum gerador conhece os tercis: o seed roda, imprime
-> `ok`, e o indicador volta a `'none'` sem que nada avise. Depois de qualquer gerador
-> dos 11, rodar `aplicar_tercis.py --escrever`.
+> `ok`, e o indicador volta a `'none'` sem que nada avise. Pelo `--write-mongo` a falha é outra: o `$set` mantém
+> threshold e `normalizedValue` antigos ao lado do `numericValue` novo, e o farol fica
+> defasado, também sem erro. Depois de qualquer gerador dos 11, rodar
+> `aplicar_tercis.py --escrever`, aplicar o seed com `aplicar_seeds.sh` (o `aplicar_tercis`
+> só grava nos arquivos).
 > Ver `database/RUNBOOK_ETL.md` §4.
 
 > **Regra:** nunca inventar cortes de classificação. A régua vive no banco
@@ -321,7 +326,7 @@ Quatro superfícies, todas via `POST /api/ai` (modelo gratuito, fetch puro — s
    (etapa 3), indicadores (etapa 7), rubricas (etapa 8, só nomes, sem valores) e o
    painel `AIAssistant`.
 3. **Análise do município** — task `economic-analysis`, que recebe os cards da base
-   econômica **estruturados** e o resumo dos indicadores com a faixa oficial; o prompt
+   econômica **estruturados** e o resumo dos indicadores com a régua e a procedência dela; o prompt
    proíbe citar número fora desse contexto e proíbe classificar o que não vem com
    status. Mora em `analysis/AIAnalysis` e sai num lugar só: o modo *Análise do
    município*. O Panorama, que antes a trazia abaixo dos cards, hoje é só os cards —
@@ -337,8 +342,9 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
 **Regras:**
 - Nova capacidade = novo literal na união + prompt em `prompts.ts`. **Nunca** um
   endpoint paralelo.
-- Limite de tamanho de resposta se impõe em `maxTokens` (`MAX_TOKENS_BY_TASK` no
-  handler), não pedindo no prompt — o modelo ignora o pedido de forma imprevisível.
+- Tamanho de resposta se controla pedindo no prompt, e o layout absorve a sobra. Teto por
+  task (`MAX_TOKENS_BY_TASK`, hoje vazio) só trunca: o de 260 cortava ~1 em 10 análises no
+  meio da frase. Resta o teto global de 800 em `openrouter.ts`, contra resposta desgovernada.
 - `OPENROUTER_API_KEY` fica **só no servidor**; prefixo `VITE_` vazaria no bundle.
   No Fastify ela é opcional: sem ela a API sobe e só o `/api/ai` responde 503 `unavailable`.
 - **Sigilo do modelo tem duas camadas, e só a segunda garante.** O `SYSTEM_PROMPT` pede
@@ -369,7 +375,9 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   junho por não haver faixa oficial na RAIS, seguiu sete semanas classificando 219
   dos 223 municípios em `alert` — e alimentando o então modo Riscos com um risco falso.
   Nada avisa: o seed roda, imprime `ok`, e o campo velho fica. Ao mexer em gerador,
-  conferir se ele continua com `replaceOne`: os 26 já foram convertidos.
+  conferir se ele continua com `replaceOne`: os 26 já foram convertidos. **Isso vale para
+  o seed `.js`:** o `--write-mongo` de 9 geradores ainda grava o catálogo com `$set` e não
+  remove campo.
 - **`server/` compila `api/_lib`** (`rootDir: ".."`), então o entrypoint emitido é
   `dist/server/src/index.js`. Um `postbuild` gera `dist/index.js` como shim porque o
   `ExecStart` do systemd aponta para o caminho antigo. Não remover sem editar a unit.
@@ -418,6 +426,10 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   depende de nenhum dos dois: `FormulatorReview` imprime todo campo com texto.
   Rascunho por município em `localStorage` (`formulator:${id}`).
   Fonte de verdade das 10 etapas: `src/data/formulator/steps.ts`.
+- **As duas esferas de emendas nunca se somam nem se comparam ano a ano.** O modo Emendas
+  mostra uma por vez, e o toggle troca mapa, total, card e tabela. O federal é censo por
+  código IBGE, o estadual é estimativa a partir de texto livre. E `porAno` muda de sentido:
+  ano do documento de despesa no federal (2023–2026), safra da emenda no estadual (2021–2025).
 - **O modo Riscos foi removido.** No lugar dele a aba Ambiente tem *Análise do
   município* (`analysis/ModeAnalysis`), que serve a análise por IA sozinha. Saíram
   junto `ModeRisks`, `RisksCard`, `data/indicators/descriptions/risks.ts` e
@@ -446,7 +458,7 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
 - **`max-w-*` no mesmo elemento que tem gutter espreme o conteúdo.** Com
   `box-sizing: border-box`, os 180px de `padding-inline` entram no `max-width` —
   `max-w-3xl` vira ~400px úteis. Pôr o `max-width` num filho sem padding.
-- **Testes ficam fora do `npm run build`.** São 198 casos em `tests/`, dois projetos
+- **Testes ficam fora do `npm run build`.** A suíte em `tests/` tem dois projetos
   do Vitest (client/jsdom, server/node), e `tests/server/` importa `server/src/` —
   que importa `mongodb` e `dotenv`, pacotes de `server/node_modules`, instalado à
   parte. Enquanto os testes estavam no `tsc -b` do build, todo ambiente que só
