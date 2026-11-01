@@ -1,13 +1,13 @@
 // Tailwind pure — no Figma equivalent yet
-// SideNav à esquerda (w-1/5, sticky — flutua e acompanha o scroll da seção)
+// SideNav à esquerda (21% da largura, 247px abaixo de 1220px; sticky — flutua e acompanha o scroll da seção)
 // + área comutável à direita.
 // A escolha do município (MunicipalityMap) fica acima do ModeToggle: o seletor
 // em todos os pilares, o mapa só em Ambiente de negócio. Sem município
 // escolhido, a seção é só isso — os modos leem os dados do município e não têm
 // o que mostrar antes.
 // A SideNav troca o pilar ativo. Cada pilar declara seus modos no registry abaixo;
-// o ModeToggle fica travado no topo (header + toggle = chrome fixo) e só o modo
-// ativo recebe flex-1 para distribuir seus elementos no espaço restante.
+// o ModeToggle fica acima do modo ativo (só aparece com mais de um modo), e só o
+// modo ativo recebe flex-1 para distribuir seus elementos no espaço restante.
 // A SideNav vive numa coluna que estica até o fim da linha e é sticky dentro
 // dela: flutua durante o scroll e para com a base no fim da seção.
 
@@ -32,7 +32,7 @@ interface Mode extends ModeOption {
 }
 
 // Registry de modos por pilar. Plugar novo pilar = criar os modos + 1 entrada aqui.
-// Pilar sem entrada cai no PlaceholderPanel (sem toggle).
+// Todo pilar precisa de entrada: sem ela `modes[0]` lança e derruba a seção.
 const PANEL_MODES: Record<string, Mode[]> = {
   ambiente: [
     { value: 'agenda', label: 'Eixos prioritários', Component: ModeEixos },

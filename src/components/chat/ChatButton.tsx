@@ -1,7 +1,7 @@
 // FAB do chat global. Fica na faixa de margem direita das sections
 // (--spacing-gutter: 180px de padding-inline no .section-container): botão de
 // 56px centrado no gutter — (180 − 56) / 2 = 62px da borda — não cobre
-// conteúdo. Aberto, o ChatPanel desliza por cima (z-50) e o FAB some.
+// conteúdo. Aberto, o ChatPanel abre por cima (z-50) e o FAB some.
 
 import { useState } from 'react'
 import ChatPanel from '@/components/chat/ChatPanel'

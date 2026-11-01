@@ -1,5 +1,5 @@
 // Shared dropdown open/close state with click-outside listener.
-// Consumed by Dropdown and CitySelector — both need the same behavior.
+// Consumed by Dropdown, CitySelector, StateHeader and StateSelector — all need the same behavior.
 // A dispensa em si vem do useDismiss, comum a modal, tooltip e chat.
 
 import { useRef, useState } from 'react'

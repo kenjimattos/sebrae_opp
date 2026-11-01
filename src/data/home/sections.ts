@@ -11,8 +11,8 @@ export const sectionContent = {
       'Uma plataforma de inteligência que converte dados do território em insights para gerar mas capacidade para a gestão pública transformar o ambiente de negócios do seu território.',
   },
   // Os 4 pilares da Jornada — fonte única de verdade.
-  // `id` é também o anchor de scroll (Home/Header) e a chave de aba (SideNav/SectionJornada).
-  // `label` = texto curto de navegação (Header + SideNav); `title`/`subtitle` = SectionHeader;
+  // `id` é também o anchor de scroll (Home) e a chave de aba (SideNav/SectionJornada).
+  // `label` = texto curto de navegação (SideNav); `title`/`subtitle` = SectionHeader;
   // `description` = frase curta, de uma ou duas linhas, usada nos cards empilhados
   // da entrada.
   jornadas: [

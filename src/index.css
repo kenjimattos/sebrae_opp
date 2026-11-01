@@ -755,7 +755,7 @@ html {
 /* Glow indicador de status (ex.: agendas). Um box-shadow na caixa vazaria
    pelos quatro lados; em vez disso, um pseudo-elemento desenha uma barra
    colorida sobre a borda direita e é ELE que projeta o glow — assim o brilho
-   sai apenas do trecho que recebe a cor. A borda branca de 1px é mantida. */
+   sai apenas do trecho que recebe a cor. */
 @layer utilities {
   .status-success-glow { --glow-color: var(--semantic-success-vivid); }
   .status-warning-glow { --glow-color: var(--semantic-warning-vivid); }

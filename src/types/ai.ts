@@ -103,7 +103,7 @@ export type AiTaskRequest =
   | {
       task: 'economic-analysis'
       municipality: AiMunicipalityContext
-      // Os cards exibidos logo acima da análise. Única fonte de números que o
+      // Os cards do Panorama (modo Economics). Única fonte de números que o
       // modelo pode citar.
       economicBase: AiEconomicBaseItem[]
       // Indicadores de agenda (label: valor (status)) para a leitura apontar

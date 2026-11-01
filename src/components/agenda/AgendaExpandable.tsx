@@ -1,5 +1,5 @@
 // Shell de item expansível (accordion). Cabeçalho com título + botão toggle e
-// caixa de conteúdo com borda branca 1px. A caixa aparece sempre que houver
+// caixa de conteúdo com borda 1px na cor do texto primário. A caixa aparece sempre que houver
 // children; o consumidor decide o que mostrar conforme `expanded` (ex.:
 // descrição recolhido, indicadores expandido). Cantos retos, título em
 // Monoblock Bold 16px uppercase, glow conforme status.

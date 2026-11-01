@@ -56,8 +56,6 @@ export default function ModeResources() {
   }
 
   return (
-    // gap-md (não gap-lg) e p-md: o painel precisa fechar perto da altura da
-    // SideNav (83dvh) — com gap-lg os blocos sozinhos custavam 160px de respiro.
     <div className="flex flex-col w-full glass rounded p-md gap-lg">
       <TitleSubtitle
         size="md"
@@ -81,7 +79,7 @@ export default function ModeResources() {
           ariaLabel="Esfera das emendas"
         />
         {/* Mapa limitado em largura — a altura dele acompanha a largura
-            (viewBox ~1000×460). */}
+            (viewBox na proporção da malha, com teto de 1000×460). */}
         <div className="flex flex-col items-center w-full gap-sm">
         <ParaibaOutlineMap
           values={intensidades}

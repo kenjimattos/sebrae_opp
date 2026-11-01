@@ -1,6 +1,5 @@
 // Tailwind pure — no Figma equivalent
-// Pôster de um curso no catálogo /trilhas. Substitui o TrailCard (landscape,
-// CTA em botão) por uma face vertical de catálogo: carga horária no topo como
+// Pôster de um curso no catálogo /trilhas. Face vertical de catálogo: carga horária no topo como
 // "runtime", título embaixo e um medidor de carga no pé, proporcional ao curso
 // mais pesado da MESMA trilha — a fileira inteira vira um perfil de esforço.
 //

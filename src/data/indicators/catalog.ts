@@ -2,10 +2,10 @@ import type { Catalog } from '@/types/indicators'
 
 // `unit` = unidade/escala canônica de cada indicador, conforme
 // database/MAPEAMENTO_BASE_DOS_DADOS.md. Serve para exibição e para espelhar o
-// contrato da futura API. Os `id` estão alinhados a indicators._id do banco.
+// contrato de server/src/types/api.ts. Os `id` estão alinhados a indicators._id do banco.
 // `referenceYear` = ano a que o dado se refere (vintage), exibido no card. É
 // provisório aqui no catálogo: no banco vive por-valor (indicatorValues.referenceYear,
-// parte da chave/histórico) e virá de lá quando a API conectar. NÃO confundir com
+// parte da chave/histórico) e é de lá que a API o serve. NÃO confundir com
 // updatedAt do banco (data de coleta/refresh — um timestamp, não o ano do dado).
 export const catalog: Catalog = {
   agendas: [

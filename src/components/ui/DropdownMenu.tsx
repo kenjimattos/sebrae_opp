@@ -1,5 +1,5 @@
 // Reusable dropdown menu list (UL + items).
-// Consumed by Dropdown and CitySelector. Parent controls visibility via conditional render.
+// Consumed by Dropdown, CitySelector, StateHeader and StateSelector. Parent controls visibility via conditional render.
 //
 // Sizing:
 //   - width: auto-sizes to widest option (`w-[max-content]`) and never

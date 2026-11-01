@@ -1,8 +1,8 @@
-// Circular icon container. 4 variants × 4 sizes.
+// Icon container. 5 variants × 4 sizes.
 // Renders as <button> (interactive) or <span> (decorative).
 //
 // Sizes:
-// - xs: 24×24 (icon 12px) — CTAs pequenos (PillButton sm/md)
+// - xs: 16×16 (icon 12px) — CTAs pequenos (PillButton sm/md)
 // - sm: 32×32 (icon 16px) — metric cards (EconomicsCard)
 // - md: 40×40 (icon 16px) — tamanho neutro
 // - lg: 48×48 (icon 24px) — scroll nav, hero decorative

@@ -3,7 +3,7 @@
 //
 // Renderiza <a> quando `href` é fornecido; senão renderiza <button type="button">.
 // Variants: primary, secondary, ghost — usam tokens semânticos de botão (buttonVariantStyles).
-// Sizes:    sm (24px) | md (40px) | lg (64px com shell preenchido + círculo 40px)
+// Sizes:    sm (shell 32px, círculo 24px) | md (shell 40px, círculo 32px) | lg (shell pelo padding, círculo 40px)
 // iconPosition: 'right' (default) | 'left' — inverte posição e direção da seta.
 //
 // O círculo é <span> decorativo (não IconButton): <button> dentro de outro

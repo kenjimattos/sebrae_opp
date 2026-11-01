@@ -43,8 +43,8 @@ const PLAIN_TEXT_NOTE =
   'campo de formulário.'
 
 // Mesmo vocabulário de src/data/indicators/status-labels.ts (Bom/Atenção/
-// Alerta). Duplicado aqui de propósito: api/_lib não importa código do
-// frontend além de tipos.
+// Alerta). Duplicado aqui de propósito: api/_lib só importa do frontend
+// tipos e o allowlist AI_FIELD_IDS.
 const STATUS_PT: Record<string, string> = {
   success: 'Bom',
   warning: 'Atenção',
@@ -308,12 +308,11 @@ export function buildMessages(req: AiTaskRequest): OpenRouterMessage[] {
         'A análise deve: (1) destacar os pontos fortes, (2) apontar as fragilidades e riscos e ' +
         '(3) sugerir de 1 a 2 caminhos prioritários para o desenvolvimento do ambiente de pequenos ' +
         'negócios.\n\n' +
-        // O bloco fica sob os cards, num painel de altura limitada — o texto que
-        // ele substituiu tinha ~70 palavras. Sem um teto explícito o modelo passa
-        // das 180 e estoura o layout.
+        // O texto que este bloco substituiu tinha ~70 palavras. Sem um teto explícito
+        // o modelo passa das 180.
         'Limite a resposta a no máximo 110 palavras, terminando em frase completa.\n\n' +
         // Com os 12 cards reais o modelo gastava a metade do texto recitando todos
-        // os valores antes de analisar — repetindo o que o usuário já vê logo acima.
+        // os valores antes de analisar — repetindo o que os cards do Panorama já mostram.
         'NÃO relacione os dados um a um: eles já estão na tela, em cards logo acima da análise. ' +
         'Cite no máximo 3 números, escolhidos porque sustentam o argumento. O valor do texto está ' +
         'na leitura que conecta os dados, não na repetição deles.\n\n' +

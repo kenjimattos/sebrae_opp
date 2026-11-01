@@ -29,8 +29,8 @@ export default function EmendasFuncaoTable({
 
   const copy = resourcesContent.funcao
   const th = 'typo-body-sm text-inactive text-left font-normal pb-xs'
-  // Cabeçalho numérico com o mesmo recuo e o mesmo nowrap das células: em meia
-  // largura (as duas esferas lado a lado) "Pago" e "Em aberto" encostavam.
+  // Cabeçalho numérico com o mesmo recuo e o mesmo nowrap das células: em coluna
+  // estreita "Pago" e "Em aberto" encostavam.
   const thNum = `${th} text-right whitespace-nowrap pl-sm`
 
   return (

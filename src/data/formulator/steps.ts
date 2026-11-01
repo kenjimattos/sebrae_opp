@@ -1,5 +1,6 @@
 // Single source of truth for the 10 Formulator steps.
-// Consumed by sidebar (ProjectSteps), progress bar (FormulatorProgress) and routing.
+// Consumed by sidebar (FormulatorProjectSteps), progress bar (FormulatorProgress) and
+// ModeFormulator navigation (local state, no router).
 
 export interface FormulatorStep {
   slug: string
