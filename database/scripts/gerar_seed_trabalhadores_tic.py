@@ -28,7 +28,9 @@ SEM CLASSIFICAÇÃO (semáforo): não há faixa oficial de "bom/atenção/alerta
 participação em setores criativos/TIC (a FIRJAN publica a média nacional ~3,6% como
 referência descritiva, mas não um semáforo, e usa cesta CNAE diferente da nossa). Por
 decisão do projeto (jun/2026) não inventamos cortes; o indicador entra SEM `threshold`,
-exibindo só o valor. (Os índices IDH-M/IGM-CFA/IGMA usam as faixas oficiais das fontes.)
+e o gerador não emite faixa.
+A régua relativa (relativo-pb) é gravada depois por aplicar_tercis.py
+(_tercis.catalogo_derivados). (Os índices IDH-M/IGM-CFA/IGMA usam as faixas oficiais das fontes.)
 
 Saídas (idempotentes, próprias para o NoSQLBooster):
   - database/seed/indicador-trabalhadores-tic.mongodb.js

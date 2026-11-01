@@ -2,12 +2,12 @@
 //
 // Contexto: na coleção `indicators`, o campo `updatedAt` guardava, na verdade, o
 // ANO de referência exibido (string, ex: "2010") — não uma data. Ele foi
-// renomeado para `referenceYear` no schema (setup.mongodb.js) e nos seeds. Como
-// o upsert dos seeds usa `$set`, o `updatedAt` antigo NÃO é removido sozinho —
-// esta migração o apaga.
+// renomeado para `referenceYear` no schema (setup.mongodb.js) e nos seeds. O
+// `replaceOne` dos seeds .js já remove o `updatedAt` antigo; o `$set` do
+// --write-mongo não — doc escrito por esse caminho precisa desta migração.
 //
 // PRÉ-REQUISITO: rode ANTES o `setup.mongodb.js` (valida o schema novo) e
-// re-aplique os seeds (`scripts/aplicar_seeds.sh --all` ou os seeds no
+// re-aplique os seeds (`database/scripts/aplicar_seeds.sh --all` ou os seeds no
 // NoSQLBooster), para que os docs de indicador já tenham `referenceYear` + `unit`.
 // Só então rode esta migração.
 //

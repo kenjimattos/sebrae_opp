@@ -50,8 +50,8 @@ AGENDAS = [
 ]
 
 # Um único indicador IDH-M, com colocações ("placements") em duas seções: na agenda
-# 'governanca' e na seção 'socialeconomic' (cards do Panorama). threshold/descrição
-# espelham thresholds.ts e descriptions/*.ts.
+# 'governanca' e na seção 'socialeconomic' (cards do Panorama). a descrição
+# espelha descriptions/indicators.ts; o threshold é a faixa oficial do Atlas.
 DESC_IDHM = (
     "Índice de Desenvolvimento Humano Municipal — combina longevidade, educação e "
     "renda numa escala de 0 a 1. Quanto mais próximo de 1, maior o desenvolvimento humano."

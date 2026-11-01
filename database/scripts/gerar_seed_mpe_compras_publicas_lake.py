@@ -64,7 +64,9 @@ MÉTRICA (idêntica ao gerador de API): numericValue = % do valor de contratos d
 MUNICIPAL (ESFERA_ID == 'M') firmados com fornecedor de pequeno porte (ME/EPP, porte
 normalizado IN ('1','3'); MEI ⊂ ME), no ano. Denominador = contratos a PJ nacionais com
 porte resolvível na RF; PF/estrangeiro/porte-desconhecido ficam fora (no breakdown).
-SEM threshold (não há faixa oficial — não inventamos cortes).
+SEM threshold neste gerador (não há faixa oficial — não inventamos cortes).
+A régua relativa (relativo-pb) é gravada depois por aplicar_tercis.py
+(_tercis.catalogo_derivados).
 
 Cobertura: 223 municípios da PB. Sem contratos municipais (PJ) no ano → numericValue null.
 
@@ -667,7 +669,8 @@ def emit(values: List[dict], ano: int) -> Path:
     lines.append("// Pequeno negócio = porte ME/EPP (MEI incluso). SEM threshold (sem faixa oficial).")
     lines.append("const indicators = [\n  {},\n]".format(js(indicator)))
     # replaceOne, não $set: o documento vira exatamente o que este seed declara,
-    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas).
+    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas). Vale só
+    # para o seed .js: o --write-mongo ainda grava o catálogo com $set.
     lines.append("database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {")
     lines.append("  filter: { _id: i._id }, replacement: i, upsert: true,")
     lines.append("} })), { ordered: false })")

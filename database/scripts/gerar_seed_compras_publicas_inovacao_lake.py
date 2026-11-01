@@ -569,7 +569,8 @@ def emit(values, ref):
     lines.append("// PNCP × Receita Federal (porte + CNAE) — data lake do Sebrae. SEM threshold.")
     lines.append("const indicators = [\n  {},\n]".format(js(indicator)))
     # replaceOne, não $set: o documento vira exatamente o que este seed declara,
-    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas).
+    # então campo removido do seed some do banco (ver CLAUDE.md, armadilhas). Vale só
+    # para o seed .js: o --write-mongo ainda grava o catálogo com $set.
     lines.append("database.indicators.bulkWrite(indicators.map(i => ({ replaceOne: {")
     lines.append("  filter: { _id: i._id }, replacement: i, upsert: true,")
     lines.append("} })), { ordered: false })")

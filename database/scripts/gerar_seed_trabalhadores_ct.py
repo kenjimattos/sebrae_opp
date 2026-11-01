@@ -19,7 +19,9 @@ database/MAPEAMENTO_BASE_DOS_DADOS.md (agenda Inovação).
 SEM CLASSIFICAÇÃO (semáforo): a RAIS/CBO não publica uma faixa oficial de
 "bom/atenção/alerta" para a contagem de trabalhadores de C&T — é um dado bruto. Por
 decisão do projeto (jun/2026) não inventamos cortes; o indicador entra SEM `threshold`,
-ou seja, exibe apenas o valor, sem cor. (Os índices IDH-M/IGM-CFA/IGMA usam as faixas
+e o gerador não emite faixa.
+A régua relativa (relativo-pb) é gravada depois por aplicar_tercis.py
+(_tercis.catalogo_derivados). (Os índices IDH-M/IGM-CFA/IGMA usam as faixas
 oficiais das suas fontes.)
 
 Cobertura: os 223 municípios da Paraíba. Municípios sem nenhum vínculo de C&T na
