@@ -51,13 +51,13 @@ ser passados (via env, ver §5).
   pip3 install --user 'pymongo<4'
   ```
 - **Repositório** (sparse checkout só de `database/`, sem os arquivos da raiz, branch
-  `database`). Usar **non-cone mode** — o cone mode sempre traz a raiz junto:
+  `main`). Usar **non-cone mode** — o cone mode sempre traz a raiz junto:
   ```bash
   git clone --no-checkout --filter=blob:none \
     https://github.com/kenjimattos/sebrae_opp.git ~/sebrae_opp
   cd ~/sebrae_opp
   git sparse-checkout set --no-cone '/database/'   # só database/ no working tree
-  git checkout database
+  git checkout main
   ```
   (Para converter um checkout que já existe em cone mode: `git sparse-checkout set
   --no-cone '/database/'`. O git pode avisar que non-cone é "deprecated" — inofensivo
@@ -78,8 +78,8 @@ ser passados (via env, ver §5).
   chmod 600 database/.env
   ```
   Os geradores que tocam lake/OPP leem os defaults de conexão de `os.environ`
-  (`RAIS_MONGO_*`, `RFB_MONGO_*`, `PNCP_MONGO_*`, `OPP_MONGO_*`); o template cobre os
-  quatro grupos — preencha só os das fontes que for rodar. Carregue antes de rodar:
+  (`RAIS_MONGO_*`, `RFB_MONGO_*`, `PNCP_MONGO_*`, `OPP_MONGO_*`); o template cobre todas
+  as bases — preencha só os das fontes que for rodar. Carregue antes de rodar:
   ```bash
   set -a; source database/.env; set +a   # `set -a` faz cada atribuição virar export
   ```
@@ -116,24 +116,28 @@ mongosh "mongodb://usrdadosopp@127.0.0.1:27017/?authSource=DadosOPP" \
   --eval "db.getSiblingDB('DadosOPP').indicatorValues.countDocuments({indicatorId:/completo/})"
 
 # 4) RECALCULAR A RÉGUA RELATIVA — obrigatório se o indicador for um dos 11 da
-#    lista em database/scripts/_tercis.py. O bloco de catálogo do seed é gravado
-#    com replaceOne: o passo 2 acabou de APAGAR o threshold derivado, em silêncio.
-#    Sem rede, sem VPN; lê os próprios seeds.
+#    lista em database/scripts/_tercis.py. O gerador não conhece os tercis, e o passo 2
+#    deixou o banco com o valor novo e a régua velha. Sem rede, sem VPN; lê os próprios seeds.
 python3 database/scripts/aplicar_tercis.py              # relatório
-python3 database/scripts/aplicar_tercis.py --escrever   # aplica
+python3 database/scripts/aplicar_tercis.py --escrever   # grava nos SEEDS, não no banco
+
+# 5) LEVAR A RÉGUA AO BANCO — sem isto o banco não recebe o que o passo 4 calculou
+bash database/scripts/aplicar_seeds.sh indicador-<id>
 ```
 
 > **Por que o passo 4 existe, e o que acontece se for esquecido.** Nenhum
 > `gerar_seed_*.py` conhece os tercis — a conta é ENTRE municípios e atravessa
 > indicadores (população vem do `pib-per-capita`, o estoque vem de
-> `empresas-ativas`). Esquecer o passo 4 não dá erro: o seed roda, imprime `ok`,
-> e os indicadores afetados voltam a `status: 'none'` — perdem barra e cor sem
-> que nada avise. É a mesma mecânica que deixou o `trabalhadores-ct`
-> classificando 219 municípios em `alert` por sete semanas. O relatório do
+> `empresas-ativas`). Esquecer os passos 4 e 5 não dá erro, e o efeito depende do
+> caminho. **Seed `.js`** (`replaceOne`): os indicadores afetados voltam a `status: 'none'`,
+> sem barra e sem cor. **`--write-mongo`** (`$set`): threshold e `normalizedValue` antigos
+> ficam ao lado do `numericValue` novo, e o farol sai defasado. É uma falha silenciosa da
+> família da que deixou o `trabalhadores-ct` classificando 219 municípios em `alert` por
+> sete semanas (lá, um `$set` que não removia o campo). O relatório do
 > `aplicar_tercis.py` imprime a distribuição de cada indicador e o motivo de cada
 > recusa; é ele que se lê para saber se o resultado faz sentido.
 >
-> Nesta branch, o passo 5 é regerar o snapshot estático:
+> Nesta branch, o passo 6 é regerar o snapshot estático:
 > `python3 database/scripts/gerar_api_snapshot_municipios.py --conferir` (relata
 > o que mudaria, por indicador) e depois `--escrever`. O `--conferir` é a defesa
 > real: indicador que não recebeu régua nova tem de sair **idêntico**; diferença
@@ -145,7 +149,7 @@ Modos úteis:
 - `--offline` — regenera a partir do snapshot (`database/data/escolaridade_pb_2024.json`),
   **sem** reconsultar o lake. Bom para iterar na escrita sem o scan lento.
 - `--write-mongo` — além dos seeds `.js`, faz upsert direto em `indicators` +
-  `indicatorValues`. Sem ele, só gera os seeds versionados.
+  `indicatorValues`, com `$set`: não remove campo, ao contrário do seed `.js`. Sem ele, só gera os seeds versionados.
 - `validate()` roda sempre antes de escrever: aborta se a cobertura (< 200 munis) ou os
   totais cheirarem a erro (pegou um export truncado em 100 linhas no GUI).
 
@@ -165,9 +169,12 @@ O `.env` não vai pro git; fica só na 10.1.141.23 com `chmod 600`. O wrapper do
     --write-mongo >> $HOME/opp_etl.log 2>&1
 ```
 
-(`--mongo-host` sai do `RFB_MONGO_HOST`/`PNCP_MONGO_HOST` do `.env`; só permanece no comando
+(`--mongo-host` sai do `RAIS_MONGO_HOST` do `.env` ou do default do script; só permanece no comando
 o que é específico da rodada — coleção/ano.) Para o RF Estabelecimentos (§9), o cron é idêntico
 trocando o gerador por `gerar_seed_negocios_rfb_lake.py --ano <ano> --write-mongo`.
+
+> ⚠️ **O cron não recalcula a régua.** Escolaridade e RF alimentam 6 dos 11 indicadores com
+> tercil, e o farol deles fica defasado até a passada manual dos passos 4 e 5 do §4.
 
 Quando sair a RAIS 2025: trocar `--collection 2025_VINC` e a constante `ANO` no script.
 (CAGED é mensal → outro script, cron mais frequente.)
@@ -239,8 +246,8 @@ python3 database/scripts/gerar_seed_mpe_compras_publicas_lake.py --ano 2025 \
 python3 database/scripts/gerar_seed_mpe_compras_publicas_lake.py --offline
 ```
 
-`validate()` aborta se a cobertura/valores cheirarem a campo errado. **Sem `threshold`** (não há
-faixa oficial). `referenceYear` = `--ano`. Flags: `--sem-esfera` (dump sem `ESFERA_ID`),
+`validate()` aborta se a cobertura/valores cheirarem a campo errado. Sem faixa oficial: o gerador
+não emite `threshold`, e a régua relativa vem do `aplicar_tercis.py` (§4). `referenceYear` = `--ano`. Flags: `--sem-esfera` (dump sem `ESFERA_ID`),
 `--sem-ano` (confia no recorte da coleção em vez de filtrar `ANO_CONTRATO`),
 `--rfb-simples-collection ''` (pula o MEI — `PORTE_EMPRESA` '01' conta como ME).
 
@@ -255,12 +262,13 @@ Federal no lake** (`RF_ESTABELECIMENTOS_<ano>`, ~37,6M docs). Gerador:
 ano-ref: abertos/extintos = pequeno porte; ativas = todos os portes) + `crescimento-mpe` (agenda
 *Ecossistemas de Inovação*, **var. % a.a.** do mesmo fluxo de aberturas, consolidado em jul/2026). **4
 da base econômica** (`socialeconomic`): `empresas-ativas-total` (estoque total) + `meis`/`mes`/`epps`
-(estoque ativo por porte). **Todos sem threshold.** Agregação no lake — sem BigQuery, sem API. O porte
+(estoque ativo por porte). Sem faixa oficial: os 4 de agenda têm régua relativa (§4), os 4 da base econômica não têm régua. Agregação no lake — sem BigQuery, sem API. O porte
 vem da `RF_EMPRESAS` por `$in`, o MEI da `RF_SIMPLES`.
 
 > Aberturas agregadas na janela `2016..ano-ref` (série do crescimento-mpe); abertos usa só ref/prev.
-> ⚠️ `meis`/`mes`/`epps` exigem resolver o porte de **~todos os CNPJs ativos da PB** (estoque) → só
-> saem no **run online**; `--offline` gera os outros 5 seeds e avisa o que pulou. `--write-mongo` grava
+> ⚠️ `meis`/`mes`/`epps` exigem resolver o porte de **~todos os CNPJs ativos da PB** (estoque) → o split
+> só se **calcula no run online**, mas fica no snapshot: com o snapshot versionado o `--offline` emite
+> os 8, e só pula os três se faltar `ativasPorPorte`. `--write-mongo` grava
 > tudo no `DadosOPP` (rodada completa = **1.784 valores**, 223 × 8).
 
 | Alvo | Base | Coleção | Usuário (authSource `admin`) |
@@ -282,7 +290,7 @@ vem da `RF_EMPRESAS` por `$in`, o MEI da `RF_SIMPLES`.
 mongosh "mongodb://usrdadosopp@127.0.0.1:27017/DadosOPP?authSource=DadosOPP" \
   database/seed/municipios.mongodb.js
 
-#    CALIBRAR: estabelecimentos (coleção, UF, situação '2'/'8', datas) + confere a de-para
+#    CALIBRAR: estabelecimentos (coleção, UF, situação '02'/'08', datas) + confere a de-para
 #    (creds do lake usr_RECEITA_FEDERAL:usr_RECEITA_FEDERAL são DERIVADAS de --rfb-db → não passe --rfb-user/--rfb-pass)
 python3 database/scripts/gerar_seed_negocios_rfb_lake.py --inspect --ano 2025 --mongo-host 10.19.4.174
 python3 database/scripts/gerar_seed_negocios_rfb_lake.py --inspect-muni --ano 2025 \
@@ -386,7 +394,7 @@ parcial — ver gotcha abaixo).
 
 | Alvo | Base | Coleção | Usuário (authSource `admin`) |
 |---|---|---|---|
-| Contratos | `PNCP` | `CONTRATOS_2025` e `CONTRATOS_2024` | `usr_PNCP` |
+| Contratos | `PNCP` | `CONTRATOS_<ano>` | `usr_PNCP` |
 | Porte | `RECEITA_FEDERAL` | `RF_EMPRESAS_<ano>` | `usr_RECEITA_FEDERAL` |
 | MEI | `RECEITA_FEDERAL` | `RF_SIMPLES_<ano>` | `usr_RECEITA_FEDERAL` |
 | CNAE | `RECEITA_FEDERAL` | `RF_ESTABELECIMENTOS_<ano>` | `usr_RECEITA_FEDERAL` |
@@ -399,7 +407,7 @@ python3 database/scripts/gerar_seed_compras_publicas_inovacao_lake.py --inspect-
 #    -> confirma CNAE_FISCAL_PRINCIPAL + IDENTIFICADOR_MATRIZ_FILIAL (jun/2026: ambos confirmados).
 #    Para afinar a semente do objeto: calibrar_compras_inovacao.py --inspect/--score (ver script).
 
-# 1) RODAR + ESCREVER no OPP (harvest 2 anos + porte/CNAE na RF + agrega + crescimento + upsert)
+# 1) RODAR + ESCREVER no OPP (harvest do ano-ref + porte/CNAE na RF, com reserva do ano anterior + agrega + upsert)
 python3 database/scripts/gerar_seed_compras_publicas_inovacao_lake.py --ano 2025 \
   --mongo-host 10.19.4.174 --write-mongo --opp-user usrdadosopp --opp-pass 'SENHA'
 
