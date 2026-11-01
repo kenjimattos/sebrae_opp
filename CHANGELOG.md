@@ -18,6 +18,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Correção
 
+- **Revisão da documentação e dos comentários contra o código.** Corrige o que afirmava algo falso: município default (não existe), versão, contagem de testes, regra de tamanho da IA (dizia o contrário do `handler.ts`), `server/` "atrasado", login inexistente, branch `database` no runbook, coleções e catálogo (6 e 41, não 5 e 33), totais e datas de coleta das emendas, tempo de abertura pela fonte antiga, e cerca de 15 trechos que davam como "sem threshold" indicadores com tercil. O grão estadual e o `/api/estado` entram nas tabelas e árvores. **Duas lacunas operacionais do §4 do runbook:** o `aplicar_tercis.py` só grava nos seeds, e faltava o passo que leva a régua ao banco; e o `--write-mongo` de 9 geradores usa `$set`, não `replaceOne`, então o efeito de esquecer o recálculo é farol defasado, não `'none'`. Comentários de `src/`, `api/`, `server/`, `tests/` e `database/scripts/` citando código removido ou layout antigo foram corrigidos. Nada muda em execução.
+
 - **"Panorâma" vira "Panorama".** A palavra não leva circunflexo; o rótulo do modo ("Panorama Socioeconômico") na `SectionJornada` e no `ModeToggle`, os comentários de código e o `README.md`/`CLAUDE.md` estavam com a grafia errada. A entrada de "Sócioeconômico" logo abaixo, que dizia manter o circunflexo, fica superada por esta.
 
 - **"Sócioeconômico" vira "Socioeconômico" no rótulo do modo.** O `ModeToggle` mostrava "Panorâma Sócioeconômico" (o prefixo *socio-* não leva acento). Corrigido no rótulo da `SectionJornada` e no default do `ModeToggle`, e nos comentários de `ModeEconomics`, `economic-base.ts`, `economics.ts` e `types/ai.ts`. "Panorâma" segue com circunflexo, como estava.

@@ -1,4 +1,4 @@
-# Plataforma OPP — Observatório de Políticas Públicas
+# PIPPA — Plataforma de Inteligência de Políticas Públicas Aplicada
 
 Plataforma de dados municipais para o Sebrae Paraíba. Consolida indicadores
 socioeconômicos, agendas prioritárias, análise por IA e oportunidades de recursos
@@ -33,10 +33,14 @@ formulador) mora em `src/data/`.
 
 ## Funcionalidades
 
-A Home organiza tudo como uma **Jornada do Município Empreendedor**: uma `SideNav` com
-**4 pilares**, e cada pilar alterna **modos de visualização** via `ModeToggle`.
+A Home abre com a **visão estadual** e segue para a **Jornada do Município Empreendedor**:
+uma `SideNav` com **4 pilares**; os que têm mais de um **modo de visualização** alternam via
+`ModeToggle`.
 
-- **Login** (`/`) — porta de entrada do protótipo (autenticação em memória; reload desloga).
+- **Entrada** (`/`) — escolha de UF: escolher a Paraíba leva a `/home`. Não há autenticação
+  efetiva: `/home` abre direto.
+- **Visão estadual** — indicadores da PB no grão UF (`/api/estado`), com a posição entre as
+  27 UFs e as 9 do Nordeste, sem semáforo.
 - **Ambiente de negócio** — 3 modos:
   - *Eixos prioritários* — cards das 6 agendas com as barras de indicador, e um
     **farol** por agenda (média da gravidade dos indicadores que classificam; agenda sem
@@ -70,8 +74,8 @@ A Home organiza tudo como uma **Jornada do Município Empreendedor**: uma `SideN
 
 ## Municípios
 
-Os **223 municípios da Paraíba** vêm de `GET /api/municipalities`. O município default é
-**Campina Grande** (IBGE `2504009`). A cobertura de indicadores por município depende dos
+Os **223 municípios da Paraíba** vêm de `GET /api/municipalities`. A sessão começa sem
+município escolhido. A cobertura de indicadores por município depende dos
 seeds já aplicados pelo ETL (`database/`); indicador sem documento no banco simplesmente
 não é retornado.
 
@@ -88,11 +92,11 @@ npm run dev                      # http://localhost:5173
 npm run build                    # build de produção (NÃO compila tests/)
 npm run preview                  # serve o dist/
 npm run lint
-npm run test                     # 198 casos (client/jsdom + server/node)
+npm run test                     # client/jsdom + server/node
 npm run typecheck                # tsc do app E dos testes — é este antes de commitar
 ```
 
-> **Testes:** 198 casos em `tests/`, em dois projetos do Vitest — `tests/client/`
+> **Testes:** ficam em `tests/`, em dois projetos do Vitest — `tests/client/`
 > (jsdom: utilitários e componentes) e `tests/server/` (node: régua do status, rotas,
 > cache, guardrails da IA). Eles **não entram no `npm run build`**: `tests/server/`
 > importa `server/src/`, que importa `mongodb` e `dotenv` de `server/node_modules` —
@@ -126,6 +130,7 @@ sabe a diferença.
 |---|---|
 | `/api/municipalities` e `/api/municipalities/:id` | `public/api-snapshot/` (223 JSONs + índice) |
 | `/api/emendas` | `public/api-snapshot/emendas.json` |
+| `/api/estado` | `public/api-snapshot/estado.json` (grão estadual) |
 | Roteamento em produção (Vercel) | `rewrites` do `vercel.json` |
 | Roteamento em dev | `bypass` do proxy no `vite.config.ts` (espelha os rewrites) |
 | `/api/ai` | function serverless `api/ai.ts` (essa é real) |
@@ -138,9 +143,8 @@ sabe a diferença.
 > velhos sem erro nenhum. Regerar (scripts em `database/scripts/`) após qualquer mudança
 > de contrato ou carga no banco.
 
-A API Node em `server/` é a de produção da `main`, mas nesta branch está **atrás**: só
-`health`, `municipalities`, `municipalities/:id` e `map` — sem `/api/emendas` e sem
-`/api/ai`.
+A API Node em `server/` é a de produção da `main`. Nesta branch ela não atende ninguém, mas
+o código é o mesmo, porque `tests/server/` compila contra ele.
 
 ## Integração de IA
 
@@ -163,8 +167,8 @@ nesta branch: a function da Vercel (`api/ai.ts`) e o middleware de dev do Vite �
 tem um terceiro, `POST /api/ai` no Fastify. Client: `src/data/ai.ts` + `useAiTask`.
 
 > Capacidade nova = novo literal na união + prompt em `prompts.ts`. **Nunca** um endpoint
-> paralelo. Limite de tamanho da resposta se impõe em `maxTokens` (`MAX_TOKENS_BY_TASK`),
-> não pedindo no prompt.
+> paralelo. Tamanho de resposta se controla pedindo no prompt, e o layout absorve a
+> sobra: teto por task (`MAX_TOKENS_BY_TASK`, hoje vazio) só trunca.
 
 ## Estrutura
 
@@ -174,18 +178,20 @@ Três camadas: o **frontend** (`src/` + `api/`), a **API de leitura** (`server/`
 ```
 src/                          # Frontend React
 ├── components/               # Componentes por grupo do Figma
-│   ├── agenda/               # AgendaCard, IndicatorBar, IndicatorModal, ModeEixos
+│   ├── agenda/               # AgendaExpandable, IndicatorBar, IndicatorModal, ModeEixos
 │   ├── economics/            # EconomicsCard, ModeEconomics
 │   ├── analysis/             # ModeAnalysis, AIAnalysis
-│   ├── resources/            # ModeResources, EmendasEsferaCard
+│   ├── resources/            # ModeResources, EmendasEsferaCard, EmendasFuncaoTable
+│   ├── estado/               # StateHeader, StateIndicatorCard, BreakdownBars
+│   ├── brand/                # PippaWordmark
 │   ├── training/             # ModeTraining + catálogo de /trilhas
 │   │                         #   (CatalogBillboard, CatalogRow, CoursePoster, TrailNav)
 │   ├── case-studies/         # ModeCaseStudies, CaseStudiesCard
 │   ├── formulator/           # ModeFormulator + FormulatorForm + 10 steps + revisão
 │   ├── chat/                 # ChatButton, ChatPanel (chat global da Home)
-│   ├── sections/             # SectionHero, SectionAgendas, SectionJornada
-│   ├── layout/               # Layout, SideNav, CitySelector
-│   ├── map/                  # ParaibaOutlineMap (SVG do GeoJSON)
+│   ├── sections/             # SectionHero, SectionEstado, SectionJornada
+│   ├── layout/               # Layout, SiteHeader, SideNav, CitySelector, StateSelector
+│   ├── map/                  # OutlineMap, ParaibaOutlineMap, BrasilOutlineMap, MunicipalityMap
 │   ├── ui/                   # Primitivos Tailwind: Card, Modal, ModeToggle,
 │   │                         #   Tooltip, buttons/ (Button, Chip, IconButton…)
 │   └── icons/                # Re-exports Lucide
@@ -193,7 +199,7 @@ src/                          # Frontend React
 │                             #   indicators/, home/, formulator/, chat/, geo/, layout.ts
 ├── hooks/                    # MunicipalityProvider, FormulatorProvider, AuthProvider,
 │                             #   useEmendas, useAiTask, useTypewriter…
-├── types/                    # indicators.ts, emendas.ts, formulator.ts, ai.ts
+├── types/                    # indicators.ts, emendas.ts, estado.ts, formulator.ts, ai.ts
 ├── pages/                    # Login (/), Home (/home), Trails (/trilhas)
 ├── utils/                    # emendas, economics, courseLoad, statusStyles…
 └── index.css                 # Design tokens + classes compostas (@layer components)
@@ -206,7 +212,7 @@ public/api-snapshot/          # Snapshot estático do banco (só nesta branch)
 
 server/                       # API de leitura (Node/Fastify) — ver server/README.md
 └── src/                      # por DOMÍNIO, não por camada: indicadores/ (a régua),
-                              #   municipios/, mapa/, emendas/, infra/, types/
+                              #   municipios/, mapa/, emendas/, estado/, infra/, types/
 
 database/                     # ETL lake → OPP: seeds MongoDB, geradores Python,
                               #   MAPEAMENTO_BASE_DOS_DADOS.md, RUNBOOK_ETL.md
@@ -216,14 +222,14 @@ database/                     # ETL lake → OPP: seeds MongoDB, geradores Pytho
 
 Tokens extraídos das Figma Variables (Colors, Typography, Spacing), declarados em
 `src/index.css` e integrados ao `tailwind.config.js` — usar as classes nativas
-(`gap-md`, `rounded-sm`, `text-primary`), nunca arbitrary values. Cor em arbitrary
+(`gap-md`, `rounded`, `text-primary`), nunca arbitrary values. Cor em arbitrary
 value é **erro de lint**.
 
 A cor tem três camadas: primitivas (`--primitives-*`, único lugar com hex),
 semânticos (`--semantic-*`, o que os componentes consomem) e as classes do
 `tailwind.config.js`. Componente nunca lê primitiva direto.
 
-**Tema claro e escuro**, alternados pelo `ThemeToggle` no topo do `SideNav`:
+**Tema claro e escuro**, alternados pelo `ThemeToggle` no header (na `/`, solto no canto):
 automático (segue o sistema, é o default) → claro → escuro. O tema mora inteiramente
 no CSS — nenhum componente tem variante `dark:`; `useTheme` só liga a classe `dark`
 no `<html>`. Token novo no `:root` **precisa** entrar no `.dark` também: sem par ele
@@ -276,10 +282,11 @@ sudo systemctl restart opp-api
 |---|---|---|
 | Código React/CSS (`src/`) | sim | -- |
 | Código da API (`server/src/`) | -- | sim |
-| **Só dados no banco** (seeds/migração do ETL) | -- | **só restart** (o catálogo é cacheado em memória) |
+| **Só valores no banco** (carga do ETL) | -- | nada: aparecem em até 5 min (TTL do cache) |
+| **Catálogo no banco** (`threshold`, rótulos, indicador novo) | -- | **só restart** (o catálogo fica em memória, sem TTL) |
 
-> **Importante:** a API cacheia o catálogo em memória no boot. Qualquer alteração no banco
-> (novos seeds, migração de id, ajuste de `threshold`/labels) só aparece no frontend **após
+> **Importante:** a API guarda o catálogo em memória desde a primeira requisição, sem TTL.
+> Indicador novo, migração de id e ajuste de `threshold`/labels só aparecem **após
 > `sudo systemctl restart opp-api`**.
 
 ### Verificação pós-deploy
