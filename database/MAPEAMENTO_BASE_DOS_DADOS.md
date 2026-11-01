@@ -1,6 +1,6 @@
-# Mapeamento de Fontes de Dados — Plataforma OPP
+# Mapeamento de Fontes de Dados — PIPPA
 
-Mapeamento dos 35 indicadores da OPP (catálogo em [indicators/catalog.ts](indicators/catalog.ts))
+Mapeamento dos 35 indicadores municipais da PIPPA (catálogo em [src/data/indicators/catalog.ts](../src/data/indicators/catalog.ts))
 e das demais fontes disponíveis. A coluna **Fonte** da §1 usa as etiquetas abaixo.
 
 **Camadas de dados consolidados**
@@ -48,15 +48,15 @@ e das demais fontes disponíveis. A coluna **Fonte** da §1 usa as etiquetas aba
 | Tempo médio de viabilidade da empresa | ✅ SL (implementado) | **Data lake do Sebrae**, base `REDESIM` (coleção `BRASIL_<ano>` — os mesmos microdados que a API expõe em XLSX). Seed `tempo-viabilidade`: 223 municípios PB, ano-calendário (2025: 196/223 com dado), marco de 75% (horas úteis), faixas oficiais. Caminho autocontido (`gerar_seed_tempo_abertura_lake.py`). Fonte legada = API pública `estatistica.redesim.gov.br/tempos-abertura-redesim`. Ver §9 e §13 |
 | Tempo médio de abertura da empresa | ✅ SL (implementado) | Idem, mesma base/script — `tempo-abertura` = viabilidade + validação cadastral (DBE) + deferimento. Seed: 223 municípios PB, marco de 75%. P75 reimplementado (host Python 3.6) idêntico à metodologia oficial. Ver §9 e §13 |
 | Ranking municipal Redesim/PB | ✅ Redesim/PB (implementado) | **API pública** do Ranking Municipal da Redesim/PB (`redesim.pb.gov.br/api/mapa-empresas-service/ranking-municipal`) — 223 municípios já com IBGE, pontuação (DH+IA+Índice de Tempo) e posição. Seed `ranking-redesim`: janela de 6 meses, `numericValue` = total 0–600. Ver §10 |
-| Tempo de licenciamento | ✅ Redesim/PB (implementado) | Mesma API (§10). Horas brutas de alvará só existem no **nível estadual**; por município usa-se a **pontuação do Índice de Tempo** do alvará (Localização `1\|3` + Sanitário `2\|3`, derivada das faixas oficiais de horas). Seed `tempo-licenciamento`: 223 municípios, `numericValue` = score 0–120 (maior = + rápido), sem threshold |
+| Tempo de licenciamento | ✅ Redesim/PB (implementado) | Mesma API (§10). Horas brutas de alvará só existem no **nível estadual**; por município usa-se a **pontuação do Índice de Tempo** do alvará (Localização `1\|3` + Sanitário `2\|3`, derivada das faixas oficiais de horas). Seed `tempo-licenciamento`: 223 municípios, `numericValue` = score 0–120 (maior = + rápido), sem faixa oficial; classifica por tercil `relativo-pb` |
 
 ### Agenda: Ecossistemas de Inovação
 
 | Indicador | Fonte | Como obter |
 |---|---|---|
-| Trabalhadores nas ocupações de C&T | ✅ BD (implementado) | `rais` (`br_me_rais.microdados_vinculos`) — vínculos ativos em 31/12, CBO 2002 subgrupos **20/21/31** (núcleo C&T: pesquisadores + ciências exatas/engenharia/TIC + técnicos). Seed `trabalhadores-ct` no banco: 223 municípios PB, RAIS 2024, `breakdown` com os 3 subgrupos. Definição estreita (não o HRST amplo da OCDE) p/ casar com o threshold |
+| Trabalhadores nas ocupações de C&T | ✅ BD (implementado) | `rais` (`br_me_rais.microdados_vinculos`) — vínculos ativos em 31/12, CBO 2002 subgrupos **20/21/31** (núcleo C&T: pesquisadores + ciências exatas/engenharia/TIC + técnicos). Seed `trabalhadores-ct` no banco: 223 municípios PB, RAIS 2024, `breakdown` com os 3 subgrupos. Definição estreita (não o HRST amplo da OCDE); sem faixa oficial; classifica por tercil `relativo-pb` |
 | Trabalhadores nos setores de economia criativa, inovação e TIC | ✅ BD (implementado) | `rais` (`br_me_rais.microdados_vinculos`) — **% dos vínculos** em setores intensivos em conhecimento: CNAE 2.0 divisões **TIC** 26/61/62/63 + **criativa** 58/59/60/73/74/90/91 + **P&D** 72. Seed `trabalhadores-tic`: 223 municípios PB, RAIS 2024, `breakdown` com numerador/denominador + split TIC/criativa/pesquisa. Não inclui div 71 (engenharia/arquitetura) |
-| Crescimento de MPE formalizadas nos ELI | 🟡 Observatório Sebrae (implementado) | **API Tesseract pública** do Observatório Setorial Territorial do Sebrae (cubo `RF` — RFB/Estabelecimentos). Seed `crescimento-mpe` (renomeado de `mpe-eli-sebrae` em jul/2026, pois o recorte "nos ELI" é só proxy): 223 municípios PB, **var. % a.a.** das MPE (MEI+ME+EPP) formalizadas por ano de abertura (2025 vs 2024), todas as situações cadastrais (sem viés de sobrevivência). **Proxy municipal** — o recorte "nos ELI" não existe em fonte aberta (dado interno do Sebrae). Sem threshold. Ver §11 |
+| Crescimento de MPE formalizadas nos ELI | 🟡 SL (implementado) | **RF Estabelecimentos do data lake** (`gerar_seed_negocios_rfb_lake.py`, §14); a API Tesseract (cubo `RF`) é o caminho legado. Seed `crescimento-mpe` (renomeado de `mpe-eli-sebrae` em jul/2026, pois o recorte "nos ELI" é só proxy): 223 municípios PB, **var. % a.a.** das MPE (MEI+ME+EPP) formalizadas por ano de abertura, todas as situações cadastrais (sem viés de sobrevivência). **Proxy municipal** — o recorte "nos ELI" não existe em fonte aberta (dado interno do Sebrae). Classifica por tercil `relativo-pb`. Ver §11 e §14 |
 | Compras públicas de inovação nos pequenos negócios | 🟡 SL (proxy, implementado) | **Valor (R$/ano)** de contratos municipais a pequenos negócios em compras de inovação (NÍVEL, não crescimento — a var. a.a. mede adesão ao PNCP). 🟡 (não ✅) porque **não há definição oficial de "compra de inovação"**: as fontes são primárias (PNCP + RF), mas a operacionalização é um **proxy nosso** — (A) CNAE ∈ {TIC/criativa/P&D} via `RF_ESTABELECIMENTOS` ∪ (B) `OBJETO_CONTRATO` classificado por semente calibrada — que **não** capta CPSI/encomenda tecnológica. Mesmo status de `crescimento-mpe` (proxy). Coletado jun/2026 (2025): **R$144,5M PB**, 98 municípios. Sem threshold. Ver §12 |
 
 ### Agenda: Educação empreendedora
@@ -64,8 +64,8 @@ e das demais fontes disponíveis. A coluna **Fonte** da §1 usa as etiquetas aba
 | Indicador | Fonte | Como obter |
 |---|---|---|
 | Educação Empreendedora – ISDEL | ✅ Sebrae (implementado) | Mesmo CSV do ISDEL (§ Governança acima) — coluna Educação Empreendedora. Seed `isdel-educacao-emp`: 223 municípios PB, série 2015–2023 (2.007 valores). É **subdimensão** de Capital Empreendedor (clientela Sebraetec + Empreendedor do Futuro), fortemente zero-inflada (2022–2023 ~100% zerada) → exibe **2021** e entra **sem semáforo** (faixa oficial é só do índice agregado) |
-| Trabalhadores formais com Ensino Médio Completo | ✅ SL (implementado) | **Acesso direto ao data lake do Sebrae** (Mongo `10.19.4.174`, base `RAIS.2024_VINC`) — vínculos ativos em 31/12 com `ESCOLARIDADE_APOS_2005 = 7`. Seed `trabalhadores-medio-completo`: 223 municípios PB, RAIS 2024, `breakdown` com total + percentual. **Sem semáforo** (contagem bruta). 1º indicador do fluxo lake→OPP — ver §13 e `RUNBOOK_ETL.md` |
-| Trabalhadores formais com Ensino Superior Completo | ✅ SL (implementado) | Idem, `ESCOLARIDADE_APOS_2005 = 9`. Seed `trabalhadores-superior-completo`: 223 municípios PB, RAIS 2024, `breakdown` com total + percentual + mestrado/doutorado. **Sem semáforo**. Mesma consulta do médio (um script → dois seeds, como o ISDEL) |
+| Trabalhadores formais com Ensino Médio Completo | ✅ SL (implementado) | **Acesso direto ao data lake do Sebrae** (Mongo `10.19.4.174`, base `RAIS.2024_VINC`) — vínculos ativos em 31/12 com `ESCOLARIDADE_APOS_2005 = 7`. Seed `trabalhadores-medio-completo`: 223 municípios PB, RAIS 2024, `breakdown` com total + percentual. Contagem bruta, sem faixa oficial; classifica por tercil `relativo-pb` per capita. 1º indicador do fluxo lake→OPP — ver §13 e `RUNBOOK_ETL.md` |
+| Trabalhadores formais com Ensino Superior Completo | ✅ SL (implementado) | Idem, `ESCOLARIDADE_APOS_2005 = 9`. Seed `trabalhadores-superior-completo`: 223 municípios PB, RAIS 2024, `breakdown` com total + percentual + mestrado/doutorado. Classifica por tercil `relativo-pb` per capita. Mesma consulta do médio (um script → dois seeds, como o ISDEL) |
 
 ### Agenda: Acesso a crédito
 
@@ -118,15 +118,12 @@ e das demais fontes disponíveis. A coluna **Fonte** da §1 usa as etiquetas aba
 > | **GINI** | — (**sem variação**) | — | mesmo caso do IDH-M — série decenal do Atlas (1991/2000/2010); card diz "2010" → não exibe |
 > | **PIB per capita** | `yoy` | 2023 vs 2022 (per capita = `pib/populacao` em cada ano) | 223/223; série anual do IBGE (Contas Regionais), último ano 2023 |
 > | **Remuneração média** | `yoy` | 2024 vs 2023 (média de `VL_REMUN_MEDIA_NOM` em cada ano) | 223/223 esperado; série anual da RAIS (data lake), último ano 2024; município sem vínculo remunerado → sem variação |
->
-> Indicadores ainda fictícios (MEI/ME/EPP…) seguirão o
-> mesmo formato quando coletados; cada um carrega sua própria `basis`/período.
 
 ### Cobertura final do catálogo (após varredura completa BD)
 
 - **✅ Cobertos:** 29/35 indicadores (a agenda **Simplificação e digitalização** está completa: tempo de abertura e viabilidade via **data lake do Sebrae** (base `REDESIM`, §9.1/§13), ranking municipal e tempo de licenciamento via API `redesim.pb.gov.br` (§10); **as duas dimensões ISDEL** — Governança + Educação Empreendedora — via CSV do Sebrae; **escolaridade da força de trabalho** — médio + superior completo — via acesso direto ao data lake do Sebrae, §13; **remuneração média** via RAIS do data lake — média de `VL_REMUN_MEDIA_NOM` 2024, variação yoy, §13; **IDSC** via API pública do Instituto Cidades Sustentáveis, §15; **Cobertura da Atenção Básica** via `br_ms_atencao_basica` da BD — média anual 2020, sem semáforo)
-- **🟡 Parcial / proxy:** 4/35 (IGM-CFA via Power BI scrape ou IEGM/IFGF; **MPE em ELI** via proxy municipal RFB — fluxo de aberturas do **RF Estabelecimentos do lake** (§14, consolidado jul/2026 com o `negocios-abertos`; antes Observatório Sebrae); recorte ELI indisponível em fonte aberta; **Participação MPE em compras públicas** via PNCP × RF, ambos do data lake — coletado jun/2026, 150/223 munis, 74,5% PB — ver §12/§13; **Bolsa Família** via cubo `MDS_PBF` do Observatório — mede **famílias** (Novo BF), pois o recorte etário 18–50 do catálogo não existe em fonte municipal aberta atual, ver §11)
-- **❌ Sem fonte aberta:** 4/35 (Sebrae interno: apoiados Sebrae; **linhas de crédito** — levantado jul/2026: catálogo existe (Plataforma Sebrae, +250 linhas/35 inst.) mas é nacional e não auditável, e o volume R$ a MPE (SCR/BCB) não tem grão municipal; segue pendente, ver agenda "Acesso a crédito"; **compras públicas de inovação** — sem flag de inovação no PNCP, ver §12)
+- **🟡 Parcial / proxy:** 4/35 (**compras públicas de inovação** — proxy nosso, sem flag de inovação no PNCP, ver §12; **MPE em ELI** via proxy municipal RFB — fluxo de aberturas do **RF Estabelecimentos do lake** (§14, consolidado jul/2026 com o `negocios-abertos`; antes Observatório Sebrae); recorte ELI indisponível em fonte aberta; **Participação MPE em compras públicas** via PNCP × RF, ambos do data lake — coletado jun/2026, 150/223 munis, 74,5% PB — ver §12/§13; **Bolsa Família** via cubo `MDS_PBF` do Observatório — mede **famílias** (Novo BF), pois o recorte etário 18–50 do catálogo não existe em fonte municipal aberta atual, ver §11)
+- **❌ Sem fonte aberta:** 2/35 (Sebrae interno: apoiados Sebrae; **linhas de crédito** — levantado jul/2026: catálogo existe (Plataforma Sebrae, +250 linhas/35 inst.) mas é nacional e não auditável, e o volume R$ a MPE (SCR/BCB) não tem grão municipal; segue pendente, ver agenda "Acesso a crédito"). FAMPE, fora do catálogo, também não tem fonte aberta
 
 > Nota `tempo-licenciamento`: é a **pontuação** do Índice de Tempo do alvará (proxy oficial), não horas brutas — estas não são publicadas por município (ver §10).
 
@@ -156,8 +153,9 @@ independentemente de existir faixa oficial —, então ficam **fora** desta tabe
 
 Ground-truth = os seeds `seed/indicador-*.mongodb.js`. A régua relativa é calculada por
 `scripts/aplicar_tercis.py` (tercis p33/p67, catálogo e portão em `scripts/_tercis.py`), que roda
-**depois** dos geradores — o bloco de catálogo usa `replaceOne`, então rodar um `gerar_seed_*.py`
-apaga o threshold derivado e exige nova passada.
+**depois** dos geradores: nenhum deles conhece os tercis, então rodar um `gerar_seed_*.py` exige nova
+passada. O seed `.js` (`replaceOne`) apaga o threshold derivado; o `--write-mongo` (`$set`) o deixa
+velho ao lado do valor novo.
 
 **Com semáforo — 6 indicadores de agenda** (têm `threshold` porque a fonte publica faixa oficial):
 
@@ -200,8 +198,8 @@ não tem extinção e ganharia verde por não ter o que fechar. Dividido pelo es
 distribuição mais bem-comportada do conjunto (razão média/mediana 1,01).
 ⁴ 73 municípios sem contrato público a PJ entram sem base.
 
-**Sem régua — 5 indicadores de agenda.** Os quatro primeiros são **recusa automática** do portão
-em `scripts/_tercis.py`, que imprime o motivo a cada rodada; o último é decisão de produto.
+**Sem régua — 5 indicadores de agenda.** Ficam fora por decisão registrada: não estão em
+`_tercis.catalogo_derivados`, então o portão nem roda neles e o relatório não os cita.
 
 | Indicador | Agenda | Por que a régua não se aplica |
 |---|---|---|
@@ -245,7 +243,7 @@ do data lake com outra data de carga — divergir não é defeito de nenhum dos 
 ² `Active worker indicator = 1` (vínculos ativos em 31/12). **Sem esse corte o número sobe
 ~28%** (1.268.617 em vez de 914.955 em 2025): passa a medir fluxo, não estoque.
 ³ Só pequenos negócios, por decisão de produto (set/2026). Médias e grandes ficam fora do
-valor — são ~64% do total —, então **não soma com `uf-empregados`**; o total do estado fica
+valor — são ~67% do total em 2025 —, então **não soma com `uf-empregados`**; o total do estado fica
 em `breakdown.totalEstadoTodosOsPortes`.
 ⁴ Média das **quatro áreas objetivas**. O cubo não expõe redação, então **não é a nota final
 do ENEM** — a ressalva viaja no label, na descrição e no breakdown.
@@ -266,7 +264,8 @@ de falha que já desligou o farol de agenda de jul a set/2026.
 **A posição é per capita onde o bruto mediria o tamanho do estado** — a mesma razão do
 `normalizedValue` no grão municipal. Medido: nº de empregados é 16º no bruto e 19º per
 capita; matrículas no superior é 14º no país e 1º do Nordeste. Ficam **sem** normalizar só
-`uf-populacao` (a posição é a própria ordem de tamanho) e `uf-remuneracao-media` (já é razão).
+`uf-populacao` (a posição é a própria ordem de tamanho), `uf-remuneracao-media` (já é razão) e
+`uf-enem-media` (nota é escala).
 
 ### Armadilha: a 28ª UF
 
@@ -515,11 +514,14 @@ Retorna por município: nome, IBGE code, lat/lng, **IGMA score + 6 pilares** (Go
 
 ## 8. Recomendações de ingestão
 
+> **Registro histórico.** Plano anterior à API: o item 3 contraria a regra atual (dado de indicador não
+> mora em arquivo no frontend), e a seção de Riscos não existe mais.
+
 1. **Quick win — dados ao vivo (sem cache):** `/inep` (IDEB), `/saude` (CNES), `/compras` (PNCP), `/bndes`, `/ibge` Sidra, `/transferegov` via mcp-brasil + IGMA Áquila para os 6 pilares.
 2. **Quick win — dados massivos (BigQuery):** `pib`, `cnpj` (MEI/ME/EPP/abertas/extintas), `caged` (escolaridade + remuneração), `ideb`, `censo_demografico` (Gini) via basedosdados.
 3. **Build é estático:** criar `scripts/fetch-data.ts` que combina BD + MB + Áquila offline e gera JSONs em [indicators/values/](indicators/values/).
 4. **Featurização extra:** considerar usar `/diario_oficial` e `/transferegov` para virar conteúdo da seção de Riscos e/ou Trilhas.
-5. **Lacunas restantes:** IGM-CFA, dados internos do Sebrae seguem como inputs manuais (IDSC, ISDEL e Redesim já têm API/fonte própria — ver §15, §1 e §9–§10).
+5. **Lacunas restantes:** dados internos do Sebrae seguem como inputs manuais (IGM-CFA, IDSC, ISDEL e Redesim já têm API/fonte própria — ver §15, §1 e §9–§10).
 
 ---
 
@@ -604,7 +606,7 @@ máx 100 = Documentos Habilitados (35) + Índice de Atendimento (15) + Índice d
 a API **soma os 6 meses** da janela → escalas 6× (DH 210, IA 90, Tempo 300, Total 600).
 
 **Implementado:** `ranking-redesim` (`gerar_seed_ranking_redesim.py`, `numericValue` = total
-0–600, sem threshold — a fonte não publica faixa oficial para o total).
+0–600; a fonte não publica faixa oficial para o total, e a régua é o tercil `relativo-pb`).
 
 > ⚠️ **Tempo de licenciamento — limite da fonte:** as **horas brutas** de alvará só existem
 > no `ranking-panorama-estado` (nível **estadual**: Alvará de Localização ~253h, Sanitário
@@ -705,7 +707,7 @@ Janela máx. **365 dias** por chamada; `tamanhoPagina` mín. **10** (5 → HTTP 
 **Limite estrutural:** **nenhum DTO do PNCP traz o porte (ME/EPP) do fornecedor.** Logo a
 participação MPE não sai do PNCP isolado — exige join com a Receita Federal.
 
-### `mpe-compras-publicas` — Participação MPE em compras públicas (planejado)
+### `mpe-compras-publicas` — Participação MPE em compras públicas (gerador de API, legado; a coleta oficial é pelo lake)
 
 Metodologia (cross-source PNCP × RFB), `numericValue` = **% do valor de contratos do
 município com fornecedor de pequeno porte**, janela 12 meses:
@@ -723,7 +725,7 @@ município com fornecedor de pequeno porte**, janela 12 meses:
 **Ressalvas:** PNCP cobre **a partir de ~2021** (Lei 14.133), com adesão municipal irregular
 — muitos municípios pequenos da PB têm pouco/zero registro (entram `numericValue: null`).
 Fornecedor PF (`tipoPessoa`) e estrangeiro (`codigoPaisFornecedor`) ficam fora do recorte de
-porte. **Sem `threshold`** (não há faixa oficial de participação MPE; não inventamos cortes —
+porte. Sem faixa oficial de participação MPE (não inventamos cortes; a régua é o tercil `relativo-pb` —
 o `higher-better 20/10` em `src/data/indicators/thresholds.ts` era inventado). Snapshot
 versionado + modo `--offline` no gerador, como nos demais.
 
@@ -839,7 +841,7 @@ Mongo com os microdados brutos da RAIS e do CAGED (`10.19.4.174:27018`, uma base
 `RAIS`, `CAGED…`, **`PNCP`**, **`RECEITA_FEDERAL`**, **`REDESIM`**). É mais **atual e granular**
 que o basedosdados (que atrasa 1–2 anos) e a fonte natural para indicadores de emprego formal.
 **O lake também ingere o PNCP e a Receita Federal** (coleções por ano: `CONTRATOS_<ano>`,
-`RF_EMPRESAS_<ano>`, `RF_SIMPLES_<ano>`, e — a confirmar via `--inspect` — `RF_ESTABELECIMENTOS_<ano>`)
+`RF_EMPRESAS_<ano>`, `RF_SIMPLES_<ano>`, e `RF_ESTABELECIMENTOS_<ano>`)
 → é por ele, e não pela API instável nem pelo BigQuery, que coletamos `mpe-compras-publicas`
 (PNCP × porte da RF, ver §12) e os três indicadores de **estoque/fluxo de empresas** da Inclusão
 produtiva (abertos/ativas/extintos, ver §14). **E ingere a Redesim** (base `REDESIM`, coleções
@@ -882,7 +884,8 @@ estoque ativo, sem alias no frontend.
 > **Split de porte só no run online.** `empresas-ativas-total` sai também offline (é só o total). Já
 > `meis`/`mes`/`epps` exigem resolver o porte de **~todos os CNPJs ativos da PB** (join no
 > `RF_EMPRESAS`/`RF_SIMPLES`) — a maior fatia da rodada; esse split fica em `ativasPorPorte` no snapshot
-> e **só é gerado no run ONLINE** (`--offline` pula os três e avisa).
+> e **só é calculado no run ONLINE**. Com o snapshot versionado o `--offline` emite os 8; só pula os três
+> se faltar `ativasPorPorte`.
 
 > **Município:** diferente da RAIS, o campo `MUNICIPIO` aqui é o **código da Receita Federal**
 > (`id_municipio_rf`: 2051=João Pessoa, 1981=Campina Grande), **não o IBGE**. Recorte da PB por
@@ -892,7 +895,7 @@ estoque ativo, sem alias no frontend.
 
 | Indicador | Agenda | Recorte no `RF_ESTABELECIMENTOS` | Porte | Métrica |
 |---|---|---|---|---|
-| `negocios-abertos` | Inclusão produtiva | `DATA_INICIO_ATIVIDADE` no ano-ref | pequeno (ME/EPP, MEI incluso) | contagem absoluta |
+| `negocios-abertos` | Inclusão produtiva | `DATA_DE_INICIO_ATIVIDADE` no ano-ref | pequeno (ME/EPP, MEI incluso) | contagem absoluta |
 | `empresas-ativas` | Inclusão produtiva | `SITUACAO_CADASTRAL = '02'` (estoque) | **todos** os portes | contagem absoluta |
 | `negocios-extintos` | Inclusão produtiva | `SITUACAO_CADASTRAL = '08'` + `DATA_SITUACAO_CADASTRAL` no ano-ref | pequeno (ME/EPP, MEI incluso) | contagem absoluta |
 | `crescimento-mpe` | Ecossistemas de Inovação | **mesmo fluxo do `negocios-abertos`** (aberturas por ano) | pequeno (MPE = MEI+ME+EPP) | **var. % a.a.** = (fluxo[ref]−fluxo[prev])/fluxo[prev]×100 |
@@ -906,9 +909,9 @@ O breakdown de abertos/extintos traz o split MEI/ME/EPP, o ano anterior e a vari
 `empresas-ativas` é estoque (todos os portes) no snapshot da base. O **`crescimento-mpe`** é a
 variação % a.a. desse mesmo fluxo de aberturas — seu `numericValue` é idêntico à variação que o
 `negocios-abertos` já guarda no breakdown; a `serieAnual` do breakdown roda `2016..ano-ref`
-(`ANO_MIN_SERIE=2016`), sem ano corrente parcial (o vintage da coleção = ano-ref). **Todos sem
-`threshold`** (contagem/variação bruta, sem faixa oficial — não inventamos cortes, como em
-trabalhadores-*/mpe-compras).
+(`ANO_MIN_SERIE=2016`), sem ano corrente parcial (o vintage da coleção = ano-ref). Sem faixa
+oficial (contagem/variação bruta): `negocios-abertos`, `empresas-ativas`, `negocios-extintos` e
+`crescimento-mpe` são `relativo-pb`; os 4 da base econômica não têm régua.
 
 **Por que precisa de join:** o ESTABELECIMENTOS tem município/situação/data, mas **não tem o
 porte** (que é da EMPRESA). O porte vem de `RF_EMPRESAS_<ano>` por `$in` no `CNPJ_BASICO` (índice
@@ -922,15 +925,15 @@ resolve porte dos CNPJs envolvidos na RF (aberturas + baixas + **estoque ativo**
 emite os **8 seeds** + snapshot (`database/data/negocios_rfb_lake_pb.json`, só os agregados por
 município; guarda `ativas`, `ativasPorPorte`, `abertos`, `extintos`). O `negocios-abertos` e o
 `crescimento-mpe` leem o **mesmo agregado de aberturas**; os cards da base econômica leem `ativas`
-(total) e `ativasPorPorte` (MEI/ME/EPP). `--offline` regenera os seeds (menos `meis`/`mes`/`epps`, que
-precisam do `ativasPorPorte`); `--write-mongo` faz upsert no `DadosOPP`. Calibração: `--inspect`
+(total) e `ativasPorPorte` (MEI/ME/EPP). `--offline` regenera os seeds (`meis`/`mes`/`epps` só se o snapshot
+tiver `ativasPorPorte`, como o versionado tem); `--write-mongo` faz upsert no `DadosOPP`. Calibração: `--inspect`
 (estabelecimentos) e `--inspect-rfb` (porte/MEI). Ver `RUNBOOK_ETL.md §9`.
 
 > **Custo do join de porte.** A janela larga de aberturas (2016..ref) não muda o COLLSCAN (varre 37,6M
 > docs de qualquer jeito), só aumenta os CNPJs distintos das aberturas. O peso maior agora é o **estoque
 > ativo**: resolver o porte de ~todos os CNPJs ativos da PB (centenas de milhares) — via índice
 > `idx_cnpj` em lotes, aceitável numa rodada única. ⚠️ Por isso `meis`/`mes`/`epps` (e a `serieAnual`
-> completa) **só saem no run online**; `--offline` gera os outros 5 seeds e avisa o que pulou.
+> completa) **só se calculam no run online**; o `--offline` reaproveita o que está no snapshot.
 
 > ✅ **Coletado (jun/2026, RF_ESTABELECIMENTOS_2025):** rodada completa na 10.1.141.23,
 > **223/223 municípios**, **669 valores** (223 × 3) gravados no `DadosOPP`. Totais PB: **192.461**
@@ -1047,7 +1050,7 @@ candidatos da base econômica:
 
 **Não é indicador de agenda** — é a fonte do modo **"Mapeamento de recursos"** da Home (mapa
 coroplético do valor pago por município + painel do município selecionado). Por isso mora numa
-**coleção própria** (`emendas`, a 5ª do `DadosOPP`, ver `setup.mongodb.js`), fora de
+**coleção própria** (`emendas`, ver `setup.mongodb.js`), fora de
 `indicatorValues`: o shape é outro (empenhado/pago com quebra anual), não tem `threshold` nem
 semáforo, e não entra em nenhuma agenda nem na base econômica.
 
@@ -1061,9 +1064,9 @@ qualidades diferentes de atribuição municipal**, registradas no campo `atribui
 | `atribuicao` | **`ibge`** — a origem traz o **código IBGE do município de aplicação do recurso** estruturado. **Exato** | **`texto-beneficiario`** — a origem **não tem campo de município**; ele é inferido do texto livre do `objeto`. **Estimativa** |
 | Janela (safra) | 2023–2026 | 2021–2025 |
 | Eixo de `porAno` | **ano do documento** de despesa (o dinheiro se moveu) — restos a pagar caem no ano certo | **safra da emenda** (a execução vem agregada, sem data de documento) |
-| Totais PB | empenhado **R$ 5,37 bi** · pago **R$ 4,27 bi** (744 emendas, 38 autores) | destinado **R$ 508,23 mi** · empenhado R$ 453,47 mi · pago R$ 403,01 mi (2.877 emendas, 65 autores) |
-| Não municipalizado | ~13% do empenhado e ~18% do pago ("Nacional"/"Sem informação" = aplicação estadual/nacional) | **38,1% do valor** (ONGs, APAEs, associações, fundos e órgãos estaduais) |
-| Coleta | 06/ago/2026 | 10/ago/2026 |
+| Totais PB | empenhado **R$ 5,42 bi** · pago **R$ 4,30 bi** (751 emendas, 38 autores) | destinado **R$ 508,23 mi** · empenhado R$ 453,47 mi · pago R$ 403,01 mi (2.877 emendas, 65 autores) |
+| Não municipalizado | 13,5% do empenhado e 12,2% do pago ("Nacional"/"Sem informação" = aplicação estadual/nacional) | **38,1% do valor** (ONGs, APAEs, associações, fundos e órgãos estaduais) |
+| Coleta | 22/out/2026 | 25/out/2026 |
 | Gerador | `scripts/gerar_seed_emendas_federais.py` | `scripts/gerar_seed_emendas_estaduais.py` |
 | Snapshot | `data/emendas_federais_pb.json` | `data/emendas_estaduais_pb.json` |
 

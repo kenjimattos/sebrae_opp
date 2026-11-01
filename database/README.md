@@ -23,8 +23,8 @@ Indicador novo entra pelo mesmo padrão — ver
 
 > **Estado atual:**
 > - Banco `DadosOPP` (servidor Sebrae, acesso via VPN/NoSQLBooster) **montado e populado**:
->   **5 coleções** com validadores + índices, 223 municípios, 6 agendas, 33 indicadores de
->   catálogo, 12.934 valores e 448 documentos de emendas (224 federais + 224 estaduais,
+>   **6 coleções** com validadores + índices, 223 municípios, 6 agendas, 41 indicadores de
+>   catálogo (33 municipais + 8 estaduais), 12.934 valores municipais e 448 documentos de emendas (224 federais + 224 estaduais,
 >   cada conjunto = 223 municípios + 1 doc de escopo estadual).
 > - Chave de `indicatorValues` **preparada para histórico** (`{município, indicador, ano}`);
 >   o IGM-CFA já exercita isso com **10 anos por município** (2.230 valores) e cada
@@ -62,14 +62,14 @@ nesta ordem (cada um imprime um resumo ao final):
 > `database/scripts/aplicar_seeds.sh indicador-idsc indicador-cobertura-atencao-basica`
 > ou `--all` para todos. Requer `mongosh` no PATH e o `database/.env` preenchido.
 
-1. `setup.mongodb.js` — cria as **5 coleções** (com validadores) e os índices.
+1. `setup.mongodb.js` — cria as **6 coleções** (com validadores) e os índices.
 2. `seed/municipios.mongodb.js` — 223 municípios da PB.
 3. `seed/agendas.mongodb.js` — estrutura das 6 agendas.
 
 Depois os indicadores. Cada seed traz o **catálogo** (1 doc em `indicators`) e os
 **valores** (`indicatorValues`); a ordem entre eles é livre. Marcados com ⚖️ os que têm
-`threshold` (semáforo) — os demais exibem só o número, por não haver faixa oficial na
-fonte (ver [Classificação](#classificação-semáforo)).
+faixa oficial da fonte; os 11 de régua relativa e os sem régua estão em
+[Classificação](#classificação-semáforo).
 
 **Agenda Governança** (`governanca`)
 
@@ -80,8 +80,8 @@ fonte (ver [Classificação](#classificação-semáforo)).
 
 **Agenda Simplificação e digitalização** (`simplificacao`)
 
-8. `seed/indicador-tempo-abertura.mongodb.js` — ⚖️ `tempo-abertura`, 223 valores, Redesim (janela de 12 meses).
-9. `seed/indicador-tempo-viabilidade.mongodb.js` — ⚖️ `tempo-viabilidade`, 223 valores, Redesim (janela de 12 meses).
+8. `seed/indicador-tempo-abertura.mongodb.js` — ⚖️ `tempo-abertura`, 223 valores, Redesim (ano-calendário, **data lake do Sebrae**).
+9. `seed/indicador-tempo-viabilidade.mongodb.js` — ⚖️ `tempo-viabilidade`, 223 valores, Redesim (ano-calendário, **data lake do Sebrae**).
 10. `seed/indicador-ranking-redesim.mongodb.js` — `ranking-redesim`, 223 valores, Ranking Municipal Redesim/PB (janela de 6 meses).
 11. `seed/indicador-tempo-licenciamento.mongodb.js` — `tempo-licenciamento`, 223 valores, Índice de Tempo de alvará Redesim/PB (janela de 6 meses).
 
@@ -95,7 +95,7 @@ fonte (ver [Classificação](#classificação-semáforo)).
 
 15. `seed/indicador-trabalhadores-ct.mongodb.js` — Trabalhadores em C&T, 223 valores (RAIS 2024).
 16. `seed/indicador-trabalhadores-tic.mongodb.js` — Trabalhadores em economia criativa/inovação/TIC, 223 valores (RAIS 2024).
-17. `seed/indicador-crescimento-mpe.mongodb.js` — `crescimento-mpe`, 223 valores (Observatório Sebrae).
+17. `seed/indicador-crescimento-mpe.mongodb.js` — `crescimento-mpe`, 223 valores (RF Estabelecimentos, **data lake do Sebrae**).
 18. `seed/indicador-compras-publicas-inovacao.mongodb.js` — `compras-publicas-inovacao`, 223 valores (PNCP × RFB, **data lake do Sebrae**).
 
 **Agenda Inclusão produtiva** (`inclusao`)
@@ -130,6 +130,14 @@ fonte (ver [Classificação](#classificação-semáforo)).
 37. `seed/emendas-federais.mongodb.js` — 224 docs (223 municípios + escopo estadual), safra 2023–2026, Portal da Transparência/CGU.
 38. `seed/emendas-estaduais.mongodb.js` — 224 docs, safra 2021–2025, CODATA/CGE-PB. Município **inferido de texto livre** — ver [Emendas](#emendas-parlamentares-federal-e-estadual).
 
+**Grão estadual** (coleção `stateValues`, sem linha em `indicatorValues`)
+
+39. `seed/indicador-uf-populacao.mongodb.js`
+40. `seed/indicador-uf-rais.mongodb.js`
+41. `seed/indicador-uf-empresas-ativas.mongodb.js`
+42. `seed/indicador-uf-enem.mongodb.js`
+43. `seed/indicador-uf-matriculas-superior.mongodb.js`
+
 Todos são **idempotentes** (usam `upsert`): rodar de novo atualiza, não duplica.
 
 > **Atualizando um banco já povoado** (ex: após o fechamento do schema
@@ -137,7 +145,7 @@ Todos são **idempotentes** (usam `upsert`): rodar de novo atualiza, não duplic
 > validators) e os seeds (re-aplicam os docs de indicador com `referenceYear` +
 > `unit`). Depois rode **`scripts/migrar_indicators_updatedAt.mongodb.js`** uma vez
 > para remover o `updatedAt` string-ano legado que sobra nos docs de indicador (o
-> `$set` do upsert não apaga campos). A migração mexe **só** em `indicators` e
+> `replaceOne` do seed `.js` já o elimina; doc escrito por `--write-mongo`, com `$set`, não). A migração mexe **só** em `indicators` e
 > preserva o `updatedAt` (Date) dos valores. Nenhum dado de valor é alterado.
 
 > Por padrão os scripts operam no banco atualmente selecionado (`const database = db`).
@@ -148,7 +156,7 @@ Todos são **idempotentes** (usam `upsert`): rodar de novo atualiza, não duplic
 ```js
 db.municipalities.countDocuments()      // 223
 db.agendas.countDocuments()             // 6
-db.indicators.countDocuments()          // 33
+db.indicators.countDocuments()          // 41  (33 municipais + 8 estaduais)
 db.indicatorValues.countDocuments()     // 12934
 db.emendas.countDocuments()             // 448  (224 federais + 224 estaduais)
 db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'idh-m' })
@@ -165,10 +173,10 @@ db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'isdel-gove
 // João Pessoa -> rawValue "0,431"  (status deriva do threshold; escala ISDEL 0–1)
 db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'isdel-educacao-emp', referenceYear: '2021' })
 // João Pessoa -> rawValue "0,620"  (sem threshold/semáforo; escala ISDEL 0–1; exibe 2021)
-db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'tempo-abertura', referenceYear: '2026' })
-// João Pessoa -> rawValue "18,6h" (marco 75%, horas úteis) + breakdown { n, confiabilidade, marco75Dias, media, mediana, faixaOficial }
-db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'tempo-viabilidade', referenceYear: '2026' })
-// João Pessoa -> rawValue "18,0h" (marco 75%, horas úteis) + breakdown { n, confiabilidade, marco75Dias, media, mediana, faixaOficial }
+db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'tempo-abertura', referenceYear: '2025' })
+// João Pessoa -> rawValue "18,7h" (marco 75%, horas úteis) + breakdown { n, marco75Horas, mediaHoras, medianaHoras, faixaLabel, anoRef }
+db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'tempo-viabilidade', referenceYear: '2025' })
+// João Pessoa -> rawValue "18,2h" (marco 75%, horas úteis) + breakdown { n, marco75Horas, mediaHoras, medianaHoras, faixaLabel, anoRef }
 db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'ranking-redesim', referenceYear: '2026' })
 // João Pessoa -> rawValue "350" (total 0–600) + breakdown { posicao, percentual, documentoHabilitado, indiceAtendimento, indiceTempo, regiao }
 db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'tempo-licenciamento', referenceYear: '2026' })
@@ -179,7 +187,7 @@ db.indicatorValues.findOne({ municipalityId: '2507507', indicatorId: 'tempo-lice
 
 ## Schema
 
-Cinco coleções. IDs são strings estáveis (código IBGE / id do catálogo), o que
+Seis coleções. IDs são strings estáveis (código IBGE / id do catálogo), o que
 torna os `upsert` naturais e idempotentes.
 
 ### `municipalities`
@@ -204,14 +212,14 @@ via `placements` — não há duplicação de documento.
 |---|---|---|
 | `_id` | string | id do indicador no catálogo (ex: `idh-m`) |
 | `label` | string | rótulo exibido |
-| `threshold` | obj\|ausente | régua de classificação (semáforo) — `{ kind, success, warning }`, **das faixas oficiais da fonte**; status deriva dela. **Ausente = indicador sem classificação** (só exibe o valor) — usado quando a fonte não publica faixa oficial (ver [Classificação](#classificação-semáforo)) |
+| `threshold` | obj\|ausente | régua de classificação (semáforo) — `{ kind, success, warning, provenance?, basis? }`, **da faixa da fonte ou do tercil relativo**; status deriva dela. **Ausente = indicador sem classificação** (só exibe o valor) (ver [Classificação](#classificação-semáforo)) |
 | `referenceYear` | string | ano de referência **exibido por padrão** (vintage, ex: `"2010"`); o autoritativo por município mora nos valores |
 | `unit` | string | unidade/escala de exibição (ex: `"h"`, `"%"`, `"R$"`, `"índice (0–10)"`) |
 | `description` | string | texto do tooltip |
 | `source` / `sourceDataset` | string | fonte legível / chave técnica |
 | `placements` | array | seções onde aparece: `[{ section, agendaId?, order }]` |
 
-`placements[].section` ∈ `agenda` \| `socialeconomic`. Para `section='agenda'`, `agendaId`
+`placements[].section` ∈ `agenda` \| `socialeconomic` \| `estadual`. Para `section='agenda'`, `agendaId`
 referencia `agendas._id`. `order` define a posição dentro da seção.
 
 ### `indicatorValues` (1 doc por município × indicador × ano)
@@ -222,6 +230,7 @@ referencia `agendas._id`. `order` define a posição dentro da seção.
 | `referenceYear` | string | ano do dado (ex: `"2010"`) — **parte da chave** (histórico) |
 | `rawValue` | string | valor de exibição em padrão BR (`"0,763"`) |
 | `numericValue` | double\|null | valor numérico parseado |
+| `normalizedValue` | double\|null | opcional; número que a régua relativa lê. `null` = sem base de comparação, não zero |
 | `variation` | obj\|string | variação dos cards socialeconomic; opcional. Objeto `{ deltaPct, previousValue, previousYear, basis }` quando há variação, `""`/ausente quando não |
 | `source` | string | fonte do dado |
 | `isFictional` | bool | `true` = dado de demonstração |
@@ -358,19 +367,20 @@ seção passa a fazer. O que mudou e o que **não** mudou:
 - `scripts/aplicar_tercis.py` **recusa** a faixa quando ela seria mentira, e imprime o
   motivo: quando `p33 == p67` (não separa ninguém), quando o corte de alerta cai em zero
   (`n >= 0` é sempre verdade — o semáforo existiria sem alertar ninguém) ou quando a
-  cobertura fica abaixo de 50% dos 223. Hoje isso exclui `bndes-operacoes` (213 dos 223 em
-  zero), `compras-publicas-inovacao`, `credito-financiamento` (47 municípios) e
-  `isdel-educacao-emp`. O `bolsa-familia` **passa** no portão e fica de fora por decisão: a
-  queda de 2,7% na PB é o pente-fino do Novo BF, não inserção no mercado de trabalho — o
-  portão mede distribuição, não significado.
+  cobertura fica abaixo de 50% dos 223. O portão só roda na allowlist `_tercis.catalogo_derivados`. Os 5
+  sem régua (`bndes-operacoes`, `compras-publicas-inovacao`, `credito-financiamento`,
+  `isdel-educacao-emp` e `bolsa-familia`) ficam fora dela por decisão, com o motivo de cada
+  um em `MAPEAMENTO_BASE_DOS_DADOS.md`, §Semáforo.
 - Contagem bruta não se compara entre municípios. Seis dos 11 classificam sobre
   `normalizedValue` (cinco per capita; `negocios-extintos` como % das empresas ativas),
   enquanto o card segue exibindo o bruto.
 
-> ⚠️ **O bloco de catálogo do seed é gravado com `replaceOne`, e nenhum gerador conhece os
-> tercis.** Rodar um `gerar_seed_*.py` de um dos 11 **apaga o threshold derivado em
-> silêncio** — o seed imprime `ok` e o indicador volta a `status: 'none'`. Depois de
-> qualquer gerador desses, rode `aplicar_tercis.py --escrever`. Ver `RUNBOOK_ETL.md` §4.
+> ⚠️ **Nenhum gerador conhece os tercis.** Rodar um `gerar_seed_*.py` de um dos 11 e aplicar
+> o seed `.js` (`replaceOne`) **apaga o threshold derivado em silêncio**: o indicador volta a
+> `status: 'none'`. Pelo `--write-mongo` (`$set`) o threshold e o `normalizedValue` antigos
+> ficam ao lado do valor novo, e o campo removido de um gerador não sai do banco. Depois de
+> qualquer gerador desses, rode `aplicar_tercis.py --escrever` e `aplicar_seeds.sh`. Ver
+> `RUNBOOK_ETL.md` §4.
 
 ---
 
@@ -378,7 +388,7 @@ seção passa a fazer. O que mudou e o que **não** mudou:
 
 ### Atualizar os indicadores estaduais (os 8 da Tesseract)
 
-Os únicos geradores do repo que **não precisam de VPN nem de BigQuery** — a API Tesseract
+Como os demais de API pública, **não precisam de VPN nem de BigQuery** — a API Tesseract
 do Observatório Sebrae é pública. Cinco scripts, cortados por cubo:
 
 ```bash
@@ -557,8 +567,8 @@ python3 database/scripts/gerar_seed_trabalhadores_tic.py --offline   # do snapsh
 
 > **Sem classificação:** não há faixa oficial de bom/atenção/alerta para a participação
 > em setores criativos/TIC (a FIRJAN publica a média nacional ~3,6% como referência
-> descritiva, com cesta CNAE diferente da nossa — não um semáforo). Por isso o indicador
-> entra **sem `threshold`** (só o número). Ver [Classificação](#classificação-semáforo).
+> descritiva, com cesta CNAE diferente da nossa — não um semáforo). Por isso o gerador
+> não emite `threshold`, e a régua é o tercil `relativo-pb`. Ver [Classificação](#classificação-semáforo).
 > Para mudar a cesta de setores, edite as tuplas `DIV_TIC` / `DIV_CRIATIVA` / `DIV_PD` no gerador.
 
 ### Atualizar os indicadores ISDEL (Governança + Educação Empreendedora)
@@ -601,7 +611,7 @@ python3 database/scripts/gerar_seed_isdel.py
 > registra "elevado número de municípios com zeros" nessa subdimensão (clientela Sebrae).
 > Nos dados da PB são 58% de zeros, com 2022–2023 ~100% zerados — aplicar a faixa marcaria
 > todos como "Muito Baixo"/vermelho. Por isso exibe **2021** (último ano com dado real) e
-> sem semáforo, como Trabalhadores C&T/TIC.
+> sem semáforo.
 >
 > **Comparabilidade:** a nota (p.17) informa que o ISDEL 2.0 recalculou a série 2015–2019
 > e passou a divulgá-la anualmente, então a série 2015–2023 do CSV é toda **2.0**
@@ -610,6 +620,9 @@ python3 database/scripts/gerar_seed_isdel.py
 > **entra ao lado** dos existentes.
 
 ### Atualizar o Tempo de abertura / viabilidade (Redesim)
+
+> **Caminho vigente:** `gerar_seed_tempo_abertura_lake.py` (`RUNBOOK_ETL.md` §10). A API descrita
+> abaixo é o fallback legado.
 
 A fonte é a **API pública da Redesim** (Mapa de Empresas), em
 `estatistica.redesim.gov.br/tempos-abertura-redesim` (sem autenticação). São **dois
@@ -654,7 +667,7 @@ python3 database/scripts/gerar_seed_tempo_viabilidade.py --offline
 > `tempo-licenciamento` são de **outra** fonte (ranking municipal da Redesim/PB, base de
 > alvarás/documentos habilitados) — ver `MAPEAMENTO_BASE_DOS_DADOS.md` §9. Os cortes
 > antigos em `src/data/indicators/thresholds.ts` (`tempo-abertura` 14/24, `tempo-viabilidade`
-> 12/24) eram inventados; recomenda-se alinhá-los às faixas oficiais acima.
+> 12/24) eram inventados; o arquivo não existe mais.
 
 ### Atualizar o Ranking municipal Redesim/PB
 
@@ -672,8 +685,8 @@ python3 database/scripts/gerar_seed_ranking_redesim.py --offline  # do snapshot
 # depois, no NoSQLBooster: rode seed/indicador-ranking-redesim.mongodb.js (idempotente)
 ```
 
-> **Sem threshold:** o ranking publica posição e pontos, mas **não** uma faixa oficial de
-> bom/atenção/alerta para o total — então entra sem semáforo (ver
+> **Sem faixa oficial:** o ranking publica posição e pontos, mas **não** uma faixa oficial de
+> bom/atenção/alerta para o total — a régua é o tercil `relativo-pb` (ver
 > [Classificação](#classificação-semáforo)). O corte `higher-better 900/600` que estava em
 > `src/data/indicators/thresholds.ts` era inventado (e em escala que nem bate com a fonte).
 > A janela atual é **2025-12 a 2026-05**; rodar de novo desloca a janela (upsert no mesmo ano).
@@ -695,7 +708,7 @@ python3 database/scripts/gerar_seed_tempo_licenciamento.py --offline  # do snaps
 # depois, no NoSQLBooster: rode seed/indicador-tempo-licenciamento.mongodb.js (idempotente)
 ```
 
-> **Sem threshold** (a fonte não publica faixa oficial p/ o score combinado de alvará; as
+> **Sem faixa oficial; tercil `relativo-pb`** (a fonte não publica faixa oficial p/ o score combinado de alvará; as
 > faixas oficiais são por documento e em horas, que não temos por município) — ver
 > [Classificação](#classificação-semáforo). O corte `lower-better 15/25` antigo em
 > `src/data/indicators/thresholds.ts` era inventado e pressupunha horas. Na janela atual
@@ -719,7 +732,7 @@ python3 database/scripts/gerar_seed_escolaridade.py \
   --opp-user usrdadosopp --opp-pass 'SENHA' --write-mongo
 ```
 
-> **Sem threshold** (contagem bruta da RAIS, sem faixa oficial) — ver
+> **Tercil `relativo-pb` per capita** (contagem bruta da RAIS, sem faixa oficial) — ver
 > [Classificação](#classificação-semáforo). `ESCOLARIDADE_APOS_2005` = 7 (médio) / 9 (superior);
 > `breakdown` traz total + percentual (o de superior também expõe mestrado/doutorado). Quando
 > sair a RAIS 2025, troque `--collection 2025_VINC` e a constante `ANO` no script. Operação
@@ -828,13 +841,14 @@ para o doc de `escopo: 'estado'`, em `naoMunicipalizado`.
 ### Adicionar um novo indicador
 
 > **Política de classificação (obrigatória a cada seed):** ao criar o seed, **coletar
-> também o threshold oficial da fonte**. A régua de classificação (semáforo) **só pode
-> vir da classificação publicada pela própria fonte** — nunca de cortes inventados por
-> nós. Se a fonte **não** publica faixa oficial, o indicador entra **sem `threshold`**
-> (sem semáforo, só o valor) — é o caso de 27 dos 33. Registrar a decisão (cortes
+> também o threshold oficial da fonte**. Faixa publicada pela fonte vira threshold
+> `fonte`. Sem faixa e com distribuição que separa, o indicador entra em
+> `_tercis.catalogo_derivados` (`relativo-pb`, sempre rotulado). Sem isso, fica **sem
+> `threshold`**. Nunca um corte inventado apresentado como padrão. Hoje: 6 `fonte`, 11
+> relativos, 16 sem régua (5 de agenda + 11 da base econômica). Registrar a decisão (cortes
 > oficiais + URL, ou "sem faixa oficial") na tabela da seção
 > [Classificação](#classificação-semáforo) e no comentário do gerador. Ver como exemplo
-> os 6 indicadores que têm régua: `idh-m`, `igm-cfa`, `igma`, `isdel-governanca`,
+> os 6 indicadores com faixa da fonte: `idh-m`, `igm-cfa`, `igma`, `isdel-governanca`,
 > `tempo-abertura` e `tempo-viabilidade`.
 
 1. **Threshold (faixa oficial):** pesquisar a classificação oficial da fonte (ex: PNUD
@@ -866,7 +880,7 @@ database/
   README.md                       # este arquivo
   RUNBOOK_ETL.md                  # operação do ETL lake do Sebrae -> OPP (3 máquinas, cron)
   MAPEAMENTO_BASE_DOS_DADOS.md    # indicadores × fontes (BD / MB / AQ / data lake Sebrae)
-  setup.mongodb.js                # 5 coleções + validadores + índices (idempotente)
+  setup.mongodb.js                # 6 coleções + validadores + índices (idempotente)
   .env                            # conexões (bloco OPP) usadas por aplicar_seeds.sh e --write-mongo
 
   seed/                           # TODOS GERADOS — 223 valores por indicador, salvo nota
@@ -927,7 +941,7 @@ database/
     gerar_seed_igma.py              # API pública IGMA Áquila
     gerar_seed_idsc.py              # API pública do Instituto Cidades Sustentáveis
     gerar_seed_isdel.py             # CSV interno do Sebrae -> 2 seeds (governanca + educacao-emp)
-    gerar_seed_crescimento_mpe.py   # API Tesseract do Observatório Sebrae
+    gerar_seed_crescimento_mpe.py   # API Tesseract (legado; a coleta oficial é o negocios_rfb_lake)
     gerar_seed_tempo_abertura.py    # API pública da Redesim (microdados)
     gerar_seed_tempo_viabilidade.py # API pública da Redesim (microdados)
     gerar_seed_ranking_redesim.py   # Ranking Municipal Redesim/PB
@@ -942,7 +956,7 @@ database/
     gerar_seed_escolaridade.py      # RAIS direta -> 2 seeds (médio + superior completo)
     gerar_seed_ideb_lake.py         # -> 2 seeds (anos iniciais + finais)
     gerar_seed_remuneracao_media_lake.py
-    gerar_seed_negocios_rfb_lake.py # RFB -> 6 seeds (empresas-ativas, -total, meis, mes, epps, abertos/extintos)
+    gerar_seed_negocios_rfb_lake.py # RFB -> 8 seeds (4 de agenda, incl. crescimento-mpe, + 4 da base econômica)
     gerar_seed_credito_financiamento_lake.py  # ESTBAN/BCB
     gerar_seed_mpe_compras_publicas_lake.py   # PNCP × RFB
     gerar_seed_compras_publicas_inovacao_lake.py  # PNCP × RFB, recorte inovação
@@ -950,6 +964,13 @@ database/
     # emendas parlamentares
     gerar_seed_emendas_federais.py  # Portal da Transparência (CGU), por documento
     gerar_seed_emendas_estaduais.py # API CODATA/CGE-PB (município inferido de texto livre)
+    # grão estadual (API Tesseract) -> seeds indicador-uf-*
+    gerar_seed_uf_populacao.py · gerar_seed_uf_rais.py · gerar_seed_uf_empresas_ativas.py
+    gerar_seed_uf_enem.py · gerar_seed_uf_matriculas_superior.py
+    # régua relativa e apoio
+    aplicar_tercis.py · _tercis.py  # grava os tercis nos seeds
+    _seeds.py · _tesseract.py       # helpers dos geradores
+    gerar_seed_tempo_abertura_lake.py  # caminho vigente de tempo-abertura/viabilidade
     # inspeção do lake (exploratórios, não geram seed)
     inspecionar_bcb_lake.py · inspecionar_ibge_lake.py · inspecionar_redesim_lake.py
     # migrações pontuais (rodar uma vez)
@@ -968,6 +989,8 @@ database/
     credito_financiamento_pb.json · bndes_operacoes_pb.json · bolsa_familia_pb.json
     cobertura_atencao_basica_pb_2020.json
     emendas_federais_pb.json · emendas_estaduais_pb.json
+    uf_populacao_pb.json · uf_rais_pb.json · uf_empresas_ativas_pb.json
+    uf_enem_pb.json · uf_matriculas_superior_pb.json
     ibge_lake_inventario.tsv · ibge_lake_detalhe.txt   # saída dos inspecionar_*
 ```
 
@@ -984,13 +1007,13 @@ database/
   subgrupos 20/21/31), escolhido sobre o conceito HRST amplo da OCDE (todos os GG 2+3):
   capta pesquisadores + ciências exatas/engenharia/TIC + seus técnicos (João Pessoa 19.760;
   Campina Grande 3.865). Os valores **substituem** os números fictícios (sufixo `*`) que o
-  protótipo exibia em `src/data` — agora são reais (RAIS 2024). **Sem semáforo** (sem faixa
-  oficial; ver [Classificação](#classificação-semáforo)).
+  protótipo exibia em `src/data` — agora são reais (RAIS 2024). Sem faixa oficial, classifica por
+  tercil `relativo-pb` per capita (ver [Classificação](#classificação-semáforo)).
 - **Setores de criativa/inovação/TIC:** definição "TIC + economia criativa + P&D"
   (CNAE divisões 26/61/62/63 + 58/59/60/73/74/90/91 + 72), sobre o conceito de setor
   TIC estrito ou o conceito amplo com engenharia. É um **percentual** (vínculos no setor
   ÷ total). Com dados reais a PB fica bem abaixo dos fictícios do protótipo (JP 2,17% vs
-  5,1% fictício). **Sem semáforo** (sem faixa oficial; ver [Classificação](#classificação-semáforo)).
+  5,1% fictício). Sem faixa oficial, classifica por tercil `relativo-pb` (ver [Classificação](#classificação-semáforo)).
 - **ISDEL Governança:** dimensão "Governança para o Desenvolvimento" do ISDEL 2.0
   (Sebrae/CEDEPLAR-UFMG), escala 0–1. Veio de **CSV interno do Sebrae** (não há microdados
   abertos), com série **2015–2023** — exibe 2023 por padrão. Os valores reais **substituem**
