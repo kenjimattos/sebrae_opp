@@ -56,7 +56,7 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, './src'),
       },
     },
-    // Em dev, /api/municipalities* e /api/emendas são atendidos pelo snapshot em
+    // Em dev, /api/municipalities*, /api/emendas e /api/estado são atendidos pelo snapshot em
     // public/api-snapshot (mesmos rewrites do vercel.json) — funciona sem a API
     // Node e sem acesso ao Mongo do Sebrae. O restante de /api/* segue no proxy
     // para a API Node (server/, porta 3000), como o Nginx faz em produção.
@@ -85,7 +85,7 @@ export default defineConfig(({ mode }) => {
     },
     // Dois projetos de teste, um por ambiente, na mesma instalação do Vitest:
     // `tests/client` roda em jsdom (React, localStorage); `tests/server` roda
-    // em node puro (services, status, api/_lib). Sem `globals`: describe/it/
+    // em node puro (municipios-mapa, estado, emendas, status, api/_lib). Sem `globals`: describe/it/
     // expect são importados de 'vitest' em cada arquivo, porque o tsconfig
     // que cobre api/_lib só conhece os tipos de node.
     test: {

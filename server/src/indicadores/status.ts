@@ -10,7 +10,7 @@ import type { IndicatorValueDoc, StatusType, Threshold } from '../types/index.js
 // casa que o arredondamento come: um IGM de 5,008 é exibido "5,01" e o corte do
 // CFA é 5,01. Classificar pelo texto erra para o lado otimista. Hoje nenhum
 // semáforo servido muda com isso (as divergências do banco estão em anos que
-// `pickValue` não retorna ou em valores suprimidos por `isLowConfidence`), mas
+// `pickByYear` não retorna ou em valores suprimidos por `isLowConfidence`), mas
 // a classe de erro voltaria a cada avanço do ano de referência default.
 // Qual dos dois números a régua lê.
 //

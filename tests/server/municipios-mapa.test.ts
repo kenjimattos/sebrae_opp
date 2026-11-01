@@ -11,9 +11,9 @@ import {
   valueDoc,
 } from './fixtures.js'
 
-// Testa pela função exportada, de propósito: pickValue, isLowConfidence e
-// indexValues são privadas e o que importa é a composição delas — é ela que
-// decide o que 223 municípios mostram.
+// Testa por buildIndicatorsData, de propósito: o que importa é a composição de
+// pickByYear, isLowConfidence e indexValues — é ela que decide o que 223
+// municípios mostram.
 
 const higher: Threshold = { kind: 'higher-better', success: 10, warning: 5 }
 
@@ -21,7 +21,7 @@ function firstIndicator(data: ReturnType<typeof buildIndicatorsData>) {
   return data.agendas[0]!.indicators[0]!
 }
 
-describe('buildIndicatorsData · escolha do ano (pickValue pela costura)', () => {
+describe('buildIndicatorsData · escolha do ano (pickByYear pela costura)', () => {
   it('usa o referenceYear do indicador, não o ano mais recente', () => {
     const catalog = makeCatalog([agendaIndicator('igm', { referenceYear: '2022', threshold: higher })])
     const data = buildIndicatorsData(CAMPINA, catalog, [

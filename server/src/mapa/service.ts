@@ -15,8 +15,7 @@ export function buildMapData(
   municipalities: MunicipalityDoc[],
   allValues: IndicatorValueDoc[],
 ): MapData {
-  // Opções do dropdown = todos os indicadores de agenda (mesma regra do
-  // indicatorOptions do frontend).
+  // Opções do dropdown = todos os indicadores de agenda.
   const agendaIndicators = catalog.agendas.flatMap(
     (a) => catalog.indicatorsByAgenda.get(a._id) ?? [],
   )

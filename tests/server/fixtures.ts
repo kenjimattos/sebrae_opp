@@ -1,4 +1,4 @@
-// Fábrica de catálogo e documentos para os testes de costura (services.ts).
+// Fábrica de catálogo e documentos para os testes de costura (municipios-mapa, estado).
 // Reproduz a garantia de repo.ts: `byId` e `indicatorsByAgenda` guardam
 // referência aos MESMOS objetos — é isso que impede o detalhe e o mapa de
 // lerem thresholds diferentes.

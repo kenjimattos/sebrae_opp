@@ -1,5 +1,5 @@
-// Contrato da API — o que o frontend consome. Espelha `src/types/indicators.ts`
-// e `src/types/emendas.ts`: os endpoints devolvem exatamente o shape que o
+// Contrato da API — o que o frontend consome. Espelha `src/types/indicators.ts`,
+// `src/types/emendas.ts` e `src/types/estado.ts`: os endpoints devolvem exatamente o shape que o
 // `MunicipalityProvider` montava a partir dos TS estáticos.
 //
 // **Se mexer aqui, mexa no espelho do frontend.** Este arquivo muda com a UI; o
