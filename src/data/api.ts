@@ -1,6 +1,5 @@
-// Client da API de leitura. Nesta branch, municipalities, emendas e estado vêm do
-// snapshot estático (bypass do vite.config.ts em dev, rewrites do vercel.json no
-// preview); na main quem atende é a API Node (server/). Substitui os imports estáticos de
+// Client da API de leitura (server/). Em dev o Vite faz proxy de /api → :3000;
+// em produção o Nginx faz o mesmo. Substitui os imports estáticos de
 // municipalities.json e values/*.ts.
 import type { EmendasData } from '@/types/emendas'
 import type { StateData } from '@/types/estado'
