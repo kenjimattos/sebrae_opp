@@ -2,6 +2,12 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [Não lançado]
+
+### Segurança
+
+- **Dependências da API atualizadas por `npm audit fix` em `server/`.** `fastify` 5.12.3 → 5.12.8 (negação de serviço em respostas HTTP/2 e bypass de validação de cabeçalho) e `fast-uri` 3.1.7 → 3.1.9 (cinco avisos de normalização de URI), mais `find-my-way`, `fast-copy`, `safe-regex2` e `ret`, que o Fastify puxa. Só o `package-lock.json` muda, dentro das faixas já declaradas no `package.json`; `npm audit --omit=dev` passa de 2 avisos moderados para 0. Na raiz restam avisos só em ferramentas de desenvolvimento (lint, testes, build), que não rodam no servidor, e ficam como estão: o `--force` trocaria versões maiores do Vite, do Tailwind e do ESLint. Deploy: `cd server && npm ci && npm run build` e `systemctl restart opp-api`.
+
 ## [1.6.0] — 2026-11-03
 
 ### Adicionado
