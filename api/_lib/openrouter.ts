@@ -21,6 +21,18 @@ export interface OpenRouterEnv {
   maxTokens?: number
 }
 
+// Tokens cobrados pela chamada, para a linha de uso do log. Ausentes quando a
+// resposta não traz `usage` — o campo é opcional na API do OpenRouter.
+export interface OpenRouterUsage {
+  inputTokens?: number
+  outputTokens?: number
+}
+
+export interface OpenRouterCompletion {
+  text: string
+  usage: OpenRouterUsage
+}
+
 export class OpenRouterError extends Error {
   status: number
 
@@ -34,7 +46,7 @@ export class OpenRouterError extends Error {
 export async function callOpenRouter(
   messages: LlmMessage[],
   env: OpenRouterEnv,
-): Promise<string> {
+): Promise<OpenRouterCompletion> {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
 
@@ -74,6 +86,7 @@ export async function callOpenRouter(
 
   const data = (await res.json()) as {
     choices?: { message?: { content?: string } }[]
+    usage?: { prompt_tokens?: number; completion_tokens?: number }
   }
   const choice = data.choices?.[0]
   const content = choice?.message?.content
@@ -87,5 +100,11 @@ export async function callOpenRouter(
   if (!text) {
     throw new OpenRouterError(0, 'resposta do OpenRouter sem conteúdo utilizável')
   }
-  return text
+  return {
+    text,
+    usage: {
+      inputTokens: data.usage?.prompt_tokens,
+      outputTokens: data.usage?.completion_tokens,
+    },
+  }
 }

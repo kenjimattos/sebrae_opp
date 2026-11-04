@@ -251,3 +251,65 @@ describe('handleAiTask · guardas de saída', () => {
     expect(body).toEqual({ text: IDENTITY_REPLY })
   })
 })
+
+describe('handleAiTask · log de uso', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    vi.restoreAllMocks()
+  })
+
+  const PERGUNTA = 'Qual o CPF do prefeito e o telefone da secretária?'
+  const RESPOSTA = 'Não tenho dados pessoais; posso falar dos indicadores do município.'
+
+  function linhaDeUso(spy: ReturnType<typeof vi.spyOn>): Record<string, unknown> {
+    const call = spy.mock.calls.find((c: unknown[]) => c[0] === '[api/ai] uso')
+    return JSON.parse(String(call?.[1]))
+  }
+
+  function stubModelo(payload: unknown): void {
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(payload), { status: 200 })))
+  }
+
+  it('uma linha por chamada, com tokens e duração, sem o texto da pergunta nem da resposta', async () => {
+    const info = vi.spyOn(console, 'info').mockImplementation(() => {})
+    stubModelo({
+      choices: [{ message: { content: RESPOSTA } }],
+      usage: { prompt_tokens: 412, completion_tokens: 37 },
+    })
+    const chat = { task: 'chat', messages: [{ role: 'user', content: PERGUNTA }], municipality }
+    await handleAiTask(chat, { apiKey: 'k' })
+
+    const linha = linhaDeUso(info)
+    expect(linha).toMatchObject({ task: 'chat', status: 200, tokensIn: 412, tokensOut: 37 })
+    expect(typeof linha.ms).toBe('number')
+    expect(linha.chars).toBeGreaterThan(PERGUNTA.length)
+    const tudo = JSON.stringify(info.mock.calls)
+    expect(tudo).not.toContain('CPF')
+    expect(tudo).not.toContain('dados pessoais')
+  })
+
+  it('resposta sem `usage` não quebra a linha: só omite os tokens', async () => {
+    const info = vi.spyOn(console, 'info').mockImplementation(() => {})
+    stubModelo({ choices: [{ message: { content: RESPOSTA } }] })
+    const chat = { task: 'chat', messages: [{ role: 'user', content: 'Oi' }], municipality }
+    await handleAiTask(chat, { apiKey: 'k' })
+    const linha = linhaDeUso(info)
+    expect(linha).toMatchObject({ task: 'chat', status: 200 })
+    expect(linha).not.toHaveProperty('tokensIn')
+  })
+
+  it('requisição inválida também entra no log — é onde o abuso aparece', async () => {
+    const info = vi.spyOn(console, 'info').mockImplementation(() => {})
+    await handleAiTask({ task: 'chat', messages: 'x'.repeat(50) }, {})
+    expect(linhaDeUso(info)).toMatchObject({ task: 'invalida', status: 400, code: 'bad_request' })
+  })
+
+  it('registra qual guarda disparou', async () => {
+    const info = vi.spyOn(console, 'info').mockImplementation(() => {})
+    vi.spyOn(console, 'warn').mockImplementation(() => {})
+    stubModelo({ choices: [{ message: { content: 'FORA_DO_ESCOPO' } }] })
+    const campo = { task: 'improve-field', field: 'identification.title', text: 'x', municipality }
+    await handleAiTask(campo, { apiKey: 'k' })
+    expect(linhaDeUso(info)).toMatchObject({ status: 422, code: 'out_of_scope', guard: 'scope' })
+  })
+})

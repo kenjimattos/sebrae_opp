@@ -21,6 +21,7 @@ import {
 } from './guardrails.js'
 import { buildMessages } from './prompts.js'
 import { callOpenRouter, DEFAULT_FREE_MODEL, OpenRouterError } from './openrouter.js'
+import type { OpenRouterUsage } from './openrouter.js'
 
 export interface AiHandlerResult {
   status: number
@@ -309,11 +310,64 @@ function outputGuard(text: string): OutputGuard | null {
   return null
 }
 
-export async function handleAiTask(rawBody: unknown, env: AiEnv): Promise<AiHandlerResult> {
-  const req = parseRequest(rawBody)
-  if (!req) {
-    return { status: 400, body: { error: 'Requisição inválida.', code: 'bad_request' } }
+// O que a linha de uso registra além do status. Preenchido por runTask enquanto
+// a chamada anda.
+interface UsageNotes {
+  usage?: OpenRouterUsage
+  guard?: OutputGuard | 'blocked'
+}
+
+// Uma linha por chamada, para ver abuso e custo no journalctl: task, status,
+// código, tamanho do corpo, tokens cobrados, duração e qual guarda disparou.
+// **Sem o texto** da pergunta nem da resposta — o log não é lugar disso (LGPD), e
+// o tamanho já diz o que importa para achar abuso. O IP fica no log do Fastify.
+function logUsage(
+  task: string,
+  result: AiHandlerResult,
+  rawChars: number,
+  ms: number,
+  notes: UsageNotes,
+): void {
+  const code = 'code' in result.body ? result.body.code : undefined
+  console.info(
+    '[api/ai] uso',
+    JSON.stringify({
+      task,
+      status: result.status,
+      ...(code && { code }),
+      chars: rawChars,
+      ...(notes.usage?.inputTokens !== undefined && { tokensIn: notes.usage.inputTokens }),
+      ...(notes.usage?.outputTokens !== undefined && { tokensOut: notes.usage.outputTokens }),
+      ms,
+      ...(notes.guard && { guard: notes.guard }),
+    }),
+  )
+}
+
+function bodyChars(raw: unknown): number {
+  try {
+    return JSON.stringify(raw ?? null).length
+  } catch {
+    return 0
   }
+}
+
+export async function handleAiTask(rawBody: unknown, env: AiEnv): Promise<AiHandlerResult> {
+  const started = Date.now()
+  const notes: UsageNotes = {}
+  const req = parseRequest(rawBody)
+  const result = req
+    ? await runTask(req, env, notes)
+    : { status: 400, body: { error: 'Requisição inválida.', code: 'bad_request' as const } }
+  logUsage(req?.task ?? 'invalida', result, bodyChars(rawBody), Date.now() - started, notes)
+  return result
+}
+
+async function runTask(
+  req: AiTaskRequest,
+  env: AiEnv,
+  notes: UsageNotes,
+): Promise<AiHandlerResult> {
   // Corpo de erro é genérico em todos os ramos: ele chega ao navegador, e o
   // que antes ia nele (fornecedor, nome da variável de ambiente, "modelo
   // gratuito", o corpo cru do upstream com o id do modelo) é mapa para quem
@@ -328,13 +382,14 @@ export async function handleAiTask(rawBody: unknown, env: AiEnv): Promise<AiHand
   }
 
   try {
-    const completion = await callOpenRouter(buildMessages(req), {
+    const { text: completion, usage } = await callOpenRouter(buildMessages(req), {
       apiKey: env.apiKey,
       model: env.model || DEFAULT_FREE_MODEL,
       maxTokens: MAX_TOKENS_BY_TASK[req.task],
     })
+    notes.usage = usage
     const guard = outputGuard(completion)
-    if (guard) console.warn('[api/ai]', req.task, `guarda de saída: ${guard}`)
+    if (guard) notes.guard = guard
     if (guard === 'scope' || (guard && !CONVERSATIONAL.has(req.task))) return OUT_OF_SCOPE
     // A resposta inteira é trocada, não só o trecho: frase que cita o modelo
     // costuma vir com o resto do bastidor junto ("rodo no X, via Y, com Z").
