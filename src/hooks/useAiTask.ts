@@ -12,6 +12,10 @@ const FRIENDLY_MESSAGES: Record<string, string> = {
   // a esgotá-la.
   rate_limited: 'Muitas consultas no momento. Tente novamente em alguns minutos.',
   unavailable: 'O assistente está indisponível no momento.',
+  // Mesma frase para pedido fora do tema e para bloqueio do filtro de conteúdo:
+  // dizer qual dos dois foi ensinaria a contornar.
+  out_of_scope:
+    'Esse pedido foge do tema. O assistente só ajuda com políticas públicas e desenvolvimento municipal.',
 }
 const FALLBACK_MESSAGE = 'Não foi possível gerar a resposta agora. Tente novamente em instantes.'
 

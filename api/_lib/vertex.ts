@@ -160,6 +160,29 @@ function endpoint(env: VertexEnv): string {
   )
 }
 
+// Bloqueio de conteúdo do próprio Vertex: na entrada (promptFeedback.blockReason)
+// ou na saída (finishReason). É uma recusa, não uma falha — o handler a trata como
+// pedido fora do tema, sem dizer ao usuário que houve filtro.
+export class VertexBlockedError extends VertexError {
+  constructor(reason: string) {
+    super(0, `Vertex bloqueou o conteúdo (${reason})`)
+    this.name = 'VertexBlockedError'
+  }
+}
+
+const BLOCKED_FINISH_REASONS = new Set(['SAFETY', 'PROHIBITED_CONTENT', 'BLOCKLIST', 'SPII'])
+
+// Explícito em vez do default do modelo, que muda entre versões do Gemini: o
+// texto sai com a marca Sebrae, e nenhuma das quatro categorias tem uso legítimo
+// numa plataforma de política pública. BLOCK_MEDIUM_AND_ABOVE e não LOW: o mais
+// estrito barra tema legítimo de política pública (violência, saúde, drogas).
+const SAFETY_SETTINGS = [
+  'HARM_CATEGORY_HATE_SPEECH',
+  'HARM_CATEGORY_HARASSMENT',
+  'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+  'HARM_CATEGORY_DANGEROUS_CONTENT',
+].map((category) => ({ category, threshold: 'BLOCK_MEDIUM_AND_ABOVE' }))
+
 interface GeminiPart {
   text?: string
   thought?: boolean
@@ -197,6 +220,7 @@ export async function callVertex(
           maxOutputTokens: env.maxTokens ?? MAX_TOKENS,
           temperature: 0.7,
         },
+        safetySettings: SAFETY_SETTINGS,
       }),
       signal: controller.signal,
     })
@@ -215,8 +239,15 @@ export async function callVertex(
 
   const data = (await res.json()) as {
     candidates?: { content?: { parts?: GeminiPart[] }; finishReason?: string }[]
+    promptFeedback?: { blockReason?: string }
+  }
+  if (data.promptFeedback?.blockReason) {
+    throw new VertexBlockedError(`entrada: ${data.promptFeedback.blockReason}`)
   }
   const candidate = data.candidates?.[0]
+  if (candidate?.finishReason && BLOCKED_FINISH_REASONS.has(candidate.finishReason)) {
+    throw new VertexBlockedError(`saída: ${candidate.finishReason}`)
+  }
   // Partes `thought` são o resumo do raciocínio do modelo, não a resposta.
   const content = (candidate?.content?.parts ?? [])
     .filter((p) => !p.thought && typeof p.text === 'string')

@@ -362,8 +362,13 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   ao navegador — nada de fornecedor, id de modelo, nome de variável de ambiente nem
   "cota gratuita" (ensina a esgotá-la). Já vazou os três. O código de chave ausente é
   `unavailable`, não `missing_key`, pelo mesmo motivo.
-- **Escopo (`SCOPE_NOTE`) só nas entradas de texto livre** (chat e pergunta do modal).
-  No Formulador a recusa cairia dentro do campo de formulário como se fosse conteúdo.
+- **Escopo em todas as tasks, com duas formas de recusar.** No chat e no modal o
+  `SCOPE_NOTE` pede a recusa em uma frase. No Formulador e na análise uma frase de
+  recusa cairia dentro do campo como conteúdo, então o `FORM_SCOPE_NOTE` manda o modelo
+  responder só `FORA_DO_ESCOPO`, e o handler troca isso por 422 `out_of_scope`. O
+  cuidado no texto é não recusar projeto legítimo: o tema pode ser qualquer política
+  pública (curso de programação é escopo; escrever o programa, não). Conferido ao vivo
+  nos dois sentidos.
 - **Modelo e região são por projeto, não pela doc pública.** No projeto do Sebrae só
   `gemini-3.8-flash` em `global` responde (medido em 2026-11-03): 2.0/2.5/3/3.1 dão 404,
   e o próprio 3.8 dá 404 nas regiões nomeadas. O 404 do Vertex diz "não encontrado **ou**
@@ -413,6 +418,20 @@ garante nada disso; quem garante é código determinístico em volta do modelo.
 - **O `setErrorHandler` do `app.ts` põe o código explícito nos 4xx.** Com
   `reply.send(err)` sozinho o status só sai certo quando `err` é um `Error`; o 429 do
   rate limit chega como objeto simples e saía **200**, sem erro nenhum.
+- **Saída (`guardrails.ts` + `handler.ts`).** Três guardas determinísticas sobre o texto
+  do modelo:
+  - `isOutOfScope`, que detecta o marcador `FORA_DO_ESCOPO`;
+  - `revealsModelIdentity`;
+  - `revealsInstructions`, com trechos fixos do system prompt e os marcadores, num
+    teste que confere que cada trecho existe no prompt, senão a guarda vigia o vazio.
+
+  No chat e no modal, identidade ou instrução vira `IDENTITY_REPLY`. **No Formulador
+  e na análise toda guarda vira `out_of_scope`**, porque a frase fixa gravada no campo
+  seria pior que o erro. O Vertex vai com `safetySettings` explícitos
+  (`BLOCK_MEDIUM_AND_ABOVE` nas quatro categorias; o `LOW` barraria tema legítimo como
+  violência ou drogas). Bloqueio na entrada ou na saída vira `VertexBlockedError` e
+  também `out_of_scope`. **A mensagem é a mesma para fora do tema e para filtro**:
+  dizer qual dos dois foi ensinaria a contornar.
 
 ---
 

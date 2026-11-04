@@ -156,7 +156,13 @@ export interface AiSuccessResponse {
 
 // `unavailable` era `missing_key` — o próprio código contava ao cliente que a
 // chave faltava.
-export type AiErrorCode = 'rate_limited' | 'bad_request' | 'unavailable' | 'upstream_error'
+export type AiErrorCode =
+  | 'rate_limited'
+  | 'bad_request'
+  | 'unavailable'
+  | 'upstream_error'
+  // Pedido fora do tema da plataforma, ou barrado pelo filtro de conteúdo.
+  | 'out_of_scope'
 
 export interface AiErrorResponse {
   error: string

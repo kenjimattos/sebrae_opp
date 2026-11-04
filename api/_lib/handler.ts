@@ -13,9 +13,14 @@ import type {
 } from '../../src/types/ai.js'
 import { AI_CONTEXT_KEYS, AI_FIELD_IDS } from '../../src/types/ai.js'
 import type { StatusType } from '../../src/types/indicators.js'
-import { IDENTITY_REPLY, revealsModelIdentity } from './guardrails.js'
+import {
+  IDENTITY_REPLY,
+  isOutOfScope,
+  revealsInstructions,
+  revealsModelIdentity,
+} from './guardrails.js'
 import { buildMessages } from './prompts.js'
-import { callVertex, VertexError } from './vertex.js'
+import { callVertex, VertexBlockedError, VertexError } from './vertex.js'
 import type { VertexEnv } from './vertex.js'
 
 export interface AiHandlerResult {
@@ -282,6 +287,28 @@ export interface AiEnv {
   vertex?: VertexEnv
 }
 
+// Tasks em que a resposta é conversa (chat e modal). Nelas, quando a resposta
+// cita o modelo ou recita as instruções, o texto vira a frase fixa IDENTITY_REPLY.
+// Nas outras o texto vira campo de formulário ou bloco da página, e a mesma troca
+// gravaria a frase fixa no projeto — lá toda guarda de saída vira erro
+// `out_of_scope`, que o campo mostra como aviso, sem gravar nada.
+const CONVERSATIONAL: ReadonlySet<AiTaskRequest['task']> = new Set(['chat', 'indicator-question'])
+
+const OUT_OF_SCOPE: AiHandlerResult = {
+  status: 422,
+  body: { error: 'Pedido fora do tema.', code: 'out_of_scope' },
+}
+
+type OutputGuard = 'scope' | 'identity' | 'instructions'
+
+// Guardas determinísticas sobre a saída: o prompt pede, estas garantem.
+function outputGuard(text: string): OutputGuard | null {
+  if (isOutOfScope(text)) return 'scope'
+  if (revealsModelIdentity(text)) return 'identity'
+  if (revealsInstructions(text)) return 'instructions'
+  return null
+}
+
 export async function handleAiTask(rawBody: unknown, env: AiEnv): Promise<AiHandlerResult> {
   const req = parseRequest(rawBody)
   if (!req) {
@@ -305,9 +332,12 @@ export async function handleAiTask(rawBody: unknown, env: AiEnv): Promise<AiHand
       ...env.vertex,
       maxTokens: MAX_TOKENS_BY_TASK[req.task],
     })
-    // A resposta inteira é trocada, não só o nome: frase que cita o modelo
+    const guard = outputGuard(completion)
+    if (guard) console.warn('[api/ai]', req.task, `guarda de saída: ${guard}`)
+    if (guard === 'scope' || (guard && !CONVERSATIONAL.has(req.task))) return OUT_OF_SCOPE
+    // A resposta inteira é trocada, não só o trecho: frase que cita o modelo
     // costuma vir com o resto do bastidor junto ("rodo no X, via Y, com Z").
-    const text = revealsModelIdentity(completion) ? IDENTITY_REPLY : completion
+    const text = guard ? IDENTITY_REPLY : completion
     const body: AiSuccessResponse =
       req.task === 'generate-specific-objectives'
         ? { text, items: parseItems(text) }
@@ -319,6 +349,9 @@ export async function handleAiTask(rawBody: unknown, env: AiEnv): Promise<AiHand
     return { status: 200, body }
   } catch (err) {
     console.error('[api/ai]', req.task, err instanceof Error ? err.message : err)
+    // Bloqueio do filtro do próprio Vertex: para quem pediu é o mesmo que fora do
+    // tema, sem dizer que houve filtro.
+    if (err instanceof VertexBlockedError) return OUT_OF_SCOPE
     if (err instanceof VertexError && err.status === 429) {
       return {
         status: 429,
