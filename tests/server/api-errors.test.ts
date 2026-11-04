@@ -9,7 +9,13 @@ const BASTIDOR = /10\.1\.|27017|ECONNREFUSED|mongo|seed|cole[cç][aã]o|database
 
 // O config real exige MONGO_URI ao ser importado.
 vi.mock('../../server/src/config.js', () => ({
-  config: { mongoUri: 'mongodb://teste', mongoDb: 'teste', port: 0, host: '127.0.0.1' },
+  config: {
+    mongoUri: 'mongodb://teste',
+    mongoDb: 'teste',
+    port: 0,
+    host: '127.0.0.1',
+    aiLimits: { perMinute: 10, perIpPerDay: 150, globalPerDay: 3000 },
+  },
 }))
 
 vi.mock('../../server/src/infra/db.js', () => ({
