@@ -1,5 +1,5 @@
 // Templates de prompt (pt-BR) por task. Toda a "personalidade" da IA vive aqui.
-import type { AiFieldId, AiTaskRequest } from '../../src/types/ai.js'
+import type { AiContext, AiFieldId, AiTaskRequest } from '../../src/types/ai.js'
 import { IDENTITY_REPLY } from './guardrails.js'
 import type { LlmMessage } from './llm.js'
 
@@ -190,9 +190,11 @@ function statusPt(status: string): string {
 }
 
 // "Contexto adicional do projeto" a partir dos campos vizinhos não vazios.
-function contextBlock(context: Record<string, string> | undefined): string {
+function contextBlock(context: AiContext | undefined): string {
   if (!context) return ''
-  const entries = Object.entries(context).filter(([, v]) => v.trim() !== '')
+  const entries = Object.entries(context).filter(
+    (e): e is [string, string] => typeof e[1] === 'string' && e[1].trim() !== '',
+  )
   if (entries.length === 0) return ''
   return (
     '\n\nContexto adicional do projeto:\n' + entries.map(([k, v]) => `- ${k}: ${v}`).join('\n')
