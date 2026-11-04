@@ -369,6 +369,33 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   sem acesso", então não distingue nome errado de modelo não liberado. Trocar o default
   (`api/_lib/vertex.ts`) só depois de uma chamada real.
 
+### Abuso e prompt injection
+
+O `/api/ai` está na internet **sem login** (a `/` é só a escolha da UF), e cada chamada
+ao Vertex custa. A IA não tem ferramenta, não lê banco nem arquivo, o system prompt
+não guarda segredo e a resposta volta só para quem perguntou: uma injeção bem-sucedida
+**não vaza dado**. O risco é outro: **usar a plataforma para outra coisa** (proxy de
+LLM, texto fora do tema com a marca Sebrae) e **queimar orçamento**. Prompt não
+garante nada disso; quem garante é código determinístico em volta do modelo.
+
+- **Entrada (`handler.ts`).** Todo texto do cliente tem teto em `INPUT_LIMITS` e,
+  passando dele, a requisição volta 400 — cortar em silêncio mandaria texto pela metade
+  ao modelo. Os tetos são folgados de propósito, porque os campos do Formulador são
+  `textarea` sem `maxLength`. O que entra no prompt como **dado** tem formato fechado:
+  - `municipality.id` é código IBGE da PB;
+  - `municipality.name` só aceita letras, espaço, apóstrofo, hífen e ponto (os 223
+    nomes reais passam, num teste);
+  - `indicator.status` é um dos quatro status;
+  - as chaves de `context` estão no allowlist `AI_CONTEXT_KEYS` (`src/types/ai.ts`).
+
+  **Campo novo de texto que vai ao prompt entra em `INPUT_LIMITS`**, e chave nova de
+  `context` entra no allowlist. A tipagem de `context` faz o frontend errar na
+  compilação se esquecer.
+- **Histórico do chat é do cliente e pode ser forjado.** A última mensagem tem de ser
+  `user` e as do assistente também têm teto. Alternância estrita não dá: o
+  `ChatPanel` tira do histórico as respostas que falharam e sobram duas do usuário
+  seguidas.
+
 ---
 
 ## Armadilhas conhecidas

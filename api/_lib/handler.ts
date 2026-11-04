@@ -3,13 +3,16 @@
 // rota do Fastify (server/src/routes.ts). O modelo é o Gemini, via Vertex AI.
 import type {
   AiChatMessage,
+  AiContext,
+  AiContextKey,
   AiEconomicBaseItem,
   AiErrorResponse,
   AiFieldId,
   AiSuccessResponse,
   AiTaskRequest,
 } from '../../src/types/ai.js'
-import { AI_FIELD_IDS } from '../../src/types/ai.js'
+import { AI_CONTEXT_KEYS, AI_FIELD_IDS } from '../../src/types/ai.js'
+import type { StatusType } from '../../src/types/indicators.js'
 import { IDENTITY_REPLY, revealsModelIdentity } from './guardrails.js'
 import { buildMessages } from './prompts.js'
 import { callVertex, VertexError } from './vertex.js'
@@ -20,6 +23,35 @@ export interface AiHandlerResult {
   body: AiSuccessResponse | AiErrorResponse
 }
 
+// Teto de tamanho de todo texto que vem do cliente: cada caractere vira token de
+// entrada pago, e sem teto o /api/ai aceita qualquer coisa até o bodyLimit do
+// transporte. Passou do teto, a requisição volta 400 — cortar em silêncio
+// mandaria ao modelo um texto pela metade sem ninguém saber.
+//
+// Folgado de propósito: os campos do Formulador são textarea sem maxLength, e um
+// projeto real escrito à mão não pode bater aqui. Quem segura volume é o rate
+// limit do transporte, não este teto.
+export const INPUT_LIMITS = {
+  // Pergunta do modal e cada mensagem do chat (as do assistente também: o
+  // histórico vem do cliente e pode ser forjado).
+  question: 2000,
+  // Texto de campo do Formulador, objetivo geral, atividades e cada valor de context.
+  longText: 6000,
+  // Rótulo e valor de indicador ou de card da base econômica.
+  shortText: 200,
+  municipalityName: 60,
+} as const
+
+const STATUSES: readonly StatusType[] = ['success', 'warning', 'alert', 'none']
+
+function isText(v: unknown, max: number): v is string {
+  return typeof v === 'string' && v.length <= max
+}
+
+function isNonEmptyText(v: unknown, max: number): v is string {
+  return isText(v, max) && v.trim() !== ''
+}
+
 function isAiFieldId(v: unknown): v is AiFieldId {
   return typeof v === 'string' && (AI_FIELD_IDS as readonly string[]).includes(v)
 }
@@ -28,30 +60,52 @@ function isRecord(v: unknown): v is Record<string, unknown> {
   return typeof v === 'object' && v !== null
 }
 
+// O município entra no prompt em todas as tasks, e o cliente é quem o manda.
+// Código IBGE da PB (25 + 5 dígitos) e nome só com letras, espaço, hífen,
+// apóstrofo e ponto ("Olho d'Água", "São José do Rio do Peixe"): quebra de linha e
+// símbolo não têm o que fazer num nome de município, e é por eles que uma
+// instrução entraria disfarçada.
+const MUNICIPALITY_ID = /^25\d{5}$/
+const MUNICIPALITY_NAME = /^[\p{L}][\p{L} '’.-]*$/u
+
 function isMunicipality(v: unknown): v is { id: string; name: string } {
-  return isRecord(v) && typeof v.id === 'string' && typeof v.name === 'string'
+  return (
+    isRecord(v) &&
+    typeof v.id === 'string' &&
+    MUNICIPALITY_ID.test(v.id) &&
+    isText(v.name, INPUT_LIMITS.municipalityName) &&
+    MUNICIPALITY_NAME.test(v.name)
+  )
 }
 
 function isEconomicBaseItem(v: unknown): v is AiEconomicBaseItem {
-  return isRecord(v) && typeof v.label === 'string' && typeof v.value === 'string'
+  return (
+    isRecord(v) &&
+    isText(v.label, INPUT_LIMITS.shortText) &&
+    isText(v.value, INPUT_LIMITS.shortText)
+  )
 }
 
 function isChatMessage(v: unknown): v is AiChatMessage {
   return (
     isRecord(v) &&
     (v.role === 'user' || v.role === 'assistant') &&
-    typeof v.content === 'string'
+    isText(v.content, INPUT_LIMITS.question)
   )
 }
 
-// Context opcional das tasks: Record<string,string> válido, undefined se
-// ausente, null se malformado (→ 400).
-function parseContext(v: unknown): Record<string, string> | undefined | null {
+function isContextKey(k: string): k is AiContextKey {
+  return (AI_CONTEXT_KEYS as readonly string[]).includes(k)
+}
+
+// Context opcional das tasks: só chaves do allowlist e valores dentro do teto.
+// undefined se ausente, null se malformado (→ 400).
+function parseContext(v: unknown): AiContext | undefined | null {
   if (v === undefined) return undefined
   if (!isRecord(v)) return null
-  const context: Record<string, string> = {}
+  const context: AiContext = {}
   for (const [k, val] of Object.entries(v)) {
-    if (typeof val !== 'string') return null
+    if (!isContextKey(k) || !isText(val, INPUT_LIMITS.longText)) return null
     context[k] = val
   }
   return context
@@ -65,13 +119,13 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
     case 'indicator-question': {
       const ind = raw.indicator
       if (
-        typeof raw.question !== 'string' ||
-        raw.question.trim() === '' ||
+        !isNonEmptyText(raw.question, INPUT_LIMITS.question) ||
         !isRecord(ind) ||
-        typeof ind.id !== 'string' ||
-        typeof ind.label !== 'string' ||
-        (typeof ind.value !== 'string' && typeof ind.value !== 'number') ||
-        typeof ind.status !== 'string'
+        !isText(ind.id, INPUT_LIMITS.shortText) ||
+        !isText(ind.label, INPUT_LIMITS.shortText) ||
+        (!isText(ind.value, INPUT_LIMITS.shortText) && typeof ind.value !== 'number') ||
+        !STATUSES.includes(ind.status as StatusType) ||
+        (ind.unit !== undefined && !isText(ind.unit, INPUT_LIMITS.shortText))
       ) {
         return null
       }
@@ -82,7 +136,7 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
           id: ind.id,
           label: ind.label,
           value: ind.value,
-          status: ind.status,
+          status: ind.status as StatusType,
           unit: typeof ind.unit === 'string' ? ind.unit : undefined,
         },
         municipality: raw.municipality,
@@ -90,7 +144,7 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
     }
 
     case 'improve-field': {
-      if (typeof raw.text !== 'string' || !isAiFieldId(raw.field)) {
+      if (!isText(raw.text, INPUT_LIMITS.longText) || !isAiFieldId(raw.field)) {
         return null
       }
       const context = parseContext(raw.context)
@@ -105,7 +159,7 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
     }
 
     case 'generate-specific-objectives': {
-      if (typeof raw.general !== 'string' || raw.general.trim() === '') return null
+      if (!isNonEmptyText(raw.general, INPUT_LIMITS.longText)) return null
       const count =
         typeof raw.count === 'number' && Number.isFinite(raw.count)
           ? Math.min(Math.max(Math.round(raw.count), 2), 6)
@@ -128,7 +182,7 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
       }
       if (!Array.isArray(raw.objectives)) return null
       const objectives = raw.objectives
-        .filter((o): o is string => typeof o === 'string' && o.trim() !== '')
+        .filter((o): o is string => isNonEmptyText(o, INPUT_LIMITS.longText))
         .slice(0, 10)
       if (objectives.length === 0) return null
       const context = parseContext(raw.context)
@@ -143,7 +197,7 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
     }
 
     case 'suggest-budget-items': {
-      if (typeof raw.activities !== 'string' || raw.activities.trim() === '') return null
+      if (!isNonEmptyText(raw.activities, INPUT_LIMITS.longText)) return null
       const context = parseContext(raw.context)
       if (context === null) return null
       return {
@@ -178,6 +232,10 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
     case 'chat': {
       if (!Array.isArray(raw.messages) || raw.messages.length === 0) return null
       if (!raw.messages.every(isChatMessage)) return null
+      // A última tem de ser do usuário: é a pergunta. Alternância estrita
+      // user/assistant não dá para exigir, porque o ChatPanel tira do histórico as
+      // respostas que falharam e sobram duas do usuário seguidas.
+      if (raw.messages.at(-1)?.role !== 'user') return null
       return {
         task: 'chat',
         // Guarda-corpo de tamanho: só as últimas 12 mensagens.

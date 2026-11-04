@@ -10,6 +10,13 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Segurança
 
+- **O `/api/ai` passa a recusar entrada sem teto ou fora de formato.** Antes, pergunta, campo do Formulador, objetivo, atividades, mensagens do chat, valores de `context`, rótulos e o nome do município entravam no prompt de qualquer tamanho, e o custo de cada um deles vai para a conta do Vertex. Agora cada texto tem teto em `INPUT_LIMITS` (2.000 para pergunta e mensagem, 6.000 para texto do Formulador, 200 para rótulo, 60 para o nome do município), e acima dele a resposta é 400, sem cortar em silêncio. Os tetos são folgados porque os `textarea` do Formulador não têm `maxLength`. O que entra no prompt **como dado** tem formato fechado, porque é por ele que uma instrução entraria disfarçada:
+  - o município é código IBGE da PB, com nome só de letras, espaço, apóstrofo, hífen e ponto (os 223 nomes reais passam, num teste);
+  - o status do indicador é um dos quatro;
+  - as chaves de `context` vêm do allowlist novo `AI_CONTEXT_KEYS`, e a tipagem de `context` passa a ser `AiContext`, então chave nova no frontend sem entrada no allowlist não compila.
+
+  No chat a última mensagem tem de ser do usuário. Alternância estrita ficou de fora porque o `ChatPanel` tira do histórico as respostas que falharam. 19 testes em `ai-input.test.ts`.
+
 - **Dependências da API atualizadas por `npm audit fix` em `server/`.** `fastify` 5.12.3 → 5.12.8 (negação de serviço em respostas HTTP/2 e bypass de validação de cabeçalho) e `fast-uri` 3.1.7 → 3.1.9 (cinco avisos de normalização de URI), mais `find-my-way`, `fast-copy`, `safe-regex2` e `ret`, que o Fastify puxa. Só o `package-lock.json` muda, dentro das faixas já declaradas no `package.json`; `npm audit --omit=dev` passa de 2 avisos moderados para 0. Na raiz restam avisos só em ferramentas de desenvolvimento (lint, testes, build), que não rodam no servidor, e ficam como estão: o `--force` trocaria versões maiores do Vite, do Tailwind e do ESLint. Deploy: `cd server && npm ci && npm run build` e `systemctl restart opp-api`.
 
 ## [1.6.0] — 2026-11-03

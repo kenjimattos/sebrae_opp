@@ -3,6 +3,8 @@
 // de extensão: novas capacidades de IA = novo literal aqui + prompt em
 // api/_lib/prompts.ts.
 
+import type { StatusType } from './indicators.js'
+
 // Campos do Formulador com ação "Aprimorar com IA". O id espelha
 // FormulatorState (slice.campo) — ver src/types/formulator.ts. Fonte única do
 // allowlist: o handler valida contra este array e FIELD_INSTRUCTIONS
@@ -30,6 +32,30 @@ export const AI_FIELD_IDS = [
 
 export type AiFieldId = (typeof AI_FIELD_IDS)[number]
 
+// Chaves que o Formulador manda em `context` (os campos vizinhos que fundamentam
+// a sugestão, em src/components/formulator/steps/). Allowlist pelo mesmo motivo
+// do AI_FIELD_IDS: o handler recusa chave fora dela, porque cada chave vira uma
+// linha do prompt, e a tipagem de `context` faz o frontend errar na compilação,
+// não em produção. Chave nova lá = entrada aqui.
+export const AI_CONTEXT_KEYS = [
+  'problema',
+  'objetivoGeral',
+  'objetivosEspecificos',
+  'atividades',
+  'duracao',
+  'fases',
+  'parcerias',
+  'publicoAlvo',
+  'publicoPrincipal',
+  'continuidade',
+  'gestao',
+  'monitoramento',
+  'indicadoresProjeto',
+] as const
+
+export type AiContextKey = (typeof AI_CONTEXT_KEYS)[number]
+export type AiContext = Partial<Record<AiContextKey, string>>
+
 export interface AiMunicipalityContext {
   id: string
   name: string
@@ -39,7 +65,7 @@ export interface AiIndicatorContext {
   id: string
   label: string
   value: string | number
-  status: string
+  status: StatusType
   unit?: string
 }
 
@@ -74,7 +100,7 @@ export type AiTaskRequest =
       municipality: AiMunicipalityContext
       // Campos vizinhos para fundamentar (ex.: { problema: ... } ao melhorar
       // evidências).
-      context?: Record<string, string>
+      context?: AiContext
     }
   | {
       task: 'generate-specific-objectives'
@@ -90,7 +116,7 @@ export type AiTaskRequest =
       // objetivo, na mesma ordem.
       objectives: string[]
       municipality: AiMunicipalityContext
-      context?: Record<string, string>
+      context?: AiContext
     }
   | {
       task: 'suggest-budget-items'
@@ -98,7 +124,7 @@ export type AiTaskRequest =
       // O modelo devolve apenas nomes de rubrica, nunca valores em R$.
       activities: string
       municipality: AiMunicipalityContext
-      context?: Record<string, string>
+      context?: AiContext
     }
   | {
       task: 'economic-analysis'
