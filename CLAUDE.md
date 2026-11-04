@@ -395,6 +395,14 @@ garante nada disso; quem garante é código determinístico em volta do modelo.
   `user` e as do assistente também têm teto. Alternância estrita não dá: o
   `ChatPanel` tira do histórico as respostas que falharam e sobram duas do usuário
   seguidas.
+- **Prompt (`prompts.ts`): texto de fora vai entre marcadores, nunca solto.** O que o
+  usuário escreveu vai em `entrada()` e o que o cliente mandou como dado (cards, resumo
+  de indicadores, campos vizinhos, rótulo do indicador) vai em `dados()`. O
+  `SYSTEM_PROMPT` manda tratar os dois como conteúdo. `stripMarkers` tira toda
+  sequência de 3+ `<`/`>` antes de embrulhar, senão o usuário fecharia o bloco com o
+  próprio marcador. **Nada que vem do cliente entra no `system`**: o resumo de
+  indicadores do chat ficava lá, onde pesava como regra, e hoje vai junto da última
+  pergunta. Isso reduz a injeção, não a elimina; quem garante é o handler.
 
 ---
 
