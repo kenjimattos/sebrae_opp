@@ -13,7 +13,7 @@ em uma interface unificada para gestores públicos.
 | Estilização | Tailwind CSS v3 + CSS Variables (design tokens) |
 | Roteamento | React Router v7 |
 | Mapa | SVG custom gerado do GeoJSON da Paraíba (IBGE) — sem lib de mapa |
-| IA | OpenRouter (modelo gratuito) via `POST /api/ai` — fetch puro, sem SDK |
+| IA | Vertex AI (Gemini), por service account, via `POST /api/ai` — fetch puro, sem SDK |
 | Backend | API de leitura Node/Fastify (`server/`) sobre MongoDB `DadosOPP` |
 | Dados / ETL | MongoDB `DadosOPP` alimentado pelo ETL em `database/` (lake → seeds) |
 | Deploy | Nginx serve `dist/` + proxy `/api/*` para o processo Node |
@@ -90,7 +90,7 @@ npm run dev                      # tsx watch, porta 3000
 
 # 2) Frontend (na raiz)
 npm install --legacy-peer-deps   # obrigatório: peer deps do React 19
-cp .env.example .env.local       # preencher OPENROUTER_API_KEY (IA em dev)
+cp .env.example .env.local       # preencher GOOGLE_SERVICE_ACCOUNT_JSON (IA em dev)
 npm run dev                      # http://localhost:5173 (/api → :3000 via proxy)
 
 npm run build                    # build de produção (NÃO compila tests/)
@@ -115,11 +115,11 @@ npm run typecheck                # tsc do app E dos testes — é este antes de 
 
 | Arquivo | Variável | Descrição |
 |---|---|---|
-| `.env.local` (raiz) | `OPENROUTER_API_KEY` | Chave da IA. **Sem prefixo `VITE_`** — com ele a chave vazaria no bundle do client. |
-| `.env.local` (raiz) | `OPENROUTER_MODEL` | Opcional: override do modelo (default em `api/_lib/openrouter.ts`). O catálogo `:free` rotaciona — conferir `https://openrouter.ai/api/v1/models` antes de trocar. |
+| `.env.local` (raiz) | `GOOGLE_SERVICE_ACCOUNT_JSON` | Service account da IA: o `.json` inteiro, formato padrão do GCP, numa linha. Traz a **chave privada**: **sem prefixo `VITE_`**, senão vaza no bundle do client. |
+| `.env.local` (raiz) | `VERTEX_MODEL` / `VERTEX_LOCATION` | Opcionais (default `gemini-3.8-flash` / `global`, em `api/_lib/vertex.ts`). O que existe é por projeto — conferir com chamada real antes de trocar. |
 | `server/.env` | `MONGO_URI` / `MONGO_DB` | Conexão com o MongoDB `DadosOPP` (host `10.1.141.23`, default `DadosOPP`). |
 | `server/.env` | `PORT` / `HOST` | Porta/host da API (default `3000` / `0.0.0.0`). |
-| `server/.env` | `OPENROUTER_API_KEY` | Chave da IA **em produção**, onde o `/api/ai` é servido pelo Fastify. Opcional: sem ela a API sobe e só essa rota responde `missing_key`. |
+| `server/.env` | `GOOGLE_SERVICE_ACCOUNT_JSON` | Service account da IA **em produção**, onde o `/api/ai` é servido pelo Fastify. Opcional: sem ela a API sobe e só essa rota responde 503 `unavailable`. |
 
 ## API de leitura
 
@@ -160,7 +160,7 @@ Quatro superfícies, todas sobre `POST /api/ai`:
 4. **Chat global** (`ChatButton`/`ChatPanel`).
 
 Contrato em `src/types/ai.ts` (união `AiTaskRequest`); núcleo em `api/_lib/`
-(`openrouter.ts`, `prompts.ts`, `handler.ts`). **Três transportes sobre a mesma fonte**:
+(`vertex.ts`, `llm.ts`, `prompts.ts`, `handler.ts`). **Três transportes sobre a mesma fonte**:
 a function da Vercel (`api/ai.ts`), o middleware de dev do Vite e o `POST /api/ai` no
 Fastify (`server/src/routes.ts`) — este é o que atende o servidor Sebrae. Client:
 `src/data/ai.ts` + `useAiTask`.
@@ -205,7 +205,7 @@ src/                          # Frontend React
 
 api/                          # Núcleo de IA compartilhado
 ├── ai.ts                     # function serverless (Vercel)
-└── _lib/                     # handler, prompts, openrouter, guardrails (fonte única)
+└── _lib/                     # handler, prompts, vertex, llm, guardrails (fonte única)
 
 server/                       # API de leitura (Node/Fastify) — ver server/README.md
 └── src/                      # por DOMÍNIO, não por camada: indicadores/ (a régua),

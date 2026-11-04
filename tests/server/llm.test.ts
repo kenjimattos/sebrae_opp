@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { sanitizeCompletion } from '../../api/_lib/openrouter.js'
+import { sanitizeCompletion } from '../../api/_lib/llm.js'
 
 // Única superfície onde texto não determinístico chega ao gestor sem revisão.
 

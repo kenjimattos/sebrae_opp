@@ -1,4 +1,5 @@
 import 'dotenv/config'
+import { vertexEnvFrom } from '../../api/_lib/vertex.js'
 
 // Lê e valida as variáveis de ambiente uma única vez no boot. Falha cedo (com
 // mensagem clara) se faltar algo essencial — melhor do que erro obscuro de
@@ -14,10 +15,10 @@ export const config = {
   mongoDb: process.env.MONGO_DB ?? 'DadosOPP',
   port: Number(process.env.PORT ?? 3000),
   host: process.env.HOST ?? '0.0.0.0',
-  // IA: opcionais de propósito. Sem a chave a API sobe normalmente e só o
-  // /api/ai responde `unavailable` — que o frontend mostra como "O assistente
-  // está indisponível no momento" (o motivo real vai para o log). Exigir a chave aqui derrubaria a API
-  // inteira (indicadores, mapa, emendas) por causa de um recurso acessório.
-  openrouterApiKey: process.env.OPENROUTER_API_KEY,
-  openrouterModel: process.env.OPENROUTER_MODEL,
+  // IA: opcional de propósito. Sem a service account a API sobe normalmente e só
+  // o /api/ai responde `unavailable` — que o frontend mostra como "O assistente
+  // está indisponível no momento" (o motivo real vai para o log). Exigi-la aqui
+  // derrubaria a API inteira (indicadores, mapa, emendas) por causa de um
+  // recurso acessório.
+  vertex: vertexEnvFrom(process.env),
 }

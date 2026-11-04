@@ -1,7 +1,7 @@
 // Sigilo sobre o que está por trás da IA: modelo, fornecedor, infraestrutura.
 // Duas camadas, porque uma só não segura: o SYSTEM_PROMPT (prompts.ts) pede
-// sigilo, mas modelo gratuito obedece prompt de forma irregular — perguntado
-// "qual modelo você é?", o chat respondeu "NVIDIA". O filtro abaixo é a
+// sigilo, mas modelo obedece prompt de forma irregular — perguntado "qual modelo
+// você é?", o modelo gratuito que atendia antes do Vertex respondeu "NVIDIA". O filtro abaixo é a
 // garantia determinística que o prompt não dá.
 
 // Frase fixa de quando o assunto é a própria IA. O prompt pede ao modelo que a

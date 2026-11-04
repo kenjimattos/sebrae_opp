@@ -1,9 +1,44 @@
+import { generateKeyPairSync } from 'node:crypto'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { IDENTITY_REPLY, revealsModelIdentity } from '../../api/_lib/guardrails.js'
 import { handleAiTask } from '../../api/_lib/handler.js'
 import { buildMessages } from '../../api/_lib/prompts.js'
+import type { VertexEnv } from '../../api/_lib/vertex.js'
 
 const municipality = { id: '2504009', name: 'Campina Grande' }
+
+const { privateKey } = generateKeyPairSync('rsa', {
+  modulusLength: 2048,
+  privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+  publicKeyEncoding: { type: 'spki', format: 'pem' },
+})
+
+// E-mail novo a cada env: o cliente guarda o token por e-mail da service
+// account, e um token em cache pularia a primeira chamada do stub.
+let envSeq = 0
+function vertexEnv(): { vertex: VertexEnv } {
+  envSeq += 1
+  return {
+    vertex: {
+      credentials: { clientEmail: `teste-${envSeq}@x.iam`, privateKey, projectId: 'p' },
+      model: 'gemini-teste',
+      location: 'global',
+    },
+  }
+}
+
+// O Vertex faz duas chamadas: token no OAuth e depois a geração. O stub responde
+// as duas pela URL; `geracao` decide a segunda.
+function stubVertex(geracao: () => Response): void {
+  vi.stubGlobal(
+    'fetch',
+    vi.fn(async (url: string) =>
+      url.startsWith('https://oauth2.googleapis.com/')
+        ? new Response(JSON.stringify({ access_token: 't', expires_in: 3600 }), { status: 200 })
+        : geracao(),
+    ),
+  )
+}
 
 describe('revealsModelIdentity', () => {
   it.each([
@@ -70,12 +105,12 @@ describe('handleAiTask · filtro de identidade', () => {
     vi.unstubAllGlobals()
   })
 
-  function stubCompletion(content: string): void {
-    vi.stubGlobal(
-      'fetch',
-      vi.fn(async () =>
-        new Response(JSON.stringify({ choices: [{ message: { content } }] }), { status: 200 }),
-      ),
+  function stubCompletion(text: string): void {
+    stubVertex(
+      () =>
+        new Response(JSON.stringify({ candidates: [{ content: { parts: [{ text }] } }] }), {
+          status: 200,
+        }),
     )
   }
 
@@ -86,15 +121,15 @@ describe('handleAiTask · filtro de identidade', () => {
   }
 
   it('resposta que cita o modelo sai como a frase fixa, inteira', async () => {
-    stubCompletion('Sou o Nemotron 3 Super, da NVIDIA, servido via OpenRouter.')
-    const { status, body } = await handleAiTask(chat, { apiKey: 'k' })
+    stubCompletion('Sou o Gemini, um modelo do Google, servido pelo Vertex AI.')
+    const { status, body } = await handleAiTask(chat, vertexEnv())
     expect(status).toBe(200)
     expect(body).toEqual({ text: IDENTITY_REPLY })
   })
 
   it('resposta limpa passa intacta', async () => {
     stubCompletion('Campina Grande pode simplificar o alvará via Redesim.')
-    const { body } = await handleAiTask(chat, { apiKey: 'k' })
+    const { body } = await handleAiTask(chat, vertexEnv())
     expect(body).toEqual({ text: 'Campina Grande pode simplificar o alvará via Redesim.' })
   })
 })
@@ -102,7 +137,8 @@ describe('handleAiTask · filtro de identidade', () => {
 // O corpo de erro chega ao navegador. Nada nele pode apontar fornecedor,
 // modelo, variável de ambiente ou o fato de a cota ser gratuita.
 describe('handleAiTask · erro sem bastidor', () => {
-  const BASTIDOR = /openrouter|nvidia|nemotron|free|gratuit|OPENROUTER_API_KEY|api[_ ]?key/i
+  const BASTIDOR =
+    /vertex|gemini|google_service_account|private[_ ]?key|project_id|openrouter|free|gratuit|api[_ ]?key/i
 
   afterEach(() => {
     vi.unstubAllGlobals()
@@ -117,10 +153,10 @@ describe('handleAiTask · erro sem bastidor', () => {
 
   function stubUpstream(status: number, body: string): void {
     vi.spyOn(console, 'error').mockImplementation(() => {})
-    vi.stubGlobal('fetch', vi.fn(async () => new Response(body, { status })))
+    stubVertex(() => new Response(body, { status }))
   }
 
-  it('sem chave: 503 unavailable, sem nomear a chave', async () => {
+  it('sem credencial: 503 unavailable, sem nomear a variável', async () => {
     vi.spyOn(console, 'error').mockImplementation(() => {})
     const { status, body } = await handleAiTask(chat, {})
     expect(status).toBe(503)
@@ -128,32 +164,32 @@ describe('handleAiTask · erro sem bastidor', () => {
     expect(JSON.stringify(body)).not.toMatch(BASTIDOR)
   })
 
-  it('404 do upstream: 502 sem o corpo cru (que traz o id do modelo)', async () => {
+  it('404 do upstream: 502 sem o corpo cru (que traz projeto e modelo)', async () => {
     stubUpstream(
       404,
-      '{"error":{"message":"No endpoints found for nvidia/nemotron-3-super-120b-a12b:free"}}',
+      '{"error":{"message":"Publisher model projects/p/locations/global/publishers/google/models/gemini-teste was not found"}}',
     )
-    const { status, body } = await handleAiTask(chat, { apiKey: 'k' })
+    const { status, body } = await handleAiTask(chat, vertexEnv())
     expect(status).toBe(502)
     expect(body).toMatchObject({ code: 'upstream_error' })
     expect(JSON.stringify(body)).not.toMatch(BASTIDOR)
   })
 
-  it('429: rate_limited sem dizer que a cota é gratuita', async () => {
-    stubUpstream(429, '{"error":{"message":"Rate limit exceeded: free-models-per-day"}}')
-    const { status, body } = await handleAiTask(chat, { apiKey: 'k' })
+  it('429: rate_limited sem nomear o serviço nem a cota', async () => {
+    stubUpstream(429, '{"error":{"message":"Quota exceeded for aiplatform.googleapis.com"}}')
+    const { status, body } = await handleAiTask(chat, vertexEnv())
     expect(status).toBe(429)
     expect(body).toMatchObject({ code: 'rate_limited' })
     expect(JSON.stringify(body)).not.toMatch(BASTIDOR)
   })
 
   it('o detalhe completo vai para o log', async () => {
-    stubUpstream(404, 'No endpoints found for nvidia/nemotron')
-    await handleAiTask(chat, { apiKey: 'k' })
+    stubUpstream(404, 'Publisher model gemini-teste was not found')
+    await handleAiTask(chat, vertexEnv())
     expect(console.error).toHaveBeenCalledWith(
       '[api/ai]',
       'chat',
-      expect.stringContaining('nvidia/nemotron'),
+      expect.stringContaining('gemini-teste'),
     )
   })
 })

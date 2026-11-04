@@ -110,9 +110,9 @@ move o entrypoint emitido para `dist/server/src/index.js`. O `postbuild`
 (`scripts/emit-entry-shim.mjs`) gera um `dist/index.js` que só importa o real, para o
 `ExecStart` da unit systemd (`node dist/index.js`) continuar valendo.
 
-`OPENROUTER_API_KEY` é **opcional**: sem ela a API sobe e só o `/api/ai` responde
+`GOOGLE_SERVICE_ACCOUNT_JSON` (service account do Vertex AI) é **opcional**: sem ela a API sobe e só o `/api/ai` responde
 503 `unavailable`, que o frontend mostra como "O assistente está indisponível no
-momento". O motivo real fica no log (`journalctl -u opp-api`), não na resposta. Exige saída de rede para `https://openrouter.ai` — ver `.env.example`.
+momento". O motivo real fica no log (`journalctl -u opp-api`), não na resposta. Exige saída de rede para `https://oauth2.googleapis.com` e `https://aiplatform.googleapis.com` — ver `.env.example`.
 
 ## Deploy (10.1.100.99)
 

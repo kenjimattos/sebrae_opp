@@ -4,6 +4,7 @@ import type { Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import { handleAiTask } from './api/_lib/handler'
+import { vertexEnvFrom } from './api/_lib/vertex'
 
 // Endpoint de IA em dev: mesmo handler que a function da Vercel (api/ai.ts),
 // uma única fonte de verdade. Registrado direto no configureServer (não em
@@ -32,8 +33,7 @@ function aiDevEndpoint(env: Record<string, string>): Plugin {
             body = undefined // handler devolve 400
           }
           void handleAiTask(body, {
-            apiKey: env.OPENROUTER_API_KEY,
-            model: env.OPENROUTER_MODEL,
+            vertex: vertexEnvFrom(env),
           }).then(({ status, body: out }) => {
             res.statusCode = status
             res.setHeader('Content-Type', 'application/json')

@@ -1,6 +1,6 @@
 // Núcleo transport-agnóstico do endpoint /api/ai — usado pela function da
 // Vercel (api/ai.ts), pelo middleware de dev do Vite (vite.config.ts) e pela
-// rota do Fastify (server/src/routes.ts).
+// rota do Fastify (server/src/routes.ts). O modelo é o Gemini, via Vertex AI.
 import type {
   AiChatMessage,
   AiEconomicBaseItem,
@@ -12,7 +12,8 @@ import type {
 import { AI_FIELD_IDS } from '../../src/types/ai.js'
 import { IDENTITY_REPLY, revealsModelIdentity } from './guardrails.js'
 import { buildMessages } from './prompts.js'
-import { callOpenRouter, DEFAULT_FREE_MODEL, OpenRouterError } from './openrouter.js'
+import { callVertex, VertexError } from './vertex.js'
+import type { VertexEnv } from './vertex.js'
 
 export interface AiHandlerResult {
   status: number
@@ -218,10 +219,12 @@ function parseItems(text: string, max = 6): string[] {
     .slice(0, max)
 }
 
-export async function handleAiTask(
-  rawBody: unknown,
-  env: { apiKey?: string; model?: string },
-): Promise<AiHandlerResult> {
+export interface AiEnv {
+  // Ausente quando GOOGLE_SERVICE_ACCOUNT_JSON falta ou é inválida (ver vertexEnvFrom).
+  vertex?: VertexEnv
+}
+
+export async function handleAiTask(rawBody: unknown, env: AiEnv): Promise<AiHandlerResult> {
   const req = parseRequest(rawBody)
   if (!req) {
     return { status: 400, body: { error: 'Requisição inválida.', code: 'bad_request' } }
@@ -231,8 +234,8 @@ export async function handleAiTask(
   // gratuito", o corpo cru do upstream com o id do modelo) é mapa para quem
   // quer abusar — dá até para esgotar a cota de propósito. O detalhe vai para
   // o log, que é onde quem mantém precisa dele.
-  if (!env.apiKey) {
-    console.error('[api/ai] OPENROUTER_API_KEY não configurada')
+  if (!env.vertex) {
+    console.error('[api/ai] GOOGLE_SERVICE_ACCOUNT_JSON ausente ou inválida')
     return {
       status: 503,
       body: { error: 'Serviço de IA indisponível.', code: 'unavailable' },
@@ -240,9 +243,8 @@ export async function handleAiTask(
   }
 
   try {
-    const completion = await callOpenRouter(buildMessages(req), {
-      apiKey: env.apiKey,
-      model: env.model || DEFAULT_FREE_MODEL,
+    const completion = await callVertex(buildMessages(req), {
+      ...env.vertex,
       maxTokens: MAX_TOKENS_BY_TASK[req.task],
     })
     // A resposta inteira é trocada, não só o nome: frase que cita o modelo
@@ -259,7 +261,7 @@ export async function handleAiTask(
     return { status: 200, body }
   } catch (err) {
     console.error('[api/ai]', req.task, err instanceof Error ? err.message : err)
-    if (err instanceof OpenRouterError && err.status === 429) {
+    if (err instanceof VertexError && err.status === 429) {
       return {
         status: 429,
         body: { error: 'Muitas consultas no momento.', code: 'rate_limited' },

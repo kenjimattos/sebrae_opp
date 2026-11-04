@@ -315,9 +315,9 @@ código IBGE). Coleção vazia → **503**, nunca payload zerado. Exige os seeds
 
 ---
 
-## Integração de IA (OpenRouter)
+## Integração de IA (Vertex AI / Gemini)
 
-Quatro superfícies, todas via `POST /api/ai` (modelo gratuito, fetch puro — sem SDK):
+Quatro superfícies, todas via `POST /api/ai` (Gemini no Vertex AI, por service account; fetch puro — sem SDK):
 
 1. **Modal do indicador** (`IndicatorModal`, aberto pelo nome do indicador no modo
    Eixos — a única porta de entrada) — explicação e perguntas sugeridas são
@@ -334,7 +334,7 @@ Quatro superfícies, todas via `POST /api/ai` (modelo gratuito, fetch puro — s
 4. **Chat global** (`ChatButton`/`ChatPanel` na Home).
 
 **Arquitetura:** contrato em `src/types/ai.ts` (união `AiTaskRequest`); núcleo em
-`api/_lib/` (`openrouter.ts`, `prompts.ts`, `handler.ts`). **Três transportes sobre a
+`api/_lib/` (`vertex.ts`, `llm.ts`, `prompts.ts`, `handler.ts`). **Três transportes sobre a
 mesma fonte** (`handler.ts`): function da Vercel (`api/ai.ts`), middleware de dev do
 Vite e `POST /api/ai` no Fastify (`server/src/routes.ts`) — este atende o servidor
 Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
@@ -344,14 +344,17 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   endpoint paralelo.
 - Tamanho de resposta se controla pedindo no prompt, e o layout absorve a sobra. Teto por
   task (`MAX_TOKENS_BY_TASK`, hoje vazio) só trunca: o de 260 cortava ~1 em 10 análises no
-  meio da frase. Resta o teto global de 800 em `openrouter.ts`, contra resposta desgovernada.
-- `OPENROUTER_API_KEY` fica **só no servidor**; prefixo `VITE_` vazaria no bundle.
-  No Fastify ela é opcional: sem ela a API sobe e só o `/api/ai` responde 503 `unavailable`.
+  meio da frase. Resta o teto global de 800 em `llm.ts`, contra resposta desgovernada.
+- `GOOGLE_SERVICE_ACCOUNT_JSON` fica **só no servidor**; prefixo `VITE_` vazaria no
+  bundle. Ela traz a **chave privada** da service account: nunca em log, em corpo de
+  erro nem no repositório (`vertexEnvFrom` loga o motivo da recusa sem o conteúdo). É o
+  `.json` no formato padrão do GCP (`project_id` no topo), numa linha. No Fastify é
+  opcional: sem ela a API sobe e só o `/api/ai` responde 503 `unavailable`.
 - **Sigilo do modelo tem duas camadas, e só a segunda garante.** O `SYSTEM_PROMPT` pede
   para não revelar modelo, fornecedor nem bastidor; `revealsModelIdentity`
   (`api/_lib/guardrails.ts`) confere a saída no handler e troca a resposta inteira pela
-  frase fixa `IDENTITY_REPLY`. Só o prompt não segurou: o modelo gratuito respondeu
-  "NVIDIA". Nome novo na lista não pode ser palavra comum em pt-BR — `meta` e `google`
+  frase fixa `IDENTITY_REPLY`. Só o prompt não segurou: o modelo gratuito que atendia
+  antes do Vertex respondeu "NVIDIA". Nome novo na lista não pode ser palavra comum em pt-BR — `meta` e `google`
   ficam de fora de propósito (meta do projeto, Google Trends), porque o falso positivo
   apaga uma resposta boa sem aviso.
 - **Corpo de erro é genérico; o detalhe vai para o log.** O que o handler devolve chega
@@ -360,8 +363,11 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   `unavailable`, não `missing_key`, pelo mesmo motivo.
 - **Escopo (`SCOPE_NOTE`) só nas entradas de texto livre** (chat e pergunta do modal).
   No Formulador a recusa cairia dentro do campo de formulário como se fosse conteúdo.
-- O catálogo `:free` rotaciona — conferir `https://openrouter.ai/api/v1/models` antes
-  de trocar o default. Free tier ~50 req/dia.
+- **Modelo e região são por projeto, não pela doc pública.** No projeto do Sebrae só
+  `gemini-3.8-flash` em `global` responde (medido em 2026-11-03): 2.0/2.5/3/3.1 dão 404,
+  e o próprio 3.8 dá 404 nas regiões nomeadas. O 404 do Vertex diz "não encontrado **ou**
+  sem acesso", então não distingue nome errado de modelo não liberado. Trocar o default
+  (`api/_lib/vertex.ts`) só depois de uma chamada real.
 
 ---
 
@@ -525,7 +531,7 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
 
 ```bash
 npm install --legacy-peer-deps  # obrigatório: peer deps do React 19
-cp .env.example .env.local      # IA em dev: OPENROUTER_API_KEY
+cp .env.example .env.local      # IA em dev: GOOGLE_SERVICE_ACCOUNT_JSON
 npm run dev                     # :5173 — /api → :3000; /api/ai atendido pelo Vite
 npm run build | preview | lint | test
 npm run typecheck               # tsc do app + dos testes (o build não cobre tests/)

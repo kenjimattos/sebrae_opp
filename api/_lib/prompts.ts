@@ -1,7 +1,7 @@
 // Templates de prompt (pt-BR) por task. Toda a "personalidade" da IA vive aqui.
 import type { AiFieldId, AiTaskRequest } from '../../src/types/ai.js'
 import { IDENTITY_REPLY } from './guardrails.js'
-import type { OpenRouterMessage } from './openrouter.js'
+import type { LlmMessage } from './llm.js'
 
 export const SYSTEM_PROMPT =
   'Você é o assistente de IA da PIPPA (Plataforma de Inteligência de Políticas Públicas Aplicada) do ' +
@@ -199,7 +199,7 @@ function contextBlock(context: Record<string, string> | undefined): string {
   )
 }
 
-export function buildMessages(req: AiTaskRequest): OpenRouterMessage[] {
+export function buildMessages(req: AiTaskRequest): LlmMessage[] {
   switch (req.task) {
     case 'indicator-question': {
       const { indicator, municipality, question } = req

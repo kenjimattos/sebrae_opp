@@ -4,6 +4,7 @@
 // vercel.json, então /api/ai convive com o snapshot estático do preview.
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { handleAiTask } from './_lib/handler.js'
+import { vertexEnvFrom } from './_lib/vertex.js'
 
 export default async function handler(req: VercelRequest, res: VercelResponse): Promise<void> {
   if (req.method !== 'POST') {
@@ -11,8 +12,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse): 
     return
   }
   const { status, body } = await handleAiTask(req.body, {
-    apiKey: process.env.OPENROUTER_API_KEY,
-    model: process.env.OPENROUTER_MODEL,
+    vertex: vertexEnvFrom(process.env),
   })
   res.status(status).json(body)
 }
