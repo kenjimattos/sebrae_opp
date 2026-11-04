@@ -188,10 +188,22 @@ interface GeminiPart {
   thought?: boolean
 }
 
+// Tokens que o Vertex cobrou na chamada, para o log de uso. Ausente quando a
+// resposta não traz `usageMetadata`.
+export interface VertexUsage {
+  inputTokens?: number
+  outputTokens?: number
+}
+
+export interface VertexCompletion {
+  text: string
+  usage: VertexUsage
+}
+
 export async function callVertex(
   messages: LlmMessage[],
   env: VertexEnv,
-): Promise<string> {
+): Promise<VertexCompletion> {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
 
@@ -240,6 +252,7 @@ export async function callVertex(
   const data = (await res.json()) as {
     candidates?: { content?: { parts?: GeminiPart[] }; finishReason?: string }[]
     promptFeedback?: { blockReason?: string }
+    usageMetadata?: { promptTokenCount?: number; candidatesTokenCount?: number }
   }
   if (data.promptFeedback?.blockReason) {
     throw new VertexBlockedError(`entrada: ${data.promptFeedback.blockReason}`)
@@ -260,5 +273,11 @@ export async function callVertex(
       `resposta do Vertex sem conteúdo utilizável (finishReason=${candidate?.finishReason ?? 'n/d'})`,
     )
   }
-  return text
+  return {
+    text,
+    usage: {
+      inputTokens: data.usageMetadata?.promptTokenCount,
+      outputTokens: data.usageMetadata?.candidatesTokenCount,
+    },
+  }
 }

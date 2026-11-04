@@ -136,6 +136,10 @@ reinicia. A rota aceita no máximo 128 KB de corpo (o default do Fastify é 1 MB
 > inteiro**. Se houver outro proxy ou balanceador na frente do Nginx, o IP que chega é
 > o dele, e o mesmo efeito aparece: conferir a topologia antes de ligar a IA.
 
+Cada chamada deixa uma linha `[api/ai] uso` no journal, com task, status, tokens,
+duração e guarda disparada, sem o texto do pedido: `journalctl -u opp-api | grep
+'api/ai] uso'`. É dela que saem os números para ajustar os limites acima.
+
 A última linha de defesa fica fora do código e com o **administrador do projeto GCP**:
 alerta de orçamento e cota de requisições do Gemini no projeto
 `sebrae-ia-obs-politica-publica`.

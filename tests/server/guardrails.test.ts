@@ -306,3 +306,61 @@ describe('handleAiTask · guardas de saída e bloqueio', () => {
     expect(body.safetySettings[0]).toMatchObject({ threshold: 'BLOCK_MEDIUM_AND_ABOVE' })
   })
 })
+
+describe('handleAiTask · log de uso', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    vi.restoreAllMocks()
+  })
+
+  const PERGUNTA = 'Qual o CPF do prefeito e o telefone da secretária?'
+  const RESPOSTA = 'Não tenho dados pessoais; posso falar dos indicadores do município.'
+
+  function linhaDeUso(spy: ReturnType<typeof vi.spyOn>): Record<string, unknown> {
+    const call = spy.mock.calls.find((c: unknown[]) => c[0] === '[api/ai] uso')
+    return JSON.parse(String(call?.[1]))
+  }
+
+  it('uma linha por chamada, com tokens e duração, sem o texto da pergunta nem da resposta', async () => {
+    const info = vi.spyOn(console, 'info').mockImplementation(() => {})
+    stubVertex(
+      () =>
+        new Response(
+          JSON.stringify({
+            candidates: [{ content: { parts: [{ text: RESPOSTA }] } }],
+            usageMetadata: { promptTokenCount: 412, candidatesTokenCount: 37 },
+          }),
+          { status: 200 },
+        ),
+    )
+    const chat = { task: 'chat', messages: [{ role: 'user', content: PERGUNTA }], municipality }
+    await handleAiTask(chat, vertexEnv())
+
+    const linha = linhaDeUso(info)
+    expect(linha).toMatchObject({ task: 'chat', status: 200, tokensIn: 412, tokensOut: 37 })
+    expect(typeof linha.ms).toBe('number')
+    expect(linha.chars).toBeGreaterThan(PERGUNTA.length)
+    const tudo = JSON.stringify(info.mock.calls)
+    expect(tudo).not.toContain('CPF')
+    expect(tudo).not.toContain('dados pessoais')
+  })
+
+  it('requisição inválida também entra no log — é onde o abuso aparece', async () => {
+    const info = vi.spyOn(console, 'info').mockImplementation(() => {})
+    await handleAiTask({ task: 'chat', messages: 'x'.repeat(50) }, {})
+    expect(linhaDeUso(info)).toMatchObject({ task: 'invalida', status: 400, code: 'bad_request' })
+  })
+
+  it('registra qual guarda disparou', async () => {
+    const info = vi.spyOn(console, 'info').mockImplementation(() => {})
+    stubVertex(
+      () =>
+        new Response(JSON.stringify({ candidates: [{ content: { parts: [{ text: 'FORA_DO_ESCOPO' }] } }] }), {
+          status: 200,
+        }),
+    )
+    const campo = { task: 'improve-field', field: 'identification.title', text: 'x', municipality }
+    await handleAiTask(campo, vertexEnv())
+    expect(linhaDeUso(info)).toMatchObject({ status: 422, code: 'out_of_scope', guard: 'scope' })
+  })
+})

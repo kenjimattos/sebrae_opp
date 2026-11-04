@@ -432,6 +432,11 @@ garante nada disso; quem garante é código determinístico em volta do modelo.
   violência ou drogas). Bloqueio na entrada ou na saída vira `VertexBlockedError` e
   também `out_of_scope`. **A mensagem é a mesma para fora do tema e para filtro**:
   dizer qual dos dois foi ensinaria a contornar.
+- **Log de uso (`handler.ts`).** Uma linha `[api/ai] uso` por chamada, inclusive as
+  400, com task, status, código, tamanho do corpo, tokens do Vertex, duração e qual
+  guarda disparou. É por ela que se acha abuso e se ajustam os limites
+  (`journalctl -u opp-api | grep 'api/ai] uso'`). **Nunca o texto** da pergunta nem da
+  resposta, pela LGPD, e há teste que confere. O IP fica no log do Fastify.
 
 ---
 

@@ -92,7 +92,7 @@ describe('callVertex', () => {
       ],
       { ...env, credentials: { ...env.credentials, clientEmail: 'unico-1@x.iam' } },
     )
-    expect(texto).toBe('Olá.')
+    expect(texto.text).toBe('Olá.')
 
     const [tokenUrl, tokenInit] = fetchMock.mock.calls[0]
     expect(tokenUrl).toBe('https://oauth2.googleapis.com/token')
@@ -142,7 +142,7 @@ describe('callVertex', () => {
       ...env,
       credentials: { ...env.credentials, clientEmail: 'unico-4@x.iam' },
     })
-    expect(texto).toBe('Resposta final.')
+    expect(texto.text).toBe('Resposta final.')
   })
 
   it('resposta sem texto vira erro, não balão em branco', async () => {
