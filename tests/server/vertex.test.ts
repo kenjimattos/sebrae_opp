@@ -109,6 +109,9 @@ describe('callVertex', () => {
     const body = JSON.parse(init.body)
     expect(body.systemInstruction.parts[0].text).toBe('Seja breve.')
     expect(body.contents.map((c: { role: string }) => c.role)).toEqual(['user', 'model', 'user'])
+    // Sem teto de raciocínio, o modelo gastava quase todo o maxOutputTokens
+    // pensando e a resposta saía cortada (ver THINKING_CONFIG).
+    expect(body.generationConfig.thinkingConfig).toEqual({ thinkingBudget: 128 })
   })
 
   it('região global usa o host sem prefixo', async () => {

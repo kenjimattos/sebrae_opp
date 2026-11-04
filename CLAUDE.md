@@ -374,6 +374,12 @@ Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
   e o próprio 3.8 dá 404 nas regiões nomeadas. O 404 do Vertex diz "não encontrado **ou**
   sem acesso", então não distingue nome errado de modelo não liberado. Trocar o default
   (`api/_lib/vertex.ts`) só depois de uma chamada real.
+- **O teto de 800 tokens soma raciocínio e resposta.** Sem `thinkingConfig`, o
+  `gemini-3.8-flash` gastava até 735 tokens pensando e 3 de 6 respostas saíam cortadas
+  no meio da frase (`finishReason: MAX_TOKENS`), sem erro nenhum. Hoje vai
+  `thinkingBudget: 128` (medido contra `thinkingLevel` LOW e MINIMAL e `thinkingBudget: 0`,
+  tabela no comentário de `THINKING_CONFIG`). Trocou de modelo, meça de novo: o
+  parâmetro aceito muda entre versões, e o MINIMAL dá 400 neste.
 
 ### Abuso e prompt injection
 

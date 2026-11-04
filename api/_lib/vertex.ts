@@ -183,6 +183,18 @@ const SAFETY_SETTINGS = [
   'HARM_CATEGORY_DANGEROUS_CONTENT',
 ].map((category) => ({ category, threshold: 'BLOCK_MEDIUM_AND_ABOVE' }))
 
+// Teto do raciocínio interno do modelo. O maxOutputTokens soma raciocínio e
+// resposta, e sem este teto o gemini-3.8-flash gastava até 735 dos 800 tokens
+// pensando: 3 de 6 respostas de chat e modal saíam cortadas no meio da frase
+// (finishReason MAX_TOKENS), e cada chamada levava ~6–7 s. Medido em 2026-11-04,
+// 4 chamadas por opção, com os prompts reais:
+// - thinkingLevel MINIMAL: 400, o modelo não aceita;
+// - thinkingLevel LOW: 1 de 4 cortada (691 tokens pensando);
+// - thinkingBudget 0: nenhuma cortada, mas não é respeitado (pensou até 190);
+// - thinkingBudget 128: nenhuma cortada, sem raciocínio na conta, ~3 s.
+// As tasks são redação curta sobre contexto dado, não problema de raciocínio.
+const THINKING_CONFIG = { thinkingBudget: 128 }
+
 interface GeminiPart {
   text?: string
   thought?: boolean
@@ -231,6 +243,7 @@ export async function callVertex(
         generationConfig: {
           maxOutputTokens: env.maxTokens ?? MAX_TOKENS,
           temperature: 0.7,
+          thinkingConfig: THINKING_CONFIG,
         },
         safetySettings: SAFETY_SETTINGS,
       }),
