@@ -223,6 +223,7 @@ regra própria, e assim o trabalho de um cabe numa pasta:
 server/src/
   index.ts · app.ts · routes.ts · config.ts    ← boot, instância + erro, controller, env
   infra/        db.ts · payload-cache.ts
+  ia/           quota.ts (cota diária do /api/ai; o resto da IA mora em api/_lib/)
   types/        docs.ts (o que o ETL grava) · api.ts (o que o front consome) · index.ts
   indicadores/  catalog.ts · catalog-cache.ts · status.ts · values.ts
   municipios/   repo.ts · service.ts
@@ -403,6 +404,15 @@ garante nada disso; quem garante é código determinístico em volta do modelo.
   próprio marcador. **Nada que vem do cliente entra no `system`**: o resumo de
   indicadores do chat ficava lá, onde pesava como regra, e hoje vai junto da última
   pergunta. Isso reduz a injeção, não a elimina; quem garante é o handler.
+- **Volume (`server/`, só no Fastify).** Rajada por IP (`@fastify/rate-limit`,
+  `AI_RATE_PER_MIN`), cota diária por IP e teto global diário (`ia/quota.ts`,
+  `AI_RATE_PER_DAY` e `AI_DAILY_CAP`), e `bodyLimit` de 128 KB. Tudo responde 429
+  `rate_limited`. **O limite por IP depende do Nginx mandar `X-Forwarded-For`**
+  (`trustProxy` só confia em `127.0.0.1`): sem o cabeçalho, todo pedido chega como
+  `127.0.0.1` e o limite por IP vira limite do site. Ver `server/README.md`.
+- **O `setErrorHandler` do `app.ts` põe o código explícito nos 4xx.** Com
+  `reply.send(err)` sozinho o status só sai certo quando `err` é um `Error`; o 429 do
+  rate limit chega como objeto simples e saía **200**, sem erro nenhum.
 
 ---
 

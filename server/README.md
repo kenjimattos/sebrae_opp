@@ -100,8 +100,9 @@ npm run build && npm start   # tsc → dist/, node dist/server/src/index.js
 ## IA (`POST /api/ai`)
 
 Terceiro transporte do **mesmo núcleo** de `api/_lib/handler.ts`, ao lado da function
-da Vercel (`api/ai.ts`) e do middleware de dev do Vite. Nada de lógica de IA vive em
-`server/src/` — a rota só repassa o body e devolve `{ status, body }`. Nova capacidade
+da Vercel (`api/ai.ts`) e do middleware de dev do Vite. A lógica de IA (validação,
+prompt, modelo) vive lá; em `server/src/` ficam só as travas de volume da rota, que
+dependem do processo (ver abaixo), e o repasse do body. Nova capacidade
 de IA = novo literal na união de `src/types/ai.ts` + prompt em `api/_lib/prompts.ts`;
 os três transportes ganham de graça.
 
@@ -114,10 +115,43 @@ move o entrypoint emitido para `dist/server/src/index.js`. O `postbuild`
 503 `unavailable`, que o frontend mostra como "O assistente está indisponível no
 momento". O motivo real fica no log (`journalctl -u opp-api`), não na resposta. Exige saída de rede para `https://oauth2.googleapis.com` e `https://aiplatform.googleapis.com` — ver `.env.example`.
 
+### Travas de volume
+
+O `/api/ai` está na internet sem login e cada chamada ao Vertex custa. Antes do
+handler há duas travas, as duas com resposta 429 `rate_limited`:
+
+| Trava | Onde | Env (default) |
+|---|---|---|
+| Rajada por IP | `@fastify/rate-limit`, só nesta rota | `AI_RATE_PER_MIN` (10/min) |
+| Cota diária por IP | `src/ia/quota.ts` | `AI_RATE_PER_DAY` (150/dia) |
+| Teto global diário (disjuntor de custo) | `src/ia/quota.ts` | `AI_DAILY_CAP` (3000/dia) |
+
+O dia vira à meia-noite de Fortaleza, e a cota zera também quando o serviço
+reinicia. A rota aceita no máximo 128 KB de corpo (o default do Fastify é 1 MB).
+
+> **O limite por IP depende do Nginx.** O Fastify confia só em `127.0.0.1`
+> (`trustProxy` em `src/app.ts`) e lê o IP do cliente em `X-Forwarded-For`. Sem
+> `proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;` no `location /api/`,
+> todo pedido chega como `127.0.0.1`, e os 10/min por IP viram **10/min para o site
+> inteiro**. Se houver outro proxy ou balanceador na frente do Nginx, o IP que chega é
+> o dele, e o mesmo efeito aparece: conferir a topologia antes de ligar a IA.
+
+A última linha de defesa fica fora do código e com o **administrador do projeto GCP**:
+alerta de orçamento e cota de requisições do Gemini no projeto
+`sebrae-ia-obs-politica-publica`.
+
 ## Deploy (10.1.100.99)
 
 1. `npm ci && npm run build` no servidor.
 2. Serviço `systemd` executando `node dist/index.js` (env via `.env` ou `EnvironmentFile`).
-3. Nginx: `location /api/ { proxy_pass http://127.0.0.1:3000; }` e `location / { root <dist>; try_files ... }`.
+3. Nginx: `location / { root <dist>; try_files ... }` e
+   ```nginx
+   location /api/ {
+     proxy_pass http://127.0.0.1:3000;
+     # Obrigatório: é por ele que o /api/ai limita por cliente (ver Travas de volume).
+     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+   }
+   ```
 
-Variáveis: ver `.env.example` (`MONGO_URI`, `MONGO_DB`, `PORT`, `HOST`).
+Variáveis: ver `.env.example` (`MONGO_URI`, `MONGO_DB`, `PORT`, `HOST`, a service
+account do Vertex e as travas `AI_*`).

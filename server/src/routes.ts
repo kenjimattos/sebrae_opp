@@ -1,7 +1,9 @@
+import rateLimit from '@fastify/rate-limit'
 import type { FastifyInstance } from 'fastify'
 import { handleAiTask } from '../../api/_lib/handler.js'
 import { config } from './config.js'
 import { buildEmendasData } from './emendas/service.js'
+import { DailyQuota } from './ia/quota.js'
 import { listEmendas } from './emendas/repo.js'
 import { listStateValues } from './estado/repo.js'
 import { UF_PADRAO, buildStateData } from './estado/service.js'
@@ -155,13 +157,46 @@ export async function registerRoutes(app: FastifyInstance): Promise<void> {
   // superfícies de IA em produção Sebrae, onde o Nginx manda todo /api/* para cá.
   // Sem GOOGLE_SERVICE_ACCOUNT_JSON válida o handler devolve `unavailable` (503) e o frontend
   // mostra "O assistente está indisponível no momento".
-  app.post('/api/ai', async (req, reply) => {
-    const { status, body } = await handleAiTask(req.body, {
-      vertex: config.vertex,
-    })
+  //
+  // O /api/ai está na internet sem login e cada chamada ao Vertex custa, então
+  // tem duas travas de volume antes do handler:
+  // - rajada por IP por minuto (@fastify/rate-limit, só nesta rota);
+  // - cota diária por IP e global (DailyQuota), que é o disjuntor de custo.
+  // As duas respondem 429 `rate_limited`, que o frontend já trata. O IP é o que o
+  // Nginx repassa em X-Forwarded-For (trustProxy em app.ts): sem esse cabeçalho
+  // todo pedido chega como 127.0.0.1 e o limite por IP vira limite do site.
+  await app.register(rateLimit, { global: false })
+  const quota = new DailyQuota(config.aiLimits)
+  const RATE_LIMITED = { error: 'Muitas consultas no momento.', code: 'rate_limited' }
+
+  app.post(
+    '/api/ai',
+    {
+      // Folgado para o maior pedido legítimo (texto do campo + campos vizinhos
+      // nos tetos de INPUT_LIMITS, com acento) e bem abaixo do 1 MB do Fastify:
+      // o que passa daqui não é um formulário preenchido à mão.
+      bodyLimit: 128 * 1024,
+      config: {
+        rateLimit: {
+          max: config.aiLimits.perMinute,
+          timeWindow: '1 minute',
+          errorResponseBuilder: (_req, ctx) => ({ statusCode: ctx.statusCode, ...RATE_LIMITED }),
+        },
+      },
+    },
+    async (req, reply) => {
+      const decision = quota.take(req.ip)
+      if (decision !== 'ok') {
+        req.log.warn({ quota: decision }, '[api/ai] cota diária esgotada')
+        return reply.code(429).send(RATE_LIMITED)
+      }
+      const { status, body } = await handleAiTask(req.body, {
+        vertex: config.vertex,
+      })
     // Sem cache: cada pergunta é uma pergunta, e a resposta do modelo não é
     // determinística nem compartilhável entre usuários.
-    reply.header('cache-control', 'no-store')
-    return reply.code(status).send(body)
-  })
+      reply.header('cache-control', 'no-store')
+      return reply.code(status).send(body)
+    },
+  )
 }
