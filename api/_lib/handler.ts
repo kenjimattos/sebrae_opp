@@ -30,7 +30,9 @@ export interface AiHandlerResult {
 // Teto de tamanho de todo texto que vem do cliente: cada caractere vira token de
 // entrada pago, e sem teto o /api/ai aceita qualquer coisa até o bodyLimit do
 // transporte. Passou do teto, a requisição volta 400 — cortar em silêncio
-// mandaria ao modelo um texto pela metade sem ninguém saber.
+// mandaria ao modelo um texto pela metade sem ninguém saber. Exceções de hoje:
+// o indicatorsSummary é cortado em 4000 caracteres, e card ou objetivo inválido
+// é descartado (ver os parsers abaixo).
 //
 // Folgado de propósito: os campos do Formulador são textarea sem maxLength, e um
 // projeto real escrito à mão não pode bater aqui. Quem segura volume é o rate

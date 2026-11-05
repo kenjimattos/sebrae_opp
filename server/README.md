@@ -41,6 +41,7 @@ espalharia por quatro pastas.
 src/
   index.ts · app.ts · routes.ts · config.ts    boot · instância + erro · controller (todas as rotas) · env
   infra/        db.ts (cliente Mongo único) · payload-cache.ts
+  ia/           quota.ts (cota diária do /api/ai)
   types/        docs.ts · api.ts · index.ts
   indicadores/  catalog.ts · catalog-cache.ts · status.ts · values.ts
   municipios/   repo.ts (queries) · service.ts (doc → resposta)
@@ -104,7 +105,7 @@ middleware de dev do Vite. A lógica de IA (validação,
 prompt, modelo) vive lá; em `server/src/` ficam só as travas de volume da rota, que
 dependem do processo (ver abaixo), e o repasse do body. Nova capacidade
 de IA = novo literal na união de `src/types/ai.ts` + prompt em `api/_lib/prompts.ts`;
-os três transportes ganham de graça.
+os dois transportes ganham de graça.
 
 Para compilar esse núcleo compartilhado o `tsconfig.json` usa `rootDir: ".."`, o que
 move o entrypoint emitido para `dist/server/src/index.js`. O `postbuild`
@@ -118,7 +119,8 @@ momento". O motivo real fica no log (`journalctl -u opp-api`), não na resposta.
 ### Travas de volume
 
 O `/api/ai` está na internet sem login e cada chamada ao Vertex custa. Antes do
-handler há duas travas, as duas com resposta 429 `rate_limited`:
+handler há duas travas, a segunda com dois tetos (por IP e global), todas com resposta
+429 `rate_limited`:
 
 | Trava | Onde | Env (default) |
 |---|---|---|

@@ -120,6 +120,9 @@ npm run typecheck                # tsc do app E dos testes — é este antes de 
 | `server/.env` | `MONGO_URI` / `MONGO_DB` | Conexão com o MongoDB `DadosOPP` (host `10.1.141.23`, default `DadosOPP`). |
 | `server/.env` | `PORT` / `HOST` | Porta/host da API (default `3000` / `0.0.0.0`). |
 | `server/.env` | `GOOGLE_SERVICE_ACCOUNT_JSON` | Service account da IA **em produção**, onde o `/api/ai` é servido pelo Fastify. Opcional: sem ela a API sobe e só essa rota responde 503 `unavailable`. |
+| `server/.env` | `VERTEX_MODEL` / `VERTEX_LOCATION` | Opcionais, mesmos defaults do `.env.local`. |
+| `server/.env` | `AI_RATE_PER_MIN` / `AI_RATE_PER_DAY` / `AI_DAILY_CAP` | Travas de volume do `/api/ai` (default 10/min e 150/dia por IP, 3000/dia no total). |
+| `server/.env` | `PAYLOAD_CACHE_TTL_MS` | TTL do cache das rotas de leitura (default 5 min). |
 
 ## API de leitura
 
@@ -208,7 +211,7 @@ api/                          # Núcleo de IA compartilhado
 
 server/                       # API de leitura (Node/Fastify) — ver server/README.md
 └── src/                      # por DOMÍNIO, não por camada: indicadores/ (a régua),
-                              #   municipios/, mapa/, emendas/, estado/, infra/, types/
+                              #   municipios/, mapa/, emendas/, estado/, ia/, infra/, types/
 
 database/                     # ETL lake → OPP: seeds MongoDB, geradores Python,
                               #   MAPEAMENTO_BASE_DOS_DADOS.md, RUNBOOK_ETL.md
@@ -251,8 +254,10 @@ Navegador -> Nginx (:80) --+-- /            -> /var/www/sebrae_opp/dist  (SPA)
 
 1. **Nginx** — `server` block em `/etc/nginx/sites-enabled/sebrae_opp`: `root
    /var/www/sebrae_opp/dist`, SPA fallback (`try_files $uri $uri/ /index.html`) e proxy
-   `location /api/ { proxy_pass http://127.0.0.1:3000; }` (**sem barra no final** —
-   preserva o `/api` no path).
+   `location /api/ { proxy_pass http://127.0.0.1:3000; proxy_set_header X-Forwarded-For
+   $proxy_add_x_forwarded_for; }` (**sem barra no final** no `proxy_pass` — preserva o
+   `/api` no path). O `X-Forwarded-For` é **obrigatório**: sem ele o limite por IP do
+   `/api/ai` vira limite do site inteiro.
 2. **API via systemd** — unit `/etc/systemd/system/opp-api.service` executando
    `node dist/index.js` com `WorkingDirectory` = `server/` (o `dotenv` lê o `server/.env`,
    que precisa do `MONGO_URI`). Depois: `sudo systemctl enable --now opp-api`.
