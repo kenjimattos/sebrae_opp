@@ -115,6 +115,7 @@ describe('buildMessages · sigilo e escopo', () => {
     ['indicadores', { task: 'generate-indicators', group: 'results', objectives: ['A'] }],
     ['rubricas', { task: 'suggest-budget-items', activities: 'Oficinas' }],
     ['análise', { task: 'economic-analysis', economicBase: [{ label: 'PIB', value: '1' }] }],
+    ['emendas', { task: 'emendas-analysis', esfera: 'federal', emendasSummary: 'EMENDAS FEDERAIS' }],
   ])('%s também leva o escopo do formulário', (_, req) => {
     const system = systemOf({ ...req, municipality } as Parameters<typeof systemOf>[0])
     expect(system).toContain('ESCOPO DO FORMULÁRIO')

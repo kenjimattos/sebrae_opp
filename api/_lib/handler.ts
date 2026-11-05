@@ -238,6 +238,18 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
       }
     }
 
+    case 'emendas-analysis': {
+      if (raw.esfera !== 'federal' && raw.esfera !== 'estadual') return null
+      // Sem resumo não há o que analisar: o modelo inventaria os números.
+      if (!isNonEmptyText(raw.emendasSummary, INPUT_LIMITS.emendasSummary)) return null
+      return {
+        task: 'emendas-analysis',
+        municipality: raw.municipality,
+        esfera: raw.esfera,
+        emendasSummary: raw.emendasSummary,
+      }
+    }
+
     case 'chat': {
       if (!Array.isArray(raw.messages) || raw.messages.length === 0) return null
       if (!raw.messages.every(isChatMessage)) return null

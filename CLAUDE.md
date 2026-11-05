@@ -318,7 +318,7 @@ código IBGE). Coleção vazia → **503**, nunca payload zerado. Exige os seeds
 
 ## Integração de IA (Vertex AI / Gemini)
 
-Quatro superfícies, todas via `POST /api/ai` (Gemini no Vertex AI, por service account; fetch puro — sem SDK):
+Cinco superfícies, todas via `POST /api/ai` (Gemini no Vertex AI, por service account; fetch puro — sem SDK):
 
 1. **Modal do indicador** (`IndicatorModal`, aberto pelo nome do indicador no modo
    Eixos — a única porta de entrada) — explicação e perguntas sugeridas são
@@ -341,6 +341,14 @@ Quatro superfícies, todas via `POST /api/ai` (Gemini no Vertex AI, por service 
    a ano", e ao vivo o modelo avisava que não se compara e comparava na frase seguinte ("o
    federal é significativamente superior"); hoje ela proíbe dizer qual esfera é maior, no total
    ou num ano. Medido em 2026-11-05: 4 de 4 sem comparação.
+5. **Leitura das emendas** — task `emendas-analysis`, no modo Emendas
+   (`resources/EmendasAnalysis`, sobre o `AnalysisBlock`), **só da esfera ativa**: o resumo
+   vai restrito a ela (`emendasAiSummary(data, id, [esfera])`), e trocar esfera ou município
+   descarta a leitura (`key`). Esfera sem emenda atribuída não monta o bloco. O prompt proíbe
+   calcular percentual, soma ou diferença e proíbe adjetivo de tamanho: a primeira versão dizia
+   só "não chame de alto ou baixo", e ao vivo saíram "alto índice de pagamento" e "aporte
+   expressivo"; com a lista explícita (expressivo, significativo, robusto, modesto…) 3 de 3
+   saíram sem adjetivo.
 
 **Arquitetura:** contrato em `src/types/ai.ts` (união `AiTaskRequest`); núcleo em
 `api/_lib/` (`vertex.ts`, `llm.ts`, `prompts.ts`, `handler.ts`). **Dois transportes sobre a

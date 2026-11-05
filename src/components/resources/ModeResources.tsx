@@ -17,6 +17,7 @@ import { useMunicipality } from '@/hooks/useMunicipality'
 import { useMunicipalityChange } from '@/hooks/useMunicipalityChange'
 import type { EmendaEsfera } from '@/types/emendas'
 import { formatReaisCurto } from '@/utils/emendas'
+import EmendasAnalysis from './EmendasAnalysis'
 import EmendasEsferaCard from './EmendasEsferaCard'
 import EmendasFuncaoTable from './EmendasFuncaoTable'
 
@@ -136,6 +137,16 @@ export default function ModeResources() {
           {/* Some sozinha quando a esfera não tem quebra (município sem emenda
               estadual vem `null`). */}
           <EmendasFuncaoTable esfera={esfera} meta={meta} valores={selecionado[esfera]} />
+          {/* Leitura por IA da esfera ativa. Sem emenda atribuída nessa esfera não há
+              o que ler; a key descarta a leitura ao trocar município ou esfera. */}
+          {data && selecionado[esfera] && (
+            <EmendasAnalysis
+              key={`${selecionado.id}:${esfera}`}
+              data={data}
+              esfera={esfera}
+              municipality={{ id: selecionado.id, name: selecionado.name }}
+            />
+          )}
         </div>
       ) : (
         <p className="typo-body text-inactive">{resourcesContent.mapa.semSelecao}</p>

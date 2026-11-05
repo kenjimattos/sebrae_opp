@@ -149,7 +149,7 @@ código IBGE. Coleção vazia responde **503**, nunca payload zerado.
 
 ## Integração de IA
 
-Quatro superfícies, todas sobre `POST /api/ai`:
+Cinco superfícies, todas sobre `POST /api/ai`:
 
 1. **Modal do indicador** — a explicação e as perguntas sugeridas são **pré-gravadas**
    (`src/data/indicators/descriptions/indicator-ai.ts`); só a pergunta livre chama o LLM.
@@ -161,6 +161,8 @@ Quatro superfícies, todas sobre `POST /api/ai`:
    número fora desse contexto e proíbe classificar o que não vem com status. Mora em
    `analysis/AIAnalysis` e sai num lugar só: o modo *Análise do município*.
 4. **Chat global** (`ChatButton`/`ChatPanel`), com os indicadores e as emendas do município.
+5. **Leitura das emendas** — task `emendas-analysis` no modo Emendas, só da esfera ativa
+   (`resources/EmendasAnalysis`).
 
 Contrato em `src/types/ai.ts` (união `AiTaskRequest`); núcleo em `api/_lib/`
 (`vertex.ts`, `llm.ts`, `prompts.ts`, `handler.ts`). **Dois transportes sobre a mesma fonte**:

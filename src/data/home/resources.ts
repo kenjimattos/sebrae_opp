@@ -52,6 +52,20 @@ export const resourcesContent = {
         'Estimativa: o município é inferido do texto da emenda. Em aberto = empenhado menos pago.',
     },
   },
+  // Leitura por IA das emendas do município (task `emendas-analysis`), uma esfera
+  // por vez. O texto da análise não mora aqui: é gerado.
+  analise: {
+    titulo: {
+      federal: 'Leitura das emendas federais',
+      estadual: 'Leitura das emendas estaduais',
+    },
+    subtitulo:
+      'A IA lê onde o recurso se concentra, quanto já foi pago e como o município pode usar esse padrão em projetos para os pequenos negócios.',
+    rotulo: 'Leitura das emendas',
+    gerar: 'Gerar leitura com IA',
+    gerarNovamente: 'Gerar novamente',
+    gerando: 'Analisando emendas…',
+  },
   mapa: {
     legendaTitulo: 'Valor pago por município',
     legendaMenor: 'menor',

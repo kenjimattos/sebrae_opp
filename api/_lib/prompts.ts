@@ -426,6 +426,41 @@ export function buildMessages(req: AiTaskRequest): LlmMessage[] {
       ]
     }
 
+    case 'emendas-analysis': {
+      const { municipality, esfera, emendasSummary } = req
+      const nome = esfera === 'federal' ? 'emendas parlamentares federais' : 'emendas estaduais (ALPB)'
+      const system =
+        `${SYSTEM_PROMPT}\n\nResponda em texto puro, em um único parágrafo corrido, sem markdown, ` +
+        'sem títulos e sem listas — o texto é exibido como um parágrafo único.' +
+        EMENDAS_NOTE +
+        FORM_SCOPE_NOTE
+      const user =
+        `Escreva a leitura das ${nome} destinadas a ${municipality.name} (PB) para o gestor municipal.\n\n` +
+        `Dados das ${nome}:\n${dados(emendasSummary)}\n\n` +
+        'A leitura deve: (1) dizer onde o recurso se concentra, pelas funções; (2) descrever a ' +
+        'execução, isto é, quanto do empenhado já foi pago, e a evolução entre os anos da própria ' +
+        'esfera; (3) sugerir 1 ou 2 caminhos para o município usar esse padrão em projetos que ' +
+        'fortaleçam o ambiente de pequenos negócios.\n\n' +
+        'Limite a resposta a no máximo 110 palavras, terminando em frase completa.\n\n' +
+        // Mesmo motivo da análise econômica: o card e a tabela por função estão logo
+        // acima, e recitar os valores repete a tela em vez de interpretá-la.
+        'NÃO relacione os dados um a um: o card e a tabela por função já estão na tela, logo acima. ' +
+        'Cite no máximo 3 números, escolhidos porque sustentam o argumento.\n\n' +
+        'REGRA CRÍTICA: cite apenas números que aparecem nos dados acima, copiados exatamente como ' +
+        'estão. Não calcule percentuais, médias, somas nem diferenças, e não estime nenhum valor; ' +
+        'para proporções, escreva de forma qualitativa ("a maior parte", "quase todo"). Não há ' +
+        'referência de comparação com outros municípios: não qualifique nenhum valor nem a execução ' +
+        '(nada de alto, baixo, expressivo, significativo, robusto, modesto, bom ou ruim); descreva ' +
+        'o que os números mostram, sem adjetivo de tamanho.' +
+        (esfera === 'estadual'
+          ? ' Deixe claro, uma vez, que os números estaduais são estimativa.'
+          : '')
+      return [
+        { role: 'system', content: system },
+        { role: 'user', content: user },
+      ]
+    }
+
     case 'chat': {
       const { messages, municipality, indicatorsSummary, emendasSummary } = req
       // O resumo vem do cliente, então NÃO entra no system: lá ele pesaria como
