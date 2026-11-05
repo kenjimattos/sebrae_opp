@@ -1,4 +1,4 @@
-import type { EmendaValores } from '@/types/emendas'
+import type { EmendaEsfera, EmendaValores, EmendasData } from '@/types/emendas'
 import { formatBRL } from '@/utils/currency'
 
 /**
@@ -73,4 +73,74 @@ export function formatPercentual(fracao: number | null): string {
     minimumFractionDigits: 1,
     maximumFractionDigits: 1,
   })}%`
+}
+
+// Funções listadas por esfera no resumo da IA. As três maiores cobrem a maior parte
+// do valor em quase todo município, e o resumo vai em toda pergunta do chat.
+const FUNCOES_NO_RESUMO = 3
+
+const ROTULO_ESFERA: Record<EmendaEsfera, string> = {
+  federal: 'EMENDAS FEDERAIS',
+  estadual: 'EMENDAS ESTADUAIS (ALPB)',
+}
+
+const emendas = (n: number) => `${n} ${n === 1 ? 'emenda' : 'emendas'}`
+
+/** "valor / empenhado / pago" no estadual, "empenhado / pago" no federal. */
+function trinca(v: { valor?: number; empenhado: number; pago: number }, comValor: boolean): string {
+  const partes = [formatReaisCurto(v.empenhado), formatReaisCurto(v.pago)]
+  return (comValor ? [formatReaisCurto(v.valor), ...partes] : partes).join(' / ')
+}
+
+/**
+ * Resumo das emendas de um município para o chat da IA, montado no cliente porque o
+ * handler não lê o banco. Uma seção por esfera, **nunca somadas**: o federal é censo
+ * por código IBGE e o estadual é estimativa a partir de texto livre (ver CLAUDE.md,
+ * "As duas esferas de emendas nunca se somam"). Cada seção leva a procedência e o
+ * eixo do `porAno`, que muda de sentido entre as esferas — sem isso o modelo leria o
+ * mesmo "2024" como a mesma coisa nas duas.
+ *
+ * Esfera `null` não vira zero: no estadual ela quer dizer "não atribuímos nenhuma
+ * emenda a este município", que é diferente de "não recebeu". Devolve '' sem dado.
+ */
+export function emendasAiSummary(data: EmendasData | null, municipioId: string): string {
+  if (!data) return ''
+  const municipio = data.municipios.find((m) => m.id === municipioId)
+  if (!municipio) return ''
+
+  return (['federal', 'estadual'] as const)
+    .map((esfera) => {
+      const meta = data.esferas[esfera]
+      const v = municipio[esfera]
+      const comValor = esfera === 'estadual'
+      const atribuicao =
+        meta.atribuicao === 'ibge'
+          ? 'município pelo código IBGE da despesa (dado exato)'
+          : `município ESTIMADO a partir do texto do objeto da emenda; só ${formatPercentual(meta.coberturaMunicipal)} do valor do estado foi atribuído a algum município`
+      const cabecalho =
+        `${ROTULO_ESFERA[esfera]} — fonte: ${meta.source}, coletado em ${meta.coletadoEm}; ` +
+        `${atribuicao}; janela ${meta.janela.de}–${meta.janela.ate}; ` +
+        `ano da quebra anual = ${meta.criterioQuebraAnual}.`
+      if (!v) {
+        return `${cabecalho}\nNenhuma emenda desta esfera foi atribuída a ${municipio.name}. Não significa que o município não recebeu: a atribuição pode ter falhado.`
+      }
+      const formato = comValor ? 'valor destinado / empenhado / pago' : 'empenhado / pago'
+      const anos = anosDe(v)
+        .map((ano) => `${ano}: ${trinca(v.porAno[ano], comValor)}`)
+        .join('; ')
+      const funcoes = Object.entries(v.porFuncao ?? {})
+        .sort(([a, x], [b, y]) => y.empenhado - x.empenhado || a.localeCompare(b, 'pt-BR'))
+        .slice(0, FUNCOES_NO_RESUMO)
+        .map(([funcao, f]) => `${funcao}: ${trinca(f, comValor)} (${emendas(f.nEmendas)})`)
+        .join('; ')
+      return [
+        cabecalho,
+        `Total (${formato}): ${trinca(v, comValor)}; ${emendas(v.nEmendas)} de ${v.nAutores} ${v.nAutores === 1 ? 'autor' : 'autores'}.`,
+        anos && `Por ano (${formato}): ${anos}.`,
+        funcoes && `Maiores funções (${formato}): ${funcoes}.`,
+      ]
+        .filter(Boolean)
+        .join('\n')
+    })
+    .join('\n\n')
 }
