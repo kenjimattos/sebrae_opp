@@ -9,6 +9,6 @@ export const chatSuggestions: string[] = [
 ]
 
 export const chatTitle = 'Assistente IA'
-export const chatInputHint = 'Pergunte sobre o município, indicadores, projetos…'
+export const chatInputHint = 'Faça uma pergunta…'
 export const chatEmptyMessage =
   'Pergunte o que quiser sobre o município selecionado — indicadores, riscos, ideias de projeto. Ou comece por uma sugestão:'
