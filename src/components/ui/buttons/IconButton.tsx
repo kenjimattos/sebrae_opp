@@ -21,6 +21,7 @@ interface IconButtonProps {
   'aria-label'?: string
   onClick?: () => void
   disabled?: boolean
+  className?: string
 }
 
 const sizeStyles: Record<string, { dimensions: string; iconSize: IconSize }> = {
@@ -38,6 +39,7 @@ export default function IconButton({
   'aria-label': ariaLabel,
   onClick,
   disabled = false,
+  className = '',
 }: IconButtonProps) {
   const s = sizeStyles[size]
   const iconEl = <Icon size={iconSizes[s.iconSize]} />
@@ -59,7 +61,7 @@ export default function IconButton({
       aria-label={ariaLabel}
       onClick={onClick}
       disabled={disabled}
-      className={`${s.dimensions} ${buttonBaseClass} ${buttonVariantStyles[variant]}`}
+      className={`${s.dimensions} ${buttonBaseClass} ${buttonVariantStyles[variant]} ${className}`}
     >
       {iconEl}
     </button>
