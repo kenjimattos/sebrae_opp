@@ -100,15 +100,21 @@ function trinca(v: { valor?: number; empenhado: number; pago: number }, comValor
  * eixo do `porAno`, que muda de sentido entre as esferas — sem isso o modelo leria o
  * mesmo "2024" como a mesma coisa nas duas.
  *
+ * `esferas` restringe o resumo: a análise do modo Emendas manda só a esfera ativa.
+ *
  * Esfera `null` não vira zero: no estadual ela quer dizer "não atribuímos nenhuma
  * emenda a este município", que é diferente de "não recebeu". Devolve '' sem dado.
  */
-export function emendasAiSummary(data: EmendasData | null, municipioId: string): string {
+export function emendasAiSummary(
+  data: EmendasData | null,
+  municipioId: string,
+  esferas: readonly EmendaEsfera[] = ['federal', 'estadual'],
+): string {
   if (!data) return ''
   const municipio = data.municipios.find((m) => m.id === municipioId)
   if (!municipio) return ''
 
-  return (['federal', 'estadual'] as const)
+  return esferas
     .map((esfera) => {
       const meta = data.esferas[esfera]
       const v = municipio[esfera]

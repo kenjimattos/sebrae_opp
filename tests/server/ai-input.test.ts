@@ -163,3 +163,27 @@ describe('chat', () => {
     ).toBe(503)
   })
 })
+
+describe('análise de emendas', () => {
+  const analise = (over: Record<string, unknown>) => ({
+    task: 'emendas-analysis',
+    municipality,
+    esfera: 'federal',
+    emendasSummary: 'EMENDAS FEDERAIS — pago R$ 1 mi.',
+    ...over,
+  })
+
+  it('pedido válido passa da validação', async () => {
+    expect(await status(analise({}))).toBe(503)
+    expect(await status(analise({ esfera: 'estadual' }))).toBe(503)
+  })
+
+  it.each([
+    ['esfera fora de federal|estadual', { esfera: 'municipal' }],
+    ['sem resumo', { emendasSummary: undefined }],
+    ['resumo em branco', { emendasSummary: '   ' }],
+    ['resumo acima do teto', { emendasSummary: longo(INPUT_LIMITS.emendasSummary + 1) }],
+  ])('recusa %s', async (_, over) => {
+    expect(await status(analise(over))).toBe(400)
+  })
+})

@@ -3,6 +3,7 @@
 // de extensão: novas capacidades de IA = novo literal aqui + prompt em
 // api/_lib/prompts.ts.
 
+import type { EmendaEsfera } from './emendas.js'
 import type { StatusType } from './indicators.js'
 
 // Campos do Formulador com ação "Aprimorar com IA". O id espelha
@@ -135,6 +136,15 @@ export type AiTaskRequest =
       // Indicadores de agenda (label: valor (status)) para a leitura apontar
       // riscos e oportunidades, como promete o subtítulo do bloco.
       indicatorsSummary?: string
+    }
+  | {
+      task: 'emendas-analysis'
+      municipality: AiMunicipalityContext
+      // Só a esfera ativa no modo Emendas: a tela mostra uma por vez, e a análise
+      // das duas juntas convidaria o modelo a compará-las.
+      esfera: EmendaEsfera
+      // Resumo de UMA esfera, de `emendasAiSummary(data, id, [esfera])`.
+      emendasSummary: string
     }
   | {
       task: 'chat'

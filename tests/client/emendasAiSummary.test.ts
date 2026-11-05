@@ -100,6 +100,12 @@ describe('emendasAiSummary', () => {
     expect(est).not.toContain('R$ 0')
   })
 
+  it('restrito a uma esfera, traz só ela', () => {
+    const so = emendasAiSummary(dados(estadual), '2504009', ['estadual'])
+    expect(so).toMatch(/^EMENDAS ESTADUAIS/)
+    expect(so).not.toContain('EMENDAS FEDERAIS')
+  })
+
   it('sem payload ou município desconhecido devolve vazio', () => {
     expect(emendasAiSummary(null, '2504009')).toBe('')
     expect(emendasAiSummary(dados(estadual), '2500000')).toBe('')

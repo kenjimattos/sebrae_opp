@@ -104,6 +104,20 @@ describe('buildMessages · dados do cliente ficam fora do system', () => {
     expect(texto.indexOf(fechaDados, i)).toBeGreaterThan(i)
   })
 
+  it('a análise de emendas leva o resumo como dado e as regras no system', () => {
+    const base = { task: 'emendas-analysis' as const, municipality, emendasSummary: `EMENDAS ESTADUAIS. ${INJECAO}` }
+    const est: AiTaskRequest = { ...base, esfera: 'estadual' }
+    expect(systemText(est)).not.toContain(INJECAO)
+    expect(systemText(est)).toContain('Nunca some as duas esferas')
+    const texto = userText(est)
+    const i = texto.indexOf(INJECAO)
+    expect(texto.lastIndexOf(MARKERS.dados[0], i)).toBeGreaterThan(-1)
+    expect(texto.indexOf(MARKERS.dados[1], i)).toBeGreaterThan(i)
+    // A ressalva de estimativa é só do estadual.
+    expect(texto).toContain('são estimativa')
+    expect(userText({ ...base, esfera: 'federal' })).not.toContain('são estimativa')
+  })
+
   it('sem resumo de emendas, a regra de leitura não entra no system', () => {
     expect(
       systemText({ task: 'chat', messages: [{ role: 'user', content: 'Oi' }], municipality }),
