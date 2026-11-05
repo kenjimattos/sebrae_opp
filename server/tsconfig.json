@@ -6,7 +6,7 @@
     "lib": ["ES2022"],
     "outDir": "dist",
     // rootDir sobe para a raiz do repo porque o núcleo de IA (api/_lib) é
-    // compartilhado com a function da Vercel e o middleware de dev do Vite —
+    // compartilhado com o middleware de dev do Vite —
     // fonte única, sem fork. Efeito colateral: o entrypoint emitido vira
     // dist/server/src/index.js (ver `start` no package.json e o ExecStart da
     // unit systemd no README da raiz).

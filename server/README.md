@@ -99,8 +99,8 @@ npm run build && npm start   # tsc → dist/, node dist/server/src/index.js
 
 ## IA (`POST /api/ai`)
 
-Terceiro transporte do **mesmo núcleo** de `api/_lib/handler.ts`, ao lado da function
-da Vercel (`api/ai.ts`) e do middleware de dev do Vite. A lógica de IA (validação,
+Transporte de produção do **mesmo núcleo** de `api/_lib/handler.ts`; o outro é o
+middleware de dev do Vite. A lógica de IA (validação,
 prompt, modelo) vive lá; em `server/src/` ficam só as travas de volume da rota, que
 dependem do processo (ver abaixo), e o repasse do body. Nova capacidade
 de IA = novo literal na união de `src/types/ai.ts` + prompt em `api/_lib/prompts.ts`;

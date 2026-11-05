@@ -160,8 +160,8 @@ Quatro superfícies, todas sobre `POST /api/ai`:
 4. **Chat global** (`ChatButton`/`ChatPanel`).
 
 Contrato em `src/types/ai.ts` (união `AiTaskRequest`); núcleo em `api/_lib/`
-(`vertex.ts`, `llm.ts`, `prompts.ts`, `handler.ts`). **Três transportes sobre a mesma fonte**:
-a function da Vercel (`api/ai.ts`), o middleware de dev do Vite e o `POST /api/ai` no
+(`vertex.ts`, `llm.ts`, `prompts.ts`, `handler.ts`). **Dois transportes sobre a mesma fonte**:
+o middleware de dev do Vite e o `POST /api/ai` no
 Fastify (`server/src/routes.ts`) — este é o que atende o servidor Sebrae. Client:
 `src/data/ai.ts` + `useAiTask`.
 
@@ -204,7 +204,6 @@ src/                          # Frontend React
 └── index.css                 # Design tokens + classes compostas (@layer components)
 
 api/                          # Núcleo de IA compartilhado
-├── ai.ts                     # function serverless (Vercel)
 └── _lib/                     # handler, prompts, vertex, llm, guardrails (fonte única)
 
 server/                       # API de leitura (Node/Fastify) — ver server/README.md

@@ -1,6 +1,6 @@
 // Cliente mínimo do Vertex AI (Gemini) via fetch puro — sem SDK. A autenticação
 // é de service account: assina um JWT com a chave privada (RS256, node:crypto) e
-// troca por um access token no endpoint OAuth do Google. Roda na function da Vercel, no middleware de dev do Vite e no Fastify.
+// troca por um access token no endpoint OAuth do Google. Roda no middleware de dev do Vite e no Fastify.
 import { createSign } from 'node:crypto'
 import { MAX_TOKENS, sanitizeCompletion } from './llm.js'
 import type { LlmMessage } from './llm.js'
@@ -48,7 +48,7 @@ export class VertexError extends Error {
  * `unavailable`, sem derrubar o resto da API.
  *
  * `GOOGLE_SERVICE_ACCOUNT_JSON` é o conteúdo inteiro do arquivo da service
- * account. Na Vercel cola-se o JSON numa linha só; os `\n` da chave privada
+ * account. No .env cola-se o JSON numa linha só; os `\n` da chave privada
  * viajam escapados dentro do JSON e o `JSON.parse` os restaura.
  */
 export function vertexEnvFrom(
@@ -106,7 +106,7 @@ function signAssertion(creds: VertexCredentials, nowSec: number): string {
   return `${unsigned}.${base64Url(signature)}`
 }
 
-// Cache por e-mail da service account: numa function quente da Vercel o token
+// Cache por e-mail da service account: no processo do Fastify o token
 // vale por ~1h e poupa uma ida ao OAuth a cada pergunta.
 const tokenCache = new Map<string, { token: string; expiresAt: number }>()
 

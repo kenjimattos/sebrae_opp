@@ -2,7 +2,7 @@
   // Os testes ficam FORA do `tsc -b` do build: `tests/server/` importa
   // `server/src/`, que importa `mongodb` e `dotenv` — pacotes de
   // `server/node_modules`, instalado à parte. Com os testes no build, um
-  // ambiente que só instala a raiz (a Vercel, um clone novo) quebra em
+  // ambiente que só instala a raiz (um clone novo) quebra em
   // `Cannot find module 'mongodb'` antes de chegar ao `vite build`.
   // Aqui eles seguem verificados, por `npm run typecheck`.
   "compilerOptions": {

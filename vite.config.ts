@@ -6,7 +6,7 @@ import path from 'path'
 import { handleAiTask } from './api/_lib/handler'
 import { vertexEnvFrom } from './api/_lib/vertex'
 
-// Endpoint de IA em dev: mesmo handler que a function da Vercel (api/ai.ts),
+// Endpoint de IA em dev: mesmo handler que a rota do Fastify (server/src/routes.ts),
 // uma única fonte de verdade. Registrado direto no configureServer (não em
 // hook pós-interno) para rodar ANTES do proxy /api → :3000 — senão o proxy
 // engoliria o POST /api/ai. Chave em .env.local (sem prefixo VITE_).

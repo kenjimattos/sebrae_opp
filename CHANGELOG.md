@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Não lançado]
 
+### Removido
+
+- **A Vercel sai da `main`.** Saem `api/ai.ts` (a function serverless, que ninguém importava), `vercel.json` (só o rewrite de SPA) e a devDependency `@vercel/node`, usada apenas pelos tipos daquele arquivo. O núcleo de IA em `api/_lib/` fica, porque o Fastify e o middleware de dev do Vite o importam, e a IA passa de três transportes para dois. Com o `@vercel/node` vão as 4 vulnerabilidades altas que restavam (`undici`, `@fastify/busboy`, `path-to-regexp` e o próprio pacote): o `npm audit` da raiz cai de 15 para 7, todas moderadas e todas do `typescript-eslint`. CLAUDE.md, READMEs, `.env.example` e comentários deixam de citar a function; o do `ChatPanel` também dizia que o resumo de indicadores ia no system prompt, o que não é verdade desde as guardas de injeção. As branches `preview/*` seguem com a Vercel. **Se o projeto da Vercel ainda publica a `main`, tirar essa branch dele**: sem o `vercel.json` o recarregar de página dá 404 e o `/api/ai` não existe lá.
+
 ### Alterado
 
 - **`npm audit fix` na raiz: 22 vulnerabilidades caem para 15.** Só atualizações compatíveis, todas em ferramenta de desenvolvimento e build (`vite` 8.2.2 → 8.3.6, `vitest` 4.1.4 → 4.1.12, `zod`, `brace-expansion`, `source-map-js`, `postcss-selector-parser`); muda só o `package-lock.json`. Nada disso roda no servidor Sebrae: o Nginx serve o `dist/` estático e o `server/` tinha e segue com zero. As 15 que restam vêm de `@vercel/node` (só tipos, em `api/ai.ts`) e `typescript-eslint` (lint), cuja correção o npm só oferece trocando de versão principal; ficam como estão.

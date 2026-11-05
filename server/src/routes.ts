@@ -152,8 +152,8 @@ export async function registerRoutes(app: FastifyInstance): Promise<void> {
     return data
   })
 
-  // Terceiro transporte do mesmo núcleo de IA (api/_lib/handler.ts), ao lado da
-  // function da Vercel e do middleware de dev do Vite — é o que atende as
+  // Transporte de produção do núcleo de IA (api/_lib/handler.ts); o outro é o
+  // middleware de dev do Vite — é o que atende as
   // superfícies de IA em produção Sebrae, onde o Nginx manda todo /api/* para cá.
   // Sem GOOGLE_SERVICE_ACCOUNT_JSON válida o handler devolve `unavailable` (503) e o frontend
   // mostra "O assistente está indisponível no momento".

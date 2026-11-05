@@ -142,7 +142,7 @@ export type AiTaskRequest =
       messages: AiChatMessage[]
       municipality: AiMunicipalityContext
       // Resumo compacto dos indicadores do município, montado no client a
-      // partir de IndicatorsData — a function na Vercel não alcança o banco.
+      // partir de IndicatorsData — o handler de IA não lê o banco.
       indicatorsSummary?: string
     }
 

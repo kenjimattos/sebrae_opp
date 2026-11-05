@@ -1,5 +1,5 @@
 // Client do endpoint de IA (/api/ai). Em dev o middleware do Vite atende;
-// na Vercel, a function api/ai.ts. Mesmas convenções de src/data/api.ts.
+// no servidor, a rota do Fastify. Mesmas convenções de src/data/api.ts.
 import type { AiErrorCode, AiErrorResponse, AiSuccessResponse, AiTaskRequest } from '@/types/ai'
 
 export class AiRequestError extends Error {

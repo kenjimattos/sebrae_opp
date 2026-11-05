@@ -1,6 +1,5 @@
-// Núcleo transport-agnóstico do endpoint /api/ai — usado pela function da
-// Vercel (api/ai.ts), pelo middleware de dev do Vite (vite.config.ts) e pela
-// rota do Fastify (server/src/routes.ts). O modelo é o Gemini, via Vertex AI.
+// Núcleo transport-agnóstico do endpoint /api/ai — usado pelo
+// middleware de dev do Vite (vite.config.ts) e pela rota do Fastify (server/src/routes.ts). O modelo é o Gemini, via Vertex AI.
 import type {
   AiChatMessage,
   AiContext,

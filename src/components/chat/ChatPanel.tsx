@@ -1,6 +1,6 @@
 // Painel do chat global: thread multi-turno com o LLM (task 'chat'), sugestões
 // de pergunta com o thread vazio e contexto real do município (resumo compacto
-// dos indicadores vai no system prompt — a function na Vercel não lê o banco).
+// dos indicadores vai junto da última pergunta — o handler de IA não lê o banco).
 // Respostas digitam com typewriter; estado vive no componente (some ao fechar).
 
 import { useEffect, useMemo, useRef, useState } from 'react'

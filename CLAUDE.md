@@ -335,10 +335,10 @@ Quatro superfícies, todas via `POST /api/ai` (Gemini no Vertex AI, por service 
 4. **Chat global** (`ChatButton`/`ChatPanel` na Home).
 
 **Arquitetura:** contrato em `src/types/ai.ts` (união `AiTaskRequest`); núcleo em
-`api/_lib/` (`vertex.ts`, `llm.ts`, `prompts.ts`, `handler.ts`). **Três transportes sobre a
-mesma fonte** (`handler.ts`): function da Vercel (`api/ai.ts`), middleware de dev do
-Vite e `POST /api/ai` no Fastify (`server/src/routes.ts`) — este atende o servidor
-Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
+`api/_lib/` (`vertex.ts`, `llm.ts`, `prompts.ts`, `handler.ts`). **Dois transportes sobre a
+mesma fonte** (`handler.ts`): middleware de dev do Vite e `POST /api/ai` no Fastify
+(`server/src/routes.ts`) — este atende o servidor Sebrae. A function da Vercel
+(`api/ai.ts`) e o `vercel.json` saíram da `main`; seguem só nas branches `preview/*`. Client: `src/data/ai.ts` + `useAiTask`.
 
 **Regras:**
 - Nova capacidade = novo literal na união + prompt em `prompts.ts`. **Nunca** um
