@@ -383,9 +383,10 @@ não guarda segredo e a resposta volta só para quem perguntou: uma injeção be
 LLM, texto fora do tema com a marca Sebrae) e **queimar orçamento**. Prompt não
 garante nada disso; quem garante é código determinístico em volta do modelo.
 
-- **Entrada (`handler.ts`).** Todo texto do cliente tem teto em `INPUT_LIMITS` e,
+- **Entrada (`handler.ts`).** Quase todo texto do cliente tem teto em `INPUT_LIMITS` e,
   passando dele, a requisição volta 400 — cortar em silêncio mandaria texto pela metade
-  ao modelo. Os tetos são folgados de propósito, porque os campos do Formulador são
+  ao modelo. Exceções de hoje: o `indicatorsSummary` (chat e análise) é cortado em 4.000
+  caracteres, e card da base econômica ou objetivo inválido é descartado sem erro. Os tetos são folgados de propósito, porque os campos do Formulador são
   `textarea` sem `maxLength`. O que entra no prompt como **dado** tem formato fechado:
   - `municipality.id` é código IBGE da PB;
   - `municipality.name` só aceita letras, espaço, apóstrofo, hífen e ponto (os 223
@@ -410,8 +411,8 @@ garante nada disso; quem garante é código determinístico em volta do modelo.
   pergunta. Isso reduz a injeção, não a elimina; quem garante é o handler.
 - **Volume (`server/`, só no Fastify).** Rajada por IP (`@fastify/rate-limit`,
   `AI_RATE_PER_MIN`), cota diária por IP e teto global diário (`ia/quota.ts`,
-  `AI_RATE_PER_DAY` e `AI_DAILY_CAP`), e `bodyLimit` de 128 KB. Tudo responde 429
-  `rate_limited`. **O limite por IP depende do Nginx mandar `X-Forwarded-For`**
+  `AI_RATE_PER_DAY` e `AI_DAILY_CAP`), e `bodyLimit` de 128 KB. Rajada e cotas respondem 429
+  `rate_limited`; corpo acima do `bodyLimit` volta 413 sem chegar ao handler. **O limite por IP depende do Nginx mandar `X-Forwarded-For`**
   (`trustProxy` só confia em `127.0.0.1`): sem o cabeçalho, todo pedido chega como
   `127.0.0.1` e o limite por IP vira limite do site. Ver `server/README.md`.
 - **O `setErrorHandler` do `app.ts` põe o código explícito nos 4xx.** Com
