@@ -1,9 +1,7 @@
 // Figma: Economics/Analysis (368:834)
-// Bloco de análise de desempenho do município, gerado por IA (task
-// `economic-analysis`).
-//
-// Fluxo: idle (CTA) → loading (chamada ao /api/ai) → typing (typewriter) → done.
-// Erro volta ao CTA com a mensagem amigável do useAiTask, permitindo tentar de novo.
+// Análise de desempenho do município, gerada por IA (task `economic-analysis`).
+// A casca (CTA, loading, typewriter, "Gerar novamente") é o `AnalysisBlock`; aqui
+// fica só o contexto que vai ao modelo e os textos.
 //
 // Até a task existir, este componente exibia um texto fixo por município e o
 // typewriter servia só para simular geração — inclusive com números defasados que
@@ -12,7 +10,7 @@
 // Para resetar entre municípios, o consumidor deve passar `key={municipioId}`
 // de modo que o componente monte do zero quando trocar o município.
 
-import { useCallback, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import {
   analysisLabel,
   emptyAnalysisTitle,
@@ -21,13 +19,20 @@ import {
   regenerateAnalysisLabel,
   generatingAnalysisLabel,
 } from '@/data/home/economic-base'
-import { Sparkles, iconSizes } from '@/components/icons'
-import Button from '@/components/ui/buttons/Button'
-import AiMessage from '@/components/ui/AiMessage'
 import { indicatorAiLine } from '@/data/indicators/status-labels'
 import { thresholdSegmentLabels } from '@/utils/segmentLabels'
-import { useAiTask } from '@/hooks/useAiTask'
 import { useMunicipality } from '@/hooks/useMunicipality'
+import type { AiTaskRequest } from '@/types/ai'
+import AnalysisBlock, { type AnalysisBlockLabels } from './AnalysisBlock'
+
+const LABELS: AnalysisBlockLabels = {
+  emptyTitle: emptyAnalysisTitle,
+  emptySubtitle: emptyAnalysisSubtitle,
+  title: analysisLabel,
+  generate: generateAnalysisLabel,
+  regenerate: regenerateAnalysisLabel,
+  generating: generatingAnalysisLabel,
+}
 
 interface AIAnalysisProps {
   className?: string
@@ -35,12 +40,6 @@ interface AIAnalysisProps {
 
 export default function AIAnalysis({ className = '' }: AIAnalysisProps) {
   const { municipality } = useMunicipality()
-  const ai = useAiTask()
-  const [analysis, setAnalysis] = useState('')
-  const [isTyping, setIsTyping] = useState(false)
-  // Incrementa a cada geração — key do GeneratedState, para o typewriter
-  // reiniciar mesmo quando o texto novo for parecido com o anterior.
-  const [runId, setRunId] = useState(0)
 
   // Só os cards realmente exibidos: é a lista que o prompt autoriza o modelo a citar.
   const economicBase = useMemo(
@@ -67,120 +66,16 @@ export default function AIAnalysis({ className = '' }: AIAnalysisProps) {
     [municipality.data],
   )
 
-  const handleDone = useCallback(() => setIsTyping(false), [])
-
-  async function handleGerar() {
-    const result = await ai.run({
-      task: 'economic-analysis',
-      municipality: { id: municipality.id, name: municipality.name },
-      economicBase,
-      indicatorsSummary: indicatorsSummary !== '' ? indicatorsSummary : undefined,
-    })
-    if (!result) return
-    setAnalysis(result.text)
-    setRunId((n) => n + 1)
-    setIsTyping(true)
-  }
-
-  const loading = ai.status === 'loading'
   // Sem cards não há contexto: o modelo preencheria o vazio inventando números.
-  const disabled = loading || economicBase.length === 0
+  const request: AiTaskRequest | null =
+    economicBase.length === 0
+      ? null
+      : {
+          task: 'economic-analysis',
+          municipality: { id: municipality.id, name: municipality.name },
+          economicBase,
+          indicatorsSummary: indicatorsSummary !== '' ? indicatorsSummary : undefined,
+        }
 
-  if (analysis === '') {
-    return (
-      <main className={`flex flex-col glass p-md rounded gap-sm w-full ${className}`}>
-        <div className="flex flex-col items-end gap-sm">
-          <div className="flex items-center gap-xs w-full">
-            <Sparkles size={iconSizes.sm} className="text-accent" aria-hidden />
-            <h4 className="typo-h4 uppercase">{emptyAnalysisTitle}</h4>
-          </div>
-          <p className="typo-body-sm w-full">{emptyAnalysisSubtitle}</p>
-          <div className="flex items-center gap-sm w-full justify-end">
-            {ai.status === 'error' && ai.errorMessage && (
-              <p className="typo-body-sm text-inactive mr-auto" role="alert">
-                {ai.errorMessage}
-              </p>
-            )}
-            <Button
-              label={loading ? generatingAnalysisLabel : generateAnalysisLabel}
-              variant="primary"
-              size="sm"
-              icon={Sparkles}
-              iconPosition="left"
-              disabled={disabled}
-              onClick={handleGerar}
-            />
-          </div>
-        </div>
-      </main>
-    )
-  }
-
-  return (
-    <main className={`flex flex-col glass p-md rounded gap-sm w-full ${className}`}>
-      <GeneratedState
-        key={runId}
-        analysis={analysis}
-        isTyping={isTyping}
-        loading={loading}
-        errorMessage={ai.status === 'error' ? ai.errorMessage : null}
-        disabled={disabled}
-        onDone={handleDone}
-        onRegenerar={handleGerar}
-      />
-    </main>
-  )
-}
-
-function GeneratedState({
-  analysis,
-  isTyping,
-  loading,
-  errorMessage,
-  disabled,
-  onDone,
-  onRegenerar,
-}: {
-  analysis: string
-  isTyping: boolean
-  loading: boolean
-  errorMessage: string | null
-  disabled: boolean
-  onDone: () => void
-  onRegenerar: () => void
-}) {
-  const busy = isTyping || loading
-
-  return (
-    <>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-xs">
-          <Sparkles size={iconSizes.sm} className="text-accent" aria-hidden />
-          <h4 className="typo-body-bold">{analysisLabel}</h4>
-          {busy && (
-            <span className="typo-body-sm text-inactive" aria-live="polite">
-              {generatingAnalysisLabel}
-            </span>
-          )}
-        </div>
-        {!busy && (
-          <Button
-            label={regenerateAnalysisLabel}
-            variant="ghost"
-            size="sm"
-            icon={Sparkles}
-            iconPosition="left"
-            disabled={disabled}
-            onClick={onRegenerar}
-          />
-        )}
-      </div>
-      {errorMessage && (
-        <p className="typo-body-sm text-inactive" role="alert">
-          {errorMessage}
-        </p>
-      )}
-      <AiMessage text={analysis} isTyping={isTyping} onDone={onDone} icon={false} />
-    </>
-  )
+  return <AnalysisBlock request={request} labels={LABELS} className={className} />
 }
