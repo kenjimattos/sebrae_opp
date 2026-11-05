@@ -224,7 +224,7 @@ export default function IndicatorModal({ indicator, open, onClose }: IndicatorMo
         <TextInput
           value={freeQuestion}
           onChange={setFreeQuestion}
-          hint="Pergunte sobre este indicador…"
+          hint="Faça uma pergunta…"
           disabled={busy}
         />
         <Button
