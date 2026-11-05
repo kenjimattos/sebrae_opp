@@ -331,7 +331,9 @@ Quatro superfícies, todas via `POST /api/ai` (Gemini no Vertex AI, por service 
    proíbe citar número fora desse contexto e proíbe classificar o que não vem com
    status. Mora em `analysis/AIAnalysis` e sai num lugar só: o modo *Análise do
    município*. O Panorama, que antes a trazia abaixo dos cards, hoje é só os cards —
-   as duas cópias do componente viraram uma.
+   as duas cópias do componente viraram uma. A casca (CTA, loading, typewriter, "Gerar
+   novamente") é o `analysis/AnalysisBlock`, que recebe só o pedido à IA e os textos;
+   análise nova monta um `AnalysisBlock`, não copia a casca.
 4. **Chat global** (`ChatButton`/`ChatPanel` na Home). Recebe o resumo dos indicadores e o
    das **emendas** do município (`emendasAiSummary`, `src/utils/emendas.ts`): uma seção por
    esfera, cada uma com fonte, atribuição e eixo do ano. As regras de leitura (`EMENDAS_NOTE`)

@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Não lançado]
 
+### Alterado
+
+- **A casca da análise por IA vira `analysis/AnalysisBlock`.** CTA, loading, typewriter e "Gerar novamente" saem de `AIAnalysis`, que passa a montar só o pedido `economic-analysis` e os textos; `request: null` desliga o botão (sem cards não há contexto). Sem mudança na tela: mesmo markup, mesmas classes. Preparação para a leitura das emendas, que usa a mesma casca.
+
 ### Adicionado
 
 - **O chat da IA responde sobre emendas parlamentares do município.** Até aqui nenhuma superfície de IA recebia emendas: o dado existia no navegador (modo Mapeamento de recursos), mas o chat só mandava os indicadores, e uma pergunta como "quanto Campina recebeu em emendas?" ficava sem número. `emendasAiSummary` (`src/utils/emendas.ts`) monta o resumo a partir do mesmo `GET /api/emendas`, com uma seção por esfera e nunca somadas: fonte, data de coleta, atribuição (exata pelo IBGE no federal, ESTIMADA no estadual, com a cobertura de 61,9%), janela e o eixo do ano, que muda entre as esferas. Vão total, quebra anual e as 3 maiores funções; valor destinado só no estadual. Esfera sem emenda atribuída sai como "nenhuma atribuída, o que não prova que não recebeu", não como zero. O resumo vai como dado junto da pergunta, com teto em `INPUT_LIMITS.emendasSummary` (4.000; o maior dos 223 tem ~1.700) e 400 acima dele, sem corte silencioso. No `system` entra `EMENDAS_NOTE`, só quando há resumo: não somar nem comparar as esferas, estadual é estimativa, pago pode passar do empenhado num ano (restos a pagar), não citar parlamentar nem partido. O `SCOPE_NOTE` passa a listar emendas no escopo do chat. Conferido ao vivo no Vertex com o snapshot de emendas: total, pedido de soma, área de aplicação, pedido de autor e município sem emenda estadual saíram certos; a pergunta "qual esfera deu mais em 2024" comparava na primeira versão da regra e deixou de comparar (4 de 4) depois de ela proibir dizer qual é maior. Testes: 6 do resumo no cliente, teto e tipo no `ai-input`, e posição no prompt (dado, junto da última pergunta, fora do `system`).
