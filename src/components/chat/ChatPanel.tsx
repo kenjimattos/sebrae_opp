@@ -13,7 +13,7 @@ import TextInput from '@/components/ui/TextInput'
 import Button from '@/components/ui/buttons/Button'
 import IconButton from '@/components/ui/buttons/IconButton'
 import AiMessage from '@/components/ui/AiMessage'
-import { Sparkles, X, iconSizes } from '@/components/icons'
+import { ArrowRight, Sparkles, X, iconSizes } from '@/components/icons'
 import { indicatorAiLine } from '@/data/indicators/status-labels'
 import {
   chatEmptyMessage,
@@ -173,10 +173,12 @@ export default function ChatPanel({ onClose }: ChatPanelProps) {
         }}
       >
         <TextInput value={draft} onChange={setDraft} hint={chatInputHint} disabled={busy} />
-        <Button
-          label="Enviar"
+        <IconButton
+          icon={ArrowRight}
           variant="primary"
           size="md"
+          className="shrink-0 rounded-full"
+          aria-label="Enviar"
           disabled={busy || draft.trim() === ''}
           onClick={() => void send(draft)}
         />

@@ -10,6 +10,7 @@ import { useAiTask } from '@/hooks/useAiTask'
 import Modal from '@/components/ui/Modal'
 import TextInput from '@/components/ui/TextInput'
 import Button from '@/components/ui/buttons/Button'
+import IconButton from '@/components/ui/buttons/IconButton'
 import AiMessage from '@/components/ui/AiMessage'
 import { Sparkles } from '@/components/icons'
 import { statusLabels, thresholdCriterion } from '@/data/indicators/status-labels'
@@ -227,12 +228,12 @@ export default function IndicatorModal({ indicator, open, onClose }: IndicatorMo
           hint="Faça uma pergunta…"
           disabled={busy}
         />
-        <Button
-          label="Perguntar"
+        <IconButton
+          icon={Sparkles}
           variant="primary"
           size="md"
-          icon={Sparkles}
-          iconPosition="left"
+          className="shrink-0 rounded-full"
+          aria-label="Perguntar"
           disabled={busy || freeQuestion.trim() === ''}
           onClick={() => void askFree()}
         />
