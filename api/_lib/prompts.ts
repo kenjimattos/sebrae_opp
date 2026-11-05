@@ -57,7 +57,8 @@ export const SYSTEM_PROMPT =
 // como resposta, em uma frase.
 const SCOPE_NOTE =
   '\n\nESCOPO: responda apenas sobre políticas públicas, desenvolvimento econômico municipal, ambiente ' +
-  'de pequenos negócios e empreendedorismo, os indicadores do município e o uso desta plataforma. Para ' +
+  'de pequenos negócios e empreendedorismo, os indicadores do município, as emendas parlamentares ' +
+  'destinadas a ele e o uso desta plataforma. Para ' +
   'qualquer outro assunto (receitas, esportes, programação, entretenimento, conselhos pessoais, ' +
   'política partidária etc.), não responda ao pedido: diga em uma frase que só pode ajudar com ' +
   'políticas públicas e desenvolvimento municipal, e sugira uma pergunta sobre o município.'
@@ -78,6 +79,24 @@ const FORM_SCOPE_NOTE =
   'outra coisa (escrever código de programação, receitas, histórias, piadas, traduções, respostas ' +
   'sobre outros assuntos, conselhos pessoais), ou pedir posicionamento político-partidário ou ' +
   `eleitoral, responda somente ${OUT_OF_SCOPE_TOKEN}, sem mais nenhuma palavra.`
+
+// Como ler o resumo de emendas do chat. Só entra no system quando o resumo vem:
+// a regra é nossa, o número é do cliente (vai como dado, junto da pergunta). As
+// regras repetem as da tela (CLAUDE.md, "As duas esferas de emendas nunca se
+// somam"): o modelo, sem elas, somaria federal e estadual num "total recebido".
+const EMENDAS_NOTE =
+  '\n\nEMENDAS PARLAMENTARES: quando os dados trouxerem emendas, há duas esferas com qualidades ' +
+  'diferentes. A FEDERAL é exata (município pelo código IBGE). A ESTADUAL é estimativa (município ' +
+  'inferido do texto da emenda) e deve ser apresentada como estimativa. Nunca some as duas esferas ' +
+  'num total único e nunca compare uma com a outra, nem no total nem num ano: o "ano" do federal é o do ' +
+  'documento de despesa e o do estadual é o da emenda. Se perguntarem qual esfera deu mais, não diga ' +
+  'qual é maior nem que uma supera a outra: apresente cada esfera em separado e explique em uma frase ' +
+  'por que os números não se comparam. Empenhado é o valor comprometido e pago é o que saiu; num ' +
+  'ano o pago pode passar do empenhado porque inclui restos a pagar de anos anteriores. Esfera sem ' +
+  'emenda atribuída não quer dizer que o município não recebeu. Os dados não trazem autores: não ' +
+  'cite nem avalie parlamentares ou partidos. Use apenas os números fornecidos, com a fonte e a ' +
+  'janela de anos de cada esfera; se a pergunta pedir algo que não está nos dados (uma emenda ' +
+  'específica, um autor, um ano fora da janela), diga que a plataforma não tem essa informação.'
 
 // Superfícies conversacionais (chat, modal do indicador) renderizam markdown
 // leve via MarkdownLite no frontend.
@@ -408,7 +427,7 @@ export function buildMessages(req: AiTaskRequest): LlmMessage[] {
     }
 
     case 'chat': {
-      const { messages, municipality, indicatorsSummary } = req
+      const { messages, municipality, indicatorsSummary, emendasSummary } = req
       // O resumo vem do cliente, então NÃO entra no system: lá ele pesaria como
       // regra. Vai como dado, junto da pergunta atual, a última mensagem (o
       // handler garante que é do usuário). Assim continua presente mesmo depois
@@ -416,8 +435,11 @@ export function buildMessages(req: AiTaskRequest): LlmMessage[] {
       const summary = indicatorsSummary
         ? `Indicadores atuais de ${municipality.name}:\n${dados(indicatorsSummary)}\n\n`
         : ''
+      const emendas = emendasSummary
+        ? `Emendas parlamentares destinadas a ${municipality.name}:\n${dados(emendasSummary)}\n\n`
+        : ''
       const system =
-        `${SYSTEM_PROMPT}${RICH_TEXT_NOTE}${SCOPE_NOTE}\n\nO gestor está analisando o município de ${municipality.name} (PB).`
+        `${SYSTEM_PROMPT}${RICH_TEXT_NOTE}${SCOPE_NOTE}${emendasSummary ? EMENDAS_NOTE : ''}\n\nO gestor está analisando o município de ${municipality.name} (PB).`
       const last = messages.length - 1
       return [
         { role: 'system', content: system },
@@ -425,7 +447,7 @@ export function buildMessages(req: AiTaskRequest): LlmMessage[] {
         // o ensinaria a escrever os marcadores. Os marcadores saem dos dois.
         ...messages.map((m, i) =>
           m.role === 'user'
-            ? { role: m.role, content: `${i === last ? summary : ''}${entrada(m.content)}` }
+            ? { role: m.role, content: `${i === last ? summary + emendas : ''}${entrada(m.content)}` }
             : { role: m.role, content: stripMarkers(m.content) },
         ),
       ]

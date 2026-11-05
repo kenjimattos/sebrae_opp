@@ -144,6 +144,9 @@ export type AiTaskRequest =
       // Resumo compacto dos indicadores do município, montado no client a
       // partir de IndicatorsData — o handler de IA não lê o banco.
       indicatorsSummary?: string
+      // Emendas parlamentares do município, uma seção por esfera (nunca somadas),
+      // montado por `emendasAiSummary` a partir de GET /api/emendas.
+      emendasSummary?: string
     }
 
 export interface AiSuccessResponse {

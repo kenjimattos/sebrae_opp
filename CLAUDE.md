@@ -332,7 +332,13 @@ Quatro superfícies, todas via `POST /api/ai` (Gemini no Vertex AI, por service 
    status. Mora em `analysis/AIAnalysis` e sai num lugar só: o modo *Análise do
    município*. O Panorama, que antes a trazia abaixo dos cards, hoje é só os cards —
    as duas cópias do componente viraram uma.
-4. **Chat global** (`ChatButton`/`ChatPanel` na Home).
+4. **Chat global** (`ChatButton`/`ChatPanel` na Home). Recebe o resumo dos indicadores e o
+   das **emendas** do município (`emendasAiSummary`, `src/utils/emendas.ts`): uma seção por
+   esfera, cada uma com fonte, atribuição e eixo do ano. As regras de leitura (`EMENDAS_NOTE`)
+   vão no `system` só quando o resumo vem. A primeira versão da regra só proibia "comparar ano
+   a ano", e ao vivo o modelo avisava que não se compara e comparava na frase seguinte ("o
+   federal é significativamente superior"); hoje ela proíbe dizer qual esfera é maior, no total
+   ou num ano. Medido em 2026-11-05: 4 de 4 sem comparação.
 
 **Arquitetura:** contrato em `src/types/ai.ts` (união `AiTaskRequest`); núcleo em
 `api/_lib/` (`vertex.ts`, `llm.ts`, `prompts.ts`, `handler.ts`). **Dois transportes sobre a

@@ -88,6 +88,28 @@ describe('buildMessages · dados do cliente ficam fora do system', () => {
     expect(userText(req)).toContain(INJECAO)
   })
 
+  it('o resumo de emendas do chat vai como dado; no system só a regra de leitura', () => {
+    const req: AiTaskRequest = {
+      task: 'chat',
+      messages: [{ role: 'user', content: 'Quanto recebeu em emendas?' }],
+      municipality,
+      emendasSummary: `EMENDAS FEDERAIS — pago R$ 1 mi. ${INJECAO}`,
+    }
+    expect(systemText(req)).not.toContain(INJECAO)
+    expect(systemText(req)).toContain('Nunca some as duas esferas')
+    const texto = userText(req)
+    const [abreDados, fechaDados] = MARKERS.dados
+    const i = texto.indexOf(INJECAO)
+    expect(texto.lastIndexOf(abreDados, i)).toBeGreaterThan(-1)
+    expect(texto.indexOf(fechaDados, i)).toBeGreaterThan(i)
+  })
+
+  it('sem resumo de emendas, a regra de leitura não entra no system', () => {
+    expect(
+      systemText({ task: 'chat', messages: [{ role: 'user', content: 'Oi' }], municipality }),
+    ).not.toContain('EMENDAS PARLAMENTARES')
+  })
+
   it('no chat, o resumo vai junto da última pergunta', () => {
     const messages = buildMessages({
       task: 'chat',
@@ -98,10 +120,13 @@ describe('buildMessages · dados do cliente ficam fora do system', () => {
       ],
       municipality,
       indicatorsSummary: 'IDH-M: 0,72',
+      emendasSummary: 'EMENDAS FEDERAIS — pago R$ 1 mi.',
     })
     const users = messages.filter((m) => m.role === 'user')
     expect(users[0].content).not.toContain('IDH-M')
+    expect(users[0].content).not.toContain('EMENDAS FEDERAIS')
     expect(users[1].content).toContain('IDH-M')
+    expect(users[1].content).toContain('EMENDAS FEDERAIS')
   })
 
   it('o campo vizinho do Formulador vai como dado', () => {

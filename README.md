@@ -160,7 +160,7 @@ Quatro superfícies, todas sobre `POST /api/ai`:
    prompt proíbe citar
    número fora desse contexto e proíbe classificar o que não vem com status. Mora em
    `analysis/AIAnalysis` e sai num lugar só: o modo *Análise do município*.
-4. **Chat global** (`ChatButton`/`ChatPanel`).
+4. **Chat global** (`ChatButton`/`ChatPanel`), com os indicadores e as emendas do município.
 
 Contrato em `src/types/ai.ts` (união `AiTaskRequest`); núcleo em `api/_lib/`
 (`vertex.ts`, `llm.ts`, `prompts.ts`, `handler.ts`). **Dois transportes sobre a mesma fonte**:

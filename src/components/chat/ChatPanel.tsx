@@ -9,6 +9,8 @@ import type { AiChatMessage } from '@/types/ai'
 import { useMunicipality } from '@/hooks/useMunicipality'
 import { useAiTask } from '@/hooks/useAiTask'
 import { useDismiss } from '@/hooks/useDismiss'
+import { useEmendas } from '@/hooks/useEmendas'
+import { emendasAiSummary } from '@/utils/emendas'
 import TextInput from '@/components/ui/TextInput'
 import Button from '@/components/ui/buttons/Button'
 import IconButton from '@/components/ui/buttons/IconButton'
@@ -59,6 +61,16 @@ export default function ChatPanel({ onClose }: ChatPanelProps) {
       .join('; ')
   }, [municipality.data])
 
+  // Emendas do município, uma seção por esfera. O payload é o mesmo do modo
+  // Mapeamento de recursos (cache no módulo: uma requisição por sessão). Enquanto
+  // carrega, ou se a rota falhar, a pergunta segue sem o bloco e o modelo diz que
+  // não tem o dado — não vale travar o chat por ele.
+  const emendas = useEmendas()
+  const emendasSummary = useMemo(
+    () => emendasAiSummary(emendas.data, municipality.id),
+    [emendas.data, municipality.id],
+  )
+
   // Sem clique-fora: o painel convive com a página atrás dele (o gestor
   // consulta os cards enquanto pergunta), então clicar no conteúdo não deve
   // fechar o chat e perder a thread.
@@ -88,6 +100,7 @@ export default function ChatPanel({ onClose }: ChatPanelProps) {
       messages: history,
       municipality: { id: municipality.id, name: municipality.name },
       indicatorsSummary: indicatorsSummary !== '' ? indicatorsSummary : undefined,
+      emendasSummary: emendasSummary !== '' ? emendasSummary : undefined,
     })
 
     const id = nextId.current++

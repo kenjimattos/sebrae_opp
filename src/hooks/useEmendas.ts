@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import { fetchEmendas } from '@/data/api'
 import type { EmendaEsfera, EmendaMunicipio, EmendasData } from '@/types/emendas'
 
-// Payload único com os 223 municípios (~145 KB). Só o modo "Mapeamento de
-// recursos" consome, então não vale um Provider global: um cache no módulo já
-// garante uma requisição por sessão, mesmo alternando de modo várias vezes.
+// Payload único com os 223 municípios (~145 KB). Consomem o modo "Mapeamento de
+// recursos" e o chat da IA (resumo do município); não vale um Provider global:
+// um cache no módulo já garante uma requisição por sessão, nos dois.
 let cache: EmendasData | null = null
 let inFlight: Promise<EmendasData> | null = null
 

@@ -46,6 +46,9 @@ export const INPUT_LIMITS = {
   // Rótulo e valor de indicador ou de card da base econômica.
   shortText: 200,
   municipalityName: 60,
+  // Resumo de emendas do chat (as duas esferas). O maior dos 223 municípios tem
+  // ~1.700 caracteres; o teto deixa folga para função ou ano a mais.
+  emendasSummary: 4000,
 } as const
 
 const STATUSES: readonly StatusType[] = ['success', 'warning', 'alert', 'none']
@@ -242,6 +245,8 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
       // user/assistant não dá para exigir, porque o ChatPanel tira do histórico as
       // respostas que falharam e sobram duas do usuário seguidas.
       if (raw.messages.at(-1)?.role !== 'user') return null
+      if (raw.emendasSummary !== undefined && !isText(raw.emendasSummary, INPUT_LIMITS.emendasSummary))
+        return null
       return {
         task: 'chat',
         // Guarda-corpo de tamanho: só as últimas 12 mensagens.
@@ -250,6 +255,10 @@ function parseRequest(raw: unknown): AiTaskRequest | null {
         indicatorsSummary:
           typeof raw.indicatorsSummary === 'string'
             ? raw.indicatorsSummary.slice(0, 4000)
+            : undefined,
+        emendasSummary:
+          typeof raw.emendasSummary === 'string' && raw.emendasSummary.trim() !== ''
+            ? raw.emendasSummary
             : undefined,
       }
     }

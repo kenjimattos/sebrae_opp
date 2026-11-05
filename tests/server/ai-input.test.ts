@@ -145,6 +145,13 @@ describe('chat', () => {
     ).toBe(400)
   })
 
+  it('resumo de emendas no teto passa, acima ou fora de string volta 400', async () => {
+    const base = chat([{ role: 'user', content: 'Quanto o município recebeu em emendas?' }])
+    expect(await status({ ...base, emendasSummary: longo(INPUT_LIMITS.emendasSummary) })).toBe(503)
+    expect(await status({ ...base, emendasSummary: longo(INPUT_LIMITS.emendasSummary + 1) })).toBe(400)
+    expect(await status({ ...base, emendasSummary: { federal: 1 } })).toBe(400)
+  })
+
   it('duas do usuário seguidas passam — é o que sobra quando uma resposta falha', async () => {
     expect(
       await status(
