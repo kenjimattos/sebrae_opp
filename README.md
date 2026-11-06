@@ -85,7 +85,7 @@ Nesta branch **não é preciso subir a API Node nem ter VPN**: o snapshot cobre 
 próprio Vite atende o `/api/ai`.
 
 ```bash
-npm install --legacy-peer-deps   # obrigatório: peer deps do React 19
+npm install
 cp .env.example .env.local       # preencher OPENROUTER_API_KEY (IA em dev)
 npm run dev                      # http://localhost:5173
 
@@ -274,7 +274,7 @@ Navegador -> Nginx (:80) --+-- /            -> /var/www/sebrae_opp/dist  (SPA)
 git pull
 
 # frontend
-npm install --legacy-peer-deps && npm run build
+npm install && npm run build
 sudo rsync -a --delete ~/sebrae_opp/dist/ /var/www/sebrae_opp/dist/
 
 # API

@@ -615,7 +615,7 @@ garante nada disso; quem garante é código determinístico em volta do modelo.
 ## Comandos
 
 ```bash
-npm install --legacy-peer-deps  # obrigatório: peer deps do React 19
+npm install
 cp .env.example .env.local      # IA em dev: OPENROUTER_API_KEY
 npm run dev                     # :5173 — /api/* do snapshot; /api/ai atendido pelo Vite
 npm run build | preview | lint | test

@@ -6,6 +6,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Alterado
 
+- **`npm install` sem `--legacy-peer-deps`.** A flag existia por causa do `react-simple-maps@3`, que só aceitava React até o 18. Ele saiu quando o mapa passou a ser SVG próprio, e a flag ficou na documentação. Instalado do zero sem ela, num diretório só com o `package.json`: 325 pacotes resolvidos, nenhum conflito de peer deps. README (setup e deploy) e CLAUDE.md deixam de pedi-la.
+
 - **A casca da análise por IA vira `analysis/AnalysisBlock`.** CTA, loading, typewriter e "Gerar novamente" saem de `AIAnalysis`, que passa a montar só o pedido `economic-analysis` e os textos; `request: null` desliga o botão (sem cards não há contexto). Sem mudança na tela: mesmo markup, mesmas classes. Preparação para a leitura das emendas, que usa a mesma casca.
 
 ### Adicionado
