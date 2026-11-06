@@ -89,7 +89,7 @@ cp .env.example .env             # preencher MONGO_URI
 npm run dev                      # tsx watch, porta 3000
 
 # 2) Frontend (na raiz)
-npm install --legacy-peer-deps   # obrigatório: peer deps do React 19
+npm install
 cp .env.example .env.local       # preencher GOOGLE_SERVICE_ACCOUNT_JSON (IA em dev)
 npm run dev                      # http://localhost:5173 (/api → :3000 via proxy)
 
@@ -275,7 +275,7 @@ Navegador -> Nginx (:80) --+-- /            -> /var/www/sebrae_opp/dist  (SPA)
 git pull
 
 # frontend
-npm install --legacy-peer-deps && npm run build
+npm install && npm run build
 sudo rsync -a --delete ~/sebrae_opp/dist/ /var/www/sebrae_opp/dist/
 
 # API
