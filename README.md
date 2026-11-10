@@ -170,6 +170,10 @@ o middleware de dev do Vite e o `POST /api/ai` no
 Fastify (`server/src/routes.ts`) — este é o que atende o servidor Sebrae. Client:
 `src/data/ai.ts` + `useAiTask`.
 
+As defesas contra prompt injection (escopo, marcadores, guardas de saída) são medidas por uma
+avaliação ao vivo contra o Vertex, fora do `npm test`: ver
+[`docs/EVAL_INJECAO.md`](docs/EVAL_INJECAO.md). Repita ao trocar o modelo ou o prompt de segurança.
+
 > Capacidade nova = novo literal na união + prompt em `prompts.ts`. **Nunca** um endpoint
 > paralelo. Tamanho de resposta se controla pedindo no prompt, e o layout absorve a
 > sobra: teto por task (`MAX_TOKENS_BY_TASK`, hoje vazio) só trunca.
@@ -214,6 +218,11 @@ api/                          # Núcleo de IA compartilhado
 server/                       # API de leitura (Node/Fastify) — ver server/README.md
 └── src/                      # por DOMÍNIO, não por camada: indicadores/ (a régua),
                               #   municipios/, mapa/, emendas/, estado/, ia/, infra/, types/
+
+evals/                        # Avaliações ao vivo, fora do build e do npm test
+└── injecao/                  # prompt injection do /api/ai — ver docs/EVAL_INJECAO.md
+
+docs/                         # Documentação que não é de uma pasta só
 
 database/                     # ETL lake → OPP: seeds MongoDB, geradores Python,
                               #   MAPEAMENTO_BASE_DOS_DADOS.md, RUNBOOK_ETL.md
