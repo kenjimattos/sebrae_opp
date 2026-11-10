@@ -438,6 +438,15 @@ garante nada disso; quem garante é código determinístico em volta do modelo.
   `rate_limited`; corpo acima do `bodyLimit` volta 413 sem chegar ao handler. **O limite por IP depende do Nginx mandar `X-Forwarded-For`**
   (`trustProxy` só confia em `127.0.0.1`): sem o cabeçalho, todo pedido chega como
   `127.0.0.1` e o limite por IP vira limite do site. Ver `server/README.md`.
+- **Na frente do Nginx há um WAF (`10.1.192.27`), e ele ACRESCENTA o IP ao fim do
+  `X-Forwarded-For`, não substitui.** Um cliente que manda `X-Forwarded-For: 1.2.3.4`
+  chega como `1.2.3.4, <IP real>`. Ler o primeiro da lista deixaria qualquer um escolher
+  o próprio IP e furar a cota; por isso o Nginx usa `real_ip_recursive on` (lê da direita
+  e para no primeiro endereço que não é o WAF) e repassa à API só `$remote_addr`. Até
+  nov/2026 o WAF não mandava o cabeçalho e todo usuário chegava como `10.1.192.27`, sem
+  erro nenhum: o Nginx estava certo, e o log da API mostrava um IP que parecia de cliente.
+  O teste é o pedido forjado — `curl -H "X-Forwarded-For: 1.2.3.4"` tem de aparecer no
+  log da API com o IP real. IP de saída novo no WAF = nova linha `set_real_ip_from`.
 - **O `setErrorHandler` do `app.ts` põe o código explícito nos 4xx.** Com
   `reply.send(err)` sozinho o status só sai certo quando `err` é um `Error`; o 429 do
   rate limit chega como objeto simples e saía **200**, sem erro nenhum.

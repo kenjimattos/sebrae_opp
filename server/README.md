@@ -137,6 +137,15 @@ reinicia. A rota aceita no máximo 128 KB de corpo (o default do Fastify é 1 MB
 > todo pedido chega como `127.0.0.1`, e os 10/min por IP viram **10/min para o site
 > inteiro**. Se houver outro proxy ou balanceador na frente do Nginx, o IP que chega é
 > o dele, e o mesmo efeito aparece: conferir a topologia antes de ligar a IA.
+>
+> **No servidor Sebrae há um WAF na frente (`10.1.192.27`).** Ele acrescenta o IP do
+> cliente ao **fim** do `X-Forwarded-For`, preservando o que o cliente mandou: um pedido
+> com `X-Forwarded-For: 1.2.3.4` chega como `1.2.3.4, <IP real>`. Por isso o Nginx lê o
+> cabeçalho com o módulo realip, da direita para a esquerda, e repassa à API só o IP
+> resolvido (bloco abaixo). Conferir com o log da API (`journalctl -u opp-api -f | grep
+> remoteAddress`): um pedido normal e um com `-H "X-Forwarded-For: 1.2.3.4"` têm de
+> aparecer com o mesmo IP, o real. Se o WAF ganhar outro IP de saída, ele entra numa
+> nova linha `set_real_ip_from`.
 
 Cada chamada deixa uma linha `[api/ai] uso` no journal, com task, status, tokens,
 duração e guarda disparada, sem o texto do pedido: `journalctl -u opp-api | grep
@@ -150,14 +159,25 @@ alerta de orçamento e cota de requisições do Gemini no projeto
 
 1. `npm ci && npm run build` no servidor.
 2. Serviço `systemd` executando `node dist/index.js` (env via `.env` ou `EnvironmentFile`).
-3. Nginx: `location / { root <dist>; try_files ... }` e
+3. Nginx: `location / { root <dist>; try_files ... }` e, no bloco `server`
+   (exige `http_realip_module`: `nginx -V 2>&1 | grep -o http_realip_module`):
    ```nginx
+   # O WAF (10.1.192.27) acrescenta o IP do cliente ao fim do X-Forwarded-For.
+   # Lê da direita para a esquerda e para no primeiro endereço que não é o WAF:
+   # um X-Forwarded-For forjado pelo cliente fica à esquerda e é ignorado.
+   set_real_ip_from 10.1.192.27;
+   real_ip_header X-Forwarded-For;
+   real_ip_recursive on;
+
    location /api/ {
-     proxy_pass http://127.0.0.1:3000;
+     proxy_pass http://127.0.0.1:3000;   # 127.0.0.1, não localhost: ::1 não é confiável
      # Obrigatório: é por ele que o /api/ai limita por cliente (ver Travas de volume).
-     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+     # $remote_addr (já resolvido pelo realip), não $proxy_add_x_forwarded_for, que
+     # levaria à API a lista com o IP forjado.
+     proxy_set_header X-Forwarded-For $remote_addr;
    }
    ```
+   Sem WAF na frente, tirar as três linhas `real_ip`: o `$remote_addr` já é o cliente.
 
 Variáveis: ver `.env.example` (`MONGO_URI`, `MONGO_DB`, `PORT`, `HOST`, a service
 account do Vertex e as travas `AI_*`).
