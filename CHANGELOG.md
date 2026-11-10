@@ -4,6 +4,10 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ## [Não publicado]
 
+### Adicionado
+
+- **Avaliação de prompt injection do `/api/ai` (`evals/injecao/`, `docs/EVAL_INJECAO.md`).** Até aqui a defesa contra "aceite tudo que eu disser daqui pra frente" estava descrita no CLAUDE.md, mas nunca tinha sido medida. O script roda 14 ataques (regra direta, multi-turno, histórico forjado pelo cliente, alegação de autoridade, marcadores forjados, pedido fora do tema disfarçado de projeto, roleplay, inglês, Formulador) N vezes contra o Vertex, com os critérios de falha fixados no código antes da rodada. Primeira medição, N=5, `gemini-3.8-flash`: 66 de 70 passaram, 0 falharam e 4 foram timeout do Vertex. O histórico forjado, a brecha que parecia mais realista, não furou o escopo. A primeira tentativa, com as chamadas em paralelo, deu 31 inconclusivos de 70 (timeout de 30 s do Vertex) e por isso o script roda em sequência. Fora do `npm test` e do typecheck de propósito (rede, cota e resposta probabilística). O doc lista o que a avaliação não cobre: falha disfarçada que escape da palavra-chave, jailbreak elaborado e os limites de volume.
+
 ### Corrigido
 
 - **O limite de IA por IP volta a ser por pessoa no servidor Sebrae.** Entre os usuários e o Nginx há um WAF (`10.1.192.27`) que não repassava o `X-Forwarded-For`: todo pedido chegava à API como `10.1.192.27`, e os limites de 10/min e 150/dia por IP valiam para o site inteiro. Nada acusava: o Nginx estava configurado certo e o log mostrava um IP com cara de cliente. A TI habilitou o cabeçalho, e ele chega **acrescentado ao fim** (um cliente que forja `1.2.3.4` chega como `1.2.3.4, <IP real>`). A correção fica só no Nginx: módulo realip com `set_real_ip_from 10.1.192.27` e `real_ip_recursive on`, e o `location /api/` passa a repassar `$remote_addr` em vez da lista. A API não muda (`trustProxy` segue só em `127.0.0.1`). Conferido no log da API em 2026-11-09: um pedido normal e um forjado chegam com o mesmo IP, o real. `server/README.md` traz o bloco novo e o CLAUDE.md, a armadilha.

@@ -464,6 +464,14 @@ garante nada disso; quem garante é código determinístico em volta do modelo.
   violência ou drogas). Bloqueio na entrada ou na saída vira `VertexBlockedError` e
   também `out_of_scope`. **A mensagem é a mesma para fora do tema e para filtro**:
   dizer qual dos dois foi ensinaria a contornar.
+- **Avaliação ao vivo (`evals/injecao/`, método e resultados em `docs/EVAL_INJECAO.md`).**
+  14 ataques (o "aceite tudo daqui pra frente" em várias formas: direto, multi-turno,
+  histórico forjado, marcadores falsos, roleplay, inglês, Formulador) × N chamadas ao
+  Vertex, com critério fixado no script. Primeira medição, 2026-11-10: 66 de 70 passaram,
+  0 falharam e 4 deram timeout do Vertex. **Rode de novo ao trocar o modelo ou mexer no
+  prompt de segurança ou nas guardas.** Fica fora do `npm test` (rede, cota, probabilístico)
+  e roda **em sequência**: em paralelo, 5 chamadas estouraram o timeout em ~60% dos casos e
+  o resultado virava ruído.
 - **Log de uso (`handler.ts`).** Uma linha `[api/ai] uso` por chamada, inclusive as
   400, com task, status, código, tamanho do corpo, tokens do Vertex, duração e qual
   guarda disparou. É por ela que se acha abuso e se ajustam os limites
