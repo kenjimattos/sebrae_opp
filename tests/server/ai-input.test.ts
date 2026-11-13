@@ -11,7 +11,7 @@ const municipality = { id: '2504009', name: 'Campina Grande' }
 const longo = (n: number) => 'a'.repeat(n)
 
 async function status(body: unknown): Promise<number> {
-  // Sem `vertex`: o que passa da validação cai em 503, o que não passa, em 400.
+  // Sem chave de IA: o que passa da validação cai em 503, o que não passa, em 400.
   vi.spyOn(console, 'error').mockImplementation(() => {})
   return (await handleAiTask(body, {})).status
 }

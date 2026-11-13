@@ -113,7 +113,7 @@ da Vercel (`api/ai.ts`) e do middleware de dev do Vite. A lógica de IA (valida�
 prompt, modelo) vive lá; em `server/src/` ficam só as travas de volume da rota, que
 dependem do processo (ver abaixo), e o repasse do body. Nova capacidade
 de IA = novo literal na união de `src/types/ai.ts` + prompt em `api/_lib/prompts.ts`;
-os dois transportes ganham de graça.
+os três transportes ganham de graça.
 
 Para compilar esse núcleo compartilhado o `tsconfig.json` usa `rootDir: ".."`, o que
 move o entrypoint emitido para `dist/server/src/index.js`. O `postbuild`
@@ -126,7 +126,7 @@ momento". O motivo real fica no log (`journalctl -u opp-api`), não na resposta.
 
 ### Travas de volume
 
-O `/api/ai` está na internet sem login e cada chamada ao Vertex custa. Antes do
+O `/api/ai` está na internet sem login e cada chamada gasta cota do modelo. Antes do
 handler há duas travas, a segunda com dois tetos (por IP e global), todas com resposta
 429 `rate_limited`:
 
@@ -150,9 +150,8 @@ Cada chamada deixa uma linha `[api/ai] uso` no journal, com task, status, tokens
 duração e guarda disparada, sem o texto do pedido: `journalctl -u opp-api | grep
 'api/ai] uso'`. É dela que saem os números para ajustar os limites acima.
 
-A última linha de defesa fica fora do código e com o **administrador do projeto GCP**:
-alerta de orçamento e cota de requisições do Gemini no projeto
-`sebrae-ia-obs-politica-publica`.
+A última linha de defesa é a cota do próprio modelo gratuito no OpenRouter: esgotada, a
+IA responde `rate_limited` até a cota voltar, sem custo e sem derrubar o resto da API.
 
 ## Deploy (10.1.100.99)
 
@@ -167,5 +166,5 @@ alerta de orçamento e cota de requisições do Gemini no projeto
    }
    ```
 
-Variáveis: ver `.env.example` (`MONGO_URI`, `MONGO_DB`, `PORT`, `HOST`, a service
-account do Vertex e as travas `AI_*`).
+Variáveis: ver `.env.example` (`MONGO_URI`, `MONGO_DB`, `PORT`, `HOST`, `OPENROUTER_API_KEY`,
+`OPENROUTER_MODEL` e as travas `AI_*`).

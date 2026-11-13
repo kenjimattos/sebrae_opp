@@ -10,7 +10,8 @@ armadilhas** do projeto; o resto se lê no código. Prefira `grep` a suposição
 > Node. A branch de produção é a `main`; ao portar mudanças, ver
 > [Backend nesta branch](#backend-nesta-branch).
 
-**Estado:** 1.5.0, espelhando a `main`. **17 dos 22 indicadores de agenda
+**Estado:** 1.7.0, espelhando a `main` — **menos o fornecedor de IA**, que aqui segue
+sendo o OpenRouter (ver [Integração de IA](#integração-de-ia-openrouter)). **17 dos 22 indicadores de agenda
 classificam** (6 por faixa oficial da fonte, 11 por tercil relativo aos 223 municípios
 da PB) e o farol por agenda voltou a acender. Home = visão estadual (`SectionEstado`) + jornada (`SectionJornada`), com `SideNav` de 4 pilares (Ambiente
 de negócio, Mapeamento de recursos, Cursos e boas práticas, Formulador de projetos);
@@ -230,11 +231,22 @@ snapshot — `gerar_api_snapshot_municipios.py` (os 223 + índice),
 > agrupa as diferenças por indicador, e indicador que você não mexeu tem de sair
 > idêntico. Diferença fora do esperado = a reimplementação divergiu do servidor.
 
-A API Node existe em `server/` e o código é **o mesmo da `main`** — inclusive
-`/api/emendas` e `POST /api/ai`. Ela não atende esta branch (quem atende é o
+A API Node existe em `server/` e o código é **o mesmo da `main`**, exceto o
+fornecedor de IA (`config.ts` e `routes.ts` passam a chave do OpenRouter, não a da
+`main`) — inclusive `/api/emendas` e `POST /api/ai`. Ela não atende esta branch (quem atende é o
 snapshot), mas fica em dia de propósito: a suíte de testes é compartilhada e
 `tests/server/` compila contra `server/src/`, então um `server/` atrasado quebra o
 `tsc` e o build aqui. Ao mexer no `server/`, mexer nas duas branches.
+
+> **Alinhar com a `main` é porte, não cherry-pick puro, enquanto a IA divergir.** Os
+> commits de IA da `main` trazem o fornecedor dela misturado ao que vale para qualquer
+> um (tetos de entrada, marcadores, guardas, log de uso, travas de volume). O que vale
+> entra; o que é do fornecedor da `main` (cliente, filtro de conteúdo, variáveis de
+> ambiente, comentários) é trocado pelo equivalente do OpenRouter ou fica de fora; depois
+> do porte, `grep -i` pelo nome do fornecedor da `main` na branch tem de voltar vazio,
+> salvo a lista de nomes de `revealsModelIdentity`. Commit que tira a Vercel (`api/ai.ts`,
+> `vercel.json`) **não vem**: derrubaria este deploy. Em `llm.ts` (peças sem fornecedor) o
+> arquivo é igual ao da `main`, de propósito, para o próximo alinhamento não conflitar.
 
 `server/src/` se organiza **por domínio**, não por camada — cada pilar traz repo +
 service + regra própria, e assim o trabalho de um cabe numa pasta:
@@ -344,7 +356,8 @@ Cinco superfícies, todas via `POST /api/ai` (modelo gratuito do OpenRouter, fet
    vão no `system` só quando o resumo vem. A primeira versão da regra só proibia "comparar ano
    a ano", e ao vivo o modelo avisava que não se compara e comparava na frase seguinte ("o
    federal é significativamente superior"); hoje ela proíbe dizer qual esfera é maior, no total
-   ou num ano. Medido em 2026-11-05: 4 de 4 sem comparação.
+   ou num ano. Medido em 2026-11-05, na `main`, contra outro modelo: 4 de 4 sem comparação.
+   **Não medido com o modelo gratuito desta branch.**
 5. **Leitura das emendas** — task `emendas-analysis`, no modo Emendas
    (`resources/EmendasAnalysis`, sobre o `AnalysisBlock`), **só da esfera ativa**: o resumo
    vai restrito a ela (`emendasAiSummary(data, id, [esfera])`), e trocar esfera ou município
@@ -352,20 +365,20 @@ Cinco superfícies, todas via `POST /api/ai` (modelo gratuito do OpenRouter, fet
    calcular percentual, soma ou diferença e proíbe adjetivo de tamanho: a primeira versão dizia
    só "não chame de alto ou baixo", e ao vivo saíram "alto índice de pagamento" e "aporte
    expressivo"; com a lista explícita (expressivo, significativo, robusto, modesto…) 3 de 3
-   saíram sem adjetivo.
+   saíram sem adjetivo (também medido só na `main`).
 
 **Arquitetura:** contrato em `src/types/ai.ts` (união `AiTaskRequest`); núcleo em
-`api/_lib/` (`openrouter.ts`, `prompts.ts`, `handler.ts`). **Dois transportes sobre a
+`api/_lib/` (`openrouter.ts`, `llm.ts`, `prompts.ts`, `handler.ts`, `guardrails.ts`). **Dois transportes sobre a
 mesma fonte** (`handler.ts`) nesta branch: function da Vercel (`api/ai.ts`) e
-middleware de dev do Vite. A `main` tem um terceiro, `POST /api/ai` no Fastify, que
-atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
+middleware de dev do Vite. O `POST /api/ai` no Fastify (`server/src/routes.ts`) também
+existe aqui, igual ao da `main`, mas não atende ninguém nesta branch. Client: `src/data/ai.ts` + `useAiTask`.
 
 **Regras:**
 - Nova capacidade = novo literal na união + prompt em `prompts.ts`. **Nunca** um
   endpoint paralelo.
 - Tamanho de resposta se controla pedindo no prompt, e o layout absorve a sobra. Teto por
   task (`MAX_TOKENS_BY_TASK`, hoje vazio) só trunca: o de 260 cortava ~1 em 10 análises no
-  meio da frase. Resta o teto global de 800 em `openrouter.ts`, contra resposta desgovernada.
+  meio da frase. Resta o teto global de 800 em `llm.ts`, contra resposta desgovernada.
 - `OPENROUTER_API_KEY` fica **só no servidor**; prefixo `VITE_` vazaria no bundle.
   Em dev vai no `.env.local`; no preview, nas env vars do projeto na Vercel.
 - **Sigilo do modelo tem duas camadas, e só a segunda garante.** O `SYSTEM_PROMPT` pede
@@ -393,7 +406,7 @@ atende a produção Sebrae. Client: `src/data/ai.ts` + `useAiTask`.
 ### Abuso e prompt injection
 
 O `/api/ai` está na internet **sem login** (a `/` é só a escolha da UF), e cada chamada
-ao Vertex custa. A IA não tem ferramenta, não lê banco nem arquivo, o system prompt
+gasta cota do modelo. A IA não tem ferramenta, não lê banco nem arquivo, o system prompt
 não guarda segredo e a resposta volta só para quem perguntou: uma injeção bem-sucedida
 **não vaza dado**. O risco é outro: **usar a plataforma para outra coisa** (proxy de
 LLM, texto fora do tema com a marca Sebrae) e **queimar orçamento**. Prompt não
@@ -443,13 +456,11 @@ garante nada disso; quem garante é código determinístico em volta do modelo.
 
   No chat e no modal, identidade ou instrução vira `IDENTITY_REPLY`. **No Formulador
   e na análise toda guarda vira `out_of_scope`**, porque a frase fixa gravada no campo
-  seria pior que o erro. O Vertex vai com `safetySettings` explícitos
-  (`BLOCK_MEDIUM_AND_ABOVE` nas quatro categorias; o `LOW` barraria tema legítimo como
-  violência ou drogas). Bloqueio na entrada ou na saída vira `VertexBlockedError` e
-  também `out_of_scope`. **A mensagem é a mesma para fora do tema e para filtro**:
-  dizer qual dos dois foi ensinaria a contornar.
+  seria pior que o erro. **Não há filtro de conteúdo do fornecedor aqui**: o OpenRouter
+  repassa o do modelo gratuito, que varia, e o que garante é só o prompt mais as três
+  guardas acima.
 - **Log de uso (`handler.ts`).** Uma linha `[api/ai] uso` por chamada, inclusive as
-  400, com task, status, código, tamanho do corpo, tokens do Vertex, duração e qual
+  400, com task, status, código, tamanho do corpo, tokens (o `usage` da resposta, quando vem), duração e qual
   guarda disparou. É por ela que se acha abuso e se ajustam os limites
   (`journalctl -u opp-api | grep 'api/ai] uso'`). **Nunca o texto** da pergunta nem da
   resposta, pela LGPD, e há teste que confere. O IP fica no log do Fastify.

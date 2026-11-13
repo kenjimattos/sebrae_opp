@@ -5,7 +5,7 @@ import { registerRoutes } from '../../server/src/routes.js'
 
 // Travas de volume do /api/ai: rajada por minuto (@fastify/rate-limit), cota
 // diária por IP e global (DailyQuota), bodyLimit e a origem do IP (trustProxy).
-// Sem `vertex` no config o handler responde 503 — o que basta para saber que o
+// Sem chave de IA no config o handler responde 503 — o que basta para saber que o
 // pedido passou das travas, sem simular o modelo.
 
 // Limites baixos para o teste alcançar o teto em poucas chamadas.

@@ -6,6 +6,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Alterado
 
+- **Nota da `preview/snapshot`: esta branch está na 1.7.0 e a IA segue no OpenRouter.** A `main` trocou o fornecedor de IA nesta versão; aqui o porte levou só o que vale para qualquer fornecedor (tetos de entrada, marcadores no prompt, guardas de saída, escopo no Formulador, linha de uso no log, travas de volume do Fastify, chat e leitura das emendas) e deixou de fora o cliente, o filtro de conteúdo e a configuração do fornecedor da `main`. As peças sem fornecedor foram para `api/_lib/llm.ts`, igual ao da `main`. Ficaram de fora os commits que tiram a Vercel (derrubariam este deploy) e o `npm audit fix` do lock da raiz, refeito aqui. **Os prompts novos foram afinados na `main` contra outro modelo e não foram medidos com o modelo gratuito**; o `FORA_DO_ESCOPO` do Formulador e a proibição de adjetivo de tamanho nas emendas são os pontos a conferir.
+
 - **`npm install` sem `--legacy-peer-deps`.** A flag existia por causa do `react-simple-maps@3`, que só aceitava React até o 18. Ele saiu quando o mapa passou a ser SVG próprio, e a flag ficou na documentação. Instalado do zero sem ela, num diretório só com o `package.json`: 325 pacotes resolvidos, nenhum conflito de peer deps. README (setup e deploy) e CLAUDE.md deixam de pedi-la.
 
 - **A casca da análise por IA vira `analysis/AnalysisBlock`.** CTA, loading, typewriter e "Gerar novamente" saem de `AIAnalysis`, que passa a montar só o pedido `economic-analysis` e os textos; `request: null` desliga o botão (sem cards não há contexto). Sem mudança na tela: mesmo markup, mesmas classes. Preparação para a leitura das emendas, que usa a mesma casca.

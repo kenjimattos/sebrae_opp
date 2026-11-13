@@ -1,7 +1,7 @@
 // Cota diária do /api/ai: um teto por IP e um teto global. É a segunda das duas
 // travas de volume (a primeira é a rajada por minuto, do @fastify/rate-limit em
 // routes.ts). Existe porque o /api/ai está na internet sem login e cada chamada
-// ao Vertex custa: o teto por IP segura um script num IP só, e o teto global é o
+// gasta cota do modelo: o teto por IP segura um script num IP só, e o teto global é o
 // disjuntor de custo contra quem distribui as chamadas por muitos IPs — esgotado,
 // a IA fica fora até o dia virar, e o resto da API segue de pé.
 //
