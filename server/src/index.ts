@@ -3,6 +3,7 @@ import { createApp } from './app.js'
 import { config } from './config.js'
 import { connectDb, closeDb } from './infra/db.js'
 import { registerRoutes } from './routes.js'
+import { ensureTermsIndex } from './termos/repo.js'
 
 const app = createApp()
 
@@ -10,6 +11,9 @@ async function start() {
   try {
     await connectDb()
     app.log.info(`conectado ao MongoDB (${config.mongoDb})`)
+    // Único índice que a API cria (aceite dos termos). Falhar aqui não derruba a API:
+    // o resto é leitura e o aceite segue idempotente sem ele.
+    await ensureTermsIndex().catch((err: unknown) => app.log.warn({ err }, '[termos] não criou o índice único'))
     // Gzip/brotli nas respostas. As rotas daqui são JSON repetitivo (223 nomes de
     // município, o mesmo shape de indicador 33 vezes), o formato que mais encolhe.
     // Abaixo do threshold o overhead de comprimir não se paga — e o Nginx na frente

@@ -1,6 +1,6 @@
 # API da PIPPA
 
-API de leitura da PIPPA sobre o MongoDB `DadosOPP`. Processo Node
+API de leitura da PIPPA sobre o MongoDB `DadosOPP` (a única escrita é o aceite dos termos de uso, abaixo). Processo Node
 (Fastify) que roda na máquina da app (`10.1.100.99`) e lê o banco (`10.1.141.23`).
 O Nginx serve o build estático do frontend **e** faz proxy de `/api/*` para cá.
 
@@ -117,6 +117,26 @@ de outro client: 401 com corpo genérico `Acesso não autorizado.`; o motivo vai
 - Variáveis: `KEYCLOAK_URL`, `KEYCLOAK_REALM`, `KEYCLOAK_CLIENT_ID` (obrigatórias — sem elas a API não sobe),
   `KEYCLOAK_CLIENT_SECRET` (só para client confidencial) e `KEYCLOAK_REALM_PUBLIC_KEY` (opcional).
 - Em dev, o `/api/ai` é atendido pelo Vite e **não passa por este hook**: o Vite só exige o cabeçalho.
+
+## Termos de uso (`/api/terms/acceptance`)
+
+Depois do login, o frontend exige o aceite dos termos de uso antes de `/home` e
+`/trilhas`. O aceite é gravado **aqui, por usuário** (`sub` do AMEI), e não no navegador:
+vale em qualquer máquina, serve de comprovante para a LGPD e uma versão nova dos termos
+pede aceite de novo.
+
+- `GET /api/terms/acceptance` → `{ version, accepted }` (`version` é a vigente; `accepted` diz se **este**
+  usuário aceitou **essa** versão).
+- `POST /api/terms/acceptance` com `{ version }` grava o aceite. Só a versão vigente é aceita (400
+  caso contrário): uma aba aberta antes da atualização dos termos não grava o aceite do texto antigo
+  como se fosse do novo. Idempotente: aceitar de novo mantém a data do primeiro aceite.
+- Versão vigente: `TERMS_VERSION` em `src/data/terms/version.ts`, lida pelos dois lados.
+  Mudou o texto de um jeito que o usuário precisa ver de novo, mude a constante.
+- Coleção `termsAcceptances` (`sub`, `version`, `acceptedAt`), índice único `(sub, version)` criado
+  no boot. **É a única escrita da API no banco**: o usuário Mongo da `opp-api` precisa de
+  `insert`/`update` nessa coleção e de `createIndex` (sem o índice a API sobe e avisa; o upsert já é idempotente).
+  Conferir com a TI antes do deploy: o resto do banco segue só leitura.
+- Nunca o `sub` em log.
 
 ## IA (`POST /api/ai`)
 

@@ -19,10 +19,12 @@ import {
   listMunicipalities,
 } from './municipios/repo.js'
 import { buildIndicatorsData } from './municipios/service.js'
+import { accept, acceptanceStatus } from './termos/service.js'
 import type { MunicipalitySummary } from './types/index.js'
 
 // `Cache-Control` das rotas de leitura. Os dados vêm de uma carga do ETL, não de
-// escrita de usuário — a API é só leitura —, então revalidar a cada clique só
+// escrita de usuário — a API só lê, salvo o aceite dos termos, que não passa por
+// aqui —, então revalidar a cada clique só
 // gasta viagem. `private` porque a rota exige login: um cache compartilhado (WAF,
 // proxy) entregaria a resposta a quem não mandou token. O dado em si é igual para
 // todo usuário — por isso o cache de payload em memória (infra/payload-cache) segue.
@@ -159,6 +161,23 @@ export async function registerRoutes(app: FastifyInstance): Promise<void> {
     }
     reply.header('cache-control', READ_CACHE)
     return data
+  })
+
+  // Aceite dos termos de uso do usuário logado. Resposta por usuário: `no-store`.
+  // `req.user` nunca é nulo aqui (o hook global recusa antes), mas o tipo é
+  // `AuthUser | null`; a checagem deixa o compilador e quem lê em paz.
+  app.get('/api/terms/acceptance', async (req, reply) => {
+    if (!req.user) return reply.code(401).send({ error: 'Acesso não autorizado.' })
+    reply.header('cache-control', 'no-store')
+    return acceptanceStatus(req.user.id)
+  })
+
+  app.post<{ Body: { version?: unknown } }>('/api/terms/acceptance', async (req, reply) => {
+    if (!req.user) return reply.code(401).send({ error: 'Acesso não autorizado.' })
+    reply.header('cache-control', 'no-store')
+    const ok = await accept(req.user.id, req.body?.version)
+    if (!ok) return reply.code(400).send({ error: 'Versão dos termos desatualizada.' })
+    return acceptanceStatus(req.user.id)
   })
 
   // Transporte de produção do núcleo de IA (api/_lib/handler.ts); o outro é o

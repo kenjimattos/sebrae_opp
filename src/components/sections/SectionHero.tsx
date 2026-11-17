@@ -13,7 +13,7 @@
 //
 // Os cards dos pilares NÃO são clicáveis: antes de entrar não há para onde
 // navegar. Eles descrevem, não conduzem.
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import PippaWordmark from '@/components/brand/PippaWordmark'
 import IconButton from '@/components/ui/buttons/IconButton'
 import StateSelector from '@/components/layout/StateSelector'
@@ -90,6 +90,10 @@ export default function SectionHero() {
               )
             })}
           </ul>
+
+          <Link to="/termos" className="typo-body-sm underline w-fit rounded-xs outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+            Termos de uso e privacidade
+          </Link>
         </div>
 
         <div className="flex flex-col items-center gap-xl">

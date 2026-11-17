@@ -2,7 +2,7 @@
 // do documento, envolvendo o <Outlet/>.
 // Registrada como layout route em App.tsx; as páginas retornam só o conteúdo.
 
-import { Outlet, useLocation } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 import ThemeToggle from '@/components/ui/ThemeToggle'
 import SiteHeader from '@/components/layout/SiteHeader'
 import NarrowScreenNotice from '@/components/ui/NarrowScreenNotice'
@@ -29,6 +29,14 @@ export default function Layout() {
       <main className="flex-1">
         <Outlet />
       </main>
+      {/* Na `/` o link já está no hero, que ocupa a viewport inteira. */}
+      {!isLogin && (
+        <footer className="section-container py-md">
+          <Link to="/termos" className="typo-body-sm underline w-fit rounded-xs outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+            Termos de uso e privacidade
+          </Link>
+        </footer>
+      )}
       <NarrowScreenNotice />
     </div>
   )

@@ -190,3 +190,9 @@ export interface StateData {
   name: string
   indicators: StateIndicator[]
 }
+
+// GET /api/terms/acceptance. Espelho de src/types/terms.ts.
+export interface TermsAcceptance {
+  version: string
+  accepted: boolean
+}

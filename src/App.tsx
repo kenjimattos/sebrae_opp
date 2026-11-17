@@ -6,8 +6,10 @@ import FormulatorProvider from '@/hooks/FormulatorProvider'
 import ScrollToTop from '@/components/ScrollToTop'
 import Layout from '@/components/layout/Layout'
 import RequireAuth from '@/components/RequireAuth'
+import TermsGate from '@/components/terms/TermsGate'
 import Home from '@/pages/Home'
 import Login from '@/pages/Login'
+import Terms from '@/pages/Terms'
 import Trails from '@/pages/Trails'
 
 function App() {
@@ -21,9 +23,12 @@ function App() {
               <Routes>
                 <Route element={<Layout />}>
                   <Route path="/" element={<Login />} />
+                  <Route path="/termos" element={<Terms />} />
                   <Route element={<RequireAuth />}>
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/trilhas" element={<Trails />} />
+                    <Route element={<TermsGate />}>
+                      <Route path="/home" element={<Home />} />
+                      <Route path="/trilhas" element={<Trails />} />
+                    </Route>
                   </Route>
                 </Route>
               </Routes>

@@ -365,6 +365,17 @@ operacional está em `server/README.md` §Login.
 - O Clarity (produção) ainda não entrou, mas o encaixe está: `useAuth().user.id` é o `sub`
   para `identify`, o nome no header leva `data-clarity-mask`, e aceite de termos e
   consentimento de analytics são coisas separadas (LGPD).
+- **Termos de uso: aceite no servidor, por usuário, e a falha é fechada.** `TermsGate` fica
+  dentro do `RequireAuth`; sem aceite da `TERMS_VERSION` vigente (`src/data/terms/version.ts`,
+  lida pelo front e pelo servidor) a tela de aceite toma o lugar da rota. Se não der para
+  **verificar** o aceite (API fora), a rota **não** abre: mostra erro com "Tentar de novo".
+  Liberar na dúvida tornaria o aceite decorativo. `/termos` é pública e é a única página,
+  além da `/`, que abre sem login. O texto (`src/data/terms/content.ts`) é **rascunho**: os
+  trechos `A_CONFIRMAR` (controlador, encarregado, foro) dependem do jurídico do Sebrae, e
+  `termsContent.test.tsx` conta quantos faltam. A seção do Clarity existe em
+  `TERMS_ANALYTICS_SECTION` **fora** da lista renderizada, de propósito: o texto não pode
+  afirmar o que o produto ainda não faz. Quando o Clarity entrar, acrescente-a e suba a versão.
+  O texto não nomeia o fornecedor do modelo de IA (sigilo do projeto).
 - Em dev o `/api/ai` é atendido pelo Vite, fora do Fastify: ele só exige o cabeçalho
   `Bearer`. Não é fronteira de segurança.
 - Teste de rota autenticada: `tests/server/token.ts` gera o par RSA e assina o JWT; o

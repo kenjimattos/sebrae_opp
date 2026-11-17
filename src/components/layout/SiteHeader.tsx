@@ -19,7 +19,7 @@ interface SiteHeaderProps {
 }
 
 export default function SiteHeader({ className = '' }: SiteHeaderProps) {
-  const { user, logout } = useAuth()
+  const { isLoggedIn, user, logout } = useAuth()
   const sentinelRef = useRef<HTMLDivElement>(null)
   const [compact, setCompact] = useState(false)
 
@@ -71,7 +71,8 @@ export default function SiteHeader({ className = '' }: SiteHeaderProps) {
             {/* Instância única — useTheme é estado local (ver useTheme.ts). */}
             <div className="glass glass-bevel rounded-full p-2xs flex items-center">
               <ThemeToggle />
-              <IconButton icon={LogOut} variant="ghost" aria-label="Sair" onClick={logout} />
+              {/* /termos é pública: quem ainda não entrou não tem o que sair. */}
+              {isLoggedIn && <IconButton icon={LogOut} variant="ghost" aria-label="Sair" onClick={logout} />}
             </div>
           </div>
         </div>

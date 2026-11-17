@@ -4,6 +4,7 @@
 import { authFetch } from '@/data/http'
 import type { EmendasData } from '@/types/emendas'
 import type { StateData } from '@/types/estado'
+import type { TermsAcceptance } from '@/types/terms'
 import type { IndicatorsData } from '@/types/indicators'
 
 export interface MunicipalitySummary {
@@ -46,4 +47,23 @@ export function fetchEmendas(): Promise<EmendasData> {
 // GET /api/estado
 export function fetchStateData(): Promise<StateData> {
   return getJSON<StateData>('/estado')
+}
+
+// Aceite dos termos de uso do usuário logado. GET /api/terms/acceptance
+export function fetchTermsAcceptance(): Promise<TermsAcceptance> {
+  return getJSON<TermsAcceptance>('/terms/acceptance')
+}
+
+// Grava o aceite da versão que a tela mostrou (o servidor recusa outra).
+// POST /api/terms/acceptance
+export async function postTermsAcceptance(version: string): Promise<TermsAcceptance> {
+  const res = await authFetch(`${BASE}/terms/acceptance`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ version }),
+  })
+  if (!res.ok) {
+    throw new Error(`API /terms/acceptance respondeu ${res.status}`)
+  }
+  return (await res.json()) as TermsAcceptance
 }
