@@ -94,9 +94,10 @@ export default function TermsDocument({ children, className = '' }: TermsDocumen
               )}
             </section>
           ))}
-        </div>
 
-        {children}
+          {/* Dentro da coluna de leitura, para a barra de aceite ter a largura do texto. */}
+          {children}
+        </div>
       </div>
     </div>
   )
