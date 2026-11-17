@@ -1,32 +1,46 @@
 import { useEffect, useState } from 'react'
 import { termsSectionId, type TermsSection } from '@/data/terms/content'
 
-// Seção em leitura: a última cujo topo já passou da faixa de cima da tela. A faixa
-// (20% do topo) deixa a seção ativa trocar um pouco antes de ela encostar no header.
-function useActiveSection(ids: string[]): string | null {
-  const [active, setActive] = useState<string | null>(ids[0] ?? null)
+// Linha de leitura: a seção ativa é a ÚLTIMA cujo topo já passou dela. Fica logo
+// abaixo do header sticky (--header-h) mais um respiro, que é onde o topo de uma
+// seção cai ao clicar no índice (scroll-padding-top do html): clicar em "8" marca "8".
+const RESPIRO_PX = 40
+
+function readingLine(): number {
+  const root = getComputedStyle(document.documentElement)
+  const rem = parseFloat(root.fontSize) || 16
+  const raw = root.getPropertyValue('--header-h').trim()
+  const header = raw.endsWith('rem') ? parseFloat(raw) * rem : parseFloat(raw)
+  return (Number.isFinite(header) ? header : 4 * rem) + RESPIRO_PX
+}
+
+// Por posição de rolagem, não por IntersectionObserver: o observador só marca a seção
+// que cruza uma faixa fixa, e as últimas, curtas, nunca chegam lá quando a página
+// acaba (o 8 e o 9 nunca eram marcados). Aqui a última seção tem altura mínima
+// (TermsDocument) para que o topo dela alcance a linha, e esta regra a escolhe.
+function useActiveSection(sections: TermsSection[]): string | null {
+  const [active, setActive] = useState<string | null>(sections[0]?.id ?? null)
 
   useEffect(() => {
-    // Sem IntersectionObserver (jsdom, navegador antigo) o índice só não marca nada.
-    if (typeof IntersectionObserver === 'undefined') return
-    const visible = new Set<string>()
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) visible.add(e.target.id)
-          else visible.delete(e.target.id)
-        }
-        const first = ids.find((id) => visible.has(termsSectionId(id)))
-        if (first) setActive(first)
-      },
-      { rootMargin: '-20% 0px -65% 0px' },
-    )
-    for (const id of ids) {
-      const el = document.getElementById(termsSectionId(id))
-      if (el) observer.observe(el)
+    // Nove leituras de posição e nenhuma escrita no layout: barato o bastante para
+    // rodar a cada evento de rolagem, e o `setActive` com o mesmo valor não re-renderiza.
+    const update = () => {
+      const line = readingLine()
+      let current = sections[0]?.id ?? null
+      for (const { id } of sections) {
+        const el = document.getElementById(termsSectionId(id))
+        if (el && el.getBoundingClientRect().top <= line) current = id
+      }
+      setActive(current)
     }
-    return () => observer.disconnect()
-  }, [ids])
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
+  }, [sections])
 
   return active
 }
@@ -39,8 +53,7 @@ interface TermsTocProps {
 // Índice dos termos. Em tela larga fica fixo ao lado do texto e marca a seção em
 // leitura; abaixo disso vira um menu recolhível no topo (<details>).
 export default function TermsToc({ sections, className = '' }: TermsTocProps) {
-  const ids = sections.map((s) => s.id)
-  const active = useActiveSection(ids)
+  const active = useActiveSection(sections)
 
   const links = (
     <ol className="flex flex-col">

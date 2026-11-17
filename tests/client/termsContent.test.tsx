@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { act, render, screen, waitFor } from '@testing-library/react'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import TermsDocument from '@/components/terms/TermsDocument'
 import {
   A_CONFIRMAR,
@@ -75,5 +75,41 @@ describe('texto dos termos de uso', () => {
       </TermsDocument>,
     )
     expect(screen.getByText('barra de aceite')).toBeInTheDocument()
+  })
+
+  describe('índice acompanha a rolagem', () => {
+    afterEach(() => vi.restoreAllMocks())
+
+    // jsdom não calcula layout: o topo de cada seção é dado pelo teste. Seções até
+    // `ate` já passaram da linha de leitura (topo <= 0); as demais estão abaixo.
+    function rolarAte(ate: number) {
+      vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
+        const i = TERMS_SECTIONS.findIndex((s) => termsSectionId(s.id) === this.id)
+        return { top: i === -1 ? 9999 : i <= ate ? 0 : 500 } as DOMRect
+      })
+      act(() => {
+        window.dispatchEvent(new Event('scroll'))
+      })
+    }
+
+    const marcada = () =>
+      screen
+        .getAllByRole('navigation', { name: 'Índice dos termos' })[0]!
+        .querySelector('a[aria-current="location"]')?.textContent
+
+    it('marca a última seção cujo topo já passou da linha, inclusive a 8 e a 9', async () => {
+      render(<TermsDocument />)
+      const titulo = (i: number) => TERMS_SECTIONS[i]!.title
+      for (const i of [0, 3, 7, 8]) {
+        rolarAte(i)
+        await waitFor(() => expect(marcada()).toBe(titulo(i)))
+      }
+    })
+
+    it('a última seção tem altura mínima para o topo dela alcançar a linha no fim da página', () => {
+      const { container } = render(<TermsDocument />)
+      const ultima = TERMS_SECTIONS.at(-1)!
+      expect(container.querySelector(`#${termsSectionId(ultima.id)}`)?.className).toContain('min-h-')
+    })
   })
 })

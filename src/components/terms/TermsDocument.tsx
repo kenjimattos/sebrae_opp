@@ -64,12 +64,18 @@ export default function TermsDocument({ children, className = '' }: TermsDocumen
             </ul>
           </section>
 
-          {TERMS_SECTIONS.map((section) => (
+          {TERMS_SECTIONS.map((section, index) => (
             <section
               key={section.id}
               id={termsSectionId(section.id)}
               aria-labelledby={`${termsSectionId(section.id)}-titulo`}
-              className="flex flex-col gap-sm"
+              // A última seção é curta: sem altura mínima a página acaba antes de o
+              // topo dela subir até a linha do índice, e ele nunca a marcaria (nem a
+              // penúltima). Com a altura da tela menos o header, o topo dela alcança
+              // o header no fim da rolagem. Mesmo recurso da última fileira de /trilhas.
+              className={`flex flex-col gap-sm ${
+                index === TERMS_SECTIONS.length - 1 ? 'min-h-[calc(100dvh-var(--header-h))]' : ''
+              }`}
             >
               <h2 id={`${termsSectionId(section.id)}-titulo`} className="typo-title-md">
                 {section.title}

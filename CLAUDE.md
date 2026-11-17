@@ -380,8 +380,14 @@ operacional está em `server/README.md` §Login.
   (checkbox + botões) como filho, em vez de um cartão que mandava ler em outra aba. Índice
   lateral (`TermsToc`) fixo em tela larga e `<details>` abaixo de `lg`; coluna de leitura em
   `max-w-[64ch]` (96ch a partir de `xl`, 112ch a partir de `2xl`: largura pedida de propósito, passar de ~80 cansa em monoespaçada; o `TermsDocument` leva `w-full` porque o `section-container` centraliza os filhos e sem ele o grid encolhe) com `leading-relaxed` (a base `typo-body` usa `line-height: normal`, curto
-  para texto longo em monoespaçada). O `TermsToc` guarda `typeof IntersectionObserver`:
-  jsdom não tem, e sem a guarda todo teste que renderiza o documento quebra.
+  para texto longo em monoespaçada). O índice marca a ÚLTIMA seção cujo topo já passou da linha de
+  leitura (`--header-h` + 40px, onde o topo cai ao clicar no índice), por posição de rolagem
+  e **não** por IntersectionObserver: o observador só marca quem cruza uma faixa fixa, e as
+  duas últimas seções, curtas, nunca chegavam lá quando a página acabava (o 8 e o 9 nunca
+  eram marcados). Por isso a última seção tem `min-h-[calc(100dvh-var(--header-h))]`, para o
+  topo dela alcançar a linha — mesmo recurso da última fileira de `/trilhas`. Mexeu na
+  altura dessa seção, o 9 deixa de ser marcado e nenhum teste de layout pega (jsdom não
+  calcula).
 - Em dev o `/api/ai` é atendido pelo Vite, fora do Fastify: ele só exige o cabeçalho
   `Bearer`. Não é fronteira de segurança.
 - Teste de rota autenticada: `tests/server/token.ts` gera o par RSA e assina o JWT; o

@@ -20,6 +20,8 @@ Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
 ### Corrigido
 
+- **Índice dos termos de uso nunca marcava as seções 8 e 9.** Ele usava `IntersectionObserver` com uma faixa fixa no topo da tela, e as duas últimas seções, curtas, não subiam até ela quando a página acabava. Passou a marcar a última seção cujo topo já passou da linha de leitura (`--header-h` mais um respiro, que é onde o topo cai ao clicar no índice), calculada pela posição de rolagem, e a última seção ganhou altura mínima (`100dvh` menos o header) para o topo dela alcançar essa linha, como na última fileira de `/trilhas`. Conferido no Chrome nas nove seções; teste novo cobre a regra com as posições simuladas.
+
 - **O limite de IA por IP volta a ser por pessoa no servidor Sebrae.** Entre os usuários e o Nginx há um WAF (`10.1.192.27`) que não repassava o `X-Forwarded-For`: todo pedido chegava à API como `10.1.192.27`, e os limites de 10/min e 150/dia por IP valiam para o site inteiro. Nada acusava: o Nginx estava configurado certo e o log mostrava um IP com cara de cliente. A TI habilitou o cabeçalho, e ele chega **acrescentado ao fim** (um cliente que forja `1.2.3.4` chega como `1.2.3.4, <IP real>`). A correção fica só no Nginx: módulo realip com `set_real_ip_from 10.1.192.27` e `real_ip_recursive on`, e o `location /api/` passa a repassar `$remote_addr` em vez da lista. A API não muda (`trustProxy` segue só em `127.0.0.1`). Conferido no log da API em 2026-11-09: um pedido normal e um forjado chegam com o mesmo IP, o real. `server/README.md` traz o bloco novo e o CLAUDE.md, a armadilha.
 
 ## [1.7.0] — 2026-11-06
