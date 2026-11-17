@@ -46,7 +46,7 @@ export default function TermsDocument({ children, className = '' }: TermsDocumen
       />
 
       <div className="flex flex-col gap-xl">
-        <div className="max-w-[64ch] flex flex-col gap-xl">
+        <div className="max-w-[64ch] xl:max-w-[80ch] flex flex-col gap-xl">
           <header className="flex flex-col gap-sm">
             <h1 className="typo-h2">{TERMS_TITLE}</h1>
             <p className="typo-body-sm">Versão {TERMS_VERSION}</p>
