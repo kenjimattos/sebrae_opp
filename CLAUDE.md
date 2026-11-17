@@ -379,7 +379,7 @@ operacional está em `server/README.md` §Login.
   mesma tela do texto**: `TermsGate` renderiza o `TermsDocument` com uma barra `sticky bottom`
   (checkbox + botões) como filho, em vez de um cartão que mandava ler em outra aba. Índice
   lateral (`TermsToc`) fixo em tela larga e `<details>` abaixo de `lg`; coluna de leitura em
-  `max-w-[64ch]` (80ch a partir de `xl`; passar disso cansa em monoespaçada) com `leading-relaxed` (a base `typo-body` usa `line-height: normal`, curto
+  `max-w-[64ch]` (96ch a partir de `xl`, 112ch a partir de `2xl`: largura pedida de propósito, passar de ~80 cansa em monoespaçada; o `TermsDocument` leva `w-full` porque o `section-container` centraliza os filhos e sem ele o grid encolhe) com `leading-relaxed` (a base `typo-body` usa `line-height: normal`, curto
   para texto longo em monoespaçada). O `TermsToc` guarda `typeof IntersectionObserver`:
   jsdom não tem, e sem a guarda todo teste que renderiza o documento quebra.
 - Em dev o `/api/ai` é atendido pelo Vite, fora do Fastify: ele só exige o cabeçalho

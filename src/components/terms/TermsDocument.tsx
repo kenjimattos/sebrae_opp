@@ -39,14 +39,14 @@ interface TermsDocumentProps {
 // O `max-w` fica num filho sem padding (ver CLAUDE.md, armadilha do gutter).
 export default function TermsDocument({ children, className = '' }: TermsDocumentProps) {
   return (
-    <div className={`grid gap-lg lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-xl items-start ${className}`}>
+    <div className={`w-full grid gap-lg lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-xl items-start ${className}`}>
       <TermsToc
         sections={TERMS_SECTIONS}
         className="lg:sticky lg:top-[calc(var(--header-h)+var(--spacing-md))]"
       />
 
       <div className="flex flex-col gap-xl">
-        <div className="max-w-[64ch] xl:max-w-[80ch] flex flex-col gap-xl">
+        <div className="max-w-[64ch] xl:max-w-[96ch] 2xl:max-w-[112ch] flex flex-col gap-xl">
           <header className="flex flex-col gap-sm">
             <h1 className="typo-h2">{TERMS_TITLE}</h1>
             <p className="typo-body-sm">Versão {TERMS_VERSION}</p>
