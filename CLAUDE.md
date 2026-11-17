@@ -375,7 +375,13 @@ operacional está em `server/README.md` §Login.
   `termsContent.test.tsx` conta quantos faltam. A seção do Clarity existe em
   `TERMS_ANALYTICS_SECTION` **fora** da lista renderizada, de propósito: o texto não pode
   afirmar o que o produto ainda não faz. Quando o Clarity entrar, acrescente-a e suba a versão.
-  O texto não nomeia o fornecedor do modelo de IA (sigilo do projeto).
+  O texto não nomeia o fornecedor do modelo de IA (sigilo do projeto). **O aceite mora na
+  mesma tela do texto**: `TermsGate` renderiza o `TermsDocument` com uma barra `sticky bottom`
+  (checkbox + botões) como filho, em vez de um cartão que mandava ler em outra aba. Índice
+  lateral (`TermsToc`) fixo em tela larga e `<details>` abaixo de `lg`; coluna de leitura em
+  `max-w-[64ch]` com `leading-relaxed` (a base `typo-body` usa `line-height: normal`, curto
+  para texto longo em monoespaçada). O `TermsToc` guarda `typeof IntersectionObserver`:
+  jsdom não tem, e sem a guarda todo teste que renderiza o documento quebra.
 - Em dev o `/api/ai` é atendido pelo Vite, fora do Fastify: ele só exige o cabeçalho
   `Bearer`. Não é fronteira de segurança.
 - Teste de rota autenticada: `tests/server/token.ts` gera o par RSA e assina o JWT; o

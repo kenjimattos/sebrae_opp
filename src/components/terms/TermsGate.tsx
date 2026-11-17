@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
+import TermsDocument from '@/components/terms/TermsDocument'
 import Button from '@/components/ui/buttons/Button'
 import { fetchTermsAcceptance, postTermsAcceptance } from '@/data/api'
 import { useAuth } from '@/hooks/useAuth'
@@ -46,34 +47,36 @@ export default function TermsGate() {
   if (state.status === 'loading') return null
   if (state.status === 'ready' && state.acceptance.accepted) return <Outlet />
 
+  // Falha ao verificar: tela pequena, sem o texto — não há o que aceitar ainda.
+  if (state.status === 'error') {
+    return (
+      <div className="section-container py-xl">
+        <div className="max-w-xl mx-auto glass rounded p-lg flex flex-col gap-md">
+          <h1 className="typo-h3">Não foi possível continuar</h1>
+          <p role="alert" className="typo-body">
+            Não conseguimos verificar o aceite dos termos de uso agora. Tente novamente em instantes.
+          </p>
+          <div className="flex gap-sm">
+            <Button label="Tentar de novo" onClick={load} />
+            <Button label="Sair" variant="secondary" onClick={logout} />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // O aceite fica na mesma tela do texto, numa barra que acompanha a rolagem: quem
+  // aceita está diante dos termos, sem ir a outra aba.
   return (
     <div className="section-container py-xl">
-      <div className="max-w-xl mx-auto glass rounded p-lg flex flex-col gap-md">
-        {state.status === 'error' ? (
-          <>
-            <h1 className="typo-h3">Não foi possível continuar</h1>
-            <p role="alert" className="typo-body">
-              Não conseguimos verificar o aceite dos termos de uso agora. Tente novamente em instantes.
+      <TermsDocument>
+        <div className="sticky bottom-xs z-30 glass rounded p-md flex flex-col gap-sm">
+          {failed && (
+            <p role="alert" className="typo-body-sm text-alert">
+              Não foi possível registrar o aceite. Tente novamente.
             </p>
-            <div className="flex gap-sm">
-              <Button label="Tentar de novo" onClick={load} />
-              <Button label="Sair" variant="secondary" onClick={logout} />
-            </div>
-          </>
-        ) : (
-          <>
-            <h1 className="typo-h3">Termos de uso</h1>
-            <p className="typo-body">
-              Para usar a PIPPA, leia e aceite os termos de uso e o aviso de privacidade.
-            </p>
-            <Link
-              to="/termos"
-              target="_blank"
-              rel="noopener"
-              className="typo-body underline w-fit rounded-xs outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-            >
-              Ler os termos de uso (abre em nova aba)
-            </Link>
+          )}
+          <div className="flex flex-wrap items-center justify-between gap-md">
             <label className="flex items-start gap-sm typo-body cursor-pointer">
               <input
                 type="checkbox"
@@ -83,11 +86,6 @@ export default function TermsGate() {
               />
               <span>Li e aceito os termos de uso e o aviso de privacidade.</span>
             </label>
-            {failed && (
-              <p role="alert" className="typo-body-sm text-alert">
-                Não foi possível registrar o aceite. Tente novamente.
-              </p>
-            )}
             <div className="flex gap-sm">
               <Button
                 label="Aceitar e continuar"
@@ -96,9 +94,9 @@ export default function TermsGate() {
               />
               <Button label="Recusar e sair" variant="secondary" onClick={logout} />
             </div>
-          </>
-        )}
-      </div>
+          </div>
+        </div>
+      </TermsDocument>
     </div>
   )
 }

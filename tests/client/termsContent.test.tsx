@@ -1,7 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import TermsDocument from '@/components/terms/TermsDocument'
-import { A_CONFIRMAR, TERMS_ANALYTICS_SECTION, TERMS_SECTIONS } from '@/data/terms/content'
+import {
+  A_CONFIRMAR,
+  TERMS_ANALYTICS_SECTION,
+  TERMS_SECTIONS,
+  TERMS_SUMMARY,
+  termsSectionId,
+} from '@/data/terms/content'
 import { TERMS_VERSION } from '@/data/terms/version'
 
 describe('texto dos termos de uso', () => {
@@ -37,5 +43,37 @@ describe('texto dos termos de uso', () => {
       expect(screen.getByRole('heading', { name: s.title })).toBeInTheDocument()
     }
     expect(screen.getByText(`Versão ${TERMS_VERSION}`)).toBeInTheDocument()
+  })
+
+  it('o índice tem um link para cada seção, apontando para o id que existe na página', () => {
+    const { container } = render(<TermsDocument />)
+    const nav = screen.getAllByRole('navigation', { name: 'Índice dos termos' })[0]!
+    for (const sec of TERMS_SECTIONS) {
+      const link = nav.querySelector(`a[href="#${termsSectionId(sec.id)}"]`)
+      expect(link, sec.title).not.toBeNull()
+      expect(container.querySelector(`section#${termsSectionId(sec.id)}`), sec.id).not.toBeNull()
+    }
+  })
+
+  it('o resumo mostra as linhas e não nomeia o fornecedor do modelo', () => {
+    render(<TermsDocument />)
+    expect(screen.getByRole('heading', { name: 'Em resumo' })).toBeInTheDocument()
+    expect(TERMS_SUMMARY).toHaveLength(4)
+    for (const line of TERMS_SUMMARY) expect(screen.getByText(line)).toBeInTheDocument()
+    expect(TERMS_SUMMARY.join(' ')).not.toMatch(/google|vertex|gemini|openai|anthropic|clarity/i)
+  })
+
+  it('cada trecho pendente do jurídico vira <mark> na tela', () => {
+    const { container } = render(<TermsDocument />)
+    expect(container.querySelectorAll('mark')).toHaveLength(4)
+  })
+
+  it('o conteúdo entra depois do texto (é onde fica a barra de aceite)', () => {
+    render(
+      <TermsDocument>
+        <p>barra de aceite</p>
+      </TermsDocument>,
+    )
+    expect(screen.getByText('barra de aceite')).toBeInTheDocument()
   })
 })

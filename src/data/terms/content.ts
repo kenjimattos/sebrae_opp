@@ -15,10 +15,22 @@ export interface TermsSection {
   items?: string[]
 }
 
+// Id do elemento de cada seção: âncora do índice e alvo do IntersectionObserver.
+export const termsSectionId = (id: string) => `termos-${id}`
+
 export const TERMS_TITLE = 'Termos de uso e aviso de privacidade'
 
 export const TERMS_INTRO =
   'A PIPPA (Plataforma de Inteligência de Políticas Públicas Aplicada) é uma ferramenta do Sebrae Paraíba para apoiar quem formula e acompanha políticas públicas de desenvolvimento dos pequenos negócios. Ao entrar, você concorda com as regras abaixo.'
+
+// "Em resumo": o que importa, em quatro linhas, antes do texto legal. NÃO substitui
+// os termos — mexeu em uma seção que muda o sentido de uma destas linhas, mexa aqui.
+export const TERMS_SUMMARY: string[] = [
+  'Os dados são públicos e vêm de fontes oficiais. Confira na fonte antes de decidir.',
+  'A IA pode errar. O que você digita nos campos de IA vai a um provedor contratado pelo Sebrae: não escreva dados pessoais.',
+  'Do seu login usamos o identificador da conta e o nome. Guardamos apenas o registro deste aceite.',
+  'Se recusar, você sai da plataforma. Se os termos mudarem, pedimos o aceite de novo.',
+]
 
 export const TERMS_SECTIONS: TermsSection[] = [
   {
