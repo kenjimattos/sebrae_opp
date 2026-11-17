@@ -1,6 +1,7 @@
 import rateLimit from '@fastify/rate-limit'
 import type { FastifyInstance } from 'fastify'
 import { handleAiTask } from '../../api/_lib/handler.js'
+import { createAuthGuard } from './auth/keycloak.js'
 import { config } from './config.js'
 import { buildEmendasData } from './emendas/service.js'
 import { DailyQuota } from './ia/quota.js'
@@ -22,9 +23,10 @@ import type { MunicipalitySummary } from './types/index.js'
 
 // `Cache-Control` das rotas de leitura. Os dados vêm de uma carga do ETL, não de
 // escrita de usuário — a API é só leitura —, então revalidar a cada clique só
-// gasta viagem. `public` porque a resposta é a mesma para todo mundo: não há
-// sessão nem dado por usuário em rota nenhuma daqui.
-const READ_CACHE = `public, max-age=${CACHE_SECONDS}`
+// gasta viagem. `private` porque a rota exige login: um cache compartilhado (WAF,
+// proxy) entregaria a resposta a quem não mandou token. O dado em si é igual para
+// todo usuário — por isso o cache de payload em memória (infra/payload-cache) segue.
+const READ_CACHE = `private, max-age=${CACHE_SECONDS}`
 
 // Ver o uso em /api/emendas e /api/estado: sinaliza coleção vazia de dentro do
 // cache. O cache guarda valor e descarta erro, então isto é o que impede um
@@ -33,9 +35,16 @@ class EmptyEmendasError extends Error {}
 class EmptyStateError extends Error {}
 
 export async function registerRoutes(app: FastifyInstance): Promise<void> {
-  // Health check — usado pelo Nginx/monitoramento e para validar a conexão.
+  // Login AMEI: TODA rota registrada abaixo exige token válido, a menos que
+  // declare `config: { public: true }`. Seguro por padrão — rota nova nasce
+  // fechada, e abrir uma é um ato explícito e visível na revisão.
+  app.decorateRequest('user', null)
+  app.addHook('preHandler', createAuthGuard(config.keycloak))
+
+  // Health check — usado pelo Nginx/monitoramento e para validar a conexão. É a
+  // única rota pública: o monitoramento não tem token.
   // `no-store` de propósito: health cacheado responde "up" com o banco caído.
-  app.get('/api/health', async (_req, reply) => {
+  app.get('/api/health', { config: { public: true } }, async (_req, reply) => {
     await getDb().command({ ping: 1 })
     reply.header('cache-control', 'no-store')
     return { ok: true, db: 'up' }
@@ -158,10 +167,12 @@ export async function registerRoutes(app: FastifyInstance): Promise<void> {
   // Sem GOOGLE_SERVICE_ACCOUNT_JSON válida o handler devolve `unavailable` (503) e o frontend
   // mostra "O assistente está indisponível no momento".
   //
-  // O /api/ai está na internet sem login e cada chamada ao Vertex custa, então
-  // tem duas travas de volume antes do handler:
-  // - rajada por IP por minuto (@fastify/rate-limit, só nesta rota);
-  // - cota diária por IP e global (DailyQuota), que é o disjuntor de custo.
+  // Cada chamada ao Vertex custa, então o /api/ai tem, além do login, duas travas
+  // de volume:
+  // - rajada por IP por minuto (@fastify/rate-limit, só nesta rota; roda no
+  //   onRequest, antes do login, e por isso também segura quem tenta sem token);
+  // - cota diária por IP e global (DailyQuota), que é o disjuntor de custo. Roda
+  //   depois do login: pedido sem token nunca gasta cota.
   // As duas respondem 429 `rate_limited`, que o frontend já trata. O IP é o que o
   // Nginx repassa em X-Forwarded-For (trustProxy em app.ts): sem esse cabeçalho
   // todo pedido chega como 127.0.0.1 e o limite por IP vira limite do site.

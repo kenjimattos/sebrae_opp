@@ -316,6 +316,44 @@ código IBGE). Coleção vazia → **503**, nunca payload zerado. Exige os seeds
 
 ---
 
+## Autenticação (AMEI / Keycloak)
+
+Todo `/api/*` exige `Authorization: Bearer <access_token>` do AMEI (Keycloak do Sebrae),
+**exceto `/api/health`**. A validação é do `server/` (`server/src/auth/keycloak.ts`,
+`keycloak-connect` em `bearer-only`, `preHandler` global em `routes.ts`); o detalhe
+operacional está em `server/README.md` §Login.
+
+> **A rota nasce fechada.** O hook é global e só `config: { public: true }` abre uma
+> rota. Esquecer de proteger não é possível; esquecer de **não** abrir é o que se revisa.
+
+> **O keycloak-connect é de Express e três coisas não encaixam no Fastify.** (1) Ele só
+> lê o token depois do `GrantAttacher`, que preenche `req.kauth` — o hook chama
+> `keycloak.getGrant` e depois o `protect()`. (2) O acesso negado padrão faz
+> `res.status(403)`, que o `ServerResponse` cru não tem, e responde 403: sobrescrevemos
+> `accessDenied` para `next(UnauthorizedError)` e sai **401**. (3) `kauth` fica em
+> `req.raw`; o código lê `req.user`. Não registrar `@fastify/session`/`cookie`: bearer-only
+> não usa sessão.
+
+> **O realm é compartilhado com as outras plataformas do Sebrae, então assinatura e
+> issuer válidos não bastam.** Um token emitido para o client de OUTRO sistema passa nos
+> dois. O hook exige `azp == KEYCLOAK_CLIENT_ID`. O `verifyTokenAudience` do keycloak-connect
+> não serve no lugar: exige `aud` com o client, e o Keycloak só o põe com audience mapper.
+
+> **O 401 não conta o motivo.** Corpo `Acesso não autorizado.`; "expirado", "issuer
+> errado" e afins vão para o log, sem o token. Mesma regra do resto da API.
+
+- **Um client só, o do SPA** (público, PKCE): o backend valida com o mesmo client ID, sem
+  secret. `KEYCLOAK_CLIENT_SECRET` é opcional e só existe com client confidencial. **O
+  secret nunca leva prefixo `VITE_`**: tudo com `VITE_` vai para o bundle.
+- `Cache-Control` das rotas de leitura é `private`: a resposta exige login, e cache
+  compartilhado (WAF, proxy) a entregaria a quem não mandou token.
+- Em dev o `/api/ai` é atendido pelo Vite, fora do Fastify: ele só exige o cabeçalho
+  `Bearer`. Não é fronteira de segurança.
+- Teste de rota autenticada: `tests/server/token.ts` gera o par RSA e assina o JWT; o
+  `vi.mock` de `config.js` precisa do bloco `keycloak` (`keycloakTestConfig`).
+
+---
+
 ## Integração de IA (Vertex AI / Gemini)
 
 Cinco superfícies, todas via `POST /api/ai` (Gemini no Vertex AI, por service account; fetch puro — sem SDK):
@@ -399,8 +437,8 @@ mesma fonte** (`handler.ts`): middleware de dev do Vite e `POST /api/ai` no Fast
 
 ### Abuso e prompt injection
 
-O `/api/ai` está na internet **sem login** (a `/` é só a escolha da UF), e cada chamada
-ao Vertex custa. A IA não tem ferramenta, não lê banco nem arquivo, o system prompt
+O `/api/ai` exige login AMEI (ver [Autenticação](#autenticação-amei--keycloak)), mas qualquer
+usuário do AMEI chega até ele, e cada chamada ao Vertex custa. A IA não tem ferramenta, não lê banco nem arquivo, o system prompt
 não guarda segredo e a resposta volta só para quem perguntou: uma injeção bem-sucedida
 **não vaza dado**. O risco é outro: **usar a plataforma para outra coisa** (proxy de
 LLM, texto fora do tema com a marca Sebrae) e **queimar orçamento**. Prompt não

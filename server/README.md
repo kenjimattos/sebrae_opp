@@ -98,6 +98,26 @@ Produção:
 npm run build && npm start   # tsc → dist/, node dist/server/src/index.js
 ```
 
+## Login (AMEI / Keycloak)
+
+Todo `/api/*` exige `Authorization: Bearer <access_token>` do AMEI, **exceto
+`/api/health`** (o monitoramento não tem token). Sem token, expirado, de outro realm ou
+de outro client: 401 com corpo genérico `Acesso não autorizado.`; o motivo vai para o log
+(`[auth] token recusado`), nunca o token.
+
+- `src/auth/keycloak.ts` usa o `keycloak-connect` em modo `bearer-only` como `preHandler`
+  global (`routes.ts`). A rota nasce **fechada**; abrir uma é `config: { public: true }`.
+- O token é conferido contra o JWKS do AMEI (`<KEYCLOAK_URL>/realms/<realm>/protocol/openid-connect/certs`):
+  **a máquina da API precisa alcançar o AMEI** (ou usar `KEYCLOAK_REALM_PUBLIC_KEY`, que não rotaciona).
+  Teste: `curl -sS -m 10 -o /dev/null -w '%{http_code}\n' $KEYCLOAK_URL/realms/$KEYCLOAK_REALM/protocol/openid-connect/certs` (200).
+- O realm é compartilhado com outras plataformas do Sebrae, então o hook também exige
+  `azp == KEYCLOAK_CLIENT_ID`: token de outro sistema, mesmo válido, é recusado.
+- Quem consome lê `req.user` (`id` = `sub`, `username`, `name`), não `req.kauth`.
+- O Nginx repassa o `Authorization` por padrão no `proxy_pass`; não há o que configurar.
+- Variáveis: `KEYCLOAK_URL`, `KEYCLOAK_REALM`, `KEYCLOAK_CLIENT_ID` (obrigatórias — sem elas a API não sobe),
+  `KEYCLOAK_CLIENT_SECRET` (só para client confidencial) e `KEYCLOAK_REALM_PUBLIC_KEY` (opcional).
+- Em dev, o `/api/ai` é atendido pelo Vite e **não passa por este hook**: o Vite só exige o cabeçalho.
+
 ## IA (`POST /api/ai`)
 
 Transporte de produção do **mesmo núcleo** de `api/_lib/handler.ts`; o outro é o
@@ -179,5 +199,5 @@ alerta de orçamento e cota de requisições do Gemini no projeto
    ```
    Sem WAF na frente, tirar as três linhas `real_ip`: o `$remote_addr` já é o cliente.
 
-Variáveis: ver `.env.example` (`MONGO_URI`, `MONGO_DB`, `PORT`, `HOST`, a service
-account do Vertex e as travas `AI_*`).
+Variáveis: ver `.env.example` (`MONGO_URI`, `MONGO_DB`, `PORT`, `HOST`, o login
+`KEYCLOAK_*`, a service account do Vertex e as travas `AI_*`).

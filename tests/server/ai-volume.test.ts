@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createApp } from '../../server/src/app.js'
 import { DailyQuota } from '../../server/src/ia/quota.js'
 import { registerRoutes } from '../../server/src/routes.js'
+import { bearer } from './token.js'
 
 // Travas de volume do /api/ai: rajada por minuto (@fastify/rate-limit), cota
 // diária por IP e global (DailyQuota), bodyLimit e a origem do IP (trustProxy).
@@ -9,15 +10,19 @@ import { registerRoutes } from '../../server/src/routes.js'
 // pedido passou das travas, sem simular o modelo.
 
 // Limites baixos para o teste alcançar o teto em poucas chamadas.
-vi.mock('../../server/src/config.js', () => ({
-  config: {
-    mongoUri: 'mongodb://teste',
-    mongoDb: 'teste',
-    port: 0,
-    host: '127.0.0.1',
-    aiLimits: { perMinute: 3, perIpPerDay: 5, globalPerDay: 8 },
-  },
-}))
+vi.mock('../../server/src/config.js', async () => {
+  const { keycloakTestConfig } = await import('./token.js')
+  return {
+    config: {
+      mongoUri: 'mongodb://teste',
+      mongoDb: 'teste',
+      port: 0,
+      host: '127.0.0.1',
+      aiLimits: { perMinute: 3, perIpPerDay: 5, globalPerDay: 8 },
+      keycloak: keycloakTestConfig,
+    },
+  }
+})
 
 const corpo = {
   task: 'chat',
@@ -75,7 +80,7 @@ describe('POST /api/ai · travas de volume', () => {
       method: 'POST',
       url: '/api/ai',
       payload: payload as object,
-      headers: { 'x-forwarded-for': ip },
+      headers: { 'x-forwarded-for': ip, ...bearer() },
     })
 
   it('a rajada passa do limite por minuto e volta 429 rate_limited', async () => {
@@ -123,7 +128,7 @@ describe('POST /api/ai · travas de volume', () => {
         url: '/api/ai',
         payload: corpo,
         remoteAddress: '10.9.9.9',
-        headers: { 'x-forwarded-for': `200.0.0.${i}` },
+        headers: { 'x-forwarded-for': `200.0.0.${i}`, ...bearer() },
       })
       status.push(res.statusCode)
     }

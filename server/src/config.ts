@@ -32,6 +32,20 @@ export const config = {
   // derrubaria a API inteira (indicadores, mapa, emendas) por causa de um
   // recurso acessório.
   vertex: vertexEnvFrom(process.env),
+  // Login AMEI (Keycloak do Sebrae). Obrigatório, ao contrário da IA: sem ele a
+  // API inteira ficaria aberta, e subir assim em silêncio é pior que não subir.
+  // O client é o MESMO do SPA (público, PKCE), então não há secret por padrão —
+  // `KEYCLOAK_CLIENT_SECRET` só existe se o Sebrae entregar um client confidencial.
+  keycloak: {
+    url: required('KEYCLOAK_URL'),
+    realm: required('KEYCLOAK_REALM'),
+    clientId: required('KEYCLOAK_CLIENT_ID'),
+    clientSecret: process.env.KEYCLOAK_CLIENT_SECRET || undefined,
+    // Chave pública do realm, em base64 sem cabeçalho. Opcional: sem ela o
+    // keycloak-connect busca o JWKS no AMEI e acompanha a rotação de chaves. Só
+    // preencher se este servidor não alcançar o AMEI — chave fixa não rotaciona.
+    realmPublicKey: process.env.KEYCLOAK_REALM_PUBLIC_KEY || undefined,
+  },
   // Travas de volume do /api/ai (ver routes.ts e ia/quota.ts). Valores iniciais:
   // ajustar olhando o log de uso, não no chute.
   aiLimits: {

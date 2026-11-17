@@ -15,6 +15,16 @@ function aiDevEndpoint(env: Record<string, string>): Plugin {
     name: 'ai-dev-endpoint',
     configureServer(server) {
       server.middlewares.use('/api/ai', (req, res) => {
+        // Em dev este endpoint NÃO passa pelo Fastify, que é quem valida o token do
+        // AMEI. Aqui só se exige o cabeçalho Bearer, para o fluxo de dev se parecer
+        // com o real (o frontend manda o token em toda chamada). Não é fronteira de
+        // segurança: é um servidor local, e a verificação de verdade é a do servidor.
+        if (!/^Bearer \S+/.test(req.headers.authorization ?? '')) {
+          res.statusCode = 401
+          res.setHeader('Content-Type', 'application/json')
+          res.end(JSON.stringify({ error: 'Acesso não autorizado.' }))
+          return
+        }
         if (req.method !== 'POST') {
           res.statusCode = 405
           res.setHeader('Content-Type', 'application/json')
