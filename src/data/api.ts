@@ -1,6 +1,7 @@
 // Client da API de leitura (server/). Em dev o Vite faz proxy de /api → :3000;
 // em produção o Nginx faz o mesmo. Substitui os imports estáticos de
 // municipalities.json e values/*.ts.
+import { authFetch } from '@/data/http'
 import type { EmendasData } from '@/types/emendas'
 import type { StateData } from '@/types/estado'
 import type { IndicatorsData } from '@/types/indicators'
@@ -14,7 +15,7 @@ export interface MunicipalitySummary {
 const BASE = '/api'
 
 async function getJSON<T>(path: string): Promise<T> {
-  const res = await fetch(`${BASE}${path}`)
+  const res = await authFetch(`${BASE}${path}`)
   if (!res.ok) {
     throw new Error(`API ${path} respondeu ${res.status}`)
   }

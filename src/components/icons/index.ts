@@ -26,6 +26,7 @@ export {
   Info,
   Landmark,
   Laptop,
+  LogOut,
   MessageCircle,
   Minus,
   Moon,

@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Verificando sessão</title>
+  </head>
+  <body>
+    <!-- Página do check-sso silencioso do keycloak-js: devolve o resultado do
+         AMEI à janela que a carregou em um iframe. Não tem conteúdo próprio. -->
+    <script>
+      parent.postMessage(location.href, location.origin)
+    </script>
+  </body>
+</html>

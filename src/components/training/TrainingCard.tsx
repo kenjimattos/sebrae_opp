@@ -2,9 +2,9 @@
 // Trail card with title, description, course rows, and CTA button
 //
 // A navegação usa o router, nunca `window.location`: atribuir a href recarrega
-// o documento inteiro, o que desloga (AuthProvider volta ao estado inicial) e
-// zera o município escolhido — e com o município vazio o rascunho do formulador
-// some da tela, mesmo estando salvo. O hash é resolvido no cliente pela própria
+// o documento inteiro, o que refaz o init do Keycloak (a tela pisca em "Verificando
+// sessão") e zera o município escolhido — e com o município vazio o rascunho do
+// formulador some da tela, mesmo estando salvo. O hash é resolvido no cliente pela própria
 // /trilhas (useLocation + scrollIntoView), então o router basta.
 
 import { useNavigate } from 'react-router-dom'

@@ -38,12 +38,13 @@ const ctaIcons: Record<string, LucideIcon> = {
 }
 
 export default function SectionHero() {
-  const { login } = useAuth()
+  const { isLoggedIn, login } = useAuth()
   const navigate = useNavigate()
 
   function enter() {
-    login()
-    navigate('/home')
+    // Logado: entra direto. Senão vai ao AMEI, que devolve a /home.
+    if (isLoggedIn) navigate('/home')
+    else login('/home')
   }
 
   return (

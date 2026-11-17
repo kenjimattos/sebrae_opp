@@ -12,6 +12,8 @@ const FRIENDLY_MESSAGES: Record<string, string> = {
   // a esgotá-la.
   rate_limited: 'Muitas consultas no momento. Tente novamente em alguns minutos.',
   unavailable: 'O assistente está indisponível no momento.',
+  // O login expirou ou foi recusado. Sem detalhe: quem lê não tem o que fazer além de entrar de novo.
+  unauthorized: 'Sua sessão expirou. Entre novamente para usar o assistente.',
   // Mesma frase para pedido fora do tema e para bloqueio do filtro de conteúdo:
   // dizer qual dos dois foi ensinaria a contornar.
   out_of_scope:

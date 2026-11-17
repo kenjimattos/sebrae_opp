@@ -1,5 +1,6 @@
 // Client do endpoint de IA (/api/ai). Em dev o middleware do Vite atende;
 // no servidor, a rota do Fastify. Mesmas convenções de src/data/api.ts.
+import { authFetch } from '@/data/http'
 import type { AiErrorCode, AiErrorResponse, AiSuccessResponse, AiTaskRequest } from '@/types/ai'
 
 export class AiRequestError extends Error {
@@ -15,7 +16,7 @@ export class AiRequestError extends Error {
 export async function postAiTask(req: AiTaskRequest): Promise<AiSuccessResponse> {
   let res: Response
   try {
-    res = await fetch('/api/ai', {
+    res = await authFetch('/api/ai', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(req),
@@ -23,6 +24,9 @@ export async function postAiTask(req: AiTaskRequest): Promise<AiSuccessResponse>
   } catch {
     throw new AiRequestError('upstream_error', 'falha de rede ao chamar /api/ai')
   }
+
+  // 401 do servidor: o corpo é o do Fastify, sem o formato de erro da IA.
+  if (res.status === 401) throw new AiRequestError('unauthorized', 'não autorizado em /api/ai')
 
   const body = (await res.json().catch(() => null)) as
     | AiSuccessResponse

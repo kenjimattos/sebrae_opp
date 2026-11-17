@@ -13,7 +13,9 @@
     "test:run": "vitest run"
   },
   "dependencies": {
+    "@react-keycloak/web": "^3.4.0",
     "autoprefixer": "^10.4.27",
+    "keycloak-js": "^26.2.5",
     "lucide-react": "^1.8.0",
     "postcss": "^8.5.9",
     "react": "^19.2.4",

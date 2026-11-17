@@ -8,6 +8,7 @@ import {
   fetchMunicipalityData,
   type MunicipalitySummary,
 } from '@/data/api'
+import { useAuth } from '@/hooks/useAuth'
 
 // Estado inicial sem município: a jornada exibe apenas seletor (+ mapa, em
 // Ambiente) até o usuário escolher um município (ver `hasData` em SectionJornada).
@@ -22,13 +23,16 @@ export default function MunicipalityProvider({ children }: { children: ReactNode
   const [municipalities, setMunicipalities] = useState<MunicipalitySummary[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const { isLoggedIn } = useAuth()
 
   // Id do último fetch pedido — para descartar respostas obsoletas quando o
   // usuário troca de município no meio do carregamento.
   const requestIdRef = useRef('')
 
-  // Carrega a lista de municípios uma vez no boot.
+  // Carrega a lista de municípios uma vez, depois do login: a API recusa quem não
+  // manda token, e este provider monta já na `/`, antes de qualquer login.
   useEffect(() => {
+    if (!isLoggedIn) return
     let cancelled = false
     fetchMunicipalities()
       .then((list) => {
@@ -40,7 +44,7 @@ export default function MunicipalityProvider({ children }: { children: ReactNode
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [isLoggedIn])
 
   const setMunicipality = useCallback(
     (id: string, name: string) => {

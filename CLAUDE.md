@@ -347,6 +347,24 @@ operacional está em `server/README.md` §Login.
   secret nunca leva prefixo `VITE_`**: tudo com `VITE_` vai para o bundle.
 - `Cache-Control` das rotas de leitura é `private`: a resposta exige login, e cache
   compartilhado (WAF, proxy) a entregaria a quem não mandou token.
+- **Frontend:** `ReactKeycloakProvider` em `main.tsx` (por fora do `App`, que só monta
+  depois do init — o `keycloak-js` limpa o `#state=…&code=…` da URL no init, e montar antes
+  mostraria essa URL ao app e a qualquer analytics). `/` é pública (`check-sso`, sem forçar
+  login); `/home` e `/trilhas` ficam atrás de `RequireAuth`, que manda ao AMEI e volta para
+  a mesma URL. `AuthProvider` reimplementa `isLoggedIn`/`login`/`logout` sobre o keycloak-js
+  e expõe `user` (`sub` + nome; **sem e-mail**). O cliente guarda só conveniência de UX: quem
+  protege dado é o servidor.
+- **`authFetch` (`src/data/http.ts`) é o único caminho para `/api`.** `fetch` solto volta
+  401. Renova o token (`updateToken(30)`) e, num 401, força UMA renovação e tenta de novo.
+  **Nunca volta ao AMEI por causa de 401**: servidor recusando token recém-emitido é erro de
+  configuração (client errado, `azp`), e redirecionar faria um laço infinito app ↔ AMEI. Só
+  volta ao AMEI quando a renovação em si falha (sessão vencida).
+- `getKeycloak()` é preguiçoso de propósito: o módulo lê `VITE_KEYCLOAK_*` e falha se faltarem;
+  importá-lo em teste sem as variáveis não pode quebrar. Teste mocka `@/auth/keycloak` ou
+  `@react-keycloak/web`.
+- O Clarity (produção) ainda não entrou, mas o encaixe está: `useAuth().user.id` é o `sub`
+  para `identify`, o nome no header leva `data-clarity-mask`, e aceite de termos e
+  consentimento de analytics são coisas separadas (LGPD).
 - Em dev o `/api/ai` é atendido pelo Vite, fora do Fastify: ele só exige o cabeçalho
   `Bearer`. Não é fronteira de segurança.
 - Teste de rota autenticada: `tests/server/token.ts` gera o par RSA e assina o JWT; o

@@ -176,6 +176,8 @@ export type AiErrorCode =
   | 'upstream_error'
   // Pedido fora do tema da plataforma, ou barrado pelo filtro de conteúdo.
   | 'out_of_scope'
+  // Só no cliente: o servidor recusou o token (401). Não vem do handler de IA.
+  | 'unauthorized'
 
 export interface AiErrorResponse {
   error: string

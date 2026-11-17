@@ -5,6 +5,7 @@ import MunicipalityProvider from '@/hooks/MunicipalityProvider'
 import FormulatorProvider from '@/hooks/FormulatorProvider'
 import ScrollToTop from '@/components/ScrollToTop'
 import Layout from '@/components/layout/Layout'
+import RequireAuth from '@/components/RequireAuth'
 import Home from '@/pages/Home'
 import Login from '@/pages/Login'
 import Trails from '@/pages/Trails'
@@ -20,8 +21,10 @@ function App() {
               <Routes>
                 <Route element={<Layout />}>
                   <Route path="/" element={<Login />} />
-                  <Route path="/home" element={<Home />} />
-                  <Route path="/trilhas" element={<Trails />} />
+                  <Route element={<RequireAuth />}>
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/trilhas" element={<Trails />} />
+                  </Route>
                 </Route>
               </Routes>
             </FormulatorProvider>
