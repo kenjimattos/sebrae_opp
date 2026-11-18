@@ -359,6 +359,16 @@ operacional está em `server/README.md` §Login.
   **Nunca volta ao AMEI por causa de 401**: servidor recusando token recém-emitido é erro de
   configuração (client errado, `azp`), e redirecionar faria um laço infinito app ↔ AMEI. Só
   volta ao AMEI quando a renovação em si falha (sessão vencida).
+- **Falha no init do Keycloak não pode virar "Verificando sessão…" eterno.** O
+  `@react-keycloak/web` deixa `initialized` falso para sempre se o `init` rejeitar (rede,
+  VPN, iframe de cookies de terceiros que não responde: "Timeout when waiting for 3rd party
+  check iframe message"). `AuthRoot` captura `onInitError` e mostra o erro com o detalhe e
+  "Tentar de novo"; e a tela de carregamento avisa que está demorando depois de 8s.
+- **`getKeycloak()` torna o `init` idempotente, e isso não é enfeite.** O `StrictMode`
+  (dev) monta o provider duas vezes e o `keycloak-js` **lança** "A 'Keycloak' instance can
+  only be initialized once" na segunda chamada. Antes do `AuthRoot` o erro era ignorado e o
+  primeiro init seguia; com o erro visível ele derrubou a tela (visto no Chrome). A segunda
+  chamada agora recebe a mesma promessa. Teste de falha: `VITE_KEYCLOAK_URL=https://amei.invalid/auth npx vite`.
 - `getKeycloak()` é preguiçoso de propósito: o módulo lê `VITE_KEYCLOAK_*` e falha se faltarem;
   importá-lo em teste sem as variáveis não pode quebrar. Teste mocka `@/auth/keycloak` ou
   `@react-keycloak/web`.

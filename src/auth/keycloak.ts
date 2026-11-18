@@ -18,12 +18,24 @@ let instance: Keycloak | null = null
 // `authFetch` (que está fora da árvore React e precisa do token). Preguiçoso
 // para que importar o módulo em teste não exija as variáveis de ambiente.
 export function getKeycloak(): Keycloak {
-  instance ??= new Keycloak({
+  if (instance) return instance
+  const keycloak = new Keycloak({
     url: viteVar('VITE_KEYCLOAK_URL'),
     realm: viteVar('VITE_KEYCLOAK_REALM'),
     clientId: viteVar('VITE_KEYCLOAK_CLIENT_ID'),
   })
-  return instance
+
+  // `init` idempotente. O keycloak-js lança "A 'Keycloak' instance can only be
+  // initialized once" na segunda chamada, e o StrictMode do React (dev) monta o
+  // `ReactKeycloakProvider` duas vezes, então o init é chamado duas vezes. Quem
+  // chama de novo recebe a MESMA promessa do primeiro init, em vez de um erro que
+  // pareceria falha de login. Em produção (sem StrictMode) é um init só, como sempre.
+  const init = keycloak.init.bind(keycloak)
+  let initializing: Promise<boolean> | null = null
+  keycloak.init = (options) => (initializing ??= init(options))
+
+  instance = keycloak
+  return keycloak
 }
 
 // `check-sso`: a `/` (escolha da UF) é pública, então o init só verifica se já
