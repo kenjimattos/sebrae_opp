@@ -110,6 +110,11 @@ de outro client: 401 com corpo genérico `Acesso não autorizado.`; o motivo vai
 - O token é conferido contra o JWKS do AMEI (`<KEYCLOAK_URL>/realms/<realm>/protocol/openid-connect/certs`):
   **a máquina da API precisa alcançar o AMEI** (ou usar `KEYCLOAK_REALM_PUBLIC_KEY`, que não rotaciona).
   Teste: `curl -sS -m 10 -o /dev/null -w '%{http_code}\n' $KEYCLOAK_URL/realms/$KEYCLOAK_REALM/protocol/openid-connect/certs` (200).
+- **AMEI que não responde vira 503, não pendura.** O keycloak-connect busca o JWKS sem timeout; se a
+  máquina da API não alcança o AMEI e a rede **descarta** os pacotes (em vez de recusar), o pedido
+  ficava pendurado por minutos e a tela do usuário em branco. O hook corta em 8s com 503 (corpo
+  genérico) e loga `[auth] o AMEI não respondeu em 8000ms — a máquina da API alcança <URL>?`.
+  Se vir isso no `journalctl -u opp-api`, o problema é de rede daquela máquina até o AMEI, não do token.
 - O realm é compartilhado com outras plataformas do Sebrae, então o hook também exige
   `azp == KEYCLOAK_CLIENT_ID`: token de outro sistema, mesmo válido, é recusado.
 - Quem consome lê `req.user` (`id` = `sub`, `username`, `name`), não `req.kauth`.

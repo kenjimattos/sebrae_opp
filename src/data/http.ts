@@ -16,10 +16,15 @@ async function currentToken(minValidity: number): Promise<string> {
   return keycloak.token
 }
 
+// Sem limite, uma API que não responde deixa a tela esperando para sempre (já deixou
+// a tela em branco). 30s cobre a chamada de IA, a mais lenta; estourou, vira erro.
+const REQUEST_TIMEOUT_MS = 30_000
+
 function withBearer(init: RequestInit, token: string): RequestInit {
   const headers = new Headers(init.headers)
   headers.set('Authorization', `Bearer ${token}`)
-  return { ...init, headers }
+  const signal = init.signal ?? (typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(REQUEST_TIMEOUT_MS) : undefined)
+  return { ...init, headers, ...(signal ? { signal } : {}) }
 }
 
 export async function authFetch(input: string, init: RequestInit = {}): Promise<Response> {

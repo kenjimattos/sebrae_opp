@@ -54,6 +54,13 @@ interface KauthRequest {
 
 type Next = (err?: unknown) => void
 
+// O keycloak-connect busca as chaves de assinatura (JWKS) no AMEI na primeira
+// validação e a requisição dele NÃO tem timeout. Se esta máquina não alcança o AMEI
+// e a rede DESCARTA os pacotes (em vez de recusar), a chamada fica pendurada por
+// minutos: o navegador espera, e a tela fica em branco sem erro nenhum. Aqui o
+// limite é nosso.
+const GRANT_TIMEOUT_MS = 8000
+
 export class UnauthorizedError extends Error {
   readonly statusCode = 401
   constructor() {
@@ -63,7 +70,24 @@ export class UnauthorizedError extends Error {
   }
 }
 
-export function createAuthGuard(settings: KeycloakSettings) {
+// O login (AMEI) não respondeu a tempo: não é culpa do token, então não é 401.
+export class AuthUnavailableError extends Error {
+  readonly statusCode = 503
+  constructor() {
+    super('Serviço de login indisponível.')
+  }
+}
+
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  let timer: NodeJS.Timeout | undefined
+  const expired = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(new AuthUnavailableError()), ms)
+  })
+  return Promise.race([promise, expired]).finally(() => clearTimeout(timer))
+}
+
+export function createAuthGuard(settings: KeycloakSettings, options: { timeoutMs?: number } = {}) {
+  const timeoutMs = options.timeoutMs ?? GRANT_TIMEOUT_MS
   const keycloak = new Keycloak(
     {},
     {
@@ -96,11 +120,21 @@ export function createAuthGuard(settings: KeycloakSettings) {
     const raw = req.raw as unknown as KauthRequest
     raw.kauth = {}
     try {
-      raw.kauth.grant = (await keycloak.getGrant(
-        req.raw as unknown as Parameters<typeof keycloak.getGrant>[0],
-        reply.raw as unknown as Parameters<typeof keycloak.getGrant>[1],
+      raw.kauth.grant = (await withTimeout(
+        keycloak.getGrant(
+          req.raw as unknown as Parameters<typeof keycloak.getGrant>[0],
+          reply.raw as unknown as Parameters<typeof keycloak.getGrant>[1],
+        ),
+        timeoutMs,
       )) as unknown as GrantLike
     } catch (err) {
+      if (err instanceof AuthUnavailableError) {
+        // O detalhe vai para o log de quem opera; o corpo da resposta fica genérico.
+        req.log.error(
+          `[auth] o AMEI não respondeu em ${timeoutMs}ms — a máquina da API alcança ${settings.url}? (ver server/README.md, §Login)`,
+        )
+        throw err
+      }
       // Sem cabeçalho, token expirado, assinatura ou issuer errados: todos caem
       // aqui. O motivo (sem o token) fica no log de quem opera.
       req.log.info({ reason: err instanceof Error ? err.message : 'desconhecido' }, '[auth] token recusado')

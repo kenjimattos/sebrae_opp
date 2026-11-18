@@ -92,4 +92,11 @@ describe('TermsGate', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Tentar de novo' }))
     expect(await screen.findByText('conteúdo da home')).toBeInTheDocument()
   })
+
+  it('enquanto a API não responde, mostra texto e não uma página em branco', () => {
+    fetchTermsAcceptance.mockReturnValue(new Promise(() => {})) // pendurada
+    montar()
+    expect(screen.getByRole('status')).toHaveTextContent('Verificando os termos de uso…')
+    expect(screen.queryByText('conteúdo da home')).not.toBeInTheDocument()
+  })
 })

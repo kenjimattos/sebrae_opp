@@ -70,4 +70,23 @@ describe('authFetch', () => {
     expect(keycloak.login).toHaveBeenCalledTimes(1)
     expect(fetchMock).not.toHaveBeenCalled()
   })
+
+  // jsdom antigo não tem AbortSignal.timeout; em navegador moderno e em Node 20+ tem.
+  it.skipIf(typeof AbortSignal.timeout !== 'function')(
+    'põe um timeout no pedido: API que não responde não deixa a tela esperando para sempre',
+    async () => {
+      fetchMock.mockResolvedValue(resposta(200))
+      await authFetch('/api/estado')
+      const init = fetchMock.mock.calls[0]?.[1] as RequestInit
+      expect(init.signal).toBeInstanceOf(AbortSignal)
+    },
+  )
+
+  it('respeita o signal que o chamador passou, sem trocar por outro', async () => {
+    fetchMock.mockResolvedValue(resposta(200))
+    const controle = new AbortController()
+    await authFetch('/api/estado', { signal: controle.signal })
+    const init = fetchMock.mock.calls[0]?.[1] as RequestInit
+    expect(init.signal).toBe(controle.signal)
+  })
 })

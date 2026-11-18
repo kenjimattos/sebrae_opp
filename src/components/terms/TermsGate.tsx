@@ -44,7 +44,15 @@ export default function TermsGate() {
     }
   }
 
-  if (state.status === 'loading') return null
+  // Texto, não `null`: um null deixava a página em branco enquanto a API não respondia,
+  // sem pista de que algo estava acontecendo.
+  if (state.status === 'loading') {
+    return (
+      <div role="status" className="section-container py-xl typo-body">
+        Verificando os termos de uso…
+      </div>
+    )
+  }
   if (state.status === 'ready' && state.acceptance.accepted) return <Outlet />
 
   // Falha ao verificar: tela pequena, sem o texto — não há o que aceitar ainda.

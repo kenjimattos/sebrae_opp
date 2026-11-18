@@ -359,6 +359,13 @@ operacional está em `server/README.md` §Login.
   **Nunca volta ao AMEI por causa de 401**: servidor recusando token recém-emitido é erro de
   configuração (client errado, `azp`), e redirecionar faria um laço infinito app ↔ AMEI. Só
   volta ao AMEI quando a renovação em si falha (sessão vencida).
+- **Nada pode esperar para sempre: sem timeout, a falha vira página em branco.** O
+  keycloak-connect busca o JWKS no AMEI **sem timeout**, e o `authFetch` também não tinha
+  limite; o `TermsGate` devolvia `null` enquanto esperava. Junto, uma API que não alcança o
+  AMEI deixava a tela em branco sem erro nenhum. Hoje: o hook do servidor corta em 8s com
+  **503** (não 401: o token não tem culpa), o `authFetch` corta em 30s, e o `TermsGate`
+  mostra "Verificando os termos de uso…" em vez de `null`. Componente que espera a API não
+  retorna `null`.
 - **Falha no init do Keycloak não pode virar "Verificando sessão…" eterno.** O
   `@react-keycloak/web` deixa `initialized` falso para sempre se o `init` rejeitar (rede,
   VPN, iframe de cookies de terceiros que não responde: "Timeout when waiting for 3rd party
