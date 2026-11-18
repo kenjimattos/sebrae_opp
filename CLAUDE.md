@@ -359,6 +359,12 @@ operacional está em `server/README.md` §Login.
   **Nunca volta ao AMEI por causa de 401**: servidor recusando token recém-emitido é erro de
   configuração (client errado, `azp`), e redirecionar faria um laço infinito app ↔ AMEI. Só
   volta ao AMEI quando a renovação em si falha (sessão vencida).
+- **O `keycloak.getGrant` engole a causa da recusa.** Qualquer falha de validação (issuer,
+  expirado, assinatura) sai como "Could not store grant code error", então um log com a
+  `reason` dele não diz nada. O hook valida por `grantManager.createGrant`, que devolve o
+  motivo verdadeiro, e o log de recusa traz também `esperado`/`recebido`/`agora` (só `iss`,
+  `azp` e `exp`; **nunca o token**). Como o app roda numa máquina que não alcançamos
+  (Sebrae, via VPN), o log é a única pista: mexeu na validação, mantenha-o dizendo a causa.
 - **Nada pode esperar para sempre: sem timeout, a falha vira página em branco.** O
   keycloak-connect busca o JWKS no AMEI **sem timeout**, e o `authFetch` também não tinha
   limite; o `TermsGate` devolvia `null` enquanto esperava. Junto, uma API que não alcança o

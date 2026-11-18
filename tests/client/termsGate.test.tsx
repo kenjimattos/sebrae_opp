@@ -99,4 +99,10 @@ describe('TermsGate', () => {
     expect(screen.getByRole('status')).toHaveTextContent('Verificando os termos de uso…')
     expect(screen.queryByText('conteúdo da home')).not.toBeInTheDocument()
   })
+
+  it('na falha, mostra o status que a API devolveu (login recusado ≠ servidor fora)', async () => {
+    fetchTermsAcceptance.mockRejectedValueOnce(new Error('API /terms/acceptance respondeu 401'))
+    montar()
+    expect(await screen.findByText(/Detalhe técnico: API \/terms\/acceptance respondeu 401/)).toBeInTheDocument()
+  })
 })

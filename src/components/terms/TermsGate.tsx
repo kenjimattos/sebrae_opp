@@ -8,7 +8,7 @@ import type { TermsAcceptance } from '@/types/terms'
 
 type State =
   | { status: 'loading' }
-  | { status: 'error' }
+  | { status: 'error'; detail: string }
   | { status: 'ready'; acceptance: TermsAcceptance }
 
 // Fica dentro do RequireAuth: quem chega aqui já está logado. Sem aceite da versão
@@ -26,7 +26,9 @@ export default function TermsGate() {
     setState({ status: 'loading' })
     fetchTermsAcceptance()
       .then((acceptance) => setState({ status: 'ready', acceptance }))
-      .catch(() => setState({ status: 'error' }))
+      .catch((e: unknown) =>
+        setState({ status: 'error', detail: e instanceof Error ? e.message : 'erro desconhecido' }),
+      )
   }, [])
 
   useEffect(load, [load])
@@ -64,6 +66,9 @@ export default function TermsGate() {
           <p role="alert" className="typo-body">
             Não conseguimos verificar o aceite dos termos de uso agora. Tente novamente em instantes.
           </p>
+          {/* O status da API ("respondeu 401") é o que diferencia login recusado de servidor
+              fora; sem ele a tela só diz que falhou. Não leva dado de usuário. */}
+          <p className="typo-body-sm">Detalhe técnico: {state.detail}</p>
           <div className="flex gap-sm">
             <Button label="Tentar de novo" onClick={load} />
             <Button label="Sair" variant="secondary" onClick={logout} />

@@ -110,6 +110,13 @@ de outro client: 401 com corpo genérico `Acesso não autorizado.`; o motivo vai
 - O token é conferido contra o JWKS do AMEI (`<KEYCLOAK_URL>/realms/<realm>/protocol/openid-connect/certs`):
   **a máquina da API precisa alcançar o AMEI** (ou usar `KEYCLOAK_REALM_PUBLIC_KEY`, que não rotaciona).
   Teste: `curl -sS -m 10 -o /dev/null -w '%{http_code}\n' $KEYCLOAK_URL/realms/$KEYCLOAK_REALM/protocol/openid-connect/certs` (200).
+- **Quando o login falha, o log diz por quê** (`journalctl -u opp-api | grep '\[auth\]'`). `[auth] token recusado`
+  traz `reason` (a causa real: `wrong ISS`, `expired`, `signature`…), `esperado` (o `iss` e o `azp` que esta API
+  exige), `recebido` (o `iss`, o `azp` e o `exp` que vieram no token) e `agora` (a hora desta máquina). Lendo:
+  `wrong ISS` → `recebido.iss` ≠ `esperado.iss`: ajuste `KEYCLOAK_URL`/`KEYCLOAK_REALM`, que têm de formar
+  exatamente o `issuer` do realm; `expired` com `exp` ainda maior que `agora` → o relógio desta máquina está
+  adiantado; `[auth] token de outro client` → `recebido.azp` ≠ `esperado.azp`: confira `KEYCLOAK_CLIENT_ID`.
+  Só `iss`, `azp` e `exp` são lidos do token para o log; o token nunca é escrito.
 - **AMEI que não responde vira 503, não pendura.** O keycloak-connect busca o JWKS sem timeout; se a
   máquina da API não alcança o AMEI e a rede **descarta** os pacotes (em vez de recusar), o pedido
   ficava pendurado por minutos e a tela do usuário em branco. O hook corta em 8s com 503 (corpo

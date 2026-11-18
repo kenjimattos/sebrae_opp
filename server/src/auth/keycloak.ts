@@ -70,6 +70,31 @@ export class UnauthorizedError extends Error {
   }
 }
 
+// Lê SÓ `iss`, `azp` e `exp` do token, sem validar, para o log de quem opera: é o que
+// separa "issuer diferente do KEYCLOAK_URL", "client diferente" e "relógio da máquina
+// desajustado" sem pedir para ninguém decodificar um token à mão. Nada além disso é
+// lido, e o token em si nunca vai para o log.
+function claimsForLog(authorization: string | undefined): { iss?: string; azp?: string; exp?: number } {
+  try {
+    const payload = authorization?.replace(/^Bearer /i, '').split('.')[1]
+    if (!payload) return {}
+    const c: unknown = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'))
+    if (typeof c !== 'object' || c === null) return {}
+    const { iss, azp, exp } = c as Record<string, unknown>
+    return {
+      iss: typeof iss === 'string' ? iss : undefined,
+      azp: typeof azp === 'string' ? azp : undefined,
+      exp: typeof exp === 'number' ? exp : undefined,
+    }
+  } catch {
+    return {}
+  }
+}
+
+function bearerToken(authorization: string | undefined): string | undefined {
+  return authorization && /^bearer /i.test(authorization) ? authorization.slice(7) : undefined
+}
+
 // O login (AMEI) não respondeu a tempo: não é culpa do token, então não é 401.
 export class AuthUnavailableError extends Error {
   readonly statusCode = 503
@@ -88,6 +113,8 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
 
 export function createAuthGuard(settings: KeycloakSettings, options: { timeoutMs?: number } = {}) {
   const timeoutMs = options.timeoutMs ?? GRANT_TIMEOUT_MS
+  // O mesmo que o keycloak-connect compara com o `iss` do token.
+  const realmUrl = `${settings.url.replace(/\/+$/, '')}/realms/${settings.realm}`
   const keycloak = new Keycloak(
     {},
     {
@@ -120,11 +147,13 @@ export function createAuthGuard(settings: KeycloakSettings, options: { timeoutMs
     const raw = req.raw as unknown as KauthRequest
     raw.kauth = {}
     try {
+      const token = bearerToken(req.headers.authorization)
+      if (!token) throw new Error('sem cabeçalho Authorization: Bearer')
+      // `grantManager.createGrant` e não `keycloak.getGrant`: o getGrant engole a causa
+      // real e devolve sempre "Could not store grant code error", o que tornava o log
+      // inútil. Para bearer-only fazem o mesmo (o getGrant só lê o cabeçalho e chama isto).
       raw.kauth.grant = (await withTimeout(
-        keycloak.getGrant(
-          req.raw as unknown as Parameters<typeof keycloak.getGrant>[0],
-          reply.raw as unknown as Parameters<typeof keycloak.getGrant>[1],
-        ),
+        keycloak.grantManager.createGrant(JSON.stringify({ access_token: token })),
         timeoutMs,
       )) as unknown as GrantLike
     } catch (err) {
@@ -137,7 +166,17 @@ export function createAuthGuard(settings: KeycloakSettings, options: { timeoutMs
       }
       // Sem cabeçalho, token expirado, assinatura ou issuer errados: todos caem
       // aqui. O motivo (sem o token) fica no log de quem opera.
-      req.log.info({ reason: err instanceof Error ? err.message : 'desconhecido' }, '[auth] token recusado')
+      req.log.info(
+        {
+          reason: err instanceof Error ? err.message : 'desconhecido',
+          // "wrong ISS" → recebido.iss tem de ser igual a esperado.iss; "expired" com
+          // exp ainda no futuro → o relógio desta máquina está adiantado.
+          esperado: { iss: realmUrl, azp: settings.clientId },
+          recebido: claimsForLog(req.headers.authorization),
+          agora: Math.floor(Date.now() / 1000),
+        },
+        '[auth] token recusado',
+      )
     }
 
     try {
@@ -154,7 +193,10 @@ export function createAuthGuard(settings: KeycloakSettings, options: { timeoutMs
     // `verifyTokenAudience` do keycloak-connect não serve: exige `aud` com o
     // client, e o Keycloak só o põe com audience mapper.
     if (!claims?.sub || claims.azp !== settings.clientId) {
-      req.log.info('[auth] token de outro client ou sem sub')
+      req.log.info(
+        { esperado: { azp: settings.clientId }, recebido: { azp: claims?.azp ?? null, sub: Boolean(claims?.sub) } },
+        '[auth] token de outro client ou sem sub',
+      )
       reply.header('www-authenticate', 'Bearer')
       throw new UnauthorizedError()
     }
