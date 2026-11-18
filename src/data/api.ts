@@ -15,12 +15,29 @@ export interface MunicipalitySummary {
 
 const BASE = '/api'
 
-async function getJSON<T>(path: string): Promise<T> {
-  const res = await authFetch(`${BASE}${path}`)
+// Lê o corpo como JSON ou explica por que não deu. O firewall (WAF) do Sebrae barra o
+// pedido com status 200 e uma página HTML "Request Rejeitado": sem esta checagem o
+// `res.json()` falha com "Unexpected token '<'" e a tela só diz que deu erro. O
+// "código de suporte" da página é o que a TI usa para achar o motivo no log do WAF.
+async function readJSON<T>(res: Response, path: string): Promise<T> {
   if (!res.ok) {
     throw new Error(`API ${path} respondeu ${res.status}`)
   }
+  const type = (res.headers.get('content-type') ?? '').split(';')[0]?.trim() ?? ''
+  if (!type.includes('json')) {
+    const body = await res.text().catch(() => '')
+    const code = /suporte:\s*(\d{8,})/.exec(body)?.[1]
+    throw new Error(
+      `API ${path} devolveu ${type || 'uma resposta sem tipo'} em vez de JSON` +
+        (code ? ` (código de suporte ${code})` : '') +
+        ' — provável bloqueio do firewall (WAF) ou de um proxy',
+    )
+  }
   return (await res.json()) as T
+}
+
+async function getJSON<T>(path: string): Promise<T> {
+  return readJSON<T>(await authFetch(`${BASE}${path}`), path)
 }
 
 // Lista de municípios (seletor). GET /api/municipalities
@@ -62,8 +79,5 @@ export async function postTermsAcceptance(version: string): Promise<TermsAccepta
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ version }),
   })
-  if (!res.ok) {
-    throw new Error(`API /terms/acceptance respondeu ${res.status}`)
-  }
-  return (await res.json()) as TermsAcceptance
+  return readJSON<TermsAcceptance>(res, '/terms/acceptance')
 }

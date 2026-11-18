@@ -359,6 +359,15 @@ operacional está em `server/README.md` §Login.
   **Nunca volta ao AMEI por causa de 401**: servidor recusando token recém-emitido é erro de
   configuração (client errado, `azp`), e redirecionar faria um laço infinito app ↔ AMEI. Só
   volta ao AMEI quando a renovação em si falha (sessão vencida).
+- **O WAF do Sebrae pode barrar rota nova com status 200 e HTML.** Em produção
+  (`pippa.sebrae.com.br`) o WAF responde "Request Rejeitado" (página HTML com um "código de
+  suporte") **com status 200**, antes de o pedido chegar à API: `/api/terms/acceptance` foi
+  barrada enquanto `/api/municipalities` passava, com o mesmo token. No navegador o Network
+  mostra 200, e o `res.json()` falhava com "Unexpected token '<'". Por isso `api.ts` confere o
+  `Content-Type` e, sendo HTML, a mensagem diz "devolveu text/html em vez de JSON … provável
+  bloqueio do firewall (WAF)" e traz o código de suporte, que é o que a TI usa para achar o
+  motivo no log do WAF. **Rota nova de `/api` em produção: avise a TI do Sebrae para liberá-la
+  no WAF** (a causa exata do bloqueio é deles; não se sabe se é lista de URLs ou assinatura).
 - **O `keycloak.getGrant` engole a causa da recusa.** Qualquer falha de validação (issuer,
   expirado, assinatura) sai como "Could not store grant code error", então um log com a
   `reason` dele não diz nada. O hook valida por `grantManager.createGrant`, que devolve o
