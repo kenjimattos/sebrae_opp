@@ -1,4 +1,4 @@
-// Setup do banco da OPP: cria as 6 coleções (com validadores de schema) e os
+// Setup do banco da OPP: cria as 7 coleções (com validadores de schema) e os
 // índices. Idempotente — pode rodar quantas vezes quiser.
 //
 // No NoSQLBooster: selecione o banco da OPP na conexão e execute este script
@@ -279,6 +279,20 @@ ensureCollection('emendas', {
   },
 })
 
+// --- termsAcceptances: aceite dos termos de uso, 1 doc por usuário (`sub` do AMEI) e versão. ---
+// É a ÚNICA coleção que a API (server/) escreve — todas as outras são carga do ETL.
+// Quem grava é o POST /api/terms/acceptance; a versão vigente é `TERMS_VERSION`
+// (src/data/terms/version.ts). Serve de comprovante para a LGPD: guardar `acceptedAt`.
+ensureCollection('termsAcceptances', {
+  bsonType: 'object',
+  required: ['sub', 'version', 'acceptedAt'],
+  properties: {
+    sub: { bsonType: 'string', description: 'claim `sub` do token do AMEI: id opaco e estável do usuário' },
+    version: { bsonType: 'string', description: 'versão dos termos aceita (AAAA-MM-DD, = TERMS_VERSION)' },
+    acceptedAt: { bsonType: 'date', description: 'quando aceitou; aceitar de novo mantém o primeiro' },
+  },
+})
+
 // --- Índices (createIndex é idempotente) ---
 database.municipalities.createIndex({ slug: 1 }, { unique: true, name: 'uniq_slug' })
 
@@ -310,4 +324,10 @@ database.stateValues.createIndex({ indicatorId: 1, referenceYear: -1 }, { name: 
 database.emendas.createIndex({ esfera: 1, escopo: 1 }, { name: 'by_esfera_escopo' })
 database.emendas.createIndex({ municipalityId: 1, esfera: 1 }, { name: 'by_municipio_esfera' })
 
-print('setup concluído: 6 coleções + índices prontos.')
+// termsAcceptances: um aceite por usuário e versão (dois cliques ou duas abas não duplicam).
+// SEM `name` de propósito: a API (server/src/termos/repo.ts) cria o mesmo índice no boot,
+// com o nome padrão do Mongo (`sub_1_version_1`). Dar outro nome aqui faria o segundo a
+// rodar falhar com IndexOptionsConflict; com o nome padrão os dois se reconhecem.
+database.termsAcceptances.createIndex({ sub: 1, version: 1 }, { unique: true })
+
+print('setup concluído: 7 coleções + índices prontos.')

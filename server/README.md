@@ -144,8 +144,9 @@ pede aceite de novo.
   como se fosse do novo. Idempotente: aceitar de novo mantém a data do primeiro aceite.
 - Versão vigente: `TERMS_VERSION` em `src/data/terms/version.ts`, lida pelos dois lados.
   Mudou o texto de um jeito que o usuário precisa ver de novo, mude a constante.
-- Coleção `termsAcceptances` (`sub`, `version`, `acceptedAt`), índice único `(sub, version)` criado
-  no boot. **É a única escrita da API no banco**: o usuário Mongo da `opp-api` precisa de
+- Coleção `termsAcceptances` (`sub`, `version`, `acceptedAt`), índice único `(sub, version)`. **Crie-a
+  rodando `database/setup.mongodb.js`** (idempotente; é como o projeto cria as coleções). O Mongo
+  também a cria na primeira escrita, e a API tenta criar o índice no boot, mas isso depende da permissão abaixo. **É a única escrita da API no banco**: o usuário Mongo da `opp-api` precisa de
   `insert`/`update` nessa coleção e de `createIndex` (sem o índice a API sobe e avisa; o upsert já é idempotente).
   Conferir com a TI antes do deploy: o resto do banco segue só leitura.
 - Nunca o `sub` em log.

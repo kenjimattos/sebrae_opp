@@ -23,7 +23,7 @@ Indicador novo entra pelo mesmo padrão — ver
 
 > **Estado atual:**
 > - Banco `DadosOPP` (servidor Sebrae, acesso via VPN/NoSQLBooster) **montado e populado**:
->   **6 coleções** com validadores + índices, 223 municípios, 6 agendas, 41 indicadores de
+>   **7 coleções** com validadores + índices, 223 municípios, 6 agendas, 41 indicadores de
 >   catálogo (33 municipais + 8 estaduais), 12.934 valores municipais e 448 documentos de emendas (224 federais + 224 estaduais,
 >   cada conjunto = 223 municípios + 1 doc de escopo estadual).
 > - Chave de `indicatorValues` **preparada para histórico** (`{município, indicador, ano}`);
@@ -62,7 +62,7 @@ nesta ordem (cada um imprime um resumo ao final):
 > `database/scripts/aplicar_seeds.sh indicador-idsc indicador-cobertura-atencao-basica`
 > ou `--all` para todos. Requer `mongosh` no PATH e o `database/.env` preenchido.
 
-1. `setup.mongodb.js` — cria as **6 coleções** (com validadores) e os índices.
+1. `setup.mongodb.js` — cria as **7 coleções** (com validadores) e os índices. A 7ª, `termsAcceptances`, é a única que a API grava (aceite dos termos de uso); as outras são carga do ETL.
 2. `seed/municipios.mongodb.js` — 223 municípios da PB.
 3. `seed/agendas.mongodb.js` — estrutura das 6 agendas.
 
@@ -880,7 +880,7 @@ database/
   README.md                       # este arquivo
   RUNBOOK_ETL.md                  # operação do ETL lake do Sebrae -> OPP (3 máquinas, cron)
   MAPEAMENTO_BASE_DOS_DADOS.md    # indicadores × fontes (BD / MB / AQ / data lake Sebrae)
-  setup.mongodb.js                # 6 coleções + validadores + índices (idempotente)
+  setup.mongodb.js                # 7 coleções + validadores + índices (idempotente)
   .env                            # conexões (bloco OPP) usadas por aplicar_seeds.sh e --write-mongo
 
   seed/                           # TODOS GERADOS — 223 valores por indicador, salvo nota
