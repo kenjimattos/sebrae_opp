@@ -757,7 +757,7 @@ garante nada disso; quem garante é código determinístico em volta do modelo.
 
 ```bash
 npm install
-cp .env.example .env.local      # IA em dev: GOOGLE_SERVICE_ACCOUNT_JSON
+cp .env.example .env.local      # VITE_KEYCLOAK_* (obrigatório); a chave do Google é só p/ IA no npm run dev
 npm run dev                     # :5173 — /api → :3000; /api/ai atendido pelo Vite
 npm run build | preview | lint | test
 npm run typecheck               # tsc do app + dos testes (o build não cobre tests/)
