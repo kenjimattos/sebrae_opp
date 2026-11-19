@@ -9,9 +9,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ThemeToggle from '@/components/ui/ThemeToggle'
-import IconButton from '@/components/ui/buttons/IconButton'
-import { LogOut } from '@/components/icons'
-import { useAuth } from '@/hooks/useAuth'
+import UserMenu from '@/components/layout/UserMenu'
 import PippaWordmark from '@/components/brand/PippaWordmark'
 
 interface SiteHeaderProps {
@@ -19,7 +17,6 @@ interface SiteHeaderProps {
 }
 
 export default function SiteHeader({ className = '' }: SiteHeaderProps) {
-  const { isLoggedIn, user, logout } = useAuth()
   const sentinelRef = useRef<HTMLDivElement>(null)
   const [compact, setCompact] = useState(false)
 
@@ -57,23 +54,11 @@ export default function SiteHeader({ className = '' }: SiteHeaderProps) {
             <PippaWordmark className="site-header__logo block h-auto" decorative />
           </Link>
 
-          <div className="justify-self-end flex items-center gap-sm">
-            {/* Nome do usuário do AMEI. `data-clarity-mask` já deixa o replay do
-                Clarity (quando entrar) sem gravar o nome. */}
-            {user?.name && (
-              <span
-                data-clarity-mask="true"
-                className="typo-body-sm text-primary max-w-[200px] truncate"
-              >
-                {user.name}
-              </span>
-            )}
-            {/* Instância única — useTheme é estado local (ver useTheme.ts). */}
-            <div className="glass glass-bevel rounded-full p-2xs flex items-center">
-              <ThemeToggle />
-              {/* /termos é pública: quem ainda não entrou não tem o que sair. */}
-              {isLoggedIn && <IconButton icon={LogOut} variant="ghost" aria-label="Sair" onClick={logout} />}
-            </div>
+          {/* Instância única de ThemeToggle — useTheme é estado local (ver useTheme.ts). O
+              UserMenu some sozinho para quem não está logado (/termos é pública). */}
+          <div className="justify-self-end glass glass-bevel rounded-full p-2xs flex items-center">
+            <ThemeToggle />
+            <UserMenu />
           </div>
         </div>
       </header>

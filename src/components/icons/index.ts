@@ -35,6 +35,7 @@ export {
   Sun,
   Trash2,
   TriangleAlert,
+  User,
   X,
 } from 'lucide-react'
 

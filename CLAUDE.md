@@ -25,7 +25,7 @@ sistema). **Instância única** — `useTheme` é estado local, dois consumidore
 montados teriam preferências independentes; o `Layout` monta um só em qualquer rota.
 
 **Header do app (`layout/SiteHeader`)** em `/home` e `/trilhas`: logotipo à esquerda
-e `ThemeToggle` à direita. É `sticky` e está no fluxo, então o conteúdo começa abaixo
+e, à direita, `ThemeToggle` + `UserMenu` (ícone de usuário que abre o nome, o link dos termos e o "Sair"; some para quem não está logado). É `sticky` e está no fluxo, então o conteúdo começa abaixo
 dele. Compacta ao rolar (barra de 96 → 64px, logo de 80 → 56px), detectado por um
 marcador no topo com `IntersectionObserver`. **O `CitySelector` não mora no header**:
 fica em `map/MunicipalityMap`, no topo da `SectionJornada`, acima do `ModeToggle` e
@@ -387,6 +387,12 @@ operacional está em `server/README.md` §Login.
   **503** (não 401: o token não tem culpa), o `authFetch` corta em 30s, e o `TermsGate`
   mostra "Verificando os termos de uso…" em vez de `null`. Componente que espera a API não
   retorna `null`.
+- **O header não mostra o nome solto: ele mora no `UserMenu`.** O nome que o AMEI devolve
+  (claim `name`) já veio com o **e-mail dentro** ("fulano@x.com Fulano de Tal"); impresso ao
+  lado do tema ele estourava a largura do header. O `UserMenu` é um botão + painel (padrão de
+  divulgação, `aria-expanded`; **não** `role="menu"`, que exigiria navegação por setas), fecha
+  com Escape (e devolve o foco ao botão) e com clique fora, e o nome tem `break-words`. Não
+  mostrar `preferred_username`: no AMEI o login é por CPF, e o CPF não pode ir para a tela.
 - **Falha no init do Keycloak não pode virar "Verificando sessão…" eterno.** O
   `@react-keycloak/web` deixa `initialized` falso para sempre se o `init` rejeitar (rede,
   VPN, iframe de cookies de terceiros que não responde: "Timeout when waiting for 3rd party
@@ -401,7 +407,7 @@ operacional está em `server/README.md` §Login.
   importá-lo em teste sem as variáveis não pode quebrar. Teste mocka `@/auth/keycloak` ou
   `@react-keycloak/web`.
 - O Clarity (produção) ainda não entrou, mas o encaixe está: `useAuth().user.id` é o `sub`
-  para `identify`, o nome no header leva `data-clarity-mask`, e aceite de termos e
+  para `identify`, o nome no painel do `UserMenu` leva `data-clarity-mask`, e aceite de termos e
   consentimento de analytics são coisas separadas (LGPD).
 - **Termos de uso: aceite no servidor, por usuário, e a falha é fechada.** `TermsGate` fica
   dentro do `RequireAuth`; sem aceite da `TERMS_VERSION` vigente (`src/data/terms/version.ts`,
