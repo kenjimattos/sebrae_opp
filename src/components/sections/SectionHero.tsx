@@ -7,7 +7,7 @@
 // porque explica o logotipo antes de ele aparecer.
 //
 // Não há botão "Entrar": escolher a Paraíba (no seletor ou no mapa) é a
-// entrada. A tela abre sem seleção: nenhuma UF marcada no mapa, seletor vazio.
+// entrada. Quem não está logado vê antes um aviso de que vai ao AMEI. A tela abre sem seleção: nenhuma UF marcada no mapa, seletor vazio.
 // As outras UFs respondem ao hover, mas o clique nelas não faz nada — só a
 // Paraíba tem dados.
 //
@@ -29,6 +29,7 @@ import {
 import { sectionContent } from '@/data/home/sections'
 import { PB_UF_ID } from '@/data/geo/ufs'
 import { useAuth } from '@/hooks/useAuth'
+import { useConfirm } from '@/hooks/useConfirm'
 
 const ctaIcons: Record<string, LucideIcon> = {
   ambiente: ChartColumn,
@@ -40,11 +41,24 @@ const ctaIcons: Record<string, LucideIcon> = {
 export default function SectionHero() {
   const { isLoggedIn, login } = useAuth()
   const navigate = useNavigate()
+  const confirm = useConfirm()
 
-  function enter() {
-    // Logado: entra direto. Senão vai ao AMEI, que devolve a /home.
-    if (isLoggedIn) navigate('/home')
-    else login('/home')
+  async function enter() {
+    // Logado: entra direto. Senão vai ao AMEI, que devolve a /home — mas avisa
+    // antes: sair da plataforma para outra tela, sem aviso, parecia que o clique
+    // na Paraíba tinha dado errado. Sem `once`: o login recarrega a página, e a
+    // memória do aviso morreria nele de qualquer jeito.
+    if (isLoggedIn) {
+      navigate('/home')
+      return
+    }
+    const ok = await confirm({
+      title: 'Entrar com o AMEI',
+      message:
+        'Para ver os dados, você vai entrar com a sua conta do AMEI, o login do Sebrae. Depois do login, você volta direto para a plataforma.',
+      confirmLabel: 'Ir para o login',
+    })
+    if (ok) login('/home')
   }
 
   return (
@@ -97,12 +111,12 @@ export default function SectionHero() {
         </div>
 
         <div className="flex flex-col items-center gap-xl">
-          <StateSelector onEnter={enter} />
+          <StateSelector onEnter={() => void enter()} />
           <BrasilOutlineMap
             className="max-w-[640px]"
             tooltipDetail={(id) => (id === PB_UF_ID ? 'Clique para entrar' : 'Em breve')}
             onSelect={(id) => {
-              if (id === PB_UF_ID) enter()
+              if (id === PB_UF_ID) void enter()
             }}
           />
         </div>
