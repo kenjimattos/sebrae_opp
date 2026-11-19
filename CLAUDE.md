@@ -359,6 +359,12 @@ operacional está em `server/README.md` §Login.
   **Nunca volta ao AMEI por causa de 401**: servidor recusando token recém-emitido é erro de
   configuração (client errado, `azp`), e redirecionar faria um laço infinito app ↔ AMEI. Só
   volta ao AMEI quando a renovação em si falha (sessão vencida).
+- **No `server/.env` as variáveis NÃO levam `VITE_`.** O prefixo é só do `.env.local` do
+  frontend (`VITE_KEYCLOAK_URL`); no servidor o nome é `KEYCLOAK_URL`. Copiar de um `.env`
+  para o outro deixou a API em crash-loop (o `required()` falha no boot, o systemd reinicia a
+  cada ~5s) e **toda** rota `/api/*` em 502 por horas — o contador de reinícios chegou a
+  11.168 antes de alguém olhar o `journalctl`. O erro de boot agora diz "encontrei
+  VITE_KEYCLOAK_URL … renomeie". 502 em tudo = olhar `systemctl status opp-api` primeiro.
 - **O WAF do Sebrae pode barrar rota nova com status 200 e HTML.** Em produção
   (`pippa.sebrae.com.br`) o WAF responde "Request Rejeitado" (página HTML com um "código de
   suporte") **com status 200**, antes de o pedido chegar à API: `/api/terms/acceptance` foi

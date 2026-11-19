@@ -17,7 +17,13 @@ function positiveInt(name: string, fallback: number): number {
 
 function required(name: string): string {
   const v = process.env[name]
-  if (!v) throw new Error(`Variável de ambiente obrigatória ausente: ${name} (ver server/.env.example)`)
+  if (!v) {
+    // O erro mais comum: copiar do .env do frontend, onde as variáveis levam VITE_. O
+    // servidor lê o nome SEM prefixo. Sem esta dica o log só diz "ausente", e quem olha o
+    // .env vê a variável lá (com outro nome) e não entende por quê. Só sai no log de boot.
+    const prefixada = process.env[`VITE_${name}`] ? ` — encontrei VITE_${name}: o servidor NÃO usa o prefixo VITE_ (só o frontend), renomeie para ${name}` : ''
+    throw new Error(`Variável de ambiente obrigatória ausente: ${name} (ver server/.env.example)${prefixada}`)
+  }
   return v
 }
 
