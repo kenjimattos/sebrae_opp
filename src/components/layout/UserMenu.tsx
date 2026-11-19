@@ -31,9 +31,11 @@ export default function UserMenu({ className = '' }: UserMenuProps) {
   if (!isLoggedIn || !user) return null
 
   return (
+    // Sem `relative` de propósito: o painel (`absolute right-0`) se ancora no ancestral
+    // posicionado mais próximo — hoje a pílula do SiteHeader —, não neste wrapper.
     <div
       ref={ref}
-      className={`relative ${className}`}
+      className={className}
       onKeyDown={(e) => {
         if (e.key === 'Escape' && open) {
           setOpen(false)

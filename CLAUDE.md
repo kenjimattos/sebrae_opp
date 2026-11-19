@@ -25,7 +25,7 @@ sistema). **Instância única** — `useTheme` é estado local, dois consumidore
 montados teriam preferências independentes; o `Layout` monta um só em qualquer rota.
 
 **Header do app (`layout/SiteHeader`)** em `/home` e `/trilhas`: logotipo à esquerda
-e, à direita, `ThemeToggle` + `UserMenu` (ícone de usuário que abre o nome, o link dos termos e o "Sair"; some para quem não está logado). É `sticky` e está no fluxo, então o conteúdo começa abaixo
+e, à direita, `UserMenu` + `ThemeToggle` nessa ordem (o ícone de usuário que abre o nome, o link dos termos e o "Sair"; some para quem não está logado). É `sticky` e está no fluxo, então o conteúdo começa abaixo
 dele. Compacta ao rolar (barra de 96 → 64px, logo de 80 → 56px), detectado por um
 marcador no topo com `IntersectionObserver`. **O `CitySelector` não mora no header**:
 fica em `map/MunicipalityMap`, no topo da `SectionJornada`, acima do `ModeToggle` e
@@ -391,7 +391,11 @@ operacional está em `server/README.md` §Login.
   (claim `name`) já veio com o **e-mail dentro** ("fulano@x.com Fulano de Tal"); impresso ao
   lado do tema ele estourava a largura do header. O `UserMenu` é um botão + painel (padrão de
   divulgação, `aria-expanded`; **não** `role="menu"`, que exigiria navegação por setas), fecha
-  com Escape (e devolve o foco ao botão) e com clique fora, e o nome tem `break-words`. Não
+  com Escape (e devolve o foco ao botão) e com clique fora, e o nome tem `break-words`. O painel
+  **se ancora na pílula do `SiteHeader`, não no ícone**: o `UserMenu` não tem `relative` de
+  propósito, e a pílula tem. Com o ícone à esquerda do tema, ancorar nele deixaria a borda do
+  painel 40px para dentro da pílula; se alguém pôr `relative` no `UserMenu`, o alinhamento
+  quebra sem erro nenhum. Não
   mostrar `preferred_username`: no AMEI o login é por CPF, e o CPF não pode ir para a tela.
 - **Falha no init do Keycloak não pode virar "Verificando sessão…" eterno.** O
   `@react-keycloak/web` deixa `initialized` falso para sempre se o `init` rejeitar (rede,

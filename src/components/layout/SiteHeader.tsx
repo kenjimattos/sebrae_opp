@@ -55,10 +55,12 @@ export default function SiteHeader({ className = '' }: SiteHeaderProps) {
           </Link>
 
           {/* Instância única de ThemeToggle — useTheme é estado local (ver useTheme.ts). O
-              UserMenu some sozinho para quem não está logado (/termos é pública). */}
-          <div className="justify-self-end glass glass-bevel rounded-full p-2xs flex items-center">
-            <ThemeToggle />
+              UserMenu some sozinho para quem não está logado (/termos é pública).
+              `relative`: o painel do UserMenu se ancora nesta pílula (e não no ícone), para
+              a borda direita dele ficar alinhada à da pílula mesmo com o ícone à esquerda. */}
+          <div className="justify-self-end relative glass glass-bevel rounded-full p-2xs flex items-center">
             <UserMenu />
+            <ThemeToggle />
           </div>
         </div>
       </header>
