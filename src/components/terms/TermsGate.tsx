@@ -39,6 +39,10 @@ export default function TermsGate() {
     try {
       const acceptance = await postTermsAcceptance(version)
       setState({ status: 'ready', acceptance })
+      // O gate troca o conteúdo no lugar, na mesma rota (/home), e o ScrollToTop só age
+      // em mudança de rota: sem isto a Home abria na posição de rolagem do documento
+      // dos termos, no meio da página.
+      window.scrollTo({ top: 0, left: 0 })
     } catch {
       setFailed(true)
     } finally {
@@ -83,7 +87,9 @@ export default function TermsGate() {
   return (
     <div className="section-container py-xl">
       <TermsDocument>
-        <div className="sticky bottom-xs z-30 glass rounded p-md flex flex-col gap-sm">
+        {/* `card-raised` (opaco), não `glass`: sobre texto que rola por baixo, o vidro deixava
+            as linhas do documento aparecendo atrás do checkbox. */}
+        <div className="sticky bottom-xs z-30 card-raised p-md flex flex-col gap-sm">
           {failed && (
             <p role="alert" className="typo-body-sm text-alert">
               Não foi possível registrar o aceite. Tente novamente.

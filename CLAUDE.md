@@ -425,9 +425,9 @@ operacional está em `server/README.md` §Login.
   afirmar o que o produto ainda não faz. Quando o Clarity entrar, acrescente-a e suba a versão.
   O texto não nomeia o fornecedor do modelo de IA (sigilo do projeto). **O aceite mora na
   mesma tela do texto**: `TermsGate` renderiza o `TermsDocument` com uma barra `sticky bottom`
-  (checkbox + botões) como filho, em vez de um cartão que mandava ler em outra aba. Índice
+  (checkbox + botões) como filho, em vez de um cartão que mandava ler em outra aba. A barra é `card-raised` (opaca), **não** `glass`: sobre texto que rola por baixo o vidro deixava as linhas do documento aparecendo atrás do checkbox. O gate troca o conteúdo **na mesma rota** (`/home`), e o `ScrollToTop` só age em mudança de rota, então o `accept()` rola ao topo por conta própria — sem isso a Home abria no meio, na rolagem do documento. Índice
   lateral (`TermsToc`) fixo em tela larga e `<details>` abaixo de `lg`; coluna de leitura em
-  `max-w-[64ch]` (96ch a partir de `xl`, 112ch a partir de `2xl`: largura pedida de propósito, passar de ~80 cansa em monoespaçada; o `TermsDocument` leva `w-full` porque o `section-container` centraliza os filhos e sem ele o grid encolhe) com `leading-relaxed` (a base `typo-body` usa `line-height: normal`, curto
+  64ch (96ch a partir de `xl`, 112ch a partir de `2xl`: largura pedida de propósito, passar de ~80 cansa em monoespaçada) **definida na trilha do grid** (`minmax(0,Nch)`) com `justify-center`, e não num `max-w` do texto — com a trilha em `1fr` o texto ficava colado à esquerda e a tela vazia à direita; o `TermsDocument` leva `w-full` porque o `section-container` centraliza os filhos e sem ele o grid encolhe com `leading-relaxed` (a base `typo-body` usa `line-height: normal`, curto
   para texto longo em monoespaçada). O índice marca a ÚLTIMA seção cujo topo já passou da linha de
   leitura (`--header-h` + 40px, onde o topo cai ao clicar no índice), por posição de rolagem
   e **não** por IntersectionObserver: o observador só marca quem cruza uma faixa fixa, e as

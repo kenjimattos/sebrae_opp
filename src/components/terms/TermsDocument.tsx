@@ -34,19 +34,26 @@ interface TermsDocumentProps {
 }
 
 // O texto dos termos. Compartilhado pela página pública /termos e pela tela de
-// aceite, para as duas mostrarem sempre a mesma coisa. Índice à esquerda, texto
-// numa coluna de ~64 caracteres: monoespaçada em linha longa cansa a leitura.
-// O `max-w` fica num filho sem padding (ver CLAUDE.md, armadilha do gutter).
+// aceite, para as duas mostrarem sempre a mesma coisa. Índice à esquerda, texto numa
+// coluna de 64 caracteres, 96 a partir de `xl` e 112 a partir de `2xl` (passar de ~80
+// cansa em monoespaçada; a largura maior foi pedida de propósito para telas grandes).
+//
+// A largura é a da TRILHA do grid (`minmax(0,Nch)`) e o grid centraliza o conjunto
+// índice + texto (`justify-center`). Com `1fr` a trilha ocupava todo o espaço, e o texto,
+// limitado por `max-w`, ficava colado à esquerda com o resto da tela vazio. `w-full` é
+// necessário: o `section-container` centraliza os filhos e sem ele o grid encolheria.
 export default function TermsDocument({ children, className = '' }: TermsDocumentProps) {
   return (
-    <div className={`w-full grid gap-lg lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-xl items-start ${className}`}>
+    <div
+      className={`w-full grid gap-lg lg:grid-cols-[240px_minmax(0,64ch)] xl:grid-cols-[240px_minmax(0,96ch)] 2xl:grid-cols-[240px_minmax(0,112ch)] lg:justify-center lg:gap-xl items-start ${className}`}
+    >
       <TermsToc
         sections={TERMS_SECTIONS}
         className="lg:sticky lg:top-[calc(var(--header-h)+var(--spacing-md))]"
       />
 
       <div className="flex flex-col gap-xl">
-        <div className="max-w-[64ch] xl:max-w-[96ch] 2xl:max-w-[112ch] flex flex-col gap-xl">
+        <div className="w-full max-w-[64ch] mx-auto lg:max-w-none flex flex-col gap-xl">
           <header className="flex flex-col gap-sm">
             <h1 className="typo-h2">{TERMS_TITLE}</h1>
             <p className="typo-body-sm">Versão {TERMS_VERSION}</p>

@@ -30,8 +30,12 @@ function montar() {
   )
 }
 
+const scrollTo = vi.fn()
+
 describe('TermsGate', () => {
   beforeEach(() => {
+    scrollTo.mockClear()
+    vi.stubGlobal('scrollTo', scrollTo) // jsdom não implementa window.scrollTo
     fetchTermsAcceptance.mockReset()
     postTermsAcceptance.mockReset()
     logout.mockClear()
@@ -62,6 +66,26 @@ describe('TermsGate', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Aceitar e continuar' }))
     expect(await screen.findByText('conteúdo da home')).toBeInTheDocument()
     expect(postTermsAcceptance).toHaveBeenCalledWith('v1')
+  })
+
+  it('depois de aceitar, volta ao topo: a Home não herda a rolagem do documento dos termos', async () => {
+    fetchTermsAcceptance.mockResolvedValue({ version: 'v1', accepted: false })
+    postTermsAcceptance.mockResolvedValue({ version: 'v1', accepted: true })
+    montar()
+    fireEvent.click(await screen.findByRole('checkbox'))
+    fireEvent.click(screen.getByRole('button', { name: 'Aceitar e continuar' }))
+    await screen.findByText('conteúdo da home')
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0 })
+  })
+
+  it('aceite que falha NÃO rola para o topo (a pessoa segue no texto)', async () => {
+    fetchTermsAcceptance.mockResolvedValue({ version: 'v1', accepted: false })
+    postTermsAcceptance.mockRejectedValue(new Error('500'))
+    montar()
+    fireEvent.click(await screen.findByRole('checkbox'))
+    fireEvent.click(screen.getByRole('button', { name: 'Aceitar e continuar' }))
+    await screen.findByRole('alert')
+    expect(scrollTo).not.toHaveBeenCalled()
   })
 
   it('falha ao gravar: avisa, mantém bloqueado e permite tentar de novo', async () => {
