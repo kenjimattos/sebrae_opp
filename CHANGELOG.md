@@ -2,6 +2,16 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
+## [1.8.1] — 2026-11-23
+
+### Corrigido
+
+- **A conferência pós-deploy do `scripts/deploy.sh` falhava num deploy bom.** O padrão era `http://localhost/api/health`, e o Nginx na `:80` só responde 301 para HTTPS: o corpo do redirecionamento nunca tem `"db":"up"`, então o script reportava "a API não respondeu saudável" mesmo com a API no ar. Agora ele consulta a API direto, na porta do `server/.env` (3000 se não houver); `DEPLOY_HEALTH_URL` continua sobrescrevendo.
+
+### Alterado
+
+- **README e CLAUDE.md acompanham o login, os termos e o Clarity.** O README ainda dizia que "não há autenticação efetiva" e não listava a rota `/termos`, as variáveis `KEYCLOAK_*`/`VITE_KEYCLOAK_*`/`VITE_CLARITY_PROJECT_ID` nem as rotas `/api/terms/acceptance`. O exemplo do Nginx repassava `$proxy_add_x_forwarded_for`, que leva à API o IP forjado pelo cliente; agora usa `$remote_addr` com o `real_ip` do WAF, como o `server/README.md`. A verificação pós-deploy passou a consultar a API na porta dela (o `/api/municipalities` sem token devolve 401) e avisa que a `:80` só redireciona. O CLAUDE.md ganhou `/termos` e as rotas de aceite. Só documentação.
+
 ## [1.8.0] — 2026-11-23
 
 ### Adicionado
