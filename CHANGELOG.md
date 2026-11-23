@@ -2,7 +2,7 @@
 
 Todas as alterações relevantes do projeto são documentadas neste arquivo.
 
-## [Não publicado]
+## [1.8.0] — 2026-11-23
 
 ### Adicionado
 
