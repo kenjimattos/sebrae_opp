@@ -11,12 +11,12 @@
 # Variáveis (todas opcionais):
 #   DEPLOY_WEB_ROOT    destino do frontend       (/var/www/sebrae_opp/dist)
 #   DEPLOY_SERVICE     unit systemd da API       (opp-api)
-#   DEPLOY_HEALTH_URL  conferência pós-deploy    (http://localhost/api/health)
+#   DEPLOY_HEALTH_URL  conferência pós-deploy    (direto na API: porta do
+#                      server/.env, ou 3000; o Nginx na :80 só redireciona)
 set -euo pipefail
 
 WEB_ROOT="${DEPLOY_WEB_ROOT:-/var/www/sebrae_opp/dist}"
 SERVICE="${DEPLOY_SERVICE:-opp-api}"
-HEALTH_URL="${DEPLOY_HEALTH_URL:-http://localhost/api/health}"
 
 front=1
 api=1
@@ -28,6 +28,11 @@ case "${1:-}" in
 esac
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+# Direto na API, sem passar pelo Nginx (a :80 responde 301 para HTTPS, e o corpo
+# do redirecionamento nunca tem "db":"up"). A porta vem do server/.env.
+API_PORT="$(grep -s '^PORT=' server/.env | cut -d= -f2 | tr -d '\r')"
+HEALTH_URL="${DEPLOY_HEALTH_URL:-http://localhost:${API_PORT:-3000}/api/health}"
 
 step() { printf '\n==> %s\n' "$*"; }
 
