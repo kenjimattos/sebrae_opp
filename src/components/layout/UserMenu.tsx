@@ -12,6 +12,7 @@ import { useId, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { LogOut, User, iconSizes } from '@/components/icons'
 import { useDropdownState } from '@/components/ui/useDropdownState'
+import { useAnalytics } from '@/hooks/useAnalytics'
 import { useAuth } from '@/hooks/useAuth'
 
 const itemClass =
@@ -23,6 +24,7 @@ interface UserMenuProps {
 
 export default function UserMenu({ className = '' }: UserMenuProps) {
   const { isLoggedIn, user, logout } = useAuth()
+  const analytics = useAnalytics()
   const { open, setOpen, ref } = useDropdownState()
   const triggerRef = useRef<HTMLButtonElement>(null)
   const panelId = useId()
@@ -64,7 +66,7 @@ export default function UserMenu({ className = '' }: UserMenuProps) {
           className="card-raised absolute right-0 top-full mt-xs z-50 w-[min(20rem,calc(100vw-2rem))] p-xs flex flex-col"
         >
           <div className="px-sm py-xs flex flex-col gap-2xs">
-            {/* `data-clarity-mask`: o replay do Clarity (quando entrar) não grava o nome.
+            {/* `data-clarity-mask`: o replay do Clarity não grava o nome.
                 `break-words`: o nome do AMEI pode ser longo (já veio com o e-mail dentro). */}
             <p data-clarity-mask="true" className="typo-body-bold break-words">
               {user.name ?? 'Usuário'}
@@ -77,6 +79,18 @@ export default function UserMenu({ className = '' }: UserMenuProps) {
           <Link to="/termos" onClick={() => setOpen(false)} className={itemClass}>
             Termos de uso e privacidade
           </Link>
+          {/* Revogar o consentimento tem de ser tão fácil quanto dá-lo (LGPD). Só aparece
+              com projeto do Clarity configurado: sem ele não há o que ligar. */}
+          {analytics.available && (
+            <button
+              type="button"
+              aria-pressed={analytics.choice === 'granted'}
+              onClick={analytics.choice === 'granted' ? analytics.deny : analytics.grant}
+              className={itemClass}
+            >
+              Análise de uso: {analytics.choice === 'granted' ? 'ligada' : 'desligada'}
+            </button>
+          )}
           <button type="button" onClick={logout} className={itemClass}>
             <LogOut size={iconSizes.sm} aria-hidden className="shrink-0" />
             Sair

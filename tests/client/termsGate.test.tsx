@@ -2,6 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import TermsGate from '@/components/terms/TermsGate'
+import AnalyticsProvider from '@/hooks/AnalyticsProvider'
 import { AuthContext } from '@/hooks/useAuth'
 import type { TermsAcceptance } from '@/types/terms'
 
@@ -19,13 +20,15 @@ function montar() {
     <AuthContext.Provider
       value={{ ready: true, isLoggedIn: true, user: { id: 'u1' }, login: vi.fn(), logout }}
     >
-      <MemoryRouter initialEntries={['/home']}>
-        <Routes>
-          <Route element={<TermsGate />}>
-            <Route path="/home" element={<p>conteúdo da home</p>} />
-          </Route>
-        </Routes>
-      </MemoryRouter>
+      <AnalyticsProvider>
+        <MemoryRouter initialEntries={['/home']}>
+          <Routes>
+            <Route element={<TermsGate />}>
+              <Route path="/home" element={<p>conteúdo da home</p>} />
+            </Route>
+          </Routes>
+        </MemoryRouter>
+      </AnalyticsProvider>
     </AuthContext.Provider>,
   )
 }

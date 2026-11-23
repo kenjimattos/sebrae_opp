@@ -99,31 +99,27 @@ export const TERMS_SECTIONS: TermsSection[] = [
     ],
   },
   {
+    id: 'analise-de-uso',
+    title: '8. Análise de uso e cookies',
+    paragraphs: [
+      'Com o seu consentimento, usamos o Microsoft Clarity para entender como a plataforma é usada (mapas de calor e gravações da navegação: cliques, rolagem e telas visitadas) e melhorá-la. O consentimento é separado do aceite destes termos: você pode recusá-lo e continuar usando a plataforma normalmente, e pode revogá-lo quando quiser, no menu da conta. Sem o seu consentimento, o Clarity não é carregado.',
+      'As gravações ocultam campos de texto, o que você escreve no formulador de projetos e no assistente de IA, e o seu nome. O Clarity recebe o identificador da sua conta no AMEI, que não revela quem você é, e guarda cookies próprios no seu navegador.',
+      'A sua escolha fica guardada neste navegador. Em outro navegador ou computador, perguntamos de novo.',
+    ],
+  },
+  {
     id: 'mudancas',
-    title: '8. Mudanças nestes termos',
+    title: '9. Mudanças nestes termos',
     paragraphs: [
       'Podemos atualizar estes termos. Quando a mudança for relevante, a plataforma pedirá que você leia e aceite a nova versão antes de continuar. A versão em vigor é a publicada nesta página.',
     ],
   },
   {
     id: 'foro',
-    title: '9. Contato e foro',
+    title: '10. Contato e foro',
     paragraphs: [
       `Dúvidas sobre estes termos: ${A_CONFIRMAR}.`,
       `Foro: ${A_CONFIRMAR}.`,
     ],
   },
 ]
-
-// Cookies e análise de uso (Microsoft Clarity). NÃO está em TERMS_SECTIONS de
-// propósito: o Clarity ainda não está instalado, e o texto não pode afirmar o que
-// o produto não faz. Quando ele entrar (com o banner de consentimento), acrescente
-// esta seção à lista e suba a TERMS_VERSION.
-export const TERMS_ANALYTICS_SECTION: TermsSection = {
-  id: 'analise-de-uso',
-  title: 'Análise de uso e cookies',
-  paragraphs: [
-    'Com o seu consentimento, usamos o Microsoft Clarity para entender como a plataforma é usada (mapas de calor e gravações anônimas de navegação) e melhorá-la. O consentimento é separado do aceite destes termos: você pode recusá-lo e continuar usando a plataforma normalmente, e pode revogá-lo quando quiser.',
-    'As gravações ocultam campos de texto e o seu nome. O Clarity recebe um identificador da sua conta que não revela quem você é.',
-  ],
-}

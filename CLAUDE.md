@@ -411,9 +411,20 @@ operacional está em `server/README.md` §Login.
 - `getKeycloak()` é preguiçoso de propósito: o módulo lê `VITE_KEYCLOAK_*` e falha se faltarem;
   importá-lo em teste sem as variáveis não pode quebrar. Teste mocka `@/auth/keycloak` ou
   `@react-keycloak/web`.
-- O Clarity (produção) ainda não entrou, mas o encaixe está: `useAuth().user.id` é o `sub`
-  para `identify`, o nome no painel do `UserMenu` leva `data-clarity-mask`, e aceite de termos e
-  consentimento de analytics são coisas separadas (LGPD).
+- **Clarity: o script só baixa depois do "sim", e o "sim" é do navegador, não do servidor.**
+  `AnalyticsProvider` (dentro do `AuthProvider`) carrega `src/analytics/clarity.ts` só com
+  `VITE_CLARITY_PROJECT_ID` no build, usuário logado e consentimento gravado (`localStorage`,
+  chave `analytics-consent:<sub>`, para o "sim" de uma pessoa não valer para a próxima no mesmo
+  computador). O pedido é o `AnalyticsConsentBanner`, que o `TermsGate` monta **depois** do aceite;
+  a revogação fica no `UserMenu` e recarrega a página, porque o script não sai da memória.
+  `identify` leva só o `sub`. Consentimento e aceite de termos são coisas separadas (LGPD):
+  o aceite é condição de uso e mora no servidor; o consentimento é opcional. Sem o ID, nada
+  carrega e ninguém é perguntado: pedir consentimento para o que não roda seria enganoso.
+- **O masking padrão do Clarity só oculta `<input>`/`<textarea>`; texto do usuário reimpresso
+  como texto comum vaza no replay.** O balão do chat e a revisão do Formulador fazem isso, por
+  isso o histórico do chat e o `ModeFormulator` inteiro levam `data-clarity-mask`, além do nome
+  no `UserMenu`. Tela nova que reimprime o que a pessoa escreveu precisa da marca, e os termos
+  (§8) prometem que isso fica oculto. Nenhum teste pega a falta dela fora desses três.
 - **Termos de uso: aceite no servidor, por usuário, e a falha é fechada.** `TermsGate` fica
   dentro do `RequireAuth`; sem aceite da `TERMS_VERSION` vigente (`src/data/terms/version.ts`,
   lida pelo front e pelo servidor) a tela de aceite toma o lugar da rota. Se não der para
@@ -421,10 +432,10 @@ operacional está em `server/README.md` §Login.
   Liberar na dúvida tornaria o aceite decorativo. `/termos` é pública e é a única página,
   além da `/`, que abre sem login. O texto (`src/data/terms/content.ts`) é **rascunho**: os
   trechos `A_CONFIRMAR` (controlador, encarregado, foro) dependem do jurídico do Sebrae, e
-  `termsContent.test.tsx` conta quantos faltam. A seção do Clarity existe em
-  `TERMS_ANALYTICS_SECTION` **fora** da lista renderizada, de propósito: o texto não pode
-  afirmar o que o produto ainda não faz. Quando o Clarity entrar, acrescente-a e suba a versão.
-  O texto não nomeia o fornecedor do modelo de IA (sigilo do projeto). **O aceite mora na
+  `termsContent.test.tsx` conta quantos faltam. A seção do Clarity (§8) entrou
+  junto com ele, não antes: o texto não pode afirmar o que o produto ainda não faz. E não chama
+  as gravações de "anônimas": com o `identify` pelo `sub` elas são pseudonimizadas, e o teste
+  confere. O texto não nomeia o fornecedor do modelo de IA (sigilo do projeto). **O aceite mora na
   mesma tela do texto**: `TermsGate` renderiza o `TermsDocument` com uma barra `sticky bottom`
   (checkbox + botões) como filho, em vez de um cartão que mandava ler em outra aba. A barra é `card-raised` (opaca), **não** `glass`: sobre texto que rola por baixo o vidro deixava as linhas do documento aparecendo atrás do checkbox. O gate troca o conteúdo **na mesma rota** (`/home`), e o `ScrollToTop` só age em mudança de rota, então o `accept()` rola ao topo por conta própria — sem isso a Home abria no meio, na rolagem do documento. Índice
   lateral (`TermsToc`) fixo em tela larga e `<details>` abaixo de `lg`; coluna de leitura em
@@ -432,10 +443,10 @@ operacional está em `server/README.md` §Login.
   para texto longo em monoespaçada). O índice marca a ÚLTIMA seção cujo topo já passou da linha de
   leitura (`--header-h` + 40px, onde o topo cai ao clicar no índice), por posição de rolagem
   e **não** por IntersectionObserver: o observador só marca quem cruza uma faixa fixa, e as
-  duas últimas seções, curtas, nunca chegavam lá quando a página acabava (o 8 e o 9 nunca
-  eram marcados). Por isso a última seção tem `min-h-[calc(100dvh-var(--header-h))]`, para o
+  duas últimas seções, curtas, nunca chegavam lá quando a página acabava (as duas últimas
+  nunca eram marcadas). Por isso a última seção tem `min-h-[calc(100dvh-var(--header-h))]`, para o
   topo dela alcançar a linha — mesmo recurso da última fileira de `/trilhas`. Mexeu na
-  altura dessa seção, o 9 deixa de ser marcado e nenhum teste de layout pega (jsdom não
+  altura dessa seção, a última deixa de ser marcada e nenhum teste de layout pega (jsdom não
   calcula).
 - Em dev o `/api/ai` é atendido pelo Vite, fora do Fastify: ele só exige o cabeçalho
   `Bearer`. Não é fronteira de segurança.

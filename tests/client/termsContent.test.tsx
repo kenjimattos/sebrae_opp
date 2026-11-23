@@ -3,7 +3,6 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import TermsDocument from '@/components/terms/TermsDocument'
 import {
   A_CONFIRMAR,
-  TERMS_ANALYTICS_SECTION,
   TERMS_SECTIONS,
   TERMS_SUMMARY,
   termsSectionId,
@@ -20,10 +19,18 @@ describe('texto dos termos de uso', () => {
     expect(new Set(ids).size).toBe(ids.length)
   })
 
-  it('a seção do Clarity NÃO está no texto vigente: o produto ainda não o usa', () => {
-    expect(TERMS_SECTIONS.map((s) => s.id)).not.toContain(TERMS_ANALYTICS_SECTION.id)
-    const tudo = JSON.stringify(TERMS_SECTIONS)
-    expect(tudo).not.toMatch(/clarity/i)
+  it('a seção do Clarity está no texto vigente e diz que o consentimento é separado', () => {
+    const secao = TERMS_SECTIONS.find((s) => s.id === 'analise-de-uso')
+    expect(secao).toBeDefined()
+    const texto = JSON.stringify(secao)
+    expect(texto).toMatch(/Clarity/)
+    expect(texto).toMatch(/separado do aceite/)
+    // O `identify` leva o `sub`: pseudônimo não é anônimo (LGPD), o texto não pode dizer que é.
+    expect(texto).not.toMatch(/anônim/i)
+  })
+
+  it('o banner aponta para a âncora da seção de análise de uso', () => {
+    expect(termsSectionId('analise-de-uso')).toBe('termos-analise-de-uso')
   })
 
   it('o texto não nomeia o fornecedor do modelo de IA (sigilo do projeto)', () => {
@@ -97,10 +104,11 @@ describe('texto dos termos de uso', () => {
         .getAllByRole('navigation', { name: 'Índice dos termos' })[0]!
         .querySelector('a[aria-current="location"]')?.textContent
 
-    it('marca a última seção cujo topo já passou da linha, inclusive a 8 e a 9', async () => {
+    it('marca a última seção cujo topo já passou da linha, inclusive as duas últimas', async () => {
       render(<TermsDocument />)
       const titulo = (i: number) => TERMS_SECTIONS[i]!.title
-      for (const i of [0, 3, 7, 8]) {
+      const n = TERMS_SECTIONS.length
+      for (const i of [0, 3, n - 2, n - 1]) {
         rolarAte(i)
         await waitFor(() => expect(marcada()).toBe(titulo(i)))
       }

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AuthProvider from '@/hooks/AuthProvider'
+import AnalyticsProvider from '@/hooks/AnalyticsProvider'
 import ConfirmProvider from '@/hooks/ConfirmProvider'
 import MunicipalityProvider from '@/hooks/MunicipalityProvider'
 import FormulatorProvider from '@/hooks/FormulatorProvider'
@@ -18,22 +19,24 @@ function App() {
       <ScrollToTop />
       <ConfirmProvider>
         <AuthProvider>
-          <MunicipalityProvider>
-            <FormulatorProvider>
-              <Routes>
-                <Route element={<Layout />}>
-                  <Route path="/" element={<Login />} />
-                  <Route path="/termos" element={<Terms />} />
-                  <Route element={<RequireAuth />}>
-                    <Route element={<TermsGate />}>
-                      <Route path="/home" element={<Home />} />
-                      <Route path="/trilhas" element={<Trails />} />
+          <AnalyticsProvider>
+            <MunicipalityProvider>
+              <FormulatorProvider>
+                <Routes>
+                  <Route element={<Layout />}>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/termos" element={<Terms />} />
+                    <Route element={<RequireAuth />}>
+                      <Route element={<TermsGate />}>
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/trilhas" element={<Trails />} />
+                      </Route>
                     </Route>
                   </Route>
-                </Route>
-              </Routes>
-            </FormulatorProvider>
-          </MunicipalityProvider>
+                </Routes>
+              </FormulatorProvider>
+            </MunicipalityProvider>
+          </AnalyticsProvider>
         </AuthProvider>
       </ConfirmProvider>
     </BrowserRouter>

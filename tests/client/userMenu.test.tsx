@@ -2,9 +2,17 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
 import UserMenu from '@/components/layout/UserMenu'
+import { AnalyticsContext, type AnalyticsContextType } from '@/hooks/useAnalytics'
 import { AuthContext, type AuthContextType } from '@/hooks/useAuth'
 
-function montar(auth: Partial<AuthContextType> = {}) {
+const semAnalytics: AnalyticsContextType = {
+  available: false,
+  choice: null,
+  grant: vi.fn(),
+  deny: vi.fn(),
+}
+
+function montar(auth: Partial<AuthContextType> = {}, analytics: AnalyticsContextType = semAnalytics) {
   const logout = vi.fn()
   const value: AuthContextType = {
     ready: true,
@@ -16,10 +24,12 @@ function montar(auth: Partial<AuthContextType> = {}) {
   }
   render(
     <AuthContext.Provider value={value}>
-      <MemoryRouter>
-        <UserMenu />
-        <p>fora do menu</p>
-      </MemoryRouter>
+      <AnalyticsContext.Provider value={analytics}>
+        <MemoryRouter>
+          <UserMenu />
+          <p>fora do menu</p>
+        </MemoryRouter>
+      </AnalyticsContext.Provider>
     </AuthContext.Provider>,
   )
   return { logout }
@@ -106,6 +116,32 @@ describe('UserMenu', () => {
     montar({ user: { id: 'u1' } })
     fireEvent.click(botao())
     expect(screen.getByText('Usuário')).toBeInTheDocument()
+  })
+
+  it('sem projeto do Clarity configurado, o menu não oferece a análise de uso', () => {
+    montar()
+    fireEvent.click(botao())
+    expect(screen.queryByRole('button', { name: /Análise de uso/ })).not.toBeInTheDocument()
+  })
+
+  it('análise ligada: o item anuncia o estado e desligar chama deny', () => {
+    const deny = vi.fn()
+    montar({}, { available: true, choice: 'granted', grant: vi.fn(), deny })
+    fireEvent.click(botao())
+    const item = screen.getByRole('button', { name: 'Análise de uso: ligada' })
+    expect(item).toHaveAttribute('aria-pressed', 'true')
+    fireEvent.click(item)
+    expect(deny).toHaveBeenCalledTimes(1)
+  })
+
+  it('análise desligada ou sem resposta: o item liga com grant', () => {
+    const grant = vi.fn()
+    montar({}, { available: true, choice: null, grant, deny: vi.fn() })
+    fireEvent.click(botao())
+    const item = screen.getByRole('button', { name: 'Análise de uso: desligada' })
+    expect(item).toHaveAttribute('aria-pressed', 'false')
+    fireEvent.click(item)
+    expect(grant).toHaveBeenCalledTimes(1)
   })
 
   it('quem não está logado não vê o menu (a /termos é pública)', () => {

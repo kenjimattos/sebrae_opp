@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
+import AnalyticsConsentBanner from '@/components/analytics/AnalyticsConsentBanner'
 import TermsDocument from '@/components/terms/TermsDocument'
 import Button from '@/components/ui/buttons/Button'
 import { fetchTermsAcceptance, postTermsAcceptance } from '@/data/api'
@@ -59,7 +60,16 @@ export default function TermsGate() {
       </div>
     )
   }
-  if (state.status === 'ready' && state.acceptance.accepted) return <Outlet />
+  // O pedido de consentimento do Clarity vem só depois do aceite: são duas perguntas,
+  // e a segunda é opcional. Ele some sozinho se não houver projeto ou já houver resposta.
+  if (state.status === 'ready' && state.acceptance.accepted) {
+    return (
+      <>
+        <Outlet />
+        <AnalyticsConsentBanner />
+      </>
+    )
+  }
 
   // Falha ao verificar: tela pequena, sem o texto — não há o que aceitar ainda.
   if (state.status === 'error') {
