@@ -33,8 +33,12 @@ A Home abre com a **visão estadual** e segue para a **Jornada do Município Emp
 uma `SideNav` com **4 pilares**; os que têm mais de um **modo de visualização** alternam via
 `ModeToggle`.
 
-- **Entrada** (`/`) — escolha de UF: escolher a Paraíba leva a `/home`. Não há autenticação
-  efetiva: `/home` abre direto.
+- **Entrada** (`/`) — escolha de UF, pública: escolher a Paraíba leva ao login do AMEI
+  (Keycloak do Sebrae) e, depois dele, a `/home`. Quem já está logado entra direto.
+  `/home` e `/trilhas` exigem login e, em seguida, o **aceite dos termos de uso**
+  (gravado no servidor, por usuário); a página `/termos` é pública. O menu da conta
+  (ícone no header) mostra o nome, o link dos termos, a **análise de uso** (Microsoft
+  Clarity, só com consentimento) e o "Sair".
 - **Visão estadual** — indicadores da PB no grão UF (`/api/estado`), com a posição entre as
   27 UFs e as 9 do Nordeste, sem semáforo.
 - **Ambiente de negócio** — 3 modos:
@@ -64,7 +68,7 @@ uma `SideNav` com **4 pilares**; os que têm mais de um **modo de visualização
 - **Seletor de município** — 223 municípios da PB vindos da API; troca sem "piscar"
   (stale-while-revalidate no provider).
 
-> **Não há rota catch-all.** As rotas são exatamente `/`, `/home` e `/trilhas`
+> **Não há rota catch-all.** As rotas são exatamente `/`, `/termos`, `/home` e `/trilhas`
 > (`src/App.tsx`). Qualquer outra URL renderiza tela em branco — inclusive
 > `/oportunidades` e `/comunidade`, que existiram e podem aparecer em links antigos.
 
@@ -85,12 +89,12 @@ a VPN do Sebrae.
 # 1) API (em outro terminal)
 cd server
 npm install
-cp .env.example .env             # preencher MONGO_URI
+cp .env.example .env             # preencher MONGO_URI e KEYCLOAK_* (sem prefixo VITE_)
 npm run dev                      # tsx watch, porta 3000
 
 # 2) Frontend (na raiz)
 npm install
-cp .env.example .env.local       # preencher GOOGLE_SERVICE_ACCOUNT_JSON (IA em dev)
+cp .env.example .env.local       # preencher VITE_KEYCLOAK_* (e a chave do Google p/ IA em dev)
 npm run dev                      # http://localhost:5173 (/api → :3000 via proxy)
 
 npm run build                    # build de produção (NÃO compila tests/)
@@ -115,9 +119,13 @@ npm run typecheck                # tsc do app E dos testes — é este antes de 
 
 | Arquivo | Variável | Descrição |
 |---|---|---|
-| `.env.local` (raiz) | `GOOGLE_SERVICE_ACCOUNT_JSON` | Service account da IA: o `.json` inteiro, formato padrão do GCP, numa linha. Traz a **chave privada**: **sem prefixo `VITE_`**, senão vaza no bundle do client. |
+| `.env.local` (raiz) | `VITE_KEYCLOAK_URL` / `VITE_KEYCLOAK_REALM` / `VITE_KEYCLOAK_CLIENT_ID` | **Obrigatórias** (valem no build): login no AMEI. O SPA é client público (PKCE), sem secret. |
+| `.env.local` (raiz) | `VITE_CLARITY_PROJECT_ID` | Opcional. Sem ela o Clarity não carrega e ninguém é perguntado; com ela, o script só baixa depois do consentimento. |
+| `.env.local` (raiz) | `GOOGLE_SERVICE_ACCOUNT_JSON` | **Só para `npm run dev`.** Service account da IA: o `.json` inteiro, formato padrão do GCP, numa linha. Traz a **chave privada**: **sem prefixo `VITE_`**, senão vaza no bundle do client. |
 | `.env.local` (raiz) | `VERTEX_MODEL` / `VERTEX_LOCATION` | Opcionais (default `gemini-3.8-flash` / `global`, em `api/_lib/vertex.ts`). O que existe é por projeto — conferir com chamada real antes de trocar. |
 | `server/.env` | `MONGO_URI` / `MONGO_DB` | Conexão com o MongoDB `DadosOPP` (host `10.1.141.23`, default `DadosOPP`). |
+| `server/.env` | `KEYCLOAK_URL` / `KEYCLOAK_REALM` / `KEYCLOAK_CLIENT_ID` | **Obrigatórias**: sem elas a API não sobe. **Sem o prefixo `VITE_`** — copiar do `.env.local` deixa a API em crash-loop. |
+| `server/.env` | `KEYCLOAK_CLIENT_SECRET` / `KEYCLOAK_REALM_PUBLIC_KEY` | Opcionais: o secret só existe com client confidencial; a chave pública dispensa a busca do JWKS no AMEI. |
 | `server/.env` | `PORT` / `HOST` | Porta/host da API (default `3000` / `0.0.0.0`). |
 | `server/.env` | `GOOGLE_SERVICE_ACCOUNT_JSON` | Service account da IA **em produção**, onde o `/api/ai` é servido pelo Fastify. Opcional: sem ela a API sobe e só essa rota responde 503 `unavailable`. |
 | `server/.env` | `VERTEX_MODEL` / `VERTEX_LOCATION` | Opcionais, mesmos defaults do `.env.local`. |
@@ -126,7 +134,11 @@ npm run typecheck                # tsc do app E dos testes — é este antes de 
 
 ## API de leitura
 
-`server/` (Node ≥20 + Fastify) só **lê** — quem escreve é o ETL em `database/`.
+`server/` (Node ≥20 + Fastify) só **lê** — quem escreve é o ETL em `database/`. A única
+exceção é o aceite dos termos de uso (`termsAcceptances`).
+
+**Todo `/api/*` exige `Authorization: Bearer <token do AMEI>`, exceto `/api/health`.** O
+detalhe (validação, `azp`, diagnóstico) está em [`server/README.md`](server/README.md).
 
 | Rota | Devolve |
 |---|---|
@@ -136,7 +148,12 @@ npm run typecheck                # tsc do app E dos testes — é este antes de 
 | `GET /api/map` | `{ options, municipalities }` — valores para colorir o mapa |
 | `GET /api/emendas` | `EmendasData` — as duas esferas de uma vez |
 | `GET /api/estado` | `StateData` — os 8 indicadores da PB no grão UF, com série |
+| `GET /api/terms/acceptance` | `{ version, accepted }` — se o usuário aceitou a versão vigente dos termos |
+| `POST /api/terms/acceptance` | grava o aceite da versão vigente (idempotente) |
 | `POST /api/ai` | resposta do LLM para uma task de IA |
+
+> Rota nova de `/api` em produção: avise a TI do Sebrae para liberá-la no **WAF**, que
+> pode barrar com status 200 e HTML ("Request Rejeitado").
 
 Agendas e base econômica são montadas de `agendas` + `indicators.placements`; o status vem
 do `threshold` de cada indicador no banco. **Nunca inventar cortes de classificação** — a
@@ -185,7 +202,7 @@ Três camadas: o **frontend** (`src/` + `api/`), a **API de leitura** (`server/`
 
 ```
 src/                          # Frontend React
-├── components/               # Componentes por grupo do Figma
+├── components/               # Componentes por grupo do Figma (+ RequireAuth)
 │   ├── agenda/               # AgendaExpandable, IndicatorBar, IndicatorModal, ModeEixos
 │   ├── economics/            # EconomicsCard, ModeEconomics
 │   ├── analysis/             # ModeAnalysis, AIAnalysis
@@ -198,17 +215,22 @@ src/                          # Frontend React
 │   ├── formulator/           # ModeFormulator + FormulatorForm + 10 steps + revisão
 │   ├── chat/                 # ChatButton, ChatPanel (chat global da Home)
 │   ├── sections/             # SectionHero, SectionEstado, SectionJornada
-│   ├── layout/               # Layout, SiteHeader, SideNav, CitySelector, StateSelector
+│   ├── layout/               # Layout, SiteHeader, UserMenu, SideNav, CitySelector, StateSelector
+│   ├── terms/                # TermsGate, TermsDocument, TermsToc (aceite dos termos)
+│   ├── analytics/            # AnalyticsConsentBanner (consentimento do Clarity)
 │   ├── map/                  # OutlineMap, ParaibaOutlineMap, BrasilOutlineMap, MunicipalityMap
 │   ├── ui/                   # Primitivos Tailwind: Card, Modal, ModeToggle,
 │   │                         #   ThemeToggle, Tooltip, buttons/ (Button, Chip…)
 │   └── icons/                # Re-exports Lucide
-├── data/                     # api.ts + ai.ts (clients) e conteúdo editorial:
-│                             #   indicators/, home/, formulator/, chat/, geo/, layout.ts
+├── auth/                     # keycloak.ts (instância preguiçosa), AuthRoot
+├── analytics/                # clarity.ts, consent.ts (só carrega após o "sim")
+├── data/                     # api.ts + ai.ts + http.ts (authFetch, único caminho p/ /api)
+│                             #   e conteúdo editorial: indicators/, home/, formulator/,
+│                             #   chat/, geo/, terms/, layout.ts
 ├── hooks/                    # MunicipalityProvider, FormulatorProvider, AuthProvider,
 │                             #   useEmendas, useEstado, useAiTask, useTheme, useTypewriter…
 ├── types/                    # indicators.ts, emendas.ts, estado.ts, formulator.ts, ai.ts
-├── pages/                    # Login (/), Home (/home), Trails (/trilhas)
+├── pages/                    # Login (/), Terms (/termos), Home (/home), Trails (/trilhas)
 ├── utils/                    # emendas, economics, courseLoad, statusStyles…
 └── index.css                 # Design tokens + classes compostas (@layer components)
 
@@ -266,12 +288,15 @@ Navegador -> Nginx (:80) --+-- /            -> /var/www/sebrae_opp/dist  (SPA)
 1. **Nginx** — `server` block em `/etc/nginx/sites-enabled/sebrae_opp`: `root
    /var/www/sebrae_opp/dist`, SPA fallback (`try_files $uri $uri/ /index.html`) e proxy
    `location /api/ { proxy_pass http://127.0.0.1:3000; proxy_set_header X-Forwarded-For
-   $proxy_add_x_forwarded_for; }` (**sem barra no final** no `proxy_pass` — preserva o
+   $remote_addr; }` (**sem barra no final** no `proxy_pass` — preserva o
    `/api` no path). O `X-Forwarded-For` é **obrigatório**: sem ele o limite por IP do
-   `/api/ai` vira limite do site inteiro.
+   `/api/ai` vira limite do site inteiro. Na frente do Nginx há um **WAF** (`10.1.192.27`)
+   que acrescenta o IP do cliente ao fim do cabeçalho: o Nginx lê com `set_real_ip_from
+   10.1.192.27; real_ip_header X-Forwarded-For; real_ip_recursive on;` e repassa só
+   `$remote_addr`. Bloco completo em [`server/README.md`](server/README.md#deploy-101001099).
 2. **API via systemd** — unit `/etc/systemd/system/opp-api.service` executando
    `node dist/index.js` com `WorkingDirectory` = `server/` (o `dotenv` lê o `server/.env`,
-   que precisa do `MONGO_URI`). Depois: `sudo systemctl enable --now opp-api`.
+   que precisa do `MONGO_URI` e dos `KEYCLOAK_*`). Depois: `sudo systemctl enable --now opp-api`.
    > `dist/index.js` é um shim gerado no `postbuild`: o entrypoint real é
    > `dist/server/src/index.js` (o tsconfig usa `rootDir: ".."` para compilar o núcleo de
    > IA compartilhado em `api/_lib`). O shim existe justamente para o `ExecStart` acima
@@ -309,7 +334,8 @@ sudo systemctl restart opp-api
 
 ```bash
 curl -s http://localhost/api/health          # {"ok":true,"db":"up"}
-curl -s http://localhost/api/municipalities  # array dos 223 municípios da PB
+curl -s -o /dev/null -w '%{http_code}\n' http://localhost/api/municipalities  # 401: sem token a API recusa
+# com token do AMEI (-H "Authorization: Bearer ...") devolve o array dos 223 municípios
 ```
 
 ## Licença

@@ -17,7 +17,7 @@ acender.
 Home = visão estadual (`SectionEstado`) + jornada (`SectionJornada`), com `SideNav` de 4 pilares (Ambiente
 de negócio, Mapeamento de recursos, Cursos e boas práticas, Formulador de projetos);
 os pilares com mais de um modo (Ambiente, Cursos e boas práticas) alternam via `ModeToggle`. **223 municípios da PB**; a sessão começa sem nenhum escolhido.
-Rotas: `/` (Login), `/home`, `/trilhas`. Desktop 1440px; o layout se sustenta até
+Rotas: `/` (Login), `/termos` (pública), `/home`, `/trilhas`. Desktop 1440px; o layout se sustenta até
 1000px, e abaixo disso `ui/NarrowScreenNotice` avisa **sem bloquear** (zoom alto num
 notebook também cai ali). **Tema claro e escuro**
 pelo `ThemeToggle` (automático → claro → escuro; automático é o default e segue o
@@ -205,7 +205,7 @@ boot e os dados do município sob demanda, com `loading`/`error`.
 ## Backend / API
 
 API de **leitura** em `server/` (Node ≥20 + Fastify). Só lê — quem escreve é o ETL
-(`database/`). Deploy (systemd + Nginx) em `server/README.md`.
+(`database/`); a única escrita da API é o aceite dos termos (`termsAcceptances`). Deploy (systemd + Nginx) em `server/README.md`.
 
 | Rota | Devolve |
 |---|---|
@@ -215,6 +215,8 @@ API de **leitura** em `server/` (Node ≥20 + Fastify). Só lê — quem escreve
 | `GET /api/map` | `{ options, municipalities }` — valores para colorir o mapa |
 | `GET /api/emendas` | `EmendasData` — as duas esferas de uma vez |
 | `GET /api/estado` | `StateData` — os 8 indicadores da PB no grão UF, com série |
+| `GET /api/terms/acceptance` | `{ version, accepted }` — aceite dos termos pelo usuário |
+| `POST /api/terms/acceptance` | grava o aceite da versão vigente (idempotente) |
 | `POST /api/ai` | resposta do LLM para uma task de IA |
 
 **Organização por domínio, não por camada.** Cada pilar traz repo + service +
