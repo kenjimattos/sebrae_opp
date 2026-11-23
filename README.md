@@ -304,6 +304,23 @@ Navegador -> Nginx (:80) --+-- /            -> /var/www/sebrae_opp/dist  (SPA)
 
 ### Atualizar (a cada release)
 
+**Automático:** no servidor, um hook `post-merge` roda o deploy depois do `git pull`
+**só se o último commit for de release**, isto é, se o assunto dele for apenas `X.X.X`
+(o que o `npm version` gera, ex.: `1.7.0`). `chore: bump version…`, `v1.7.0` e qualquer
+outro commit passam sem deploy. O hook só chama `scripts/deploy.sh`, que roda sozinho:
+
+```bash
+./scripts/install-hooks.sh        # uma vez, depois do clone no servidor
+./scripts/deploy.sh               # deploy à mão (--front ou --api para um lado só)
+SKIP_DEPLOY=1 git pull            # puxar sem acionar o hook
+```
+
+O script termina conferindo `/api/health` e **sai com erro** se a API não subir. O git ignora o
+código de saída do `post-merge`: o `pull` já foi feito, então olhe a saída do deploy. O hook
+não roda em `git pull --rebase`.
+
+**Manual** (o que o `scripts/deploy.sh` faz):
+
 ```bash
 # no servidor, dentro de ~/sebrae_opp
 git pull

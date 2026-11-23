@@ -1,0 +1,20 @@
+#!/bin/sh
+# Hook post-merge: depois de um `git pull`, faz o deploy SE o último commit for
+# de release, isto é, se o assunto dele for só `X.X.X` (o que o `npm version`
+# gera, ex.: `1.7.0`). Qualquer outro commit passa em silêncio.
+#
+# Não tem lógica de deploy: só chama scripts/deploy.sh, que também roda sozinho.
+# Instalar no servidor: ./scripts/install-hooks.sh
+#
+# Pular uma vez:  SKIP_DEPLOY=1 git pull
+# Falha aqui NÃO desfaz o pull (o git ignora o código de saída do post-merge).
+
+[ -n "$SKIP_DEPLOY" ] && exit 0
+
+root=$(git rev-parse --show-toplevel) || exit 0
+subject=$(git log -1 --format=%s)
+
+if printf '%s\n' "$subject" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+  echo "post-merge: release $subject, rodando o deploy."
+  exec "$root/scripts/deploy.sh"
+fi
