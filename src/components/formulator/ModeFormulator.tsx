@@ -60,8 +60,10 @@ export default function ModeFormulator() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  // `data-clarity-mask` no fluxo inteiro: o projeto é do usuário (os termos prometem que
+  // não sai do navegador), e a revisão e as listas geradas o mostram fora de <textarea>.
   return (
-    <section className="flex flex-col gap-sm w-full flex-1 min-h-0">
+    <section data-clarity-mask="true" className="flex flex-col gap-sm w-full flex-1 min-h-0">
       <FormulatorProgress currentIndex={currentIndex} percent={percent} />
 
       {finalized || !step ? (

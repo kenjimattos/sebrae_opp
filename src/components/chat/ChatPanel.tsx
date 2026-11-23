@@ -141,8 +141,9 @@ export default function ChatPanel({ onClose }: ChatPanelProps) {
         <IconButton icon={X} variant="ghost" size="sm" aria-label="Fechar chat" onClick={onClose} />
       </div>
 
-      {/* Thread */}
-      <div ref={threadRef} className="flex-1 min-h-0 overflow-y-auto p-md flex flex-col gap-md">
+      {/* Thread. `data-clarity-mask`: a pergunta do usuário vira texto comum no balão (e a
+          resposta pode repeti-la), fora do <input> que o Clarity já oculta sozinho. */}
+      <div ref={threadRef} data-clarity-mask="true" className="flex-1 min-h-0 overflow-y-auto p-md flex flex-col gap-md">
         {entries.length === 0 && (
           <div className="flex flex-col gap-sm">
             <p className="typo-body-sm text-inactive">{chatEmptyMessage}</p>
