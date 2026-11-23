@@ -350,10 +350,15 @@ sudo systemctl restart opp-api
 ### Verificação pós-deploy
 
 ```bash
-curl -s http://localhost/api/health          # {"ok":true,"db":"up"}
-curl -s -o /dev/null -w '%{http_code}\n' http://localhost/api/municipalities  # 401: sem token a API recusa
-# com token do AMEI (-H "Authorization: Bearer ...") devolve o array dos 223 municípios
+# no servidor, dentro de ~/sebrae_opp: direto na API, sem passar pelo Nginx
+PORT=$(grep -s '^PORT=' server/.env | cut -d= -f2)    # vazio = default 3000
+curl -s http://localhost:${PORT:-3000}/api/health     # {"ok":true,"db":"up"}
+curl -s -o /dev/null -w '%{http_code}\n' http://localhost:${PORT:-3000}/api/municipalities  # 401: sem token a API recusa
 ```
+
+> O Nginx na `:80` só **redireciona** (301): `curl http://localhost/api/health` devolve a
+> página de redirecionamento, não o JSON. Para testar pelo Nginx, siga o redirecionamento
+> (`curl -L`) ou use o endereço público `https://pippa.sebrae.com.br/api/health`.
 
 ## Licença
 
